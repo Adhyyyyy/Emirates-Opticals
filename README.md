@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Emirates Opticians 👓
+A premium, multi-branch Next.js 15 (Turbopack) application built for the premier luxury optician in the UAE.
+
+## Features
+- **Modern Tech Stack**: Next.js 15 (App Router), React 19, TypeScript
+- **Stunning UI**: Tailwind CSS v4, Framer Motion, GSAP, and Custom CSS shapes
+- **Database Architecture**: Prisma ORM v7 with `@prisma/adapter-pg`
+- **Robust Authentication**: Supabase SSR Auth with protected Middleware proxy routes
+- **Secure Dashboard**: Full CRUD admin operations protected by Server Actions
+- **Dynamic Storefront**: Live product discovery, interactive branch locators, and dynamic offers
+- **Performance**: Optimized images, incremental static regeneration (ISR)
+
+## Prerequisites
+- Node.js 18.x or later
+- Supabase account with active database
+
+## Environment Setup
+Create a `.env` file in the root directory:
+```env
+# Supabase Configuration
+NEXT_PUBLIC_SUPABASE_URL="your-supabase-url"
+NEXT_PUBLIC_SUPABASE_ANON_KEY="your-anon-key"
+SUPABASE_SERVICE_ROLE_KEY="your-service-role-key"
+
+# Database Connections
+# Prisma requires DIRECT_URL for migrations
+DIRECT_URL="your-supabase-direct-postgres-url"
+# Application connection uses the transaction pooler
+DATABASE_URL="your-supabase-pooled-postgres-url"
+```
 
 ## Getting Started
 
-First, run the development server:
-
+1. **Install Dependencies**:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. **Database Migrations**:
+Apply the Prisma schema to your database.
+```bash
+npx prisma migrate dev --name init
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. **Database Seeding**:
+Populate the database with initial branches and products.
+```bash
+npx tsx prisma/seed.ts
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. **Create Admin User**:
+Run the setup script to register the `SUPER_ADMIN` in Supabase Auth and Prisma.
+```bash
+node create-admin.js
+```
 
-## Learn More
+5. **Start Development Server**:
+```bash
+npm run dev
+```
+Navigate to `http://localhost:3000` to view the storefront, and `http://localhost:3000/login` to access the admin portal.
 
-To learn more about Next.js, take a look at the following resources:
+## Project Structure
+- `/app/(public)`: All public-facing storefront routes (Home, Branches, Products, Static pages).
+- `/app/(auth)`: Secure authentication layouts.
+- `/app/dashboard`: Protected admin portal interfaces.
+- `/app/actions`: Secure Next.js Server Actions handling all database mutations.
+- `/components`: Reusable UI elements split between `home` and global utilities.
+- `/lib`: Singleton instances for Prisma client and Supabase SSR utilities.
+- `/prisma`: Database schema, migrations, and seed scripts.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Styling System
+This project utilizes **Tailwind CSS v4** alongside a predefined design system in `tailwind.config.ts`. The `globals.css` maps custom CSS properties (like `--bg`, `--surface`, `--gold`) to create the distinct luxury dark-mode theme.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deployment
+This project is fully ready for deployment on Vercel or AWS Amplify. Ensure all environment variables are correctly mapped in your deployment provider's dashboard.
+"# Emirates-Opticals" 
