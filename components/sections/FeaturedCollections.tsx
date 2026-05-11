@@ -36,8 +36,8 @@ const COLLECTIONS = [
 
 export function FeaturedCollections() {
   return (
-    <section className="pt-32 md:pt-48 pb-24 md:pb-32 bg-white">
-      <div className="max-w-[1800px] mx-auto px-6 md:px-12">
+    <section className="bg-white overflow-visible section-padding">
+      <div className="container-tight">
         
         {/* Section Title */}
         <motion.div 
@@ -47,7 +47,7 @@ export function FeaturedCollections() {
           transition={{ duration: 1 }}
           className="text-center mb-16 md:mb-24"
         >
-          <h2 className="text-4xl md:text-6xl font-light uppercase tracking-tight text-brand-charcoal font-heading">
+          <h2 className="h2-editorial">
             Featured Collections
           </h2>
         </motion.div>

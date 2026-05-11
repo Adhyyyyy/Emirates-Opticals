@@ -19,7 +19,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
-          className="text-[9px] md:text-[11px] tracking-[0.4em] md:tracking-[0.5em] uppercase font-semibold text-brand-charcoal/60 mb-8 md:mb-12"
+          className="h3-editorial mb-8 md:mb-12 text-brand-charcoal/60"
         >
           A New Season of Elevated Vision:
         </motion.span>
@@ -31,9 +31,9 @@ export function Hero() {
           transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
           className="text-center mb-16 md:mb-24 relative z-10"
         >
-          <span className="block text-5xl md:text-[7.5rem] font-extralight tracking-tight leading-[0.9] text-brand-charcoal uppercase font-heading">
+          <span className="block h1-editorial">
             Spring <br />
-            <span className="font-extralight italic text-brand-charcoal/80 tracking-normal font-heading normal-case text-4xl md:text-[6rem]">In Full Focus</span>
+            <span className="font-extralight italic text-brand-charcoal/80 tracking-normal normal-case text-4xl md:text-[6rem]">In Full Focus</span>
           </span>
         </motion.h1>
 

@@ -5,46 +5,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@layer base {
-  body {
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
-    font-family: var(--font-body);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    @apply bg-background text-foreground;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading);
-    letter-spacing: -0.02em;
-  }
-  * {
-    @apply border-border outline-ring/50;
-  }
-  html {
-    font-family: var(--font-body);
-  }
-}
-
-/* Custom Luxury Scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: hsl(var(--brand-pearl));
-}
-
-::-webkit-scrollbar-thumb {
-  background: hsl(var(--brand-gold-muted));
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--brand-gold));
-}
-
 @theme inline {
   --font-body: var(--font-body), ui-sans-serif, system-ui;
   --font-heading: var(--font-heading), ui-serif, Georgia;
@@ -87,6 +47,90 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* Brand Colors Registration */
+  --color-brand-gold: hsl(var(--brand-gold));
+  --color-brand-gold-muted: hsl(var(--brand-gold-muted));
+  --color-brand-charcoal: hsl(var(--brand-charcoal));
+  --color-brand-pearl: hsl(var(--brand-pearl));
+  --color-brand-blue: hsl(var(--brand-blue));
+}
+
+@layer base {
+  :root {
+    /* Section & Container Tokens */
+    --section-spacing-y: 6rem;
+    --section-spacing-y-md: 8rem;
+    --container-max-width: 1800px;
+    --container-px: 1.5rem;
+    --container-px-md: 2.5rem;
+
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.145 0 0);
+    /* ... rest of your root variables ... */
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    @apply bg-background text-foreground;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+@layer utilities {
+  .section-padding {
+    @apply py-24 md:py-32;
+  }
+
+  .container-tight {
+    @apply max-w-[1800px] mx-auto px-6 md:px-10;
+  }
+
+  .h1-editorial {
+    @apply text-5xl md:text-[7.5rem] font-extralight tracking-tight leading-[0.9] text-brand-charcoal uppercase font-heading;
+  }
+
+  .h2-editorial {
+    @apply text-3xl md:text-5xl font-extralight tracking-[0.1em] text-brand-charcoal uppercase font-heading;
+  }
+
+  .h3-editorial {
+    @apply text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-brand-charcoal;
+  }
+
+  .body-editorial-italic {
+    @apply text-[13px] md:text-sm font-light text-brand-charcoal/60 italic font-heading;
+  }
+
+  .text-editorial-meta {
+    @apply text-[9px] md:text-[10px] uppercase tracking-[0.2em] text-brand-charcoal/40 font-semibold;
+  }
+}
+
+
+/* Custom Luxury Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--brand-pearl));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--brand-gold-muted));
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--brand-gold));
 }
 
 :root {
