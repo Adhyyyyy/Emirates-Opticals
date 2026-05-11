@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="en" className="antialiased">
       <body className={`${inter.variable} ${playfair.variable} font-body`}>
         <Navbar />
-        <main className="min-h-screen pt-[120px] md:pt-[140px]">
+        <main className="min-h-screen pt-[90px] md:pt-[110px]">
           {children}
         </main>
       </body>

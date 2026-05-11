@@ -21,15 +21,37 @@ const NAV_LINKS = [
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Update scrolled state for background styles
+      setIsScrolled(currentScrollY > 20);
+
+      // Handle visibility (Hide on scroll down, show on scroll up)
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+      
+      setLastScrollY(currentScrollY);
+    };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 w-full transition-all duration-500">
+    <motion.header 
+      initial={{ y: 0 }}
+      animate={{ y: isVisible ? 0 : -160 }}
+      transition={{ duration: 0.4, ease: "easeInOut" }}
+      className="fixed top-0 left-0 right-0 z-50 w-full"
+    >
       <AnnouncementBar />
       
       <nav className={cn(
@@ -142,6 +164,6 @@ export function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 }

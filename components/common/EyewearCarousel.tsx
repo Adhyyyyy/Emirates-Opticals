@@ -18,16 +18,16 @@ export function EyewearCarousel() {
       initial={{ y: 50, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ delay: 1.2, duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[95%] max-w-[1400px] bg-white rounded-t-[30px] md:rounded-t-[50px] shadow-[0_-15px_50px_rgba(0,0,0,0.03)] border-t border-black/5 px-6 md:px-16 py-5 md:py-8 overflow-hidden"
+      className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-[96%] max-w-[1500px] bg-white rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.04)] border border-black/5 px-6 md:px-12 py-2 md:py-3.5 overflow-hidden z-30"
     >
-      <div className="flex items-center gap-10 md:gap-16 overflow-x-auto no-scrollbar">
+      <div className="flex items-center gap-8 md:gap-12 overflow-x-auto no-scrollbar">
         {FEATURED_FRAMES.map((item) => (
           <motion.div 
             key={item.id}
-            whileHover={{ scale: 1.05, y: -5 }}
+            whileHover={{ scale: 1.05, y: -2 }}
             className="flex-shrink-0 cursor-pointer group"
           >
-            <div className="relative w-32 md:w-44 h-20 flex items-center justify-center">
+            <div className="relative w-24 md:w-32 h-12 md:h-16 flex items-center justify-center">
               <img 
                 src={item.image} 
                 alt={item.name}
