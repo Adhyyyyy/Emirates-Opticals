@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import { Inter, Geist } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import "../styles/globals.css";
 import { cn } from "@/lib/utils";
 import { Navbar } from "@/components/layouts/Navbar";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
-
 const inter = Inter({ subsets: ["latin"], variable: "--font-body" });
+const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-heading" });
 
 export const metadata: Metadata = {
   title: "Emirates Opticians | Luxury Eyewear",
@@ -19,8 +18,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("antialiased", "font-sans", geist.variable)}>
-      <body className={`${inter.variable} font-body`}>
+    <html lang="en" className="antialiased">
+      <body className={`${inter.variable} ${playfair.variable} font-body`}>
         <Navbar />
         <main className="min-h-screen pt-[120px] md:pt-[140px]">
           {children}

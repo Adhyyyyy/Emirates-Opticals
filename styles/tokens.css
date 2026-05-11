@@ -1,0 +1,33 @@
+@layer base {
+  :root {
+    /* Brand Colors */
+    --brand-gold: 45 45% 51%;      /* #B4975A */
+    --brand-gold-muted: 45 35% 65%;
+    --brand-charcoal: 210 20% 12%; /* #1A1F24 */
+    --brand-pearl: 30 20% 98%;     /* #FDFCFB */
+    --brand-blue: 217 91% 21%;     /* #053382 */
+
+    /* UI Tokens */
+    --background: 0 0% 100%;
+    --foreground: var(--brand-charcoal);
+    
+    --primary: var(--brand-blue);
+    --primary-foreground: 0 0% 100%;
+    
+    --accent: var(--brand-gold);
+    --accent-foreground: 0 0% 100%;
+
+    /* Typography */
+    --font-heading: "Inter", serif;
+    --font-body: "Inter", sans-serif;
+
+    /* Spacing & Borders */
+    --radius-luxury: 0.25rem; /* Subtle, sharp corners for premium feel */
+  }
+
+  .dark {
+    --background: var(--brand-charcoal);
+    --foreground: var(--brand-pearl);
+    --primary: var(--brand-gold);
+  }
+}
