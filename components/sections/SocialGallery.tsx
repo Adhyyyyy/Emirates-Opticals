@@ -39,21 +39,21 @@ export function SocialGallery() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 items-start">
           
           {/* Column 1: Large */}
-          <GalleryItem src={GALLERY_POSTS[0].img} isLarge />
+          <GalleryItem src={GALLERY_POSTS[0].img!} isLarge />
 
           {/* Column 2: Stacked */}
           <div className="flex flex-col gap-3 md:gap-4">
-            <GalleryItem src={GALLERY_POSTS[1].img1} />
-            <GalleryItem src={GALLERY_POSTS[1].img2} />
+            <GalleryItem src={GALLERY_POSTS[1].img1!} />
+            <GalleryItem src={GALLERY_POSTS[1].img2!} />
           </div>
 
           {/* Column 3: Large */}
-          <GalleryItem src={GALLERY_POSTS[2].img} isLarge />
+          <GalleryItem src={GALLERY_POSTS[2].img!} isLarge />
 
           {/* Column 4: Stacked */}
           <div className="flex flex-col gap-3 md:gap-4">
-            <GalleryItem src={GALLERY_POSTS[3].img1} />
-            <GalleryItem src={GALLERY_POSTS[3].img2} />
+            <GalleryItem src={GALLERY_POSTS[3].img1!} />
+            <GalleryItem src={GALLERY_POSTS[3].img2!} />
           </div>
 
         </div>

@@ -7,9 +7,9 @@ import { Variants } from "framer-motion";
  * Signature easing and timing for a cinematic editorial experience.
  */
 
-export const EASE_LUXURY = [0.16, 1, 0.3, 1]; // Weighted, smooth deceleration
-export const EASE_STARK = [0.19, 1, 0.22, 1];  // Fast entry, ultra-smooth end
-export const EASE_CINEMATIC = [0.4, 0, 0.2, 1]; // Balanced, natural flow
+export const EASE_LUXURY = [0.16, 1, 0.3, 1] as const; // Weighted, smooth deceleration
+export const EASE_STARK = [0.19, 1, 0.22, 1] as const;  // Fast entry, ultra-smooth end
+export const EASE_CINEMATIC = [0.4, 0, 0.2, 1] as const; // Balanced, natural flow
 
 export const DURATION_FAST = 0.4;
 export const DURATION_BASE = 0.8;
