@@ -1,71 +1,55 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
 import { EyewearCarousel } from "@/components/common/EyewearCarousel";
+import { Reveal } from "@/components/motion/Reveal";
 
 export function Hero() {
   return (
-    <section className="relative w-full h-[calc(100vh-120px)] md:h-[calc(100vh-150px)] bg-[#fdfdfd] overflow-visible">
-      {/* Cinematic Background Scene - Reliable Luxury Shot */}
+    <section className="relative w-full h-[85vh] min-h-[600px] max-h-[1000px] bg-[#f0f0f0] z-20">
+      
+      {/* Exact Visionist Lifestyle Background */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1556306535-0f09a537f0a3?auto=format&fit=crop&q=80&w=2000')] bg-cover bg-center opacity-90" />
-        <div className="absolute inset-0 bg-white/10" /> 
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ 
+            backgroundImage: "url('https://images.unsplash.com/photo-1556306535-0f09a537f0a3?auto=format&fit=crop&q=80&w=2000')",
+            backgroundPosition: "center 30%" 
+          }}
+        />
+        <div className="absolute inset-0 bg-black/10" />
       </div>
 
-      <div className="relative z-10 max-w-[1800px] mx-auto px-6 h-full flex flex-col items-center pt-12 md:pt-20 pb-12 md:pb-24">
-        
-        {/* Eyebrow Text */}
-        <motion.span 
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.2 }}
-          className="h3-editorial mb-8 md:mb-12 text-brand-charcoal/60"
-        >
-          A New Season of Elevated Vision:
-        </motion.span>
-
-        {/* Main Heading */}
-        <motion.h1 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center mb-16 md:mb-24 relative z-10"
-        >
-          <span className="block h1-editorial">
-            Spring <br />
-            <span className="font-extralight italic text-brand-charcoal/80 tracking-normal normal-case text-4xl md:text-[6rem]">In Full Focus</span>
-          </span>
-        </motion.h1>
-
-        {/* CTA Button - Leaner & More Refined */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.8 }}
-        >
-          <button className="px-10 md:px-14 py-3.5 md:py-4 bg-white text-brand-charcoal text-[10px] md:text-[11px] font-bold tracking-[0.25em] uppercase hover:bg-brand-gold hover:text-white transition-all duration-700 shadow-[0_10px_30px_rgba(0,0,0,0.05)] border border-black/5">
-            The Spring Edit: New Arrivals
-          </button>
-        </motion.div>
-
-      </div>
-
-      {/* Sidebar Tab - "OFFER INSIDE" - Moved here to ensure it stays on top of everything */}
-      <motion.div 
-        initial={{ x: 100 }}
-        animate={{ x: 0 }}
-        transition={{ delay: 1.5, duration: 1 }}
-        className="fixed right-0 top-[60%] md:top-1/2 -translate-y-1/2 z-[60]"
-      >
-        <div className="bg-black text-white px-2 md:px-3 py-6 md:py-12 flex flex-col items-center gap-4 cursor-pointer hover:bg-brand-gold transition-colors duration-500 shadow-2xl">
-          <span className="[writing-mode:vertical-lr] text-[7px] md:text-[10px] tracking-[0.4em] md:tracking-[0.5em] font-bold uppercase rotate-180">
-            Offer Inside
-          </span>
+      {/* Hero Content - Exact Visionist Hierarchy */}
+      <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
+        <div className="max-w-[1200px] mx-auto mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white mb-6 block drop-shadow-md">
+              A New Season of Elevated Vision:
+            </span>
+            <h1 className="text-5xl md:text-8xl lg:text-[110px] font-normal text-white uppercase tracking-[-0.02em] leading-[0.95] mb-12 drop-shadow-lg">
+              Spring<br />In Full Focus
+            </h1>
+            
+            <div className="flex justify-center">
+              <button className="px-10 py-4 bg-white text-black text-[12px] font-bold uppercase tracking-[0.1em] hover:bg-black hover:text-white transition-all duration-500 shadow-xl">
+                The Spring Edit: New Arrivals
+              </button>
+            </div>
+          </motion.div>
         </div>
-      </motion.div>
+      </div>
 
-      {/* Product Carousel - Floating Pill */}
-      <EyewearCarousel />
+      {/* Discovery Carousel - Exact Pill Architecture */}
+      <div className="absolute bottom-0 inset-x-0 z-50">
+        <EyewearCarousel />
+      </div>
+
     </section>
   );
 }

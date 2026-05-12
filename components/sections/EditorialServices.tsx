@@ -1,114 +1,96 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
+import { ParallaxImage } from "@/components/motion/ParallaxImage";
+import { Reveal, TextReveal } from "@/components/motion/Reveal";
 
 export function EditorialServices() {
   return (
-    <section className="bg-black text-white section-padding overflow-hidden">
+    <section className="bg-black text-white py-24 md:py-32 overflow-hidden">
       <div className="container-tight">
         
-        {/* Section Heading */}
+        {/* Section Heading - Exact Sizing */}
         <div className="text-center mb-16 md:mb-24">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="h2-editorial text-white"
-          >
-            At Your Service
-          </motion.h2>
+          <Reveal delay={0.2}>
+            <h2 className="text-3xl md:text-5xl font-extralight tracking-[0.2em] text-white uppercase font-heading">
+              At Your Service
+            </h2>
+          </Reveal>
         </div>
 
-        {/* Asymmetric Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-start">
+        {/* Asymmetric Grid - Perfectly Balanced Vertical Sync */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-stretch h-full">
           
-          {/* Left Column: Tall Visionist Card */}
-          <motion.div 
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1 }}
-            className="relative h-[600px] md:h-[800px] group cursor-pointer overflow-hidden"
-          >
-            <Image 
-              src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&q=80&w=1200"
+          {/* Left Column: Visionist Card (The Anchor) */}
+          <div className="lg:col-span-7 relative h-[600px] md:min-h-[850px] group cursor-pointer overflow-hidden bg-[#111]">
+            <ParallaxImage 
+              src="https://images.unsplash.com/photo-1591076482161-42ce6da69f67?auto=format&fit=crop&q=80&w=1200"
               alt="Connect with a Visionist"
-              fill
-              className="object-cover transition-transform duration-1000 group-hover:scale-105"
+              className="absolute inset-0 w-full h-full"
+              distance={80}
             />
             
-            {/* Top-aligned Content Overlay */}
-            <div className="absolute inset-0 p-8 md:p-12 bg-gradient-to-b from-black/60 via-transparent to-transparent">
-              <h3 className="text-2xl md:text-3xl font-light mb-4 text-white">
-                Connect with a Visionist
-              </h3>
-              <p className="text-xs md:text-sm text-white/70 max-w-sm mb-8 leading-relaxed">
-                Chat now or book ahead. Our Visionists are trained in the art of styling and the craft of fitting, so you're in good hands.
-              </p>
-              
-              <div className="flex flex-wrap items-center gap-6">
-                <button className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/20 bg-white/10 hover:bg-white hover:text-black transition-all duration-500 backdrop-blur-md">
-                  <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-                  <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest">Live Chat</span>
-                </button>
-                <button className="text-[10px] md:text-xs font-bold uppercase tracking-widest border-b border-white/40 hover:border-white transition-colors">
-                  Book a video call
-                </button>
-              </div>
+            <div className="absolute inset-0 p-8 md:p-16 flex flex-col justify-start bg-black/20">
+              <TextReveal 
+                text="Connect with a Visionist"
+                className="text-3xl md:text-5xl font-extralight mb-6 text-white font-heading italic"
+                delay={0.4}
+              />
+              <Reveal delay={0.6}>
+                <p className="text-sm md:text-[15px] text-white/90 max-w-sm mb-10 leading-relaxed font-light">
+                  Chat now or book ahead. Our Visionists are trained in the art of styling and the craft of fitting, so you're in good hands.
+                </p>
+                <div className="flex flex-wrap items-center gap-8">
+                  <button className="flex items-center gap-3 px-6 py-3 rounded-full border border-white text-white hover:bg-white hover:text-black transition-all duration-500">
+                    <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                    <span className="text-[11px] md:text-xs font-bold uppercase tracking-[0.2em]">Live Chat</span>
+                  </button>
+                  <button className="text-[11px] md:text-xs font-bold uppercase tracking-[0.2em] border-b border-white pb-1 hover:text-white/70 transition-colors">
+                    Book a video call
+                  </button>
+                </div>
+              </Reveal>
             </div>
-          </motion.div>
+          </div>
 
-          {/* Right Column: Stacked Cards */}
-          <div className="flex flex-col gap-12 md:gap-16">
+          {/* Right Column: Perfectly Stacked to Match Height */}
+          <div className="lg:col-span-5 flex flex-col justify-between py-0 gap-12">
             
             {/* Build a Pair Card */}
-            <motion.div 
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1, delay: 0.2 }}
-              className="group cursor-pointer"
-            >
-              <div className="relative h-[300px] md:h-[350px] overflow-hidden mb-6">
-                <Image 
-                  src="https://images.unsplash.com/photo-1591076482161-42ce6da69f67?auto=format&fit=crop&q=80&w=1200"
+            <div className="group cursor-pointer flex flex-col">
+              <div className="relative h-[250px] md:h-[350px] overflow-hidden mb-5 bg-[#111]">
+                <ParallaxImage 
+                  src="https://images.unsplash.com/photo-1554151228-14d9def656e4?auto=format&fit=crop&q=80&w=1200"
                   alt="Build a Pair"
-                  fill
-                  className="object-cover transition-transform duration-1000 group-hover:scale-105"
+                  className="w-full h-full"
+                  distance={40}
                 />
               </div>
-              <div className="flex items-center justify-between">
-                <h3 className="text-lg md:text-xl font-light text-white">Build a Pair</h3>
-                <button className="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] border-b border-white/40 hover:border-white transition-colors">
+              <div className="flex items-end justify-between border-t border-white/20 pt-4">
+                <h3 className="text-xl md:text-2xl font-extralight text-white font-heading italic">Build a Pair</h3>
+                <button className="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] border-b border-white/60 pb-1">
                   Explore Build a Pair
                 </button>
               </div>
-            </motion.div>
+            </div>
 
             {/* Digital Stylist Card */}
-            <motion.div 
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1, delay: 0.4 }}
-              className="group cursor-pointer"
-            >
-              <div className="relative h-[300px] md:h-[350px] overflow-hidden mb-6">
-                <Image 
-                  src="https://images.unsplash.com/photo-1509633282173-3eb4499382a6?auto=format&fit=crop&q=80&w=1200"
+            <div className="group cursor-pointer flex flex-col">
+              <div className="relative h-[250px] md:h-[350px] overflow-hidden mb-5 bg-[#111]">
+                <ParallaxImage 
+                  src="https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&q=80&w=1200"
                   alt="Digital Stylist"
-                  fill
-                  className="object-cover transition-transform duration-1000 group-hover:scale-105"
+                  className="w-full h-full"
+                  distance={-40}
                 />
               </div>
-              <div className="flex items-center justify-between">
-                <h3 className="text-lg md:text-xl font-light text-white">Digital Stylist</h3>
-                <button className="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] border-b border-white/40 hover:border-white transition-colors">
+              <div className="flex items-end justify-between border-t border-white/20 pt-4">
+                <h3 className="text-xl md:text-2xl font-extralight text-white font-heading italic">Digital Stylist</h3>
+                <button className="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] border-b border-white/60 pb-1">
                   Take the quiz
                 </button>
               </div>
-            </motion.div>
+            </div>
 
           </div>
         </div>

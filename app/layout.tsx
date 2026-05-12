@@ -3,6 +3,8 @@ import { Inter, Playfair_Display } from "next/font/google";
 import "../styles/globals.css";
 import { cn } from "@/lib/utils";
 import { Navbar } from "@/components/layouts/Navbar";
+import { Footer } from "@/components/common/Footer";
+import { PageTransition } from "@/components/motion/PageTransition";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-body" });
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-heading" });
@@ -21,9 +23,12 @@ export default function RootLayout({
     <html lang="en" className="antialiased">
       <body className={`${inter.variable} ${playfair.variable} font-body`}>
         <Navbar />
-        <main className="min-h-screen pt-[90px] md:pt-[110px]">
-          {children}
-        </main>
+        <PageTransition>
+          <main className="min-h-screen pt-[55px] md:pt-[70px]">
+            {children}
+          </main>
+        </PageTransition>
+        <Footer />
       </body>
     </html>
   );

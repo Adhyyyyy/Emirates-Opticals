@@ -7,17 +7,17 @@ import { cn } from "@/lib/utils";
 
 const ROW_1 = [
   { id: 1, name: "Jacques Marie Mage", img: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&q=80&w=800" },
-  { id: 2, name: "Oliver Peoples", img: "https://images.unsplash.com/photo-1511499767390-90342f16b1a7?auto=format&fit=crop&q=80&w=800" },
+  { id: 2, name: "Oliver Peoples", img: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&q=80&w=800" },
   { id: 3, name: "DITA", img: "https://images.unsplash.com/photo-1577803645773-f96470509666?auto=format&fit=crop&q=80&w=800" },
   { id: 4, name: "Chrome Hearts", img: "https://images.unsplash.com/photo-1591076482161-42ce6da69f67?auto=format&fit=crop&q=80&w=800" },
   { id: 5, name: "Cartier", img: "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&q=80&w=800" },
 ];
 
 const ROW_2 = [
-  { id: 6, name: "Gucci", img: "https://images.unsplash.com/photo-1509633282173-3eb4499382a6?auto=format&fit=crop&q=80&w=800" },
+  { id: 6, name: "Gucci", img: "https://images.unsplash.com/photo-1591076482161-42ce6da69f67?auto=format&fit=crop&q=80&w=800" },
   { id: 7, name: "Prada", img: "https://images.unsplash.com/photo-1554151228-14d9def656e4?auto=format&fit=crop&q=80&w=800" },
   { id: 8, name: "Ray-Ban", img: "https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?auto=format&fit=crop&q=80&w=800" },
-  { id: 9, name: "Maui Jim", img: "https://images.unsplash.com/photo-1511499767390-90342f16b1a7?auto=format&fit=crop&q=80&w=800" },
+  { id: 9, name: "Maui Jim", img: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&q=80&w=800" },
   { id: 10, name: "Oakley", img: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&q=80&w=800" },
 ];
 
