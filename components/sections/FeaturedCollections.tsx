@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { CollectionCard } from "@/components/ui/CollectionCard";
 
 const COLLECTIONS = [
@@ -40,7 +40,7 @@ export function FeaturedCollections() {
       <div className="container-tight">
         
         {/* Section Title */}
-        <motion.div 
+        <m.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -50,12 +50,12 @@ export function FeaturedCollections() {
           <h2 className="h2-editorial">
             Featured Collections
           </h2>
-        </motion.div>
+        </m.div>
 
         {/* Collections Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-20">
           {COLLECTIONS.map((collection, index) => (
-            <motion.div
+            <m.div
               key={collection.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -63,7 +63,7 @@ export function FeaturedCollections() {
               transition={{ duration: 1, delay: index * 0.1 }}
             >
               <CollectionCard {...collection} />
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

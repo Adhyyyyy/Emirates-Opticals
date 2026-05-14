@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Image from "next/image";
 import { Camera } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -22,7 +22,7 @@ export function SocialGallery() {
         
         {/* Brand Anchor - Minimalist Strip */}
         <div className="mb-12 md:mb-16">
-          <motion.a 
+          <m.a 
             href="https://instagram.com/emirates__optician"
             target="_blank"
             initial={{ opacity: 0, x: -15 }}
@@ -33,7 +33,7 @@ export function SocialGallery() {
             <span className="text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase border-b border-white pb-1 group-hover:text-white/70 transition-colors">
               @emirates__optician
             </span>
-          </motion.a>
+          </m.a>
         </div>
 
         {/* Mosaic Grid - Compact & Symmetrical */}

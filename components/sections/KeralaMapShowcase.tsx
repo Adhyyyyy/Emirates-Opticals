@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { MapPin, ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
 import { EASE_LUXURY } from "@/lib/motion";
@@ -86,7 +86,7 @@ export function KeralaMapShowcase() {
                     className="relative group/pin"
                   >
                     {/* The Glow Pulse */}
-                    <motion.div 
+                    <m.div 
                       animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
                       transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                       className="absolute inset-0 -m-3 bg-white/20 rounded-full"
@@ -97,7 +97,7 @@ export function KeralaMapShowcase() {
                   {/* Hover Preview Card */}
                   <AnimatePresence>
                     {activeBranch === branch.id && (
-                      <motion.div
+                      <m.div
                         initial={{ opacity: 0, y: 10, scale: 0.95 }}
                         animate={{ opacity: 1, y: -20, scale: 1 }}
                         exit={{ opacity: 0, y: 10, scale: 0.95 }}

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/motion/Reveal";
@@ -54,7 +54,7 @@ export function CategoryNavigation() {
             <Link key={cat.id} href={cat.href} className="relative aspect-[4/5] md:aspect-[3/4] overflow-hidden group bg-[#fcfcfc]">
               
               {/* Background Image with Cinematic Discovery */}
-              <motion.div 
+              <m.div 
                 className="absolute inset-0"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
@@ -66,13 +66,13 @@ export function CategoryNavigation() {
                   className="object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-700"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 30vw"
                 />
-              </motion.div>
+              </m.div>
 
               {/* Sophisticated Light Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-white/20 to-transparent group-hover:from-white/100 transition-colors duration-700" />
               
               <div className="absolute inset-0 p-8 md:p-12 flex flex-col justify-end items-center text-center">
-                <motion.div
+                <m.div
                   initial={{ y: 20, opacity: 0 }}
                   whileInView={{ y: 0, opacity: 1 }}
                   viewport={{ once: true }}
@@ -89,7 +89,7 @@ export function CategoryNavigation() {
                   <span className="mt-4 text-[9px] font-bold uppercase tracking-[0.2em] text-black opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                     Explore Collection
                   </span>
-                </motion.div>
+                </m.div>
               </div>
 
             </Link>

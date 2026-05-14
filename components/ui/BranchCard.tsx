@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Image from "next/image";
 import { MapPin, Phone, Clock, ArrowRight, Calendar } from "lucide-react";
 import { LuxuryButton } from "./LuxuryButton";
@@ -18,7 +18,7 @@ interface BranchProps {
 
 export function BranchCard({ name, address, description, image, phone = "+91 000 000 0000", hours = "10:00 AM - 08:00 PM" }: BranchProps) {
   return (
-    <motion.div 
+    <m.div 
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -27,7 +27,7 @@ export function BranchCard({ name, address, description, image, phone = "+91 000
     >
       {/* Cinematic Image Container */}
       <div className="relative aspect-[16/10] overflow-hidden">
-        <motion.div 
+        <m.div 
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 1.2, ease: EASE_LUXURY }}
           className="relative w-full h-full"
@@ -84,6 +84,6 @@ export function BranchCard({ name, address, description, image, phone = "+91 000
           </button>
         </div>
       </div>
-    </motion.div>
+    </m.div>
   );
 }

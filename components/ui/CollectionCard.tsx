@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Link from "next/link";
 
 interface CollectionCardProps {
@@ -22,7 +22,7 @@ export function CollectionCard({ title, linkText, href, image }: CollectionCardP
         </div>
 
         {/* Background Image with Zoom */}
-        <motion.img 
+        <m.img 
           src={image} 
           alt={title}
           className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110"

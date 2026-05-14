@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { EASE_LUXURY } from "@/lib/motion";
 
 export function Preloader() {
@@ -19,7 +19,7 @@ export function Preloader() {
   return (
     <AnimatePresence>
       {isLoading && (
-        <motion.div
+        <m.div
           initial={{ opacity: 1 }}
           exit={{ 
             y: "-100%",
@@ -32,7 +32,7 @@ export function Preloader() {
 
           {/* Layer 2: Branded Narrative */}
           <div className="relative flex flex-col items-center gap-8">
-            <motion.div
+            <m.div
               initial={{ opacity: 0, letterSpacing: "1em", scale: 1.1 }}
               animate={{ opacity: 1, letterSpacing: "0.4em", scale: 1 }}
               transition={{ duration: 1.8, ease: EASE_LUXURY }}
@@ -44,11 +44,11 @@ export function Preloader() {
               <span className="text-[10px] md:text-xs text-white/40 font-bold uppercase tracking-[0.8em] mt-4 ml-[0.8em]">
                 Opticians
               </span>
-            </motion.div>
+            </m.div>
 
             {/* Layer 3: Minimalist Progress Signal */}
             <div className="w-48 h-[1px] bg-white/10 relative overflow-hidden mt-4">
-              <motion.div
+              <m.div
                 initial={{ x: "-100%" }}
                 animate={{ x: "0%" }}
                 transition={{ duration: 2.5, ease: "linear" }}
@@ -58,15 +58,15 @@ export function Preloader() {
           </div>
 
           {/* Atmospheric Subtext */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.3 }}
             transition={{ delay: 1, duration: 1 }}
             className="absolute bottom-12 text-[8px] font-bold uppercase tracking-[0.5em] text-white"
           >
             Spring Editorial 2026
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
       )}
     </AnimatePresence>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Eye, ShieldCheck, Microscope } from "lucide-react";
 
 const PILLARS = [
@@ -28,7 +28,7 @@ export function TrustSection() {
         
         {/* Cinematic Brand Statement - Strictly Matched Scale */}
         <div className="text-center mb-16 md:mb-20">
-          <motion.h2 
+          <m.h2 
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -36,13 +36,13 @@ export function TrustSection() {
             className="text-xl md:text-3xl font-extralight tracking-[0.45em] text-white uppercase font-heading leading-relaxed"
           >
             Change the way you see the world.
-          </motion.h2>
+          </m.h2>
         </div>
 
         {/* Feature Highlight Columns - Lean and Spread */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-32 w-full mb-16 md:mb-24">
           {PILLARS.map((pillar, index) => (
-            <motion.div
+            <m.div
               key={pillar.title}
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -56,12 +56,12 @@ export function TrustSection() {
               <p className="text-[8px] md:text-[9.5px] tracking-[0.05em] leading-relaxed text-white/60 max-w-[240px] uppercase font-medium">
                 {pillar.description}
               </p>
-            </motion.div>
+            </m.div>
           ))}
         </div>
 
         {/* Bottom Geometric Icon - Visionist Style */}
-        <motion.div 
+        <m.div 
           initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
@@ -71,7 +71,7 @@ export function TrustSection() {
           <div className="absolute w-8 h-8 border border-white rounded-full -translate-x-1" />
           <div className="absolute w-8 h-8 border border-white rounded-full translate-y-1" />
           <div className="absolute w-8 h-8 border border-white rounded-full -translate-y-1" />
-        </motion.div>
+        </m.div>
 
       </div>
     </section>

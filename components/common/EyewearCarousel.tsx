@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Image from "next/image";
 
 const FRAMES = [
@@ -20,7 +20,7 @@ export function EyewearCarousel() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <motion.div 
+    <m.div 
       initial={{ y: 50, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ delay: 1.2, duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
@@ -31,7 +31,7 @@ export function EyewearCarousel() {
         className="flex items-center gap-10 md:gap-16 overflow-x-auto no-scrollbar scroll-smooth"
       >
         {FRAMES.map((frame) => (
-          <motion.div 
+          <m.div 
             key={frame.id}
             whileHover={{ scale: 1.1, y: -2 }}
             className="flex-shrink-0 w-24 md:w-32 aspect-[2/1] relative cursor-pointer group"
@@ -43,9 +43,9 @@ export function EyewearCarousel() {
               className="object-contain transition-all duration-500"
               sizes="128px"
             />
-          </motion.div>
+          </m.div>
         ))}
       </div>
-    </motion.div>
+    </m.div>
   );
 }

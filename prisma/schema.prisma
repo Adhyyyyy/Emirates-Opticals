@@ -1,0 +1,296 @@
+// This is your production-grade Prisma schema file
+// Engineered for Emirates Optician Luxury multi-branch platform
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated-client"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// --- ENUMS (Type Safety) ---
+
+enum Role {
+  SUPER_ADMIN
+  BRANCH_ADMIN
+  CUSTOMER
+  STAFF
+}
+
+enum AppointmentStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+  NOSHOW
+}
+
+enum InventoryStatus {
+  IN_STOCK
+  LOW_STOCK
+  OUT_OF_STOCK
+  RESERVED
+}
+
+enum EnquiryType {
+  PRODUCT
+  BRANCH
+  GENERAL
+  WHATSAPP_LEAD
+}
+
+// --- USER & AUTH SYSTEM ---
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  phone         String?
+  role          Role      @default(CUSTOMER)
+  avatar        String?
+  branchId      String?
+  branch        Branch?   @relation(fields: [branchId], references: [id])
+  
+  // Relations
+  appointments  Appointment[]
+  enquiries     Enquiry[]
+  applications  CareerApplication[]
+
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  deletedAt     DateTime? // Soft Delete support
+
+  @@index([email])
+  @@index([role])
+}
+
+// --- BRANCH MANAGEMENT ---
+
+model Branch {
+  id            String    @id @default(cuid())
+  name          String
+  slug          String    @unique
+  address       String
+  location      String
+  phone         String
+  whatsapp      String
+  email         String?
+  timings       String?
+  coordinates   String?   // Format: "lat,lng"
+  images        String[]  // Gallery of branch photos
+  isMain        Boolean   @default(false)
+  isActive      Boolean   @default(true)
+
+  // Relations
+  users         User[]
+  stock         Inventory[]
+  appointments  Appointment[]
+  enquiries     Enquiry[]
+  applications  CareerApplication[]
+
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  deletedAt     DateTime?
+
+  @@index([slug])
+  @@index([isActive])
+}
+
+// --- CATALOG SYSTEM ---
+
+model Product {
+  id            String    @id @default(cuid())
+  name          String
+  slug          String    @unique
+  description   String
+  price         Float
+  isFeatured    Boolean   @default(false)
+  isNewArrival  Boolean   @default(false)
+  isActive      Boolean   @default(true)
+
+  // Specification Fields
+  gender        String?
+  frameShape    String?
+  material      String?
+  lensType      String?
+  color         String?
+  size          String? // S, M, L or metrics like "54-18-145"
+
+  // Brand & Category
+  brandId       String
+  brand         Brand     @relation(fields: [brandId], references: [id])
+  categoryId    String
+  category      Category  @relation(fields: [categoryId], references: [id])
+
+  // SEO
+  metaTitle     String?
+  metaDesc      String?
+  
+  // Relations
+  images        ProductImage[]
+  inventory     Inventory[]
+  enquiries     Enquiry[]
+
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  deletedAt     DateTime?
+
+  @@index([slug])
+  @@index([brandId])
+  @@index([categoryId])
+  @@index([isFeatured])
+}
+
+model ProductImage {
+  id            String    @id @default(cuid())
+  url           String
+  order         Int       @default(0)
+  productId     String
+  product       Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([productId])
+}
+
+model Brand {
+  id            String    @id @default(cuid())
+  name          String
+  slug          String    @unique
+  description   String?
+  logo          String?
+  country       String?
+  isFeatured    Boolean   @default(false)
+  products      Product[]
+
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([slug])
+}
+
+model Category {
+  id            String    @id @default(cuid())
+  name          String
+  slug          String    @unique
+  description   String?
+  products      Product[]
+
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([slug])
+}
+
+// --- INVENTORY & STOCK ---
+
+model Inventory {
+  id            String    @id @default(cuid())
+  productId     String
+  branchId      String
+  quantity      Int       @default(0)
+  status        InventoryStatus @default(IN_STOCK)
+  
+  product       Product   @relation(fields: [productId], references: [id])
+  branch        Branch    @relation(fields: [branchId], references: [id])
+
+  updatedAt     DateTime  @updatedAt
+
+  @@unique([productId, branchId])
+  @@index([productId])
+  @@index([branchId])
+}
+
+// --- CUSTOMER INTERACTIONS ---
+
+model Appointment {
+  id            String    @id @default(cuid())
+  userId        String?
+  user          User?     @relation(fields: [userId], references: [id])
+  
+  customerName  String
+  customerEmail String
+  customerPhone String
+  
+  branchId      String
+  branch        Branch    @relation(fields: [branchId], references: [id])
+  
+  date          DateTime
+  status        AppointmentStatus @default(PENDING)
+  notes         String?
+
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([branchId])
+  @@index([date])
+  @@index([status])
+}
+
+model Enquiry {
+  id            String    @id @default(cuid())
+  userId        String?
+  user          User?     @relation(fields: [userId], references: [id])
+  
+  productId     String?
+  product       Product?  @relation(fields: [productId], references: [id])
+  
+  branchId      String
+  branch        Branch    @relation(fields: [branchId], references: [id])
+  
+  type          EnquiryType @default(GENERAL)
+  message       String
+  isWhatsApp    Boolean   @default(false)
+
+  createdAt     DateTime  @default(now())
+
+  @@index([branchId])
+  @@index([type])
+}
+
+model CareerApplication {
+  id            String    @id @default(cuid())
+  userId        String?
+  user          User?     @relation(fields: [userId], references: [id])
+  name          String
+  email         String
+  phone         String
+  resumeUrl     String
+  coverLetter   String?
+  branchId      String?
+  branch        Branch?   @relation(fields: [branchId], references: [id])
+  
+  status        String    @default("PENDING") // PENDING, REVIEWED, INTERVIEWED, REJECTED, HIRED
+
+  createdAt     DateTime  @default(now())
+}
+
+// --- CMS & CONTENT ---
+
+model Banner {
+  id            String    @id @default(cuid())
+  title         String
+  subtitle      String?
+  imageUrl      String
+  linkUrl       String?
+  order         Int       @default(0)
+  isActive      Boolean   @default(true)
+}
+
+model Testimonial {
+  id            String    @id @default(cuid())
+  name          String
+  role          String?   // e.g., "Verified Customer"
+  content       String
+  rating        Int       @default(5)
+  isActive      Boolean   @default(true)
+}
+
+model Campaign {
+  id            String    @id @default(cuid())
+  name          String
+  description   String?
+  startDate     DateTime?
+  endDate       DateTime?
+  isActive      Boolean   @default(true)
+}

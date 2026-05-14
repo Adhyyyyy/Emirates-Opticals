@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, useAnimationControls } from "framer-motion";
+import { m, useAnimationControls } from "framer-motion";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
@@ -31,21 +31,21 @@ export function BrandShowcase() {
   return (
     <section className="w-full bg-white section-padding overflow-hidden border-b border-black/5">
       <div className="container-tight mb-16 md:mb-24 text-center">
-        <motion.h2 
+        <m.h2 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="h2-editorial"
         >
           Shop by Brand
-        </motion.h2>
+        </m.h2>
       </div>
 
       <div className="flex flex-col gap-6 md:gap-10">
         
         {/* Row 1: Moves Right */}
         <div className="flex relative">
-          <motion.div 
+          <m.div 
             animate={{ 
               x: hoveredId ? 0 : [0, -1500] 
             }}
@@ -70,12 +70,12 @@ export function BrandShowcase() {
                 onLeave={() => setHoveredId(null)}
               />
             ))}
-          </motion.div>
+          </m.div>
         </div>
 
         {/* Row 2: Moves Left */}
         <div className="flex relative">
-          <motion.div 
+          <m.div 
             animate={{ 
               x: hoveredId ? 0 : [-1500, 0] 
             }}
@@ -100,7 +100,7 @@ export function BrandShowcase() {
                 onLeave={() => setHoveredId(null)}
               />
             ))}
-          </motion.div>
+          </m.div>
         </div>
 
       </div>
@@ -115,7 +115,7 @@ function BrandCard({ brand, isHovered, isAnyHovered, onHover, onLeave }: any) {
       onMouseEnter={onHover}
       onMouseLeave={onLeave}
     >
-      <motion.div 
+      <m.div 
         animate={{ 
           scale: isHovered ? 1.02 : 1,
           filter: isAnyHovered ? "blur(8px)" : "blur(0px)",
@@ -134,7 +134,7 @@ function BrandCard({ brand, isHovered, isAnyHovered, onHover, onLeave }: any) {
         
         {/* Brand Name Overlay - Bold and White */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <motion.span 
+          <m.span 
             animate={{ 
               opacity: isHovered ? 1 : (isAnyHovered ? 0 : 0.9),
               scale: isHovered ? 1.1 : 1
@@ -142,9 +142,9 @@ function BrandCard({ brand, isHovered, isAnyHovered, onHover, onLeave }: any) {
             className="text-lg md:text-2xl font-bold tracking-[0.2em] uppercase text-white drop-shadow-2xl"
           >
             {brand.name}
-          </motion.span>
+          </m.span>
         </div>
-      </motion.div>
+      </m.div>
     </div>
   );
 }

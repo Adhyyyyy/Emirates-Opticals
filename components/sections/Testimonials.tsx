@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Star, Quote } from "lucide-react";
 
 const TESTIMONIALS = [
@@ -34,23 +34,23 @@ export function Testimonials() {
         
         {/* Editorial Header */}
         <div className="flex flex-col items-center text-center mb-20">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             className="w-12 h-12 flex items-center justify-center bg-white/5 rounded-full mb-8"
           >
             <Quote className="w-5 h-5 text-white/40" />
-          </motion.div>
-          <motion.h2 
+          </m.div>
+          <m.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase text-white/40 mb-4"
           >
             Patron Experiences
-          </motion.h2>
-          <motion.h3 
+          </m.h2>
+          <m.h3 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -58,13 +58,13 @@ export function Testimonials() {
             className="text-3xl md:text-5xl font-light font-heading tracking-tight italic"
           >
             The Voice of our Patrons
-          </motion.h3>
+          </m.h3>
         </div>
 
         {/* Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
           {TESTIMONIALS.map((patron, idx) => (
-            <motion.div 
+            <m.div 
               key={patron.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -93,7 +93,7 @@ export function Testimonials() {
                   {patron.location}
                 </span>
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </div>
 

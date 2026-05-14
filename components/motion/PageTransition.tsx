@@ -1,7 +1,7 @@
 "use client";
 
 import React, { ReactNode } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { EASE_LUXURY, EASE_EXPO, DURATION_SLOW } from "@/lib/motion";
 
@@ -14,7 +14,7 @@ export function PageTransition({ children }: { children: ReactNode }) {
 
   return (
     <AnimatePresence mode="wait" initial={false}>
-      <motion.div
+      <m.div
         key={pathname}
         initial={{ opacity: 0, y: 10 }}
         animate={{ 
@@ -39,7 +39,7 @@ export function PageTransition({ children }: { children: ReactNode }) {
         {children}
         
         {/* Cinematic Route Mask - Luxury Transition Element */}
-        <motion.div
+        <m.div
           initial={{ scaleY: 0 }}
           animate={{ scaleY: 0 }}
           exit={{ scaleY: 1 }}
@@ -47,7 +47,7 @@ export function PageTransition({ children }: { children: ReactNode }) {
           style={{ originY: 0 }}
           className="fixed inset-0 bg-brand-pearl z-[9999] pointer-events-none"
         />
-      </motion.div>
+      </m.div>
     </AnimatePresence>
   );
 }

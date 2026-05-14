@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { Search, User, ShoppingBag, ChevronDown, Calendar, Menu, X, ArrowRight } from "lucide-react";
 import { AnnouncementBar } from "./AnnouncementBar";
 import { cn } from "@/lib/utils";
@@ -11,7 +11,7 @@ import { EASE_LUXURY } from "@/lib/motion";
 
 const NAV_LINKS = [
   { name: "Home", href: "/", hasDropdown: false },
-  { name: "Shop", href: "/shop/optical", hasDropdown: true },
+  { name: "Shop", href: "/shop", hasDropdown: true },
   { name: "Brands", href: "/brands", hasDropdown: true },
   { name: "Services", href: "/services", hasDropdown: true },
   { name: "Branches", href: "/branches", hasDropdown: false },
@@ -106,7 +106,7 @@ export function Navbar() {
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div 
+          <m.div 
             initial={{ x: "-100%" }}
             animate={{ x: 0 }}
             exit={{ x: "-100%" }}
@@ -123,7 +123,7 @@ export function Navbar() {
             <nav className="flex-1">
               <ul className="flex flex-col gap-6 md:gap-8">
                 {NAV_LINKS.map((link, idx) => (
-                  <motion.li 
+                  <m.li 
                     key={link.name}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -137,7 +137,7 @@ export function Navbar() {
                       {link.name}
                       <ArrowRight className="w-6 h-6 opacity-40" />
                     </Link>
-                  </motion.li>
+                  </m.li>
                 ))}
               </ul>
             </nav>
@@ -152,7 +152,7 @@ export function Navbar() {
                 <span>My Account</span>
               </div>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </header>

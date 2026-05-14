@@ -1,33 +1,88 @@
 @layer base {
   :root {
-    /* Brand Colors */
-    --brand-gold: 45 45% 51%;      /* #B4975A */
-    --brand-gold-muted: 45 35% 65%;
-    --brand-charcoal: 210 20% 12%; /* #1A1F24 */
-    --brand-pearl: 30 20% 98%;     /* #FDFCFB */
-    --brand-blue: 217 91% 21%;     /* #053382 */
-
-    /* UI Tokens */
+    /* --- Luxury Color System (HSL) --- */
+    --brand-gold: 43 52% 52%;
+    --brand-gold-muted: 43 52% 85%;
+    --brand-charcoal: 0 0% 10%;
+    --brand-pearl: 40 20% 97%;
+    --brand-white: 0 0% 100%;
+    
+    /* Semantic Colors */
     --background: 0 0% 100%;
-    --foreground: var(--brand-charcoal);
-    
-    --primary: var(--brand-blue);
+    --foreground: 0 0% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+    --primary: 0 0% 10%;
     --primary-foreground: 0 0% 100%;
-    
-    --accent: var(--brand-gold);
+    --secondary: 40 20% 97%;
+    --secondary-foreground: 0 0% 10%;
+    --muted: 40 20% 94%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 43 52% 52%;
     --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 43 52% 52%;
+    --radius: 0rem; /* Luxury sharp edges */
 
-    /* Typography */
-    --font-heading: "Inter", serif;
-    --font-body: "Inter", sans-serif;
+    /* --- Spacing Tokens (Enterprise Scale) --- */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+    --spacing-xl: 8rem;
+    --spacing-2xl: 12rem;
 
-    /* Spacing & Borders */
-    --radius-luxury: 0.25rem; /* Subtle, sharp corners for premium feel */
+    /* --- Typography Tokens --- */
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.25rem;
+    --font-size-xl: 1.5rem;
+    --font-size-2xl: 2.25rem;
+    --font-size-3xl: 3.75rem;
+    --font-size-4xl: 5rem;
+
+    /* --- Motion Tokens (Apple-Style Easing) --- */
+    --ease-luxury: cubic-bezier(0.19, 1, 0.22, 1);
+    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    --duration-base: 0.5s;
+    --duration-slow: 0.8s;
   }
 
   .dark {
-    --background: var(--brand-charcoal);
-    --foreground: var(--brand-pearl);
-    --primary: var(--brand-gold);
+    --background: 0 0% 10%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 12%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 10%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+    --accent: 43 52% 52%;
+    --accent-foreground: 0 0% 98%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 43 52% 52%;
+  }
+}
+
+@layer utilities {
+  .text-luxury {
+    @apply font-heading tracking-tight italic;
+  }
+  .section-padding {
+    @apply py-24 md:py-32 lg:py-48;
+  }
+  .container-tight {
+    @apply max-w-[1400px] mx-auto px-6 lg:px-12;
   }
 }

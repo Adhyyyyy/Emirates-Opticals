@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ProductCard } from "@/components/ui/ProductCard";
 import { ArrowRight } from "lucide-react";
 import { GridStagger, StaggerItem } from "@/components/motion/Reveal";
@@ -55,14 +55,14 @@ export function NewArrivals() {
         
         {/* Header Area */}
         <div className="flex flex-col items-center mb-20 md:mb-28">
-          <motion.h2 
+          <m.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="h2-editorial"
           >
             New Arrivals
-          </motion.h2>
+          </m.h2>
         </div>
 
         {/* Products Grid */}

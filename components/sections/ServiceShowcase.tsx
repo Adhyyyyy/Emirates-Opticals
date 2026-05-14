@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { 
   Eye, 
   Sparkles, 
@@ -56,15 +56,15 @@ export function ServiceShowcase() {
         
         {/* Header Section */}
         <div className="flex flex-col items-center text-center mb-20">
-          <motion.h2 
+          <m.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-xs md:text-sm font-bold tracking-[0.4em] uppercase text-black/40 mb-4"
           >
             The Emirates Experience
-          </motion.h2>
-          <motion.h3 
+          </m.h2>
+          <m.h3 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -72,13 +72,13 @@ export function ServiceShowcase() {
             className="text-3xl md:text-5xl font-light font-heading tracking-tight italic"
           >
             Expert Care. Exceptional Luxury.
-          </motion.h3>
+          </m.h3>
         </div>
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">
           {SERVICES.map((service, idx) => (
-            <motion.div 
+            <m.div 
               key={service.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -99,7 +99,7 @@ export function ServiceShowcase() {
               <p className="text-sm leading-relaxed text-black/60 font-light max-w-[320px]">
                 {service.description}
               </p>
-            </motion.div>
+            </m.div>
           ))}
         </div>
 

@@ -1,11 +1,11 @@
 "use client";
 
 import React, { ReactNode } from "react";
-import { motion, useInView, Variants } from "framer-motion";
+import { m, useInView, Variants } from "framer-motion";
 import { fadeUp, EASE_LUXURY, DURATION_BASE, DURATION_SLOW } from "@/lib/motion";
 
 interface RevealProps {
-  children: ReactNode;
+  children: React.ReactNode;
   variant?: Variants;
   delay?: number;
   duration?: number;
@@ -28,7 +28,7 @@ export function Reveal({
   once = true,
 }: RevealProps) {
   return (
-    <motion.div
+    <m.div
       initial="hidden"
       whileInView="visible"
       viewport={{ once, amount: threshold }}
@@ -38,7 +38,7 @@ export function Reveal({
       transition={{ duration, ease: EASE_LUXURY, delay }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -51,13 +51,13 @@ export function ImageReveal({
   delay = 0.2,
   className,
 }: {
-  children: ReactNode;
+  children: React.ReactNode;
   delay?: number;
   className?: string;
 }) {
   return (
     <div className={`overflow-hidden relative ${className}`}>
-      <motion.div
+      <m.div
         initial={{ clipPath: "inset(100% 0 0 0)", scale: 1.1 }}
         whileInView={{ clipPath: "inset(0% 0 0 0)", scale: 1 }}
         viewport={{ once: true, amount: 0.2 }}
@@ -69,7 +69,7 @@ export function ImageReveal({
         className="w-full h-full"
       >
         {children}
-      </motion.div>
+      </m.div>
     </div>
   );
 }
@@ -92,7 +92,7 @@ export function TextReveal({
   return (
     <div className={`flex flex-wrap overflow-hidden ${className}`}>
       {words.map((word, i) => (
-        <motion.span
+        <m.span
           key={i}
           initial={{ y: "100%", opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
@@ -105,7 +105,7 @@ export function TextReveal({
           className="inline-block mr-[0.3em]"
         >
           {word}
-        </motion.span>
+        </m.span>
       ))}
     </div>
   );
@@ -122,14 +122,14 @@ export function GridStagger({
   className,
   threshold = 0.1,
 }: {
-  children: ReactNode;
+  children: React.ReactNode;
   delay?: number;
   stagger?: number;
   className?: string;
   threshold?: number;
 }) {
   return (
-    <motion.div
+    <m.div
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: threshold }}
@@ -146,7 +146,7 @@ export function GridStagger({
       className={className}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -158,11 +158,11 @@ export function StaggerItem({
   children,
   className,
 }: {
-  children: ReactNode;
+  children: React.ReactNode;
   className?: string;
 }) {
   return (
-    <motion.div
+    <m.div
       variants={{
         hidden: { opacity: 0, y: 30 },
         visible: {
@@ -177,6 +177,6 @@ export function StaggerItem({
       className={className}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }

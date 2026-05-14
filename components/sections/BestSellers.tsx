@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ProductCard } from "@/components/ui/ProductCard";
 
 const BEST_SELLER_PRODUCTS = [
@@ -51,15 +51,15 @@ export function BestSellers() {
         
         {/* Editorial Header */}
         <div className="flex flex-col items-center text-center mb-20">
-          <motion.h2 
+          <m.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase text-black/40 mb-4"
           >
             Top Collections
-          </motion.h2>
-          <motion.h3 
+          </m.h2>
+          <m.h3 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -67,13 +67,13 @@ export function BestSellers() {
             className="text-3xl md:text-5xl font-light font-heading tracking-tight italic"
           >
             The Best Sellers
-          </motion.h3>
+          </m.h3>
         </div>
 
         {/* Product Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-20">
           {BEST_SELLER_PRODUCTS.map((product, idx) => (
-            <motion.div
+            <m.div
               key={product.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -88,7 +88,7 @@ export function BestSellers() {
                 </span>
               </div>
               <ProductCard {...product} />
-            </motion.div>
+            </m.div>
           ))}
         </div>
 

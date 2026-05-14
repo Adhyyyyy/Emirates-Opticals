@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { m, useScroll, useTransform, useSpring } from "framer-motion";
 import Image from "next/image";
 
 interface ParallaxImageProps {
@@ -44,7 +44,7 @@ export function ParallaxImage({
       ref={containerRef} 
       className={`relative overflow-hidden ${className}`}
     >
-      <motion.div 
+      <m.div 
         style={{ y }} 
         className="absolute inset-0 w-full h-[120%] -top-[10%]"
       >
@@ -56,7 +56,7 @@ export function ParallaxImage({
           priority={priority}
           sizes="(max-width: 768px) 100vw, 50vw"
         />
-      </motion.div>
+      </m.div>
     </div>
   );
 }

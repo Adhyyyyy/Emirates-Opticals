@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { MapPin, Phone, Clock, ChevronRight, Award } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -44,15 +44,15 @@ export function BranchShowcase() {
         
         {/* Editorial Header */}
         <div className="flex flex-col items-center text-center mb-20">
-          <motion.h2 
+          <m.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase text-black/40 mb-4"
           >
             Our Presence in Kerala
-          </motion.h2>
-          <motion.h3 
+          </m.h2>
+          <m.h3 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -60,7 +60,7 @@ export function BranchShowcase() {
             className="text-3xl md:text-5xl font-light font-heading tracking-tight italic"
           >
             Visit Our Luxury Ateliers
-          </motion.h3>
+          </m.h3>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
@@ -76,7 +76,7 @@ export function BranchShowcase() {
 
             {/* Interactive Markers */}
             {BRANCHES.map((branch) => (
-              <motion.button
+              <m.button
                 key={branch.id}
                 onClick={() => setActiveBranch(branch)}
                 className="absolute z-10 group/marker"
@@ -88,7 +88,7 @@ export function BranchShowcase() {
                   activeBranch.id === branch.id ? "bg-black border-black scale-125" : "bg-white border-black/20"
                 )}>
                   {activeBranch.id === branch.id && (
-                    <motion.div 
+                    <m.div 
                       layoutId="pulse"
                       className="absolute inset-0 bg-black rounded-full animate-ping opacity-20" 
                     />
@@ -97,7 +97,7 @@ export function BranchShowcase() {
                 <span className="absolute top-6 left-1/2 -translate-x-1/2 text-[8px] font-bold uppercase tracking-widest opacity-0 group-hover/marker:opacity-100 transition-opacity">
                   {branch.id}
                 </span>
-              </motion.button>
+              </m.button>
             ))}
 
             <div className="text-[10px] font-bold uppercase tracking-[0.5em] text-black/5 vertical-text select-none">
@@ -108,7 +108,7 @@ export function BranchShowcase() {
           {/* Right: Active Branch Detail Card */}
           <div className="lg:col-span-6">
             <AnimatePresence mode="wait">
-              <motion.div
+              <m.div
                 key={activeBranch.id}
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -168,7 +168,7 @@ export function BranchShowcase() {
                     Get Directions
                   </button>
                 </div>
-              </motion.div>
+              </m.div>
             </AnimatePresence>
           </div>
 

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { Heart } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -47,7 +47,7 @@ export function ProductCard({
         
         {/* Try It On - Top Center Reveal */}
         {hasVirtualTryOn && (
-          <motion.div 
+          <m.div 
             initial={{ y: 10, opacity: 0 }}
             animate={{ y: isHovered ? 0 : 10, opacity: isHovered ? 1 : 0 }}
             transition={{ duration: 0.6, ease: EASE_LUXURY }}
@@ -58,12 +58,12 @@ export function ProductCard({
               <div className="absolute inset-[2px] bg-black rounded-full" />
             </div>
             <span className="text-[9px] font-bold uppercase tracking-widest text-black">Try It On</span>
-          </motion.div>
+          </m.div>
         )}
 
         {/* Wishlist - Top Right Reveal */}
         <div className="flex-1 flex justify-end">
-          <motion.button 
+          <m.button 
             animate={{ opacity: isHovered ? 1 : 0.3, scale: isHovered ? 1.1 : 1 }}
             onClick={(e) => {
               e.preventDefault();
@@ -78,12 +78,12 @@ export function ProductCard({
                 isWishlisted ? "fill-black stroke-black" : "stroke-black/20 group-hover:stroke-black"
               )} 
             />
-          </motion.button>
+          </m.button>
         </div>
       </div>
 
       {/* Main Product Frame - Weighted Lift & Shadow */}
-      <motion.div 
+      <m.div 
         animate={{ 
           y: isHovered ? -12 : 0,
           boxShadow: isHovered 
@@ -94,7 +94,7 @@ export function ProductCard({
         className="relative w-full aspect-[4/3] bg-[#fcfcfc] flex items-center justify-center overflow-hidden cursor-pointer mb-8 group-hover:bg-white"
       >
         <AnimatePresence mode="wait">
-          <motion.div
+          <m.div
             key={isHovered ? "secondary" : "primary"}
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: isHovered ? 1.05 : 1 }}
@@ -109,11 +109,11 @@ export function ProductCard({
               className="object-contain"
               sizes="(max-width: 768px) 100vw, 400px"
             />
-          </motion.div>
+          </m.div>
         </AnimatePresence>
 
         {/* Cinematic Object Shadow */}
-        <motion.div 
+        <m.div 
           animate={{ 
             opacity: isHovered ? 0.2 : 0.6,
             scale: isHovered ? 1.4 : 1,
@@ -122,10 +122,10 @@ export function ProductCard({
           transition={{ duration: 1.2, ease: EASE_LUXURY }}
           className="absolute bottom-12 left-1/2 -translate-x-1/2 w-1/4 h-2 bg-black/[0.08] blur-2xl rounded-full transition-all" 
         />
-      </motion.div>
+      </m.div>
 
       {/* Product Information - Subtle Vertical Shift */}
-      <motion.div 
+      <m.div 
         animate={{ y: isHovered ? -6 : 0 }}
         transition={{ duration: 1.2, ease: EASE_LUXURY }}
         className="flex flex-col gap-2 items-center"
@@ -140,14 +140,14 @@ export function ProductCard({
           <p className="text-[12px] md:text-[13px] font-bold text-black">
             ${price.toLocaleString()}
           </p>
-          <motion.p 
+          <m.p 
             animate={{ opacity: isHovered ? 1 : 0 }}
             className="text-[9px] text-black/40 uppercase font-bold tracking-[0.3em] mt-3"
           >
             {colorsCount} Exclusive Colors
-          </motion.p>
+          </m.p>
         </div>
-      </motion.div>
+      </m.div>
     </Link>
   );
 }

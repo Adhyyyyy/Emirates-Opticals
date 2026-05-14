@@ -33,9 +33,9 @@ export function AboutHero() {
           </Reveal>
 
           <Reveal delay={0.4}>
-            <h1 className="text-5xl md:text-7xl lg:text-9xl font-normal text-white uppercase tracking-[-0.03em] leading-[0.85] mb-12 drop-shadow-lg font-heading">
+            <h1 className="text-4xl md:text-6xl lg:text-8xl font-normal text-white uppercase tracking-[-0.03em] leading-[0.9] mb-12 drop-shadow-lg font-heading">
               Kerala’s Trusted<br />
-              <em className="italic font-light">Luxury Eyewear</em><br />
+              <em className="italic font-light text-brand-gold/90">Luxury Eyewear</em><br />
               Destination
             </h1>
           </Reveal>

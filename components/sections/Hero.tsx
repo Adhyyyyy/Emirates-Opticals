@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { EyewearCarousel } from "@/components/common/EyewearCarousel";
 import { Reveal } from "@/components/motion/Reveal";
 
