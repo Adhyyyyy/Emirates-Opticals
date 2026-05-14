@@ -6,6 +6,9 @@ import { Navbar } from "@/components/layouts/Navbar";
 import { Footer } from "@/components/common/Footer";
 import { PageTransition } from "@/components/motion/PageTransition";
 
+import { SmoothScroll } from "@/components/motion/SmoothScroll";
+import { Preloader } from "@/components/common/Preloader";
+
 const inter = Inter({ subsets: ["latin"], variable: "--font-body" });
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-heading" });
 
@@ -22,13 +25,16 @@ export default function RootLayout({
   return (
     <html lang="en" className="antialiased">
       <body className={`${inter.variable} ${playfair.variable} font-body`}>
-        <Navbar />
-        <PageTransition>
-          <main className="min-h-screen pt-[55px] md:pt-[70px]">
-            {children}
-          </main>
-        </PageTransition>
-        <Footer />
+        <Preloader />
+        <SmoothScroll>
+          <Navbar />
+          <PageTransition>
+            <main className="min-h-screen pt-[90px] md:pt-[110px]">
+              {children}
+            </main>
+          </PageTransition>
+          <Footer />
+        </SmoothScroll>
       </body>
     </html>
   );

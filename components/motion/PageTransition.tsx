@@ -3,7 +3,7 @@
 import React, { ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
-import { EASE_LUXURY, DURATION_BASE } from "@/lib/motion";
+import { EASE_LUXURY, EASE_EXPO, DURATION_SLOW } from "@/lib/motion";
 
 /**
  * PAGE TRANSITION ORCHESTRATOR
@@ -16,23 +16,21 @@ export function PageTransition({ children }: { children: ReactNode }) {
     <AnimatePresence mode="wait" initial={false}>
       <motion.div
         key={pathname}
-        initial={{ opacity: 0, y: 20, scale: 0.98 }}
+        initial={{ opacity: 0, y: 10 }}
         animate={{ 
           opacity: 1, 
           y: 0, 
-          scale: 1,
           transition: {
-            duration: DURATION_BASE,
+            duration: DURATION_SLOW,
             ease: EASE_LUXURY,
-            delay: 0.1
+            delay: 0.2
           }
         }}
         exit={{ 
           opacity: 0, 
-          y: -20, 
-          scale: 0.98,
+          y: -10, 
           transition: {
-            duration: 0.5,
+            duration: 0.6,
             ease: EASE_LUXURY
           }
         }}
@@ -40,19 +38,15 @@ export function PageTransition({ children }: { children: ReactNode }) {
       >
         {children}
         
-        {/* Subtle Route Indicator - Premium Polish */}
+        {/* Cinematic Route Mask - Luxury Transition Element */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0 }}
-          exit={{ opacity: 1 }}
-          className="fixed inset-0 bg-white z-[9999] pointer-events-none flex items-center justify-center"
-        >
-          <div className="flex flex-col items-center gap-4">
-            <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-black/20 animate-pulse">
-              Emirates Opticians
-            </span>
-          </div>
-        </motion.div>
+          initial={{ scaleY: 0 }}
+          animate={{ scaleY: 0 }}
+          exit={{ scaleY: 1 }}
+          transition={{ duration: 0.6, ease: EASE_EXPO }}
+          style={{ originY: 0 }}
+          className="fixed inset-0 bg-brand-pearl z-[9999] pointer-events-none"
+        />
       </motion.div>
     </AnimatePresence>
   );

@@ -7,13 +7,16 @@ import { Variants } from "framer-motion";
  * Signature easing and timing for a cinematic editorial experience.
  */
 
-export const EASE_LUXURY = [0.16, 1, 0.3, 1] as const; // Weighted, smooth deceleration
-export const EASE_STARK = [0.19, 1, 0.22, 1] as const;  // Fast entry, ultra-smooth end
-export const EASE_CINEMATIC = [0.4, 0, 0.2, 1] as const; // Balanced, natural flow
+// Signature Luxury Easing - Weighted, smooth deceleration
+export const EASE_LUXURY = [0.16, 1, 0.3, 1]; 
+export const EASE_EXPO = [0.19, 1, 0.22, 1];   // High-end fashion reveal
+export const EASE_CINEMATIC = [0.4, 0, 0.2, 1]; // Balanced, natural flow
+export const EASE_STARK = [0.19, 1, 0.22, 1];
 
 export const DURATION_FAST = 0.4;
 export const DURATION_BASE = 0.8;
 export const DURATION_SLOW = 1.2;
+export const DURATION_EDITORIAL = 1.6;
 export const DURATION_ATMOSPHERIC = 2.0;
 
 /**

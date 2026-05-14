@@ -10,10 +10,13 @@ export function EditorialServices() {
       <div className="container-tight">
         
         {/* Section Heading - Exact Sizing */}
-        <div className="text-center mb-16 md:mb-24">
+        <div className="text-center mb-16 md:mb-32">
           <Reveal delay={0.2}>
-            <h2 className="text-3xl md:text-5xl font-extralight tracking-[0.2em] text-white uppercase font-heading">
-              At Your Service
+            <span className="text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase text-white/40 mb-6 block">
+              Curated Luxury
+            </span>
+            <h2 className="text-4xl md:text-6xl font-extralight tracking-[0.1em] text-white uppercase font-heading leading-tight">
+              At Your <em className="italic">Service</em>
             </h2>
           </Reveal>
         </div>

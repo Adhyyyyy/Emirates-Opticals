@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Camera } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Interactive, LuxuryButton } from "@/components/ui/LuxuryButton";
+import { GridStagger, StaggerItem } from "@/components/motion/Reveal";
 
 // Verified Unsplash IDs to avoid 404s
 const GALLERY_POSTS = [
@@ -36,27 +37,39 @@ export function SocialGallery() {
         </div>
 
         {/* Mosaic Grid - Compact & Symmetrical */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 items-start">
+        <GridStagger className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 items-start">
           
           {/* Column 1: Large */}
-          <GalleryItem src={GALLERY_POSTS[0].img!} isLarge />
+          <StaggerItem>
+            <GalleryItem src={GALLERY_POSTS[0].img!} isLarge />
+          </StaggerItem>
 
           {/* Column 2: Stacked */}
           <div className="flex flex-col gap-3 md:gap-4">
-            <GalleryItem src={GALLERY_POSTS[1].img1!} />
-            <GalleryItem src={GALLERY_POSTS[1].img2!} />
+            <StaggerItem>
+              <GalleryItem src={GALLERY_POSTS[1].img1!} />
+            </StaggerItem>
+            <StaggerItem>
+              <GalleryItem src={GALLERY_POSTS[1].img2!} />
+            </StaggerItem>
           </div>
 
           {/* Column 3: Large */}
-          <GalleryItem src={GALLERY_POSTS[2].img!} isLarge />
+          <StaggerItem>
+            <GalleryItem src={GALLERY_POSTS[2].img!} isLarge />
+          </StaggerItem>
 
           {/* Column 4: Stacked */}
           <div className="flex flex-col gap-3 md:gap-4">
-            <GalleryItem src={GALLERY_POSTS[3].img1!} />
-            <GalleryItem src={GALLERY_POSTS[3].img2!} />
+            <StaggerItem>
+              <GalleryItem src={GALLERY_POSTS[3].img1!} />
+            </StaggerItem>
+            <StaggerItem>
+              <GalleryItem src={GALLERY_POSTS[3].img2!} />
+            </StaggerItem>
           </div>
 
-        </div>
+        </GridStagger>
 
         <div className="mt-20 flex justify-center">
           <LuxuryButton variant="outline" className="border-white/20 text-white hover:bg-white hover:text-black">

@@ -33,12 +33,14 @@ export function Navbar() {
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 w-full bg-white">
+    <header className="fixed top-0 left-0 right-0 z-50 w-full">
       <AnnouncementBar />
       
       <nav className={cn(
-        "w-full transition-all duration-300 border-b border-black/5",
-        isScrolled ? "py-2" : "py-4"
+        "w-full transition-all duration-700 ease-in-out border-b",
+        isScrolled 
+          ? "py-2 bg-white/80 backdrop-blur-xl border-black/5 shadow-sm" 
+          : "py-6 bg-transparent border-transparent"
       )}>
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8 flex items-center justify-between">
           

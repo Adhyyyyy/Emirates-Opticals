@@ -85,22 +85,22 @@ export function ProductCard({
       {/* Main Product Frame - Weighted Lift & Shadow */}
       <motion.div 
         animate={{ 
-          y: isHovered ? -8 : 0,
+          y: isHovered ? -12 : 0,
           boxShadow: isHovered 
-            ? "0 30px 60px -15px rgba(0,0,0,0.1)" 
+            ? "0 40px 80px -20px rgba(0,0,0,0.12)" 
             : "0 0px 0px 0px rgba(0,0,0,0)"
         }}
-        transition={{ duration: 0.8, ease: EASE_LUXURY }}
-        className="relative w-full aspect-[4/3] bg-[#fcfcfc] flex items-center justify-center overflow-hidden cursor-pointer mb-6 group-hover:bg-white"
+        transition={{ duration: 1.2, ease: EASE_LUXURY }}
+        className="relative w-full aspect-[4/3] bg-[#fcfcfc] flex items-center justify-center overflow-hidden cursor-pointer mb-8 group-hover:bg-white"
       >
         <AnimatePresence mode="wait">
           <motion.div
             key={isHovered ? "secondary" : "primary"}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1, scale: isHovered ? 1.08 : 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.8, ease: EASE_LUXURY }}
-            className="relative w-[85%] h-[85%]"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: isHovered ? 1.05 : 1 }}
+            exit={{ opacity: 0, scale: 1.05 }}
+            transition={{ duration: 1.0, ease: EASE_LUXURY }}
+            className="relative w-[80%] h-[80%]"
           >
             <Image
               src={isHovered ? secondaryImage : primaryImage}
@@ -112,37 +112,39 @@ export function ProductCard({
           </motion.div>
         </AnimatePresence>
 
-        {/* Object Shadow - Subtle Parallax Effect */}
+        {/* Cinematic Object Shadow */}
         <motion.div 
           animate={{ 
-            opacity: isHovered ? 0.4 : 1,
-            scale: isHovered ? 1.2 : 1
+            opacity: isHovered ? 0.2 : 0.6,
+            scale: isHovered ? 1.4 : 1,
+            y: isHovered ? 10 : 0
           }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 w-1/3 h-4 bg-black/[0.03] blur-xl rounded-full transition-opacity duration-700" 
+          transition={{ duration: 1.2, ease: EASE_LUXURY }}
+          className="absolute bottom-12 left-1/2 -translate-x-1/2 w-1/4 h-2 bg-black/[0.08] blur-2xl rounded-full transition-all" 
         />
       </motion.div>
 
       {/* Product Information - Subtle Vertical Shift */}
       <motion.div 
-        animate={{ y: isHovered ? -4 : 0 }}
-        transition={{ duration: 0.8, ease: EASE_LUXURY }}
-        className="flex flex-col gap-1 items-center"
+        animate={{ y: isHovered ? -6 : 0 }}
+        transition={{ duration: 1.2, ease: EASE_LUXURY }}
+        className="flex flex-col gap-2 items-center"
       >
-        <h3 className="text-[13px] md:text-sm font-bold text-black tracking-tight uppercase">
+        <h3 className="text-[12px] md:text-[13px] font-bold text-black tracking-[0.1em] uppercase">
           {brand}
         </h3>
-        <p className="text-[12px] md:text-[13px] text-black/60 italic font-serif">
+        <p className="text-[13px] md:text-[14px] text-black/50 italic font-serif">
           {name}
         </p>
-        <div className="flex flex-col items-center mt-1">
-          <p className="text-[12px] md:text-[13px] font-semibold text-black">
+        <div className="flex flex-col items-center mt-2">
+          <p className="text-[12px] md:text-[13px] font-bold text-black">
             ${price.toLocaleString()}
           </p>
           <motion.p 
-            animate={{ opacity: isHovered ? 1 : 0.4 }}
-            className="text-[10px] text-black uppercase tracking-[0.2em] mt-2 transition-opacity"
+            animate={{ opacity: isHovered ? 1 : 0 }}
+            className="text-[9px] text-black/40 uppercase font-bold tracking-[0.3em] mt-3"
           >
-            {colorsCount} Colors
+            {colorsCount} Exclusive Colors
           </motion.p>
         </div>
       </motion.div>

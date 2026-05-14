@@ -32,8 +32,8 @@ export function ParallaxImage({
 
   // Smooth the scroll progress for a 'Weightless' luxury feel
   const springProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
+    stiffness: 40,
+    damping: 20,
     restDelta: 0.001,
   });
 
