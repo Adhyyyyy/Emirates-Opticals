@@ -12,7 +12,7 @@ export function ShopHero() {
       {/* Cinematic Shop Visual */}
       <div className="absolute inset-0 z-0">
         <ParallaxImage
-          src="https://images.unsplash.com/photo-1511499767350-a1590fdb7307?auto=format&fit=crop&q=80&w=2000"
+          src="https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&q=80&w=2000"
           alt="Luxury Eyewear Collection"
           className="w-full h-full"
           distance={80}

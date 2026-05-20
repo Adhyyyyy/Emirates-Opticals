@@ -235,6 +235,7 @@ exports.Prisma.EnquiryScalarFieldEnum = {
   type: 'type',
   message: 'message',
   isWhatsApp: 'isWhatsApp',
+  status: 'status',
   createdAt: 'createdAt'
 };
 

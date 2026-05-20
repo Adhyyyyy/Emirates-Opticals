@@ -3,6 +3,7 @@
 import React from "react";
 import { m } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { MapPin, Phone, Clock, ArrowRight, Calendar } from "lucide-react";
 import { LuxuryButton } from "./LuxuryButton";
 import { EASE_LUXURY } from "@/lib/motion";
@@ -14,9 +15,14 @@ interface BranchProps {
   image: string;
   phone?: string;
   hours?: string;
+  coordinates?: string;
+  slug?: string;
 }
 
-export function BranchCard({ name, address, description, image, phone = "+91 000 000 0000", hours = "10:00 AM - 08:00 PM" }: BranchProps) {
+export function BranchCard({ name, address, description, image, phone = "+91 000 000 0000", hours = "10:00 AM - 08:00 PM", coordinates, slug }: BranchProps) {
+  const mapsQuery = coordinates ? coordinates : `${name} ${address}`;
+  const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapsQuery)}`;
+
   return (
     <m.div 
       initial={{ opacity: 0, y: 30 }}
@@ -39,7 +45,7 @@ export function BranchCard({ name, address, description, image, phone = "+91 000
             className="object-cover"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
-        </motion.div>
+        </m.div>
         {/* Branch Badge */}
         <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 border border-black/5">
           <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-black">Active Destination</span>
@@ -74,14 +80,27 @@ export function BranchCard({ name, address, description, image, phone = "+91 000
 
         {/* Action Engagement */}
         <div className="mt-auto space-y-4">
-          <LuxuryButton variant="primary" className="w-full justify-center py-4" icon={<Calendar className="w-4 h-4" />}>
-            Book Eye Test
-          </LuxuryButton>
+          {slug ? (
+            <Link href={`/branches/${slug}`} className="w-full">
+              <LuxuryButton variant="primary" className="w-full justify-center py-4">
+                Explore Stock & Details
+              </LuxuryButton>
+            </Link>
+          ) : (
+            <LuxuryButton variant="primary" className="w-full justify-center py-4" icon={<Calendar className="w-4 h-4" />}>
+              Book Eye Test
+            </LuxuryButton>
+          )}
           
-          <button className="w-full flex items-center justify-center gap-2 py-4 text-[10px] font-bold uppercase tracking-[0.2em] text-black/40 hover:text-black transition-colors group/link">
+          <a 
+            href={mapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full flex items-center justify-center gap-2 py-4 text-[10px] font-bold uppercase tracking-[0.2em] text-black/40 hover:text-black transition-colors group/link"
+          >
             View on Google Maps
             <ArrowRight className="w-3 h-3 transition-transform group-hover/link:translate-x-2" />
-          </button>
+          </a>
         </div>
       </div>
     </m.div>

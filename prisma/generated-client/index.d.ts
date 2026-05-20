@@ -11807,6 +11807,7 @@ export namespace Prisma {
     type: $Enums.EnquiryType | null
     message: string | null
     isWhatsApp: boolean | null
+    status: string | null
     createdAt: Date | null
   }
 
@@ -11818,6 +11819,7 @@ export namespace Prisma {
     type: $Enums.EnquiryType | null
     message: string | null
     isWhatsApp: boolean | null
+    status: string | null
     createdAt: Date | null
   }
 
@@ -11829,6 +11831,7 @@ export namespace Prisma {
     type: number
     message: number
     isWhatsApp: number
+    status: number
     createdAt: number
     _all: number
   }
@@ -11842,6 +11845,7 @@ export namespace Prisma {
     type?: true
     message?: true
     isWhatsApp?: true
+    status?: true
     createdAt?: true
   }
 
@@ -11853,6 +11857,7 @@ export namespace Prisma {
     type?: true
     message?: true
     isWhatsApp?: true
+    status?: true
     createdAt?: true
   }
 
@@ -11864,6 +11869,7 @@ export namespace Prisma {
     type?: true
     message?: true
     isWhatsApp?: true
+    status?: true
     createdAt?: true
     _all?: true
   }
@@ -11948,6 +11954,7 @@ export namespace Prisma {
     type: $Enums.EnquiryType
     message: string
     isWhatsApp: boolean
+    status: string
     createdAt: Date
     _count: EnquiryCountAggregateOutputType | null
     _min: EnquiryMinAggregateOutputType | null
@@ -11976,6 +11983,7 @@ export namespace Prisma {
     type?: boolean
     message?: boolean
     isWhatsApp?: boolean
+    status?: boolean
     createdAt?: boolean
     user?: boolean | Enquiry$userArgs<ExtArgs>
     product?: boolean | Enquiry$productArgs<ExtArgs>
@@ -11990,6 +11998,7 @@ export namespace Prisma {
     type?: boolean
     message?: boolean
     isWhatsApp?: boolean
+    status?: boolean
     createdAt?: boolean
     user?: boolean | Enquiry$userArgs<ExtArgs>
     product?: boolean | Enquiry$productArgs<ExtArgs>
@@ -12004,6 +12013,7 @@ export namespace Prisma {
     type?: boolean
     message?: boolean
     isWhatsApp?: boolean
+    status?: boolean
     createdAt?: boolean
     user?: boolean | Enquiry$userArgs<ExtArgs>
     product?: boolean | Enquiry$productArgs<ExtArgs>
@@ -12018,10 +12028,11 @@ export namespace Prisma {
     type?: boolean
     message?: boolean
     isWhatsApp?: boolean
+    status?: boolean
     createdAt?: boolean
   }
 
-  export type EnquiryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "productId" | "branchId" | "type" | "message" | "isWhatsApp" | "createdAt", ExtArgs["result"]["enquiry"]>
+  export type EnquiryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "productId" | "branchId" | "type" | "message" | "isWhatsApp" | "status" | "createdAt", ExtArgs["result"]["enquiry"]>
   export type EnquiryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | Enquiry$userArgs<ExtArgs>
     product?: boolean | Enquiry$productArgs<ExtArgs>
@@ -12053,6 +12064,7 @@ export namespace Prisma {
       type: $Enums.EnquiryType
       message: string
       isWhatsApp: boolean
+      status: string
       createdAt: Date
     }, ExtArgs["result"]["enquiry"]>
     composites: {}
@@ -12487,6 +12499,7 @@ export namespace Prisma {
     readonly type: FieldRef<"Enquiry", 'EnquiryType'>
     readonly message: FieldRef<"Enquiry", 'String'>
     readonly isWhatsApp: FieldRef<"Enquiry", 'Boolean'>
+    readonly status: FieldRef<"Enquiry", 'String'>
     readonly createdAt: FieldRef<"Enquiry", 'DateTime'>
   }
     
@@ -17392,6 +17405,7 @@ export namespace Prisma {
     type: 'type',
     message: 'message',
     isWhatsApp: 'isWhatsApp',
+    status: 'status',
     createdAt: 'createdAt'
   };
 
@@ -18314,6 +18328,7 @@ export namespace Prisma {
     type?: EnumEnquiryTypeFilter<"Enquiry"> | $Enums.EnquiryType
     message?: StringFilter<"Enquiry"> | string
     isWhatsApp?: BoolFilter<"Enquiry"> | boolean
+    status?: StringFilter<"Enquiry"> | string
     createdAt?: DateTimeFilter<"Enquiry"> | Date | string
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     product?: XOR<ProductNullableScalarRelationFilter, ProductWhereInput> | null
@@ -18328,6 +18343,7 @@ export namespace Prisma {
     type?: SortOrder
     message?: SortOrder
     isWhatsApp?: SortOrder
+    status?: SortOrder
     createdAt?: SortOrder
     user?: UserOrderByWithRelationInput
     product?: ProductOrderByWithRelationInput
@@ -18345,6 +18361,7 @@ export namespace Prisma {
     type?: EnumEnquiryTypeFilter<"Enquiry"> | $Enums.EnquiryType
     message?: StringFilter<"Enquiry"> | string
     isWhatsApp?: BoolFilter<"Enquiry"> | boolean
+    status?: StringFilter<"Enquiry"> | string
     createdAt?: DateTimeFilter<"Enquiry"> | Date | string
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     product?: XOR<ProductNullableScalarRelationFilter, ProductWhereInput> | null
@@ -18359,6 +18376,7 @@ export namespace Prisma {
     type?: SortOrder
     message?: SortOrder
     isWhatsApp?: SortOrder
+    status?: SortOrder
     createdAt?: SortOrder
     _count?: EnquiryCountOrderByAggregateInput
     _max?: EnquiryMaxOrderByAggregateInput
@@ -18376,6 +18394,7 @@ export namespace Prisma {
     type?: EnumEnquiryTypeWithAggregatesFilter<"Enquiry"> | $Enums.EnquiryType
     message?: StringWithAggregatesFilter<"Enquiry"> | string
     isWhatsApp?: BoolWithAggregatesFilter<"Enquiry"> | boolean
+    status?: StringWithAggregatesFilter<"Enquiry"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Enquiry"> | Date | string
   }
 
@@ -19440,6 +19459,7 @@ export namespace Prisma {
     type?: $Enums.EnquiryType
     message: string
     isWhatsApp?: boolean
+    status?: string
     createdAt?: Date | string
     user?: UserCreateNestedOneWithoutEnquiriesInput
     product?: ProductCreateNestedOneWithoutEnquiriesInput
@@ -19454,6 +19474,7 @@ export namespace Prisma {
     type?: $Enums.EnquiryType
     message: string
     isWhatsApp?: boolean
+    status?: string
     createdAt?: Date | string
   }
 
@@ -19462,6 +19483,7 @@ export namespace Prisma {
     type?: EnumEnquiryTypeFieldUpdateOperationsInput | $Enums.EnquiryType
     message?: StringFieldUpdateOperationsInput | string
     isWhatsApp?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneWithoutEnquiriesNestedInput
     product?: ProductUpdateOneWithoutEnquiriesNestedInput
@@ -19476,6 +19498,7 @@ export namespace Prisma {
     type?: EnumEnquiryTypeFieldUpdateOperationsInput | $Enums.EnquiryType
     message?: StringFieldUpdateOperationsInput | string
     isWhatsApp?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -19487,6 +19510,7 @@ export namespace Prisma {
     type?: $Enums.EnquiryType
     message: string
     isWhatsApp?: boolean
+    status?: string
     createdAt?: Date | string
   }
 
@@ -19495,6 +19519,7 @@ export namespace Prisma {
     type?: EnumEnquiryTypeFieldUpdateOperationsInput | $Enums.EnquiryType
     message?: StringFieldUpdateOperationsInput | string
     isWhatsApp?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -19506,6 +19531,7 @@ export namespace Prisma {
     type?: EnumEnquiryTypeFieldUpdateOperationsInput | $Enums.EnquiryType
     message?: StringFieldUpdateOperationsInput | string
     isWhatsApp?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -20509,6 +20535,7 @@ export namespace Prisma {
     type?: SortOrder
     message?: SortOrder
     isWhatsApp?: SortOrder
+    status?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -20520,6 +20547,7 @@ export namespace Prisma {
     type?: SortOrder
     message?: SortOrder
     isWhatsApp?: SortOrder
+    status?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -20531,6 +20559,7 @@ export namespace Prisma {
     type?: SortOrder
     message?: SortOrder
     isWhatsApp?: SortOrder
+    status?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -21834,6 +21863,7 @@ export namespace Prisma {
     type?: $Enums.EnquiryType
     message: string
     isWhatsApp?: boolean
+    status?: string
     createdAt?: Date | string
     product?: ProductCreateNestedOneWithoutEnquiriesInput
     branch: BranchCreateNestedOneWithoutEnquiriesInput
@@ -21846,6 +21876,7 @@ export namespace Prisma {
     type?: $Enums.EnquiryType
     message: string
     isWhatsApp?: boolean
+    status?: string
     createdAt?: Date | string
   }
 
@@ -22010,6 +22041,7 @@ export namespace Prisma {
     type?: EnumEnquiryTypeFilter<"Enquiry"> | $Enums.EnquiryType
     message?: StringFilter<"Enquiry"> | string
     isWhatsApp?: BoolFilter<"Enquiry"> | boolean
+    status?: StringFilter<"Enquiry"> | string
     createdAt?: DateTimeFilter<"Enquiry"> | Date | string
   }
 
@@ -22152,6 +22184,7 @@ export namespace Prisma {
     type?: $Enums.EnquiryType
     message: string
     isWhatsApp?: boolean
+    status?: string
     createdAt?: Date | string
     user?: UserCreateNestedOneWithoutEnquiriesInput
     product?: ProductCreateNestedOneWithoutEnquiriesInput
@@ -22164,6 +22197,7 @@ export namespace Prisma {
     type?: $Enums.EnquiryType
     message: string
     isWhatsApp?: boolean
+    status?: string
     createdAt?: Date | string
   }
 
@@ -22424,6 +22458,7 @@ export namespace Prisma {
     type?: $Enums.EnquiryType
     message: string
     isWhatsApp?: boolean
+    status?: string
     createdAt?: Date | string
     user?: UserCreateNestedOneWithoutEnquiriesInput
     branch: BranchCreateNestedOneWithoutEnquiriesInput
@@ -22436,6 +22471,7 @@ export namespace Prisma {
     type?: $Enums.EnquiryType
     message: string
     isWhatsApp?: boolean
+    status?: string
     createdAt?: Date | string
   }
 
@@ -23794,6 +23830,7 @@ export namespace Prisma {
     type?: $Enums.EnquiryType
     message: string
     isWhatsApp?: boolean
+    status?: string
     createdAt?: Date | string
   }
 
@@ -23853,6 +23890,7 @@ export namespace Prisma {
     type?: EnumEnquiryTypeFieldUpdateOperationsInput | $Enums.EnquiryType
     message?: StringFieldUpdateOperationsInput | string
     isWhatsApp?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     product?: ProductUpdateOneWithoutEnquiriesNestedInput
     branch?: BranchUpdateOneRequiredWithoutEnquiriesNestedInput
@@ -23865,6 +23903,7 @@ export namespace Prisma {
     type?: EnumEnquiryTypeFieldUpdateOperationsInput | $Enums.EnquiryType
     message?: StringFieldUpdateOperationsInput | string
     isWhatsApp?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -23875,6 +23914,7 @@ export namespace Prisma {
     type?: EnumEnquiryTypeFieldUpdateOperationsInput | $Enums.EnquiryType
     message?: StringFieldUpdateOperationsInput | string
     isWhatsApp?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -23954,6 +23994,7 @@ export namespace Prisma {
     type?: $Enums.EnquiryType
     message: string
     isWhatsApp?: boolean
+    status?: string
     createdAt?: Date | string
   }
 
@@ -24079,6 +24120,7 @@ export namespace Prisma {
     type?: EnumEnquiryTypeFieldUpdateOperationsInput | $Enums.EnquiryType
     message?: StringFieldUpdateOperationsInput | string
     isWhatsApp?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneWithoutEnquiriesNestedInput
     product?: ProductUpdateOneWithoutEnquiriesNestedInput
@@ -24091,6 +24133,7 @@ export namespace Prisma {
     type?: EnumEnquiryTypeFieldUpdateOperationsInput | $Enums.EnquiryType
     message?: StringFieldUpdateOperationsInput | string
     isWhatsApp?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -24101,6 +24144,7 @@ export namespace Prisma {
     type?: EnumEnquiryTypeFieldUpdateOperationsInput | $Enums.EnquiryType
     message?: StringFieldUpdateOperationsInput | string
     isWhatsApp?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -24161,6 +24205,7 @@ export namespace Prisma {
     type?: $Enums.EnquiryType
     message: string
     isWhatsApp?: boolean
+    status?: string
     createdAt?: Date | string
   }
 
@@ -24211,6 +24256,7 @@ export namespace Prisma {
     type?: EnumEnquiryTypeFieldUpdateOperationsInput | $Enums.EnquiryType
     message?: StringFieldUpdateOperationsInput | string
     isWhatsApp?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneWithoutEnquiriesNestedInput
     branch?: BranchUpdateOneRequiredWithoutEnquiriesNestedInput
@@ -24223,6 +24269,7 @@ export namespace Prisma {
     type?: EnumEnquiryTypeFieldUpdateOperationsInput | $Enums.EnquiryType
     message?: StringFieldUpdateOperationsInput | string
     isWhatsApp?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -24233,6 +24280,7 @@ export namespace Prisma {
     type?: EnumEnquiryTypeFieldUpdateOperationsInput | $Enums.EnquiryType
     message?: StringFieldUpdateOperationsInput | string
     isWhatsApp?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

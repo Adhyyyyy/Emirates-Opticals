@@ -1,6 +1,7 @@
 "use client";
 
-import { m } from "framer-motion";
+import React, { useState, useEffect, useCallback } from "react";
+import { m, AnimatePresence } from "framer-motion";
 import { CollectionCard } from "@/components/ui/CollectionCard";
 
 const COLLECTIONS = [
@@ -34,38 +35,157 @@ const COLLECTIONS = [
   }
 ];
 
-export function FeaturedCollections() {
-  return (
-    <section className="bg-white overflow-visible section-padding">
-      <div className="container-tight">
-        
-        {/* Section Title */}
-        <m.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1 }}
-          className="text-center mb-16 md:mb-24"
-        >
-          <h2 className="h2-editorial">
-            Featured Collections
-          </h2>
-        </m.div>
+// Slide direction: +1 = going forward (slide left), -1 = going back (slide right)
+const variants = {
+  enter: (dir: number) => ({
+    x: dir > 0 ? "100%" : "-100%",
+    opacity: 0,
+    scale: 0.94,
+  }),
+  center: {
+    x: 0,
+    opacity: 1,
+    scale: 1,
+  },
+  exit: (dir: number) => ({
+    x: dir > 0 ? "-100%" : "100%",
+    opacity: 0,
+    scale: 0.94,
+  }),
+};
 
-        {/* Collections Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-20">
-          {COLLECTIONS.map((collection, index) => (
-            <m.div
-              key={collection.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 1, delay: index * 0.1 }}
-            >
-              <CollectionCard {...collection} />
-            </m.div>
-          ))}
+export function FeaturedCollections() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [direction, setDirection] = useState(1);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  const advance = useCallback((dir: number) => {
+    setDirection(dir);
+    setActiveIndex((prev) =>
+      (prev + dir + COLLECTIONS.length) % COLLECTIONS.length
+    );
+  }, []);
+
+  // Auto-advance loop
+  useEffect(() => {
+    if (!isMobile || isPaused) return;
+    const timer = setInterval(() => advance(1), 3500);
+    return () => clearInterval(timer);
+  }, [isMobile, isPaused, advance]);
+
+  // Swipe gesture detection
+  let touchStartX = 0;
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX = e.touches[0].clientX;
+    setIsPaused(true);
+  };
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    const delta = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(delta) > 40) advance(delta > 0 ? 1 : -1);
+    // Resume auto-loop after 6s idle
+    setTimeout(() => setIsPaused(false), 6000);
+  };
+
+  return (
+    <section className="bg-[#0A0A0A] overflow-hidden section-padding border-y border-[#1E1E1E]">
+      <div className="container-tight">
+
+        {/* Section Header */}
+        <div className="flex flex-col items-center text-center mb-10 md:mb-24">
+          <m.span
+            suppressHydrationWarning
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+            className="meta-editorial-light mb-4"
+          >
+            Curated Architecture
+          </m.span>
+          <m.h2
+            suppressHydrationWarning
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.1 }}
+            className="h2-editorial-light"
+          >
+            Featured Collections
+          </m.h2>
         </div>
+
+        {/* ── MOBILE: Single-card AnimatePresence carousel ── */}
+        {isMobile ? (
+          <div
+            className="relative w-full overflow-hidden"
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+          >
+            <AnimatePresence mode="wait" custom={direction}>
+              <m.div
+                key={activeIndex}
+                custom={direction}
+                variants={variants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{
+                  x: { type: "spring", stiffness: 280, damping: 30 },
+                  opacity: { duration: 0.25 },
+                  scale: { duration: 0.35 },
+                }}
+                className="w-full"
+              >
+                <CollectionCard {...COLLECTIONS[activeIndex]} />
+              </m.div>
+            </AnimatePresence>
+
+            {/* Progress dots */}
+            <div className="flex items-center justify-center gap-2 mt-8">
+              {COLLECTIONS.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => { setDirection(idx > activeIndex ? 1 : -1); setActiveIndex(idx); }}
+                  aria-label={`Go to slide ${idx + 1}`}
+                  style={{
+                    width: activeIndex === idx ? 24 : 6,
+                    height: 6,
+                    borderRadius: 3,
+                    background: activeIndex === idx
+                      ? "#C9A84C"
+                      : "rgba(255,255,255,0.2)",
+                    transition: "all 0.35s ease",
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+        ) : (
+          /* ── DESKTOP: Static 2-column grid ── */
+          <div className="grid grid-cols-2 gap-x-12 gap-y-20">
+            {COLLECTIONS.map((collection, index) => (
+              <m.div
+                key={collection.id}
+                suppressHydrationWarning
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.9, delay: index * 0.1 }}
+              >
+                <CollectionCard {...collection} />
+              </m.div>
+            ))}
+          </div>
+        )}
+
       </div>
     </section>
   );

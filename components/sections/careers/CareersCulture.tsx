@@ -52,7 +52,7 @@ export function CareersCulture() {
           {/* Cinematic Image Integration */}
           <div className="order-1 lg:order-2 relative aspect-[4/5] overflow-hidden group shadow-2xl">
             <ParallaxImage
-              src="https://images.unsplash.com/photo-1556306535-0f09a537f0a3?auto=format&fit=crop&q=80&w=1200"
+              src="https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&q=80&w=1200"
               alt="Our Collaborative Environment"
               className="w-full h-full"
               distance={70}

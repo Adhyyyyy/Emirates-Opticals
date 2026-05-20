@@ -16,7 +16,7 @@ const FEATURES = [
 
 export function ServicesIntro() {
   return (
-    <section className="w-full bg-white section-padding overflow-hidden">
+    <section className="w-full bg-white section-padding overflow-hidden" id="main-services">
       <div className="container-tight">
         <div className="flex flex-col lg:flex-row gap-20 items-center">
           
@@ -25,7 +25,7 @@ export function ServicesIntro() {
             <Reveal>
               <h2 className="text-4xl md:text-6xl font-extralight tracking-tight text-brand-charcoal uppercase font-heading leading-tight mb-12">
                 More Than Eyewear.<br />
-                <em className="italic">A Complete Experience.</em>
+                <em className="italic text-brand-gold">A Complete Experience.</em>
               </h2>
             </Reveal>
 
@@ -51,13 +51,20 @@ export function ServicesIntro() {
             </GridStagger>
           </div>
 
-          {/* Badge Visual */}
-          <div className="lg:w-1/2 relative flex justify-center">
-            <div className="relative p-12 border border-black/5 bg-brand-pearl rounded-full w-[350px] h-[350px] flex flex-col items-center justify-center text-center">
-              <div className="space-y-4">
-                <div className="text-brand-gold font-heading text-3xl italic">Excellence</div>
-                <div className="w-12 h-[1px] bg-brand-gold mx-auto" />
-                <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-brand-charcoal/30">
+          {/* Symmetrical Luxury Lifestyle Visual with Intersecting Excellence Badge */}
+          <div className="lg:w-1/2 relative flex justify-center w-full">
+            <div className="relative aspect-[4/3] w-full max-w-lg overflow-hidden group border border-black/5 shadow-2xl">
+              <img 
+                src="https://images.unsplash.com/photo-1508296695146-257a814070b4?auto=format&fit=crop&q=80&w=1200"
+                alt="Emirates Styling Consultation Curation"
+                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-brand-charcoal/10" />
+              
+              {/* Overlapping Glassmorphism Curation Badge */}
+              <div className="absolute bottom-6 left-6 p-6 bg-white/95 border border-black/5 backdrop-blur-md rounded-2xl max-w-[200px] shadow-xl hidden sm:block">
+                <span className="text-brand-gold font-heading text-xl italic block mb-1">Excellence</span>
+                <p className="text-[8px] uppercase tracking-widest font-bold text-brand-charcoal/40">
                   Precision Optical Care
                 </p>
               </div>

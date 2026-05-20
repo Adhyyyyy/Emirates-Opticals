@@ -3,23 +3,35 @@
 import React from "react";
 import { Reveal, GridStagger, StaggerItem } from "@/components/motion/Reveal";
 import { ShieldCheck, Award, Zap, Heart } from "lucide-react";
+import { m } from "framer-motion";
 
 export function ProductAuthenticity() {
   return (
     <section className="w-full bg-brand-pearl/50 section-padding overflow-hidden relative">
       <div className="container-tight">
         
-        <div className="flex flex-col items-center text-center mb-24">
-          <Reveal>
-            <h2 className="text-4xl md:text-6xl font-extralight tracking-tight text-brand-charcoal uppercase font-heading mb-8">
-              Guaranteed Authentic.<br /><em className="italic text-brand-gold">Always Genuine.</em>
-            </h2>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <p className="text-brand-charcoal/60 font-light max-w-2xl mx-auto leading-relaxed">
-              Every frame at Emirates Optician is sourced directly from authorized distributors and trusted global partners to ensure authenticity, quality, and warranty support.
-            </p>
-          </Reveal>
+        <div className="flex flex-col items-center text-center mb-10 md:mb-24">
+          <m.span
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+            className="meta-editorial mb-4"
+          >
+            Official Guarantee
+          </m.span>
+          <m.h2 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.1 }}
+            className="h2-editorial"
+          >
+            Guaranteed Authentic. Always Genuine.
+          </m.h2>
+          <p className="text-brand-charcoal/60 font-light max-w-2xl mx-auto leading-relaxed mt-6">
+            Every frame at Emirates Optician is sourced directly from authorized distributors and trusted global partners to ensure authenticity, quality, and warranty support.
+          </p>
         </div>
 
         <GridStagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">

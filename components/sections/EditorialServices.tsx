@@ -1,24 +1,34 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, m } from "framer-motion";
 import { ParallaxImage } from "@/components/motion/ParallaxImage";
 import { Reveal, TextReveal } from "@/components/motion/Reveal";
 
 export function EditorialServices() {
   return (
-    <section className="bg-black text-white py-24 md:py-32 overflow-hidden">
+    <section className="bg-black text-white section-padding overflow-hidden">
       <div className="container-tight">
         
         {/* Section Heading - Exact Sizing */}
-        <div className="text-center mb-16 md:mb-32">
-          <Reveal delay={0.2}>
-            <span className="text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase text-white/40 mb-6 block">
-              Curated Luxury
-            </span>
-            <h2 className="text-4xl md:text-6xl font-extralight tracking-[0.1em] text-white uppercase font-heading leading-tight">
-              At Your <em className="italic">Service</em>
-            </h2>
-          </Reveal>
+        <div className="text-center mb-10 md:mb-32 flex flex-col items-center">
+          <m.span
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+            className="meta-editorial-light mb-6"
+          >
+            Curated Luxury
+          </m.span>
+          <m.h2 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.1 }}
+            className="h2-editorial-light leading-tight"
+          >
+            At Your <em className="italic">Service</em>
+          </m.h2>
         </div>
 
         {/* Asymmetric Grid - Perfectly Balanced Vertical Sync */}
@@ -40,7 +50,7 @@ export function EditorialServices() {
                 delay={0.4}
               />
               <Reveal delay={0.6}>
-                <p className="text-sm md:text-[15px] text-white/90 max-w-sm mb-10 leading-relaxed font-light">
+                <p className="body-editorial-light max-w-sm mb-10">
                   Chat now or book ahead. Our Visionists are trained in the art of styling and the craft of fitting, so you're in good hands.
                 </p>
                 <div className="flex flex-wrap items-center gap-8">

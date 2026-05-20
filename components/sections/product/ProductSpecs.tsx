@@ -4,6 +4,7 @@ import React from "react";
 import { Product } from "@/types/shop";
 import { Reveal, GridStagger, StaggerItem } from "@/components/motion/Reveal";
 import { Info } from "lucide-react";
+import { m } from "framer-motion";
 
 interface ProductSpecsProps {
   product: Product;
@@ -28,12 +29,25 @@ export function ProductSpecs({ product }: ProductSpecsProps) {
         <div className="flex flex-col lg:flex-row gap-20">
           
           {/* Header */}
-          <div className="lg:w-1/3">
-            <Reveal>
-              <h2 className="text-4xl md:text-5xl font-extralight tracking-tight text-brand-charcoal uppercase font-heading mb-8">
-                Technical<br /><em className="italic text-brand-gold">Precision</em>
-              </h2>
-            </Reveal>
+          <div className="lg:w-1/3 flex flex-col items-start">
+            <m.span
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1 }}
+              className="meta-editorial mb-4"
+            >
+              Specifications
+            </m.span>
+            <m.h2 
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.1 }}
+              className="h2-editorial mb-8"
+            >
+              Technical Precision
+            </m.h2>
             <Reveal delay={0.2}>
               <div className="flex items-start gap-4 p-6 bg-brand-pearl/50 border border-black/5 rounded-2xl">
                 <Info className="w-5 h-5 text-brand-gold flex-shrink-0 mt-1" />

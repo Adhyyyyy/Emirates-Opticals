@@ -29,11 +29,11 @@ const TESTIMONIALS = [
 
 export function Testimonials() {
   return (
-    <section className="bg-black text-white py-24 md:py-32 overflow-hidden">
+    <section className="bg-[#F7F5F0] section-padding overflow-hidden border-t border-[#E8E4DC]">
       <div className="container-tight">
         
         {/* Editorial Header */}
-        <div className="flex flex-col items-center text-center mb-20">
+        <div className="flex flex-col items-center text-center mb-10 md:mb-20">
           <m.div
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -42,23 +42,24 @@ export function Testimonials() {
           >
             <Quote className="w-5 h-5 text-white/40" />
           </m.div>
-          <m.h2 
-            initial={{ opacity: 0, y: 20 }}
+          <m.span 
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase text-white/40 mb-4"
+            transition={{ duration: 1 }}
+            className="meta-editorial mb-4"
           >
             Patron Experiences
-          </m.h2>
-          <m.h3 
-            initial={{ opacity: 0, y: 20 }}
+          </m.span>
+          <m.h2 
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-3xl md:text-5xl font-light font-heading tracking-tight italic"
+            transition={{ duration: 1, delay: 0.1 }}
+            className="h2-editorial"
           >
             The Voice of our Patrons
-          </m.h3>
+          </m.h2>
         </div>
 
         {/* Testimonials Grid */}
@@ -70,26 +71,26 @@ export function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.15 }}
-              className="group flex flex-col items-center text-center p-8 border border-white/5 hover:bg-white/5 transition-all duration-700"
+              className="group flex flex-col items-center text-center p-8 border border-black/5 hover:bg-white transition-all duration-700"
             >
               {/* Rating */}
               <div className="flex gap-1 mb-8">
                 {[...Array(patron.rating)].map((_, i) => (
-                  <Star key={i} className="w-3 h-3 fill-white stroke-none opacity-40 group-hover:opacity-100 transition-opacity" />
+                  <Star key={i} className="w-3 h-3 fill-[#C9A84C] stroke-none opacity-50 group-hover:opacity-100 transition-opacity" />
                 ))}
               </div>
 
               {/* Quote */}
-              <p className="text-lg md:text-xl font-light font-heading italic leading-relaxed mb-10 text-white/80 group-hover:text-white transition-colors">
+              <p className="text-lg md:text-xl font-light font-heading italic leading-relaxed mb-10 text-[#0A0A0A]/70 group-hover:text-[#0A0A0A] transition-colors">
                 "{patron.quote}"
               </p>
 
               {/* Author */}
               <div className="flex flex-col items-center gap-1">
-                <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-white">
+                <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#0A0A0A]">
                   {patron.author}
                 </span>
-                <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-white/30">
+                <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-[#0A0A0A]/40">
                   {patron.location}
                 </span>
               </div>

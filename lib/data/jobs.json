@@ -1,0 +1,37 @@
+[
+  {
+    "id": "1",
+    "title": "Optometrist",
+    "desc": "Conduct professional eye examinations, prescribe corrective lenses, and provide expert eye care consultation to customers.",
+    "requirements": [
+      "Diploma/B.Sc in Optometry",
+      "Experience preferred",
+      "Excellent communication skills",
+      "Customer-focused mindset"
+    ],
+    "isActive": true
+  },
+  {
+    "id": "2",
+    "title": "Optical Fitter",
+    "desc": "Adjust and fit eyeglasses, ensure lens alignment, and provide quality frame fitting support for customer comfort.",
+    "requirements": [
+      "Optical fitting experience",
+      "Lens & frame knowledge",
+      "Attention to detail",
+      "Customer service skills"
+    ],
+    "isActive": true
+  },
+  {
+    "id": "3",
+    "title": "Sales Staff",
+    "desc": "Assist customers with frame selection, styling guidance, and luxury retail customer experience.",
+    "requirements": [
+      "Optical retail experience preferred",
+      "Strong interpersonal skills",
+      "Fashion & styling interest",
+      "Customer engagement skills"
+    ]
+  }
+]

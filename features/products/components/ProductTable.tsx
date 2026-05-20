@@ -90,7 +90,7 @@ export function ProductTable({ products }: ProductTableProps) {
                     </span>
                   </td>
                   <td className="px-8 py-6">
-                    <span className="text-xs font-medium text-brand-charcoal">₹{product.price.toLocaleString()}</span>
+                    <span className="text-xs font-medium text-brand-charcoal">₹{product.price.toLocaleString("en-IN")}</span>
                   </td>
                   <td className="px-8 py-6">
                     <div className="flex items-center gap-2">

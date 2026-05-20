@@ -49,7 +49,7 @@ export function AboutExpertTeam() {
           {/* Right: Immersive Image */}
           <div className="order-1 lg:order-2 relative aspect-[4/5] overflow-hidden group shadow-2xl">
             <ParallaxImage
-              src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&q=80&w=1200"
+              src="https://images.unsplash.com/photo-1509633282173-3eb4499382a6?auto=format&fit=crop&q=80&w=1200"
               alt="Professional Consultation"
               className="w-full h-full"
               distance={80}

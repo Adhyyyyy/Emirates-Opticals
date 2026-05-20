@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { m, AnimatePresence } from "framer-motion";
 import { ChevronDown, Filter, X, SlidersHorizontal } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 const FILTER_GROUPS = [
   {
@@ -44,10 +45,48 @@ export function ShopFilters() {
   const [openGroups, setOpenGroups] = useState<string[]>(["Gender", "Price Range", "Category"]);
   const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
 
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  // Active filters derived from URL
+  const activeFilters = React.useMemo(() => {
+    const filters: Record<string, string[]> = {};
+    searchParams.forEach((value, key) => {
+      filters[key] = value.split(",");
+    });
+    return filters;
+  }, [searchParams]);
+
   const toggleGroup = (title: string) => {
     setOpenGroups(prev => 
       prev.includes(title) ? prev.filter(t => t !== title) : [...prev, title]
     );
+  };
+
+  const toggleFilter = (groupTitle: string, option: string) => {
+    const key = groupTitle.toLowerCase().replace(/\s+/g, "_");
+    const current = activeFilters[key] || [];
+    let updated: string[];
+
+    if (current.includes(option)) {
+      updated = current.filter(o => o !== option);
+    } else {
+      updated = [...current, option];
+    }
+
+    const params = new URLSearchParams(searchParams.toString());
+    if (updated.length > 0) {
+      params.set(key, updated.join(","));
+    } else {
+      params.delete(key);
+    }
+    
+    router.push(`${pathname}?${params.toString()}`, { scroll: false });
+  };
+
+  const clearAllFilters = () => {
+    router.push(pathname, { scroll: false });
   };
 
   const FilterContent = () => (
@@ -77,16 +116,30 @@ export function ShopFilters() {
                 className="overflow-hidden"
               >
                 <div className="space-y-3">
-                  {group.options.map((option) => (
-                    <label key={option} className="flex items-center gap-3 cursor-pointer group/opt">
-                      <div className="relative w-4 h-4 border border-black/10 group-hover/opt:border-brand-gold transition-colors">
-                        <div className="absolute inset-[3px] bg-brand-gold scale-0 group-hover/opt:scale-50 transition-transform" />
-                      </div>
-                      <span className="text-xs font-light text-brand-charcoal/60 group-hover/opt:text-brand-charcoal transition-colors uppercase tracking-tight">
-                        {option}
-                      </span>
-                    </label>
-                  ))}
+                  {group.options.map((option) => {
+                    const key = group.title.toLowerCase().replace(/\s+/g, "_");
+                    const isChecked = (activeFilters[key] || []).includes(option);
+                    return (
+                      <label 
+                        key={option} 
+                        onClick={() => toggleFilter(group.title, option)}
+                        className="flex items-center gap-3 cursor-pointer group/opt"
+                      >
+                        <div className="relative w-4 h-4 border border-black/10 group-hover/opt:border-brand-gold transition-colors">
+                          <div className={cn(
+                            "absolute inset-[3px] bg-brand-gold transition-transform",
+                            isChecked ? "scale-100" : "scale-0 group-hover/opt:scale-50"
+                          )} />
+                        </div>
+                        <span className={cn(
+                          "text-xs font-light transition-colors uppercase tracking-tight",
+                          isChecked ? "text-brand-charcoal font-medium" : "text-brand-charcoal/60 group-hover/opt:text-brand-charcoal"
+                        )}>
+                          {option}
+                        </span>
+                      </label>
+                    );
+                  })}
                 </div>
               </m.div>
             )}
@@ -120,16 +173,13 @@ export function ShopFilters() {
           Filter
         </button>
         <div className="flex items-center gap-4">
-          <span className="text-[10px] font-bold uppercase text-brand-charcoal/40 tracking-tighter">48 Products</span>
-          <select className="bg-transparent text-[10px] font-bold uppercase text-brand-charcoal tracking-widest outline-none border-none">
-            <option>New Arrivals</option>
-            <option>Price: Low to High</option>
-            <option>Price: High to Low</option>
-          </select>
+          <button onClick={clearAllFilters} className="text-[9px] font-bold uppercase tracking-wider text-brand-gold hover:text-brand-charcoal transition-colors">
+            Clear Filters
+          </button>
         </div>
       </div>
 
-      {/* Mobile Drawer (Flipkart/Ajio Style) */}
+      {/* Mobile Drawer */}
       <AnimatePresence>
         {isMobileDrawerOpen && (
           <>
@@ -163,7 +213,7 @@ export function ShopFilters() {
               
               <div className="p-6 border-t border-black/5 flex gap-4">
                 <button 
-                  onClick={() => setIsMobileDrawerOpen(false)}
+                  onClick={() => { clearAllFilters(); setIsMobileDrawerOpen(false); }}
                   className="flex-1 py-4 border border-black/10 text-[10px] font-bold uppercase tracking-widest hover:bg-brand-pearl transition-colors"
                 >
                   Clear All
@@ -182,3 +232,4 @@ export function ShopFilters() {
     </>
   );
 }
+

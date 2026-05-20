@@ -39,9 +39,11 @@ export async function createEnquiry(data: {
   message: string;
 }) {
   try {
+    const dbType = data.type === "WHATSAPP" ? "WHATSAPP_LEAD" : data.type;
     const enquiry = await prisma.enquiry.create({
       data: {
         ...data,
+        type: dbType as any,
         status: "NEW"
       },
     });

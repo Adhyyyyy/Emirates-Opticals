@@ -16,7 +16,7 @@ export function ProductConsultation() {
           <div className="lg:w-1/2">
             <div className="relative aspect-[4/5] overflow-hidden group">
               <ParallaxImage 
-                src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&q=80&w=1200"
+                src="https://images.unsplash.com/photo-1508296695146-257a814070b4?auto=format&fit=crop&q=80&w=1200"
                 alt="Expert Styling Guidance"
                 className="w-full h-full"
                 distance={60}

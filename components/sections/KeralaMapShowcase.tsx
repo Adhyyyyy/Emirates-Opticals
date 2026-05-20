@@ -114,7 +114,7 @@ export function KeralaMapShowcase() {
                             <ArrowUpRight className="w-2 h-2" />
                           </div>
                         </div>
-                      </motion.div>
+                      </m.div>
                     )}
                   </AnimatePresence>
                 </div>

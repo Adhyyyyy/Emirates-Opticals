@@ -3,6 +3,7 @@
 import React from "react";
 import { Reveal, GridStagger, StaggerItem } from "@/components/motion/Reveal";
 import { Eye, Zap, ShieldCheck, Search, Activity } from "lucide-react";
+import { m } from "framer-motion";
 
 export function ProductLensSolutions() {
   return (
@@ -11,12 +12,25 @@ export function ProductLensSolutions() {
       <div className="container-tight relative z-10">
         
         <div className="flex flex-col lg:flex-row gap-20 items-center">
-          <div className="lg:w-1/2">
-            <Reveal>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-extralight tracking-tight text-white uppercase font-heading leading-tight mb-8">
-                Compatible With<br /><em className="italic text-brand-gold">Premium Lens Solutions</em>
-              </h2>
-            </Reveal>
+          <div className="lg:w-1/2 flex flex-col items-start">
+            <m.span
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1 }}
+              className="meta-editorial-light mb-4"
+            >
+              Advanced Optics
+            </m.span>
+            <m.h2 
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.1 }}
+              className="h2-editorial-light mb-8"
+            >
+              Premium Lens Solutions
+            </m.h2>
             <Reveal delay={0.2}>
               <p className="text-white/40 font-light max-w-xl leading-relaxed mb-12">
                 This frame supports multiple premium lens configurations customized to your visual and lifestyle requirements, ensuring clarity and protection in every environment.

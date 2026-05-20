@@ -44,15 +44,25 @@ export function CareersWhyJoin() {
       <div className="absolute inset-0 noise-overlay opacity-[0.03] pointer-events-none" />
       
       <div className="container-tight relative z-10">
-        <div className="flex flex-col items-center text-center mb-24">
-          <Reveal>
-            <h2 className="text-4xl md:text-6xl font-extralight tracking-tight text-brand-charcoal uppercase font-heading mb-6">
-              Why Professionals<br />Choose Emirates
-            </h2>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <div className="w-16 h-[2px] bg-brand-gold" />
-          </Reveal>
+        <div className="flex flex-col items-center text-center mb-10 md:mb-24">
+          <m.span
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+            className="meta-editorial mb-4"
+          >
+            Why Emirates
+          </m.span>
+          <m.h2 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.1 }}
+            className="h2-editorial"
+          >
+            Why Professionals Choose Emirates
+          </m.h2>
         </div>
 
         <GridStagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

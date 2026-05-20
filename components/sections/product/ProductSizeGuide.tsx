@@ -3,6 +3,7 @@
 import React from "react";
 import { Reveal, GridStagger, StaggerItem } from "@/components/motion/Reveal";
 import { Ruler } from "lucide-react";
+import { m } from "framer-motion";
 
 export function ProductSizeGuide() {
   return (
@@ -11,12 +12,25 @@ export function ProductSizeGuide() {
         
         <div className="flex flex-col lg:flex-row gap-20 items-center">
           
-          <div className="lg:w-1/2 order-2 lg:order-1">
-            <Reveal>
-              <h2 className="text-4xl md:text-5xl font-extralight tracking-tight text-brand-charcoal uppercase font-heading mb-8">
-                Find Your<br /><em className="italic text-brand-gold">Perfect Fit</em>
-              </h2>
-            </Reveal>
+          <div className="lg:w-1/2 order-2 lg:order-1 flex flex-col items-start">
+            <m.span
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1 }}
+              className="meta-editorial mb-4"
+            >
+              Sizing Matrix
+            </m.span>
+            <m.h2 
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.1 }}
+              className="h2-editorial mb-8"
+            >
+              Find Your Perfect Fit
+            </m.h2>
             
             <GridStagger className="grid grid-cols-2 gap-8 mb-12">
               {[

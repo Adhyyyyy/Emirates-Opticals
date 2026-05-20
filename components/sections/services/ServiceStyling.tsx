@@ -15,7 +15,7 @@ export function ServiceStyling() {
           <div className="lg:w-1/2">
             <div className="relative aspect-[4/5] overflow-hidden group">
               <ParallaxImage 
-                src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&q=80&w=1200"
+                src="https://images.unsplash.com/photo-1554151228-14d9def656e4?auto=format&fit=crop&q=80&w=1200"
                 alt="Expert Styling Consultation"
                 className="w-full h-full"
                 distance={50}

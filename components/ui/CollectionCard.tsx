@@ -13,7 +13,7 @@ interface CollectionCardProps {
 export function CollectionCard({ title, linkText, href, image }: CollectionCardProps) {
   return (
     <Link href={href} className="group block w-full">
-      <div className="relative aspect-[4/3] overflow-hidden bg-brand-pearl mb-6">
+      <div className="relative aspect-[16/10] md:aspect-[4/3] overflow-hidden bg-brand-pearl mb-6">
         {/* Explore Badge */}
         <div className="absolute top-6 left-6 z-10">
           <div className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-[10px] font-bold tracking-[0.2em] uppercase text-brand-charcoal shadow-sm transition-transform duration-500 group-hover:scale-105">

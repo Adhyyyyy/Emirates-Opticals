@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { motion as m } from "framer-motion";
 import { GridStagger, StaggerItem, Reveal } from "@/components/motion/Reveal";
 import { ShieldCheck, UserCheck, Heart, Sparkles } from "lucide-react";
 
@@ -33,15 +33,25 @@ export function AboutValues() {
     <section className="w-full bg-brand-pearl section-padding overflow-hidden">
       <div className="container-tight">
         
-        <div className="flex flex-col items-center text-center mb-24">
-          <Reveal>
-            <h2 className="text-4xl md:text-6xl font-extralight tracking-tight text-brand-charcoal uppercase font-heading mb-6">
-              The Values That<br />Define Emirates
-            </h2>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <div className="w-16 h-[2px] bg-brand-gold" />
-          </Reveal>
+        <div className="flex flex-col items-center text-center mb-10 md:mb-24">
+          <m.span
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+            className="meta-editorial mb-4"
+          >
+            Core Principles
+          </m.span>
+          <m.h2 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.1 }}
+            className="h2-editorial"
+          >
+            The Values That Define Emirates
+          </m.h2>
         </div>
 
         <GridStagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">

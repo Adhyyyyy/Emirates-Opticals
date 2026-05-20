@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { m, AnimatePresence } from "framer-motion";
 import { Heart } from "lucide-react";
@@ -33,6 +33,16 @@ export function ProductCard({
 }: ProductCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [isWishlisted, setIsWishlisted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  const showHoverEffects = isHovered && !isMobile;
 
   return (
     <Link 
@@ -46,10 +56,10 @@ export function ProductCard({
         <div className="flex-1" />
         
         {/* Try It On - Top Center Reveal */}
-        {hasVirtualTryOn && (
+        {hasVirtualTryOn && !isMobile && (
           <m.div 
             initial={{ y: 10, opacity: 0 }}
-            animate={{ y: isHovered ? 0 : 10, opacity: isHovered ? 1 : 0 }}
+            animate={{ y: showHoverEffects ? 0 : 10, opacity: showHoverEffects ? 1 : 0 }}
             transition={{ duration: 0.6, ease: EASE_LUXURY }}
             className="flex items-center gap-1.5 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full border border-black/5 shadow-sm"
           >
@@ -64,7 +74,7 @@ export function ProductCard({
         {/* Wishlist - Top Right Reveal */}
         <div className="flex-1 flex justify-end">
           <m.button 
-            animate={{ opacity: isHovered ? 1 : 0.3, scale: isHovered ? 1.1 : 1 }}
+            animate={{ opacity: isMobile ? 0.6 : (showHoverEffects ? 1 : 0.3), scale: showHoverEffects ? 1.1 : 1 }}
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
@@ -85,8 +95,8 @@ export function ProductCard({
       {/* Main Product Frame - Weighted Lift & Shadow */}
       <m.div 
         animate={{ 
-          y: isHovered ? -12 : 0,
-          boxShadow: isHovered 
+          y: showHoverEffects ? -12 : 0,
+          boxShadow: showHoverEffects 
             ? "0 40px 80px -20px rgba(0,0,0,0.12)" 
             : "0 0px 0px 0px rgba(0,0,0,0)"
         }}
@@ -95,15 +105,15 @@ export function ProductCard({
       >
         <AnimatePresence mode="wait">
           <m.div
-            key={isHovered ? "secondary" : "primary"}
+            key={showHoverEffects ? "secondary" : "primary"}
             initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: isHovered ? 1.05 : 1 }}
+            animate={{ opacity: 1, scale: showHoverEffects ? 1.05 : 1 }}
             exit={{ opacity: 0, scale: 1.05 }}
             transition={{ duration: 1.0, ease: EASE_LUXURY }}
             className="relative w-[80%] h-[80%]"
           >
             <Image
-              src={isHovered ? secondaryImage : primaryImage}
+              src={showHoverEffects ? secondaryImage : primaryImage}
               alt={name}
               fill
               className="object-contain"
@@ -115,9 +125,9 @@ export function ProductCard({
         {/* Cinematic Object Shadow */}
         <m.div 
           animate={{ 
-            opacity: isHovered ? 0.2 : 0.6,
-            scale: isHovered ? 1.4 : 1,
-            y: isHovered ? 10 : 0
+            opacity: showHoverEffects ? 0.2 : 0.6,
+            scale: showHoverEffects ? 1.4 : 1,
+            y: showHoverEffects ? 10 : 0
           }}
           transition={{ duration: 1.2, ease: EASE_LUXURY }}
           className="absolute bottom-12 left-1/2 -translate-x-1/2 w-1/4 h-2 bg-black/[0.08] blur-2xl rounded-full transition-all" 
@@ -126,9 +136,9 @@ export function ProductCard({
 
       {/* Product Information - Subtle Vertical Shift */}
       <m.div 
-        animate={{ y: isHovered ? -6 : 0 }}
+        animate={{ y: showHoverEffects ? -6 : 0 }}
         transition={{ duration: 1.2, ease: EASE_LUXURY }}
-        className="flex flex-col gap-2 items-center"
+        className="flex flex-col gap-1 items-center"
       >
         <h3 className="text-[12px] md:text-[13px] font-bold text-black tracking-[0.1em] uppercase">
           {brand}
@@ -136,13 +146,14 @@ export function ProductCard({
         <p className="text-[13px] md:text-[14px] text-black/50 italic font-serif">
           {name}
         </p>
-        <div className="flex flex-col items-center mt-2">
+        <div className="flex flex-col items-center mt-1">
           <p className="text-[12px] md:text-[13px] font-bold text-black">
-            ${price.toLocaleString()}
+            ₹{price.toLocaleString("en-IN")}
           </p>
           <m.p 
-            animate={{ opacity: isHovered ? 1 : 0 }}
-            className="text-[9px] text-black/40 uppercase font-bold tracking-[0.3em] mt-3"
+            animate={{ opacity: isMobile ? 1 : (isHovered ? 1 : 0) }}
+            transition={{ duration: 0.3 }}
+            className="text-[9px] text-black/40 uppercase font-bold tracking-[0.3em] mt-2"
           >
             {colorsCount} Exclusive Colors
           </m.p>

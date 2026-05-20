@@ -2,152 +2,199 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { m, AnimatePresence } from "framer-motion";
-import { Search, User, ShoppingBag, ChevronDown, Calendar, Menu, X, ArrowRight } from "lucide-react";
+import { Calendar, Menu, X, ArrowRight, Search, Heart, User } from "lucide-react";
 import { AnnouncementBar } from "./AnnouncementBar";
 import { cn } from "@/lib/utils";
-import { Interactive } from "@/components/ui/LuxuryButton";
-import { EASE_LUXURY } from "@/lib/motion";
 
 const NAV_LINKS = [
-  { name: "Home", href: "/", hasDropdown: false },
-  { name: "Shop", href: "/shop", hasDropdown: true },
-  { name: "Brands", href: "/brands", hasDropdown: true },
-  { name: "Services", href: "/services", hasDropdown: true },
-  { name: "Branches", href: "/branches", hasDropdown: false },
-  { name: "About", href: "/about", hasDropdown: false },
-  { name: "Careers", href: "/careers", hasDropdown: false },
-  { name: "Contact", href: "/contact", hasDropdown: false },
+  { name: "Home", href: "/" },
+  { name: "Shop", href: "/shop" },
+  { name: "Brands", href: "/brands" },
+  { name: "Services", href: "/services" },
+  { name: "Branches", href: "/branches" },
+  { name: "About", href: "/about" },
+  { name: "Careers", href: "/careers" },
+  { name: "Contact", href: "/contact" },
 ];
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isAnnouncementVisible, setIsAnnouncementVisible] = useState(true);
+  
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 80);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 w-full">
-      <AnnouncementBar />
+    <header className="fixed top-0 left-0 right-0 z-50 w-full flex flex-col pointer-events-none">
       
-      <nav className={cn(
-        "w-full transition-all duration-700 ease-in-out border-b",
-        isScrolled 
-          ? "py-2 bg-white/80 backdrop-blur-xl border-black/5 shadow-sm" 
-          : "py-6 bg-transparent border-transparent"
-      )}>
-        <div className="max-w-[1800px] mx-auto px-6 lg:px-8 flex items-center justify-between">
+      {/* 1. Gold Announcement bar wrapper */}
+      <div className="pointer-events-auto w-full">
+        <AnnouncementBar onDismissToggle={(visible) => setIsAnnouncementVisible(visible)} />
+      </div>
+      
+      {/* 2. Main Luxury Navbar Panel */}
+      <nav 
+        className={cn(
+          "w-full transition-all duration-300 ease-in-out border-b pointer-events-auto flex items-center justify-between px-6 lg:px-12",
+          isScrolled 
+            ? "bg-[#0A0A0A]/95 backdrop-blur-[12px] border-[#1E1E1E] h-[64px] lg:h-[80px]" 
+            : "bg-transparent border-transparent h-[72px] lg:h-[90px]"
+        )}
+      >
+        {/* Symmetrical Left: Logo Branding */}
+        <div className="flex items-center justify-start shrink-0">
+          <Link href="/" className="flex flex-col items-start leading-none gap-0.5 group">
+            <span className="font-heading text-[20px] lg:text-[22px] font-bold tracking-tight text-white uppercase transition-colors group-hover:text-[#C9A84C]">
+              EMIRATES
+            </span>
+            <span className="font-sans text-[9px] lg:text-[11px] uppercase tracking-[0.25em] text-white/80 group-hover:text-white transition-colors">
+              OPTICIANS
+            </span>
+          </Link>
+        </div>
+
+        {/* Symmetrical Center: Navigation list */}
+        <ul className="hidden lg:flex items-center justify-center gap-6 xl:gap-8 mx-6 h-full">
+          {NAV_LINKS.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <li key={link.name} className="relative flex items-center h-full">
+                <Link 
+                  href={link.href}
+                  className={cn(
+                    "text-[12px] font-sans font-medium uppercase tracking-[0.12em] transition-colors duration-300 py-2 relative",
+                    isActive ? "text-[#C9A84C]" : "text-white hover:text-[#C9A84C]"
+                  )}
+                >
+                  {link.name}
+                  {isActive && (
+                    <m.span 
+                      layoutId="navActiveLine"
+                      className="absolute bottom-[-4px] left-0 right-0 h-[1.5px] bg-[#C9A84C]"
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+
+        {/* Symmetrical Right: Action tools */}
+        <div className="flex items-center justify-end gap-5 lg:gap-6 shrink-0">
           
-          <div className="flex items-center gap-4 lg:gap-8 xl:gap-12">
-            {/* Mobile Menu Toggle */}
-            <button 
-              className="lg:hidden p-1 text-black"
-              onClick={() => setIsMobileMenuOpen(true)}
-            >
-              <Menu className="w-6 h-6" />
+          {/* Desktop Search, Wishlist, Account Icons */}
+          <div className="hidden lg:flex items-center gap-5">
+            <button className="text-white hover:text-[#C9A84C] transition-colors duration-300 p-1" aria-label="Search">
+              <Search className="w-6 h-6 stroke-[1.5]" />
             </button>
-
-            {/* Logo - Emirates Opticians */}
-            <Link href="/" className="absolute left-1/2 -translate-x-1/2 lg:static lg:translate-x-0">
-              <span className="text-lg md:text-2xl font-bold tracking-[-0.02em] text-black uppercase whitespace-nowrap">
-                Emirates<span className="text-black/60 font-medium ml-1">Opticians</span>
-              </span>
-            </Link>
-
-            {/* Desktop Navigation */}
-            <ul className="hidden lg:flex items-center gap-4 xl:gap-5">
-              {NAV_LINKS.map((link) => (
-                <li key={link.name}>
-                  <Link 
-                    href={link.href}
-                    className="flex items-center gap-1 text-[10px] xl:text-[11px] font-bold text-black/80 hover:text-black transition-colors uppercase tracking-[0.05em] whitespace-nowrap"
-                  >
-                    {link.name}
-                    {link.hasDropdown && <ChevronDown className="w-3 h-3 opacity-40" />}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <button className="text-white hover:text-[#C9A84C] transition-colors duration-300 p-1" aria-label="Wishlist">
+              <Heart className="w-6 h-6 stroke-[1.5]" />
+            </button>
+            <button className="text-white hover:text-[#C9A84C] transition-colors duration-300 p-1" aria-label="Account">
+              <User className="w-6 h-6 stroke-[1.5]" />
+            </button>
           </div>
 
-          <div className="flex items-center gap-4 xl:gap-8">
-            {/* CTA - Book Eye Test */}
-            <Link 
-              href="/book-eye-test"
-              className="hidden lg:flex items-center gap-2 px-5 py-2 bg-black text-white text-[10px] xl:text-[11px] font-bold hover:bg-black/80 transition-all whitespace-nowrap uppercase tracking-widest"
-            >
-              <Calendar className="w-3.5 h-3.5" />
-              Book Eye Test
-            </Link>
+          {/* Desktop Luxury Sharp "BOOK EYE TEST" CTA */}
+          <Link 
+            href="/book-eye-test"
+            className="hidden lg:inline-flex items-center justify-center bg-[#C9A84C] text-[#0A0A0A] hover:bg-[#B8952E] hover:text-white px-6 h-[44px] lg:h-[48px] text-[13px] font-bold uppercase tracking-[0.1em] transition-all duration-300 rounded-none whitespace-nowrap shadow-lg"
+          >
+            Book Eye Test
+          </Link>
 
-            {/* Icons */}
-            <div className="flex items-center gap-4">
-              <Interactive hoverScale={1.1}>
-                <Search className="w-5 h-5 text-black stroke-[1.5]" />
-              </Interactive>
-              <Interactive hoverScale={1.1} className="hidden md:block">
-                <User className="w-5 h-5 text-black stroke-[1.5]" />
-              </Interactive>
-              <Interactive hoverScale={1.1} className="relative flex items-center gap-1">
-                <ShoppingBag className="w-5 h-5 text-black stroke-[1.5]" />
-                <span className="text-[12px] font-bold">(0)</span>
-              </Interactive>
-            </div>
-          </div>
+          {/* Mobile Hamburger menu button */}
+          <button 
+            className="lg:hidden p-1 text-white hover:text-[#C9A84C] transition-colors duration-300"
+            onClick={() => setIsMobileMenuOpen(true)}
+            aria-label="Open Menu"
+          >
+            <Menu className="w-7 h-7 stroke-[1.5]" />
+          </button>
+
         </div>
       </nav>
 
-      {/* Mobile Menu Overlay */}
+      {/* 3. Mobile Fullscreen Overlay Drawer */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <m.div 
-            initial={{ x: "-100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "-100%" }}
-            transition={{ duration: 0.6, ease: EASE_LUXURY }}
-            className="fixed inset-0 z-[100] bg-white flex flex-col p-8 md:p-16 overflow-y-auto"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+            className="fixed inset-0 z-[100] bg-black flex flex-col p-6 md:p-12 overflow-y-auto pointer-events-auto"
           >
-            <div className="flex justify-between items-center mb-12">
-              <span className="text-xl tracking-[-0.02em] font-bold uppercase">Emirates Opticians</span>
-              <button onClick={() => setIsMobileMenuOpen(false)} className="p-2">
+            {/* Header branding in Drawer */}
+            <div className="flex justify-between items-center mb-16">
+              <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="flex flex-col items-start leading-none gap-0.5">
+                <span className="font-heading text-[20px] font-bold tracking-tight text-white uppercase">
+                  EMIRATES
+                </span>
+                <span className="font-sans text-[9px] uppercase tracking-[0.25em] text-white/80">
+                  OPTICIANS
+                </span>
+              </Link>
+              <button 
+                onClick={() => setIsMobileMenuOpen(false)} 
+                className="p-2 text-white hover:text-[#C9A84C] transition-colors"
+                aria-label="Close Menu"
+              >
                 <X className="w-8 h-8 stroke-[1.5]" />
               </button>
             </div>
             
-            <nav className="flex-1">
-              <ul className="flex flex-col gap-6 md:gap-8">
-                {NAV_LINKS.map((link, idx) => (
-                  <m.li 
-                    key={link.name}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: idx * 0.05, duration: 0.5 }}
-                  >
-                    <Link 
-                      href={link.href}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className="text-2xl md:text-4xl uppercase font-bold tracking-tighter flex justify-between items-center group"
+            {/* Drawer stacked links */}
+            <nav className="flex-1 flex flex-col justify-center">
+              <ul className="flex flex-col gap-6 text-left">
+                {NAV_LINKS.map((link, idx) => {
+                  const isActive = pathname === link.href;
+                  return (
+                    <m.li 
+                      key={link.name}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: idx * 0.05, duration: 0.4 }}
                     >
-                      {link.name}
-                      <ArrowRight className="w-6 h-6 opacity-40" />
-                    </Link>
-                  </m.li>
-                ))}
+                      <Link 
+                        href={link.href}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className={cn(
+                          "text-[36px] md:text-[40px] font-heading font-extralight uppercase tracking-tight transition-colors flex items-center justify-between py-2 border-b border-white/5",
+                          isActive ? "text-[#C9A84C]" : "text-white hover:text-[#C9A84C]"
+                        )}
+                      >
+                        <span>{link.name}</span>
+                        <ArrowRight className="w-6 h-6 opacity-30 text-white" />
+                      </Link>
+                    </m.li>
+                  );
+                })}
               </ul>
             </nav>
 
-            <div className="mt-12 pt-8 border-t border-black/5 flex flex-col gap-4">
-              <Link href="/book-eye-test" className="w-full py-4 bg-black text-white uppercase tracking-widest text-sm font-bold flex items-center justify-center gap-2">
+            {/* Mobile Actions bottom block */}
+            <div className="mt-12 pt-8 border-t border-white/10 flex flex-col gap-6">
+              <Link 
+                href="/book-eye-test" 
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="w-full h-[52px] bg-[#C9A84C] text-[#0A0A0A] hover:bg-[#B8952E] hover:text-white uppercase tracking-widest text-xs font-bold flex items-center justify-center gap-2 rounded-none transition-colors"
+              >
                 <Calendar className="w-4 h-4" />
                 Book Eye Test
               </Link>
-              <div className="flex justify-between text-[10px] font-bold uppercase tracking-[0.2em] text-black/40">
+              <div className="flex justify-between text-[9px] font-bold uppercase tracking-[0.2em] text-white/40">
                 <span>Shop Local</span>
                 <span>My Account</span>
               </div>
@@ -155,6 +202,7 @@ export function Navbar() {
           </m.div>
         )}
       </AnimatePresence>
+
     </header>
   );
 }

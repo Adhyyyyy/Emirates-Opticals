@@ -29,12 +29,22 @@ export function BrandShowcase() {
   const displayRow2 = [...ROW_2, ...ROW_2];
 
   return (
-    <section className="w-full bg-white section-padding overflow-hidden border-b border-black/5">
-      <div className="container-tight mb-16 md:mb-24 text-center">
-        <m.h2 
-          initial={{ opacity: 0, y: 20 }}
+    <section className="w-full bg-[#F7F5F0] section-padding overflow-hidden border-y border-[#E8E4DC]">
+      <div className="container-tight mb-10 md:mb-24 flex flex-col items-center text-center">
+        <m.span
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 1 }}
+          className="meta-editorial mb-4"
+        >
+          The Atelier Partners
+        </m.span>
+        <m.h2 
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.1 }}
           className="h2-editorial"
         >
           Shop by Brand

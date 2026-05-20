@@ -4,9 +4,25 @@ import pg from "pg";
 
 declare global {
   var prisma: PrismaClient | undefined;
+  var pgPool: pg.Pool | undefined;
 }
 
-const pool = new pg.Pool({ connectionString: process.env.DATABASE_URL });
+const pool = global.pgPool || new pg.Pool({ 
+  connectionString: process.env.DATABASE_URL,
+  max: 5, // Keep connection footprint small in development
+  idleTimeoutMillis: 5000, // Prune idle sockets quickly (prevents stale Neon/Supabase proxy connections)
+  connectionTimeoutMillis: 5000, // Recover fast if server is sleeping
+});
+
+pool.on("error", (err) => {
+  // Capture closed socket and handshake errors on idle clients gracefully
+  console.warn("Recovered from idle pg-pool socket event:", err.message);
+});
+
+if (process.env.NODE_ENV !== "production") {
+  global.pgPool = pool;
+}
+
 const adapter = new PrismaPg(pool);
 
 const prisma = global.prisma || new PrismaClient({

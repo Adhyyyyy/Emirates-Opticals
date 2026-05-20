@@ -1,9 +1,26 @@
 "use client";
 
+import React, { useRef, useState, useEffect } from "react";
 import { m } from "framer-motion";
 import { ProductCard } from "@/components/ui/ProductCard";
 
-const BEST_SELLER_PRODUCTS = [
+import { Reveal } from "@/components/motion/Reveal";
+
+interface Product {
+  id: string;
+  brand: string;
+  name: string;
+  price: number;
+  colorsCount: number;
+  primaryImage: string;
+  secondaryImage: string;
+}
+
+interface BestSellersProps {
+  products: Product[];
+}
+
+const FALLBACK_BEST_SELLERS = [
   {
     id: "best-1",
     brand: "Jacques Marie Mage",
@@ -20,7 +37,7 @@ const BEST_SELLER_PRODUCTS = [
     name: "Coombs Oval",
     price: 480,
     colorsCount: 2,
-    primaryImage: "https://images.unsplash.com/photo-1577803645773-f96470509666?auto=format&fit=crop&q=80&w=800",
+    primaryImage: "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&q=80&w=800",
     secondaryImage: "https://images.unsplash.com/photo-1591076482161-42ce6da69f67?auto=format&fit=crop&q=80&w=800",
   },
   {
@@ -39,47 +56,84 @@ const BEST_SELLER_PRODUCTS = [
     name: "Rimless Elite",
     price: 2400,
     colorsCount: 4,
-    primaryImage: "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&q=80&w=800",
+    primaryImage: "https://images.unsplash.com/photo-1508296695146-257a814070b4?auto=format&fit=crop&q=80&w=800",
     secondaryImage: "https://images.unsplash.com/photo-1554151228-14d9def656e4?auto=format&fit=crop&q=80&w=800",
   },
 ];
 
-export function BestSellers() {
+export function BestSellers({ products = [] }: BestSellersProps) {
+  const displayProducts = products.length > 0 ? products : FALLBACK_BEST_SELLERS;
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  const handleScroll = () => {
+    if (!containerRef.current || !isMobile) return;
+    const container = containerRef.current;
+    const scrollPosition = container.scrollLeft;
+    const cardWidth = container.scrollWidth / displayProducts.length;
+    const newIndex = Math.round(scrollPosition / cardWidth);
+    setActiveIndex(newIndex);
+  };
+
   return (
-    <section className="bg-white py-24 md:py-32">
+    <section className="bg-white section-padding">
       <div className="container-tight">
         
         {/* Editorial Header */}
-        <div className="flex flex-col items-center text-center mb-20">
-          <m.h2 
-            initial={{ opacity: 0, y: 20 }}
+        <div className="flex flex-col items-center text-center mb-10 md:mb-20">
+          <m.span
+            suppressHydrationWarning={true}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase text-black/40 mb-4"
+            transition={{ duration: 1 }}
+            className="meta-editorial mb-4"
+          >
+            Curated Catalog
+          </m.span>
+          <m.h2 
+            suppressHydrationWarning={true}
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.1 }}
+            className="h2-editorial"
           >
             Top Collections
           </m.h2>
-          <m.h3 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-3xl md:text-5xl font-light font-heading tracking-tight italic"
-          >
-            The Best Sellers
-          </m.h3>
         </div>
 
-        {/* Product Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-20">
-          {BEST_SELLER_PRODUCTS.map((product, idx) => (
+        {/* Product Grid - Swipeable on Mobile, Grid on Desktop */}
+        <div 
+          ref={containerRef}
+          onScroll={handleScroll}
+          className="flex lg:grid lg:grid-cols-4 gap-x-6 lg:gap-x-12 gap-y-20 overflow-x-auto lg:overflow-x-visible snap-x snap-mandatory scrollbar-none pb-8 -mx-6 px-6 lg:mx-0 lg:px-0"
+        >
+          {displayProducts.map((product, idx) => (
             <m.div
               key={product.id}
+              suppressHydrationWarning={true}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className="relative"
+              animate={{
+                scale: isMobile ? (idx === activeIndex ? 1.02 : 0.94) : 1,
+                opacity: isMobile ? (idx === activeIndex ? 1 : 0.6) : 1,
+              }}
+              transition={{
+                scale: { type: "spring", stiffness: 150, damping: 20 },
+                opacity: { duration: 0.4 },
+                default: { delay: idx * 0.1 }
+              }}
+              className="relative w-[72vw] sm:w-[45vw] lg:w-full shrink-0 snap-start snap-always"
             >
               {/* Seasonal Badge - Optional Logic */}
               <div className="absolute top-4 left-4 z-20">
@@ -90,14 +144,6 @@ export function BestSellers() {
               <ProductCard {...product} />
             </m.div>
           ))}
-        </div>
-
-        {/* View All Action */}
-        <div className="mt-20 flex justify-center">
-          <button className="group flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.3em] hover:text-black/60 transition-colors">
-            Explore All Best Sellers
-            <div className="w-8 h-[1.5px] bg-black/10 group-hover:w-16 group-hover:bg-black transition-all duration-700" />
-          </button>
         </div>
 
       </div>

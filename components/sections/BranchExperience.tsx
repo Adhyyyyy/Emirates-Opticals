@@ -31,7 +31,7 @@ export function BranchExperience() {
               className="absolute inset-0 w-full h-[120%]"
             >
               <img 
-                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200"
+                src="https://images.unsplash.com/photo-1511556532299-8f662fc26c06?auto=format&fit=crop&q=80&w=1200"
                 alt="Luxury Retail Interior"
                 className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-1000"
               />

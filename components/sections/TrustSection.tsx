@@ -27,7 +27,7 @@ export function TrustSection() {
       <div className="container-tight relative z-10 flex flex-col items-center">
         
         {/* Cinematic Brand Statement - Strictly Matched Scale */}
-        <div className="text-center mb-16 md:mb-20">
+        <div className="text-center mb-10 md:mb-20">
           <m.h2 
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -40,7 +40,7 @@ export function TrustSection() {
         </div>
 
         {/* Feature Highlight Columns - Lean and Spread */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-32 w-full mb-16 md:mb-24">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-32 w-full mb-10 md:mb-24">
           {PILLARS.map((pillar, index) => (
             <m.div
               key={pillar.title}

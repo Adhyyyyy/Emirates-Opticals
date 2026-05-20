@@ -1,0 +1,26 @@
+[
+  {
+    "id": "1",
+    "title": "Ramadan Premium Edit",
+    "description": "Enjoy up to 30% off on all luxury brands, including Prada, Gucci, and Cartier sunglasses.",
+    "promoCode": "EID30",
+    "discountVal": "30% OFF",
+    "isActive": true
+  },
+  {
+    "id": "2",
+    "title": "Complimentary Diagnostic Testing",
+    "description": "Book any professional eye test online and receive a complimentary specialized lens diagnosis.",
+    "promoCode": "DIAGNOSE",
+    "discountVal": "FREE TEST",
+    "isActive": true
+  },
+  {
+    "id": "1779087727286",
+    "title": "Onam Special",
+    "description": "It is th ebest price",
+    "promoCode": "LUXURY30%",
+    "discountVal": "%off",
+    "isActive": true
+  }
+]

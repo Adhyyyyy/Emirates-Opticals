@@ -39,28 +39,29 @@ export function BranchShowcase() {
   const [activeBranch, setActiveBranch] = useState(BRANCHES[0]);
 
   return (
-    <section className="bg-[#fcfcfc] py-24 md:py-32 overflow-hidden border-y border-black/5">
+    <section className="bg-white section-padding overflow-hidden border-t border-black/5">
       <div className="container-tight">
         
         {/* Editorial Header */}
-        <div className="flex flex-col items-center text-center mb-20">
-          <m.h2 
-            initial={{ opacity: 0, y: 20 }}
+        <div className="flex flex-col items-center text-center mb-10 md:mb-20">
+          <m.span
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase text-black/40 mb-4"
+            transition={{ duration: 1 }}
+            className="meta-editorial mb-4"
           >
             Our Presence in Kerala
-          </m.h2>
-          <m.h3 
-            initial={{ opacity: 0, y: 20 }}
+          </m.span>
+          <m.h2 
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-3xl md:text-5xl font-light font-heading tracking-tight italic"
+            transition={{ duration: 1, delay: 0.1 }}
+            className="h2-editorial"
           >
             Visit Our Luxury Ateliers
-          </m.h3>
+          </m.h2>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">

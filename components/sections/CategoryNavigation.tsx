@@ -31,13 +31,13 @@ const CATEGORIES = [
 
 export function CategoryNavigation() {
   return (
-    <section className="w-full bg-white py-24 md:py-32 overflow-hidden border-b border-black/5">
+    <section className="w-full bg-[#F7F5F0] section-padding overflow-hidden border-b border-[#E8E4DC]">
       <div className="container-tight">
         
         {/* Harmonized Section Header */}
-        <div className="flex flex-col items-center text-center mb-16 md:mb-24 mt-16 md:mt-24">
+        <div className="flex flex-col items-center text-center mb-10 md:mb-24 mt-20 md:mt-24">
           <Reveal delay={0.2}>
-            <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.4em] text-black/40 mb-4 block">
+            <span className="meta-editorial mb-4">
               The Visionist Gateway
             </span>
           </Reveal>

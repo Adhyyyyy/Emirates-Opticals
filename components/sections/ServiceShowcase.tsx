@@ -51,28 +51,29 @@ const SERVICES = [
 
 export function ServiceShowcase() {
   return (
-    <section className="bg-white py-24 md:py-32">
+    <section className="bg-[#fcfcfc] section-padding border-y border-black/5">
       <div className="container-tight">
         
         {/* Header Section */}
-        <div className="flex flex-col items-center text-center mb-20">
-          <m.h2 
-            initial={{ opacity: 0, y: 20 }}
+        <div className="flex flex-col items-center text-center mb-10 md:mb-20">
+          <m.span
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-xs md:text-sm font-bold tracking-[0.4em] uppercase text-black/40 mb-4"
+            transition={{ duration: 1 }}
+            className="meta-editorial mb-4"
           >
             The Emirates Experience
-          </m.h2>
-          <m.h3 
-            initial={{ opacity: 0, y: 20 }}
+          </m.span>
+          <m.h2 
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-3xl md:text-5xl font-light font-heading tracking-tight italic"
+            transition={{ duration: 1, delay: 0.1 }}
+            className="h2-editorial"
           >
             Expert Care. Exceptional Luxury.
-          </m.h3>
+          </m.h2>
         </div>
 
         {/* Services Grid */}
@@ -96,7 +97,7 @@ export function ServiceShowcase() {
               
               <div className="w-12 h-[1px] bg-black/10 mb-6 group-hover:w-24 group-hover:bg-black transition-all duration-700" />
               
-              <p className="text-sm leading-relaxed text-black/60 font-light max-w-[320px]">
+              <p className="body-editorial max-w-[320px]">
                 {service.description}
               </p>
             </m.div>

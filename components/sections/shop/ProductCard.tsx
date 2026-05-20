@@ -18,6 +18,18 @@ export function ProductCard({ product }: ProductCardProps) {
   const [showBranchSelector, setShowBranchSelector] = useState(false);
   const [enquiryType, setEnquiryType] = useState<"product" | "appointment" | "contact">("product");
 
+  // Lock body scroll when branch modal is active to delegate mouse scrolls exclusively to the list
+  React.useEffect(() => {
+    if (showBranchSelector) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [showBranchSelector]);
+
   const handleEnquire = (type: "product" | "appointment" | "contact") => {
     if (product.branches.length === 1) {
       const branch = product.branches[0];
@@ -94,7 +106,7 @@ export function ProductCard({ product }: ProductCardProps) {
         </Link>
 
         <div className="flex items-baseline justify-between mb-8">
-          <span className="text-xl font-light text-brand-charcoal">₹{product.price.toLocaleString()}</span>
+          <span className="text-xl font-light text-brand-charcoal">₹{product.price.toLocaleString("en-IN")}</span>
           <span className="text-[10px] text-brand-charcoal/40 font-medium uppercase tracking-tighter">{product.gender} • {product.frameShape}</span>
         </div>
 
@@ -135,41 +147,68 @@ export function ProductCard({ product }: ProductCardProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="absolute inset-0 z-50 bg-brand-charcoal/95 backdrop-blur-md p-6 flex flex-col"
+            className="fixed inset-0 z-[999] bg-black/70 backdrop-blur-md flex items-center justify-center p-4 md:p-6"
+            onClick={() => setShowBranchSelector(false)}
           >
-            <div className="flex justify-between items-center mb-8">
-              <span className="text-[10px] font-bold text-brand-gold uppercase tracking-[0.2em]">Select Branch</span>
-              <button onClick={() => setShowBranchSelector(false)} className="text-white hover:text-brand-gold transition-colors">
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-            
-            <div className="flex-1 overflow-y-auto space-y-3 custom-scrollbar">
-              {product.branches.map((branch) => (
+            <motion.div
+              initial={{ opacity: 0, y: 30, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 30, scale: 0.95 }}
+              transition={{ type: "spring", damping: 25, stiffness: 250 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-brand-charcoal border border-white/10 w-full max-w-lg h-[600px] max-h-[80vh] flex flex-col p-6 md:p-8 shadow-2xl relative rounded-none"
+            >
+              <div className="flex justify-between items-center mb-6">
+                <div className="flex flex-col text-left">
+                  <span className="text-[10px] font-bold text-brand-gold uppercase tracking-[0.3em] mb-1">Enquiry Location</span>
+                  <h3 className="text-lg font-bold text-white uppercase tracking-tighter">Select Branch</h3>
+                </div>
                 <button 
-                  key={branch.branchSlug}
-                  onClick={() => handleBranchSelect(branch)}
-                  className="w-full p-4 border border-white/10 hover:border-brand-gold hover:bg-white/[0.05] transition-all duration-500 text-left flex items-center justify-between group/branch"
+                  onClick={() => setShowBranchSelector(false)} 
+                  className="p-2 text-white/50 hover:text-brand-gold hover:bg-white/5 rounded-full transition-all"
                 >
-                  <div>
-                    <span className="text-white font-bold uppercase tracking-tighter block mb-1 group-hover/branch:text-brand-gold transition-colors">
-                      {branch.branchName}
-                    </span>
-                    <span className={cn(
-                      "text-[8px] font-bold uppercase",
-                      branch.stockStatus === "In Stock" ? "text-green-400" : "text-orange-400"
-                    )}>
-                      {branch.stockStatus}
-                    </span>
-                  </div>
-                  <ChevronRight className="w-4 h-4 text-white/30 group-hover/branch:text-brand-gold group-hover/branch:translate-x-1 transition-all" />
+                  <X className="w-5 h-5" />
                 </button>
-              ))}
-            </div>
-            
-            <p className="mt-8 text-[9px] text-white/30 uppercase tracking-widest text-center">
-              Choose the nearest branch for availability enquiry.
-            </p>
+              </div>
+              
+              <div 
+                className="flex-1 min-h-0 max-h-[380px] overflow-y-auto space-y-3 pr-1 custom-scrollbar touch-pan-y" 
+                style={{ WebkitOverflowScrolling: "touch" }}
+                data-lenis-prevent
+              >
+                {product.branches.map((branch) => (
+                  <button 
+                    key={branch.branchSlug}
+                    onClick={() => handleBranchSelect(branch)}
+                    className="w-full p-5 border border-white/5 bg-white/[0.02] hover:border-brand-gold hover:bg-white/[0.05] transition-all duration-500 text-left flex items-center justify-between group/branch"
+                  >
+                    <div className="text-left">
+                      <span className="text-sm text-white font-bold uppercase tracking-tight block mb-1.5 group-hover/branch:text-brand-gold transition-colors">
+                        {branch.branchName}
+                      </span>
+                      <div className="flex items-center gap-2">
+                        <span className={cn(
+                          "text-[8px] font-bold uppercase px-1.5 py-0.5 border rounded-sm",
+                          branch.stockStatus === "In Stock" 
+                            ? "text-green-400 border-green-500/20 bg-green-500/5" 
+                            : "text-orange-400 border-orange-500/20 bg-orange-500/5"
+                        )}>
+                          {branch.stockStatus}
+                        </span>
+                        <span className="text-[8px] text-white/30 uppercase tracking-widest">Tap to enquire</span>
+                      </div>
+                    </div>
+                    <ChevronRight className="w-4 h-4 text-white/30 group-hover/branch:text-brand-gold group-hover/branch:translate-x-1.5 transition-all duration-500" />
+                  </button>
+                ))}
+              </div>
+              
+              <div className="mt-6 pt-4 border-t border-white/5">
+                <p className="text-[9px] text-white/40 uppercase tracking-[0.2em] text-center leading-relaxed">
+                  Choose the nearest atelier branch to confirm local availability.
+                </p>
+              </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

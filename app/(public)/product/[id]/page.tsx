@@ -8,11 +8,6 @@ import { getWhatsAppUrl } from "@/lib/shop/whatsapp";
 import { ProductHeroGallery } from "@/components/sections/product/ProductHeroGallery";
 import { ProductBranchStock } from "@/components/sections/product/ProductBranchStock";
 import { ProductSpecs } from "@/components/sections/product/ProductSpecs";
-import { ProductLensSolutions } from "@/components/sections/product/ProductLensSolutions";
-import { ProductSizeGuide } from "@/components/sections/product/ProductSizeGuide";
-import { ProductConsultation } from "@/components/sections/product/ProductConsultation";
-import { ProductRelated } from "@/components/sections/product/ProductRelated";
-import { ProductAuthenticity } from "@/components/sections/product/ProductAuthenticity";
 
 interface ProductDetailsPageProps {
   params: Promise<{ id: string }>;
@@ -78,23 +73,8 @@ export default async function ProductDetailsPage({ params }: ProductDetailsPageP
       {/* 2. Product Specifications */}
       <ProductSpecs product={product} />
 
-      {/* 4. Branch Availability & Stock */}
+      {/* 3. Branch Availability & Stock */}
       <ProductBranchStock product={product} />
-
-      {/* 5. Lens Solutions Technology */}
-      <ProductLensSolutions />
-
-      {/* 6. Perfect Fit Size Guide */}
-      <ProductSizeGuide />
-
-      {/* 7. Expert Consultation & Conversion */}
-      <ProductConsultation />
-
-      {/* 8. Authenticity & Trust Pillars */}
-      <ProductAuthenticity />
-
-      {/* 9. Related Collections */}
-      <ProductRelated />
     </div>
   );
 }

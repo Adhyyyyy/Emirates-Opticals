@@ -22,7 +22,7 @@ export function AboutStory() {
           {/* Left: Cinematic Visual */}
           <div className="relative aspect-[4/5] md:aspect-[3/4] overflow-hidden group">
             <ParallaxImage
-              src="https://images.unsplash.com/photo-1556306535-0f09a537f0a3?auto=format&fit=crop&q=80&w=1200"
+              src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&q=80&w=1200"
               alt="The Emirates Optician Journey"
               className="w-full h-full object-cover"
               distance={60}

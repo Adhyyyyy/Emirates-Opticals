@@ -1,8 +1,17 @@
 "use client";
 
-import React, { ReactNode } from "react";
-import { m, useInView, Variants } from "framer-motion";
+import React, { ReactNode, useState, useEffect } from "react";
+import { m, Variants } from "framer-motion";
 import { fadeUp, EASE_LUXURY, DURATION_BASE, DURATION_SLOW } from "@/lib/motion";
+
+// Helper hook to defer Framer Motion tags until after hydration
+function useMounted() {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  return mounted;
+}
 
 interface RevealProps {
   children: React.ReactNode;
@@ -27,6 +36,12 @@ export function Reveal({
   className,
   once = true,
 }: RevealProps) {
+  const mounted = useMounted();
+
+  if (!mounted) {
+    return <div className={className}>{children}</div>;
+  }
+
   return (
     <m.div
       initial="hidden"
@@ -55,6 +70,12 @@ export function ImageReveal({
   delay?: number;
   className?: string;
 }) {
+  const mounted = useMounted();
+
+  if (!mounted) {
+    return <div className={`overflow-hidden relative ${className}`}>{children}</div>;
+  }
+
   return (
     <div className={`overflow-hidden relative ${className}`}>
       <m.div
@@ -88,6 +109,19 @@ export function TextReveal({
   delay?: number;
 }) {
   const words = text.split(" ");
+  const mounted = useMounted();
+
+  if (!mounted) {
+    return (
+      <div className={`flex flex-wrap overflow-hidden ${className}`}>
+        {words.map((word, i) => (
+          <span key={i} className="inline-block mr-[0.3em]">
+            {word}
+          </span>
+        ))}
+      </div>
+    );
+  }
   
   return (
     <div className={`flex flex-wrap overflow-hidden ${className}`}>
@@ -128,6 +162,12 @@ export function GridStagger({
   className?: string;
   threshold?: number;
 }) {
+  const mounted = useMounted();
+
+  if (!mounted) {
+    return <div className={className}>{children}</div>;
+  }
+
   return (
     <m.div
       initial="hidden"
@@ -161,6 +201,12 @@ export function StaggerItem({
   children: React.ReactNode;
   className?: string;
 }) {
+  const mounted = useMounted();
+
+  if (!mounted) {
+    return <div className={className}>{children}</div>;
+  }
+
   return (
     <m.div
       variants={{

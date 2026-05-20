@@ -1,0 +1,132 @@
+"use server";
+
+import { revalidatePath } from "next/cache";
+import { createServerClient } from "@supabase/ssr";
+import { cookies } from "next/headers";
+import fs from "fs";
+import path from "path";
+
+/**
+ * SECURE AUTH SERVICE UTILITY
+ */
+async function getAuthSession() {
+  const cookieStore = await cookies();
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        get(name: string) {
+          return cookieStore.get(name)?.value;
+        },
+      },
+    }
+  );
+  return await supabase.auth.getUser();
+}
+
+/**
+ * PATH RESOLVERS FOR JOBS PROTOCOL
+ */
+const JOBS_FILE_PATH = path.join(process.cwd(), "lib/data/jobs.json");
+
+function ensureJobsFileExists() {
+  const dir = path.dirname(JOBS_FILE_PATH);
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+  if (!fs.existsSync(JOBS_FILE_PATH)) {
+    fs.writeFileSync(JOBS_FILE_PATH, "[]", "utf-8");
+  }
+}
+
+/**
+ * JOBS CRUD ACTIONS
+ */
+export async function getJobs() {
+  try {
+    ensureJobsFileExists();
+    const rawData = fs.readFileSync(JOBS_FILE_PATH, "utf-8");
+    return JSON.parse(rawData);
+  } catch (error) {
+    console.error("Failed to read jobs registry:", error);
+    return [];
+  }
+}
+
+export async function createJob(data: {
+  title: string;
+  desc: string;
+  requirements: string[];
+  branchId?: string;       // target specific branch or "Global"
+  googleFormUrl?: string;  // application link
+  expiryDate?: string;     // job expiration scheduling
+}) {
+  const { data: { user } } = await getAuthSession();
+  if (!user || !["SUPER_ADMIN", "BRANCH_ADMIN"].includes(user.app_metadata?.role)) {
+    throw new Error("Unauthorized");
+  }
+
+  try {
+    ensureJobsFileExists();
+    const jobs = await getJobs();
+    const newJob = {
+      id: Date.now().toString(),
+      ...data,
+      isActive: true,
+      createdAt: new Date().toISOString()
+    };
+
+    jobs.push(newJob);
+    fs.writeFileSync(JOBS_FILE_PATH, JSON.stringify(jobs, null, 2), "utf-8");
+
+    revalidatePath("/careers");
+    revalidatePath("/admin/jobs");
+    return { success: true, data: newJob };
+  } catch (error) {
+    console.error("Create job error:", error);
+    return { error: "Failed to publish job opening" };
+  }
+}
+
+export async function toggleJobStatus(id: string, isActive: boolean) {
+  const { data: { user } } = await getAuthSession();
+  if (!user || !["SUPER_ADMIN", "BRANCH_ADMIN"].includes(user.app_metadata?.role)) {
+    throw new Error("Unauthorized");
+  }
+
+  try {
+    const jobs = await getJobs();
+    const updated = jobs.map((j: any) => 
+      j.id === id ? { ...j, isActive } : j
+    );
+    fs.writeFileSync(JOBS_FILE_PATH, JSON.stringify(updated, null, 2), "utf-8");
+
+    revalidatePath("/careers");
+    revalidatePath("/admin/jobs");
+    return { success: true };
+  } catch (error) {
+    console.error("Toggle job status error:", error);
+    return { error: "Failed to transition job opening status" };
+  }
+}
+
+export async function deleteJob(id: string) {
+  const { data: { user } } = await getAuthSession();
+  if (!user || !["SUPER_ADMIN", "BRANCH_ADMIN"].includes(user.app_metadata?.role)) {
+    throw new Error("Unauthorized");
+  }
+
+  try {
+    const jobs = await getJobs();
+    const filtered = jobs.filter((j: any) => j.id !== id);
+    fs.writeFileSync(JOBS_FILE_PATH, JSON.stringify(filtered, null, 2), "utf-8");
+
+    revalidatePath("/careers");
+    revalidatePath("/admin/jobs");
+    return { success: true };
+  } catch (error) {
+    console.error("Delete job error:", error);
+    return { error: "Failed to remove job opening" };
+  }
+}

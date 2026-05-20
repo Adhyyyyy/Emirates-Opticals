@@ -23,6 +23,7 @@ export function LuxuryButton({
   variant = "primary",
   icon,
   type = "button",
+  asChild = false,
   ...props
 }: LuxuryButtonProps) {
   
@@ -33,6 +34,43 @@ export function LuxuryButton({
     text: "bg-transparent text-black p-0",
   };
 
+  const commonClasses = cn(
+    "group relative px-10 py-4 text-[10px] md:text-[11px] font-bold uppercase tracking-[0.3em] flex items-center justify-center gap-3 transition-colors duration-500",
+    variants[variant],
+    className
+  );
+
+  if (asChild) {
+    const child = React.Children.only(children) as React.ReactElement<any>;
+    return (
+      <m.span
+        whileHover={{ scale: 1.02, y: -2 }}
+        whileTap={{ scale: 0.98 }}
+        transition={{ duration: 0.4, ease: EASE_LUXURY }}
+        onClick={onClick}
+        {...props}
+        className={commonClasses}
+      >
+        {React.cloneElement(child, {
+          className: cn(child.props.className, "w-full h-full flex items-center justify-center gap-3"),
+          children: (
+            <>
+              {child.props.children}
+              {icon && (
+                <m.span className="transition-transform duration-500 group-hover:translate-x-1">
+                  {icon}
+                </m.span>
+              )}
+              {variant === "text" && (
+                <div className="absolute bottom-[-4px] left-0 w-8 h-[1px] bg-black/20 group-hover:w-full group-hover:bg-black transition-all duration-700" />
+              )}
+            </>
+          )
+        })}
+      </m.span>
+    );
+  }
+
   return (
     <m.button
       whileHover={{ scale: 1.02, y: -2 }}
@@ -41,11 +79,7 @@ export function LuxuryButton({
       onClick={onClick}
       type={type}
       {...props}
-      className={cn(
-        "group relative px-10 py-4 text-[10px] md:text-[11px] font-bold uppercase tracking-[0.3em] flex items-center justify-center gap-3 transition-colors duration-500",
-        variants[variant],
-        className
-      )}
+      className={commonClasses}
     >
       {children}
       {icon && (
