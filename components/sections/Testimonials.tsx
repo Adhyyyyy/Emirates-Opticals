@@ -71,7 +71,7 @@ export function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.15 }}
-              className="group flex flex-col items-center text-center p-8 border border-black/5 hover:bg-white transition-all duration-700"
+              className="group flex flex-col items-center text-center p-8 border border-black/5 rounded-3xl hover:bg-white transition-all duration-700"
             >
               {/* Rating */}
               <div className="flex gap-1 mb-8">

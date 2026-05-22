@@ -1,12 +1,9 @@
 import React from "react";
 import { CareersHero } from "@/components/sections/careers/CareersHero";
-import { CareersCulture } from "@/components/sections/careers/CareersCulture";
-import { CareersWhyJoin } from "@/components/sections/careers/CareersWhyJoin";
 import { CareersOpenPositions } from "@/components/sections/careers/CareersOpenPositions";
-import { CareersProcess } from "@/components/sections/careers/CareersProcess";
-import { CareersFinalCTA } from "@/components/sections/careers/CareersFinalCTA";
+import { CareersWhyJoin } from "@/components/sections/careers/CareersWhyJoin";
+import { CareersCTA } from "@/components/sections/careers/CareersCTA";
 import { getJobs } from "@/actions/cms-careers";
-import prisma from "@/lib/prisma";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -16,23 +13,28 @@ export const metadata = {
   description: "Explore rewarding career opportunities at Emirates Optician. Join a team dedicated to luxury eyewear, professional eye care, and exceptional retail experiences across Kerala.",
 };
 
+const STATIC_BRANCHES = [
+  { id: "changanassery", name: "Changanassery" },
+  { id: "thiruvalla", name: "Thiruvalla" },
+  { id: "kumbanad", name: "Kumbanad" },
+  { id: "kothamangalam", name: "Kothamangalam" },
+  { id: "pandalam", name: "Pandalam" },
+  { id: "kakkanad", name: "Kakkanad" },
+  { id: "kottayam", name: "Kottayam" },
+  { id: "ettumanur", name: "Ettumanur" },
+  { id: "angamaly", name: "Angamaly" },
+  { id: "irumpanam", name: "Irumpanam" },
+];
+
 export default async function CareersPage() {
-  const [positions, branches] = await Promise.all([
-    getJobs(),
-    prisma.branch.findMany({
-      where: { deletedAt: null },
-      orderBy: { name: "asc" }
-    })
-  ]);
+  const positions = await getJobs();
 
   return (
     <div className="flex flex-col w-full text-black">
       <CareersHero />
-      <CareersCulture />
+      <CareersOpenPositions positions={positions} branches={STATIC_BRANCHES} />
       <CareersWhyJoin />
-      <CareersOpenPositions positions={positions} branches={branches} />
-      <CareersProcess />
-      <CareersFinalCTA />
+      <CareersCTA />
     </div>
   );
 }

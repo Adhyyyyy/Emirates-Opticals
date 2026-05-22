@@ -60,7 +60,6 @@ export async function createProduct(data: any) {
     return { error: validated.error.flatten().fieldErrors };
   }
 
-  // Safely intercept and map form data to match the strict Prisma schema
   const { 
     images, 
     shortDescription, 
@@ -73,6 +72,11 @@ export async function createProduct(data: any) {
   const branchId = user.app_metadata?.branchId;
 
   try {
+    // 1. Fetch all active branches in the registry
+    const branches = await prisma.branch.findMany({
+      where: { deletedAt: null }
+    });
+
     const product = await prisma.product.create({
       data: {
         ...productData,
@@ -83,16 +87,22 @@ export async function createProduct(data: any) {
             order: index,
           })),
         },
-        // Auto-provision branch inventory if initiated by a Branch Admin
-        ...(branchId && initialStock !== undefined ? {
-          inventory: {
-            create: [{
-              branchId: branchId,
-              quantity: initialStock,
-              status: initialStock === 0 ? "OUT_OF_STOCK" : initialStock <= 5 ? "LOW_STOCK" : "IN_STOCK",
-            }]
-          }
-        } : {})
+        // Auto-provision branch inventory:
+        // - If Branch Admin: Provision only for their branch.
+        // - If Super Admin: Provision identical initial stock across all active boutiques!
+        inventory: {
+          create: branchId 
+            ? [{
+                branchId: branchId,
+                quantity: initialStock,
+                status: initialStock === 0 ? "OUT_OF_STOCK" : initialStock <= 5 ? "LOW_STOCK" : "IN_STOCK",
+              }]
+            : branches.map(b => ({
+                branchId: b.id,
+                quantity: initialStock,
+                status: initialStock === 0 ? "OUT_OF_STOCK" : initialStock <= 5 ? "LOW_STOCK" : "IN_STOCK",
+              }))
+        }
       },
     });
 
@@ -100,6 +110,7 @@ export async function createProduct(data: any) {
     revalidatePath("/admin/inventory");
     return { success: true, id: product.id };
   } catch (err: any) {
+    console.error("Create product failed:", err);
     return { error: "Failed to create luxury product protocol" };
   }
 }
@@ -146,7 +157,7 @@ export async function updateProduct(id: string, data: any) {
       }),
     ];
 
-    // If initiated by a Branch Admin, synchronize their boutique inventory
+    // If initiated by a Branch Admin, synchronize their specific boutique inventory
     if (branchId && initialStock !== undefined) {
       operations.push(
         prisma.inventory.upsert({
@@ -163,6 +174,26 @@ export async function updateProduct(id: string, data: any) {
           }
         })
       );
+    } else if (!branchId && initialStock !== undefined) {
+      // If initiated by a Super Admin, synchronize/reset this stock quantity across all active branches!
+      const branches = await prisma.branch.findMany({ where: { deletedAt: null } });
+      for (const b of branches) {
+        operations.push(
+          prisma.inventory.upsert({
+            where: { productId_branchId: { productId: id, branchId: b.id } },
+            update: { 
+              quantity: initialStock,
+              status: initialStock === 0 ? "OUT_OF_STOCK" : initialStock <= 5 ? "LOW_STOCK" : "IN_STOCK",
+            },
+            create: {
+              productId: id,
+              branchId: b.id,
+              quantity: initialStock,
+              status: initialStock === 0 ? "OUT_OF_STOCK" : initialStock <= 5 ? "LOW_STOCK" : "IN_STOCK",
+            }
+          })
+        );
+      }
     }
 
     await prisma.$transaction(operations);
@@ -171,6 +202,7 @@ export async function updateProduct(id: string, data: any) {
     revalidatePath("/admin/inventory");
     return { success: true };
   } catch (err: any) {
+    console.error("Update product failed:", err);
     return { error: "Failed to update luxury product state" };
   }
 }
@@ -182,11 +214,55 @@ export async function deleteProduct(id: string) {
   }
 
   try {
-    // Soft delete if preferred, but here we do actual deletion as requested for CRUD
-    await prisma.product.delete({ where: { id } });
+    await prisma.$transaction([
+      // 1. Delete all product images associated with this asset
+      prisma.productImage.deleteMany({ where: { productId: id } }),
+      // 2. Delete all boutique inventory instances of this product
+      prisma.inventory.deleteMany({ where: { productId: id } }),
+      // 3. Gracefully nullify the references in client enquiries rather than breaking history
+      prisma.enquiry.updateMany({
+        where: { productId: id },
+        data: { productId: null }
+      }),
+      // 4. Safely delete the core product asset
+      prisma.product.delete({ where: { id } })
+    ]);
+
     revalidatePath("/admin/products");
+    revalidatePath("/admin/inventory");
     return { success: true };
   } catch (err) {
+    console.error("❌ Single Deletion Failure:", err);
     return { error: "Failed to remove product from catalog" };
+  }
+}
+
+export async function deleteProducts(ids: string[]) {
+  const { data: { user } } = await getAuthSession();
+  if (!user || !["SUPER_ADMIN", "BRANCH_ADMIN"].includes(user.app_metadata?.role)) {
+    throw new Error("Unauthorized");
+  }
+
+  try {
+    await prisma.$transaction([
+      // 1. Delete all product images associated with these assets
+      prisma.productImage.deleteMany({ where: { productId: { in: ids } } }),
+      // 2. Delete all boutique inventory instances of these products
+      prisma.inventory.deleteMany({ where: { productId: { in: ids } } }),
+      // 3. Gracefully nullify references in client enquiries
+      prisma.enquiry.updateMany({
+        where: { productId: { in: ids } },
+        data: { productId: null }
+      }),
+      // 4. Safely delete core product assets in bulk
+      prisma.product.deleteMany({ where: { id: { in: ids } } })
+    ]);
+
+    revalidatePath("/admin/products");
+    revalidatePath("/admin/inventory");
+    return { success: true };
+  } catch (err) {
+    console.error("❌ Bulk Deletion Failure:", err);
+    return { error: "Failed to remove selected products from catalog" };
   }
 }

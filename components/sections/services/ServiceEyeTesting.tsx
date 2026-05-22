@@ -7,12 +7,10 @@ import { Microscope, Zap, Eye, Activity, ShieldCheck, UserPlus } from "lucide-re
 import { LuxuryButton } from "@/components/ui/LuxuryButton";
 
 const FEATURES = [
-  { icon: <Microscope className="w-5 h-5" />, text: "Comprehensive Vision Assessment" },
-  { icon: <Zap className="w-5 h-5" />, text: "Advanced Diagnostic Equipment" },
-  { icon: <Eye className="w-5 h-5" />, text: "Experienced Optometrists" },
-  { icon: <Activity className="w-5 h-5" />, text: "Prescription Guidance" },
-  { icon: <ShieldCheck className="w-5 h-5" />, text: "Personalized Consultation" },
-  { icon: <UserPlus className="w-5 h-5" />, text: "Comfortable Testing Experience" }
+  { icon: <Microscope className="w-5 h-5" />, text: "Comprehensive vision assessment" },
+  { icon: <Zap className="w-5 h-5" />, text: "Modern diagnostic equipment" },
+  { icon: <Eye className="w-5 h-5" />, text: "Experienced certified optometrists" },
+  { icon: <ShieldCheck className="w-5 h-5" />, text: "Detailed prescription and recommendations" }
 ];
 
 export function ServiceEyeTesting() {
@@ -30,7 +28,7 @@ export function ServiceEyeTesting() {
             </Reveal>
             <Reveal delay={0.2}>
               <p className="text-brand-charcoal/60 font-light leading-relaxed mb-12 max-w-xl">
-                Our experienced optometrists use advanced diagnostic equipment to deliver accurate vision assessment and personalized recommendations for your visual needs.
+                Your vision deserves professional care. Every Emirates Optician branch offers complimentary eye examinations conducted by experienced optometrists using state-of-the-art equipment.
               </p>
             </Reveal>
 
@@ -49,7 +47,7 @@ export function ServiceEyeTesting() {
 
             <Reveal delay={0.6}>
               <LuxuryButton asChild className="bg-brand-charcoal text-white hover:bg-brand-gold px-12">
-                <a href="/book-eye-test">Book Your Eye Test</a>
+                <a href="/book-eye-test">Book Your Free Eye Test</a>
               </LuxuryButton>
             </Reveal>
           </div>

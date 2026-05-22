@@ -100,10 +100,8 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Discovery Carousel - Exact Pill Architecture */}
-      <div className="absolute bottom-0 inset-x-0 z-50">
-        <EyewearCarousel />
-      </div>
+      {/* Discovery Carousel - Straddles hero/next section */}
+      <EyewearCarousel />
 
     </section>
   );

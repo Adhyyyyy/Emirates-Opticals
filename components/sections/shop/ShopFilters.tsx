@@ -37,7 +37,18 @@ const FILTER_GROUPS = [
   },
   {
     title: "Branches",
-    options: ["Changanassery", "Thiruvalla", "Kumbanad", "Kothamangalam", "Pandalam", "Kakkanad"]
+    options: [
+      "Changanassery", 
+      "Thiruvalla", 
+      "Kumbanad", 
+      "Kothamangalam", 
+      "Pandalam", 
+      "Kakkanad", 
+      "Kottayam", 
+      "Ettumanur", 
+      "Angamaly", 
+      "Irumpanam"
+    ]
   }
 ];
 
@@ -53,7 +64,7 @@ export function ShopFilters() {
   const activeFilters = React.useMemo(() => {
     const filters: Record<string, string[]> = {};
     searchParams.forEach((value, key) => {
-      filters[key] = value.split(",");
+      filters[key] = value.split(";");
     });
     return filters;
   }, [searchParams]);
@@ -77,7 +88,7 @@ export function ShopFilters() {
 
     const params = new URLSearchParams(searchParams.toString());
     if (updated.length > 0) {
-      params.set(key, updated.join(","));
+      params.set(key, updated.join(";"));
     } else {
       params.delete(key);
     }
@@ -120,7 +131,7 @@ export function ShopFilters() {
                     const key = group.title.toLowerCase().replace(/\s+/g, "_");
                     const isChecked = (activeFilters[key] || []).includes(option);
                     return (
-                      <label 
+                      <div 
                         key={option} 
                         onClick={() => toggleFilter(group.title, option)}
                         className="flex items-center gap-3 cursor-pointer group/opt"
@@ -137,7 +148,7 @@ export function ShopFilters() {
                         )}>
                           {option}
                         </span>
-                      </label>
+                      </div>
                     );
                   })}
                 </div>

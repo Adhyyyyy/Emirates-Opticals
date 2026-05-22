@@ -45,7 +45,7 @@ export function CareersWhyJoin() {
       
       <div className="container-tight relative z-10">
         <div className="flex flex-col items-center text-center mb-10 md:mb-24">
-          <m.span
+          <motion.span
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -53,8 +53,8 @@ export function CareersWhyJoin() {
             className="meta-editorial mb-4"
           >
             Why Emirates
-          </m.span>
-          <m.h2 
+          </motion.span>
+          <motion.h2 
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -62,13 +62,13 @@ export function CareersWhyJoin() {
             className="h2-editorial"
           >
             Why Professionals Choose Emirates
-          </m.h2>
+          </motion.h2>
         </div>
 
         <GridStagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {WHY_JOIN.map((item, idx) => (
             <StaggerItem key={idx}>
-              <div className="group bg-white p-10 border border-black/5 hover:border-brand-gold/30 hover:shadow-2xl transition-all duration-700 h-full flex flex-col">
+              <div className="group bg-white p-10 border border-black/5 rounded-3xl hover:border-brand-gold/30 hover:shadow-2xl transition-all duration-700 h-full flex flex-col">
                 <div className="text-brand-gold mb-8 transition-transform duration-700 group-hover:scale-110 origin-left">
                   {item.icon}
                 </div>

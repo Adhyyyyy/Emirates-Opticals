@@ -43,6 +43,13 @@ export default async function EditProductPage({ params }: EditProductPageProps) 
       where: { productId_branchId: { productId: id, branchId } }
     });
     if (inventory) currentStock = inventory.quantity;
+  } else {
+    // If Super Admin, sum up total units across all branches to display a realistic initial value!
+    const inventoryAgg = await prisma.inventory.aggregate({
+      where: { productId: id },
+      _sum: { quantity: true }
+    });
+    currentStock = inventoryAgg._sum.quantity || 0;
   }
 
   // Transform Prisma output back into Form expected format

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { m } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { MapPin, Phone, Clock, ArrowRight, Calendar } from "lucide-react";
@@ -24,16 +24,16 @@ export function BranchCard({ name, address, description, image, phone = "+91 000
   const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapsQuery)}`;
 
   return (
-    <m.div 
+    <motion.div 
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8, ease: EASE_LUXURY }}
-      className="group bg-white flex flex-col h-full border border-black/5 hover:shadow-[0_30px_60px_rgba(0,0,0,0.04)] transition-all duration-700"
+      className="group bg-white flex flex-col h-full border border-black/5 rounded-[2.5rem] overflow-hidden hover:shadow-[0_30px_60px_rgba(199,168,76,0.06)] hover:border-brand-gold/20 transition-all duration-700"
     >
       {/* Cinematic Image Container */}
       <div className="relative aspect-[16/10] overflow-hidden">
-        <m.div 
+        <motion.div 
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 1.2, ease: EASE_LUXURY }}
           className="relative w-full h-full"
@@ -45,7 +45,7 @@ export function BranchCard({ name, address, description, image, phone = "+91 000
             className="object-cover"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
-        </m.div>
+        </motion.div>
         {/* Branch Badge */}
         <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 border border-black/5">
           <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-black">Active Destination</span>
@@ -67,42 +67,40 @@ export function BranchCard({ name, address, description, image, phone = "+91 000
           </div>
           
           <div className="flex items-center gap-3">
-            <Clock className="w-4 h-4 text-black/40" />
-            <p className="text-[11px] font-bold uppercase tracking-wider text-black/40">
+            <Phone className="w-4 h-4 text-black/40 shrink-0" />
+            <a href={`tel:${phone.replace(/\s+/g, "")}`} className="text-sm text-black/60 font-light hover:text-brand-gold transition-colors">
+              {phone}
+            </a>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <Clock className="w-4 h-4 text-black/40 shrink-0" />
+            <p className="text-[11px] font-bold uppercase tracking-wider text-black/60">
               {hours}
             </p>
           </div>
         </div>
 
-        <p className="text-[13px] text-black/50 font-light leading-relaxed mb-8 italic border-l-2 border-black/5 pl-4">
-          "{description}"
-        </p>
-
         {/* Action Engagement */}
-        <div className="mt-auto space-y-4">
-          {slug ? (
-            <Link href={`/branches/${slug}`} className="w-full">
-              <LuxuryButton variant="primary" className="w-full justify-center py-4">
-                Explore Stock & Details
-              </LuxuryButton>
-            </Link>
-          ) : (
-            <LuxuryButton variant="primary" className="w-full justify-center py-4" icon={<Calendar className="w-4 h-4" />}>
-              Book Eye Test
-            </LuxuryButton>
-          )}
-          
+        <div className="mt-auto pt-6 border-t border-black/5 flex flex-col sm:flex-row gap-4">
           <a 
             href={mapsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full flex items-center justify-center gap-2 py-4 text-[10px] font-bold uppercase tracking-[0.2em] text-black/40 hover:text-black transition-colors group/link"
+            className="flex-1"
           >
-            View on Google Maps
-            <ArrowRight className="w-3 h-3 transition-transform group-hover/link:translate-x-2" />
+            <LuxuryButton variant="outline" className="w-full justify-center py-4 text-[10px] uppercase tracking-wider font-bold">
+              Get Directions
+            </LuxuryButton>
           </a>
+          
+          <Link href={`/branches/${slug}`} className="flex-1">
+            <LuxuryButton variant="primary" className="w-full justify-center py-4 text-[10px] uppercase tracking-wider font-bold">
+              View Branch
+            </LuxuryButton>
+          </Link>
         </div>
       </div>
-    </m.div>
+    </motion.div>
   );
 }

@@ -5,7 +5,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { Plus } from "lucide-react";
 import Link from "next/link";
 import { BulkImportButton } from "@/features/products/components/BulkImportButton";
-import { getProducts } from "@/actions/products";
+import { getProducts, deleteProducts } from "@/actions/products";
 import { cookies } from "next/headers";
 import { createServerClient } from "@supabase/ssr";
 
@@ -48,6 +48,11 @@ export default async function ProductsPage() {
     };
   });
 
+  async function handleDeleteMultiple(ids: string[]) {
+    "use server";
+    await deleteProducts(ids);
+  }
+
   return (
     <div className="space-y-12 text-black">
       <header className="flex flex-col md:flex-row md:items-end justify-between gap-6">
@@ -81,7 +86,7 @@ export default async function ProductsPage() {
       </header>
 
       {/* Main Table Feature */}
-      <DataTable columns={columns} data={formattedProducts} searchKey="name" />
+      <DataTable columns={columns} data={formattedProducts} searchKey="name" onDeleteSelected={handleDeleteMultiple} />
 
     </div>
   );

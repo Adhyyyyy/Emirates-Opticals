@@ -23,7 +23,7 @@ export function ProductHeroGallery({ product }: ProductHeroGalleryProps) {
   };
 
   return (
-    <section className="w-full bg-white pt-32 pb-24 overflow-hidden">
+    <section className="w-full bg-white pt-40 lg:pt-44 pb-24 overflow-hidden">
       <div className="container-tight">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 xl:gap-24">
           

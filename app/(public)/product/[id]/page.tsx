@@ -3,67 +3,114 @@ import { notFound } from "next/navigation";
 import prisma from "@/lib/prisma";
 import { Product, BranchStock } from "@/types/shop";
 import { getWhatsAppUrl } from "@/lib/shop/whatsapp";
+import { PRODUCTS as STATIC_PRODUCTS } from "@/lib/shop/data";
 
 // Components
 import { ProductHeroGallery } from "@/components/sections/product/ProductHeroGallery";
 import { ProductBranchStock } from "@/components/sections/product/ProductBranchStock";
 import { ProductSpecs } from "@/components/sections/product/ProductSpecs";
 
+export const revalidate = 3600; // Cache on edge for 1 hour, auto ISR
+
 interface ProductDetailsPageProps {
   params: Promise<{ id: string }>;
 }
 
+export async function generateMetadata({ params }: ProductDetailsPageProps) {
+  const { id } = await params;
+  let name = "";
+  let brand = "";
+  let category = "";
+
+  try {
+    const dbProduct = await prisma.product.findFirst({
+      where: { OR: [{ id }, { slug: id }] },
+      include: { brand: true, category: true }
+    });
+    if (dbProduct) {
+      name = dbProduct.name;
+      brand = dbProduct.brand?.name || "Independent";
+      category = dbProduct.category?.name || "Eyewear";
+    }
+  } catch {
+    const staticProd = STATIC_PRODUCTS.find(p => p.id === id || p.slug === id);
+    if (staticProd) {
+      name = staticProd.name;
+      brand = staticProd.brand;
+      category = staticProd.category;
+    }
+  }
+
+  if (!name) return { title: "Product Details | Emirates Optician" };
+
+  return {
+    title: `${brand} ${name} | Luxury ${category} - Emirates Optician`,
+    description: `Explore authentic ${brand} ${name} ${category.toLowerCase()}. Enquire now and contact your nearest Emirates Optician branch for professional eye testing and custom fitting.`,
+  };
+}
+
 export default async function ProductDetailsPage({ params }: ProductDetailsPageProps) {
   const { id } = await params;
+  let product: Product | null = null;
 
-  const dbProduct = await prisma.product.findFirst({
-    where: { 
-      OR: [
-        { id: id },
-        { slug: id }
-      ]
-    },
-    include: {
-      brand: true,
-      category: true,
-      images: { orderBy: { order: "asc" } },
-      inventory: { include: { branch: true } }
+  try {
+    const dbProduct = await prisma.product.findFirst({
+      where: { 
+        OR: [
+          { id: id },
+          { slug: id }
+        ]
+      },
+      include: {
+        brand: true,
+        category: true,
+        images: { orderBy: { order: "asc" } },
+        inventory: { include: { branch: true } }
+      }
+    });
+
+    if (dbProduct) {
+      // Map inventory to BranchStock
+      const branches: BranchStock[] = dbProduct.inventory.map(inv => ({
+        branchName: inv.branch.name,
+        branchSlug: inv.branch.slug,
+        whatsapp: inv.branch.whatsapp,
+        stockStatus: inv.status === "IN_STOCK" ? "In Stock" : inv.status === "LOW_STOCK" ? "Low Stock" : "Out of Stock"
+      }));
+
+      const totalQty = dbProduct.inventory.reduce((acc, inv) => acc + inv.quantity, 0);
+      const globalStatus = totalQty > 5 ? "In Stock" : totalQty > 0 ? "Low Stock" : "Out of Stock";
+
+      product = {
+        id: dbProduct.id,
+        name: dbProduct.name,
+        slug: dbProduct.slug,
+        brand: dbProduct.brand?.name || "Independent",
+        category: (dbProduct.category?.name || "Optical Frames") as Product["category"],
+        description: dbProduct.description || "",
+        price: dbProduct.price,
+        images: dbProduct.images.map(img => img.url),
+        stockStatus: globalStatus,
+        branches,
+        gender: dbProduct.gender === "MALE" ? "Men" : dbProduct.gender === "FEMALE" ? "Women" : dbProduct.gender === "KIDS" ? "Kids" : "Unisex",
+        frameShape: dbProduct.frameShape || "Standard",
+        frameMaterial: dbProduct.material || "Standard",
+        lensType: dbProduct.lensType || "Standard",
+        color: dbProduct.color || "Standard",
+        collectionType: dbProduct.category?.name || "Standard",
+        isFeatured: dbProduct.isFeatured,
+        isNewArrival: dbProduct.isNewArrival
+      };
     }
-  });
+  } catch (error) {
+    console.warn("Prisma failed to fetch product details, checking static array:", error);
+    const staticProd = STATIC_PRODUCTS.find(p => p.id === id || p.slug === id);
+    if (staticProd) {
+      product = staticProd;
+    }
+  }
 
-  if (!dbProduct) return notFound();
-
-  // Map inventory to BranchStock
-  const branches: BranchStock[] = dbProduct.inventory.map(inv => ({
-    branchName: inv.branch.name,
-    branchSlug: inv.branch.slug,
-    whatsapp: inv.branch.whatsapp,
-    stockStatus: inv.status === "IN_STOCK" ? "In Stock" : inv.status === "LOW_STOCK" ? "Low Stock" : "Out of Stock"
-  }));
-
-  const totalQty = dbProduct.inventory.reduce((acc, inv) => acc + inv.quantity, 0);
-  const globalStatus = totalQty > 5 ? "In Stock" : totalQty > 0 ? "Low Stock" : "Out of Stock";
-
-  const product: Product = {
-    id: dbProduct.id,
-    name: dbProduct.name,
-    slug: dbProduct.slug,
-    brand: dbProduct.brand?.name || "Independent",
-    category: (dbProduct.category?.name || "Optical Frames") as Product["category"],
-    description: dbProduct.description || "",
-    price: dbProduct.price,
-    images: dbProduct.images.map(img => img.url),
-    stockStatus: globalStatus,
-    branches,
-    gender: dbProduct.gender === "MALE" ? "Men" : dbProduct.gender === "FEMALE" ? "Women" : dbProduct.gender === "KIDS" ? "Kids" : "Unisex",
-    frameShape: dbProduct.frameShape || "Standard",
-    frameMaterial: dbProduct.material || "Standard",
-    lensType: dbProduct.lensType || "Standard",
-    color: dbProduct.color || "Standard",
-    collectionType: dbProduct.category?.name || "Standard",
-    isFeatured: dbProduct.isFeatured,
-    isNewArrival: dbProduct.isNewArrival
-  };
+  if (!product) return notFound();
 
   return (
     <div className="flex flex-col w-full bg-white">

@@ -127,6 +127,7 @@ import { deleteProduct } from "@/actions/products";
 import { updateStockLevel, initializeBranchStock } from "@/actions/inventory";
 import Link from "next/link";
 import { Plus, Minus } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const StockCell = ({ row }: { row: any }) => {
   const { id, stock, branchStock, inventoryId, isBranchAdmin } = row.original;
@@ -184,11 +185,13 @@ const StockCell = ({ row }: { row: any }) => {
 
 const ActionsCell = ({ row }: { row: any }) => {
   const [isPending, startTransition] = useTransition();
+  const router = useRouter();
   
   const handleDelete = () => {
     if (confirm("Execute deletion protocol? This will remove the asset from the global catalog.")) {
       startTransition(async () => {
         await deleteProduct(row.original.id);
+        router.refresh();
       });
     }
   };

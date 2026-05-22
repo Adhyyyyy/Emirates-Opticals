@@ -1,11 +1,9 @@
 import React from "react";
 import { ServicesHero } from "@/components/sections/services/ServicesHero";
-import { ServicesIntro } from "@/components/sections/services/ServicesIntro";
 import { ServiceEyeTesting } from "@/components/sections/services/ServiceEyeTesting";
 import { ServiceLensSolutions } from "@/components/sections/services/ServiceLensSolutions";
 import { ServiceStyling } from "@/components/sections/services/ServiceStyling";
 import { ServiceSunglasses } from "@/components/sections/services/ServiceSunglasses";
-import { ServiceSupport } from "@/components/sections/services/ServiceSupport";
 import { ServiceFinalCTA } from "@/components/sections/services/ServiceFinalCTA";
 
 export const metadata = {
@@ -17,12 +15,10 @@ export default function ServicesPage() {
   return (
     <div className="flex flex-col w-full">
       <ServicesHero />
-      <ServicesIntro />
       <ServiceEyeTesting />
       <ServiceLensSolutions />
       <ServiceStyling />
       <ServiceSunglasses />
-      <ServiceSupport />
       <ServiceFinalCTA />
     </div>
   );

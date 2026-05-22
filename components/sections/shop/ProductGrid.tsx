@@ -29,7 +29,7 @@ export function ProductGrid({ products }: ProductGridProps) {
 
   // Pagination State
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 6;
+  const productsPerPage = 12;
 
   const searchParams = useSearchParams();
 
@@ -37,7 +37,7 @@ export function ProductGrid({ products }: ProductGridProps) {
   const activeFilters = useMemo(() => {
     const filters: Record<string, string[]> = {};
     searchParams.forEach((value, key) => {
-      filters[key] = value.split(",");
+      filters[key] = value.split(";");
     });
     return filters;
   }, [searchParams]);
@@ -164,34 +164,34 @@ export function ProductGrid({ products }: ProductGridProps) {
 
   return (
     <div className="flex-1">
-      {/* Top Bar - Desktop */}
-      <div className="hidden lg:flex items-center justify-between mb-12 pb-6 border-b border-black/5">
-        <div className="flex items-center gap-10">
-          <div className="relative group">
-            <Search className="absolute left-0 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-charcoal/20 group-focus-within:text-brand-gold transition-colors" />
+      {/* Top Bar - Fully Responsive Control Panel */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-10 pb-6 border-b border-black/5 w-full">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 w-full sm:w-auto">
+          <div className="relative group w-full sm:w-64">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-brand-charcoal/30 group-focus-within:text-brand-gold transition-colors" />
             <input 
               type="text" 
               placeholder="Search Luxury Eyewear..."
-              className="bg-transparent border-none outline-none py-2 pl-8 pr-4 text-xs font-medium tracking-tight w-64 focus:w-80 transition-all duration-700 focus:ring-0"
+              className="w-full bg-brand-pearl/20 border border-black/5 rounded-full py-2.5 pl-9 pr-4 text-[11px] font-medium tracking-tight focus:bg-white focus:border-brand-gold/30 transition-all duration-500 outline-none placeholder:text-brand-charcoal/30"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
-          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-charcoal/30">
+          <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-brand-charcoal/30">
             Showing {sortedProducts.length} Collections
           </span>
         </div>
 
-        <div className="flex items-center gap-8">
+        <div className="flex items-center justify-between sm:justify-end gap-6 sm:gap-8 w-full sm:w-auto">
           {/* Sorting Dropdown */}
           <div className="relative">
             <div 
               onClick={() => setIsSortDropdownOpen(!isSortDropdownOpen)}
-              className="flex items-center gap-3 group cursor-pointer select-none"
+              className="flex items-center gap-2.5 group cursor-pointer select-none"
             >
-              <span className="text-[10px] font-bold uppercase tracking-widest text-brand-charcoal/40 group-hover:text-brand-charcoal transition-colors">Sort By</span>
-              <div className="flex items-center gap-2">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-brand-charcoal">
+              <span className="text-[9px] font-bold uppercase tracking-widest text-brand-charcoal/40 group-hover:text-brand-charcoal transition-colors">Sort By</span>
+              <div className="flex items-center gap-1.5">
+                <span className="text-[9px] font-bold uppercase tracking-widest text-brand-charcoal">
                   {SORT_OPTIONS.find(o => o.value === sortBy)?.label}
                 </span>
                 <ChevronDown className={cn("w-3 h-3 text-brand-gold transition-transform duration-500", isSortDropdownOpen && "rotate-180")} />
@@ -206,7 +206,7 @@ export function ProductGrid({ products }: ProductGridProps) {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
-                    className="absolute right-0 mt-4 w-48 bg-white border border-black/5 shadow-2xl z-20 p-2 rounded-none"
+                    className="absolute right-0 mt-4 w-48 bg-white border border-black/5 shadow-2xl z-20 p-2 rounded-xl overflow-hidden"
                   >
                     {SORT_OPTIONS.map((opt) => (
                       <button
@@ -216,7 +216,7 @@ export function ProductGrid({ products }: ProductGridProps) {
                           setIsSortDropdownOpen(false);
                         }}
                         className={cn(
-                          "w-full text-left px-4 py-3 text-[9px] uppercase tracking-wider transition-colors block",
+                          "w-full text-left px-4 py-2.5 text-[9px] uppercase tracking-wider transition-colors block rounded-md",
                           sortBy === opt.value ? "bg-brand-pearl text-brand-gold font-bold" : "text-brand-charcoal/60 hover:bg-brand-pearl hover:text-brand-charcoal"
                         )}
                       >
@@ -229,21 +229,21 @@ export function ProductGrid({ products }: ProductGridProps) {
             </AnimatePresence>
           </div>
           
-          <div className="w-[1px] h-4 bg-black/5" />
+          <div className="hidden sm:block w-[1px] h-4 bg-black/5" />
           
           {/* View Toggle */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <button 
               onClick={() => setViewMode("grid")}
-              className={cn("p-1 transition-colors", viewMode === "grid" ? "text-brand-gold" : "text-brand-charcoal/20 hover:text-brand-charcoal")}
+              className={cn("p-1.5 transition-colors rounded-md", viewMode === "grid" ? "text-brand-gold bg-brand-pearl" : "text-brand-charcoal/20 hover:text-brand-charcoal")}
             >
-              <LayoutGrid className="w-4 h-4" />
+              <LayoutGrid className="w-3.5 h-3.5" />
             </button>
             <button 
               onClick={() => setViewMode("list")}
-              className={cn("p-1 transition-colors", viewMode === "list" ? "text-brand-gold" : "text-brand-charcoal/20 hover:text-brand-charcoal")}
+              className={cn("p-1.5 transition-colors rounded-md", viewMode === "list" ? "text-brand-gold bg-brand-pearl" : "text-brand-charcoal/20 hover:text-brand-charcoal")}
             >
-              <List className="w-4 h-4" />
+              <List className="w-3.5 h-3.5" />
             </button>
           </div>
         </div>

@@ -47,8 +47,8 @@ export function Navbar() {
         className={cn(
           "w-full transition-all duration-300 ease-in-out border-b pointer-events-auto flex items-center justify-between px-6 lg:px-12",
           isScrolled 
-            ? "bg-[#0A0A0A]/95 backdrop-blur-[12px] border-[#1E1E1E] h-[64px] lg:h-[80px]" 
-            : "bg-transparent border-transparent h-[72px] lg:h-[90px]"
+            ? "bg-[#0A0A0A]/95 backdrop-blur-[20px] border-[#1E1E1E] h-[64px] lg:h-[80px]" 
+            : "bg-[#0A0A0A]/70 backdrop-blur-[16px] border-white/5 h-[72px] lg:h-[90px]"
         )}
       >
         {/* Symmetrical Left: Logo Branding */}
@@ -109,7 +109,7 @@ export function Navbar() {
           {/* Desktop Luxury Sharp "BOOK EYE TEST" CTA */}
           <Link 
             href="/book-eye-test"
-            className="hidden lg:inline-flex items-center justify-center bg-[#C9A84C] text-[#0A0A0A] hover:bg-[#B8952E] hover:text-white px-6 h-[44px] lg:h-[48px] text-[13px] font-bold uppercase tracking-[0.1em] transition-all duration-300 rounded-none whitespace-nowrap shadow-lg"
+            className="hidden lg:inline-flex items-center justify-center bg-[#C9A84C] text-[#0A0A0A] hover:bg-[#B8952E] hover:text-white px-6 h-[44px] lg:h-[48px] text-[13px] font-bold uppercase tracking-[0.1em] transition-all duration-300 rounded-full whitespace-nowrap shadow-lg"
           >
             Book Eye Test
           </Link>
@@ -189,7 +189,7 @@ export function Navbar() {
               <Link 
                 href="/book-eye-test" 
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="w-full h-[52px] bg-[#C9A84C] text-[#0A0A0A] hover:bg-[#B8952E] hover:text-white uppercase tracking-widest text-xs font-bold flex items-center justify-center gap-2 rounded-none transition-colors"
+                className="w-full h-[52px] bg-[#C9A84C] text-[#0A0A0A] hover:bg-[#B8952E] hover:text-white uppercase tracking-widest text-xs font-bold flex items-center justify-center gap-2 rounded-full transition-colors"
               >
                 <Calendar className="w-4 h-4" />
                 Book Eye Test

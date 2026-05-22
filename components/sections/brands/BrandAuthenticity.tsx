@@ -44,7 +44,7 @@ export function BrandAuthenticity() {
         <GridStagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {AUTH_POINTS.map((item, idx) => (
             <StaggerItem key={idx}>
-              <div className="group bg-brand-pearl p-10 border border-black/5 hover:border-brand-gold/30 hover:shadow-2xl transition-all duration-700 h-full flex flex-col items-center text-center">
+              <div className="group bg-brand-pearl p-10 border border-black/5 rounded-3xl hover:border-brand-gold/30 hover:shadow-2xl transition-all duration-700 h-full flex flex-col items-center text-center">
                 <div className="text-brand-gold mb-8 group-hover:scale-110 transition-transform duration-700">
                   {item.icon}
                 </div>

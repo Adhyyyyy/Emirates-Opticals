@@ -8,7 +8,7 @@ import { ParallaxImage } from "@/components/motion/ParallaxImage";
 
 export function BookingHero() {
   return (
-    <section className="relative w-full h-[85vh] min-h-[650px] flex items-center justify-center overflow-hidden bg-brand-charcoal">
+    <section className="relative w-full h-[85vh] min-h-[650px] flex items-center justify-center overflow-hidden bg-brand-charcoal pt-28 md:pt-36 lg:pt-40 pb-16">
       {/* Cinematic Optical Experience Visual */}
       <div className="absolute inset-0 z-0">
         <ParallaxImage

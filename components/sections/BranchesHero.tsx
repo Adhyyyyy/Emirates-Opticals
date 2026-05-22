@@ -9,7 +9,7 @@ import { EASE_LUXURY } from "@/lib/motion";
 
 export function BranchesHero() {
   return (
-    <section className="relative w-full h-[85vh] min-h-[650px] bg-white overflow-hidden">
+    <section className="relative w-full h-[85vh] min-h-[650px] bg-white overflow-hidden pt-28 md:pt-36 lg:pt-40 pb-16 flex items-center justify-center">
       
       {/* Cinematic Layer 1: The Destination Visual */}
       <div className="absolute inset-0 z-0">
@@ -21,39 +21,31 @@ export function BranchesHero() {
           }}
         />
         {/* Editorial Gradients */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-white" />
-        <div className="absolute inset-0 bg-black/5" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-white" />
+        <div className="absolute inset-0 bg-black/15" />
       </div>
 
       {/* Layer 2: Narrative Content */}
-      <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
+      <div className="relative z-10 w-full flex flex-col items-center justify-center text-center px-6 pt-16 md:pt-24 pb-8">
         <div className="max-w-[1000px] mx-auto">
           
           <Reveal delay={0.2}>
             <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.4em] text-white/90 mb-8 block">
-              PREMIUM OPTICAL DESTINATIONS ACROSS KERALA
+              PREMIUM OPTICAL DESTINATIONS
             </span>
           </Reveal>
 
           <div className="mb-10">
             <TextReveal 
-              text="Experience Emirates Optician"
+              text="Our Branches Across Kerala"
               className="text-4xl md:text-7xl lg:text-8xl font-light font-heading text-white tracking-tight leading-[1.1]"
               delay={0.4}
             />
-            <motion.span 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8, duration: 1.2, ease: EASE_LUXURY }}
-              className="text-3xl md:text-6xl lg:text-7xl font-light font-heading text-white italic tracking-tight block mt-2"
-            >
-              Near You
-            </motion.span>
           </div>
 
-          <Reveal delay={1} className="max-w-2xl mx-auto mb-16">
+          <Reveal delay={1} className="max-w-3xl mx-auto mb-16">
             <p className="text-sm md:text-lg text-white/80 font-light leading-relaxed tracking-wide">
-              Visit our premium optical destinations across Kerala for authentic luxury eyewear, professional eye testing, and expert styling consultation — all delivered with exceptional customer care.
+              Visit any of our 10 convenient locations for professional eye care and authentic branded eyewear.
             </p>
           </Reveal>
 

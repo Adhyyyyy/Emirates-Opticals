@@ -13,6 +13,11 @@ import { m } from "framer-motion";
 export function AdminBreadcrumbs() {
   const pathname = usePathname();
   const segments = pathname.split("/").filter(Boolean);
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Skip the first "admin" segment for a cleaner look
   const displaySegments = segments.length > 1 ? segments.slice(1) : segments;
@@ -31,27 +36,35 @@ export function AdminBreadcrumbs() {
         const isLast = idx === displaySegments.length - 1;
         const title = segment.replace(/-/g, " ");
 
+        const TitleComponent = isLast ? (
+          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-gold whitespace-nowrap font-sans">
+            {title}
+          </span>
+        ) : (
+          <Link 
+            href={path}
+            className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-charcoal/30 hover:text-brand-charcoal transition-colors whitespace-nowrap font-sans"
+          >
+            {title}
+          </Link>
+        );
+
         return (
           <React.Fragment key={path}>
             <ChevronRight className="w-3 h-3 text-brand-charcoal/10 flex-shrink-0" />
-            <m.div
-              initial={{ opacity: 0, x: -5 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: idx * 0.1 }}
-            >
-              {isLast ? (
-                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-gold whitespace-nowrap">
-                  {title}
-                </span>
-              ) : (
-                <Link 
-                  href={path}
-                  className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-charcoal/30 hover:text-brand-charcoal transition-colors whitespace-nowrap"
-                >
-                  {title}
-                </Link>
-              )}
-            </m.div>
+            {mounted ? (
+              <m.div
+                initial={{ opacity: 0, x: -5 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: idx * 0.1 }}
+              >
+                {TitleComponent}
+              </m.div>
+            ) : (
+              <div style={{ opacity: 0, transform: "translateX(-5px)" }}>
+                {TitleComponent}
+              </div>
+            )}
           </React.Fragment>
         );
       })}

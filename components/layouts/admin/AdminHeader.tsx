@@ -42,7 +42,7 @@ export function AdminHeader({ userName, userRole }: AdminHeaderProps) {
             type="text" 
             placeholder="Search Protocol..." 
             aria-label="Search dashboard intelligence"
-            className="bg-transparent border-none outline-none text-[11px] font-medium w-full placeholder:text-black/10"
+            className="bg-transparent border-none outline-none text-[11px] font-medium text-brand-charcoal w-full placeholder:text-brand-charcoal/35"
           />
         </div>
 

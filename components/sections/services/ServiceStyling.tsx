@@ -27,22 +27,22 @@ export function ServiceStyling() {
           <div className="lg:w-1/2">
             <Reveal>
               <h2 className="text-4xl md:text-6xl font-extralight tracking-tight text-brand-charcoal uppercase font-heading leading-tight mb-8">
-                Expert Styling<br />
+                Frames & Styling<br />
                 <em className="italic">Consultation</em>
               </h2>
             </Reveal>
             <Reveal delay={0.2}>
               <p className="text-brand-charcoal/60 font-light leading-relaxed mb-12 max-w-xl">
-                Our trained optical consultants help you discover frames that complement your face shape, lifestyle, personality, and visual requirements.
+                Finding the perfect frames is an art. Our expert stylists consider your face shape, skin tone, lifestyle, and personal preferences to recommend frames that enhance your unique features.
               </p>
             </Reveal>
 
             <GridStagger className="grid grid-cols-1 sm:grid-cols-2 gap-y-6 mb-16">
               {[
-                "Face Shape Analysis",
-                "Personalized Recommendations",
-                "Luxury Brand Guidance",
-                "Professional Adjustments"
+                "Personalized face shape analysis",
+                "Authentic international brands",
+                "Wide range of styles and materials",
+                "Professional fitting and adjustments"
               ].map((text, idx) => (
                 <StaggerItem key={idx}>
                   <div className="flex items-center gap-4 group">
@@ -56,8 +56,8 @@ export function ServiceStyling() {
             </GridStagger>
 
             <Reveal delay={0.6}>
-              <LuxuryButton asChild variant="outline" className="px-12">
-                <a href="/brands">Explore Brands</a>
+              <LuxuryButton asChild className="bg-brand-charcoal text-white hover:bg-brand-gold px-12">
+                <a href="/brands">Explore Our Brands</a>
               </LuxuryButton>
             </Reveal>
           </div>

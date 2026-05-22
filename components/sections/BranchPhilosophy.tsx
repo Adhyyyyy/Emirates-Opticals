@@ -47,14 +47,14 @@ export function BranchPhilosophy() {
           <GridStagger className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
             {FEATURES.map((feature, idx) => (
               <StaggerItem key={idx}>
-                <div className="group flex flex-col items-start p-8 md:p-10 bg-[#fdfdfd] border border-black/[0.03] hover:border-black/10 transition-all duration-700 h-full">
-                  <div className="w-12 h-12 flex items-center justify-center bg-black text-white mb-8 group-hover:scale-110 transition-transform duration-500">
+                <div className="group flex flex-col items-start p-8 md:p-10 bg-brand-pearl/15 rounded-3xl border border-black/[0.02] hover:border-brand-gold/20 hover:bg-brand-pearl/30 transition-all duration-700 h-full">
+                  <div className="w-12 h-12 flex items-center justify-center bg-brand-gold/10 text-brand-gold rounded-full mb-8 group-hover:scale-110 group-hover:bg-brand-gold group-hover:text-white transition-all duration-500">
                     {feature.icon}
                   </div>
-                  <h3 className="text-[11px] font-bold uppercase tracking-[0.2em] text-black mb-4">
+                  <h3 className="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-charcoal mb-4">
                     {feature.title}
                   </h3>
-                  <p className="text-sm text-black/50 font-light leading-relaxed">
+                  <p className="text-sm text-brand-charcoal/60 font-light leading-relaxed">
                     {feature.description}
                   </p>
                 </div>

@@ -42,10 +42,13 @@ export function AboutStory() {
             <Reveal delay={0.2}>
               <div className="space-y-8 text-brand-charcoal/70 font-light leading-relaxed text-sm md:text-base max-w-xl">
                 <p>
-                  Founded with a passion for delivering world-class optical experiences, Emirates Optician was created to bring authentic luxury eyewear, professional eye care, and expert styling consultation closer to customers across Kerala.
+                  Emirates Optician was founded with a clear mission: to bring world-class optical solutions to the people of Kerala. We recognized a growing need for authentic branded eyewear and professional eye care services in our communities.
                 </p>
                 <p>
-                  From a single vision to a growing multi-branch presence, Emirates Optician continues to serve thousands of customers with trusted expertise, genuine global brands, and personalized optical care.
+                  What started as a single store has grown into a trusted network of branches across Kerala, each offering the same commitment to quality, authenticity, and customer care. We&apos;ve built our reputation by standing firmly against cheap imitations and by delivering genuine value through authentic international and Indian brands.
+                </p>
+                <p>
+                  Today, Emirates Optician serves thousands of satisfied customers who trust us for their optical needs — from free professional eye testing to finding the perfect frames that reflect their personal style.
                 </p>
               </div>
             </Reveal>

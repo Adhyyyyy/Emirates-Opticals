@@ -25,18 +25,18 @@ export function BranchExperience() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
           
           {/* Left Column: Immersive Imagery with Parallax */}
-          <div className="lg:col-span-7 relative h-[500px] md:h-[700px] overflow-hidden group">
+          <div className="lg:col-span-7 relative h-[500px] md:h-[700px] overflow-hidden group rounded-[2.5rem] border border-black/5 shadow-sm">
             <motion.div 
               style={{ y: yImage }}
               className="absolute inset-0 w-full h-[120%]"
             >
               <img 
-                src="https://images.unsplash.com/photo-1511556532299-8f662fc26c06?auto=format&fit=crop&q=80&w=1200"
-                alt="Luxury Retail Interior"
-                className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-1000"
+                src="https://images.unsplash.com/photo-1556740758-90eb39138efd?auto=format&fit=crop&q=80&w=1200"
+                alt="Luxury Eyewear Consultation Atelier"
+                className="w-full h-full object-cover group-hover:scale-105 transition-all duration-1000"
               />
             </motion.div>
-            <div className="absolute inset-0 bg-black/5" />
+            <div className="absolute inset-0 bg-black/10" />
             
             {/* Experience Floating Badge */}
             <motion.div 

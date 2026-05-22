@@ -1,62 +1,82 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 import { GridStagger, StaggerItem, Reveal } from "@/components/motion/Reveal";
-import { Check } from "lucide-react";
+import { motion as m } from "framer-motion";
+import { ShieldCheck, Eye, UserCheck, MapPin, HeartHandshake } from "lucide-react";
 
-const FEATURES = [
-  "Authentic Luxury Brands",
-  "Professional Eye Testing",
-  "Premium Lens Technology",
-  "Expert Styling Consultation",
-  "Multiple Kerala Branches",
-  "After Sales Support",
-  "Friendly Customer Care",
-  "Modern Optical Experience"
+const WHY_CHOOSE = [
+  {
+    icon: <ShieldCheck className="w-7 h-7" />,
+    title: "Authentic International Brands",
+    desc: "Direct partnerships with PRADA, Ray-Ban, Oakley, Cartier, and more — no imitations, ever."
+  },
+  {
+    icon: <Eye className="w-7 h-7" />,
+    title: "Free Professional Eye Testing",
+    desc: "State-of-the-art equipment and experienced optometrists at every branch."
+  },
+  {
+    icon: <UserCheck className="w-7 h-7" />,
+    title: "Expert Styling Consultation",
+    desc: "Personalized guidance to find frames that enhance your unique features and style."
+  },
+  {
+    icon: <MapPin className="w-7 h-7" />,
+    title: "Convenient Locations",
+    desc: "Multiple branches across Kerala with ample parking and easy accessibility."
+  },
+  {
+    icon: <HeartHandshake className="w-7 h-7" />,
+    title: "After-Sales Support",
+    desc: "Warranty coverage, adjustments, and ongoing care for your eyewear investment."
+  }
 ];
 
 export function AboutWhyChoose() {
   return (
-    <section className="w-full bg-white py-24 md:py-32 overflow-hidden border-t border-black/5">
+    <section className="w-full bg-white section-padding overflow-hidden">
       <div className="container-tight">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-          
-          {/* Sticky Left: Heading */}
-          <div className="lg:col-span-5 lg:sticky lg:top-32">
-            <Reveal>
-              <h2 className="text-4xl md:text-6xl lg:text-7xl font-extralight tracking-tight text-brand-charcoal uppercase font-heading leading-[1.1] mb-8">
-                Why Thousands<br />
-                <em className="italic">Choose</em><br />
-                Emirates Optician
-              </h2>
-            </Reveal>
-            <Reveal delay={0.2}>
-              <p className="text-brand-charcoal/60 font-light max-w-sm leading-relaxed uppercase tracking-[0.1em] text-xs">
-                Excellence in vision, authenticity in style, and trust across every branch.
-              </p>
-            </Reveal>
-          </div>
 
-          {/* Right: Feature Grid */}
-          <div className="lg:col-span-7">
-            <GridStagger className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-12">
-              {FEATURES.map((feature, idx) => (
-                <StaggerItem key={idx}>
-                  <div className="group flex items-start gap-6 border-b border-black/5 pb-8">
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-pearl flex items-center justify-center text-brand-gold group-hover:bg-brand-gold group-hover:text-white transition-all duration-500">
-                      <Check className="w-4 h-4" />
-                    </div>
-                    <span className="text-base md:text-lg font-medium text-brand-charcoal tracking-tight">
-                      {feature}
-                    </span>
-                  </div>
-                </StaggerItem>
-              ))}
-            </GridStagger>
-          </div>
-
+        <div className="flex flex-col items-center text-center mb-16 md:mb-24">
+          <m.span
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+            className="meta-editorial mb-4"
+          >
+            Why Emirates Optician
+          </m.span>
+          <m.h2
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.1 }}
+            className="h2-editorial"
+          >
+            Why Choose Emirates Optician?
+          </m.h2>
         </div>
+
+        <GridStagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+          {WHY_CHOOSE.map((item, idx) => (
+            <StaggerItem key={idx}>
+              <div className="group flex flex-col gap-6 p-10 border border-black/5 rounded-3xl hover:border-brand-gold/20 hover:shadow-[0_20px_50px_rgba(0,0,0,0.05)] transition-all duration-700 h-full">
+                <div className="text-brand-gold transition-transform duration-700 group-hover:scale-110 origin-left">
+                  {item.icon}
+                </div>
+                <h3 className="text-lg font-bold text-brand-charcoal uppercase tracking-tighter">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-brand-charcoal/60 font-light leading-relaxed">
+                  {item.desc}
+                </p>
+              </div>
+            </StaggerItem>
+          ))}
+        </GridStagger>
+
       </div>
     </section>
   );

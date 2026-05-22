@@ -79,9 +79,9 @@ export function ShopByCategory() {
               >
                 <Link
                   href={cat.href}
-                  className="group flex flex-col items-center justify-center gap-5 py-10 px-6 border border-black/8 hover:border-[#C9A84C]/50 bg-[#F7F5F0] hover:bg-[#C9A84C]/5 transition-all duration-400 text-center"
+                  className="group flex flex-col items-center justify-center gap-5 py-10 px-6 border border-black/8 rounded-3xl hover:border-[#C9A84C]/50 bg-[#F7F5F0] hover:bg-[#C9A84C]/5 transition-all duration-400 text-center"
                 >
-                  <div className="w-14 h-14 flex items-center justify-center border border-black/10 group-hover:border-[#C9A84C]/40 transition-colors duration-400">
+                  <div className="w-14 h-14 flex items-center justify-center border border-black/10 rounded-full group-hover:border-[#C9A84C]/40 transition-colors duration-400">
                     <Icon className="w-6 h-6 text-black/35 group-hover:text-[#C9A84C] transition-colors duration-400" />
                   </div>
                   <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#0A0A0A]/50 group-hover:text-[#0A0A0A] transition-colors duration-300 leading-tight">

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
-import { m, useInView, useSpring, useTransform } from "framer-motion";
+import { motion, useInView, useSpring, useTransform } from "framer-motion";
 import { Reveal } from "@/components/motion/Reveal";
 
 interface StatItemProps {
@@ -31,9 +31,9 @@ function Counter({ value, suffix = "", label }: StatItemProps) {
   return (
     <div ref={ref} className="flex flex-col items-center">
       <div className="flex items-baseline mb-4">
-        <m.span className="text-5xl md:text-7xl lg:text-8xl font-light font-heading text-black tracking-tight">
+        <motion.span className="text-5xl md:text-7xl lg:text-8xl font-light font-heading text-black tracking-tight">
           {displayValue}
-        </m.span>
+        </motion.span>
         <span className="text-3xl md:text-5xl font-light font-heading text-black ml-1">{suffix}</span>
       </div>
       <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.4em] text-black/40 text-center">

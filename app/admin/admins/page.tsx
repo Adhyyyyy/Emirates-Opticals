@@ -39,6 +39,7 @@ export default function AdminsPage() {
   // Form Fields
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [role, setRole] = useState<"BRANCH_ADMIN" | "STAFF">("BRANCH_ADMIN");
   const [branchId, setBranchId] = useState("");
 
@@ -73,13 +74,14 @@ export default function AdminsPage() {
       return;
     }
 
-    const payload = { email, name, role, branchId };
+    const payload = { email, name, role, branchId, password };
     const result = await createBranchAdmin(payload);
 
     if (result.success) {
       setSuccess(true);
       setName("");
       setEmail("");
+      setPassword("");
       setBranchId("");
       await loadData();
       setTimeout(() => setSuccess(false), 2000);
@@ -354,6 +356,21 @@ export default function AdminsPage() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="manager@emirates.com"
+                        className="w-full bg-brand-pearl/20 border-none rounded-xl py-4 pl-12 pr-4 text-xs focus:ring-1 focus:ring-brand-gold/20 outline-none"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="text-[9px] font-bold uppercase tracking-widest text-brand-charcoal/40">Secure Password</label>
+                    <div className="relative">
+                      <Key className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-charcoal/20" />
+                      <input 
+                        type="password" 
+                        required
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder="••••••••"
                         className="w-full bg-brand-pearl/20 border-none rounded-xl py-4 pl-12 pr-4 text-xs focus:ring-1 focus:ring-brand-gold/20 outline-none"
                       />
                     </div>

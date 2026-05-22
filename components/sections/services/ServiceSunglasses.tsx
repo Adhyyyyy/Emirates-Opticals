@@ -16,25 +16,39 @@ export function ServiceSunglasses() {
           <div className="lg:w-1/2 order-2 lg:order-1">
             <Reveal>
               <h2 className="text-4xl md:text-6xl font-extralight tracking-tight text-brand-charcoal uppercase font-heading leading-tight mb-8">
-                Luxury Sunglasses<br />
+                Premium Sunglasses<br />
                 <em className="italic text-brand-gold">Collection</em>
               </h2>
             </Reveal>
             <Reveal delay={0.2}>
-              <p className="text-brand-charcoal/60 font-light leading-relaxed mb-12 max-w-xl">
-                Protect your eyes in style with authentic premium sunglasses from globally renowned eyewear brands.
+              <p className="text-brand-charcoal/60 font-light leading-relaxed mb-10 max-w-xl">
+                Protect your eyes in style with our curated collection of authentic branded sunglasses from the world's leading designers.
               </p>
             </Reveal>
 
-            <div className="flex flex-wrap gap-x-10 gap-y-6 mb-16">
-              {BRANDS.map((brand, idx) => (
-                <Reveal key={idx} delay={0.2 + idx * 0.1}>
-                  <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-brand-charcoal/40">
-                    {brand}
-                  </span>
-                </Reveal>
+            <GridStagger className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6 mb-8">
+              {[
+                "100% UV protection guaranteed",
+                "Polarized lens options",
+                "Ray-Ban, Oakley, PRADA, and more",
+                "Prescription sunglasses available"
+              ].map((text, idx) => (
+                <StaggerItem key={idx}>
+                  <div className="flex items-center gap-3">
+                    <span className="w-1.5 h-1.5 bg-brand-gold rounded-full" />
+                    <span className="text-[10px] md:text-xs font-bold uppercase tracking-wider text-brand-charcoal/80">
+                      {text}
+                    </span>
+                  </div>
+                </StaggerItem>
               ))}
-            </div>
+            </GridStagger>
+
+            <Reveal delay={0.6}>
+              <p className="text-xs text-brand-charcoal/50 font-light italic mb-10 leading-relaxed">
+                * All sunglasses come with authenticity certification and warranty as standard.
+              </p>
+            </Reveal>
 
             <Reveal delay={0.8}>
               <LuxuryButton asChild className="bg-brand-charcoal text-white hover:bg-brand-gold px-12">

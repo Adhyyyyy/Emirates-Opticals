@@ -160,7 +160,7 @@ export default function LoginPage() {
                       {...register("email")}
                       type="email" 
                       placeholder="Enter Admin Email"
-                      className="w-full bg-transparent border-b border-black/10 py-5 pl-10 pr-4 text-sm font-medium outline-none focus:border-brand-gold transition-all duration-500 placeholder:text-black/10"
+                      className="w-full bg-transparent border-b border-black/10 py-5 pl-10 pr-4 text-sm font-medium text-brand-charcoal outline-none focus:border-brand-gold transition-all duration-500 placeholder:text-brand-charcoal/30"
                     />
                   </div>
                   {errors.email && <p className="text-[9px] font-bold text-red-500 uppercase tracking-tighter mt-2">{errors.email.message}</p>}
@@ -192,7 +192,7 @@ export default function LoginPage() {
                       {...register("password")}
                       type={showPassword ? "text" : "password"} 
                       placeholder="••••••••••••"
-                      className="w-full bg-transparent border-b border-black/10 py-5 pl-10 pr-4 text-sm font-medium outline-none focus:border-brand-gold transition-all duration-500 placeholder:text-black/10"
+                      className="w-full bg-transparent border-b border-black/10 py-5 pl-10 pr-4 text-sm font-medium text-brand-charcoal outline-none focus:border-brand-gold transition-all duration-500 placeholder:text-brand-charcoal/30"
                     />
                   </div>
                   {errors.password && <p className="text-[9px] font-bold text-red-500 uppercase tracking-tighter mt-2">{errors.password.message}</p>}

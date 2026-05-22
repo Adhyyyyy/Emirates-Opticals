@@ -12,14 +12,14 @@ export function AboutFinalCTA() {
         <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
           <Reveal>
             <h2 className="text-5xl md:text-7xl lg:text-8xl font-extralight tracking-tight text-brand-charcoal uppercase font-heading leading-tight mb-10">
-              Experience Premium<br />
-              <em className="italic">Eyewear & Eye Care</em>
+              Experience the<br />
+              <em className="italic">Emirates Difference</em>
             </h2>
           </Reveal>
           
           <Reveal delay={0.2}>
             <p className="text-brand-charcoal/60 font-light max-w-2xl mx-auto mb-16 leading-relaxed">
-              Visit your nearest Emirates Optician branch to discover authentic luxury eyewear, professional eye testing, and personalized styling consultation.
+              Visit any of our branches for a complimentary eye test and discover why thousands trust us.
             </p>
           </Reveal>
 
@@ -29,10 +29,7 @@ export function AboutFinalCTA() {
                 Book Free Eye Test
               </LuxuryButton>
               <LuxuryButton variant="secondary" className="px-12">
-                Find Your Branch
-              </LuxuryButton>
-              <LuxuryButton variant="outline" className="px-12">
-                Explore Collections
+                Find a Branch
               </LuxuryButton>
             </div>
           </Reveal>

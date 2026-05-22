@@ -35,7 +35,7 @@ export function LuxuryButton({
   };
 
   const commonClasses = cn(
-    "group relative px-10 py-4 text-[10px] md:text-[11px] font-bold uppercase tracking-[0.3em] flex items-center justify-center gap-3 transition-colors duration-500",
+    "group relative px-10 py-4 text-[10px] md:text-[11px] font-bold uppercase tracking-[0.3em] flex items-center justify-center gap-3 transition-colors duration-500 rounded-full",
     variants[variant],
     className
   );

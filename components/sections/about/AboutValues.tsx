@@ -9,22 +9,22 @@ const VALUES = [
   {
     icon: <ShieldCheck className="w-8 h-8" />,
     title: "Authenticity Guaranteed",
-    desc: "Every frame is sourced directly from authorized distributors and trusted global partners."
-  },
-  {
-    icon: <UserCheck className="w-8 h-8" />,
-    title: "Professional Expertise",
-    desc: "Experienced optometrists and trained stylists ensure exceptional eye care and personalized recommendations."
-  },
-  {
-    icon: <Heart className="w-8 h-8" />,
-    title: "Customer-First Experience",
-    desc: "We prioritize comfort, trust, service quality, and long-term customer relationships."
+    desc: "We source only genuine branded eyewear directly from authorized distributors, protecting you from imitations."
   },
   {
     icon: <Sparkles className="w-8 h-8" />,
-    title: "Luxury Optical Experience",
-    desc: "From premium eyewear collections to refined retail environments, every detail is thoughtfully designed."
+    title: "Quality Excellence",
+    desc: "Premium lenses, precise fitting, and rigorous quality checks ensure your complete satisfaction."
+  },
+  {
+    icon: <UserCheck className="w-8 h-8" />,
+    title: "Expert Guidance",
+    desc: "Our trained opticians and stylists help you find frames that perfectly complement your face and lifestyle."
+  },
+  {
+    icon: <Heart className="w-8 h-8" />,
+    title: "Customer-First Approach",
+    desc: "Free eye testing, ample parking, after-sales support, and genuine care for your optical health."
   }
 ];
 
@@ -41,7 +41,7 @@ export function AboutValues() {
             transition={{ duration: 1 }}
             className="meta-editorial mb-4"
           >
-            Core Principles
+            Our Core Values
           </m.span>
           <m.h2 
             initial={{ opacity: 0, y: 15 }}
@@ -50,14 +50,14 @@ export function AboutValues() {
             transition={{ duration: 1, delay: 0.1 }}
             className="h2-editorial"
           >
-            The Values That Define Emirates
+            The Principles That Guide Everything We Do
           </m.h2>
         </div>
 
         <GridStagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
           {VALUES.map((val, idx) => (
             <StaggerItem key={idx}>
-              <div className="group bg-white p-10 md:p-12 border border-black/5 hover:border-brand-gold/20 hover:shadow-[0_20px_50px_rgba(0,0,0,0.05)] transition-all duration-700 h-full flex flex-col">
+              <div className="group bg-white p-10 md:p-12 border border-black/5 rounded-3xl hover:border-brand-gold/20 hover:shadow-[0_20px_50px_rgba(0,0,0,0.05)] transition-all duration-700 h-full flex flex-col">
                 <div className="text-brand-gold mb-8 transition-transform duration-700 group-hover:scale-110 origin-left">
                   {val.icon}
                 </div>

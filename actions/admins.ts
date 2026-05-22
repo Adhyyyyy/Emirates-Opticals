@@ -118,6 +118,7 @@ export async function createBranchAdmin(data: {
   name: string;
   role: "BRANCH_ADMIN" | "STAFF";
   branchId: string;
+  password?: string;
 }) {
   const { data: { user } } = await getAuthSession();
   if (!user || user.app_metadata?.role !== "SUPER_ADMIN") {
@@ -133,7 +134,47 @@ export async function createBranchAdmin(data: {
       return { error: "Target branch not found in registry" };
     }
 
-    // 2. Check if user already exists
+    // 2. Initialize Supabase Admin client with service role key
+    const { createClient } = await import("@supabase/supabase-js");
+    const supabaseAdmin = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!,
+      {
+        auth: {
+          autoRefreshToken: false,
+          persistSession: false
+        }
+      }
+    );
+
+    // 3. Find if user exists in Supabase Auth
+    const { data: authUsers } = await supabaseAdmin.auth.admin.listUsers();
+    const existingAuthUser = authUsers?.users.find(u => u.email === data.email);
+
+    const userPassword = data.password || "Welcome@123";
+    let authUserId: string;
+
+    if (existingAuthUser) {
+      const { data: updated, error: updateErr } = await supabaseAdmin.auth.admin.updateUserById(existingAuthUser.id, {
+        password: userPassword,
+        app_metadata: { role: data.role, branchId: data.branchId },
+        user_metadata: { name: data.name }
+      });
+      if (updateErr) throw new Error(updateErr.message);
+      authUserId = updated.user.id;
+    } else {
+      const { data: created, error: createErr } = await supabaseAdmin.auth.admin.createUser({
+        email: data.email,
+        password: userPassword,
+        email_confirm: true,
+        app_metadata: { role: data.role, branchId: data.branchId },
+        user_metadata: { name: data.name }
+      });
+      if (createErr) throw new Error(createErr.message);
+      authUserId = created.user.id;
+    }
+
+    // 4. Synchronize in public.User table with identical UUID
     const existing = await prisma.user.findUnique({
       where: { email: data.email }
     });
@@ -144,6 +185,7 @@ export async function createBranchAdmin(data: {
       adminRecord = await prisma.user.update({
         where: { email: data.email },
         data: {
+          id: authUserId,
           name: data.name,
           role: data.role,
           branchId: data.branchId,
@@ -154,6 +196,7 @@ export async function createBranchAdmin(data: {
       // Create new database record
       adminRecord = await prisma.user.create({
         data: {
+          id: authUserId,
           email: data.email,
           name: data.name,
           role: data.role,
@@ -162,7 +205,7 @@ export async function createBranchAdmin(data: {
       });
     }
 
-    // 3. Log the creation event
+    // 5. Log the creation event
     await logActivity(
       "ADMIN_CREATED",
       `Super Admin created account for ${data.name} (${data.email}) assigned to branch: ${branch.name}`
@@ -170,9 +213,9 @@ export async function createBranchAdmin(data: {
 
     revalidatePath("/admin/admins");
     return { success: true, data: adminRecord };
-  } catch (error) {
+  } catch (error: any) {
     console.error("Create branch admin failed:", error);
-    return { error: "Failed to establish new admin record" };
+    return { error: error.message || "Failed to establish new admin record" };
   }
 }
 

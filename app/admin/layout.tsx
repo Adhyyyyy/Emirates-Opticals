@@ -37,6 +37,25 @@ export default async function AdminLayout({
   const role = user.app_metadata?.role || "CUSTOMER";
   const name = user.user_metadata?.name || user.email;
 
+  // Just-In-Time Database Profile Synchronization
+  if (role === "SUPER_ADMIN" || role === "BRANCH_ADMIN" || role === "STAFF") {
+    const prisma = (await import("@/lib/prisma")).default;
+    await prisma.user.upsert({
+      where: { email: user.email! },
+      update: {
+        role: role as any,
+        name: name,
+        branchId: user.app_metadata?.branchId || undefined,
+      },
+      create: {
+        email: user.email!,
+        role: role as any,
+        name: name,
+        branchId: user.app_metadata?.branchId || undefined,
+      },
+    });
+  }
+
   return (
     <SessionTimeoutProvider>
       <div className="min-h-screen bg-brand-pearl flex">

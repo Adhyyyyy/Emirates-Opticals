@@ -39,7 +39,7 @@ export function CareersProcess() {
         <GridStagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {STEPS.map((step, idx) => (
             <StaggerItem key={idx}>
-              <div className="relative p-10 bg-white border border-black/5 flex flex-col h-full group">
+              <div className="relative p-10 bg-white border border-black/5 rounded-3xl flex flex-col h-full group">
                 <span className="text-[10px] font-bold text-brand-gold uppercase tracking-[0.4em] mb-8 block">
                   Step 0{idx + 1}
                 </span>

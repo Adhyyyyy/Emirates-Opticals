@@ -68,7 +68,7 @@ export function CareersOpenPositions({ positions = [], branches = [] }: CareersO
                 <StaggerItem key={pos.id}>
                   <div 
                     className={cn(
-                      "border border-black/5 overflow-hidden transition-all duration-700",
+                      "border border-black/5 overflow-hidden transition-all duration-700 rounded-3xl",
                       isExpanded ? "bg-brand-pearl/45 border-brand-gold/25" : "bg-white hover:border-brand-gold/15"
                     )}
                   >

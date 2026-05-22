@@ -8,7 +8,7 @@ import { ParallaxImage } from "@/components/motion/ParallaxImage";
 
 export function AboutHero() {
   return (
-    <section className="relative w-full h-[90vh] min-h-[700px] flex items-center justify-center overflow-hidden bg-brand-charcoal">
+    <section className="relative w-full h-[75vh] min-h-[550px] flex flex-col justify-center items-center overflow-hidden bg-brand-charcoal pt-32 pb-16">
       {/* Cinematic Background Layer */}
       <div className="absolute inset-0 z-0">
         <ParallaxImage
@@ -27,34 +27,17 @@ export function AboutHero() {
       <div className="relative z-10 container-tight text-center">
         <div className="max-w-4xl mx-auto">
           <Reveal delay={0.2}>
-            <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.4em] text-brand-gold mb-8 block drop-shadow-md">
+            <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.4em] text-brand-gold mb-4 block drop-shadow-md">
               About Emirates Optician
             </span>
           </Reveal>
 
           <Reveal delay={0.4}>
-            <h1 className="text-4xl md:text-6xl lg:text-8xl font-normal text-white uppercase tracking-[-0.03em] leading-[0.9] mb-12 drop-shadow-lg font-heading">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-normal text-white uppercase tracking-[-0.03em] leading-[1.0] drop-shadow-lg font-heading">
               Kerala’s Trusted<br />
               <em className="italic font-light text-brand-gold/90">Luxury Eyewear</em><br />
               Destination
             </h1>
-          </Reveal>
-
-          <Reveal delay={0.6}>
-            <p className="text-sm md:text-lg text-white/80 font-light max-w-2xl mx-auto mb-16 leading-relaxed">
-              Emirates Optician brings together authentic global eyewear brands, advanced optical expertise, and personalized customer care — delivering premium eye care experiences across Kerala.
-            </p>
-          </Reveal>
-
-          <Reveal delay={0.8}>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <LuxuryButton className="bg-white text-black hover:bg-brand-gold hover:text-white px-12">
-                Explore Collections
-              </LuxuryButton>
-              <LuxuryButton variant="outline" className="border-white/40 text-white hover:bg-white hover:text-black px-12">
-                Book Eye Test
-              </LuxuryButton>
-            </div>
           </Reveal>
         </div>
       </div>

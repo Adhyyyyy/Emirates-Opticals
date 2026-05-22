@@ -1,7 +1,6 @@
 import React from "react";
 import { BrandsHero } from "@/components/sections/brands/BrandsHero";
 import { FullBrandGrid } from "@/components/sections/brands/FullBrandGrid";
-import { BrandAuthenticity } from "@/components/sections/brands/BrandAuthenticity";
 
 export const metadata = {
   title: "Global Luxury Brands | Authentic Eyewear - Emirates Optician",
@@ -13,7 +12,6 @@ export default function BrandsPage() {
     <div className="flex flex-col w-full">
       <BrandsHero />
       <FullBrandGrid />
-      <BrandAuthenticity />
     </div>
   );
 }

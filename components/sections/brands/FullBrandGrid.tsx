@@ -140,7 +140,7 @@ export function FullBrandGrid() {
         <GridStagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {BRANDS.map((brand, idx) => (
             <StaggerItem key={idx}>
-              <div className="group bg-brand-pearl border border-black/5 hover:border-brand-gold/30 transition-all duration-700 h-full flex flex-col overflow-hidden">
+              <div className="group bg-brand-pearl border border-black/5 hover:border-brand-gold/30 transition-all duration-700 h-full flex flex-col overflow-hidden rounded-3xl">
                 {/* Brand Visual (Abstract Mood) */}
                 <div className="relative h-48 overflow-hidden bg-brand-charcoal">
                   <img 

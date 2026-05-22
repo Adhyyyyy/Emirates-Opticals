@@ -18,25 +18,31 @@ import {
   ChevronRight, 
   Search, 
   SlidersHorizontal,
-  ChevronDown
+  ChevronDown,
+  Trash2
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { LuxuryButton } from "@/components/ui/LuxuryButton";
+import { useRouter } from "next/navigation";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   searchKey: string;
+  onDeleteSelected?: (selectedIds: string[]) => Promise<void>;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
   searchKey,
+  onDeleteSelected,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [rowSelection, setRowSelection] = React.useState({});
+  const [isDeleting, setIsDeleting] = React.useState(false);
+  const router = useRouter();
 
   const table = useReactTable({
     data,
@@ -55,6 +61,28 @@ export function DataTable<TData, TValue>({
     },
   });
 
+  const handleBulkDelete = async () => {
+    const selectedRows = table.getFilteredSelectedRowModel().rows;
+    const selectedIds = selectedRows.map((row: any) => (row.original as any).id);
+
+    if (selectedIds.length === 0) return;
+
+    if (confirm(`Execute bulk deletion protocol? This will remove ${selectedIds.length} selected assets from the global catalog.`)) {
+      setIsDeleting(true);
+      try {
+        if (onDeleteSelected) {
+          await onDeleteSelected(selectedIds);
+        }
+        table.resetRowSelection();
+        router.refresh();
+      } catch (err) {
+        console.error("Bulk delete error:", err);
+      } finally {
+        setIsDeleting(false);
+      }
+    }
+  };
+
   return (
     <div className="space-y-6">
       {/* Table Controls */}
@@ -72,6 +100,16 @@ export function DataTable<TData, TValue>({
         </div>
 
         <div className="flex items-center gap-3">
+          {onDeleteSelected && table.getFilteredSelectedRowModel().rows.length > 0 && (
+            <LuxuryButton 
+              onClick={handleBulkDelete}
+              disabled={isDeleting}
+              className="bg-red-50 hover:bg-red-100 text-red-600 px-6 py-4 text-[10px] uppercase tracking-widest flex items-center gap-2 border border-red-200 shadow-md font-bold transition-all duration-300"
+            >
+              <Trash2 className="w-3.5 h-3.5" />
+              {isDeleting ? "Deleting..." : `Delete Selected (${table.getFilteredSelectedRowModel().rows.length})`}
+            </LuxuryButton>
+          )}
           <LuxuryButton variant="outline" className="px-6 py-4 text-[10px] uppercase tracking-widest bg-white">
             <SlidersHorizontal className="w-3.5 h-3.5 mr-2" />
             Display Options

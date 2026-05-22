@@ -8,7 +8,7 @@ import { ParallaxImage } from "@/components/motion/ParallaxImage";
 
 export function ShopHero() {
   return (
-    <section className="relative w-full h-[70vh] min-h-[500px] flex items-center justify-center overflow-hidden bg-brand-charcoal">
+    <section className="relative w-full h-[75vh] min-h-[550px] flex flex-col justify-center items-center overflow-hidden bg-brand-charcoal pt-32 pb-16">
       {/* Cinematic Shop Visual */}
       <div className="absolute inset-0 z-0">
         <ParallaxImage
@@ -27,37 +27,17 @@ export function ShopHero() {
       <div className="relative z-10 container-tight text-center">
         <div className="max-w-4xl mx-auto">
           <Reveal delay={0.2}>
-            <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.4em] text-brand-gold mb-8 block drop-shadow-md">
+            <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.4em] text-brand-gold mb-4 block drop-shadow-md">
               Premium Optical Collections
             </span>
           </Reveal>
 
           <Reveal delay={0.4}>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-normal text-white uppercase tracking-[-0.03em] leading-[0.95] mb-10 drop-shadow-lg font-heading">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-normal text-white uppercase tracking-[-0.03em] leading-[1.0] drop-shadow-lg font-heading">
               Discover Luxury<br />
               Eyewear Designed<br />
               <em className="italic font-light text-brand-gold">For Every Style</em>
             </h1>
-          </Reveal>
-
-          <Reveal delay={0.6}>
-            <p className="text-sm md:text-base text-white/80 font-light max-w-2xl mx-auto mb-12 leading-relaxed">
-              Explore authentic luxury eyewear collections, premium sunglasses, and advanced optical solutions curated from globally trusted brands.
-            </p>
-          </Reveal>
-
-          <Reveal delay={0.8}>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <LuxuryButton 
-                onClick={() => document.getElementById('shop-main')?.scrollIntoView({ behavior: 'smooth' })}
-                className="bg-white text-black hover:bg-brand-gold hover:text-white px-12"
-              >
-                Start Exploring
-              </LuxuryButton>
-              <LuxuryButton variant="outline" className="border-white/40 text-white hover:bg-white hover:text-black px-12">
-                Book Eye Test
-              </LuxuryButton>
-            </div>
           </Reveal>
         </div>
       </div>
