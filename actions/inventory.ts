@@ -4,7 +4,6 @@ import { revalidatePath } from "next/cache";
 import prisma from "@/lib/prisma";
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
-import { canAccessRoute } from "@/lib/auth/rbac";
 
 /**
  * ENTERPRISE INVENTORY LOGIC
@@ -45,7 +44,7 @@ export async function getInventory(branchId?: string) {
           select: {
             name: true,
             brand: true,
-            sku: true, // Assuming SKU exists or is added
+            slug: true,
             price: true,
             images: { take: 1 }
           }
