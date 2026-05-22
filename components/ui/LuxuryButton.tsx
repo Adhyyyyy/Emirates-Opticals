@@ -48,7 +48,7 @@ export function LuxuryButton({
         whileTap={{ scale: 0.98 }}
         transition={{ duration: 0.4, ease: EASE_LUXURY }}
         onClick={onClick}
-        {...props}
+        {...(props as any)}
         className={commonClasses}
       >
         {React.cloneElement(child, {

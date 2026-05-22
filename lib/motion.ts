@@ -8,10 +8,10 @@ import { Variants } from "framer-motion";
  */
 
 // Signature Luxury Easing - Weighted, smooth deceleration
-export const EASE_LUXURY = [0.16, 1, 0.3, 1]; 
-export const EASE_EXPO = [0.19, 1, 0.22, 1];   // High-end fashion reveal
-export const EASE_CINEMATIC = [0.4, 0, 0.2, 1]; // Balanced, natural flow
-export const EASE_STARK = [0.19, 1, 0.22, 1];
+export const EASE_LUXURY: [number, number, number, number] = [0.16, 1, 0.3, 1]; 
+export const EASE_EXPO: [number, number, number, number] = [0.19, 1, 0.22, 1];   // High-end fashion reveal
+export const EASE_CINEMATIC: [number, number, number, number] = [0.4, 0, 0.2, 1]; // Balanced, natural flow
+export const EASE_STARK: [number, number, number, number] = [0.19, 1, 0.22, 1];
 
 export const DURATION_FAST = 0.4;
 export const DURATION_BASE = 0.8;
