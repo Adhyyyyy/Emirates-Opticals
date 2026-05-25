@@ -51,17 +51,17 @@ const SERVICES = [
 
 export function ServiceShowcase() {
   return (
-    <section className="bg-[#fcfcfc] section-padding border-y border-black/5">
-      <div className="container-tight">
+    <section className="bg-[#fcfcfc] py-20 md:py-24 border-y border-black/5" id="homepage-experience">
+      <div className="section-container">
         
         {/* Header Section */}
-        <div className="flex flex-col items-center text-center mb-10 md:mb-20">
+        <div className="flex flex-col items-center text-center">
           <m.span
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1 }}
-            className="meta-editorial mb-4"
+            className="text-[10px] uppercase tracking-[0.2em] text-neutral-400 mb-3 block"
           >
             The Emirates Experience
           </m.span>
@@ -70,34 +70,35 @@ export function ServiceShowcase() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1, delay: 0.1 }}
-            className="h2-editorial"
+            className="text-3xl md:text-4xl font-light text-neutral-900 tracking-tight mb-14 uppercase text-center"
           >
             Expert Care. Exceptional Luxury.
           </m.h2>
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-14 w-full">
           {SERVICES.map((service, idx) => (
             <m.div 
               key={service.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className="group flex flex-col items-start"
+              transition={{ duration: 0.8, delay: idx * 0.1 }}
+              className="group flex flex-col gap-4"
             >
-              <div className="w-12 h-12 flex items-center justify-center bg-[#f8f8f8] mb-8 group-hover:bg-black transition-colors duration-500">
-                <service.icon className="w-5 h-5 text-black group-hover:text-white transition-colors duration-500 stroke-[1.5]" />
+              {/* Identical Outlined Icon Container */}
+              <div className="w-11 h-11 rounded-xl border border-neutral-200 flex items-center justify-center bg-white text-neutral-700 group-hover:border-neutral-400 group-hover:bg-neutral-50 transition-all duration-200 shrink-0">
+                <service.icon className="w-5 h-5 stroke-[1.5]" />
               </div>
               
-              <h4 className="text-[13px] md:text-sm font-bold uppercase tracking-widest text-black mb-4">
+              {/* Feature Title */}
+              <h4 className="text-sm font-semibold uppercase tracking-[0.12em] text-neutral-900 mt-1">
                 {service.title}
               </h4>
               
-              <div className="w-12 h-[1px] bg-black/10 mb-6 group-hover:w-24 group-hover:bg-black transition-all duration-700" />
-              
-              <p className="body-editorial max-w-[320px]">
+              {/* Feature Description with subtle hover state */}
+              <p className="text-sm text-neutral-500 leading-relaxed font-light group-hover:text-neutral-700 transition-colors duration-200">
                 {service.description}
               </p>
             </m.div>

@@ -2,82 +2,83 @@
 
 import React from "react";
 import Link from "next/link";
-import { Phone, ArrowRight, Sparkles, MapPin } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="bg-white text-black pt-24 pb-12 border-t border-black/5 relative overflow-hidden" id="main-footer">
-      <div className="absolute inset-0 noise-overlay opacity-[0.02] pointer-events-none" />
-      
-      <div className="container-tight relative z-10">
+    <footer className="bg-neutral-950 text-white pt-20 pb-8 border-t border-white/10" id="main-footer">
+      <div className="max-w-[1140px] mx-auto px-4 md:px-8">
         
-        {/* Top Segment: Brand & Links */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 lg:gap-12 mb-24">
+        {/* Top Grid Segment */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 pb-16 border-b border-white/10">
           
           {/* Column 1: Brand Info */}
-          <div className="flex flex-col items-start max-w-sm">
-            <Link href="/" className="flex flex-col items-start leading-none gap-0.5 mb-6 group">
-              <span className="font-heading text-xl lg:text-2xl font-bold tracking-tight text-brand-charcoal uppercase transition-colors group-hover:text-brand-gold">
+          <div className="flex flex-col items-start">
+            <Link href="/" className="flex flex-col items-start leading-none gap-0.5 group">
+              <span className="font-heading text-xl lg:text-2xl font-bold tracking-tight text-white uppercase transition-colors group-hover:text-amber-400">
                 EMIRATES
               </span>
-              <span className="font-sans text-[9px] lg:text-[10px] uppercase tracking-[0.25em] text-brand-charcoal/80 group-hover:text-brand-charcoal transition-colors">
+              <span className="font-sans text-[9px] lg:text-[10px] uppercase tracking-[0.25em] text-neutral-400 group-hover:text-white transition-colors">
                 OPTICIANS
               </span>
             </Link>
-            <p className="text-xs text-brand-charcoal/50 font-light leading-relaxed mb-6">
+            <p className="text-sm text-neutral-500 leading-relaxed mt-4 max-w-[220px]">
               Leading eyewear & sunglasses specialist in Kerala. Authentic brands, professional eye testing, and expert styling across multiple locations.
             </p>
           </div>
 
           {/* Column 2: Quick Links */}
           <div>
-            <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-charcoal/30 mb-6">Quick Links</h4>
-            <ul className="flex flex-col gap-3.5">
+            <h4 className="text-[10px] uppercase tracking-[0.18em] text-neutral-500 font-medium mb-5">
+              Quick Links
+            </h4>
+            <ul className="flex flex-col gap-2">
               <li>
-                <Link href="/about" className="text-xs font-light text-brand-charcoal/70 hover:text-brand-charcoal transition-colors uppercase tracking-wider">
+                <Link href="/about" className="text-sm text-neutral-400 hover:text-white transition leading-loose cursor-pointer block">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/services" className="text-xs font-light text-brand-charcoal/70 hover:text-brand-charcoal transition-colors uppercase tracking-wider">
+                <Link href="/services" className="text-sm text-neutral-400 hover:text-white transition leading-loose cursor-pointer block">
                   Services
                 </Link>
               </li>
               <li>
-                <Link href="/brands" className="text-xs font-light text-brand-charcoal/70 hover:text-brand-charcoal transition-colors uppercase tracking-wider">
+                <Link href="/brands" className="text-sm text-neutral-400 hover:text-white transition leading-loose cursor-pointer block">
                   Brands
                 </Link>
               </li>
               <li>
-                <Link href="/branches" className="text-xs font-light text-brand-charcoal/70 hover:text-brand-charcoal transition-colors uppercase tracking-wider">
+                <Link href="/branches" className="text-sm text-neutral-400 hover:text-white transition leading-loose cursor-pointer block">
                   Branches
                 </Link>
               </li>
-              <li className="flex items-center gap-2">
-                <Link href="/careers" className="text-xs font-light text-brand-charcoal/70 hover:text-brand-charcoal transition-colors uppercase tracking-wider">
+              <li>
+                <Link href="/careers" className="text-sm text-neutral-400 hover:text-white transition leading-loose cursor-pointer block">
                   Careers
                 </Link>
-                <span className="bg-brand-gold text-white text-[8px] font-bold uppercase px-2 py-0.5 rounded-full tracking-widest leading-none scale-90">
-                  Hiring
-                </span>
+                <div className="text-[10px] text-amber-400 uppercase tracking-[0.1em] mt-1 select-none">
+                  We are hiring
+                </div>
               </li>
             </ul>
           </div>
 
           {/* Column 3: Services */}
           <div>
-            <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-charcoal/30 mb-6">Services</h4>
-            <ul className="flex flex-col gap-3.5">
-              <li className="text-xs font-light text-brand-charcoal/70 uppercase tracking-wider">
+            <h4 className="text-[10px] uppercase tracking-[0.18em] text-neutral-500 font-medium mb-5">
+              Services
+            </h4>
+            <ul className="flex flex-col gap-2">
+              <li className="text-sm text-neutral-400 hover:text-white transition leading-loose cursor-pointer">
                 Free Eye Testing
               </li>
-              <li className="text-xs font-light text-brand-charcoal/70 uppercase tracking-wider">
+              <li className="text-sm text-neutral-400 hover:text-white transition leading-loose cursor-pointer">
                 Quality Lenses
               </li>
-              <li className="text-xs font-light text-brand-charcoal/70 uppercase tracking-wider">
+              <li className="text-sm text-neutral-400 hover:text-white transition leading-loose cursor-pointer">
                 Frames & Styling
               </li>
-              <li className="text-xs font-light text-brand-charcoal/70 uppercase tracking-wider">
+              <li className="text-sm text-neutral-400 hover:text-white transition leading-loose cursor-pointer">
                 Sunglasses
               </li>
             </ul>
@@ -85,58 +86,43 @@ export function Footer() {
 
           {/* Column 4: Contact Hotline & Action */}
           <div className="flex flex-col items-start">
-            <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-charcoal/30 mb-6">Hotline Contact</h4>
+            <h4 className="text-[10px] uppercase tracking-[0.18em] text-neutral-500 font-medium mb-5">
+              Hotline Contact
+            </h4>
             <a 
               href="tel:+919682929968" 
-              className="group flex items-center gap-3 mb-6 hover:text-brand-gold transition-colors duration-500"
+              className="text-xl font-light text-white hover:text-amber-400 transition block"
             >
-              <div className="p-3 bg-brand-pearl border border-black/5 rounded-full group-hover:bg-brand-gold group-hover:text-white transition-colors duration-500">
-                <Phone className="w-4 h-4" />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-[9px] uppercase tracking-widest text-brand-charcoal/40 font-bold">Call Us</span>
-                <span className="text-sm font-bold tracking-wider text-brand-charcoal group-hover:text-brand-gold transition-colors font-sans">
-                  9682929968
-                </span>
-              </div>
+              +91 96829 29968
             </a>
             
             <Link 
               href="/branches" 
-              className="w-full bg-brand-charcoal hover:bg-brand-gold text-white font-bold text-[9px] uppercase tracking-widest py-3 px-5 rounded-xl shadow-lg transition-all duration-500 flex items-center justify-center gap-2 group/btn"
+              className="mt-4 bg-white text-neutral-950 text-xs uppercase tracking-[0.15em] px-6 py-3 rounded-full font-medium hover:bg-amber-400 hover:text-neutral-950 transition duration-300 inline-flex items-center justify-center"
             >
-              <span>Book Eye Test</span>
-              <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
+              Book Eye Test
             </Link>
           </div>
 
         </div>
 
-        {/* Bottom Segment: Copyright & Logo */}
-        <div className="pt-12 border-t border-black/5 flex flex-col md:flex-row items-center justify-between gap-8">
-          
-          <div className="flex items-center gap-6">
-            <div className="relative w-10 h-6">
-              <div className="absolute left-0 top-0 w-6 h-6 border-[1.5px] border-brand-charcoal rounded-full mix-blend-multiply opacity-25" />
-              <div className="absolute left-4 top-0 w-6 h-6 border-[1.5px] border-brand-charcoal rounded-full mix-blend-multiply opacity-25" />
-            </div>
-            <span className="text-[10px] text-brand-charcoal/40 font-light tracking-wider">
-              © 2026 Emirates Optician. All rights reserved.
-            </span>
-          </div>
+        {/* Bottom Bar segment */}
+        <div className="flex flex-col md:flex-row justify-between items-center pt-6 text-[11px] text-neutral-600 gap-4">
+          <span>
+            © 2026 Emirates Opticians. All rights reserved.
+          </span>
 
-          <div className="flex items-center gap-8">
-            <Link href="/about" className="text-[10px] text-brand-charcoal/40 hover:text-brand-charcoal transition-colors uppercase tracking-widest font-light">
+          <div className="flex items-center gap-6">
+            <Link href="/about" className="text-neutral-500 hover:text-white transition">
               About
             </Link>
-            <Link href="/contact" className="text-[10px] text-brand-charcoal/40 hover:text-brand-charcoal transition-colors uppercase tracking-widest font-light">
+            <Link href="/contact" className="text-neutral-500 hover:text-white transition">
               Contact
             </Link>
-            <Link href="/careers" className="text-[10px] text-brand-charcoal/40 hover:text-brand-charcoal transition-colors uppercase tracking-widest font-light">
+            <Link href="/careers" className="text-neutral-500 hover:text-white transition">
               Careers
             </Link>
           </div>
-
         </div>
 
       </div>

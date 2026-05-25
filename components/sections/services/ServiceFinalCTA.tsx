@@ -1,39 +1,70 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
-import { Reveal } from "@/components/motion/Reveal";
-import { LuxuryButton } from "@/components/ui/LuxuryButton";
+import { m } from "framer-motion";
+import Link from "next/link";
+import { Calendar, MapPin } from "lucide-react";
 
 export function ServiceFinalCTA() {
   return (
-    <section className="w-full bg-brand-pearl section-padding overflow-hidden relative border-t border-black/5">
-      <div className="container-tight">
-        <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
-          <Reveal>
-            <h2 className="text-5xl md:text-7xl lg:text-8xl font-extralight tracking-tight text-brand-charcoal uppercase font-heading leading-tight mb-10">
-              Ready to<br />
-              <em className="italic">Get Started?</em>
-            </h2>
-          </Reveal>
-          
-          <Reveal delay={0.2}>
-            <p className="text-brand-charcoal/60 font-light max-w-2xl mx-auto mb-16 leading-relaxed">
-              Visit any of our branches for a free eye test and personalized consultation.
-            </p>
-          </Reveal>
+    <section className="w-full bg-neutral-900 py-20 border-t border-white/10">
+      <div className="max-w-[1140px] mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center justify-between gap-12">
 
-          <Reveal delay={0.4}>
-            <div className="flex flex-col sm:flex-row items-center gap-6">
-              <LuxuryButton asChild className="bg-black text-white hover:bg-brand-gold px-12">
-                <a href="/book-eye-test">Book Free Eye Test</a>
-              </LuxuryButton>
-              <LuxuryButton asChild variant="secondary" className="px-12">
-                <a href="/branches">Find a Branch</a>
-              </LuxuryButton>
-            </div>
-          </Reveal>
+        <div className="flex flex-col max-w-[500px]">
+          <m.span
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="text-[10px] uppercase tracking-[0.2em] text-amber-400/70 mb-3 block font-medium"
+          >
+            Visit Us Today
+          </m.span>
+          <m.h2
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9, delay: 0.1 }}
+            className="text-4xl md:text-5xl font-light text-white leading-[1.1] tracking-tight mb-4 uppercase font-heading"
+          >
+            Ready to
+            <br />
+            <em className="font-serif italic text-amber-300/90" style={{ fontStyle: "italic" }}>Get Started?</em>
+          </m.h2>
+          <m.p
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-sm text-neutral-400 leading-relaxed max-w-[420px]"
+          >
+            Visit any of our branches for a free eye test and personalized consultation with our experts.
+          </m.p>
         </div>
+
+        <m.div
+          initial={{ opacity: 0, x: 20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.25 }}
+          className="flex flex-col md:flex-row gap-3 shrink-0"
+        >
+          <Link
+            href="/book-eye-test"
+            className="bg-amber-400 text-neutral-900 text-xs uppercase tracking-[0.15em] px-8 py-4 rounded-full font-medium hover:bg-amber-300 transition-all duration-200 inline-flex items-center justify-center gap-2"
+          >
+            <Calendar className="w-3.5 h-3.5" />
+            Book Free Eye Test
+          </Link>
+          <Link
+            href="/branches"
+            className="border border-white/20 text-white text-xs uppercase tracking-[0.15em] px-8 py-4 rounded-full hover:border-white hover:bg-white/5 transition-all duration-200 inline-flex items-center justify-center gap-2"
+          >
+            <MapPin className="w-3.5 h-3.5" />
+            Find a Branch
+          </Link>
+        </m.div>
+
       </div>
     </section>
   );

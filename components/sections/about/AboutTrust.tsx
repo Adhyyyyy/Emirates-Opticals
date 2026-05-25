@@ -1,8 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
-import { Reveal, GridStagger, StaggerItem } from "@/components/motion/Reveal";
+import { m } from "framer-motion";
 
 const STATS = [
   { label: "Branches", value: "10+" },
@@ -13,42 +12,59 @@ const STATS = [
 
 export function AboutTrust() {
   return (
-    <section className="w-full bg-brand-charcoal text-white py-24 md:py-32 overflow-hidden relative">
-      <div className="absolute inset-0 noise-overlay opacity-[0.05] pointer-events-none" />
-      
-      <div className="container-tight relative z-10">
-        <div className="max-w-4xl mx-auto text-center mb-24">
-          <Reveal>
-            <h2 className="text-4xl md:text-6xl font-extralight tracking-tight text-white uppercase font-heading mb-8">
-              Serving Customers<br />Across Kerala
-            </h2>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <p className="text-white/60 font-light max-w-2xl mx-auto leading-relaxed">
-              With multiple branches strategically located across Kerala, Emirates Optician makes premium optical experiences more accessible, convenient, and trusted than ever before.
-            </p>
-          </Reveal>
+    <section className="w-full bg-neutral-950 py-20 md:py-24 overflow-hidden">
+      <div className="max-w-[1140px] mx-auto px-4 md:px-8">
+
+        <div className="max-w-[700px] mx-auto text-center mb-16">
+          <m.span
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-[10px] uppercase tracking-[0.2em] text-neutral-500 mb-3 block"
+          >
+            Our Reach
+          </m.span>
+          <m.h2
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9, delay: 0.1 }}
+            className="text-3xl md:text-4xl font-light text-white tracking-tight uppercase mb-4"
+          >
+            Serving Customers Across Kerala
+          </m.h2>
+          <m.p
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-sm text-neutral-500 font-light max-w-2xl mx-auto leading-relaxed"
+          >
+            With multiple branches strategically located across Kerala, Emirates Optician makes premium optical experiences more accessible, convenient, and trusted than ever before.
+          </m.p>
         </div>
 
-        <GridStagger className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center max-w-[1140px] mx-auto">
           {STATS.map((stat, idx) => (
-            <StaggerItem key={idx}>
-              <div className="flex flex-col items-center text-center group">
-                <motion.span 
-                  className="text-4xl md:text-6xl font-light text-brand-gold mb-4 font-heading tracking-tighter"
-                  whileInView={{ opacity: [0, 1], y: [20, 0] }}
-                  transition={{ duration: 1, delay: idx * 0.1 }}
-                >
-                  {stat.value}
-                </motion.span>
-                <div className="w-10 h-[1px] bg-white/20 mb-4 group-hover:w-full group-hover:bg-brand-gold transition-all duration-700" />
-                <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.4em] text-white/40">
-                  {stat.label}
-                </span>
-              </div>
-            </StaggerItem>
+            <m.div
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: idx * 0.1 }}
+              className="flex flex-col items-center gap-2"
+            >
+              <span className="text-4xl md:text-5xl font-light text-amber-400 font-heading tracking-tighter">
+                {stat.value}
+              </span>
+              <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-neutral-500">
+                {stat.label}
+              </span>
+            </m.div>
           ))}
-        </GridStagger>
+        </div>
+
       </div>
     </section>
   );

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { Sparkles, CheckCircle2, AlertTriangle, UploadCloud } from "lucide-react";
 import { applyForJob } from "@/actions/cms-careers";
 import { cn } from "@/lib/utils";
@@ -86,28 +86,46 @@ export function CareersForm({ branches = [] }: CareersFormProps) {
   };
 
   return (
-    <section className="w-full bg-white section-padding overflow-hidden text-black border-t border-black/5" id="apply-form">
-      <div className="container-tight">
+    <section className="w-full bg-white py-20 md:py-24 overflow-hidden text-neutral-900 border-t border-neutral-100" id="apply-form">
+      <div className="max-w-[1140px] mx-auto px-4 md:px-8">
         
-        <div className="flex flex-col items-center text-center mb-16 md:mb-24">
-          <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-brand-gold mb-4 block">
+        <div className="flex flex-col items-center text-center mb-14">
+          <m.span
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-[10px] uppercase tracking-[0.2em] text-neutral-400 mb-3 block"
+          >
             Apply Now
-          </span>
-          <h2 className="text-3xl md:text-5xl font-bold text-brand-charcoal uppercase tracking-tighter font-heading">
+          </m.span>
+          <m.h2
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9, delay: 0.1 }}
+            className="text-3xl md:text-4xl font-light text-neutral-900 tracking-tight uppercase"
+          >
             Join Our Team
-          </h2>
-          <p className="text-sm text-brand-charcoal/40 font-light mt-4 max-w-xl mx-auto leading-relaxed">
+          </m.h2>
+          <m.p
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-sm text-neutral-500 font-light mt-4 max-w-xl mx-auto leading-relaxed"
+          >
             Take the first step towards a rewarding career in optical retail. Submit your application below.
-          </p>
+          </m.p>
         </div>
 
-        <div className="max-w-3xl mx-auto bg-brand-pearl/20 border border-black/5 p-8 md:p-16 rounded-[2.5rem] relative">
-          <form onSubmit={handleSubmit} className="space-y-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="max-w-3xl mx-auto bg-[#FAF8F5] border border-neutral-200 p-8 md:p-12 rounded-2xl relative">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               
               {/* Full Name */}
               <div className="flex flex-col gap-2">
-                <label className="text-[10px] font-bold uppercase tracking-widest text-brand-charcoal/60">
+                <label className="text-[10px] font-bold uppercase tracking-widest text-neutral-500">
                   Full Name *
                 </label>
                 <input
@@ -117,29 +135,29 @@ export function CareersForm({ branches = [] }: CareersFormProps) {
                   value={formData.name}
                   onChange={handleInputChange}
                   placeholder="Your full name"
-                  className="w-full bg-white border border-black/5 rounded-xl px-5 py-4 text-xs font-medium tracking-tight focus:border-brand-gold/30 outline-none transition-all duration-300"
+                  className="w-full bg-white border border-neutral-200 rounded-xl px-5 py-3.5 text-xs focus:border-amber-400 outline-none transition-all duration-300"
                 />
               </div>
 
               {/* Phone Number */}
               <div className="flex flex-col gap-2">
-                <label className="text-[10px] font-bold uppercase tracking-widest text-brand-charcoal/60">
+                <label className="text-[10px] font-bold uppercase tracking-widest text-neutral-500">
                   Phone Number *
                 </label>
                 <input
-                  type="tel"
+                  type="focus"
                   name="phone"
                   required
                   value={formData.phone}
                   onChange={handleInputChange}
                   placeholder="Your phone number"
-                  className="w-full bg-white border border-black/5 rounded-xl px-5 py-4 text-xs font-medium tracking-tight focus:border-brand-gold/30 outline-none transition-all duration-300"
+                  className="w-full bg-white border border-neutral-200 rounded-xl px-5 py-3.5 text-xs focus:border-amber-400 outline-none transition-all duration-300"
                 />
               </div>
 
               {/* Email Address */}
               <div className="flex flex-col gap-2">
-                <label className="text-[10px] font-bold uppercase tracking-widest text-brand-charcoal/60">
+                <label className="text-[10px] font-bold uppercase tracking-widest text-neutral-500">
                   Email Address *
                 </label>
                 <input
@@ -149,13 +167,13 @@ export function CareersForm({ branches = [] }: CareersFormProps) {
                   value={formData.email}
                   onChange={handleInputChange}
                   placeholder="your.email@example.com"
-                  className="w-full bg-white border border-black/5 rounded-xl px-5 py-4 text-xs font-medium tracking-tight focus:border-brand-gold/30 outline-none transition-all duration-300"
+                  className="w-full bg-white border border-neutral-200 rounded-xl px-5 py-3.5 text-xs focus:border-amber-400 outline-none transition-all duration-300"
                 />
               </div>
 
               {/* Position Applying For */}
               <div className="flex flex-col gap-2">
-                <label className="text-[10px] font-bold uppercase tracking-widest text-brand-charcoal/60">
+                <label className="text-[10px] font-bold uppercase tracking-widest text-neutral-500">
                   Position Applying For *
                 </label>
                 <select
@@ -163,7 +181,7 @@ export function CareersForm({ branches = [] }: CareersFormProps) {
                   required
                   value={formData.position}
                   onChange={handleInputChange}
-                  className="w-full bg-white border border-black/5 rounded-xl px-5 py-4 text-xs font-medium tracking-tight focus:border-brand-gold/30 outline-none transition-all duration-300 appearance-none cursor-pointer"
+                  className="w-full bg-white border border-neutral-200 rounded-xl px-5 py-3.5 text-xs focus:border-amber-400 outline-none transition-all duration-300 appearance-none cursor-pointer"
                 >
                   <option value="">Select Position</option>
                   <option value="Optometrist">Optometrist</option>
@@ -175,7 +193,7 @@ export function CareersForm({ branches = [] }: CareersFormProps) {
 
               {/* Years of Experience */}
               <div className="flex flex-col gap-2">
-                <label className="text-[10px] font-bold uppercase tracking-widest text-brand-charcoal/60">
+                <label className="text-[10px] font-bold uppercase tracking-widest text-neutral-500">
                   Years of Experience *
                 </label>
                 <select
@@ -183,7 +201,7 @@ export function CareersForm({ branches = [] }: CareersFormProps) {
                   required
                   value={formData.experience}
                   onChange={handleInputChange}
-                  className="w-full bg-white border border-black/5 rounded-xl px-5 py-4 text-xs font-medium tracking-tight focus:border-brand-gold/30 outline-none transition-all duration-300 appearance-none cursor-pointer"
+                  className="w-full bg-white border border-neutral-200 rounded-xl px-5 py-3.5 text-xs focus:border-amber-400 outline-none transition-all duration-300 appearance-none cursor-pointer"
                 >
                   <option value="">Select Experience</option>
                   <option value="Freshers / Under 1 year">Freshers / Under 1 year</option>
@@ -195,7 +213,7 @@ export function CareersForm({ branches = [] }: CareersFormProps) {
 
               {/* Current Location */}
               <div className="flex flex-col gap-2">
-                <label className="text-[10px] font-bold uppercase tracking-widest text-brand-charcoal/60">
+                <label className="text-[10px] font-bold uppercase tracking-widest text-neutral-500">
                   Current Location *
                 </label>
                 <input
@@ -205,20 +223,20 @@ export function CareersForm({ branches = [] }: CareersFormProps) {
                   value={formData.location}
                   onChange={handleInputChange}
                   placeholder="City, District"
-                  className="w-full bg-white border border-black/5 rounded-xl px-5 py-4 text-xs font-medium tracking-tight focus:border-brand-gold/30 outline-none transition-all duration-300"
+                  className="w-full bg-white border border-neutral-200 rounded-xl px-5 py-3.5 text-xs focus:border-amber-400 outline-none transition-all duration-300"
                 />
               </div>
 
               {/* Preferred Branch */}
               <div className="flex flex-col gap-2 md:col-span-2">
-                <label className="text-[10px] font-bold uppercase tracking-widest text-brand-charcoal/60">
+                <label className="text-[10px] font-bold uppercase tracking-widest text-neutral-500">
                   Preferred Branch (Optional)
                 </label>
                 <select
                   name="preferredBranch"
                   value={formData.preferredBranch}
                   onChange={handleInputChange}
-                  className="w-full bg-white border border-black/5 rounded-xl px-5 py-4 text-xs font-medium tracking-tight focus:border-brand-gold/30 outline-none transition-all duration-300 appearance-none cursor-pointer"
+                  className="w-full bg-white border border-neutral-200 rounded-xl px-5 py-3.5 text-xs focus:border-amber-400 outline-none transition-all duration-300 appearance-none cursor-pointer"
                 >
                   <option value="">Any branch / No preference</option>
                   {branches.map(branch => (
@@ -229,22 +247,22 @@ export function CareersForm({ branches = [] }: CareersFormProps) {
 
               {/* Resume File Upload */}
               <div className="flex flex-col gap-2 md:col-span-2">
-                <label className="text-[10px] font-bold uppercase tracking-widest text-brand-charcoal/60">
+                <label className="text-[10px] font-bold uppercase tracking-widest text-neutral-500">
                   Upload Resume (PDF, DOC, DOCX - Max 5MB)
                 </label>
-                <div className="relative group border border-dashed border-black/10 hover:border-brand-gold/30 rounded-2xl p-6 transition-all duration-500 bg-white/50 flex flex-col items-center justify-center text-center gap-3 cursor-pointer">
+                <div className="relative group border border-dashed border-neutral-300 hover:border-amber-400 rounded-2xl p-6 transition-all duration-300 bg-white/50 flex flex-col items-center justify-center text-center gap-3 cursor-pointer">
                   <input
                     type="file"
                     accept=".pdf,.doc,.docx"
                     onChange={handleFileChange}
                     className="absolute inset-0 opacity-0 cursor-pointer w-full h-full z-10"
                   />
-                  <UploadCloud className="w-8 h-8 text-brand-charcoal/30 group-hover:text-brand-gold transition-colors duration-500" />
+                  <UploadCloud className="w-8 h-8 text-neutral-400 group-hover:text-amber-500 transition-colors duration-300" />
                   <div className="flex flex-col gap-1">
-                    <span className="text-[11px] font-medium text-brand-charcoal/80">
+                    <span className="text-[11px] font-semibold text-neutral-700">
                       {resumeFile ? resumeFile.name : "Click to upload or drag and drop"}
                     </span>
-                    <span className="text-[9px] text-brand-charcoal/40 font-light">
+                    <span className="text-[9px] text-neutral-400 font-light">
                       {resumeFile ? `${(resumeFile.size / (1024 * 1024)).toFixed(2)} MB` : "PDF, DOC, DOCX (Max 5MB)"}
                     </span>
                   </div>
@@ -253,7 +271,7 @@ export function CareersForm({ branches = [] }: CareersFormProps) {
 
               {/* Cover Letter */}
               <div className="flex flex-col gap-2 md:col-span-2">
-                <label className="text-[10px] font-bold uppercase tracking-widest text-brand-charcoal/60">
+                <label className="text-[10px] font-bold uppercase tracking-widest text-neutral-500">
                   Cover Letter / Additional Information (Optional)
                 </label>
                 <textarea
@@ -262,7 +280,7 @@ export function CareersForm({ branches = [] }: CareersFormProps) {
                   value={formData.coverLetter}
                   onChange={handleInputChange}
                   placeholder="Tell us about yourself, your experience, and why you'd like to join Emirates Optician..."
-                  className="w-full bg-white border border-black/5 rounded-2xl px-5 py-4 text-xs font-medium tracking-tight focus:border-brand-gold/30 outline-none transition-all duration-300 resize-none"
+                  className="w-full bg-white border border-neutral-200 rounded-2xl px-5 py-4 text-xs focus:border-amber-400 outline-none transition-all duration-300 resize-none"
                 />
               </div>
 
@@ -274,14 +292,14 @@ export function CareersForm({ branches = [] }: CareersFormProps) {
                 type="submit"
                 disabled={isSubmitting}
                 className={cn(
-                  "w-full md:w-64 bg-brand-charcoal hover:bg-brand-gold text-white font-bold text-[10px] uppercase tracking-widest py-4.5 rounded-full shadow-xl transition-all duration-500 flex items-center justify-center gap-2",
+                  "bg-neutral-900 text-white text-xs uppercase tracking-[0.15em] px-8 py-4 rounded-full font-medium hover:bg-neutral-700 transition-all duration-200 inline-flex items-center justify-center gap-2",
                   isSubmitting && "opacity-50 cursor-not-allowed"
                 )}
               >
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>{isSubmitting ? "Submitting..." : "Submit Application"}</span>
               </button>
-              <p className="text-[9px] text-brand-charcoal/30 text-center font-light leading-relaxed">
+              <p className="text-[9px] text-neutral-400 text-center font-light leading-relaxed">
                 By submitting this application, you agree to be contacted by Emirates Optician regarding employment opportunities.
               </p>
             </div>
@@ -290,33 +308,30 @@ export function CareersForm({ branches = [] }: CareersFormProps) {
           {/* Success / Error Toast Overlays */}
           <AnimatePresence>
             {submitStatus && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
+              <m.div
+                initial={{ opacity: 0, scale: 0.98 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                className={cn(
-                  "absolute inset-0 bg-white/95 backdrop-blur-md rounded-[2.5rem] flex flex-col items-center justify-center p-8 text-center z-20",
-                  submitStatus.type === "success" ? "text-brand-charcoal" : "text-brand-charcoal"
-                )}
+                exit={{ opacity: 0, scale: 0.98 }}
+                className="absolute inset-0 bg-white/95 backdrop-blur-md rounded-2xl flex flex-col items-center justify-center p-8 text-center z-20"
               >
                 {submitStatus.type === "success" ? (
-                  <CheckCircle2 className="w-16 h-16 text-emerald-500 mb-6" />
+                  <CheckCircle2 className="w-12 h-12 text-emerald-500 mb-6" />
                 ) : (
-                  <AlertTriangle className="w-16 h-16 text-amber-500 mb-6" />
+                  <AlertTriangle className="w-12 h-12 text-amber-500 mb-6" />
                 )}
-                <h3 className="text-xl font-bold uppercase tracking-widest mb-4">
+                <h3 className="text-lg font-semibold uppercase tracking-[0.15em] mb-4 text-neutral-900">
                   {submitStatus.type === "success" ? "Thank You!" : "Application Error"}
                 </h3>
-                <p className="text-sm font-light text-brand-charcoal/70 max-w-md mb-8 leading-relaxed">
+                <p className="text-sm font-light text-neutral-500 max-w-md mb-8 leading-relaxed">
                   {submitStatus.message}
                 </p>
                 <button
                   onClick={() => setSubmitStatus(null)}
-                  className="bg-brand-charcoal text-white hover:bg-brand-gold text-[10px] uppercase tracking-widest font-bold py-3 px-8 rounded-full transition-colors duration-500"
+                  className="bg-neutral-900 text-white text-xs uppercase tracking-[0.15em] px-8 py-3 rounded-full font-medium hover:bg-neutral-700 transition-all duration-200"
                 >
                   Dismiss
                 </button>
-              </motion.div>
+              </m.div>
             )}
           </AnimatePresence>
         </div>

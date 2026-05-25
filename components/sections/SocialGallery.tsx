@@ -3,15 +3,16 @@
 import React from "react";
 import { m } from "framer-motion";
 import Image from "next/image";
+
 // Inline custom Instagram SVG Icon
-function InstagramIcon({ className = "w-5 h-5", strokeWidth = 1.5 }: { className?: string; strokeWidth?: number }) {
+function InstagramIcon({ className = "w-5 h-5" }: { className?: string }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth={strokeWidth}
+      strokeWidth={1.5}
       strokeLinecap="round"
       strokeLinejoin="round"
       className={className}
@@ -34,50 +35,68 @@ interface SocialGalleryProps {
   initialPosts?: InstagramPost[];
 }
 
-const STATIC_FALLBACK_POSTS = [
-  { id: "s1", imageUrl: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&q=80&w=800", permalink: "https://instagram.com/emirates__optician", caption: "Premium collections reveal." },
-  { id: "s2", imageUrl: "https://images.unsplash.com/photo-1577803645773-f96470509666?auto=format&fit=crop&q=80&w=800", permalink: "https://instagram.com/emirates__optician", caption: "Editorial design excellence." },
-  { id: "s3", imageUrl: "https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?auto=format&fit=crop&q=80&w=800", permalink: "https://instagram.com/emirates__optician", caption: "Seaside clarity. Polarized lenses." },
-  { id: "s4", imageUrl: "https://images.unsplash.com/photo-1591076482161-42ce6da69f67?auto=format&fit=crop&q=80&w=800", permalink: "https://instagram.com/emirates__optician", caption: "Luxury boutique experience." },
-  { id: "s5", imageUrl: "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&q=80&w=800", permalink: "https://instagram.com/emirates__optician", caption: "Structural lightweight acetate." },
-  { id: "s6", imageUrl: "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&q=80&w=800", permalink: "https://instagram.com/emirates__optician", caption: "Advanced vision care." },
+const STATIC_FALLBACK_POSTS: InstagramPost[] = [
+  { 
+    id: "s1", 
+    imageUrl: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&q=80&w=800", 
+    permalink: "https://instagram.com/emirates__optician", 
+    caption: "Premium Collections Reveal Atelier Kerala" 
+  },
+  { 
+    id: "s2", 
+    imageUrl: "https://images.unsplash.com/photo-1577803645773-f96470509666?auto=format&fit=crop&q=80&w=800", 
+    permalink: "https://instagram.com/emirates__optician", 
+    caption: "Editorial Design Excellence Curation" 
+  },
+  { 
+    id: "s3", 
+    imageUrl: "https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?auto=format&fit=crop&q=80&w=800", 
+    permalink: "https://instagram.com/emirates__optician", 
+    caption: "Seaside Clarity Polarized Lenses" 
+  }
 ];
 
+const limitCaption = (text: string, maxWords: number): string => {
+  const words = text.trim().split(/\s+/);
+  if (words.length <= maxWords) return text;
+  return words.slice(0, maxWords).join(" ") + "...";
+};
+
 export function SocialGallery({ initialPosts = [] }: SocialGalleryProps) {
-  const posts = initialPosts.length >= 6 ? initialPosts : STATIC_FALLBACK_POSTS;
+  const posts = initialPosts.length >= 3 ? initialPosts : STATIC_FALLBACK_POSTS;
 
   return (
-    <section className="w-full bg-[#0A0A0A] section-padding overflow-hidden border-t border-white/10">
-      <div className="container-tight">
+    <section className="w-full bg-neutral-950 py-20 overflow-hidden" id="homepage-instagram">
+      <div className="section-container">
 
-        {/* Editorial Header */}
-        <div className="flex flex-col items-center text-center mb-14 md:mb-20">
+        {/* Minimal Header Area */}
+        <div className="max-w-[600px] mx-auto text-center flex flex-col items-center gap-3 mb-12">
+          
           <m.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="w-12 h-12 flex items-center justify-center border border-[#C9A84C]/30 rounded-full mb-8"
           >
-            <InstagramIcon className="w-5 h-5 text-[#C9A84C]" strokeWidth={1.5} />
+            <InstagramIcon className="w-8 h-8 text-neutral-500" />
           </m.div>
 
           <m.span
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 1 }}
-            className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-[#C9A84C] mb-4 block"
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-medium block"
           >
-            The Visual Journal
+            Visual Journal
           </m.span>
 
           <m.h2
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.1 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-normal text-white uppercase tracking-[-0.03em] leading-[0.9] font-heading mb-6"
+            transition={{ duration: 1, delay: 0.2 }}
+            className="text-4xl md:text-5xl font-light text-white tracking-tight font-heading uppercase"
           >
             Life in Focus
           </m.h2>
@@ -89,96 +108,108 @@ export function SocialGallery({ initialPosts = [] }: SocialGalleryProps) {
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="group inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.3em] text-white/40 hover:text-[#C9A84C] transition-colors duration-500"
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="text-xs text-neutral-500 tracking-widest hover:text-white transition-colors duration-300 font-medium"
           >
-            <span className="w-6 h-[1px] bg-current transition-all duration-500 group-hover:w-10" />
-            @emirates__optician
-            <span className="w-6 h-[1px] bg-current transition-all duration-500 group-hover:w-10" />
+            @emirates_optician
           </m.a>
         </div>
 
-        {/* Asymmetric Mosaic Grid */}
-        <div className="grid grid-cols-12 grid-rows-2 gap-3 md:gap-4 h-[500px] md:h-[680px]">
+        {/* Asymmetric 3-Column Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 w-full">
 
-          {/* Post 0 — Large left, spans 2 rows */}
-          <GalleryTile post={posts[0]} className="col-span-5 row-span-2" delay={0} />
+          {/* Post 0 — Hero Left spans 2 columns & rows on desktop */}
+          <m.a
+            href={posts[0].permalink}
+            target="_blank"
+            rel="noopener noreferrer"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9 }}
+            className="md:col-span-2 md:row-span-2 h-[320px] md:h-[520px] max-h-[520px] rounded-2xl overflow-hidden relative group bg-neutral-900 block"
+          >
+            <Image
+              src={posts[0].imageUrl}
+              alt={posts[0].caption || "Life in Focus"}
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
+              sizes="(max-width: 768px) 100vw, 66vw"
+            />
+            {/* Caption overlay (only for dynamic hero image) */}
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 rounded-b-2xl z-10">
+              <p className="text-xs text-white uppercase tracking-[0.1em] font-medium max-w-[90%] truncate">
+                {limitCaption(posts[0].caption, 5)}
+              </p>
+            </div>
+            {/* Subtle hovering vignette */}
+            <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-all duration-300 rounded-2xl" />
+          </m.a>
 
-          {/* Post 1 — Top middle */}
-          <GalleryTile post={posts[1]} className="col-span-4 row-span-1" delay={0.08} />
+          {/* Post 1 — Top Right Card */}
+          <m.a
+            href={posts[1].permalink}
+            target="_blank"
+            rel="noopener noreferrer"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9, delay: 0.15 }}
+            className="md:col-span-1 aspect-[4/3] rounded-2xl overflow-hidden relative group bg-neutral-900 block"
+          >
+            <Image
+              src={posts[1].imageUrl}
+              alt={posts[1].caption || "Life in Focus"}
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
+              sizes="(max-width: 768px) 100vw, 33vw"
+            />
+            <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-all duration-300 rounded-2xl" />
+          </m.a>
 
-          {/* Post 2 — Top right */}
-          <GalleryTile post={posts[2]} className="col-span-3 row-span-1" delay={0.16} />
-
-          {/* Post 3 — Bottom middle (wide) */}
-          <GalleryTile post={posts[3]} className="col-span-3 row-span-1" delay={0.24} />
-
-          {/* Post 4 — Bottom right tall */}
-          <GalleryTile post={posts[4]} className="col-span-4 row-span-1" delay={0.32} />
+          {/* Post 2 — Bottom Right Card */}
+          <m.a
+            href={posts[2].permalink}
+            target="_blank"
+            rel="noopener noreferrer"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9, delay: 0.3 }}
+            className="md:col-span-1 aspect-[4/3] rounded-2xl overflow-hidden relative group bg-neutral-900 block"
+          >
+            <Image
+              src={posts[2].imageUrl}
+              alt={posts[2].caption || "Life in Focus"}
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
+              sizes="(max-width: 768px) 100vw, 33vw"
+            />
+            <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-all duration-300 rounded-2xl" />
+          </m.a>
 
         </div>
 
-        {/* CTA */}
+        {/* Pill Outline Follow CTA */}
         <m.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.9, delay: 0.4 }}
-          className="mt-14 md:mt-20 flex justify-center"
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="mt-10 flex justify-center"
         >
           <a
             href="https://instagram.com/emirates__optician"
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-4 py-4 px-10 border border-white/20 text-white text-[10px] md:text-[11px] font-bold uppercase tracking-[0.25em] hover:bg-white hover:text-black transition-all duration-700"
+            className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.15em] text-white border border-white/20 px-8 py-3 rounded-full hover:bg-white hover:text-black transition-all duration-300 font-bold"
           >
-            <InstagramIcon className="w-4 h-4 transition-transform duration-500 group-hover:scale-110" strokeWidth={1.5} />
-            Follow the Journey
+            <InstagramIcon className="w-4 h-4" />
+            Follow on Instagram
           </a>
         </m.div>
 
       </div>
     </section>
-  );
-}
-
-function GalleryTile({ post, className, delay }: { post: any; className: string; delay: number }) {
-  return (
-    <m.a
-      href={post.permalink}
-      target="_blank"
-      rel="noopener noreferrer"
-      initial={{ opacity: 0, scale: 1.04 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 1.1, delay, ease: [0.16, 1, 0.3, 1] }}
-      className={`relative overflow-hidden group bg-white/5 block ${className}`}
-    >
-      <Image
-        src={post.imageUrl}
-        alt={post.caption || "Emirates Optician"}
-        fill
-        className="object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110"
-        sizes="(max-width: 768px) 50vw, 33vw"
-      />
-
-      {/* Cinematic hover overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700" />
-
-      {/* Caption reveal */}
-      <div className="absolute inset-x-0 bottom-0 p-5 md:p-7 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]">
-        <div className="w-6 h-[1px] bg-[#C9A84C] mb-3" />
-        <p className="text-[9px] md:text-[10px] text-white/90 uppercase tracking-[0.2em] font-bold leading-relaxed">
-          {post.caption}
-        </p>
-      </div>
-
-      {/* Instagram icon badge */}
-      <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-        <div className="w-8 h-8 flex items-center justify-center bg-black/40 backdrop-blur-sm border border-white/20">
-          <InstagramIcon className="w-3.5 h-3.5 text-[#C9A84C]" strokeWidth={1.5} />
-        </div>
-      </div>
-    </m.a>
   );
 }

@@ -47,10 +47,10 @@ export function ProductCard({ product }: ProductCardProps) {
 
   return (
     <div 
-      className="group relative bg-white border border-black/5 rounded-2xl overflow-hidden transition-all duration-700 hover:border-brand-gold/20 hover:shadow-xl flex flex-col h-full"
+      className="group relative bg-white border border-black/5 rounded-2xl p-1.5 transition-all duration-700 hover:border-brand-gold/20 hover:shadow-2xl flex flex-col h-full"
     >
       {/* Product Image Section */}
-      <Link href={`/product/${product.slug}`} className="block relative aspect-[4/3] overflow-hidden bg-brand-pearl/10">
+      <Link href={`/product/${product.slug}`} className="block relative aspect-[4/3] overflow-hidden bg-brand-pearl/10 rounded-2xl">
         <img 
           src={product.images[0]} 
           alt={product.name}

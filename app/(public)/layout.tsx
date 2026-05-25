@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/layouts/Navbar";
 import { Footer } from "@/components/common/Footer";
+import { QuickContactBar } from "@/components/common/QuickContactBar";
 
 export default function PublicLayout({
   children,
@@ -13,6 +14,7 @@ export default function PublicLayout({
         {children}
       </main>
       <Footer />
+      <QuickContactBar />
     </>
   );
 }

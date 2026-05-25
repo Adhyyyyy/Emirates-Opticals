@@ -1,190 +1,123 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
-import { m, AnimatePresence } from "framer-motion";
-import { CollectionCard } from "@/components/ui/CollectionCard";
+import React from "react";
+import Link from "next/link";
 
 const COLLECTIONS = [
   {
     id: 1,
     title: "Elevate your sport game",
-    linkText: "Discover Maui Jim Sunglasses",
+    subtitle: "Maui Jim Collection",
     href: "/collections/maui-jim",
     image: "https://images.unsplash.com/photo-1577803645773-f96470509666?auto=format&fit=crop&q=80&w=1200"
   },
   {
     id: 2,
     title: "Travel in style",
-    linkText: "Accessorize your look",
+    subtitle: "Atelier Accessories",
     href: "/collections/accessories",
     image: "https://images.unsplash.com/photo-1591076482161-42ce6da69f67?auto=format&fit=crop&q=80&w=1200"
   },
   {
     id: 3,
-    title: "New Prescription? Discover latest frames",
-    linkText: "New Arrivals",
+    title: "Discover latest designer frames",
+    subtitle: "Luxury Optical Frames",
     href: "/collections/optical",
     image: "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&q=80&w=1200"
-  },
-  {
-    id: 4,
-    title: "New Collection Alert!",
-    linkText: "DITA Eyewear on Emirates",
-    href: "/collections/dita",
-    image: "https://images.unsplash.com/photo-1554151228-14d9def656e4?auto=format&fit=crop&q=80&w=1200"
   }
 ];
 
-// Slide direction: +1 = going forward (slide left), -1 = going back (slide right)
-const variants = {
-  enter: (dir: number) => ({
-    x: dir > 0 ? "100%" : "-100%",
-    opacity: 0,
-    scale: 0.94,
-  }),
-  center: {
-    x: 0,
-    opacity: 1,
-    scale: 1,
-  },
-  exit: (dir: number) => ({
-    x: dir > 0 ? "-100%" : "100%",
-    opacity: 0,
-    scale: 0.94,
-  }),
-};
-
 export function FeaturedCollections() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [direction, setDirection] = useState(1);
-  const [isMobile, setIsMobile] = useState(false);
-  const [isPaused, setIsPaused] = useState(false);
-
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, []);
-
-  const advance = useCallback((dir: number) => {
-    setDirection(dir);
-    setActiveIndex((prev) =>
-      (prev + dir + COLLECTIONS.length) % COLLECTIONS.length
-    );
-  }, []);
-
-  // Auto-advance loop
-  useEffect(() => {
-    if (!isMobile || isPaused) return;
-    const timer = setInterval(() => advance(1), 3500);
-    return () => clearInterval(timer);
-  }, [isMobile, isPaused, advance]);
-
-  // Swipe gesture detection
-  let touchStartX = 0;
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX = e.touches[0].clientX;
-    setIsPaused(true);
-  };
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    const delta = touchStartX - e.changedTouches[0].clientX;
-    if (Math.abs(delta) > 40) advance(delta > 0 ? 1 : -1);
-    // Resume auto-loop after 6s idle
-    setTimeout(() => setIsPaused(false), 6000);
-  };
-
   return (
-    <section className="bg-[#0A0A0A] overflow-hidden section-padding border-y border-[#1E1E1E]">
-      <div className="container-tight">
+    <section className="bg-[#FAF9F6] overflow-hidden section-padding border-y border-black/5">
+      <div className="section-container">
 
         {/* Section Header */}
-        <div className="flex flex-col items-center text-center mb-10 md:mb-24">
-          <m.span
-            suppressHydrationWarning
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1 }}
-            className="meta-editorial-light mb-4"
-          >
+        <div className="flex flex-col items-center text-center mb-10 md:mb-16">
+          <span className="meta-editorial mb-4">
             Curated Architecture
-          </m.span>
-          <m.h2
-            suppressHydrationWarning
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.1 }}
-            className="h2-editorial-light"
-          >
+          </span>
+          <h2 className="h2-editorial">
             Featured Collections
-          </m.h2>
+          </h2>
         </div>
 
-        {/* ── MOBILE: Single-card AnimatePresence carousel ── */}
-        {isMobile ? (
-          <div
-            className="relative w-full overflow-hidden"
-            onTouchStart={handleTouchStart}
-            onTouchEnd={handleTouchEnd}
+        {/* Controlled Asymmetric Magazine Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 md:max-h-[620px] w-full">
+          
+          {/* Left Card: Row Span 2, max height 620px */}
+          <Link 
+            href={COLLECTIONS[0].href}
+            className="md:row-span-2 h-[400px] md:h-full max-h-[620px] rounded-2xl overflow-hidden relative group border border-black/5 block"
           >
-            <AnimatePresence mode="wait" custom={direction}>
-              <m.div
-                key={activeIndex}
-                custom={direction}
-                variants={variants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{
-                  x: { type: "spring", stiffness: 280, damping: 30 },
-                  opacity: { duration: 0.25 },
-                  scale: { duration: 0.35 },
-                }}
-                className="w-full"
-              >
-                <CollectionCard {...COLLECTIONS[activeIndex]} />
-              </m.div>
-            </AnimatePresence>
-
-            {/* Progress dots */}
-            <div className="flex items-center justify-center gap-2 mt-8">
-              {COLLECTIONS.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => { setDirection(idx > activeIndex ? 1 : -1); setActiveIndex(idx); }}
-                  aria-label={`Go to slide ${idx + 1}`}
-                  style={{
-                    width: activeIndex === idx ? 24 : 6,
-                    height: 6,
-                    borderRadius: 3,
-                    background: activeIndex === idx
-                      ? "#C9A84C"
-                      : "rgba(255,255,255,0.2)",
-                    transition: "all 0.35s ease",
-                  }}
-                />
-              ))}
+            <img 
+              src={COLLECTIONS[0].image} 
+              alt={COLLECTIONS[0].title}
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            {/* Gradient Scrim */}
+            <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/75 via-black/35 to-transparent z-[1]" />
+            
+            {/* Text Overlay */}
+            <div className="absolute bottom-0 p-5 text-white z-[2] flex flex-col items-start">
+              <span className="text-[10px] tracking-[0.15em] uppercase opacity-70 mb-1 font-bold">
+                {COLLECTIONS[0].subtitle}
+              </span>
+              <h3 className="text-base md:text-lg font-medium leading-snug text-white">
+                {COLLECTIONS[0].title}
+              </h3>
             </div>
-          </div>
-        ) : (
-          /* ── DESKTOP: Static 2-column grid ── */
-          <div className="grid grid-cols-2 gap-x-12 gap-y-20">
-            {COLLECTIONS.map((collection, index) => (
-              <m.div
-                key={collection.id}
-                suppressHydrationWarning
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.9, delay: index * 0.1 }}
-              >
-                <CollectionCard {...collection} />
-              </m.div>
-            ))}
-          </div>
-        )}
+          </Link>
+
+          {/* Right Top Card */}
+          <Link 
+            href={COLLECTIONS[1].href}
+            className="rounded-2xl overflow-hidden relative group h-[290px] md:h-[300px] border border-black/5 block"
+          >
+            <img 
+              src={COLLECTIONS[1].image} 
+              alt={COLLECTIONS[1].title}
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            {/* Gradient Scrim */}
+            <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/75 via-black/35 to-transparent z-[1]" />
+            
+            {/* Text Overlay */}
+            <div className="absolute bottom-0 p-5 text-white z-[2] flex flex-col items-start">
+              <span className="text-[10px] tracking-[0.15em] uppercase opacity-70 mb-1 font-bold">
+                {COLLECTIONS[1].subtitle}
+              </span>
+              <h3 className="text-base md:text-lg font-medium leading-snug text-white">
+                {COLLECTIONS[1].title}
+              </h3>
+            </div>
+          </Link>
+
+          {/* Right Bottom Card */}
+          <Link 
+            href={COLLECTIONS[2].href}
+            className="rounded-2xl overflow-hidden relative group h-[290px] md:h-[300px] border border-black/5 block"
+          >
+            <img 
+              src={COLLECTIONS[2].image} 
+              alt={COLLECTIONS[2].title}
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            {/* Gradient Scrim */}
+            <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/75 via-black/35 to-transparent z-[1]" />
+            
+            {/* Text Overlay */}
+            <div className="absolute bottom-0 p-5 text-white z-[2] flex flex-col items-start">
+              <span className="text-[10px] tracking-[0.15em] uppercase opacity-70 mb-1 font-bold">
+                {COLLECTIONS[2].subtitle}
+              </span>
+              <h3 className="text-base md:text-lg font-medium leading-snug text-white">
+                {COLLECTIONS[2].title}
+              </h3>
+            </div>
+          </Link>
+
+        </div>
 
       </div>
     </section>

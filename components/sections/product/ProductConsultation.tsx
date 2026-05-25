@@ -14,7 +14,7 @@ export function ProductConsultation() {
         <div className="flex flex-col lg:flex-row gap-20 items-center">
           
           <div className="lg:w-1/2">
-            <div className="relative aspect-[4/5] overflow-hidden group">
+            <div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden group">
               <ParallaxImage 
                 src="https://images.unsplash.com/photo-1508296695146-257a814070b4?auto=format&fit=crop&q=80&w=1200"
                 alt="Expert Styling Guidance"

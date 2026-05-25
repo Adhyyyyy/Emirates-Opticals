@@ -78,7 +78,7 @@ export function LuxuryButton({
       transition={{ duration: 0.4, ease: EASE_LUXURY }}
       onClick={onClick}
       type={type}
-      {...props}
+      {...(props as any)}
       className={commonClasses}
     >
       {children}

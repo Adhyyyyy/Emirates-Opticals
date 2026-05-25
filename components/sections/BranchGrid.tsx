@@ -1,9 +1,10 @@
 "use client";
 
 import React from "react";
+import { m } from "framer-motion";
+import Link from "next/link";
 import { BranchCard } from "@/components/ui/BranchCard";
-import { Reveal, GridStagger, StaggerItem } from "@/components/motion/Reveal";
-import { LuxuryButton } from "@/components/ui/LuxuryButton";
+import { Calendar, Phone } from "lucide-react";
 
 const KERALA_BRANCHES = [
   {
@@ -120,27 +121,41 @@ const KERALA_BRANCHES = [
 
 export function BranchGrid() {
   return (
-    <section className="bg-white py-24 md:py-32">
-      <div className="max-w-[1800px] mx-auto px-6 md:px-10">
+    <section className="bg-white py-20 md:py-24" id="brand-grid">
+      <div className="max-w-[1140px] mx-auto px-4 md:px-8">
         
         {/* Editorial Heading */}
-        <div className="flex flex-col items-center text-center mb-16 md:mb-24">
-          <Reveal delay={0.2}>
-            <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.4em] text-black/40 mb-4 block">
-              10 Convenient Locations
-            </span>
-          </Reveal>
-          <Reveal delay={0.4}>
-            <h2 className="h2-editorial text-black">
-              Our Destination Boutiques
-            </h2>
-          </Reveal>
+        <div className="flex flex-col items-center text-center mb-14">
+          <m.span
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-[10px] md:text-xs font-medium uppercase tracking-[0.2em] text-neutral-400 mb-3 block"
+          >
+            10 Convenient Locations
+          </m.span>
+          <m.h2
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9, delay: 0.1 }}
+            className="text-3xl md:text-4xl font-light text-neutral-900 tracking-tight uppercase"
+          >
+            Our Destination Boutiques
+          </m.h2>
         </div>
 
         {/* Cinematic Grid */}
-        <GridStagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-12 mb-32">
-          {KERALA_BRANCHES.map((branch) => (
-            <StaggerItem key={branch.id}>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+          {KERALA_BRANCHES.map((branch, idx) => (
+            <m.div
+              key={branch.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: idx * 0.05 }}
+            >
               <BranchCard 
                 name={branch.name}
                 address={branch.address}
@@ -151,33 +166,53 @@ export function BranchGrid() {
                 coordinates={branch.coordinates}
                 slug={branch.slug}
               />
-            </StaggerItem>
+            </m.div>
           ))}
-        </GridStagger>
+        </div>
 
         {/* Book Your Visit Today CTA Section */}
-        <div className="border-t border-black/5 pt-24 pb-12">
-          <div className="max-w-4xl mx-auto text-center">
-            <Reveal>
-              <h2 className="text-4xl md:text-6xl font-extralight tracking-tight text-black uppercase font-heading mb-6">
-                Book Your <em className="italic text-brand-gold">Visit Today</em>
-              </h2>
-            </Reveal>
-            <Reveal delay={0.2}>
-              <p className="text-black/60 font-light max-w-xl mx-auto mb-12 leading-relaxed">
-                Free eye testing available at all branches. Book an appointment or walk in anytime.
-              </p>
-            </Reveal>
-            <Reveal delay={0.4}>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-                <LuxuryButton asChild className="bg-black text-white hover:bg-brand-gold px-12">
-                  <a href="/book-eye-test">Book Free Eye Test</a>
-                </LuxuryButton>
-                <LuxuryButton asChild variant="secondary" className="px-12">
-                  <a href="tel:9682929968">Call 9682929968</a>
-                </LuxuryButton>
-              </div>
-            </Reveal>
+        <div className="border-t border-neutral-100 pt-20">
+          <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
+            <m.h2
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="text-3xl md:text-4xl font-light text-neutral-900 tracking-tight mb-4 uppercase font-heading"
+            >
+              Book Your <em className="font-serif italic text-amber-500" style={{ fontStyle: "italic" }}>Visit Today</em>
+            </m.h2>
+            <m.p
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-sm text-neutral-500 font-light max-w-xl mx-auto mb-10 leading-relaxed"
+            >
+              Free eye testing available at all branches. Book an appointment or walk in anytime.
+            </m.p>
+            <m.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="flex flex-col sm:flex-row gap-3"
+            >
+              <Link
+                href="/book-eye-test"
+                className="bg-neutral-900 text-white text-xs uppercase tracking-[0.15em] px-8 py-4 rounded-full font-medium hover:bg-neutral-700 transition-all duration-200 inline-flex items-center justify-center gap-2"
+              >
+                <Calendar className="w-3.5 h-3.5" />
+                Book Free Eye Test
+              </Link>
+              <a
+                href="tel:9682929968"
+                className="border border-neutral-300 text-neutral-700 text-xs uppercase tracking-[0.15em] px-8 py-4 rounded-full hover:border-neutral-900 transition-all duration-200 inline-flex items-center justify-center gap-2"
+              >
+                <Phone className="w-3.5 h-3.5" />
+                Call 9682929968
+              </a>
+            </m.div>
           </div>
         </div>
 

@@ -1,33 +1,32 @@
 "use client";
 
 import React from "react";
-import { GridStagger, StaggerItem, Reveal } from "@/components/motion/Reveal";
-import { motion as m } from "framer-motion";
+import { m } from "framer-motion";
 import { ShieldCheck, Eye, UserCheck, MapPin, HeartHandshake } from "lucide-react";
 
 const WHY_CHOOSE = [
   {
-    icon: <ShieldCheck className="w-7 h-7" />,
+    icon: ShieldCheck,
     title: "Authentic International Brands",
     desc: "Direct partnerships with PRADA, Ray-Ban, Oakley, Cartier, and more — no imitations, ever."
   },
   {
-    icon: <Eye className="w-7 h-7" />,
+    icon: Eye,
     title: "Free Professional Eye Testing",
     desc: "State-of-the-art equipment and experienced optometrists at every branch."
   },
   {
-    icon: <UserCheck className="w-7 h-7" />,
+    icon: UserCheck,
     title: "Expert Styling Consultation",
     desc: "Personalized guidance to find frames that enhance your unique features and style."
   },
   {
-    icon: <MapPin className="w-7 h-7" />,
+    icon: MapPin,
     title: "Convenient Locations",
     desc: "Multiple branches across Kerala with ample parking and easy accessibility."
   },
   {
-    icon: <HeartHandshake className="w-7 h-7" />,
+    icon: HeartHandshake,
     title: "After-Sales Support",
     desc: "Warranty coverage, adjustments, and ongoing care for your eyewear investment."
   }
@@ -35,16 +34,16 @@ const WHY_CHOOSE = [
 
 export function AboutWhyChoose() {
   return (
-    <section className="w-full bg-white section-padding overflow-hidden">
-      <div className="container-tight">
+    <section className="w-full bg-white py-20 md:py-24 overflow-hidden">
+      <div className="max-w-[1140px] mx-auto px-4 md:px-8">
 
-        <div className="flex flex-col items-center text-center mb-16 md:mb-24">
+        <div className="flex flex-col items-center text-center mb-14">
           <m.span
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1 }}
-            className="meta-editorial mb-4"
+            className="text-[10px] uppercase tracking-[0.2em] text-neutral-400 mb-3 block"
           >
             Why Emirates Optician
           </m.span>
@@ -53,29 +52,34 @@ export function AboutWhyChoose() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1, delay: 0.1 }}
-            className="h2-editorial"
+            className="text-3xl md:text-4xl font-light text-neutral-900 tracking-tight uppercase"
           >
             Why Choose Emirates Optician?
           </m.h2>
         </div>
 
-        <GridStagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {WHY_CHOOSE.map((item, idx) => (
-            <StaggerItem key={idx}>
-              <div className="group flex flex-col gap-6 p-10 border border-black/5 rounded-3xl hover:border-brand-gold/20 hover:shadow-[0_20px_50px_rgba(0,0,0,0.05)] transition-all duration-700 h-full">
-                <div className="text-brand-gold transition-transform duration-700 group-hover:scale-110 origin-left">
-                  {item.icon}
-                </div>
-                <h3 className="text-lg font-bold text-brand-charcoal uppercase tracking-tighter">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-brand-charcoal/60 font-light leading-relaxed">
-                  {item.desc}
-                </p>
+            <m.div
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: idx * 0.08 }}
+              className="group flex flex-col gap-5 p-8 border border-neutral-200 rounded-2xl hover:border-neutral-300 hover:shadow-sm transition-all duration-300"
+            >
+              <div className="w-11 h-11 rounded-xl border border-neutral-200 flex items-center justify-center bg-white text-neutral-700 group-hover:border-neutral-400 group-hover:bg-neutral-50 transition-all duration-200 shrink-0">
+                <item.icon className="w-5 h-5 stroke-[1.5]" />
               </div>
-            </StaggerItem>
+              <h3 className="text-sm font-semibold uppercase tracking-[0.12em] text-neutral-900">
+                {item.title}
+              </h3>
+              <p className="text-sm text-neutral-500 leading-relaxed font-light group-hover:text-neutral-700 transition-colors duration-200">
+                {item.desc}
+              </p>
+            </m.div>
           ))}
-        </GridStagger>
+        </div>
 
       </div>
     </section>

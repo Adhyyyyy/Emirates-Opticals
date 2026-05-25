@@ -46,8 +46,8 @@ export function ProductMediaUpload({ value, onChange }: ProductMediaUploadProps)
   const onDrop = useCallback(async (e: React.DragEvent | React.ChangeEvent<HTMLInputElement>) => {
     let rawFiles: File[] = [];
     
-    if ("target" in e && e.target.files) {
-      rawFiles = Array.from(e.target.files);
+    if ("target" in e && (e.target as any).files) {
+      rawFiles = Array.from((e.target as any).files);
     } else if ("dataTransfer" in e) {
       e.preventDefault();
       rawFiles = Array.from(e.dataTransfer.files);

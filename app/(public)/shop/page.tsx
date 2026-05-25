@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { ShopFilters } from "@/components/sections/shop/ShopFilters";
 import { ProductGrid } from "@/components/sections/shop/ProductGrid";
 import { ShopFinalCTA } from "@/components/sections/shop/ShopFinalCTA";
@@ -70,10 +70,19 @@ export default async function ShopPage() {
   return (
     <div className="flex flex-col w-full min-h-screen">
       <main className="bg-white pt-36 pb-20" id="shop-main">
-        <div className="container-tight">
+        <div className="section-container">
           <div className="flex flex-col lg:flex-row gap-12">
-            <ShopFilters />
-            <ProductGrid products={products} />
+            <Suspense fallback={
+              <div className="flex-1 flex items-center justify-center py-32 text-neutral-400 w-full">
+                <div className="text-center space-y-4">
+                  <div className="w-10 h-10 border-2 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto" />
+                  <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-neutral-400">Loading Premium Collections...</p>
+                </div>
+              </div>
+            }>
+              <ShopFilters />
+              <ProductGrid products={products} />
+            </Suspense>
           </div>
         </div>
       </main>
@@ -82,3 +91,4 @@ export default async function ShopPage() {
     </div>
   );
 }
+

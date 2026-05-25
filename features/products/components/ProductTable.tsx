@@ -11,7 +11,8 @@ import {
   ArrowUpDown,
   Edit,
   Trash2,
-  ExternalLink
+  ExternalLink,
+  ShoppingBag
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";

@@ -1,7 +1,7 @@
 "use client";
 
 import { m } from "framer-motion";
-import { Star, Quote } from "lucide-react";
+import { Star } from "lucide-react";
 
 const TESTIMONIALS = [
   {
@@ -27,27 +27,27 @@ const TESTIMONIALS = [
   },
 ];
 
+const getInitials = (name: string) => {
+  const parts = name.trim().split(/\s+/);
+  if (parts.length >= 2) {
+    return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+  }
+  return name.slice(0, 2).toUpperCase();
+};
+
 export function Testimonials() {
   return (
-    <section className="bg-[#F7F5F0] section-padding overflow-hidden border-t border-[#E8E4DC]">
-      <div className="container-tight">
+    <section className="bg-[#FAF8F5] py-20 overflow-hidden border-t border-neutral-200">
+      <div className="section-container">
         
-        {/* Editorial Header */}
-        <div className="flex flex-col items-center text-center mb-10 md:mb-20">
-          <m.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="w-12 h-12 flex items-center justify-center bg-white/5 rounded-full mb-8"
-          >
-            <Quote className="w-5 h-5 text-white/40" />
-          </m.div>
+        {/* Centered Section Header */}
+        <div className="flex flex-col items-center text-center mb-12">
           <m.span 
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1 }}
-            className="meta-editorial mb-4"
+            className="meta-editorial mb-3 text-center"
           >
             Patron Experiences
           </m.span>
@@ -56,43 +56,55 @@ export function Testimonials() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1, delay: 0.1 }}
-            className="h2-editorial"
+            className="h2-editorial text-center"
           >
             The Voice of our Patrons
           </m.h2>
         </div>
 
         {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-12 w-full">
           {TESTIMONIALS.map((patron, idx) => (
             <m.div 
               key={patron.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: idx * 0.15 }}
-              className="group flex flex-col items-center text-center p-8 border border-black/5 rounded-3xl hover:bg-white transition-all duration-700"
+              transition={{ duration: 0.8, delay: idx * 0.15 }}
+              className="bg-white rounded-2xl border border-neutral-200 p-8 flex flex-col gap-5 min-h-[240px] justify-between shadow-sm hover:shadow-md transition-all duration-300"
             >
-              {/* Rating */}
-              <div className="flex gap-1 mb-8">
-                {[...Array(patron.rating)].map((_, i) => (
-                  <Star key={i} className="w-3 h-3 fill-[#C9A84C] stroke-none opacity-50 group-hover:opacity-100 transition-opacity" />
-                ))}
+              {/* Top Section: Stars and Quote */}
+              <div className="flex flex-col gap-4">
+                {/* Stars Row */}
+                <div className="flex gap-1 text-amber-400 text-base">
+                  {[...Array(patron.rating)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 fill-current text-amber-400 stroke-none" />
+                  ))}
+                </div>
+
+                {/* Left-Aligned Quote */}
+                <p className="text-[15px] text-neutral-800 leading-relaxed font-light text-left">
+                  <span className="font-serif italic text-lg text-neutral-400 mr-0.5 select-none">“</span>
+                  {patron.quote}
+                </p>
               </div>
 
-              {/* Quote */}
-              <p className="text-lg md:text-xl font-light font-heading italic leading-relaxed mb-10 text-[#0A0A0A]/70 group-hover:text-[#0A0A0A] transition-colors">
-                "{patron.quote}"
-              </p>
-
-              {/* Author */}
-              <div className="flex flex-col items-center gap-1">
-                <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#0A0A0A]">
-                  {patron.author}
-                </span>
-                <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-[#0A0A0A]/40">
-                  {patron.location}
-                </span>
+              {/* Bottom Section: Author Row */}
+              <div className="flex items-center gap-3 mt-auto pt-4 border-t border-neutral-100">
+                {/* Initial-based Avatar */}
+                <div className="w-9 h-9 rounded-full bg-neutral-900 flex items-center justify-center text-white text-xs font-medium shrink-0 select-none">
+                  {getInitials(patron.author)}
+                </div>
+                
+                {/* Author Name and Location */}
+                <div className="flex flex-col text-left">
+                  <span className="text-sm font-medium text-neutral-900">
+                    {patron.author}
+                  </span>
+                  <span className="text-xs text-neutral-400 uppercase tracking-[0.1em] mt-0.5">
+                    {patron.location}
+                  </span>
+                </div>
               </div>
             </m.div>
           ))}

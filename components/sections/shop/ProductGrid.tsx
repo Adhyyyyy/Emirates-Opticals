@@ -22,6 +22,7 @@ const SORT_OPTIONS = [
 ];
 
 export function ProductGrid({ products }: ProductGridProps) {
+  const [isMounted, setIsMounted] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [sortBy, setSortBy] = useState<"new_arrivals" | "alphabetical_az" | "alphabetical_za" | "price_low_high" | "price_high_low">("new_arrivals");
@@ -32,6 +33,11 @@ export function ProductGrid({ products }: ProductGridProps) {
   const productsPerPage = 12;
 
   const searchParams = useSearchParams();
+
+  // Handle client-side mounting
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   // Active filters derived from URL parameters
   const activeFilters = useMemo(() => {
@@ -49,6 +55,8 @@ export function ProductGrid({ products }: ProductGridProps) {
 
   // Reactive Multi-criteria Filtering
   const filteredProducts = useMemo(() => {
+    if (!isMounted) return products;
+
     return products.filter((product) => {
       // 1. Search Bar Match
       if (searchQuery) {

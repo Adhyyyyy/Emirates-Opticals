@@ -92,11 +92,23 @@
 
 @layer utilities {
   .section-padding {
-    @apply py-16 md:py-32;
+    @apply py-16 md:py-24;
   }
 
   .container-tight {
-    @apply max-w-[1800px] mx-auto px-6 md:px-10;
+    @apply max-w-[1140px] mx-auto px-4 md:px-8 w-full;
+  }
+
+  .section-container {
+    @apply max-w-[1440px] mx-auto px-4 md:px-10 lg:px-12 w-full;
+  }
+
+  .eyebrow-editorial {
+    @apply text-[10px] uppercase tracking-[0.18em] text-neutral-400 font-medium mb-3 block;
+  }
+
+  .title-editorial {
+    @apply text-3xl md:text-4xl font-light tracking-tight text-neutral-900 font-heading;
   }
 
   .h1-editorial {
@@ -104,27 +116,27 @@
   }
 
   .h2-editorial {
-    @apply text-3xl md:text-5xl font-extralight tracking-[0.1em] text-brand-charcoal uppercase font-heading;
+    @apply text-3xl md:text-[4xl] font-light tracking-tight text-neutral-900 font-heading;
   }
 
   .h2-editorial-light {
-    @apply text-3xl md:text-5xl font-extralight tracking-[0.1em] text-white uppercase font-heading;
+    @apply text-3xl md:text-[4xl] font-light tracking-tight text-white font-heading;
   }
 
   .h2-editorial-italic {
-    @apply text-3xl md:text-5xl font-light font-heading tracking-tight italic text-brand-charcoal;
+    @apply text-3xl md:text-[4xl] font-light font-heading tracking-tight italic text-neutral-900;
   }
 
   .h2-editorial-italic-light {
-    @apply text-3xl md:text-5xl font-light font-heading tracking-tight italic text-white;
+    @apply text-3xl md:text-[4xl] font-light font-heading tracking-tight italic text-white;
   }
 
   .meta-editorial {
-    @apply text-[10px] md:text-xs font-bold uppercase tracking-[0.4em] text-brand-charcoal/40 block;
+    @apply text-[10px] uppercase tracking-[0.18em] text-neutral-400 font-medium mb-3 block;
   }
 
   .meta-editorial-light {
-    @apply text-[10px] md:text-xs font-bold uppercase tracking-[0.4em] text-white/40 block;
+    @apply text-[10px] uppercase tracking-[0.18em] text-white/40 font-medium mb-3 block;
   }
 
   .body-editorial {
@@ -268,4 +280,9 @@ html.lenis, html.lenis body {
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+}
+
+/* Site-wide Apple-Style Widescreen Grid Override */
+.max-w-\[1140px\] {
+  max-width: 1440px !important;
 }

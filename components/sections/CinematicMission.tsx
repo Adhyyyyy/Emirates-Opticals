@@ -4,7 +4,6 @@ import React, { useRef } from "react";
 import { m, useInView, useMotionValue, useSpring } from "framer-motion";
 import { useEffect } from "react";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 
 const STATS = [
   { value: 20, suffix: "+", label: "Years of Expertise" },
@@ -43,20 +42,20 @@ function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
 
 export function CinematicMission() {
   return (
-    <section className="w-full bg-[#0A0A0A] section-padding border-t border-[#1E1E1E] overflow-hidden relative">
-
+    <section className="w-full bg-neutral-950 py-20 md:py-28 overflow-hidden relative" id="homepage-promise">
       {/* Subtle radial glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(201,168,76,0.04),transparent_65%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(245,158,11,0.02),transparent_65%)] pointer-events-none" />
 
-      <div className="container-luxury relative z-10 flex flex-col items-center text-center">
-
+      {/* Main Inner Container */}
+      <div className="max-w-[800px] mx-auto px-4 text-center flex flex-col items-center gap-8 relative z-10">
+        
         {/* Eyebrow */}
         <m.span
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-[11px] font-bold uppercase tracking-[0.35em] text-[#C9A84C] mb-8 block"
+          className="text-[10px] uppercase tracking-[0.2em] text-amber-400/70"
         >
           Our Promise
         </m.span>
@@ -67,45 +66,45 @@ export function CinematicMission() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="text-4xl md:text-6xl lg:text-[72px] font-light font-heading uppercase tracking-tight text-white leading-[1.05] max-w-4xl mb-8"
+          className="text-5xl md:text-7xl font-light text-white leading-[1.05] tracking-tight font-heading"
         >
           Change the way<br />
-          <em className="italic text-[#C9A84C]/80 font-extralight">you see</em> the world.
+          <em className="italic text-amber-400/70 font-light font-serif">you see</em> the world.
         </m.h2>
 
-        {/* Sub-copy */}
-        <m.p
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, delay: 0.2 }}
-          className="text-[15px] font-light text-white/50 max-w-xl leading-relaxed mb-16"
-        >
-          For over two decades, Emirates Opticians has defined optical luxury across Kerala — pairing precision science with the world's most coveted eyewear.
-        </m.p>
-
-        {/* CTA */}
-        <m.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.35 }}
-          className="mb-24"
-        >
-          <Link
-            href="/about"
-            className="inline-flex items-center gap-3 text-[13px] font-bold uppercase tracking-[0.1em] text-white border border-white/20 hover:border-[#C9A84C] hover:text-[#C9A84C] px-8 h-[48px] transition-all duration-300"
+        {/* Sub-copy & CTA */}
+        <div className="flex flex-col items-center">
+          <m.p
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="text-base text-neutral-400 leading-relaxed max-w-[520px] mx-auto mt-2 font-light"
           >
-            Our Story
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-        </m.div>
+            For over two decades, Emirates Opticians has defined optical luxury across Kerala — pairing precision science with the world&apos;s most coveted eyewear.
+          </m.p>
 
-        {/* Gold Divider */}
-        <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-[#C9A84C]/30 to-transparent mb-24" />
+          <m.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.35 }}
+            className="mt-6"
+          >
+            <Link
+              href="/about"
+              className="inline-flex items-center px-8 py-3 border border-white/20 text-white text-xs uppercase tracking-[0.15em] rounded-full hover:bg-white hover:text-black transition-all duration-300 font-bold"
+            >
+              Our Story
+            </Link>
+          </m.div>
+        </div>
 
-        {/* Animated Stat Counters */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-0 w-full">
+      </div>
+
+      {/* Stats Row (below, full width) */}
+      <div className="section-container relative z-10">
+        <div className="border-t border-white/10 mt-16 pt-10 grid grid-cols-2 md:grid-cols-4 gap-8 text-center w-full">
           {STATS.map((stat, idx) => (
             <m.div
               key={stat.label}
@@ -113,18 +112,17 @@ export function CinematicMission() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: idx * 0.12 }}
-              className="flex flex-col items-center gap-3 md:border-r md:border-[#1E1E1E] last:border-0 px-6"
+              className="flex flex-col items-center"
             >
-              <span className="text-[42px] md:text-5xl font-extralight font-heading text-white leading-none tracking-tight">
+              <span className="text-5xl md:text-6xl font-extralight text-white leading-none font-heading tracking-tight">
                 <AnimatedCounter value={stat.value} suffix={stat.suffix} />
               </span>
-              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/35 text-center">
+              <span className="text-[10px] uppercase tracking-[0.18em] text-neutral-500 mt-2 block font-medium">
                 {stat.label}
               </span>
             </m.div>
           ))}
         </div>
-
       </div>
     </section>
   );

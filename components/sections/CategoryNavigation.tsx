@@ -32,7 +32,7 @@ const CATEGORIES = [
 export function CategoryNavigation() {
   return (
     <section className="w-full bg-[#F7F5F0] section-padding overflow-hidden border-b border-[#E8E4DC]">
-      <div className="container-tight">
+      <div className="section-container">
         
         {/* Harmonized Section Header */}
         <div className="flex flex-col items-center text-center mb-10 md:mb-24 mt-20 md:mt-24">
@@ -48,50 +48,47 @@ export function CategoryNavigation() {
           </Reveal>
         </div>
 
-        {/* Discovery Grid - High Contrast */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+        {/* Discovery Grid - Redesigned Curated Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {CATEGORIES.map((cat, idx) => (
-            <Link key={cat.id} href={cat.href} className="relative aspect-[4/5] md:aspect-[3/4] overflow-hidden group bg-[#fcfcfc]">
-              
-              {/* Background Image with Cinematic Discovery */}
-              <m.div 
-                className="absolute inset-0"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              >
+            <Link 
+              key={cat.id} 
+              href={cat.href} 
+              className="flex flex-col rounded-2xl overflow-hidden bg-white border border-neutral-100 relative group h-full hover:shadow-xl transition-all duration-500"
+            >
+              {/* Image Frame - Forced Aspect Ratio for Identical Height */}
+              <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#FAF9F6]">
                 <Image 
                   src={cat.image}
                   alt={cat.title}
                   fill
-                  className="object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-700"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 30vw"
                 />
-              </m.div>
-
-              {/* Sophisticated Light Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-white/20 to-transparent group-hover:from-white/100 transition-colors duration-700" />
-              
-              <div className="absolute inset-0 p-8 md:p-12 flex flex-col justify-end items-center text-center">
-                <m.div
-                  initial={{ y: 20, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1 + 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                  className="flex flex-col items-center gap-2"
-                >
-                  <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-black/60">
-                    {cat.subtitle}
-                  </span>
-                  <h3 className="text-2xl md:text-3xl font-light font-heading tracking-tight italic text-black mb-4">
-                    {cat.title}
-                  </h3>
-                  <div className="w-10 h-[1.5px] bg-black group-hover:w-20 transition-all duration-700" />
-                  <span className="mt-4 text-[9px] font-bold uppercase tracking-[0.2em] text-black opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    Explore Collection
-                  </span>
-                </m.div>
               </div>
 
+              {/* Card Info Area */}
+              <div className="p-5 flex flex-col gap-1 text-left justify-center flex-1">
+                {/* Eyebrow */}
+                <span className="text-[10px] uppercase tracking-[0.18em] text-neutral-400 block font-medium">
+                  {cat.id === "optical" ? "Ophthalmic" : cat.id === "sun" ? "Sunglasses" : "Precision Lenses"}
+                </span>
+                
+                {/* Title and Sliding Arrow */}
+                <div className="flex items-center gap-1.5 overflow-hidden">
+                  <span className="text-sm text-neutral-900 transform -translate-x-3 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500 ease-out select-none font-sans">
+                    →
+                  </span>
+                  <h3 className="text-base font-medium text-neutral-900 transition-transform duration-500 group-hover:translate-x-0.5">
+                    {cat.title}
+                  </h3>
+                </div>
+                
+                {/* Sub-label */}
+                <span className="text-xs text-neutral-500 block">
+                  {cat.subtitle}
+                </span>
+              </div>
             </Link>
           ))}
         </div>

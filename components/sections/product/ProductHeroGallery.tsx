@@ -29,7 +29,7 @@ export function ProductHeroGallery({ product }: ProductHeroGalleryProps) {
           
           {/* Cinematic Gallery Section */}
           <div className="lg:col-span-7 flex flex-col gap-6">
-            <div className="relative aspect-[4/5] bg-brand-pearl/20 overflow-hidden group border border-black/5">
+            <div className="relative aspect-[4/5] bg-brand-pearl/20 rounded-[2.5rem] overflow-hidden group border border-black/5">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeImage}
@@ -74,7 +74,7 @@ export function ProductHeroGallery({ product }: ProductHeroGalleryProps) {
                   key={idx}
                   onClick={() => setActiveImage(idx)}
                   className={cn(
-                    "flex-shrink-0 w-24 aspect-[4/5] relative border-2 transition-all duration-500 snap-start",
+                    "flex-shrink-0 w-24 aspect-[4/5] relative border-2 transition-all duration-500 snap-start rounded-2xl overflow-hidden",
                     activeImage === idx ? "border-brand-gold scale-95" : "border-transparent opacity-40 hover:opacity-100"
                   )}
                 >

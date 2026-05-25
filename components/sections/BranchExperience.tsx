@@ -1,98 +1,108 @@
 "use client";
 
 import React from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { m } from "framer-motion";
 import { Check, Sofa, ParkingCircle, Eye, UserPlus, Sparkles } from "lucide-react";
-import { Reveal } from "@/components/motion/Reveal";
-import { EASE_LUXURY } from "@/lib/motion";
+import Image from "next/image";
 
 const HIGHLIGHTS = [
-  { icon: <Sofa className="w-4 h-4" />, text: "Modern Optical Interiors" },
-  { icon: <ParkingCircle className="w-4 h-4" />, text: "Ample Parking" },
-  { icon: <Sparkles className="w-4 h-4" />, text: "Luxury Product Displays" },
-  { icon: <Eye className="w-4 h-4" />, text: "Advanced Testing Equipment" },
-  { icon: <UserPlus className="w-4 h-4" />, text: "Expert Staff Assistance" },
-  { icon: <Check className="w-4 h-4" />, text: "Comfortable Consultation Areas" },
+  { icon: Sofa, text: "Modern Optical Interiors" },
+  { icon: ParkingCircle, text: "Ample Parking" },
+  { icon: Sparkles, text: "Luxury Product Displays" },
+  { icon: Eye, text: "Advanced Testing Equipment" },
+  { icon: UserPlus, text: "Expert Staff Assistance" },
+  { icon: Check, text: "Comfortable Consultation Areas" },
 ];
 
 export function BranchExperience() {
-  const { scrollYProgress } = useScroll();
-  const yImage = useTransform(scrollYProgress, [0, 1], [0, -100]);
-
   return (
-    <section className="relative w-full py-24 md:py-40 bg-[#fdfdfd] overflow-hidden">
-      <div className="container-tight">
+    <section className="relative w-full py-20 md:py-24 bg-[#fcfcfc] overflow-hidden">
+      <div className="max-w-[1140px] mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
           
-          {/* Left Column: Immersive Imagery with Parallax */}
-          <div className="lg:col-span-7 relative h-[500px] md:h-[700px] overflow-hidden group rounded-[2.5rem] border border-black/5 shadow-sm">
-            <motion.div 
-              style={{ y: yImage }}
-              className="absolute inset-0 w-full h-[120%]"
-            >
-              <img 
-                src="https://images.unsplash.com/photo-1556740758-90eb39138efd?auto=format&fit=crop&q=80&w=1200"
-                alt="Luxury Eyewear Consultation Atelier"
-                className="w-full h-full object-cover group-hover:scale-105 transition-all duration-1000"
-              />
-            </motion.div>
-            <div className="absolute inset-0 bg-black/10" />
+          {/* Left Column: Image */}
+          <m.div 
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9 }}
+            className="lg:col-span-7 relative h-[450px] md:h-[600px] overflow-hidden group rounded-2xl border border-neutral-200 shadow-sm bg-neutral-100"
+          >
+            <Image 
+              src="https://images.unsplash.com/photo-1556740758-90eb39138efd?auto=format&fit=crop&q=80&w=1200"
+              alt="Luxury Eyewear Consultation Atelier"
+              fill
+              className="object-cover group-hover:scale-103 transition-transform duration-700"
+            />
+            <div className="absolute inset-0 bg-neutral-900/5 group-hover:bg-transparent transition-colors duration-700 rounded-2xl" />
             
             {/* Experience Floating Badge */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.8 }}
+            <m.div 
+              initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="absolute bottom-10 right-10 bg-white p-8 md:p-12 shadow-2xl max-w-xs border border-black/5"
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="absolute bottom-6 right-6 bg-white/95 backdrop-blur-sm p-8 shadow-md max-w-[240px] border border-neutral-200/50 rounded-2xl hidden sm:block"
             >
-              <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-black/30 mb-4 block">Destination Quality</span>
-              <p className="text-sm font-light text-black/60 italic leading-relaxed">
-                "A space where clinical excellence meets high-fashion hospitality."
+              <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-neutral-400 mb-3 block">Destination Quality</span>
+              <p className="text-sm font-light text-neutral-600 italic leading-relaxed">
+                &ldquo;A space where clinical excellence meets high-fashion hospitality.&rdquo;
               </p>
-            </motion.div>
-          </div>
+            </m.div>
+          </m.div>
 
           {/* Right Column: Narrative & Features */}
-          <div className="lg:col-span-5 lg:pl-12">
-            <Reveal delay={0.2}>
-              <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.4em] text-black/40 mb-6 block">
-                The In-Store Story
-              </span>
-            </Reveal>
+          <div className="lg:col-span-5 flex flex-col justify-center">
+            <m.span
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="text-[10px] uppercase tracking-[0.2em] text-neutral-400 mb-3 block"
+            >
+              The In-Store Story
+            </m.span>
             
-            <div className="mb-10">
-              <h2 className="text-4xl md:text-5xl xl:text-6xl font-light font-heading text-black leading-[1.1] mb-2">
-                Designed For
-              </h2>
-              <h2 className="text-4xl md:text-5xl xl:text-6xl font-light font-heading text-black italic leading-[1.1]">
-                Comfort & Care
-              </h2>
-            </div>
+            <m.h2
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.9, delay: 0.1 }}
+              className="text-3xl md:text-4xl font-light text-neutral-900 tracking-tight uppercase font-heading leading-tight mb-6"
+            >
+              Designed For
+              <br />
+              <em className="italic font-light text-amber-500/80">Comfort & Care</em>
+            </m.h2>
 
-            <Reveal delay={0.4} className="mb-12">
-              <p className="text-base text-black/60 font-light leading-relaxed">
-                Every Emirates Optician branch is thoughtfully designed to combine luxury eyewear experiences, professional consultation, and welcoming customer care in a refined retail environment.
-              </p>
-            </Reveal>
+            <m.p
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-sm text-neutral-500 font-light leading-relaxed mb-10"
+            >
+              Every Emirates Optician branch is thoughtfully designed to combine luxury eyewear experiences, professional consultation, and welcoming customer care in a refined retail environment.
+            </m.p>
 
             {/* Feature Highlights Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {HIGHLIGHTS.map((item, idx) => (
-                <motion.div
+                <m.div
                   key={idx}
                   initial={{ opacity: 0, x: -10 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: 0.5 + idx * 0.1, duration: 0.8, ease: EASE_LUXURY }}
-                  className="flex items-center gap-4 group"
+                  transition={{ delay: 0.3 + idx * 0.08, duration: 0.6 }}
+                  className="flex items-center gap-3 group"
                 >
-                  <div className="w-8 h-8 rounded-full bg-black/5 flex items-center justify-center text-black/40 group-hover:bg-black group-hover:text-white transition-all duration-500">
-                    {item.icon}
+                  <div className="w-8 h-8 rounded-lg border border-neutral-200 flex items-center justify-center bg-white text-amber-500 shrink-0">
+                    <item.icon className="w-4 h-4 stroke-[1.5]" />
                   </div>
-                  <span className="text-[11px] font-bold uppercase tracking-widest text-black/70">
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-neutral-700">
                     {item.text}
                   </span>
-                </motion.div>
+                </m.div>
               ))}
             </div>
           </div>

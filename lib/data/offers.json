@@ -13,14 +13,6 @@
     "description": "Book any professional eye test online and receive a complimentary specialized lens diagnosis.",
     "promoCode": "DIAGNOSE",
     "discountVal": "FREE TEST",
-    "isActive": true
-  },
-  {
-    "id": "1779087727286",
-    "title": "Onam Special",
-    "description": "It is the best price",
-    "promoCode": "LUXURY30%",
-    "discountVal": "%off",
-    "isActive": true
+    "isActive": false
   }
 ]

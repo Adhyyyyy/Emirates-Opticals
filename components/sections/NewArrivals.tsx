@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useCallback } from "react";
-import { m, AnimatePresence, animate as fmAnimate, useMotionValue } from "framer-motion";
-import { ProductCard } from "@/components/ui/ProductCard";
+import React from "react";
+import { m } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 interface Product {
   id: string;
@@ -64,277 +63,73 @@ const FALLBACK_PRODUCTS: Product[] = [
   },
 ];
 
-// How many cards visible on desktop at once
-const VISIBLE = 3;
-
-// Mobile: directional slide variants
-const slideVariants = {
-  enter: (dir: number) => ({ x: dir > 0 ? "100%" : "-100%", opacity: 0, scale: 0.95 }),
-  center: { x: 0, opacity: 1, scale: 1 },
-  exit: (dir: number) => ({ x: dir > 0 ? "-100%" : "100%", opacity: 0, scale: 0.95 }),
-};
-
 export function NewArrivals({ products = [] }: NewArrivalsProps) {
-  const displayProducts = products.length > 0 ? products : FALLBACK_PRODUCTS;
-  const count = displayProducts.length;
-
-  // Triple for seamless infinite desktop loop
-  const tripled = [...displayProducts, ...displayProducts, ...displayProducts];
-
-  const [isMobile, setIsMobile] = useState(false);
-  const [isPaused, setIsPaused] = useState(false);
-
-  // Mobile state
-  const [mobileIndex, setMobileIndex] = useState(0);
-  const [direction, setDirection] = useState(1);
-
-  // Desktop track state
-  // trackIndex: which item in `tripled` is at the left edge of viewport
-  // Start at `count` (beginning of middle copy) so we can loop both ways
-  const trackIndex = useRef(count);
-  const isResetting = useRef(false);
-  const viewportRef = useRef<HTMLDivElement>(null);
-  const x = useMotionValue(0);
-
-  // Dots: which item in original array is "active" on desktop
-  const [desktopDotIndex, setDesktopDotIndex] = useState(0);
-
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 1024);
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, []);
-
-  // Compute card width from viewport
-  const getCardWidth = useCallback(() => {
-    if (!viewportRef.current) return 0;
-    const gap = 32; // 2rem gap between cards
-    return (viewportRef.current.offsetWidth - gap * (VISIBLE - 1)) / VISIBLE;
-  }, []);
-
-  // Animate desktop track to a given trackIndex position
-  const animateTrackTo = useCallback(
-    (idx: number, smooth = true) => {
-      const cardWidth = getCardWidth();
-      if (cardWidth === 0) return;
-      const gap = 32;
-      const target = -(idx * (cardWidth + gap));
-      if (smooth) {
-        fmAnimate(x, target, {
-          type: "spring",
-          stiffness: 200,
-          damping: 32,
-          mass: 0.8,
-        });
-      } else {
-        x.set(target);
-      }
-    },
-    [x, getCardWidth]
-  );
-
-  const advanceDesktop = useCallback(() => {
-    if (isResetting.current) return;
-    const next = trackIndex.current + 1;
-    trackIndex.current = next;
-    setDesktopDotIndex(((next - count) % count + count) % count);
-    animateTrackTo(next);
-
-    // Seamless reset: after reaching 2nd copy end, snap back to 1st copy start
-    if (next >= count * 2) {
-      isResetting.current = true;
-      setTimeout(() => {
-        trackIndex.current = count;
-        animateTrackTo(count, false);
-        isResetting.current = false;
-      }, 700); // wait for spring to settle
-    }
-  }, [count, animateTrackTo]);
-
-  // Auto-advance timer
-  useEffect(() => {
-    if (isPaused) return;
-    const timer = setInterval(() => {
-      if (isMobile) {
-        setDirection(1);
-        setMobileIndex((prev) => (prev + 1) % count);
-      } else {
-        advanceDesktop();
-      }
-    }, 3200);
-    return () => clearInterval(timer);
-  }, [isPaused, isMobile, count, advanceDesktop]);
-
-  // Initialize desktop track position on mount/resize
-  useEffect(() => {
-    if (!isMobile) {
-      animateTrackTo(count, false);
-    }
-  }, [isMobile, count, animateTrackTo]);
-
-  // Mobile touch handlers
-  let touchX = 0;
-  const onTouchStart = (e: React.TouchEvent) => {
-    touchX = e.touches[0].clientX;
-    setIsPaused(true);
-  };
-  const onTouchEnd = (e: React.TouchEvent) => {
-    const delta = touchX - e.changedTouches[0].clientX;
-    if (Math.abs(delta) > 40) {
-      const dir = delta > 0 ? 1 : -1;
-      setDirection(dir);
-      setMobileIndex((prev) => (prev + dir + count) % count);
-    }
-    setTimeout(() => setIsPaused(false), 6000);
-  };
+  // Slicing to exactly 4 items for perfect symmetry (1 row on desktop, 2x2 grid on mobile)
+  const displayProducts = (products.length > 0 ? products : FALLBACK_PRODUCTS).slice(0, 4);
 
   return (
     <section className="w-full bg-white section-padding overflow-hidden">
-      <div className="container-tight">
+      <div className="section-container">
 
-        {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12 md:mb-20">
-          <div className="flex flex-col">
-            <m.span
-              suppressHydrationWarning
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="meta-editorial mb-3"
-            >
-              Seasonal Editorial
-            </m.span>
-            <m.h2
-              suppressHydrationWarning
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.9, delay: 0.1 }}
-              className="h2-editorial"
-            >
-              New Arrivals
-            </m.h2>
-          </div>
-          <m.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+        {/* Harmonized Centered Section Header */}
+        <div className="flex flex-col items-center text-center mb-12 md:mb-20">
+          <m.span
+            suppressHydrationWarning
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
+            transition={{ duration: 0.8 }}
+            className="meta-editorial mb-3"
           >
-            <Link
-              href="/shop"
-              className="inline-flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.12em] text-[#0A0A0A] border-b border-[#0A0A0A]/20 hover:border-[#C9A84C] hover:text-[#C9A84C] pb-1 transition-all duration-300"
-            >
-              View all <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
-          </m.div>
+            Seasonal Editorial
+          </m.span>
+          <m.h2
+            suppressHydrationWarning
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9, delay: 0.1 }}
+            className="h2-editorial"
+          >
+            New Arrivals
+          </m.h2>
         </div>
 
-        {/* ── MOBILE: AnimatePresence single-card ── */}
-        {isMobile ? (
-          <div
-            className="relative w-full overflow-hidden"
-            onTouchStart={onTouchStart}
-            onTouchEnd={onTouchEnd}
-          >
-            <AnimatePresence mode="wait" custom={direction}>
-              <m.div
-                key={mobileIndex}
-                custom={direction}
-                variants={slideVariants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{
-                  x: { type: "spring", stiffness: 280, damping: 30 },
-                  opacity: { duration: 0.2 },
-                  scale: { duration: 0.3 },
-                }}
-              >
-                <ProductCard {...displayProducts[mobileIndex]} />
-              </m.div>
-            </AnimatePresence>
-
-            {/* Mobile dots */}
-            <div className="flex items-center justify-center gap-2 mt-8">
-              {displayProducts.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => {
-                    setDirection(idx > mobileIndex ? 1 : -1);
-                    setMobileIndex(idx);
-                  }}
-                  aria-label={`Go to product ${idx + 1}`}
-                  style={{
-                    width: mobileIndex === idx ? 24 : 6,
-                    height: 6,
-                    borderRadius: 3,
-                    background:
-                      mobileIndex === idx
-                        ? "#C9A84C"
-                        : "rgba(0,0,0,0.15)",
-                    transition: "all 0.35s ease",
-                  }}
-                />
-              ))}
-            </div>
-          </div>
-        ) : (
-          /* ── DESKTOP: Sliding track, 3 visible ── */
-          <div
-            ref={viewportRef}
-            className="overflow-hidden"
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
-          >
+        {/* Product Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
+          {displayProducts.map((product, idx) => (
             <m.div
-              className="flex gap-8"
-              style={{ x, width: "max-content" }}
+              key={product.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: idx * 0.1 }}
             >
-              {tripled.map((product, idx) => (
-                <div
-                  key={`${product.id}-${idx}`}
-                  style={{
-                    width: viewportRef.current
-                      ? `${(viewportRef.current.offsetWidth - 32 * (VISIBLE - 1)) / VISIBLE}px`
-                      : "30vw",
-                    flexShrink: 0,
-                  }}
-                >
-                  <ProductCard {...product} />
+              <Link href={`/product/${product.id}`} className="group cursor-pointer block">
+                {/* Image container */}
+                <div className="aspect-[3/4] rounded-2xl overflow-hidden bg-neutral-50 mb-3 relative">
+                  <Image
+                    src={product.primaryImage}
+                    alt={product.name}
+                    fill
+                    sizes="(max-width: 768px) 50vw, 25vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
                 </div>
-              ))}
+                {/* Product details */}
+                <span className="text-[10px] uppercase tracking-[0.15em] text-neutral-400 mb-0.5 block">
+                  {product.brand}
+                </span>
+                <h3 className="text-sm font-medium text-neutral-900 leading-snug mb-1">
+                  {product.name}
+                </h3>
+                <p className="text-sm text-neutral-600 font-normal">
+                  ₹{(product.price || 0).toLocaleString("en-IN")}
+                </p>
+              </Link>
             </m.div>
-
-            {/* Desktop dots */}
-            <div className="flex items-center justify-center gap-2 mt-12">
-              {displayProducts.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => {
-                    const target = count + idx;
-                    trackIndex.current = target;
-                    setDesktopDotIndex(idx);
-                    animateTrackTo(target);
-                  }}
-                  aria-label={`Go to product ${idx + 1}`}
-                  style={{
-                    width: desktopDotIndex === idx ? 24 : 6,
-                    height: 6,
-                    borderRadius: 3,
-                    background:
-                      desktopDotIndex === idx
-                        ? "#C9A84C"
-                        : "rgba(0,0,0,0.15)",
-                    transition: "all 0.35s ease",
-                  }}
-                />
-              ))}
-            </div>
-          </div>
-        )}
+          ))}
+        </div>
 
       </div>
     </section>

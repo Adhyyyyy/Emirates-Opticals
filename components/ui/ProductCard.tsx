@@ -101,7 +101,7 @@ export function ProductCard({
             : "0 0px 0px 0px rgba(0,0,0,0)"
         }}
         transition={{ duration: 1.2, ease: EASE_LUXURY }}
-        className="relative w-full aspect-[4/3] bg-[#fcfcfc] flex items-center justify-center overflow-hidden cursor-pointer mb-8 group-hover:bg-white rounded-3xl"
+        className="relative w-full aspect-[4/3] bg-[#fcfcfc] flex items-center justify-center overflow-hidden cursor-pointer mb-8 group-hover:bg-white rounded-2xl"
       >
         <AnimatePresence mode="wait">
           <m.div
@@ -148,7 +148,7 @@ export function ProductCard({
         </p>
         <div className="flex flex-col items-center mt-1">
           <p className="text-[12px] md:text-[13px] font-bold text-black">
-            ₹{price.toLocaleString("en-IN")}
+            ₹{(price || 0).toLocaleString("en-IN")}
           </p>
           <m.p 
             animate={{ opacity: isMobile ? 1 : (isHovered ? 1 : 0) }}
