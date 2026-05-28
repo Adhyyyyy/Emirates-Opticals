@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowUpRight, Sparkles, Filter } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -176,22 +176,15 @@ export function FullBrandGrid() {
         </div>
 
         {/* Brand Cards Grid */}
-        <motion.div 
-          layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 xl:gap-8"
-        >
-          <AnimatePresence mode="popLayout">
-            {filteredBrands.map((brand, idx) => (
-              <motion.div
-                layout
-                key={brand.name}
-                initial={{ opacity: 0, scale: 0.94 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.94 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, ease: [0.19, 1, 0.22, 1] }}
-                className="group relative bg-white border border-black/[0.03] hover:border-brand-gold/20 p-4 rounded-2xl shadow-sm hover:shadow-2xl hover:shadow-brand-charcoal/[0.04] transition-all duration-700 flex flex-col justify-between"
-              >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 xl:gap-8">
+          {filteredBrands.map((brand, idx) => (
+            <motion.div
+              key={brand.name}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: Math.min(idx * 0.04, 0.4), ease: "easeOut" }}
+              className="group relative bg-white border border-black/[0.03] hover:border-brand-gold/20 p-4 rounded-2xl shadow-sm hover:shadow-2xl hover:shadow-brand-charcoal/[0.04] transition-all duration-700 flex flex-col justify-between"
+            >
                 {/* Brand Visual Image Banner */}
                 <div className="relative aspect-[3/2] overflow-hidden bg-neutral-900 rounded-xl mb-6">
                   <Image 
@@ -245,8 +238,7 @@ export function FullBrandGrid() {
                 </div>
               </motion.div>
             ))}
-          </AnimatePresence>
-        </motion.div>
+        </div>
 
       </div>
     </section>

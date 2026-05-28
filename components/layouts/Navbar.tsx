@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
@@ -64,7 +64,7 @@ export function Navbar() {
         </div>
 
         {/* Symmetrical Center: Navigation list */}
-        <ul className="hidden lg:flex items-center justify-center gap-6 xl:gap-8 mx-6 h-full">
+        <ul className="hidden lg:flex items-center justify-center gap-7 xl:gap-9 mx-6 h-full">
           {NAV_LINKS.map((link) => {
             const isActive = pathname === link.href;
             return (
@@ -72,18 +72,14 @@ export function Navbar() {
                 <Link 
                   href={link.href}
                   className={cn(
-                    "text-[12px] font-sans font-medium uppercase tracking-[0.12em] transition-colors duration-300 py-2 relative",
-                    isActive ? "text-[#C9A84C]" : "text-black hover:text-[#C9A84C]"
+                    "text-[10.5px] font-sans font-medium uppercase tracking-[0.2em] transition-all duration-500 py-2 relative block",
+                    "after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-[#C9A84C] after:transition-all after:duration-500 hover:after:w-full hover:after:left-0",
+                    isActive 
+                      ? "text-[#C9A84C] after:w-full after:left-0 font-semibold" 
+                      : "text-black/80 hover:text-[#C9A84C]"
                   )}
                 >
                   {link.name}
-                  {isActive && (
-                    <m.span 
-                      layoutId="navActiveLine"
-                      className="absolute bottom-[-4px] left-0 right-0 h-[1.5px] bg-[#C9A84C]"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    />
-                  )}
                 </Link>
               </li>
             );
@@ -123,7 +119,7 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
-            className="fixed inset-0 z-[100] bg-white flex flex-col p-6 md:p-12 overflow-y-auto pointer-events-auto"
+            className="fixed inset-0 z-[100] bg-[#FAF9F6] flex flex-col p-6 md:p-12 overflow-y-auto pointer-events-auto"
           >
             {/* Header branding in Drawer */}
             <div className="flex justify-between items-center mb-16">
@@ -145,27 +141,36 @@ export function Navbar() {
             </div>
             
             {/* Drawer stacked links */}
-            <nav className="flex-1 flex flex-col justify-center">
-              <ul className="flex flex-col gap-6 text-left">
+            <nav className="flex-1 flex flex-col justify-center py-6">
+              <ul className="flex flex-col gap-1 text-left">
                 {NAV_LINKS.map((link, idx) => {
                   const isActive = pathname === link.href;
                   return (
                     <m.li 
                       key={link.name}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: idx * 0.05, duration: 0.4 }}
+                      initial={{ opacity: 0, y: 15 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: idx * 0.04, duration: 0.5, ease: [0.19, 1, 0.22, 1] }}
                     >
                       <Link 
                         href={link.href}
                         onClick={() => setIsMobileMenuOpen(false)}
                         className={cn(
-                          "text-[36px] md:text-[40px] font-heading font-extralight uppercase tracking-tight transition-colors flex items-center justify-between py-2 border-b border-black/10",
-                          isActive ? "text-[#C9A84C]" : "text-black hover:text-[#C9A84C]"
+                          "text-[14px] sm:text-[16px] font-sans font-normal uppercase tracking-[0.22em] transition-all duration-300 flex items-center justify-between py-4 border-b border-black/[0.04]",
+                          isActive 
+                            ? "text-[#C9A84C] font-semibold border-b-[#C9A84C]/30 pl-2" 
+                            : "text-black/80 hover:text-[#C9A84C] hover:pl-2"
                         )}
                       >
-                        <span>{link.name}</span>
-                        <ArrowRight className="w-6 h-6 opacity-30 text-black" />
+                        <div className="flex items-center">
+                          <span className="text-[9px] font-sans font-bold text-[#C9A84C]/70 tracking-widest mr-4 select-none w-5">
+                            {(idx + 1).toString().padStart(2, '0')}
+                          </span>
+                          <span>{link.name}</span>
+                        </div>
+                        {isActive && (
+                          <div className="w-1.5 h-1.5 rounded-full bg-[#C9A84C]" />
+                        )}
                       </Link>
                     </m.li>
                   );
