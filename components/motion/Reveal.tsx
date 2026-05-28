@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { ReactNode, useState, useEffect } from "react";
 import { m, Variants } from "framer-motion";
@@ -32,7 +32,7 @@ export function Reveal({
   variant = fadeUp,
   delay = 0,
   duration = DURATION_BASE,
-  threshold = 0.1,
+  threshold = 0.01,
   className,
   once = true,
 }: RevealProps) {
@@ -46,7 +46,7 @@ export function Reveal({
     <m.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once, amount: threshold }}
+      viewport={{ once, amount: threshold, margin: "0px 0px 100px 0px" }}
       variants={variant}
       custom={delay}
       className={className}
@@ -81,7 +81,7 @@ export function ImageReveal({
       <m.div
         initial={{ clipPath: "inset(100% 0 0 0)", scale: 1.1 }}
         whileInView={{ clipPath: "inset(0% 0 0 0)", scale: 1 }}
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: true, amount: 0.01, margin: "0px 0px 100px 0px" }}
         transition={{ 
           duration: DURATION_SLOW, 
           ease: EASE_LUXURY, 
@@ -130,7 +130,7 @@ export function TextReveal({
           key={i}
           initial={{ y: "100%", opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "0px 0px 100px 0px" }}
           transition={{
             duration: DURATION_BASE,
             ease: EASE_LUXURY,
@@ -154,7 +154,7 @@ export function GridStagger({
   delay = 0.05,
   stagger = 0.07,
   className,
-  threshold = 0.05,
+  threshold = 0.01,
 }: {
   children: React.ReactNode;
   delay?: number;
@@ -166,7 +166,7 @@ export function GridStagger({
     <m.div
       initial="visible"
       whileInView="visible"
-      viewport={{ once: true, amount: threshold }}
+      viewport={{ once: true, amount: threshold, margin: "0px 0px 100px 0px" }}
       variants={{
         hidden: { opacity: 0 },
         visible: {

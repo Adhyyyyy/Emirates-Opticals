@@ -1,9 +1,10 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useEffect } from "react";
 import { m, AnimatePresence } from "framer-motion";
 import { EyewearCarousel } from "@/components/common/EyewearCarousel";
 import { Reveal } from "@/components/motion/Reveal";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Phone, MessageCircle, Eye, MapPin } from "lucide-react";
 
@@ -127,12 +128,12 @@ export function Hero({ banners = [], offers = [] }: HeroProps) {
           {/* â”€â”€ PREMIUM IMMEDIATE ACTIONS (ABOVE THE FOLD) â”€â”€ */}
           <Reveal delay={0.6} className="mt-6 sm:mt-10">
             <div className="flex justify-center">
-              <button 
-                onClick={() => document.getElementById("homepage-showcase")?.scrollIntoView({ behavior: "smooth" })}
-                className="bg-[#C9A84C] text-[#0A0A0A] px-8 py-3.5 sm:px-10 sm:py-4 font-bold text-[10px] sm:text-xs uppercase tracking-widest hover:bg-[#B8952E] hover:text-white transition-all duration-500 shadow-lg rounded-[3px]"
+              <Link
+                href="/shop"
+                className="bg-[#C9A84C] text-[#0A0A0A] px-8 py-3.5 sm:px-10 sm:py-4 font-bold text-[10px] sm:text-xs uppercase tracking-widest hover:bg-[#B8952E] hover:text-white transition-all duration-500 shadow-lg rounded-[3px] inline-block text-center"
               >
-                <span>Shop New Arrivals</span>
-              </button>
+                Shop New Arrivals
+              </Link>
             </div>
           </Reveal>
 
