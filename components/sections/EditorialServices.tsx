@@ -1,8 +1,9 @@
-﻿"use client";
+"use client";
 
 import { motion, m } from "framer-motion";
 import { ParallaxImage } from "@/components/motion/ParallaxImage";
 import { Reveal, TextReveal } from "@/components/motion/Reveal";
+import Link from "next/link";
 
 export function EditorialServices() {
   return (
@@ -45,10 +46,13 @@ export function EditorialServices() {
                   Experience professional eye testing and personalized optical guidance from trained specialists focused on comfort, clarity, and confidence.
                 </p>
                 <div className="flex flex-wrap items-center gap-8">
-                  <button className="flex items-center gap-3 px-6 py-3 rounded-[3px] border border-white text-white hover:bg-white hover:text-brand-charcoal transition-all duration-500">
+                  <Link 
+                    href="/book-eye-test"
+                    className="flex items-center gap-3 px-6 py-3 rounded-[3px] border border-white text-white hover:bg-white hover:text-brand-charcoal transition-all duration-500"
+                  >
                     <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                    <span className="text-[11px] md:text-xs font-bold uppercase tracking-[0.2em]">Book Eye Test &rarr;</span>
-                  </button>
+                    <span className="text-[11px] md:text-xs font-bold uppercase tracking-[0.25em]">Book Eye Test &rarr;</span>
+                  </Link>
                 </div>
               </Reveal>
             </div>

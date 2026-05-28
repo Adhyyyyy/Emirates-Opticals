@@ -4,19 +4,19 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { m, AnimatePresence } from "framer-motion";
-import { Calendar, Menu, X, ArrowRight, Search, Heart, User } from "lucide-react";
+import { Calendar, Menu, X, ArrowRight, Search, Heart, User, Home, Glasses, Sparkles, Eye, MapPin, Info, Briefcase, Mail } from "lucide-react";
 import { AnnouncementBar } from "./AnnouncementBar";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
-  { name: "Home", href: "/" },
-  { name: "Shop", href: "/shop" },
-  { name: "Brands", href: "/brands" }, 
-  { name: "Services", href: "/services" },
-  { name: "Branches", href: "/branches" },
-  { name: "About", href: "/about" },
-  { name: "Careers", href: "/careers" },
-  { name: "Contact", href: "/contact" },
+  { name: "Home", href: "/", icon: Home },
+  { name: "Shop", href: "/shop", icon: Glasses },
+  { name: "Brands", href: "/brands", icon: Sparkles }, 
+  { name: "Services", href: "/services", icon: Eye },
+  { name: "Branches", href: "/branches", icon: MapPin },
+  { name: "About", href: "/about", icon: Info },
+  { name: "Careers", href: "/careers", icon: Briefcase },
+  { name: "Contact", href: "/contact", icon: Mail },
 ];
 
 export function Navbar() {
@@ -122,7 +122,7 @@ export function Navbar() {
             className="fixed inset-0 z-[100] bg-[#FAF9F6] flex flex-col p-6 md:p-12 overflow-y-auto pointer-events-auto"
           >
             {/* Header branding in Drawer */}
-            <div className="flex justify-between items-center mb-16">
+            <div className="flex justify-between items-center mb-8">
               <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="flex flex-col items-start leading-none gap-0.5">
                 <span className="font-heading text-[20px] font-bold tracking-tight text-black uppercase">
                   EMIRATES
@@ -141,35 +141,37 @@ export function Navbar() {
             </div>
             
             {/* Drawer stacked links */}
-            <nav className="flex-1 flex flex-col justify-center py-6">
-              <ul className="flex flex-col gap-1 text-left">
+            <nav className="flex-1 flex flex-col justify-start pt-2 pb-6">
+              <ul className="flex flex-col gap-1.5 text-left w-full">
                 {NAV_LINKS.map((link, idx) => {
                   const isActive = pathname === link.href;
+                  const Icon = link.icon;
                   return (
                     <m.li 
                       key={link.name}
-                      initial={{ opacity: 0, y: 15 }}
+                      initial={{ opacity: 0, y: 12 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: idx * 0.04, duration: 0.5, ease: [0.19, 1, 0.22, 1] }}
+                      transition={{ delay: idx * 0.03, duration: 0.45, ease: "easeOut" }}
                     >
                       <Link 
                         href={link.href}
                         onClick={() => setIsMobileMenuOpen(false)}
                         className={cn(
-                          "text-[14px] sm:text-[16px] font-sans font-normal uppercase tracking-[0.22em] transition-all duration-300 flex items-center justify-between py-4 border-b border-black/[0.04]",
+                          "text-[12px] sm:text-[13px] font-sans font-medium uppercase tracking-[0.25em] transition-all duration-300 flex items-center justify-between px-5 py-3 rounded-lg",
                           isActive 
-                            ? "text-[#C9A84C] font-semibold border-b-[#C9A84C]/30 pl-2" 
-                            : "text-black/80 hover:text-[#C9A84C] hover:pl-2"
+                            ? "bg-[#C9A84C]/10 text-[#C9A84C] font-semibold" 
+                            : "text-black/75 hover:bg-black/[0.02] hover:text-[#C9A84C]"
                         )}
                       >
-                        <div className="flex items-center">
-                          <span className="text-[9px] font-sans font-bold text-[#C9A84C]/70 tracking-widest mr-4 select-none w-5">
-                            {(idx + 1).toString().padStart(2, '0')}
-                          </span>
+                        <div className="flex items-center gap-4">
+                          <Icon className={cn(
+                            "w-[16px] h-[16px] stroke-[1.5]",
+                            isActive ? "text-[#C9A84C]" : "text-black/40"
+                          )} />
                           <span>{link.name}</span>
                         </div>
                         {isActive && (
-                          <div className="w-1.5 h-1.5 rounded-full bg-[#C9A84C]" />
+                          <div className="w-1.5 h-1.5 rounded-full bg-[#C9A84C] shadow-md shadow-[#C9A84C]/50" />
                         )}
                       </Link>
                     </m.li>
@@ -188,10 +190,6 @@ export function Navbar() {
                 <Calendar className="w-4 h-4" />
                 Book Eye Test
               </Link>
-              <div className="flex justify-between text-[9px] font-bold uppercase tracking-[0.2em] text-black/40">
-                <span>Shop Local</span>
-                <span>My Account</span>
-              </div>
             </div>
           </m.div>
         )}
