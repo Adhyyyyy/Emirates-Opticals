@@ -1,10 +1,9 @@
-﻿"use client";
+"use client";
 
 import React from "react";
 import { Product } from "@/types/shop";
-import { Reveal, GridStagger, StaggerItem } from "@/components/motion/Reveal";
-import { Info } from "lucide-react";
 import { m } from "framer-motion";
+import { GridStagger, StaggerItem } from "@/components/motion/Reveal";
 
 interface ProductSpecsProps {
   product: Product;
@@ -12,71 +11,72 @@ interface ProductSpecsProps {
 
 export function ProductSpecs({ product }: ProductSpecsProps) {
   const specs = [
-    { label: "Frame Material", value: product.frameMaterial },
-    { label: "Lens Compatibility", value: product.lensType },
-    { label: "Frame Shape", value: product.frameShape },
-    { label: "Gender", value: product.gender },
-    { label: "Color Way", value: product.color },
-    { label: "Collection Type", value: product.collectionType },
-    { label: "Brand Origin", value: "International" },
-    { label: "Warranty Support", value: "2 Year Official" }
+    { label: "Frame Material", value: product.frameMaterial || "Premium" },
+    { label: "Lens Compatibility", value: product.lensType || "Standard" },
+    { label: "Frame Shape", value: product.frameShape || "Standard" },
+    { label: "Gender", value: product.gender || "Unisex" },
+    { label: "Color Way", value: product.color || "Classic" },
+    { label: "Style Direction", value: product.style || "Classic" },
+    { label: "Collection", value: product.collectionType || "Designer Brands" },
+    { label: "Warranty", value: "2 Year Official" },
+    ...(product.craftsmanshipDetails ? [{ label: "Craftsmanship", value: product.craftsmanshipDetails }] : []),
+    ...(product.recommendedUsage ? [{ label: "Recommended For", value: product.recommendedUsage }] : []),
   ];
 
   return (
-    <section className="w-full bg-white section-padding overflow-hidden">
-      <div className="container-tight">
-        
-        <div className="flex flex-col lg:flex-row gap-20">
-          
-          {/* Header */}
-          <div className="lg:w-1/3 flex flex-col items-start">
+    <section className="w-full bg-[#0D0D0D] section-padding overflow-hidden">
+      <div className="section-container">
+
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
+          <div>
             <m.span
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 1 }}
-              className="meta-editorial mb-4"
+              transition={{ duration: 0.8 }}
+              className="text-[9px] font-bold text-brand-gold uppercase tracking-[0.4em] block mb-4"
             >
-              Specifications
+              Technical Profile
             </m.span>
-            <m.h2 
-              initial={{ opacity: 0, y: 15 }}
+            <m.h2
+              initial={{ opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 1, delay: 0.1 }}
-              className="h2-editorial mb-8"
+              transition={{ duration: 0.9, delay: 0.1 }}
+              className="text-4xl md:text-5xl font-extralight font-heading uppercase tracking-tight text-white leading-[0.95]"
             >
-              Technical Precision
+              Frame<br />
+              <em className="italic font-light text-brand-gold">Specifications</em>
             </m.h2>
-            <Reveal delay={0.2}>
-              <div className="flex items-start gap-4 p-6 bg-brand-pearl/50 border border-black/5 rounded-2xl">
-                <Info className="w-5 h-5 text-brand-gold flex-shrink-0 mt-1" />
-                <p className="text-[11px] font-bold uppercase tracking-widest text-brand-charcoal/60 leading-relaxed">
-                  Every frame undergoes rigorous quality assessment to ensure absolute comfort and optical alignment for long-term wear.
+          </div>
+          <m.p
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-white/30 font-light leading-relaxed text-sm max-w-sm md:text-right"
+          >
+            Every frame passes rigorous quality assessment to ensure optical precision and long-term comfort.
+          </m.p>
+        </div>
+
+        {/* Specs Grid */}
+        <GridStagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-white/[0.04]">
+          {specs.map((spec, idx) => (
+            <StaggerItem key={idx}>
+              <div className="bg-[#0D0D0D] p-8 group hover:bg-white/[0.03] transition-colors duration-500 h-full">
+                <span className="text-[8px] font-bold uppercase tracking-[0.32em] text-white/25 block mb-4 group-hover:text-brand-gold transition-colors duration-500">
+                  {spec.label}
+                </span>
+                <p className="text-lg md:text-xl font-bold text-white uppercase tracking-tighter group-hover:text-brand-gold transition-colors duration-500 line-clamp-2">
+                  {spec.value}
                 </p>
               </div>
-            </Reveal>
-          </div>
+            </StaggerItem>
+          ))}
+        </GridStagger>
 
-          {/* Specs Grid */}
-          <div className="lg:w-2/3">
-            <GridStagger className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-10">
-              {specs.map((spec, idx) => (
-                <StaggerItem key={idx}>
-                  <div className="group border-b border-black/5 pb-6 hover:border-brand-gold transition-colors duration-700">
-                    <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-brand-charcoal/30 block mb-3 group-hover:text-brand-gold transition-colors">
-                      {spec.label}
-                    </span>
-                    <p className="text-xl font-bold text-brand-charcoal uppercase tracking-tighter">
-                      {spec.value}
-                    </p>
-                  </div>
-                </StaggerItem>
-              ))}
-            </GridStagger>
-          </div>
-
-        </div>
       </div>
     </section>
   );

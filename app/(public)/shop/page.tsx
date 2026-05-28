@@ -6,7 +6,7 @@ import prisma from "@/lib/prisma";
 import { Product, BranchStock } from "@/types/shop";
 import { PRODUCTS as STATIC_PRODUCTS } from "@/lib/shop/data";
 
-export const revalidate = 3600; // Cache on edge for 1 hour, auto ISR
+export const revalidate = 3600;
 
 export const metadata = {
   title: "Shop Luxury Eyewear | Authentic Collections - Emirates Optician",
@@ -29,7 +29,6 @@ export default async function ShopPage() {
     });
 
     products = dbProducts.map(p => {
-      // Map inventory to BranchStock
       const branches: BranchStock[] = p.inventory.map(inv => ({
         branchName: inv.branch.name,
         branchSlug: inv.branch.slug,
@@ -37,7 +36,6 @@ export default async function ShopPage() {
         stockStatus: inv.status === "IN_STOCK" ? "In Stock" : inv.status === "LOW_STOCK" ? "Low Stock" : "Out of Stock"
       }));
 
-      // Determine global stock status
       const totalQty = p.inventory.reduce((acc, inv) => acc + inv.quantity, 0);
       const globalStatus = totalQty > 5 ? "In Stock" : totalQty > 0 ? "Low Stock" : "Out of Stock";
 
@@ -69,23 +67,30 @@ export default async function ShopPage() {
       };
     });
   } catch (error) {
-    console.warn("Prisma failed to fetch products in ShopPage, falling back to static products:", error);
+    console.warn("Prisma failed, falling back to static products:", error);
     products = STATIC_PRODUCTS;
   }
 
   return (
     <div className="flex flex-col w-full min-h-screen">
-      <main className="bg-white pt-36 pb-20" id="shop-main">
-        <div className="section-container">
-          <div className="flex flex-col lg:flex-row gap-12">
+
+      {/* ── Catalog Body ── */}
+      <main className="bg-white flex-1 pt-24 md:pt-32" id="shop-main">
+        <div className="section-container py-16 md:py-20">
+          <div className="flex flex-col lg:flex-row gap-12 xl:gap-16">
+
+            {/* Filters Sidebar */}
             <Suspense fallback={
-              <div className="w-full md:w-72 shrink-0 animate-pulse bg-neutral-100 rounded-[3px] h-96" />
+              <div className="w-full lg:w-64 shrink-0 animate-pulse bg-neutral-100 rounded-[3px] h-96" />
             }>
               <ShopFilters />
             </Suspense>
+
+            {/* Product Grid */}
             <Suspense fallback={<ProductGridSkeleton />}>
               <ProductGrid products={products} />
             </Suspense>
+
           </div>
         </div>
       </main>
@@ -98,25 +103,21 @@ export default async function ShopPage() {
 function ProductGridSkeleton() {
   return (
     <div className="flex-1">
-      {/* Top bar skeleton */}
       <div className="flex items-center justify-between mb-10 pb-6 border-b border-black/5">
-        <div className="h-8 w-56 bg-neutral-100 animate-pulse rounded-full" />
-        <div className="h-6 w-32 bg-neutral-100 animate-pulse rounded-full" />
+        <div className="h-7 w-52 bg-neutral-100 animate-pulse rounded-full" />
+        <div className="h-5 w-28 bg-neutral-100 animate-pulse rounded-full" />
       </div>
-      {/* Card grid skeleton â€” 3 columns, 2 rows */}
-      <div className="grid grid-cols-2 xl:grid-cols-3 gap-x-4 gap-y-10 md:gap-x-8 md:gap-y-16">
+      <div className="grid grid-cols-2 xl:grid-cols-3 gap-x-5 gap-y-12 md:gap-x-8 md:gap-y-16">
         {Array.from({ length: 6 }).map((_, i) => (
           <div key={i} className="flex flex-col gap-3">
-            <div className="w-full aspect-[4/5] bg-neutral-100 animate-pulse rounded-[3px]" />
-            <div className="h-3 w-1/3 bg-neutral-100 animate-pulse rounded" />
+            <div className="w-full aspect-[3/4] bg-neutral-100 animate-pulse rounded-[3px]" />
+            <div className="h-2.5 w-1/3 bg-neutral-100 animate-pulse rounded" />
             <div className="h-4 w-2/3 bg-neutral-100 animate-pulse rounded" />
-            <div className="h-3 w-1/4 bg-neutral-100 animate-pulse rounded" />
-            <div className="h-9 w-full bg-neutral-100 animate-pulse rounded-[3px] mt-1" />
+            <div className="h-2.5 w-1/4 bg-neutral-100 animate-pulse rounded" />
+            <div className="h-10 w-full bg-neutral-100 animate-pulse rounded-[3px] mt-1" />
           </div>
         ))}
       </div>
     </div>
   );
 }
-
-

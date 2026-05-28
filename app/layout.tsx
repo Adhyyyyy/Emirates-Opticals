@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "../styles/globals.css";
 import { cn } from "@/lib/utils";
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     apple: "/favicon.svg",
   },
   openGraph: {
-    title: "Emirates Opticians â€” Luxury Eyewear Kerala",
+    title: "Emirates Opticians | Luxury Eyewear Kerala",
     description: "Premium frames, sunglasses & expert eye care across branches in Kerala. Cartier, DITA, Tom Ford & more.",
     type: "website",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],

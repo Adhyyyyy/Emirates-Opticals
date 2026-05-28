@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React from "react";
 import { m } from "framer-motion";
@@ -42,7 +42,7 @@ export function BrandAuthenticity() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-sm text-neutral-500 font-light max-w-xl mx-auto leading-relaxed"
           >
-            Every frame at Emirates Optician is sourced from authorized distributors and trusted global partners â€” ensuring authenticity, warranty protection, and uncompromised quality.
+            Every frame at Emirates Optician is sourced from authorized distributors and trusted global partners — ensuring authenticity, warranty protection, and uncompromised quality.
           </m.p>
         </div>
 

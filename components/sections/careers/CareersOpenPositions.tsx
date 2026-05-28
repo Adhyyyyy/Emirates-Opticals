@@ -1,7 +1,7 @@
-﻿"use client";
+"use client";
 
 import React, { useState } from "react";
-import { m, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, MapPin, Calendar, Globe, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -38,41 +38,19 @@ export function CareersOpenPositions({ positions = [], branches = [] }: CareersO
   });
 
   return (
-    <section className="w-full bg-white py-20 md:py-24 overflow-hidden text-neutral-900">
-      <div className="max-w-[1140px] mx-auto px-4 md:px-8">
+    <section className="w-full bg-[#FAF9F6] pt-40 pb-20 md:pt-24 md:pb-24 overflow-hidden text-brand-charcoal">
+      <div className="max-w-[1240px] mx-auto px-4 md:px-8">
         
-        <div className="flex flex-col items-center text-center mb-14">
-          <m.span
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-[10px] uppercase tracking-[0.2em] text-neutral-400 mb-3 block"
-          >
-            Explore Careers
-          </m.span>
-          <m.h2
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.9, delay: 0.1 }}
-            className="text-3xl md:text-4xl font-light tracking-tight text-neutral-900 uppercase"
-          >
-            Current Opportunities
-          </m.h2>
-          <m.p
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-sm text-neutral-500 font-light mt-4 max-w-xl mx-auto leading-relaxed"
-          >
-            Join a team dedicated to luxury eyewear, state-of-the-art clinical optometry, and exceptional retail experiences across Kerala.
-          </m.p>
+        {/* Mobile-Only Page Title */}
+        <div className="md:hidden text-center mb-12">
+          <h1 className="text-3xl font-light text-brand-charcoal tracking-[0.2em] uppercase font-heading">
+            Careers
+          </h1>
         </div>
 
+
         {activeOpenings.length > 0 ? (
-          <div className="space-y-4">
+          <div className="space-y-4 max-w-4xl mx-auto">
             {activeOpenings.map((pos, idx) => {
               const isExpanded = expandedIdx === idx;
               const branchName = pos.branchId === "Global" ? "Global (All Branches)" : branches.find(b => b.id === pos.branchId)?.name || pos.branchId;
@@ -82,28 +60,28 @@ export function CareersOpenPositions({ positions = [], branches = [] }: CareersO
                 <div 
                   key={pos.id}
                   className={cn(
-                    "border border-neutral-200 overflow-hidden transition-all duration-300 rounded-2xl",
-                    isExpanded ? "bg-[#FAF8F5] border-amber-400/50" : "bg-white hover:border-neutral-300"
+                    "border border-black/[0.03] overflow-hidden transition-all duration-[0.5s] rounded-2xl bg-white shadow-sm",
+                    isExpanded ? "border-brand-gold/30 shadow-md" : "hover:border-black/10 hover:shadow-md"
                   )}
                 >
                   <button 
                     onClick={() => setExpandedIdx(isExpanded ? null : idx)}
                     className="w-full px-6 md:px-8 py-6 flex items-center justify-between group text-left"
                   >
-                    <div className="flex flex-col items-start">
-                      <span className="text-[9px] uppercase tracking-[0.2em] text-amber-600 font-bold mb-2">OPPORTUNITY 0{idx + 1}</span>
-                      <h3 className="text-base font-semibold uppercase tracking-[0.1em] text-neutral-900">
+                    <div className="flex flex-col items-start pr-4">
+                      <span className="text-[9px] uppercase tracking-[0.2em] text-brand-gold font-bold mb-2">OPPORTUNITY 0{idx + 1}</span>
+                      <h3 className="text-base font-light uppercase tracking-[0.1em] text-brand-charcoal">
                         {pos.title}
                       </h3>
                       
-                      <div className="flex flex-wrap items-center gap-4 mt-2">
-                        <span className="flex items-center gap-1.5 text-[10px] font-semibold text-neutral-600 uppercase tracking-widest">
-                          <MapPin className="w-3.5 h-3.5 text-neutral-400" />
+                      <div className="flex flex-wrap items-center gap-4 mt-2.5">
+                        <span className="flex items-center gap-1.5 text-[10px] font-bold text-brand-charcoal/55 uppercase tracking-widest">
+                          <MapPin className="w-3.5 h-3.5 text-brand-gold" />
                           {branchName}
                         </span>
                         {pos.expiryDate && (
-                          <span className="flex items-center gap-1.5 text-[10px] font-light text-neutral-400 uppercase tracking-widest">
-                            <Calendar className="w-3.5 h-3.5" />
+                          <span className="flex items-center gap-1.5 text-[10px] font-light text-brand-charcoal/40 uppercase tracking-widest">
+                            <Calendar className="w-3.5 h-3.5 text-brand-gold" />
                             Apply Before: {new Date(pos.expiryDate).toLocaleDateString()}
                           </span>
                         )}
@@ -111,8 +89,8 @@ export function CareersOpenPositions({ positions = [], branches = [] }: CareersO
                     </div>
                     
                     <div className={cn(
-                      "p-2 rounded-full border border-neutral-200 transition-all duration-300",
-                      isExpanded ? "bg-amber-400 text-neutral-900 border-amber-400 rotate-180" : "group-hover:bg-neutral-900 group-hover:text-white"
+                      "p-2 rounded-full border border-black/5 transition-all duration-[0.5s] shrink-0",
+                      isExpanded ? "bg-brand-gold text-white border-brand-gold rotate-180" : "group-hover:bg-brand-charcoal group-hover:text-white"
                     )}>
                       <ChevronDown className="w-4 h-4" />
                     </div>
@@ -120,17 +98,17 @@ export function CareersOpenPositions({ positions = [], branches = [] }: CareersO
 
                   <AnimatePresence>
                     {isExpanded && (
-                      <m.div
+                      <motion.div
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.4, ease: "easeInOut" }}
+                        transition={{ duration: 0.4, ease: [0.19, 1, 0.22, 1] }}
                       >
-                        <div className="px-6 md:px-8 pb-8 pt-4 border-t border-neutral-200/50">
-                          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                        <div className="px-6 md:px-8 pb-8 pt-4 border-t border-black/[0.03]">
+                          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 xl:gap-12">
                             <div>
-                              <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">Description</h4>
-                              <p className="text-neutral-500 font-light leading-relaxed mb-8 text-sm whitespace-pre-line">
+                              <h4 className="text-[9px] font-bold uppercase tracking-[0.2em] text-brand-charcoal/40 mb-4">Description</h4>
+                              <p className="text-brand-charcoal/60 font-light leading-relaxed mb-8 text-[13px] whitespace-pre-line">
                                 {pos.desc}
                               </p>
                               
@@ -138,7 +116,7 @@ export function CareersOpenPositions({ positions = [], branches = [] }: CareersO
                                 href={applyUrl} 
                                 target="_blank" 
                                 rel="noopener noreferrer" 
-                                className="bg-neutral-900 text-white text-xs uppercase tracking-[0.15em] px-8 py-4 rounded-[3px] font-medium hover:bg-[#C9A84C] hover:text-[#0D0D0D] transition-all duration-300 inline-flex items-center gap-2"
+                                className="bg-brand-charcoal text-brand-gold text-[9px] uppercase tracking-[0.2em] px-8 py-4 rounded-[3px] font-bold hover:bg-brand-gold hover:text-white border border-brand-charcoal hover:border-brand-gold transition-all duration-500 inline-flex items-center gap-2 shadow-md"
                               >
                                 <Sparkles className="w-3.5 h-3.5" />
                                 Apply For This Position
@@ -146,11 +124,11 @@ export function CareersOpenPositions({ positions = [], branches = [] }: CareersO
                             </div>
                             
                             <div>
-                              <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">Requirements</h4>
-                              <ul className="space-y-3">
+                              <h4 className="text-[9px] font-bold uppercase tracking-[0.2em] text-brand-charcoal/40 mb-4">Requirements</h4>
+                              <ul className="space-y-3.5">
                                 {pos.requirements.map((req, rIdx) => (
-                                  <li key={rIdx} className="flex items-start gap-3 text-sm font-light text-neutral-600">
-                                    <div className="w-1.5 h-1.5 rounded-full bg-amber-400 mt-2 flex-shrink-0" />
+                                  <li key={rIdx} className="flex items-start gap-3.5 text-[13px] font-light text-brand-charcoal/60 leading-relaxed">
+                                    <span className="text-brand-gold text-xs shrink-0 mt-0.5">◈</span>
                                     <span>{req}</span>
                                   </li>
                                 ))}
@@ -158,7 +136,7 @@ export function CareersOpenPositions({ positions = [], branches = [] }: CareersO
                             </div>
                           </div>
                         </div>
-                      </m.div>
+                      </motion.div>
                     )}
                   </AnimatePresence>
                 </div>
@@ -166,11 +144,11 @@ export function CareersOpenPositions({ positions = [], branches = [] }: CareersO
             })}
           </div>
         ) : (
-          <div className="py-20 text-center bg-[#FAF8F5] border border-dashed border-neutral-300 rounded-2xl">
-            <div className="flex flex-col items-center gap-4 text-neutral-400 max-w-sm mx-auto">
-              <Globe className="w-10 h-10 stroke-[1.5] animate-pulse" />
-              <p className="text-xs uppercase tracking-widest font-semibold">No active job listings found</p>
-              <p className="text-sm font-light text-neutral-500">All roles have been successfully closed. Check back soon for future openings!</p>
+          <div className="py-20 text-center bg-white border border-black/[0.03] rounded-2xl max-w-xl mx-auto shadow-sm">
+            <div className="flex flex-col items-center gap-4 text-brand-charcoal/40 max-w-sm mx-auto px-6">
+              <Globe className="w-10 h-10 stroke-[1.5] text-brand-gold animate-pulse" />
+              <p className="text-[10px] uppercase tracking-widest font-bold text-brand-charcoal/80">No active job listings found</p>
+              <p className="text-[12px] font-light text-brand-charcoal/50">All career opportunities have been successfully closed. Please consult our Digital Concierge soon for future boutique openings!</p>
             </div>
           </div>
         )}

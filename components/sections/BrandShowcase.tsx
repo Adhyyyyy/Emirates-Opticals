@@ -1,37 +1,37 @@
-﻿"use client";
+"use client";
 
 import React, { useState } from "react";
 import { m } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const ROW_1 = [
-  { id: 1, name: "Tom Ford", logoText: "TOM FORD", fontClass: "font-cormorant font-bold uppercase text-xl md:text-2xl tracking-widest", imageUrl: "/brands/Man_in_suit_wearing_eyeglasses_202605281338.jpeg", showText: true },
-  { id: 2, name: "Gucci", logoText: "", fontClass: "", imageUrl: "/brands/Androgynous_model_wearing_Gucci_â€¦_202605281315.jpeg", showText: false },
-  { id: 3, name: "Oakley", logoText: "", fontClass: "", imageUrl: "/brands/Athlete_wearing_Oakley_sunglasses_202605281315.jpeg", showText: false },
-  { id: 4, name: "Dolce & Gabbana", logoText: "DOLCE & GABBANA", fontClass: "font-didot uppercase text-lg md:text-xl tracking-widest", imageUrl: "/brands/Woman_in_gold_embroidered_dress_202605281338.jpeg", showText: true },
-  { id: 5, name: "Vogue", logoText: "", fontClass: "", imageUrl: "/brands/Female_model_wearing_Vogue_Eyewear_202605281316.jpeg", showText: false },
-  { id: 6, name: "Aviators 1", logoText: "", fontClass: "", imageUrl: "/brands/Man_wearing_aviators_highway_202605281316.jpeg", showText: false },
-  { id: 7, name: "Aviators 2", logoText: "", fontClass: "", imageUrl: "/brands/Man_wearing_aviators_highway_202605281326.jpeg", showText: false },
-  { id: 8, name: "Bvlgari", logoText: "BVLGARI", fontClass: "font-trajan uppercase text-xl md:text-2xl tracking-[0.25em]", imageUrl: "/brands/Woman_wearing_Bvlgari_frames_202605281327.jpeg", showText: true },
-  { id: 9, name: "Police", logoText: "", fontClass: "", imageUrl: "/brands/Man_wearing_Police_sunglasses_202605281316.jpeg", showText: false },
-  { id: 10, name: "Stylish Overcoat", logoText: "", fontClass: "", imageUrl: "/brands/Stylish_man_in_overcoat_202605281338.jpeg", showText: false },
-  { id: 11, name: "Diesel", logoText: "", fontClass: "", imageUrl: "/brands/Tattooed_person_wearing_Diesel_sâ€¦_202605281317.jpeg", showText: false },
-  { id: 12, name: "Bvlgari 2", logoText: "", fontClass: "", imageUrl: "/brands/Woman_wearing_Bvlgari_frames_202605281328.jpeg", showText: false },
+  { id: 1, name: "Tom Ford", logoText: "TOM FORD", fontClass: "font-cormorant font-bold uppercase text-xl md:text-2xl tracking-widest", imageUrl: "/Brands/Man_in_suit_wearing_eyeglasses_202605281338.jpeg", showText: true },
+  { id: 2, name: "Gucci", logoText: "", fontClass: "", imageUrl: "/Brands/Androgynous_model_wearing_Gucci_._202605281315.jpeg", showText: false },
+  { id: 3, name: "Oakley", logoText: "", fontClass: "", imageUrl: "/Brands/Athlete_wearing_Oakley_sunglasses_202605281315.jpeg", showText: false },
+  { id: 4, name: "Dolce & Gabbana", logoText: "DOLCE & GABBANA", fontClass: "font-didot uppercase text-lg md:text-xl tracking-widest", imageUrl: "/Brands/Woman_in_gold_embroidered_dress_202605281338.jpeg", showText: true },
+  { id: 5, name: "Vogue", logoText: "", fontClass: "", imageUrl: "/Brands/Female_model_wearing_Vogue_Eyewear_202605281316.jpeg", showText: false },
+  { id: 6, name: "Aviators 1", logoText: "", fontClass: "", imageUrl: "/Brands/Man_wearing_aviators_highway_202605281316.jpeg", showText: false },
+  { id: 7, name: "Aviators 2", logoText: "", fontClass: "", imageUrl: "/Brands/Man_wearing_aviators_highway_202605281326.jpeg", showText: false },
+  { id: 8, name: "Bvlgari", logoText: "BVLGARI", fontClass: "font-trajan uppercase text-xl md:text-2xl tracking-[0.25em]", imageUrl: "/Brands/Woman_wearing_Bvlgari_frames_202605281327.jpeg", showText: true },
+  { id: 9, name: "Police", logoText: "", fontClass: "", imageUrl: "/Brands/Man_wearing_Police_sunglasses_202605281316.jpeg", showText: false },
+  { id: 10, name: "Stylish Overcoat", logoText: "", fontClass: "", imageUrl: "/Brands/Stylish_man_in_overcoat_202605281338.jpeg", showText: false },
+  { id: 11, name: "Diesel", logoText: "", fontClass: "", imageUrl: "/Brands/Tattooed_person_wearing_Diesel_s._202605281317.jpeg", showText: false },
+  { id: 12, name: "Bvlgari 2", logoText: "", fontClass: "", imageUrl: "/Brands/Woman_wearing_Bvlgari_frames_202605281328.jpeg", showText: false },
 ];
 
 const ROW_2 = [
-  { id: 13, name: "Montblanc", logoText: "MONTBLANC", fontClass: "font-futura font-light uppercase text-lg md:text-xl tracking-[0.3em]", imageUrl: "/brands/Man_wearing_Montblanc_frames_202605281316.jpeg", showText: true },
-  { id: 14, name: "D&G", logoText: "", fontClass: "", imageUrl: "/brands/Woman_wearing_D&G_sunglasses_202605281316.jpeg", showText: false },
-  { id: 15, name: "Eyewear Collection", logoText: "", fontClass: "", imageUrl: "/brands/Woman_wearing_eyewear_collection_202605281317.jpeg", showText: false },
-  { id: 16, name: "DB Eyewear", logoText: "DB EYEWEAR", fontClass: "font-helvetica font-thin uppercase text-xl md:text-2xl tracking-widest", imageUrl: "/brands/Mature_man_wearing_glasses_202605281338.jpeg", showText: true },
-  { id: 17, name: "Collection 2", logoText: "", fontClass: "", imageUrl: "/brands/Woman_wearing_eyewear_collection_202605281327.jpeg", showText: false },
-  { id: 18, name: "Gold Rimmed", logoText: "", fontClass: "", imageUrl: "/brands/Woman_wearing_gold-rimmed_eyeglaâ€¦_202605281338.jpeg", showText: false },
-  { id: 19, name: "Cartier", logoText: "", fontClass: "", imageUrl: "/brands/Woman_wearing_gold_Cartier_glasses_202605281315.jpeg", showText: false },
-  { id: 20, name: "Prada", logoText: "", fontClass: "", imageUrl: "/brands/Woman_wearing_Prada_glasses_202605281315.jpeg", showText: false },
-  { id: 21, name: "Beach", logoText: "", fontClass: "", imageUrl: "/brands/Woman_wearing_sunglasses_beach_202605281316.jpeg", showText: false },
-  { id: 22, name: "Young Man", logoText: "", fontClass: "", imageUrl: "/brands/Young_man_wearing_sunglasses_202605281315.jpeg", showText: false },
-  { id: 23, name: "Lacoste", logoText: "", fontClass: "", imageUrl: "/brands/Young_woman_wearing_Lacoste_frames_202605281316.jpeg", showText: false },
-  { id: 24, name: "Calvin Klein", logoText: "", fontClass: "", imageUrl: "/brands/Androgynous_model_wearing_Calvinâ€¦_202605281317 - Copy.jpeg", showText: false },
+  { id: 13, name: "Montblanc", logoText: "MONTBLANC", fontClass: "font-futura font-light uppercase text-lg md:text-xl tracking-[0.3em]", imageUrl: "/Brands/Man_wearing_Montblanc_frames_202605281316.jpeg", showText: true },
+  { id: 14, name: "D&G", logoText: "", fontClass: "", imageUrl: "/Brands/Woman_wearing_D&G_sunglasses_202605281316.jpeg", showText: false },
+  { id: 15, name: "Eyewear Collection", logoText: "", fontClass: "", imageUrl: "/Brands/Woman_wearing_eyewear_collection_202605281317.jpeg", showText: false },
+  { id: 16, name: "DB Eyewear", logoText: "DB EYEWEAR", fontClass: "font-helvetica font-thin uppercase text-xl md:text-2xl tracking-widest", imageUrl: "/Brands/Mature_man_wearing_glasses_202605281338.jpeg", showText: true },
+  { id: 17, name: "Collection 2", logoText: "", fontClass: "", imageUrl: "/Brands/Woman_wearing_eyewear_collection_202605281327.jpeg", showText: false },
+  { id: 18, name: "Gold Rimmed", logoText: "", fontClass: "", imageUrl: "/Brands/Woman_wearing_gold-rimmed_eyegla._202605281338.jpeg", showText: false },
+  { id: 19, name: "Cartier", logoText: "", fontClass: "", imageUrl: "/Brands/Woman_wearing_gold_Cartier_glasses_202605281315.jpeg", showText: false },
+  { id: 20, name: "Prada", logoText: "", fontClass: "", imageUrl: "/Brands/Woman_wearing_Prada_glasses_202605281315.jpeg", showText: false },
+  { id: 21, name: "Beach", logoText: "", fontClass: "", imageUrl: "/Brands/Woman_wearing_sunglasses_beach_202605281316.jpeg", showText: false },
+  { id: 22, name: "Young Man", logoText: "", fontClass: "", imageUrl: "/Brands/Young_man_wearing_sunglasses_202605281315.jpeg", showText: false },
+  { id: 23, name: "Lacoste", logoText: "", fontClass: "", imageUrl: "/Brands/Young_woman_wearing_Lacoste_frames_202605281316.jpeg", showText: false },
+  { id: 24, name: "Calvin Klein", logoText: "", fontClass: "", imageUrl: "/Brands/Androgynous_model_wearing_Calvin._202605281317 - Copy.jpeg", showText: false },
 ];
 
 export function BrandShowcase() {

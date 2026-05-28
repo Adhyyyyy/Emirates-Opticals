@@ -1,8 +1,7 @@
-﻿import React from "react";
+import React from "react";
 import { CareersHero } from "@/components/sections/careers/CareersHero";
 import { CareersOpenPositions } from "@/components/sections/careers/CareersOpenPositions";
 import { CareersWhyJoin } from "@/components/sections/careers/CareersWhyJoin";
-import { CareersCTA } from "@/components/sections/careers/CareersCTA";
 import { getJobs } from "@/actions/cms-careers";
 
 export const dynamic = "force-dynamic";
@@ -34,7 +33,6 @@ export default async function CareersPage() {
       <CareersHero />
       <CareersOpenPositions positions={positions} branches={STATIC_BRANCHES} />
       <CareersWhyJoin />
-      <CareersCTA />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useMemo } from "react";
 import { m, AnimatePresence } from "framer-motion";
@@ -123,7 +123,7 @@ export function ProductShowcase({ initialProducts }: ProductShowcaseProps) {
                         {product.name}
                       </h3>
                       <p className="text-sm text-brand-charcoal/70 font-normal">
-                        â‚¹{(product.price || 0).toLocaleString("en-IN")}
+                        ₹{(product.price || 0).toLocaleString("en-IN")}
                       </p>
                     </div>
                   </Link>

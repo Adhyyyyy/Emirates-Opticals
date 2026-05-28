@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useEffect, useCallback } from "react";
 import { m, AnimatePresence } from "framer-motion";
@@ -22,7 +22,7 @@ const BRANCHES: Branch[] = [
     area: "Seaport-Airport Road",
     address: "Seaport-Airport Rd, Chittethukara, Kakkanad, Kerala 682037",
     phone: "+91 77364 41211",
-    hours: "10:00 AM â€” 08:00 PM",
+    hours: "10:00 AM — 08:00 PM",
   },
   {
     id: "angamaly",
@@ -30,7 +30,7 @@ const BRANCHES: Branch[] = [
     area: "MC Road",
     address: "MC Road, Near KSRTC Bus Stand, Angamaly, Kerala 683572",
     phone: "+91 85478 66751",
-    hours: "09:30 AM â€” 08:00 PM",
+    hours: "09:30 AM — 08:00 PM",
   },
   {
     id: "kothamangalam",
@@ -38,7 +38,7 @@ const BRANCHES: Branch[] = [
     area: "Aluva-Munnar Road",
     address: "AM Road, Near Private Bus Stand, Kothamangalam, Kerala 686691",
     phone: "+91 85478 66752",
-    hours: "09:30 AM â€” 07:30 PM",
+    hours: "09:30 AM — 07:30 PM",
   },
   {
     id: "irumpanam",
@@ -46,7 +46,7 @@ const BRANCHES: Branch[] = [
     area: "Seaport-Airport Road",
     address: "MM Arcade, Seaport-Airport Rd, Irumpanam, Kerala 682309",
     phone: "+91 88899 90533",
-    hours: "10:00 AM â€” 09:00 PM",
+    hours: "10:00 AM — 09:00 PM",
   },
   {
     id: "ettumanur",
@@ -54,7 +54,7 @@ const BRANCHES: Branch[] = [
     area: "MC Road",
     address: "MC Road, Near Ettumanur Temple, Ettumanur, Kerala 686631",
     phone: "+91 85478 66754",
-    hours: "09:30 AM â€” 07:30 PM",
+    hours: "09:30 AM — 07:30 PM",
   },
   {
     id: "kottayam",
@@ -62,7 +62,7 @@ const BRANCHES: Branch[] = [
     area: "Kottayam-Kumily Road",
     address: "M D Commercial Centre, Opp. Petrol Pump, Kottayam, Kerala 686001",
     phone: "+91 85478 66755",
-    hours: "09:30 AM â€” 08:00 PM",
+    hours: "09:30 AM — 08:00 PM",
   },
   {
     id: "changanassery",
@@ -70,7 +70,7 @@ const BRANCHES: Branch[] = [
     area: "Mathumoola",
     address: "Manjippuzha Tower, Mathumoola, Changanassery, Kerala 686103",
     phone: "+91 87140 32601",
-    hours: "09:30 AM â€” 07:30 PM",
+    hours: "09:30 AM — 07:30 PM",
   },
   {
     id: "thiruvalla",
@@ -78,7 +78,7 @@ const BRANCHES: Branch[] = [
     area: "Thirumoolapuram",
     address: "Karappunnasseril Arcade, Thirumoolapuram, Thiruvalla, Kerala 689115",
     phone: "+91 87140 32602",
-    hours: "10:00 AM â€” 07:00 PM",
+    hours: "10:00 AM — 07:00 PM",
   },
   {
     id: "kumbanad",
@@ -86,7 +86,7 @@ const BRANCHES: Branch[] = [
     area: "TK Road",
     address: "TK Road, Near Kumbanad Junction, Kumbanad, Kerala 689547",
     phone: "+91 87140 32603",
-    hours: "09:30 AM â€” 07:30 PM",
+    hours: "09:30 AM — 07:30 PM",
   },
   {
     id: "pandalam",
@@ -94,7 +94,7 @@ const BRANCHES: Branch[] = [
     area: "MC Road",
     address: "MC Road, Near Pandalam Bridge, Pandalam, Kerala 689501",
     phone: "+91 87140 32604",
-    hours: "09:30 AM â€” 07:30 PM",
+    hours: "09:30 AM — 07:30 PM",
   },
 ];
 

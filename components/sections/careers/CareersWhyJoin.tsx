@@ -1,90 +1,93 @@
-﻿"use client";
+"use client";
 
 import React from "react";
-import { m } from "framer-motion";
+import { motion } from "framer-motion";
 import { TrendingUp, MapPin, Users, Layout, Award, Star } from "lucide-react";
 
 const WHY_JOIN = [
   {
     icon: TrendingUp,
     title: "Growth Opportunities",
-    desc: "Build long-term career growth through continuous learning and development."
+    desc: "Build rewarding long-term career growth through structured continuous optical training and leadership tracks."
   },
   {
     icon: MapPin,
-    title: "Multiple Kerala Locations",
-    desc: "Work at branches conveniently located across Kerala."
+    title: "Ten Showrooms in Kerala",
+    desc: "Work at pristine, state-of-the-art luxury boutiques conveniently established near prime hubs across Kerala."
   },
   {
     icon: Users,
-    title: "Supportive Team Environment",
-    desc: "Collaborate with experienced professionals in a welcoming culture."
+    title: "Supportive Culture",
+    desc: "Collaborate side-by-side with seasoned clinical optometrists and luxury frame stylists in a united family."
   },
   {
     icon: Layout,
-    title: "Premium Work Environment",
-    desc: "Be part of a modern luxury retail and professional optical ecosystem."
+    title: "Premium Environments",
+    desc: "Excel inside state-of-the-art diagnostic clinics and stunningly curated global designer glass galleries."
   },
   {
     icon: Award,
-    title: "Competitive Benefits",
-    desc: "Attractive salary packages and employee benefits."
+    title: "Bespoke Compensation",
+    desc: "Enjoy attractive compensation packages, client satisfaction incentives, and extensive healthcare benefits."
   },
   {
     icon: Star,
-    title: "Customer Excellence",
-    desc: "Deliver meaningful experiences through premium service and expertise."
+    title: "Standard of Excellence",
+    desc: "Deliver meaningful consultations through genuine luxury products, uncompromised value, and optical care."
   }
 ];
 
 export function CareersWhyJoin() {
   return (
-    <section className="w-full bg-[#FAF8F5] py-20 md:py-24 overflow-hidden border-t border-neutral-100">
-      <div className="max-w-[1140px] mx-auto px-4 md:px-8">
+    <section className="w-full bg-[#FAF9F6] py-20 md:py-28 overflow-hidden border-t border-black/[0.02]">
+      <div className="max-w-[1240px] mx-auto px-4 md:px-8">
 
-        <div className="flex flex-col items-center text-center mb-14">
-          <m.span
+        {/* Section Header */}
+        <div className="flex flex-col items-center text-center mb-16">
+          <motion.h2
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-[10px] uppercase tracking-[0.2em] text-neutral-400 mb-3 block"
-          >
-            Why Emirates
-          </m.span>
-          <m.h2
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.9, delay: 0.1 }}
-            className="text-3xl md:text-4xl font-light text-neutral-900 tracking-tight uppercase"
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="text-3xl md:text-5xl font-extralight text-brand-charcoal tracking-tighter uppercase leading-tight"
           >
             Why Professionals Choose Emirates
-          </m.h2>
+          </motion.h2>
+          
+          <motion.div 
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="w-16 h-[1px] bg-brand-gold/50 mt-6"
+          />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {/* Premium Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 xl:gap-8">
           {WHY_JOIN.map((item, idx) => (
-            <m.div
+            <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: idx * 0.05 }}
-              className="group bg-white p-8 border border-neutral-200 rounded-2xl hover:border-neutral-300 hover:shadow-sm transition-all duration-300 flex flex-col gap-5"
+              transition={{ duration: 0.6, delay: idx * 0.06 }}
+              className="group relative bg-white border border-black/[0.03] hover:border-brand-gold/25 p-8 rounded-2xl shadow-sm hover:shadow-2xl hover:shadow-brand-charcoal/[0.04] transition-all duration-700 flex flex-col gap-6"
             >
-              <div className="w-11 h-11 rounded-xl border border-neutral-200 flex items-center justify-center bg-white text-neutral-700 group-hover:border-neutral-400 group-hover:bg-neutral-50 transition-all duration-200 shrink-0">
+              {/* Premium Icon Circle Frame */}
+              <div className="w-12 h-12 rounded-[3px] border border-black/[0.03] bg-[#FAF9F6] flex items-center justify-center text-brand-gold group-hover:bg-brand-gold group-hover:text-white transition-all duration-500 shrink-0">
                 <item.icon className="w-5 h-5 stroke-[1.5]" />
               </div>
+
               <div>
-                <h3 className="text-sm font-semibold uppercase tracking-[0.12em] text-neutral-900 mb-2">
+                <h3 className="text-[11px] font-bold uppercase tracking-widest text-brand-charcoal mb-3">
                   {item.title}
                 </h3>
-                <p className="text-sm text-neutral-500 font-light leading-relaxed">
+                <p className="text-[12px] text-brand-charcoal/50 leading-relaxed font-light group-hover:text-brand-charcoal/70 transition-colors duration-500">
                   {item.desc}
                 </p>
               </div>
-            </m.div>
+            </motion.div>
           ))}
         </div>
 

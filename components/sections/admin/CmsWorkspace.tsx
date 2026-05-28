@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useTransition } from "react";
 import { 
@@ -556,7 +556,7 @@ export function CmsWorkspace({ initialBanners, initialOffers, branches }: CmsWor
                         required
                         value={offerDiscount}
                         onChange={(e) => setOfferDiscount(e.target.value)}
-                        placeholder="e.g. 20% OFF or â‚¹2,000 off"
+                        placeholder="e.g. 20% OFF or ₹2,000 off"
                         className="w-full bg-brand-pearl/20 border-none rounded-xl py-3 px-4 text-xs focus:ring-1 focus:ring-brand-gold/20 outline-none"
                       />
                     </div>

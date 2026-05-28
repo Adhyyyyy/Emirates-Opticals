@@ -1,10 +1,10 @@
-﻿import React from "react";
+import React from "react";
 import { ServicesHero } from "@/components/sections/services/ServicesHero";
 import { ServiceEyeTesting } from "@/components/sections/services/ServiceEyeTesting";
 import { ServiceLensSolutions } from "@/components/sections/services/ServiceLensSolutions";
 import { ServiceStyling } from "@/components/sections/services/ServiceStyling";
 import { ServiceSunglasses } from "@/components/sections/services/ServiceSunglasses";
-import { ServiceFinalCTA } from "@/components/sections/services/ServiceFinalCTA";
+import { HelpChoosingCTA } from "@/components/sections/HelpChoosingCTA";
 
 export const metadata = {
   title: "Professional Optical Services | Eye Care - Emirates Optician",
@@ -19,7 +19,7 @@ export default function ServicesPage() {
       <ServiceLensSolutions />
       <ServiceStyling />
       <ServiceSunglasses />
-      <ServiceFinalCTA />
+      <HelpChoosingCTA />
     </div>
   );
 }

@@ -1,7 +1,7 @@
-﻿"use client";
+"use client";
 
 import React, { useState } from "react";
-import { m } from "framer-motion";
+import { motion } from "framer-motion";
 import { 
   Phone, 
   Mail, 
@@ -36,9 +36,9 @@ const TIMES = [
 
 const WHAT_TO_EXPECT = [
   "We'll confirm your appointment via phone",
-  "Free professional eye examination (15â€“20 minutes)",
+  "Free professional eye examination (15–20 minutes)",
   "Personalized frame selection with expert guidance",
-  "No obligation â€” just professional care",
+  "No obligation — just professional care",
 ];
 
 export function ContactPageContent() {
@@ -86,197 +86,199 @@ export function ContactPageContent() {
   };
 
   return (
-    <div className="bg-white min-h-screen text-neutral-900">
+    <div className="bg-[#FAF9F6] min-h-screen text-brand-charcoal">
 
-      {/* â”€â”€â”€ HERO â”€â”€â”€ */}
-      <section className="relative w-full h-[75vh] min-h-[550px] flex flex-col justify-center items-center overflow-hidden bg-neutral-950 pt-32 pb-16">
+      {/* ─── LUXURY HERO ─── */}
+      <section className="hidden md:flex relative w-full h-[60vh] min-h-[480px] flex-col overflow-hidden bg-neutral-100 pt-24 md:pt-32" id="contact-hero">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&q=80&w=2000"
+            src="/Hero/contact 2 hero.webp"
             alt="Book Your Eye Test"
             fill
-            className="object-cover opacity-80"
+            className="object-cover object-center"
             priority
           />
-          <div className="absolute inset-0 bg-black/55" />
-          <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/50 to-transparent z-10" />
         </div>
 
-        <div className="relative z-10 max-w-[1140px] mx-auto px-4 md:px-8 w-full text-center">
-          <m.span
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-[10px] md:text-xs font-medium uppercase tracking-[0.3em] text-amber-400/80 mb-4 block"
-          >
-            Free Professional Eye Examination
-          </m.span>
-          <m.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.4 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-light text-white uppercase tracking-tight leading-[1.05] font-heading drop-shadow-lg"
-          >
-            Book Your
-            <br />
-            Free <em className="italic font-light text-amber-400/90">Eye Test</em>
-          </m.h1>
+        {/* Centered Title Overlay with standard clearance offset padding */}
+        <div className="relative z-10 w-full h-full flex items-center justify-center pt-16 md:pt-20">
+          <div className="max-w-[1240px] mx-auto px-6 md:px-8 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <h1 className="text-4xl md:text-6xl font-light font-heading uppercase tracking-[0.25em] text-white drop-shadow-2xl select-none">
+                Contact Us
+              </h1>
+            </motion.div>
+          </div>
         </div>
-        <div className="absolute inset-0 noise-overlay opacity-[0.03] pointer-events-none z-20" />
+
+        {/* Decorative layout line */}
+        <div className="absolute bottom-0 inset-x-0 h-[1px] bg-brand-gold/20 z-10" />
       </section>
 
-      {/* â”€â”€â”€ MAIN CONTENT â”€â”€â”€ */}
-      <section className="max-w-[1140px] mx-auto px-4 md:px-8 py-20 md:py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+      {/* ─── MAIN CONTENT ─── */}
+      <section className="max-w-[1240px] mx-auto px-4 md:px-8 pt-40 pb-20 md:pt-20 md:pb-28">
+        
+        {/* Mobile-Only Page Title (no badges or underlines) */}
+        <div className="md:hidden text-center mb-12">
+          <h1 className="text-3xl font-light text-brand-charcoal tracking-[0.2em] uppercase font-heading">
+            Contact Us
+          </h1>
+        </div>
 
-          {/* â”€â”€ LEFT: Contact Info â”€â”€ */}
-          <div className="lg:col-span-4 space-y-8">
-            <div>
-              <m.span
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 xl:gap-16 items-start">
+
+          {/* ── LEFT: Contact Info ── */}
+          <div className="lg:col-span-5 space-y-8">
+            <div className="space-y-4">
+              <motion.h2
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="text-[10px] uppercase tracking-[0.2em] text-neutral-400 mb-3 block"
-              >
-                Reach Out
-              </m.span>
-              <m.h2
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.9, delay: 0.1 }}
-                className="text-3xl md:text-4xl font-light text-neutral-900 tracking-tight uppercase"
+                className="hidden md:block text-3xl md:text-5xl font-extralight text-brand-charcoal tracking-tighter uppercase leading-tight"
               >
                 Get In Touch
-              </m.h2>
-              <m.p
+              </motion.h2>
+              <motion.div 
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="hidden md:block w-12 h-[1px] bg-brand-gold/50"
+              />
+              <motion.p
                 initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-sm text-neutral-500 font-light leading-relaxed mt-3"
+                transition={{ duration: 0.8, delay: 0.1 }}
+                className="text-[13px] text-brand-charcoal/50 font-light leading-relaxed max-w-lg"
               >
-                Have questions or need assistance? We&apos;re here to help. Reach out through any of the channels below.
-              </m.p>
+                Have questions or need expert styling assistance? Reach out to our boutique network or book a complimentary vision consultation.
+              </motion.p>
             </div>
 
-            <div className="space-y-4">
-              <m.a
-                initial={{ opacity: 0, y: 15 }}
+            {/* Channels Grid */}
+            <div className="space-y-4 pt-4">
+              <motion.a
+                initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
+                transition={{ duration: 0.6 }}
                 href="tel:9682929968"
-                className="flex items-start gap-4 p-6 border border-neutral-200 rounded-2xl hover:border-neutral-300 hover:shadow-sm transition-all duration-300 group bg-white"
+                className="flex items-start gap-5 p-6 border border-black/[0.03] rounded-2xl bg-white shadow-sm hover:shadow-2xl hover:shadow-brand-charcoal/[0.04] transition-all duration-700 group"
               >
-                <div className="w-10 h-10 rounded-xl border border-neutral-200 flex items-center justify-center bg-white text-neutral-700 group-hover:border-neutral-400 group-hover:bg-neutral-50 transition-all duration-200 shrink-0">
-                  <Phone className="w-4 h-4 text-amber-500" />
+                {/* Custom square bracket style */}
+                <div className="w-10 h-10 rounded-[3px] border border-black/[0.03] bg-[#FAF9F6] flex items-center justify-center text-brand-gold group-hover:bg-brand-gold group-hover:text-white transition-all duration-500 shrink-0">
+                  <Phone className="w-4 h-4 stroke-[1.5]" />
                 </div>
                 <div>
-                  <span className="text-[9px] font-bold uppercase tracking-widest text-neutral-400 block mb-1">Call Us</span>
-                  <p className="text-base font-semibold text-neutral-900 group-hover:text-amber-600 transition-colors">9682929968</p>
-                  <p className="text-[11px] text-neutral-500 font-light mt-0.5">Monday â€“ Sunday, 9 AM â€“ 7 PM</p>
+                  <span className="text-[9px] font-bold uppercase tracking-widest text-brand-charcoal/30 block mb-1">Call Us</span>
+                  <p className="text-sm font-bold text-brand-charcoal group-hover:text-brand-gold transition-colors duration-300">9682929968</p>
+                  <p className="text-[11px] text-brand-charcoal/40 font-light mt-0.5">Monday – Sunday, 9 AM – 7 PM</p>
                 </div>
-              </m.a>
+              </motion.a>
 
-              <m.a
-                initial={{ opacity: 0, y: 15 }}
+              <motion.a
+                initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.1 }}
+                transition={{ duration: 0.6, delay: 0.05 }}
                 href="mailto:info@emiratesoptician.com"
-                className="flex items-start gap-4 p-6 border border-neutral-200 rounded-2xl hover:border-neutral-300 hover:shadow-sm transition-all duration-300 group bg-white"
+                className="flex items-start gap-5 p-6 border border-black/[0.03] rounded-2xl bg-white shadow-sm hover:shadow-2xl hover:shadow-brand-charcoal/[0.04] transition-all duration-700 group"
               >
-                <div className="w-10 h-10 rounded-xl border border-neutral-200 flex items-center justify-center bg-white text-neutral-700 group-hover:border-neutral-400 group-hover:bg-neutral-50 transition-all duration-200 shrink-0">
-                  <Mail className="w-4 h-4 text-amber-500" />
+                <div className="w-10 h-10 rounded-[3px] border border-black/[0.03] bg-[#FAF9F6] flex items-center justify-center text-brand-gold group-hover:bg-brand-gold group-hover:text-white transition-all duration-500 shrink-0">
+                  <Mail className="w-4 h-4 stroke-[1.5]" />
                 </div>
                 <div>
-                  <span className="text-[9px] font-bold uppercase tracking-widest text-neutral-400 block mb-1">Email</span>
-                  <p className="text-sm font-semibold text-neutral-900 group-hover:text-amber-600 transition-colors">info@emiratesoptician.com</p>
-                  <p className="text-[11px] text-neutral-500 font-light mt-0.5">We&apos;ll respond within 24 hours</p>
+                  <span className="text-[9px] font-bold uppercase tracking-widest text-brand-charcoal/30 block mb-1">Email</span>
+                  <p className="text-sm font-bold text-brand-charcoal group-hover:text-brand-gold transition-colors duration-300">info@emiratesoptician.com</p>
+                  <p className="text-[11px] text-brand-charcoal/40 font-light mt-0.5">We&apos;ll respond within 24 hours</p>
                 </div>
-              </m.a>
+              </motion.a>
 
-              <m.a
-                initial={{ opacity: 0, y: 15 }}
+              <motion.a
+                initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.2 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
                 href="/branches"
-                className="flex items-start gap-4 p-6 border border-neutral-200 rounded-2xl hover:border-neutral-300 hover:shadow-sm transition-all duration-300 group bg-white"
+                className="flex items-start gap-5 p-6 border border-black/[0.03] rounded-2xl bg-white shadow-sm hover:shadow-2xl hover:shadow-brand-charcoal/[0.04] transition-all duration-700 group"
               >
-                <div className="w-10 h-10 rounded-xl border border-neutral-200 flex items-center justify-center bg-white text-neutral-700 group-hover:border-neutral-400 group-hover:bg-neutral-50 transition-all duration-200 shrink-0">
-                  <MapPin className="w-4 h-4 text-amber-500" />
+                <div className="w-10 h-10 rounded-[3px] border border-black/[0.03] bg-[#FAF9F6] flex items-center justify-center text-brand-gold group-hover:bg-brand-gold group-hover:text-white transition-all duration-500 shrink-0">
+                  <MapPin className="w-4 h-4 stroke-[1.5]" />
                 </div>
                 <div>
-                  <span className="text-[9px] font-bold uppercase tracking-widest text-neutral-400 block mb-1">Visit Us</span>
-                  <p className="text-sm font-semibold text-neutral-900">10 branches across Kerala</p>
-                  <span className="text-[11px] font-bold text-amber-600 flex items-center gap-1 mt-1 group-hover:gap-2 transition-all">
+                  <span className="text-[9px] font-bold uppercase tracking-widest text-brand-charcoal/30 block mb-1">Visit Us</span>
+                  <p className="text-sm font-bold text-brand-charcoal">10 Luxury Galleries across Kerala</p>
+                  <span className="text-[11px] font-bold text-brand-gold flex items-center gap-1 mt-1 group-hover:gap-2 transition-all">
                     View all locations <ArrowRight className="w-3 h-3" />
                   </span>
                 </div>
-              </m.a>
+              </motion.a>
 
-              <m.div
-                initial={{ opacity: 0, y: 15 }}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="flex items-start gap-4 p-6 border border-neutral-200 rounded-2xl bg-white"
+                transition={{ duration: 0.6, delay: 0.15 }}
+                className="flex items-start gap-5 p-6 border border-black/[0.03] rounded-2xl bg-white shadow-sm shrink-0"
               >
-                <div className="w-10 h-10 rounded-xl border border-neutral-200 flex items-center justify-center bg-white text-neutral-700 shrink-0">
-                  <Clock className="w-4 h-4 text-amber-500" />
+                <div className="w-10 h-10 rounded-[3px] border border-black/[0.03] bg-[#FAF9F6] flex items-center justify-center text-brand-gold shrink-0">
+                  <Clock className="w-4 h-4 stroke-[1.5]" />
                 </div>
                 <div>
-                  <span className="text-[9px] font-bold uppercase tracking-widest text-neutral-400 block mb-1">Business Hours</span>
-                  <p className="text-sm font-semibold text-neutral-900">Typically 9 AM â€“ 7 PM</p>
-                  <p className="text-[11px] text-neutral-500 font-light mt-0.5">Hours may vary by branch</p>
+                  <span className="text-[9px] font-bold uppercase tracking-widest text-brand-charcoal/30 block mb-1">Business Hours</span>
+                  <p className="text-sm font-bold text-brand-charcoal">Typically 9:30 AM – 7:30 PM</p>
+                  <p className="text-[11px] text-brand-charcoal/40 font-light mt-0.5">Hours may vary slightly by showroom</p>
                 </div>
-              </m.div>
+              </motion.div>
             </div>
 
-            {/* What to Expect */}
-            <m.div
+            {/* What to Expect (Gold Accent on Charcoal Box) */}
+            <motion.div
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="bg-neutral-950 text-white rounded-2xl p-8 relative overflow-hidden"
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="bg-brand-charcoal text-white rounded-2xl p-8 relative overflow-hidden border border-white/5 shadow-lg"
             >
-              <div className="absolute -top-4 -right-4 w-32 h-32 bg-amber-400/5 rounded-full blur-3xl" />
-              <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-amber-400/80 mb-6">
+              <div className="absolute inset-0 noise-overlay opacity-[0.02] pointer-events-none" />
+              <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-gold mb-6">
                 What to Expect
               </p>
               <ul className="space-y-4">
                 {WHAT_TO_EXPECT.map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 text-sm font-light text-neutral-300">
-                    <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                  <li key={i} className="flex items-start gap-3.5 text-xs font-light text-white/70">
+                    <CheckCircle2 className="w-4 h-4 text-brand-gold shrink-0 mt-0.5" />
                     <span>{item}</span>
                   </li>
                 ))}
               </ul>
-            </m.div>
+            </motion.div>
           </div>
 
-          {/* â”€â”€ RIGHT: Appointment Form â”€â”€ */}
-          <div className="lg:col-span-8 bg-[#FAF8F5] border border-neutral-200 p-8 md:p-12 rounded-2xl">
-            <m.h2
+          {/* ── RIGHT: Appointment Form (Clean Box Canvas) ── */}
+          <div className="lg:col-span-7 bg-white border border-black/[0.03] p-8 md:p-12 rounded-2xl shadow-sm">
+            <motion.h2
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="text-2xl md:text-3xl font-light text-neutral-900 tracking-tight uppercase mb-8"
+              className="text-2xl md:text-3xl font-light text-brand-charcoal tracking-tight uppercase mb-8"
             >
               Book Your Appointment
-            </m.h2>
+            </motion.h2>
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
                 {/* Full Name */}
                 <div className="flex flex-col gap-2">
-                  <label className="text-[10px] font-bold uppercase tracking-widest text-neutral-500">
+                  <label className="text-[9px] font-bold uppercase tracking-widest text-brand-charcoal/40">
                     Full Name *
                   </label>
                   <input
@@ -286,13 +288,13 @@ export function ContactPageContent() {
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="Your full name"
-                    className="w-full bg-white border border-neutral-200 rounded-xl px-5 py-3.5 text-xs focus:border-amber-400 outline-none transition-all duration-300"
+                    className="w-full bg-[#FAF9F6] border border-black/5 rounded-[3px] px-5 py-3.5 text-xs focus:border-brand-gold focus:ring-0 outline-none transition-all duration-300"
                   />
                 </div>
 
                 {/* Phone */}
                 <div className="flex flex-col gap-2">
-                  <label className="text-[10px] font-bold uppercase tracking-widest text-neutral-500">
+                  <label className="text-[9px] font-bold uppercase tracking-widest text-brand-charcoal/40">
                     Phone Number *
                   </label>
                   <input
@@ -302,13 +304,13 @@ export function ContactPageContent() {
                     value={formData.phone}
                     onChange={handleChange}
                     placeholder="Your phone number"
-                    className="w-full bg-white border border-neutral-200 rounded-xl px-5 py-3.5 text-xs focus:border-amber-400 outline-none transition-all duration-300"
+                    className="w-full bg-[#FAF9F6] border border-black/5 rounded-[3px] px-5 py-3.5 text-xs focus:border-brand-gold focus:ring-0 outline-none transition-all duration-300"
                   />
                 </div>
 
                 {/* Email */}
                 <div className="flex flex-col gap-2">
-                  <label className="text-[10px] font-bold uppercase tracking-widest text-neutral-500">
+                  <label className="text-[9px] font-bold uppercase tracking-widest text-brand-charcoal/40">
                     Email Address
                   </label>
                   <input
@@ -317,13 +319,13 @@ export function ContactPageContent() {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="your.email@example.com"
-                    className="w-full bg-white border border-neutral-200 rounded-xl px-5 py-3.5 text-xs focus:border-amber-400 outline-none transition-all duration-300"
+                    className="w-full bg-[#FAF9F6] border border-black/5 rounded-[3px] px-5 py-3.5 text-xs focus:border-brand-gold focus:ring-0 outline-none transition-all duration-300"
                   />
                 </div>
 
                 {/* Preferred Branch */}
                 <div className="flex flex-col gap-2">
-                  <label className="text-[10px] font-bold uppercase tracking-widest text-neutral-500">
+                  <label className="text-[9px] font-bold uppercase tracking-widest text-brand-charcoal/40">
                     Preferred Branch *
                   </label>
                   <select
@@ -331,7 +333,7 @@ export function ContactPageContent() {
                     required
                     value={formData.branch}
                     onChange={handleChange}
-                    className="w-full bg-white border border-neutral-200 rounded-xl px-5 py-3.5 text-xs focus:border-amber-400 outline-none transition-all duration-300 appearance-none cursor-pointer"
+                    className="w-full bg-[#FAF9F6] border border-black/5 rounded-[3px] px-5 py-3.5 text-xs focus:border-brand-gold focus:ring-0 outline-none transition-all duration-300 appearance-none cursor-pointer"
                   >
                     <option value="">Select a branch</option>
                     {BRANCHES.map((b) => (
@@ -342,7 +344,7 @@ export function ContactPageContent() {
 
                 {/* Date */}
                 <div className="flex flex-col gap-2">
-                  <label className="text-[10px] font-bold uppercase tracking-widest text-neutral-500">
+                  <label className="text-[9px] font-bold uppercase tracking-widest text-brand-charcoal/40">
                     Preferred Date *
                   </label>
                   <input
@@ -351,13 +353,13 @@ export function ContactPageContent() {
                     required
                     value={formData.date}
                     onChange={handleChange}
-                    className="w-full bg-white border border-neutral-200 rounded-xl px-5 py-3.5 text-xs focus:border-amber-400 outline-none transition-all duration-300"
+                    className="w-full bg-[#FAF9F6] border border-black/5 rounded-[3px] px-5 py-3.5 text-xs focus:border-brand-gold focus:ring-0 outline-none transition-all duration-300"
                   />
                 </div>
 
                 {/* Time */}
                 <div className="flex flex-col gap-2">
-                  <label className="text-[10px] font-bold uppercase tracking-widest text-neutral-500">
+                  <label className="text-[9px] font-bold uppercase tracking-widest text-brand-charcoal/40">
                     Preferred Time *
                   </label>
                   <select
@@ -365,7 +367,7 @@ export function ContactPageContent() {
                     required
                     value={formData.time}
                     onChange={handleChange}
-                    className="w-full bg-white border border-neutral-200 rounded-xl px-5 py-3.5 text-xs focus:border-amber-400 outline-none transition-all duration-300 appearance-none cursor-pointer"
+                    className="w-full bg-[#FAF9F6] border border-black/5 rounded-[3px] px-5 py-3.5 text-xs focus:border-brand-gold focus:ring-0 outline-none transition-all duration-300 appearance-none cursor-pointer"
                   >
                     <option value="">Select time</option>
                     {TIMES.map((t) => (
@@ -378,7 +380,7 @@ export function ContactPageContent() {
 
               {/* Additional Message */}
               <div className="flex flex-col gap-2">
-                <label className="text-[10px] font-bold uppercase tracking-widest text-neutral-500">
+                <label className="text-[9px] font-bold uppercase tracking-widest text-brand-charcoal/40">
                   Additional Message (Optional)
                 </label>
                 <textarea
@@ -387,7 +389,7 @@ export function ContactPageContent() {
                   value={formData.message}
                   onChange={handleChange}
                   placeholder="Any specific requirements or questions?"
-                  className="w-full bg-white border border-neutral-200 rounded-2xl px-5 py-4 text-xs focus:border-amber-400 outline-none transition-all duration-300 resize-none"
+                  className="w-full bg-[#FAF9F6] border border-black/5 rounded-[3px] px-5 py-4 text-xs focus:border-brand-gold focus:ring-0 outline-none transition-all duration-300 resize-none"
                 />
               </div>
 
@@ -396,12 +398,12 @@ export function ContactPageContent() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="bg-[#C9A84C] text-[#0D0D0D] text-xs uppercase tracking-[0.15em] px-8 py-4 rounded-[3px] font-bold hover:bg-[#B8952E] hover:text-white transition-all duration-300 inline-flex items-center justify-center gap-2"
+                  className="bg-[#C9A84C] text-[#0D0D0D] text-[10px] md:text-[11px] font-bold uppercase tracking-[0.3em] px-10 py-4 rounded-[3px] hover:bg-[#B8952E] hover:text-white transition-all duration-500 w-full sm:w-auto shadow-md flex items-center justify-center gap-2"
                 >
                   <Sparkles className="w-3.5 h-3.5" />
                   <span>{isSubmitting ? "Sending..." : "Book Free Eye Test"}</span>
                 </button>
-                <p className="text-[9px] text-neutral-400 font-light leading-relaxed">
+                <p className="text-[9px] text-brand-charcoal/30 font-light leading-relaxed">
                   By submitting this form, you agree to be contacted by Emirates Optician regarding your appointment.
                 </p>
               </div>

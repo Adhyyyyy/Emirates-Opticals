@@ -1,5 +1,6 @@
-﻿import { BranchesHero } from "@/components/sections/BranchesHero";
+import { BranchesHero } from "@/components/sections/BranchesHero";
 import { BranchGrid } from "@/components/sections/BranchGrid";
+import { HelpChoosingCTA } from "@/components/sections/HelpChoosingCTA";
 
 export const metadata = {
   title: "Our Branches | Emirates Opticians",
@@ -8,9 +9,10 @@ export const metadata = {
 
 export default function BranchesPage() {
   return (
-    <main>
+    <main className="flex flex-col w-full">
       <BranchesHero />
       <BranchGrid />
+      <HelpChoosingCTA />
     </main>
   );
 }

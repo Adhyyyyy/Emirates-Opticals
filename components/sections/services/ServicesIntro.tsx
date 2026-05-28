@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React from "react";
 import { m } from "framer-motion";
@@ -48,7 +48,7 @@ export function ServicesIntro() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-sm text-neutral-500 font-light leading-relaxed mb-10 max-w-xl"
             >
-              At Emirates Optician, every service is designed to combine professional expertise, advanced technology, and personalized customer care â€” creating a premium optical experience tailored to your vision and lifestyle.
+              At Emirates Optician, every service is designed to combine professional expertise, advanced technology, and personalized customer care — creating a premium optical experience tailored to your vision and lifestyle.
             </m.p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-5 gap-x-8">

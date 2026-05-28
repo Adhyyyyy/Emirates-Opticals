@@ -124,7 +124,7 @@ export function NewArrivals({ products = [] }: NewArrivalsProps) {
                   {product.name}
                 </h3>
                 <p className="text-sm text-neutral-600 font-normal">
-                  â‚¹{(product.price || 0).toLocaleString("en-IN")}
+                  ₹{(product.price || 0).toLocaleString("en-IN")}
                 </p>
               </Link>
             </m.div>

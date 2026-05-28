@@ -1,9 +1,8 @@
-﻿import React from "react";
+import React from "react";
 import { AboutHero } from "@/components/sections/about/AboutHero";
 import { AboutStory } from "@/components/sections/about/AboutStory";
-import { AboutValues } from "@/components/sections/about/AboutValues";
 import { AboutWhyChoose } from "@/components/sections/about/AboutWhyChoose";
-import { AboutFinalCTA } from "@/components/sections/about/AboutFinalCTA";
+import { HelpChoosingCTA } from "@/components/sections/HelpChoosingCTA";
 
 export const metadata = {
   title: "About Us | Emirates Optician",
@@ -16,7 +15,7 @@ export default function AboutPage() {
       <AboutHero />
       <AboutStory />
       <AboutWhyChoose />
-      <AboutFinalCTA />
+      <HelpChoosingCTA />
     </div>
   );
 }

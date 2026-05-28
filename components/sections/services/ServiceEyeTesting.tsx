@@ -1,100 +1,100 @@
-﻿"use client";
+"use client";
 
 import React from "react";
-import { m } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
-import { Microscope, Zap, Eye, ShieldCheck } from "lucide-react";
 import { Calendar } from "lucide-react";
 
 const FEATURES = [
-  { icon: Microscope, text: "Vision Clarity Assessment" },
-  { icon: ShieldCheck, text: "Prescription Accuracy" },
-  { icon: Zap, text: "Digital Eye Strain Check" },
-  { icon: Eye, text: "Professional Consultation" }
+  "Vision Clarity Assessment",
+  "Prescription Accuracy",
+  "Digital Eye Strain Check",
+  "Professional Consultation"
 ];
 
 export function ServiceEyeTesting() {
   return (
-    <section className="w-full bg-[#FAF8F5] py-20 md:py-24 overflow-hidden" id="eye-testing">
-      <div className="max-w-[1140px] mx-auto px-4 md:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+    <section className="w-full bg-[#FAF9F6] pt-40 pb-20 md:pt-24 md:pb-20 overflow-hidden" id="eye-testing">
+      <div className="max-w-[1240px] mx-auto px-4 md:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
-          {/* Left: Content */}
-          <div className="order-2 lg:order-1">
-            <m.span
+          {/* Left: Image (Standardized Premium Frame) */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="relative aspect-[4/3] md:aspect-[16/10] lg:aspect-[4/3] overflow-hidden rounded-2xl group shadow-sm hover:shadow-2xl hover:shadow-brand-charcoal/[0.04] transition-all duration-700 p-2 bg-white border border-black/[0.03]"
+          >
+            <div className="relative w-full h-full overflow-hidden rounded-xl bg-neutral-100">
+              <img
+                src="/service/At_Your_Service_-_Main_Image_1_1200x.webp"
+                alt="Professional Eye Diagnostics"
+                className="w-full h-full object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent pointer-events-none" />
+            </div>
+          </motion.div>
+
+          {/* Right: Content Block (Standardized Typography) */}
+          <div className="px-2">
+            <motion.span
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-[9px] font-bold uppercase tracking-[0.25em] text-brand-gold bg-brand-gold/5 border border-brand-gold/10 px-3 py-1 rounded-[3px] mb-6 inline-block"
+            >
+              Vision Care
+            </motion.span>
+            <motion.h2
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="text-[10px] uppercase tracking-[0.2em] text-neutral-400 mb-3 block"
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="text-3xl md:text-5xl font-extralight text-brand-charcoal tracking-tighter uppercase mb-6 leading-tight"
             >
-              Our Services
-            </m.span>
-            <m.h2
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.9, delay: 0.1 }}
-              className="text-3xl md:text-4xl font-light text-neutral-900 tracking-tight uppercase font-heading leading-tight mb-6"
-            >
-              Professional
-              <br />
-              <em className="italic font-light text-amber-500/80">Eye Testing</em>
-            </m.h2>
-            <m.p
+              Professional <br />
+              <em className="italic font-light font-serif text-brand-gold">Eye Diagnostics</em>
+            </motion.h2>
+            <motion.p
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-sm text-neutral-500 font-light leading-relaxed mb-10 max-w-xl"
+              className="text-[13px] text-brand-charcoal/60 font-light leading-relaxed mb-8"
             >
-              Detailed vision analysis conducted by experienced optometrists to ensure accurate prescriptions and healthy vision.
-            </m.p>
+              Experience diagnostic precision powered by clinical digital imaging and experienced optometrists to guarantee healthy vision and highly comfortable prescriptions.
+            </motion.p>
 
+            {/* Standardized Diamond Feature List */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
-              {FEATURES.map((item, idx) => (
-                <m.div
+              {FEATURES.map((text, idx) => (
+                <motion.div
                   key={idx}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.25 + idx * 0.08 }}
-                  className="flex items-center gap-3 group"
+                  transition={{ duration: 0.6, delay: idx * 0.05 }}
+                  className="flex items-center gap-3"
                 >
-                  <div className="w-8 h-8 rounded-[3px] border border-neutral-200 flex items-center justify-center bg-white text-amber-500 shrink-0">
-                    <item.icon className="w-4 h-4 stroke-[1.5]" />
-                  </div>
-                  <span className="text-[11px] font-semibold uppercase tracking-wider text-neutral-600">
-                    {item.text}
+                  <span className="text-[10px] text-brand-gold shrink-0">◈</span>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-brand-charcoal/70">
+                    {text}
                   </span>
-                </m.div>
+                </motion.div>
               ))}
             </div>
 
+            {/* Premium Button */}
             <Link
               href="/book-eye-test"
-              className="bg-[#C9A84C] text-[#0D0D0D] text-xs uppercase tracking-[0.15em] px-7 py-3.5 rounded-[3px] font-bold hover:bg-[#B8952E] hover:text-white transition-all duration-300 inline-flex items-center gap-2"
+              className="w-full sm:w-auto bg-brand-charcoal hover:bg-brand-gold text-brand-gold hover:text-white border border-brand-charcoal hover:border-brand-gold text-[9px] font-bold uppercase tracking-[0.22em] py-4 px-8 rounded-[3px] transition-all duration-500 flex items-center justify-center gap-2 group shadow-md hover:shadow-lg"
             >
               <Calendar className="w-3.5 h-3.5" />
-              Book Your Free Eye Test
+              <span>Book Complimentary Test</span>
             </Link>
           </div>
-
-          {/* Right: Image */}
-          <m.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.9 }}
-            className="order-1 lg:order-2 relative aspect-[4/5] overflow-hidden rounded-[3px] group shadow-lg"
-          >
-            <img
-              src="https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&q=80&w=1200"
-              alt="Professional Eye Testing"
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-neutral-900/10 group-hover:bg-transparent transition-colors duration-700 rounded-[3px]" />
-          </m.div>
 
         </div>
       </div>

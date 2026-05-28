@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React from "react";
 import { m } from "framer-motion";
@@ -31,7 +31,7 @@ export function AboutPhilosophy() {
             className="max-w-3xl flex flex-col items-center gap-8"
           >
             <p className="text-lg md:text-xl font-light text-white/70 leading-relaxed font-serif italic">
-              &ldquo;At Emirates Optician, we believe eyewear is more than vision correction â€” it is a reflection of personality, confidence, lifestyle, and self-expression.&rdquo;
+              &ldquo;At Emirates Optician, we believe eyewear is more than vision correction — it is a reflection of personality, confidence, lifestyle, and self-expression.&rdquo;
             </p>
             <div className="w-16 h-[1px] bg-amber-400/40" />
             <p className="text-sm text-neutral-400 font-light tracking-wide max-w-2xl mx-auto leading-loose uppercase">

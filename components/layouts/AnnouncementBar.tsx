@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useEffect } from "react";
 import { getOffers } from "@/actions/cms-marketing";
@@ -51,7 +51,7 @@ export function AnnouncementBar({ onDismissToggle }: AnnouncementBarProps) {
 
   // Exact fallback if no active offers, or dynamic text if offers exist
   const activeText = offers.length > 0 
-    ? `[${offers[currentIndex].percentage}] ${offers[currentIndex].title} â€” ${offers[currentIndex].description}`
+    ? `[${offers[currentIndex].percentage}] ${offers[currentIndex].title} — ${offers[currentIndex].description}`
     : "Flex Spending Accepted: Use your FSA/HSA cards on Emirates Opticians.";
 
   const ctaText = "EXPLORE SHOWROOMS";
@@ -64,10 +64,10 @@ export function AnnouncementBar({ onDismissToggle }: AnnouncementBarProps) {
       <div className="flex-1 overflow-hidden">
         <div className="announcement-ticker flex whitespace-nowrap items-center">
           <span className="text-[11px] font-sans font-semibold uppercase tracking-[0.08em] text-[#0A0A0A] mr-20">
-            {activeText} &nbsp;Â·&nbsp; <a href={ctaLink} className="underline font-bold">{ctaText}</a>
+            {activeText} &nbsp;•&nbsp; <a href={ctaLink} className="underline font-bold">{ctaText}</a>
           </span>
           <span className="text-[11px] font-sans font-semibold uppercase tracking-[0.08em] text-[#0A0A0A] mr-20">
-            {activeText} &nbsp;Â·&nbsp; <a href={ctaLink} className="underline font-bold">{ctaText}</a>
+            {activeText} &nbsp;•&nbsp; <a href={ctaLink} className="underline font-bold">{ctaText}</a>
           </span>
         </div>
       </div>

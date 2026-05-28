@@ -1,71 +1,87 @@
-﻿"use client";
+"use client";
 
 import React from "react";
-import { motion, m } from "framer-motion";
-import { Reveal, GridStagger, StaggerItem } from "@/components/motion/Reveal";
+import { motion } from "framer-motion";
 
 const STEPS = [
   {
     title: "Warm Welcome",
-    desc: "Our team will guide you through a comfortable and professional experience."
+    desc: "Our team will guide you through a comfortable and highly professional consultation experience."
   },
   {
-    title: "Professional Eye Examination",
-    desc: "Advanced diagnostic equipment ensures accurate vision assessment."
+    title: "Advanced Diagnostics",
+    desc: "State-of-the-art diagnostic equipment ensures highly precise clinical vision assessment."
   },
   {
-    title: "Personalized Consultation",
-    desc: "Receive expert recommendations based on your lifestyle and visual needs."
+    title: "Personalized Care",
+    desc: "Receive bespoke lens recommendations tailored exactly around your visual lifestyle."
   },
   {
-    title: "Explore Premium Eyewear",
-    desc: "Discover authentic luxury eyewear collections curated for you."
+    title: "Bespoke Eyewear",
+    desc: "Discover curated global designer frames and receive customized retail boutique styling."
   }
 ];
 
 export function BookingExpectations() {
   return (
-    <section className="w-full bg-brand-pearl section-padding overflow-hidden relative">
-      <div className="container-tight relative z-10">
-        <div className="flex flex-col items-center text-center mb-10 md:mb-24">
-          <m.span
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1 }}
-            className="meta-editorial mb-4"
-          >
-            Atelier Experience
-          </m.span>
-          <m.h2 
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.1 }}
-            className="h2-editorial"
-          >
-            What To Expect During Your Visit
-          </m.h2>
+    <section className="w-full bg-[#FAF9F6] pt-40 pb-20 md:pt-24 md:pb-24 overflow-hidden text-brand-charcoal">
+      <div className="max-w-[1240px] mx-auto px-4 md:px-8">
+        
+        {/* Mobile-Only Page Title (no badges or underlines) */}
+        <div className="md:hidden text-center mb-12">
+          <h1 className="text-3xl font-light text-brand-charcoal tracking-[0.2em] uppercase font-heading">
+            Book Eye Test
+          </h1>
         </div>
 
-        <GridStagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* Section Header */}
+        <div className="flex flex-col items-center text-center mb-16">
+          <motion.h2 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-3xl md:text-5xl font-extralight text-brand-charcoal tracking-tighter uppercase leading-tight"
+          >
+            What To Expect During Your Visit
+          </motion.h2>
+          
+          <motion.div 
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="w-16 h-[1px] bg-brand-gold/50 mt-6"
+          />
+        </div>
+
+        {/* Premium Numbered Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-8">
           {STEPS.map((step, idx) => (
-            <StaggerItem key={idx}>
-              <div className="flex flex-col items-center text-center group">
-                <div className="w-16 h-16 rounded-full bg-white border border-black/5 flex items-center justify-center text-brand-gold font-heading text-2xl group-hover:bg-brand-gold group-hover:text-white transition-all duration-700 mb-10">
-                  {idx + 1}
-                </div>
-                <h3 className="text-xl font-bold text-brand-charcoal uppercase tracking-tighter mb-4">
+            <motion.div 
+              key={idx}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: idx * 0.05 }}
+              className="group relative bg-white border border-black/[0.03] hover:border-brand-gold/25 p-8 rounded-2xl shadow-sm hover:shadow-2xl hover:shadow-brand-charcoal/[0.04] transition-all duration-700 flex flex-col items-center text-center gap-6"
+            >
+              {/* Luxury Bracket Number Frame */}
+              <div className="w-12 h-12 rounded-[3px] border border-black/[0.03] bg-[#FAF9F6] flex items-center justify-center text-brand-gold font-heading text-lg group-hover:bg-brand-gold group-hover:text-white transition-all duration-500 shrink-0">
+                0{idx + 1}
+              </div>
+              
+              <div>
+                <h3 className="text-[11px] font-bold uppercase tracking-widest text-brand-charcoal mb-3">
                   {step.title}
                 </h3>
-                <div className="w-8 h-[1px] bg-brand-gold/30 mb-6 group-hover:w-full transition-all duration-700" />
-                <p className="text-sm text-brand-charcoal/60 font-light leading-relaxed">
+                <p className="text-[12px] text-brand-charcoal/50 leading-relaxed font-light group-hover:text-brand-charcoal/70 transition-colors duration-500">
                   {step.desc}
                 </p>
               </div>
-            </StaggerItem>
+            </motion.div>
           ))}
-        </GridStagger>
+        </div>
       </div>
     </section>
   );

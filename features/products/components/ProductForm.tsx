@@ -29,7 +29,7 @@ interface ProductFormProps {
 }
 
 export function ProductForm({ initialData, categories, brands, onSubmit, onCancel }: ProductFormProps) {
-  const [activeTab, setActiveTab] = useState<"basic" | "specs" | "media" | "seo">("basic");
+  const [activeTab, setActiveTab] = useState<"basic" | "specs" | "collection" | "media" | "seo">("basic");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm({
@@ -43,6 +43,7 @@ export function ProductForm({ initialData, categories, brands, onSubmit, onCance
       categoryId: "",
       brandId: "",
       gender: "UNISEX",
+      style: "Classic",
       frameShape: "",
       material: "",
       lensType: "",
@@ -55,7 +56,13 @@ export function ProductForm({ initialData, categories, brands, onSubmit, onCance
       images: [],
       metaTitle: "",
       metaDesc: "",
-      initialStock: 0,
+      // Hybrid Ecosystem Fields
+      collectionType: "Designer Brands",
+      isInHouseProduct: false,
+      signatureCollectionName: "",
+      craftsmanshipDetails: "",
+      recommendedUsage: "",
+      frameWeightCategory: "",
     },
   });
 
@@ -83,6 +90,7 @@ export function ProductForm({ initialData, categories, brands, onSubmit, onCance
   const tabs = [
     { id: "basic", label: "Basic Info", icon: Info },
     { id: "specs", label: "Specifications", icon: Settings },
+    { id: "collection", label: "Collection Type", icon: Eye },
     { id: "media", label: "Media Gallery", icon: ImageIcon },
     { id: "seo", label: "SEO Protocol", icon: Globe },
   ];
@@ -152,7 +160,7 @@ export function ProductForm({ initialData, categories, brands, onSubmit, onCance
                   {form.formState.errors.slug && <p className="text-red-500 text-[10px] mt-2 uppercase font-bold">{form.formState.errors.slug.message as string}</p>}
                 </div>
 
-                <div className="grid grid-cols-3 gap-8">
+                <div className="grid grid-cols-2 gap-8">
                   <div className="group relative">
                     <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-charcoal/40 mb-4 block">Base Valuation (INR)</label>
                     <input 
@@ -172,15 +180,6 @@ export function ProductForm({ initialData, categories, brands, onSubmit, onCance
                       <option value="DRAFT">Draft Protocol</option>
                       <option value="ARCHIVED">Archived</option>
                     </select>
-                  </div>
-                  <div className="group relative">
-                    <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-charcoal/40 mb-4 block">Boutique Stock Allocation</label>
-                    <input 
-                      type="number"
-                      {...form.register("initialStock", { valueAsNumber: true })}
-                      className="w-full bg-transparent border-b border-black/10 py-4 text-xl font-bold focus:outline-none focus:border-brand-gold transition-colors duration-500"
-                    />
-                    {form.formState.errors.initialStock && <p className="text-red-500 text-[10px] mt-2 uppercase font-bold">{form.formState.errors.initialStock.message as string}</p>}
                   </div>
                 </div>
               </div>
@@ -268,8 +267,30 @@ export function ProductForm({ initialData, categories, brands, onSubmit, onCance
                     </select>
                   </div>
                   <div className="group relative">
+                    <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-charcoal/40 mb-4 block">Style Direction</label>
+                    <select {...form.register("style")} className="w-full bg-transparent border-b border-black/10 py-4 text-sm font-bold uppercase tracking-widest">
+                      <option value="Classic">Classic</option>
+                      <option value="Modern">Modern</option>
+                      <option value="Vintage">Vintage</option>
+                      <option value="Sport">Sport</option>
+                      <option value="Avant-Garde">Avant-Garde</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-8">
+                  <div className="group relative">
                     <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-charcoal/40 mb-4 block">Frame Silhouette</label>
                     <input {...form.register("frameShape")} className="w-full bg-transparent border-b border-black/10 py-4 text-lg font-light" placeholder="e.g. Aviator, Square" />
+                  </div>
+                  <div className="group relative">
+                    <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-charcoal/40 mb-4 block">Frame Weight Class</label>
+                    <select {...form.register("frameWeightCategory")} className="w-full bg-transparent border-b border-black/10 py-4 text-sm font-bold uppercase tracking-widest">
+                      <option value="">Select Weight</option>
+                      <option value="Ultra-Light">Ultra-Light</option>
+                      <option value="Light">Light</option>
+                      <option value="Medium">Medium</option>
+                      <option value="Heavy">Heavy</option>
+                    </select>
                   </div>
                 </div>
               </div>
@@ -293,6 +314,90 @@ export function ProductForm({ initialData, categories, brands, onSubmit, onCance
                   <div className="group relative">
                     <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-charcoal/40 mb-4 block">Sizing (Standard)</label>
                     <input {...form.register("size")} className="w-full bg-transparent border-b border-black/10 py-4 text-lg font-light" placeholder="e.g. 54-18-145" />
+                  </div>
+                </div>
+              </div>
+            </m.div>
+          )}
+
+          {/* ── COLLECTION TYPE TAB ── */}
+          {activeTab === "collection" && (
+            <m.div
+              key="collection"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              className="space-y-12"
+            >
+              {/* Collection Type Toggle */}
+              <div className="p-8 bg-brand-pearl/40 border border-brand-gold/10 rounded-3xl">
+                <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-charcoal mb-6">Product Ecosystem</h3>
+                <div className="flex gap-4">
+                  {(["Designer Brands", "Emirates Signature"] as const).map((type) => (
+                    <button
+                      key={type}
+                      type="button"
+                      onClick={() => {
+                        form.setValue("collectionType", type);
+                        form.setValue("isInHouseProduct", type === "Emirates Signature");
+                      }}
+                      className={cn(
+                        "flex-1 py-5 border text-[10px] font-bold uppercase tracking-widest rounded-2xl transition-all duration-500",
+                        form.watch("collectionType") === type
+                          ? "bg-brand-charcoal text-brand-gold border-brand-charcoal shadow-xl"
+                          : "border-black/10 text-brand-charcoal/50 hover:border-brand-gold/30"
+                      )}
+                    >
+                      {type === "Emirates Signature" ? "✦ Emirates Signature" : "◈ Designer Brand"}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div className="space-y-10">
+                  {/* Signature Collection Name — shown for in-house products */}
+                  <div className="group relative">
+                    <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-charcoal/40 mb-4 block">
+                      Signature Collection Name
+                      {form.watch("collectionType") !== "Emirates Signature" && (
+                        <span className="ml-3 text-brand-charcoal/20 normal-case font-normal">(Emirates Signature only)</span>
+                      )}
+                    </label>
+                    <select
+                      {...form.register("signatureCollectionName")}
+                      disabled={form.watch("collectionType") !== "Emirates Signature"}
+                      className="w-full bg-transparent border-b border-black/10 py-4 text-lg font-light focus:outline-none focus:border-brand-gold transition-colors duration-500 disabled:opacity-30"
+                    >
+                      <option value="">Select Collection</option>
+                      <option value="Emirates Contemporary">Emirates Contemporary</option>
+                      <option value="Emirates Atelier">Emirates Atelier</option>
+                      <option value="Emirates Everyday">Emirates Everyday</option>
+                      <option value="Emirates Minimal">Emirates Minimal</option>
+                      <option value="Emirates Studio">Emirates Studio</option>
+                      <option value="Emirates Essential">Emirates Essential</option>
+                    </select>
+                  </div>
+
+                  <div className="group relative">
+                    <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-charcoal/40 mb-4 block">Recommended Usage</label>
+                    <input
+                      {...form.register("recommendedUsage")}
+                      className="w-full bg-transparent border-b border-black/10 py-4 text-lg font-light focus:outline-none focus:border-brand-gold transition-colors duration-500"
+                      placeholder="e.g. Daily Wear, Office, Outdoor"
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-10">
+                  <div className="group relative">
+                    <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-charcoal/40 mb-4 block">Craftsmanship Details</label>
+                    <textarea
+                      {...form.register("craftsmanshipDetails")}
+                      rows={5}
+                      className="w-full bg-brand-pearl/20 border border-black/5 p-6 text-sm font-light leading-relaxed focus:outline-none focus:border-brand-gold transition-all duration-500 rounded-3xl"
+                      placeholder="Describe the materials, manufacturing process, and quality details..."
+                    />
                   </div>
                 </div>
               </div>

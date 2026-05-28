@@ -1,51 +1,52 @@
-﻿"use client";
+"use client";
 
 import React from "react";
-import { m } from "framer-motion";
-import { Sparkles, ArrowUpRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { ChevronRight, Sparkles } from "lucide-react";
 
 export function CareersCTA() {
   return (
-    <section className="w-full bg-white py-20 md:py-24 overflow-hidden text-neutral-900 border-t border-neutral-100">
-      <div className="max-w-[1140px] mx-auto px-4 md:px-8">
-        
-        <div className="max-w-4xl mx-auto bg-[#FAF8F5] border border-neutral-200 p-12 md:p-20 rounded-[3px] text-center relative overflow-hidden flex flex-col items-center">
-          <div className="absolute inset-0 noise-overlay opacity-[0.02] pointer-events-none" />
+    <section className="bg-black py-20 md:py-24 border-t border-white/5" id="careers-cta">
+      <div className="max-w-[1240px] mx-auto px-4 md:px-8">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-12 text-center md:text-left">
           
-          <m.div
-            initial={{ opacity: 0, scale: 0.98 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="relative z-10 flex flex-col items-center max-w-2xl"
-          >
-            <span className="text-[10px] md:text-xs font-semibold uppercase tracking-[0.2em] text-amber-600 mb-4 block">
-              Apply Now
+          <div className="flex flex-col gap-4 max-w-[600px]">
+            <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-brand-gold bg-brand-gold/10 border border-brand-gold/20 px-3.5 py-1.5 rounded-full w-fit mx-auto md:mx-0">
+              Join Our Vision
             </span>
-            <h2 className="text-3xl md:text-4xl font-light text-neutral-900 uppercase tracking-tight leading-tight mb-6">
-              Begin Your Journey
+            <h2 className="font-heading font-extralight text-3xl sm:text-4xl md:text-5xl tracking-tight text-white uppercase leading-tight">
+              Begin Your Professional Journey
             </h2>
-            <p className="text-sm text-neutral-500 font-light mb-10 leading-relaxed">
-              We collect all candidate details, backgrounds, and CVs securely through our official Google Forms portal. Click below to open the application portal and submit your details.
+            <p className="text-[13px] text-white/50 font-light leading-relaxed max-w-xl">
+              We securely collect all candidate portfolios, optical backgrounds, and CVs through our official digital portal. Submit your application today!
             </p>
+          </div>
 
-            <a 
-              href="https://forms.gle/emirates-optician-careers" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="bg-neutral-900 text-white text-xs uppercase tracking-[0.15em] px-8 py-4 rounded-[3px] font-medium hover:bg-neutral-700 transition-all duration-200 inline-flex items-center gap-2"
-            >
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Apply via Google Form</span>
-              <ArrowUpRight className="w-3.5 h-3.5 opacity-60" />
-            </a>
+          <div className="flex flex-col items-center md:items-end gap-6 w-full md:w-auto mt-4 md:mt-0">
+            <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
+              <a
+                href="https://forms.gle/emirates-optician-careers"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative w-full sm:w-auto px-10 py-4 text-[10px] md:text-[11px] font-bold uppercase tracking-[0.3em] flex items-center justify-center gap-3 transition-colors duration-500 rounded-[3px] bg-[#C9A84C] text-[#0A0A0A] hover:bg-[#B8952E] hover:text-white shadow-lg"
+              >
+                Apply via Google Form
+                <Sparkles className="w-3.5 h-3.5" />
+              </a>
+              <a
+                href="#careers-hero"
+                className="group relative w-full sm:w-auto px-10 py-4 text-[10px] md:text-[11px] font-bold uppercase tracking-[0.3em] flex items-center justify-center gap-3 transition-colors duration-500 rounded-[3px] bg-transparent border border-[#C9A84C] text-[#C9A84C] hover:bg-[#C9A84C] hover:text-[#0A0A0A]"
+              >
+                View Openings
+              </a>
+            </div>
             
-            <p className="text-[10px] text-neutral-400 font-light mt-6 leading-relaxed">
-              You will be redirected to Google Forms. Please ensure you have your resume/CV ready in PDF or Word format before applying.
-            </p>
-          </m.div>
-        </div>
+            <span className="text-[10px] text-white/35 font-light">
+              Secure redirect to official candidate gateway
+            </span>
+          </div>
 
+        </div>
       </div>
     </section>
   );

@@ -1,48 +1,40 @@
-﻿"use client";
+"use client";
 
 import React from "react";
-import { m } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 
 export function BrandsHero() {
   return (
-    <section className="relative w-full h-[75vh] min-h-[550px] flex flex-col justify-center items-center overflow-hidden bg-neutral-950 pt-32 pb-16" id="brands-hero">
+    <section className="hidden md:flex relative w-full h-[60vh] min-h-[480px] flex-col overflow-hidden bg-neutral-100 pt-24 md:pt-32" id="brands-hero">
+      {/* Crisp raw brand hero background - no dimming masks or filters */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="https://images.unsplash.com/photo-1511499767350-a1590fdb7307?auto=format&fit=crop&q=80&w=2000"
+          src="/Hero/brand hero.webp"
           alt="Luxury Eyewear Collection"
           fill
-          className="object-cover"
+          className="object-cover object-center"
           priority
         />
-        <div className="absolute inset-0 bg-black/55" />
-        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/50 to-transparent z-10" />
       </div>
 
-      <div className="relative z-10 max-w-[1140px] mx-auto px-4 md:px-8 w-full text-center">
-        <m.span
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-[10px] md:text-xs font-medium uppercase tracking-[0.3em] text-amber-400/80 mb-4 block"
-        >
-          Authentic Global Eyewear
-        </m.span>
-        <m.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.4 }}
-          className="text-4xl md:text-6xl lg:text-7xl font-light text-white uppercase tracking-tight leading-[1.05] font-heading drop-shadow-lg"
-        >
-          Curated Luxury Eyewear
-          <br />
-          {"From The World's"}
-          <br />
-          <em className="italic font-light text-amber-400/90">Most Iconic Brands</em>
-        </m.h1>
+      {/* Centered Title Overlay with subtle high-contrast drop shadow */}
+      <div className="relative z-10 w-full h-full flex items-center justify-center pt-16 md:pt-20">
+        <div className="max-w-[1240px] mx-auto px-6 md:px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h1 className="text-4xl md:text-6xl font-light font-heading uppercase tracking-[0.25em] text-white drop-shadow-2xl select-none">
+              Global Brands
+            </h1>
+          </motion.div>
+        </div>
       </div>
 
-      <div className="absolute inset-0 noise-overlay opacity-[0.03] pointer-events-none z-20" />
+      {/* Decorative layout line */}
+      <div className="absolute bottom-0 inset-x-0 h-[1px] bg-brand-gold/20 z-10" />
     </section>
   );
 }

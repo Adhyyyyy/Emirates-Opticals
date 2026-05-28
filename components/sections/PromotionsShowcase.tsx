@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useEffect, useState } from "react";
 import { m, AnimatePresence } from "framer-motion";
@@ -124,10 +124,7 @@ export function PromotionsShowcase() {
                            zIndex: offers.length - position,
                            transformOrigin: "bottom center",
                         }}
-                        drag={isTop && offers.length > 1 ? "y" : false}
-                        dragConstraints={{ top: 0, bottom: 0 }}
-                        dragElastic={{ top: 1, bottom: 0.2 }}
-                        onDragEnd={handleDragEnd}
+                        drag={false}
                         animate={{
                           y: position * 16,
                           scale: 1 - position * 0.04,
@@ -175,7 +172,7 @@ export function PromotionsShowcase() {
                               <Clock className="w-4 h-4 text-brand-gold shrink-0" />
                               <span className="truncate">
                                 {offer.startDate ? new Date(offer.startDate).toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" }) : "Valid Now"}
-                                {" â€” "}
+                                {" — "}
                                 {offer.endDate ? new Date(offer.endDate).toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" }) : "Ongoing"}
                               </span>
                             </div>

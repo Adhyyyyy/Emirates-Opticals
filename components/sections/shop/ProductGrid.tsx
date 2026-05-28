@@ -1,12 +1,12 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { GridStagger, StaggerItem, Reveal } from "@/components/motion/Reveal";
-import { Search, ChevronDown, LayoutGrid, List, ChevronLeft, ChevronRight } from "lucide-react";
+import { Search, ChevronDown, LayoutGrid, List, ChevronLeft, ChevronRight, X, RotateCcw } from "lucide-react";
 import { ProductCard } from "./ProductCard";
 import { Product } from "@/types/shop";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 interface ProductGridProps {
@@ -33,6 +33,8 @@ export function ProductGrid({ products }: ProductGridProps) {
   const productsPerPage = 12;
 
   const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
 
   // Handle client-side mounting
   useEffect(() => {
@@ -47,6 +49,33 @@ export function ProductGrid({ products }: ProductGridProps) {
     });
     return filters;
   }, [searchParams]);
+
+  // List of active filters for beautiful tag display
+  const activeFilterList = useMemo(() => {
+    const list: { key: string; groupKey: string; groupName: string; value: string }[] = [];
+    Object.entries(activeFilters).forEach(([groupKey, values]) => {
+      if (groupKey === "page" || groupKey === "sort") return;
+      values.forEach(val => {
+        if (!val) return;
+        const groupName = groupKey.replace(/_/g, " ");
+        list.push({ key: `${groupKey}-${val}`, groupKey, groupName, value: val });
+      });
+    });
+    return list;
+  }, [activeFilters]);
+
+  const handleRemoveFilter = (groupKey: string, valueToRemove: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    const currentValues = params.get(groupKey)?.split(";") || [];
+    const updatedValues = currentValues.filter(v => v !== valueToRemove);
+    
+    if (updatedValues.length > 0) {
+      params.set(groupKey, updatedValues.join(";"));
+    } else {
+      params.delete(groupKey);
+    }
+    router.push(`${pathname}?${params.toString()}`, { scroll: false });
+  };
 
   // Reset pagination to first page whenever search query, filters, or sorting order changes
   useEffect(() => {
@@ -70,6 +99,15 @@ export function ProductGrid({ products }: ProductGridProps) {
       const genderFilters = activeFilters["gender"];
       if (genderFilters && genderFilters.length > 0) {
         if (!genderFilters.includes(product.gender)) return false;
+      }
+
+      // Collection Type Match
+      const collectionTypeFilters = activeFilters["collection_type"];
+      if (collectionTypeFilters && collectionTypeFilters.length > 0) {
+        let matches = false;
+        if (collectionTypeFilters.includes("Emirates Signature") && product.isInHouseProduct) matches = true;
+        if (collectionTypeFilters.includes("Designer Brands") && !product.isInHouseProduct) matches = true;
+        if (!matches) return false;
       }
 
       // 3. Category Match
@@ -121,11 +159,11 @@ export function ProductGrid({ products }: ProductGridProps) {
       if (priceFilters && priceFilters.length > 0) {
         const price = product.price;
         let matches = false;
-        if (priceFilters.includes("Under â‚¹5,000") && price < 5000) matches = true;
-        if (priceFilters.includes("â‚¹5,000 - â‚¹15,000") && price >= 5000 && price <= 15000) matches = true;
-        if (priceFilters.includes("â‚¹15,000 - â‚¹30,000") && price >= 15000 && price <= 30000) matches = true;
-        if (priceFilters.includes("â‚¹30,000 - â‚¹50,000") && price >= 30000 && price <= 50000) matches = true;
-        if (priceFilters.includes("Luxury (Above â‚¹50,000)") && price > 50000) matches = true;
+        if (priceFilters.includes("Under ₹5,000") && price < 5000) matches = true;
+        if (priceFilters.includes("₹5,000 - ₹15,000") && price >= 5000 && price <= 15000) matches = true;
+        if (priceFilters.includes("₹15,000 - ₹30,000") && price >= 15000 && price <= 30000) matches = true;
+        if (priceFilters.includes("₹30,000 - ₹50,000") && price >= 30000 && price <= 50000) matches = true;
+        if (priceFilters.includes("Luxury (Above ₹50,000)") && price > 50000) matches = true;
         if (!matches) return false;
       }
 
@@ -256,6 +294,43 @@ export function ProductGrid({ products }: ProductGridProps) {
           </div>
         </div>
       </div>
+
+      {/* Active Filter Tags */}
+      <AnimatePresence>
+        {activeFilterList.length > 0 && (
+          <motion.div 
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className="flex flex-wrap items-center gap-2 mb-8"
+          >
+            <span className="text-[8px] font-bold uppercase tracking-[0.2em] text-brand-charcoal/30 mr-2">
+              Active Filters:
+            </span>
+            {activeFilterList.map((tag) => (
+              <motion.button
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                key={tag.key}
+                onClick={() => handleRemoveFilter(tag.groupKey, tag.value)}
+                className="inline-flex items-center gap-1.5 bg-brand-pearl/40 hover:bg-brand-gold/10 border border-black/5 hover:border-brand-gold/25 py-1 px-3 text-[9px] font-bold uppercase tracking-wider text-brand-charcoal hover:text-brand-gold rounded-[3px] transition-all duration-300"
+              >
+                <span className="text-brand-gold/60">{tag.groupName}:</span>
+                <span>{tag.value}</span>
+                <X className="w-2.5 h-2.5 text-brand-charcoal/30 hover:text-brand-gold ml-0.5" />
+              </motion.button>
+            ))}
+            <button 
+              onClick={() => router.push(pathname, { scroll: false })}
+              className="inline-flex items-center gap-1 text-[8px] font-bold uppercase tracking-[0.15em] text-brand-gold hover:text-brand-charcoal transition-colors ml-2 py-1"
+            >
+              <RotateCcw className="w-2.5 h-2.5" />
+              Reset
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Grid Display */}
       {currentProducts.length > 0 ? (
