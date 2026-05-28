@@ -1,26 +1,32 @@
-﻿import { MetadataRoute } from "next";
-import { PRODUCTS as STATIC_PRODUCTS } from "@/lib/shop/data";
+import { MetadataRoute } from 'next';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = "https://emiratesopticians.com";
+  const baseUrl = 'https://emiratesoptician.in'; // Official live production domain
 
-  // Core Static Pages
-  const routes = ["", "/shop", "/brands", "/services", "/branches", "/about", "/careers", "/contact"].map(
-    (route) => ({
+  const branches = [
+    'kakkanad', 'kottayam', 'changanassery', 'thiruvalla', 
+    'kumbanad', 'kothamangalam', 'pandalam', 'ettumanur', 
+    'angamaly', 'irumpanam'
+  ];
+
+  const mainRoutes = [
+    '', '/shop', '/services', '/about', '/careers', '/contact', '/book-eye-test'
+  ];
+
+  const sitemapEntries: MetadataRoute.Sitemap = [
+    ...mainRoutes.map(route => ({
       url: `${baseUrl}${route}`,
       lastModified: new Date(),
-      changeFrequency: "daily" as const,
-      priority: route === "" ? 1.0 : 0.8,
-    })
-  );
+      changeFrequency: 'weekly' as const,
+      priority: route === '' ? 1.0 : 0.8,
+    })),
+    ...branches.map(branch => ({
+      url: `${baseUrl}/branches/${branch}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.9,
+    })),
+  ];
 
-  // Dynamic Product Pages
-  const productRoutes = STATIC_PRODUCTS.map((product) => ({
-    url: `${baseUrl}/product/${product.slug || product.id}`,
-    lastModified: new Date(),
-    changeFrequency: "weekly" as const,
-    priority: 0.6,
-  }));
-
-  return [...routes, ...productRoutes];
+  return sitemapEntries;
 }

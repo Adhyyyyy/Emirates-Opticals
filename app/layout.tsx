@@ -11,20 +11,44 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-body" });
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-heading" });
 
 export const metadata: Metadata = {
-  title: "Emirates Opticians | Luxury Eyewear",
-  description: "Experience the finest eyewear with Emirates Opticians. Premium lenses, luxury frames, and expert care.",
+  metadataBase: new URL('https://emiratesoptician.in'),
+  title: {
+    default: 'Emirates Opticians | Authentic Luxury Eyewear & Eye Testing Kerala',
+    template: '%s | Emirates Opticians'
+  },
+  description: 'Experience authentic luxury eyewear, international boutique sunglasses, and computerized eye testing across our premium Kerala optician showrooms.',
   icons: {
     icon: "/favicon.svg",
     apple: "/favicon.svg",
   },
+  alternates: {
+    canonical: './',
+  },
   openGraph: {
-    title: "Emirates Opticians | Luxury Eyewear Kerala",
-    description: "Premium frames, sunglasses & expert eye care across branches in Kerala. Cartier, DITA, Tom Ford & more.",
+    title: 'Emirates Opticians | Premium Luxury Eyewear & Eye Testing Kerala',
+    description: 'Explore authentic boutique sunglasses, frame styling consultations, and state-of-the-art optical computerized checks at Emirates Opticians across Kerala.',
+    url: 'https://emiratesopticians.com',
+    siteName: 'Emirates Opticians',
     type: "website",
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: 'Emirates Opticians Luxury Showroom' }],
+    locale: 'en_US',
   },
   twitter: {
-    card: "summary_large_image",
+    card: 'summary_large_image',
+    title: 'Emirates Opticians | Premium Luxury Eyewear Kerala',
+    description: 'Authentic international eyewear brands and professional optometry checks across multiple showrooms.',
+    images: ['/og-image.jpg'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 
