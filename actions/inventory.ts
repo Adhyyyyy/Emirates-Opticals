@@ -45,7 +45,6 @@ export async function getInventory(branchId?: string) {
             name: true,
             brand: true,
             slug: true,
-            price: true,
             images: { take: 1 }
           }
         },

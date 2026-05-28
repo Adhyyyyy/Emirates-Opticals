@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState } from "react";
 import { m } from "framer-motion";
@@ -36,9 +36,9 @@ const TIMES = [
 
 const WHAT_TO_EXPECT = [
   "We'll confirm your appointment via phone",
-  "Free professional eye examination (15–20 minutes)",
+  "Free professional eye examination (15â€“20 minutes)",
   "Personalized frame selection with expert guidance",
-  "No obligation — just professional care",
+  "No obligation â€” just professional care",
 ];
 
 export function ContactPageContent() {
@@ -88,7 +88,7 @@ export function ContactPageContent() {
   return (
     <div className="bg-white min-h-screen text-neutral-900">
 
-      {/* ─── HERO ─── */}
+      {/* â”€â”€â”€ HERO â”€â”€â”€ */}
       <section className="relative w-full h-[75vh] min-h-[550px] flex flex-col justify-center items-center overflow-hidden bg-neutral-950 pt-32 pb-16">
         <div className="absolute inset-0 z-0">
           <Image
@@ -125,11 +125,11 @@ export function ContactPageContent() {
         <div className="absolute inset-0 noise-overlay opacity-[0.03] pointer-events-none z-20" />
       </section>
 
-      {/* ─── MAIN CONTENT ─── */}
+      {/* â”€â”€â”€ MAIN CONTENT â”€â”€â”€ */}
       <section className="max-w-[1140px] mx-auto px-4 md:px-8 py-20 md:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
 
-          {/* ── LEFT: Contact Info ── */}
+          {/* â”€â”€ LEFT: Contact Info â”€â”€ */}
           <div className="lg:col-span-4 space-y-8">
             <div>
               <m.span
@@ -176,7 +176,7 @@ export function ContactPageContent() {
                 <div>
                   <span className="text-[9px] font-bold uppercase tracking-widest text-neutral-400 block mb-1">Call Us</span>
                   <p className="text-base font-semibold text-neutral-900 group-hover:text-amber-600 transition-colors">9682929968</p>
-                  <p className="text-[11px] text-neutral-500 font-light mt-0.5">Monday – Sunday, 9 AM – 7 PM</p>
+                  <p className="text-[11px] text-neutral-500 font-light mt-0.5">Monday â€“ Sunday, 9 AM â€“ 7 PM</p>
                 </div>
               </m.a>
 
@@ -230,7 +230,7 @@ export function ContactPageContent() {
                 </div>
                 <div>
                   <span className="text-[9px] font-bold uppercase tracking-widest text-neutral-400 block mb-1">Business Hours</span>
-                  <p className="text-sm font-semibold text-neutral-900">Typically 9 AM – 7 PM</p>
+                  <p className="text-sm font-semibold text-neutral-900">Typically 9 AM â€“ 7 PM</p>
                   <p className="text-[11px] text-neutral-500 font-light mt-0.5">Hours may vary by branch</p>
                 </div>
               </m.div>
@@ -259,7 +259,7 @@ export function ContactPageContent() {
             </m.div>
           </div>
 
-          {/* ── RIGHT: Appointment Form ── */}
+          {/* â”€â”€ RIGHT: Appointment Form â”€â”€ */}
           <div className="lg:col-span-8 bg-[#FAF8F5] border border-neutral-200 p-8 md:p-12 rounded-2xl">
             <m.h2
               initial={{ opacity: 0, y: 15 }}
@@ -396,7 +396,7 @@ export function ContactPageContent() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="bg-neutral-900 text-white text-xs uppercase tracking-[0.15em] px-8 py-4 rounded-full font-medium hover:bg-neutral-700 transition-all duration-200 inline-flex items-center justify-center gap-2"
+                  className="bg-[#C9A84C] text-[#0D0D0D] text-xs uppercase tracking-[0.15em] px-8 py-4 rounded-[3px] font-bold hover:bg-[#B8952E] hover:text-white transition-all duration-300 inline-flex items-center justify-center gap-2"
                 >
                   <Sparkles className="w-3.5 h-3.5" />
                   <span>{isSubmitting ? "Sending..." : "Book Free Eye Test"}</span>

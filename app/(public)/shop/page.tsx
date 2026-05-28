@@ -48,7 +48,7 @@ export default async function ShopPage() {
         brand: p.brand?.name || "Independent",
         category: (p.category?.name || "Optical Frames") as Product["category"],
         description: p.description || "",
-        price: p.price,
+        price: p.price || 0,
         images: p.images.map(img => img.url),
         stockStatus: globalStatus,
         branches,
@@ -57,7 +57,13 @@ export default async function ShopPage() {
         frameMaterial: p.material || "Standard",
         lensType: p.lensType || "Standard",
         color: p.color || "Standard",
-        collectionType: p.category?.name || "Standard",
+        style: p.style || "Classic",
+        collectionType: p.collectionType || "Designer Brands",
+        isInHouseProduct: p.isInHouseProduct || false,
+        signatureCollectionName: p.signatureCollectionName || undefined,
+        craftsmanshipDetails: p.craftsmanshipDetails || undefined,
+        recommendedUsage: p.recommendedUsage || undefined,
+        frameWeightCategory: p.frameWeightCategory || undefined,
         isFeatured: p.isFeatured,
         isNewArrival: p.isNewArrival
       };
@@ -73,14 +79,11 @@ export default async function ShopPage() {
         <div className="section-container">
           <div className="flex flex-col lg:flex-row gap-12">
             <Suspense fallback={
-              <div className="flex-1 flex items-center justify-center py-32 text-neutral-400 w-full">
-                <div className="text-center space-y-4">
-                  <div className="w-10 h-10 border-2 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto" />
-                  <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-neutral-400">Loading Premium Collections...</p>
-                </div>
-              </div>
+              <div className="w-full md:w-72 shrink-0 animate-pulse bg-neutral-100 rounded-[3px] h-96" />
             }>
               <ShopFilters />
+            </Suspense>
+            <Suspense fallback={<ProductGridSkeleton />}>
               <ProductGrid products={products} />
             </Suspense>
           </div>
@@ -91,4 +94,29 @@ export default async function ShopPage() {
     </div>
   );
 }
+
+function ProductGridSkeleton() {
+  return (
+    <div className="flex-1">
+      {/* Top bar skeleton */}
+      <div className="flex items-center justify-between mb-10 pb-6 border-b border-black/5">
+        <div className="h-8 w-56 bg-neutral-100 animate-pulse rounded-full" />
+        <div className="h-6 w-32 bg-neutral-100 animate-pulse rounded-full" />
+      </div>
+      {/* Card grid skeleton â€” 3 columns, 2 rows */}
+      <div className="grid grid-cols-2 xl:grid-cols-3 gap-x-4 gap-y-10 md:gap-x-8 md:gap-y-16">
+        {Array.from({ length: 6 }).map((_, i) => (
+          <div key={i} className="flex flex-col gap-3">
+            <div className="w-full aspect-[4/5] bg-neutral-100 animate-pulse rounded-[3px]" />
+            <div className="h-3 w-1/3 bg-neutral-100 animate-pulse rounded" />
+            <div className="h-4 w-2/3 bg-neutral-100 animate-pulse rounded" />
+            <div className="h-3 w-1/4 bg-neutral-100 animate-pulse rounded" />
+            <div className="h-9 w-full bg-neutral-100 animate-pulse rounded-[3px] mt-1" />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 

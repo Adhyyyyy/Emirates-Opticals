@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image, { ImageProps } from "next/image";
 import { getOptimizedUrl } from "@/lib/cloudinary";

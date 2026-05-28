@@ -9,7 +9,7 @@ interface Product {
   id: string;
   brand: string;
   name: string;
-  price: number;
+  price?: number;
   colorsCount: number;
   primaryImage: string;
   secondaryImage: string;
@@ -25,40 +25,40 @@ const FALLBACK_PRODUCTS: Product[] = [
     id: "new-1",
     brand: "Jacques Marie Mage",
     name: "Vivienne Sun",
-    price: 960,
+
     colorsCount: 4,
     primaryImage: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&q=80&w=800",
-    secondaryImage: "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&q=80&w=800",
+    secondaryImage: "https://images.unsplash.com/photo-1511499767390-90342f16b1a7?auto=format&fit=crop&q=80&w=800",
     isNew: true,
   },
   {
     id: "new-2",
     brand: "Oliver Peoples",
     name: "Evelyn Sun",
-    price: 1050,
+
     colorsCount: 2,
-    primaryImage: "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&q=80&w=800",
-    secondaryImage: "https://images.unsplash.com/photo-1554151228-14d9def656e4?auto=format&fit=crop&q=80&w=800",
+    primaryImage: "https://images.unsplash.com/photo-1554151228-14d9def656e4?auto=format&fit=crop&q=80&w=800",
+    secondaryImage: "https://images.unsplash.com/photo-1508296695146-257a814070b4?auto=format&fit=crop&q=80&w=800",
     isNew: false,
   },
   {
     id: "new-3",
     brand: "DITA",
     name: "Koenig",
-    price: 1410,
+
     colorsCount: 2,
     primaryImage: "https://images.unsplash.com/photo-1508296695146-257a814070b4?auto=format&fit=crop&q=80&w=800",
-    secondaryImage: "https://images.unsplash.com/photo-1591076482161-42ce6da69f67?auto=format&fit=crop&q=80&w=800",
+    secondaryImage: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&q=80&w=800",
     isNew: false,
   },
   {
     id: "new-4",
     brand: "Oliver Peoples",
     name: "Gregory Peck",
-    price: 450,
+
     colorsCount: 6,
     primaryImage: "https://images.unsplash.com/photo-1509633282173-3eb4499382a6?auto=format&fit=crop&q=80&w=800",
-    secondaryImage: "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&q=80&w=800",
+    secondaryImage: "https://images.unsplash.com/photo-1511499767390-90342f16b1a7?auto=format&fit=crop&q=80&w=800",
     isNew: true,
   },
 ];
@@ -68,7 +68,7 @@ export function NewArrivals({ products = [] }: NewArrivalsProps) {
   const displayProducts = (products.length > 0 ? products : FALLBACK_PRODUCTS).slice(0, 4);
 
   return (
-    <section className="w-full bg-white section-padding overflow-hidden">
+    <section className="w-full bg-gradient-to-br from-white via-[#FAF9F6] to-white section-padding overflow-hidden">
       <div className="section-container">
 
         {/* Harmonized Centered Section Header */}
@@ -124,7 +124,7 @@ export function NewArrivals({ products = [] }: NewArrivalsProps) {
                   {product.name}
                 </h3>
                 <p className="text-sm text-neutral-600 font-normal">
-                  ₹{(product.price || 0).toLocaleString("en-IN")}
+                  â‚¹{(product.price || 0).toLocaleString("en-IN")}
                 </p>
               </Link>
             </m.div>

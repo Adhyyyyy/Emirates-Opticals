@@ -17,21 +17,31 @@ export type Product = {
   stockStatus: "In Stock" | "Low Stock" | "Out of Stock";
   branches: BranchStock[];
   gender: "Men" | "Women" | "Unisex" | "Kids";
+  style: string;
   frameShape: string;
   frameMaterial: string;
   lensType: string;
   color: string;
+  
+  // Hybrid Ecosystem Fields
   collectionType: string;
+  isInHouseProduct: boolean;
+  signatureCollectionName?: string;
+  craftsmanshipDetails?: string;
+  recommendedUsage?: string;
+  frameWeightCategory?: string;
+
   isFeatured?: boolean;
   isNewArrival?: boolean;
 };
 
 export type FilterState = {
   gender: string[];
+  style: string[];
   brand: string[];
   category: string[];
   frameShape: string[];
   frameMaterial: string[];
-  priceRange: [number, number];
+  collectionType: string[];
   availability: string[];
 };

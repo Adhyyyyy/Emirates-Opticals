@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import { InventoryTable } from "@/features/inventory/components/InventoryTable";
 import { Reveal, GridStagger, StaggerItem } from "@/components/motion/Reveal";
 import { 

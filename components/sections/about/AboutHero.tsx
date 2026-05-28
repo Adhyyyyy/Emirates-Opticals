@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import { m } from "framer-motion";
@@ -35,11 +35,11 @@ export function AboutHero() {
           transition={{ duration: 1, delay: 0.4 }}
           className="text-4xl md:text-6xl lg:text-7xl font-light text-white uppercase tracking-tight leading-[1.05] font-heading drop-shadow-lg"
         >
-          {"Kerala's Trusted"}
+          {"Authentic Eyewear."}
           <br />
-          <em className="italic font-light text-amber-400/90">Luxury Eyewear</em>
+          <em className="italic font-light text-amber-400/90">Expert Care.</em>
           <br />
-          Destination
+          Perfect Style.
         </m.h1>
       </div>
 

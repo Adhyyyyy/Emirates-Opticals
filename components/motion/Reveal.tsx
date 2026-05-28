@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { ReactNode, useState, useEffect } from "react";
 import { m, Variants } from "framer-motion";
@@ -151,10 +151,10 @@ export function TextReveal({
  */
 export function GridStagger({
   children,
-  delay = 0.2,
-  stagger = 0.1,
+  delay = 0.05,
+  stagger = 0.07,
   className,
-  threshold = 0.1,
+  threshold = 0.05,
 }: {
   children: React.ReactNode;
   delay?: number;
@@ -162,15 +162,9 @@ export function GridStagger({
   className?: string;
   threshold?: number;
 }) {
-  const mounted = useMounted();
-
-  if (!mounted) {
-    return <div className={className}>{children}</div>;
-  }
-
   return (
     <m.div
-      initial="hidden"
+      initial="visible"
       whileInView="visible"
       viewport={{ once: true, amount: threshold }}
       variants={{
@@ -201,16 +195,10 @@ export function StaggerItem({
   children: React.ReactNode;
   className?: string;
 }) {
-  const mounted = useMounted();
-
-  if (!mounted) {
-    return <div className={className}>{children}</div>;
-  }
-
   return (
     <m.div
       variants={{
-        hidden: { opacity: 0, y: 30 },
+        hidden: { opacity: 0, y: 20 },
         visible: {
           opacity: 1,
           y: 0,
@@ -226,3 +214,4 @@ export function StaggerItem({
     </m.div>
   );
 }
+

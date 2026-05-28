@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "../styles/globals.css";
 import { cn } from "@/lib/utils";
@@ -13,6 +13,19 @@ const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-headin
 export const metadata: Metadata = {
   title: "Emirates Opticians | Luxury Eyewear",
   description: "Experience the finest eyewear with Emirates Opticians. Premium lenses, luxury frames, and expert care.",
+  icons: {
+    icon: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
+  openGraph: {
+    title: "Emirates Opticians â€” Luxury Eyewear Kerala",
+    description: "Premium frames, sunglasses & expert eye care across branches in Kerala. Cartier, DITA, Tom Ford & more.",
+    type: "website",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 import { MotionProvider } from "@/components/motion/MotionProvider";

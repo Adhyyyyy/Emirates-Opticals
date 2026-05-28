@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import { m } from "framer-motion";
@@ -8,115 +8,45 @@ import Image from "next/image";
 const BRANDS = [
   {
     name: "PRADA",
-    origin: "Italy",
-    category: "Luxury Fashion",
+    origin: "Italian Luxury",
+    category: "Sophisticated, Avant-Garde",
     desc: "Italian luxury with bold silhouettes and refined detailing. Fashion-forward frames with premium finishes.",
     img: "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&q=80&w=800"
   },
   {
+    name: "Cartier",
+    origin: "French Maison",
+    category: "Timeless Elegance",
+    desc: "Exceptional craftsmanship and timeless elegance inspired by Parisian luxury heritage.",
+    img: "https://images.unsplash.com/photo-1591076482161-42ce6da69f67?auto=format&fit=crop&q=80&w=800"
+  },
+  {
     name: "Ray-Ban",
-    origin: "United States",
-    category: "Iconic Classics",
+    origin: "American Classic",
+    category: "Iconic, Everyday Style",
     desc: "Timeless eyewear defining generations with legendary designs like Aviator and Wayfarer.",
     img: "https://images.unsplash.com/photo-1511499767350-a1590fdb7307?auto=format&fit=crop&q=80&w=800"
   },
   {
     name: "Oakley",
-    origin: "United States",
-    category: "Sports Performance",
+    origin: "American Performance",
+    category: "Sports & Innovation",
     desc: "Performance-driven eyewear engineered for athletes and active lifestyles with advanced lens technology.",
     img: "https://images.unsplash.com/photo-1556306535-0f09a537f0a3?auto=format&fit=crop&q=80&w=800"
   },
   {
-    name: "Cartier",
-    origin: "France",
-    category: "Haute Luxury",
-    desc: "Exceptional craftsmanship and timeless elegance inspired by Parisian luxury heritage.",
-    img: "https://images.unsplash.com/photo-1591076482161-42ce6da69f67?auto=format&fit=crop&q=80&w=800"
-  },
-  {
     name: "Tom Ford",
-    origin: "United States",
-    category: "Luxury Glamour",
+    origin: "American Glamour",
+    category: "Bold, Sensual, Modern",
     desc: "Sophisticated contemporary eyewear combining bold elegance with iconic detailing.",
     img: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&q=80&w=800"
   },
   {
-    name: "Gucci",
-    origin: "Italy",
-    category: "Bold Luxury",
-    desc: "Eclectic statement-making frames blending modern fashion with Italian luxury craftsmanship.",
-    img: "https://images.unsplash.com/photo-1554151228-14d9def656e4?auto=format&fit=crop&q=80&w=800"
-  },
-  {
-    name: "Maui Jim",
-    origin: "United States",
-    category: "Premium Sunglasses",
-    desc: "Advanced polarized lens technology delivering exceptional color clarity and UV protection.",
-    img: "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&q=80&w=800"
-  },
-  {
-    name: "Vogue Eyewear",
-    origin: "Italy",
-    category: "Fashion Forward",
-    desc: "Runway-inspired eyewear collections expressing contemporary style and vibrant fashion energy.",
-    img: "https://images.unsplash.com/photo-1591076482161-42ce6da69f67?auto=format&fit=crop&q=80&w=800"
-  },
-  {
-    name: "Diesel",
-    origin: "Italy",
-    category: "Bold, Edgy Designs",
-    desc: "Industrial-inspired contemporary eyewear with rebellious fashion identity.",
-    img: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&q=80&w=800"
-  },
-  {
-    name: "Police",
-    origin: "Italy",
-    category: "Urban Sport Style",
-    desc: "Dynamic modern frames combining sporty aesthetics with urban attitude.",
-    img: "https://images.unsplash.com/photo-1556306535-0f09a537f0a3?auto=format&fit=crop&q=80&w=800"
-  },
-  {
     name: "Carrera",
-    origin: "Austria",
-    category: "Racing Heritage",
+    origin: "Austrian Racing",
+    category: "Sporty & Dynamic",
     desc: "Distinctive eyewear inspired by motorsport heritage and modern luxury performance.",
-    img: "https://images.unsplash.com/photo-1511499767350-a1590fdb7307?auto=format&fit=crop&q=80&w=800"
-  },
-  {
-    name: "Lacoste",
-    origin: "France",
-    category: "Sporty Elegance",
-    desc: "French fashion heritage combining sporty sophistication with timeless style.",
     img: "https://images.unsplash.com/photo-1554151228-14d9def656e4?auto=format&fit=crop&q=80&w=800"
-  },
-  {
-    name: "Calvin Klein",
-    origin: "United States",
-    category: "Minimalist Chic",
-    desc: "Clean contemporary designs focused on refined simplicity and modern elegance.",
-    img: "https://images.unsplash.com/photo-1591076482161-42ce6da69f67?auto=format&fit=crop&q=80&w=800"
-  },
-  {
-    name: "BVLGARI",
-    origin: "Italy",
-    category: "Roman Luxury",
-    desc: "Architectural eyewear inspired by Roman luxury craftsmanship and timeless glamour.",
-    img: "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&q=80&w=800"
-  },
-  {
-    name: "Dolce & Gabbana",
-    origin: "Italy",
-    category: "Mediterranean Glamour",
-    desc: "Opulent Italian fashion eyewear infused with bold personality and luxury aesthetics.",
-    img: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&q=80&w=800"
-  },
-  {
-    name: "Montblanc",
-    origin: "Germany",
-    category: "Refined Craftsmanship",
-    desc: "Precision-crafted eyewear reflecting timeless sophistication and luxury craftsmanship.",
-    img: "https://images.unsplash.com/photo-1556306535-0f09a537f0a3?auto=format&fit=crop&q=80&w=800"
   }
 ];
 
@@ -154,10 +84,10 @@ export function FullBrandGrid() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: idx * 0.05 }}
-              className="group bg-[#FAF8F5] border border-neutral-200 hover:border-neutral-300 hover:shadow-sm transition-all duration-300 h-full flex flex-col overflow-hidden rounded-2xl"
+              className="group bg-[#FAF8F5] border border-neutral-200 hover:border-neutral-300 hover:shadow-sm transition-all duration-300 h-full flex flex-col overflow-hidden rounded-[3px]"
             >
               {/* Brand Visual (Abstract Mood) */}
-              <div className="relative h-48 overflow-hidden bg-neutral-900">
+              <div className="relative h-48 overflow-hidden bg-neutral-900 rounded-t-[3px]">
                 <Image 
                   src={brand.img} 
                   alt={brand.name}
@@ -184,7 +114,7 @@ export function FullBrandGrid() {
                   </p>
                 </div>
 
-                <button className="w-full border border-neutral-300 hover:border-neutral-900 text-neutral-700 hover:text-neutral-900 text-xs uppercase tracking-[0.15em] py-3.5 rounded-full font-medium transition-all duration-200 flex items-center justify-center gap-2 group/btn">
+                <button className="w-full border border-neutral-300 hover:border-neutral-900 text-neutral-700 hover:text-neutral-900 text-xs uppercase tracking-[0.15em] py-3.5 rounded-[3px] font-medium transition-all duration-200 flex items-center justify-center gap-2 group/btn">
                   View Collection
                   <ArrowUpRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
                 </button>

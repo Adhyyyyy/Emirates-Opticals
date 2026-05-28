@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import { m } from "framer-motion";
@@ -7,28 +7,33 @@ import { ShieldCheck, Eye, UserCheck, MapPin, HeartHandshake } from "lucide-reac
 const WHY_CHOOSE = [
   {
     icon: ShieldCheck,
-    title: "Authentic International Brands",
-    desc: "Direct partnerships with PRADA, Ray-Ban, Oakley, Cartier, and more — no imitations, ever."
+    title: "100% Authentic Brands",
+    desc: "Every frame and sunglass is sourced only from authorized distributors."
   },
   {
     icon: Eye,
-    title: "Free Professional Eye Testing",
-    desc: "State-of-the-art equipment and experienced optometrists at every branch."
+    title: "Advanced Eye Testing",
+    desc: "Modern diagnostic technology and experienced optometrists."
   },
   {
     icon: UserCheck,
-    title: "Expert Styling Consultation",
-    desc: "Personalized guidance to find frames that enhance your unique features and style."
-  },
-  {
-    icon: MapPin,
-    title: "Convenient Locations",
-    desc: "Multiple branches across Kerala with ample parking and easy accessibility."
+    title: "Expert Styling Guidance",
+    desc: "Professional recommendations tailored to your features and lifestyle."
   },
   {
     icon: HeartHandshake,
+    title: "Premium Customer Experience",
+    desc: "Luxury retail atmosphere designed around comfort and trust."
+  },
+  {
+    icon: MapPin,
+    title: "Multi-Branch Presence",
+    desc: "Convenient access to premium optical care across Kerala."
+  },
+  {
+    icon: ShieldCheck, // Just reusing an icon since we only have 5 imported
     title: "After-Sales Support",
-    desc: "Warranty coverage, adjustments, and ongoing care for your eyewear investment."
+    desc: "Adjustments, assistance, and ongoing customer care."
   }
 ];
 

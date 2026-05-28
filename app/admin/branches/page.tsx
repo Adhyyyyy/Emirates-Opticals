@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useEffect } from "react";
 import { Reveal, GridStagger, StaggerItem } from "@/components/motion/Reveal";

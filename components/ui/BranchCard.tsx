@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import { m } from "framer-motion";
@@ -27,7 +27,7 @@ export function BranchCard({ name, address, description, image, phone = "+91 000
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
-      className="group bg-white flex flex-col h-full border border-neutral-200 rounded-2xl overflow-hidden hover:shadow-sm hover:border-neutral-300 transition-all duration-300"
+      className="group card-luxury flex flex-col h-full"
     >
       {/* Cinematic Image Container */}
       <div className="relative aspect-[16/10] overflow-hidden bg-neutral-100">
@@ -45,7 +45,7 @@ export function BranchCard({ name, address, description, image, phone = "+91 000
           />
         </m.div>
         {/* Branch Badge */}
-        <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-3 py-1.5 border border-neutral-200/50 rounded-full">
+        <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-3 py-1.5 border border-neutral-200/50 rounded-[3px]">
           <span className="text-[9px] font-bold uppercase tracking-[0.15em] text-neutral-800">Active Destination</span>
         </div>
       </div>
@@ -80,20 +80,20 @@ export function BranchCard({ name, address, description, image, phone = "+91 000
         </div>
 
         {/* Action Engagement */}
-        <div className="mt-auto pt-6 border-t border-neutral-100 flex flex-col sm:flex-row gap-3">
+        <div className="mt-auto pt-6 border-t border-brand-charcoal/5 flex flex-col sm:flex-row gap-3">
           <a 
             href={mapsUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="flex-1"
           >
-            <span className="w-full border border-neutral-300 hover:border-neutral-900 text-neutral-700 hover:text-neutral-900 text-xs uppercase tracking-[0.15em] py-3 rounded-full font-medium transition-all duration-200 flex items-center justify-center gap-1.5 cursor-pointer">
+            <span className="w-full border border-brand-charcoal/20 hover:border-brand-gold hover:bg-brand-gold hover:text-white text-brand-charcoal text-[10px] uppercase tracking-[0.2em] py-3 rounded-[3px] font-bold transition-all duration-500 flex items-center justify-center gap-1.5 cursor-pointer">
               Get Directions
             </span>
           </a>
           
           <Link href={`/branches/${slug}`} className="flex-1">
-            <span className="w-full bg-neutral-900 text-white text-xs uppercase tracking-[0.15em] py-3 rounded-full font-medium hover:bg-neutral-700 transition-all duration-200 flex items-center justify-center gap-1.5 cursor-pointer">
+            <span className="w-full bg-brand-charcoal text-white text-[10px] uppercase tracking-[0.2em] py-3 rounded-[3px] font-bold hover:bg-brand-gold transition-colors duration-500 flex items-center justify-center gap-1.5 cursor-pointer">
               View Branch
             </span>
           </Link>

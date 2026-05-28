@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import { getJobs } from "@/actions/cms-careers";
 import prisma from "@/lib/prisma";
 import { JobList } from "@/components/sections/admin/JobList";

@@ -1,176 +1,84 @@
-"use client";
+﻿"use client";
 
 import React, { useState } from "react";
 import { m } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const ROW_1 = [
-  { 
-    id: 1, 
-    name: "Jacques Marie Mage", 
-    logoText: "J.M.M", 
-    fontClass: "font-serif tracking-[0.05em] text-sm md:text-base font-black uppercase text-center",
-    bgClass: "from-[#FDFBF7] to-[#E9DFBE]" 
-  },
-  { 
-    id: 2, 
-    name: "Oliver Peoples", 
-    logoText: "OLIVER PEOPLES", 
-    fontClass: "font-sans tracking-[0.18em] text-[10px] md:text-[11px] font-semibold uppercase text-center",
-    bgClass: "from-[#FAF5F0] to-[#E5D2C2]" 
-  },
-  { 
-    id: 3, 
-    name: "DITA Eyewear", 
-    logoText: "DITA", 
-    fontClass: "font-sans tracking-[0.35em] text-xs md:text-sm font-bold uppercase text-center",
-    bgClass: "from-[#FAF6F8] to-[#E2D4DE]" 
-  },
-  { 
-    id: 4, 
-    name: "Chrome Hearts", 
-    logoText: "Chrome Hearts", 
-    fontClass: "font-serif tracking-wide italic text-xs md:text-sm font-black text-center",
-    bgClass: "from-[#F5F6F8] to-[#DADEE2]" 
-  },
-  { 
-    id: 5, 
-    name: "Cartier Luxury", 
-    logoText: "Cartier", 
-    fontClass: "font-serif tracking-widest text-lg md:text-xl font-light italic text-center",
-    bgClass: "from-[#FDF7F7] to-[#EAD2D2]" 
-  },
+  { id: 1, name: "Tom Ford", logoText: "TOM FORD", fontClass: "font-cormorant font-bold uppercase text-xl md:text-2xl tracking-widest", imageUrl: "/brands/Man_in_suit_wearing_eyeglasses_202605281338.jpeg", showText: true },
+  { id: 2, name: "Gucci", logoText: "", fontClass: "", imageUrl: "/brands/Androgynous_model_wearing_Gucci_â€¦_202605281315.jpeg", showText: false },
+  { id: 3, name: "Oakley", logoText: "", fontClass: "", imageUrl: "/brands/Athlete_wearing_Oakley_sunglasses_202605281315.jpeg", showText: false },
+  { id: 4, name: "Dolce & Gabbana", logoText: "DOLCE & GABBANA", fontClass: "font-didot uppercase text-lg md:text-xl tracking-widest", imageUrl: "/brands/Woman_in_gold_embroidered_dress_202605281338.jpeg", showText: true },
+  { id: 5, name: "Vogue", logoText: "", fontClass: "", imageUrl: "/brands/Female_model_wearing_Vogue_Eyewear_202605281316.jpeg", showText: false },
+  { id: 6, name: "Aviators 1", logoText: "", fontClass: "", imageUrl: "/brands/Man_wearing_aviators_highway_202605281316.jpeg", showText: false },
+  { id: 7, name: "Aviators 2", logoText: "", fontClass: "", imageUrl: "/brands/Man_wearing_aviators_highway_202605281326.jpeg", showText: false },
+  { id: 8, name: "Bvlgari", logoText: "BVLGARI", fontClass: "font-trajan uppercase text-xl md:text-2xl tracking-[0.25em]", imageUrl: "/brands/Woman_wearing_Bvlgari_frames_202605281327.jpeg", showText: true },
+  { id: 9, name: "Police", logoText: "", fontClass: "", imageUrl: "/brands/Man_wearing_Police_sunglasses_202605281316.jpeg", showText: false },
+  { id: 10, name: "Stylish Overcoat", logoText: "", fontClass: "", imageUrl: "/brands/Stylish_man_in_overcoat_202605281338.jpeg", showText: false },
+  { id: 11, name: "Diesel", logoText: "", fontClass: "", imageUrl: "/brands/Tattooed_person_wearing_Diesel_sâ€¦_202605281317.jpeg", showText: false },
+  { id: 12, name: "Bvlgari 2", logoText: "", fontClass: "", imageUrl: "/brands/Woman_wearing_Bvlgari_frames_202605281328.jpeg", showText: false },
 ];
 
 const ROW_2 = [
-  { 
-    id: 6, 
-    name: "Gucci Eyewear", 
-    logoText: "GUCCI", 
-    fontClass: "font-serif tracking-[0.25em] text-sm md:text-base font-bold uppercase text-center",
-    bgClass: "from-[#F5FAF6] to-[#D5E5DC]" 
-  },
-  { 
-    id: 7, 
-    name: "Prada Linea", 
-    logoText: "PRADA", 
-    fontClass: "font-sans tracking-[0.3em] text-xs md:text-sm font-bold uppercase text-center",
-    bgClass: "from-[#F5FAFD] to-[#D7E2EC]" 
-  },
-  { 
-    id: 8, 
-    name: "Ray-Ban Classic", 
-    logoText: "Ray•Ban", 
-    fontClass: "font-sans tracking-tight italic text-sm md:text-base font-black text-center",
-    bgClass: "from-[#FDFBF7] to-[#EADCCB]" 
-  },
-  { 
-    id: 9, 
-    name: "Maui Jim Sport", 
-    logoText: "Maui Jim", 
-    fontClass: "font-sans italic tracking-wide text-xs md:text-sm font-extrabold text-center",
-    bgClass: "from-[#F5FCFD] to-[#D5EAEC]" 
-  },
-  { 
-    id: 10, 
-    name: "Oakley Active", 
-    logoText: "OAKLEY", 
-    fontClass: "font-sans tracking-tighter text-sm md:text-base font-black uppercase text-center",
-    bgClass: "from-[#F6F7F9] to-[#DCE0E4]" 
-  },
+  { id: 13, name: "Montblanc", logoText: "MONTBLANC", fontClass: "font-futura font-light uppercase text-lg md:text-xl tracking-[0.3em]", imageUrl: "/brands/Man_wearing_Montblanc_frames_202605281316.jpeg", showText: true },
+  { id: 14, name: "D&G", logoText: "", fontClass: "", imageUrl: "/brands/Woman_wearing_D&G_sunglasses_202605281316.jpeg", showText: false },
+  { id: 15, name: "Eyewear Collection", logoText: "", fontClass: "", imageUrl: "/brands/Woman_wearing_eyewear_collection_202605281317.jpeg", showText: false },
+  { id: 16, name: "DB Eyewear", logoText: "DB EYEWEAR", fontClass: "font-helvetica font-thin uppercase text-xl md:text-2xl tracking-widest", imageUrl: "/brands/Mature_man_wearing_glasses_202605281338.jpeg", showText: true },
+  { id: 17, name: "Collection 2", logoText: "", fontClass: "", imageUrl: "/brands/Woman_wearing_eyewear_collection_202605281327.jpeg", showText: false },
+  { id: 18, name: "Gold Rimmed", logoText: "", fontClass: "", imageUrl: "/brands/Woman_wearing_gold-rimmed_eyeglaâ€¦_202605281338.jpeg", showText: false },
+  { id: 19, name: "Cartier", logoText: "", fontClass: "", imageUrl: "/brands/Woman_wearing_gold_Cartier_glasses_202605281315.jpeg", showText: false },
+  { id: 20, name: "Prada", logoText: "", fontClass: "", imageUrl: "/brands/Woman_wearing_Prada_glasses_202605281315.jpeg", showText: false },
+  { id: 21, name: "Beach", logoText: "", fontClass: "", imageUrl: "/brands/Woman_wearing_sunglasses_beach_202605281316.jpeg", showText: false },
+  { id: 22, name: "Young Man", logoText: "", fontClass: "", imageUrl: "/brands/Young_man_wearing_sunglasses_202605281315.jpeg", showText: false },
+  { id: 23, name: "Lacoste", logoText: "", fontClass: "", imageUrl: "/brands/Young_woman_wearing_Lacoste_frames_202605281316.jpeg", showText: false },
+  { id: 24, name: "Calvin Klein", logoText: "", fontClass: "", imageUrl: "/brands/Androgynous_model_wearing_Calvinâ€¦_202605281317 - Copy.jpeg", showText: false },
 ];
 
 export function BrandShowcase() {
-  const [hoveredId, setHoveredId] = useState<number | null>(null);
 
-  // Triple array size to guarantee seamless infinite visual loop
-  const displayRow1 = [...ROW_1, ...ROW_1, ...ROW_1];
-  const displayRow2 = [...ROW_2, ...ROW_2, ...ROW_2];
+  const displayRow1 = [...ROW_1, ...ROW_1];
+  const displayRow2 = [...ROW_2, ...ROW_2];
 
   return (
-    <section className="w-full bg-[#F7F5F0] section-padding overflow-hidden border-y border-[#E8E4DC]">
-      <div className="section-container">
+    <section className="w-full bg-white pb-16 md:pb-24 pt-12 md:pt-16 overflow-hidden border-y border-[#E8E4DC]">
+      <div className="w-full">
         
         {/* Harmonized Section Header */}
-        <div className="flex flex-col items-center text-center mb-10 md:mb-16">
-          <span className="meta-editorial mb-4">
-            The Atelier Partners
-          </span>
+        <div className="flex flex-col items-center text-center mb-16 relative z-10">
           <h2 className="h2-editorial">
             Shop by Brand
           </h2>
         </div>
 
-        {/* Framed Cinematic Display Window for Marquees */}
-        <div className="relative rounded-[2.5rem] border-4 border-white bg-[#F4F2EB]/30 p-6 md:p-8 overflow-hidden w-full shadow-[inset_0_2px_4px_rgba(255,255,255,0.4),0_12px_32px_rgba(0,0,0,0.03)]">
+        {/* Dense Grid Display Window */}
+        <div className="relative w-full bg-white flex flex-col gap-1 md:gap-2 group/showcase">
           
-          {/* Edge Gradient Fades - Dissolving cards smoothly at boundaries */}
-          <div className="absolute top-0 left-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-[#F7F5F0] to-transparent z-10 pointer-events-none" />
-          <div className="absolute top-0 right-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-[#F7F5F0] to-transparent z-10 pointer-events-none" />
-
-          <div className="flex flex-col gap-6 md:gap-8 relative z-0">
-            
-            {/* Row 1: Moves Right to Left */}
-            <div className="flex relative w-full overflow-hidden">
-              <m.div 
-                animate={{ 
-                  x: hoveredId ? 0 : [0, -1000] 
-                }}
-                transition={{ 
-                  x: {
-                    repeat: Infinity,
-                    repeatType: "loop",
-                    duration: 25,
-                    ease: "linear"
-                  }
-                }}
-                className="flex gap-4 md:gap-5"
-                style={{ width: "fit-content" }}
-              >
-                {displayRow1.map((brand, idx) => (
-                  <BrandCard 
-                    key={`${brand.id}-${idx}`} 
-                    brand={brand} 
-                    isHovered={hoveredId === brand.id}
-                    isAnyHovered={hoveredId !== null && hoveredId !== brand.id}
-                    onHover={() => setHoveredId(brand.id)}
-                    onLeave={() => setHoveredId(null)}
-                  />
-                ))}
-              </m.div>
+          {/* Row 1: Moves Right to Left */}
+          <div className="flex relative w-full overflow-hidden group/track">
+            <div 
+              className="flex w-max animate-[ticker_140s_linear_infinite] group-hover/track:[animation-play-state:paused]"
+            >
+              {displayRow1.map((brand, idx) => (
+                <div key={`${brand.id}-${idx}`} className="pr-1 md:pr-2 shrink-0">
+                  <BrandCard brand={brand} />
+                </div>
+              ))}
             </div>
-
-            {/* Row 2: Moves Left to Right */}
-            <div className="flex relative w-full overflow-hidden">
-              <m.div 
-                animate={{ 
-                  x: hoveredId ? 0 : [-1000, 0] 
-                }}
-                transition={{ 
-                  x: {
-                    repeat: Infinity,
-                    repeatType: "loop",
-                    duration: 28,
-                    ease: "linear"
-                  }
-                }}
-                className="flex gap-4 md:gap-5"
-                style={{ width: "fit-content" }}
-              >
-                {displayRow2.map((brand, idx) => (
-                  <BrandCard 
-                    key={`${brand.id}-${idx}`} 
-                    brand={brand} 
-                    isHovered={hoveredId === brand.id}
-                    isAnyHovered={hoveredId !== null && hoveredId !== brand.id}
-                    onHover={() => setHoveredId(brand.id)}
-                    onLeave={() => setHoveredId(null)}
-                  />
-                ))}
-              </m.div>
-            </div>
-
           </div>
+
+          {/* Row 2: Moves Left to Right */}
+          <div className="flex relative w-full overflow-hidden group/track">
+            <div 
+              className="flex w-max animate-[ticker_160s_linear_infinite_reverse] group-hover/track:[animation-play-state:paused]"
+            >
+              {displayRow2.map((brand, idx) => (
+                <div key={`${brand.id}-${idx}`} className="pr-1 md:pr-2 shrink-0">
+                  <BrandCard brand={brand} />
+                </div>
+              ))}
+            </div>
+          </div>
+
         </div>
 
       </div>
@@ -178,44 +86,39 @@ export function BrandShowcase() {
   );
 }
 
-function BrandCard({ brand, isHovered, isAnyHovered, onHover, onLeave }: any) {
+function BrandCard({ brand }: any) {
   return (
     <div 
-      className="relative flex-shrink-0 select-none cursor-pointer group"
-      onMouseEnter={onHover}
-      onMouseLeave={onLeave}
+      className="relative flex-shrink-0 select-none cursor-pointer overflow-hidden group w-[280px] h-[160px] md:w-[380px] md:h-[220px]"
     >
-      <m.div 
-        animate={{ 
-          scale: isHovered ? 1.05 : 1,
-          opacity: isAnyHovered ? 0.65 : 1
-        }}
-        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className={cn(
-          "relative w-[145px] h-[145px] md:w-[190px] md:h-[190px] aspect-square rounded-3xl overflow-hidden p-4 flex flex-col items-center justify-between border border-neutral-100 bg-gradient-to-br shadow-sm hover:shadow-md transition-all duration-500",
-          brand.bgClass
-        )}
+      <div 
+        className="relative w-full h-full bg-neutral-900 transition-opacity duration-500 group-hover/showcase:opacity-60 hover:!opacity-100"
       >
-        {/* Brand visual logo centered with rich editorial contrast */}
-        <div className="flex-1 flex items-center justify-center w-full px-3 text-center">
-          <span 
-            className={cn(
-              "select-none transition-all duration-500 block text-neutral-800/80 group-hover:text-neutral-950 font-medium",
-              brand.fontClass,
-              isHovered ? "scale-[1.08] opacity-100 text-neutral-950" : "opacity-85 text-neutral-600"
-            )}
-          >
-            {brand.logoText}
-          </span>
+        {/* Full Bleed Image */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <img 
+            src={brand.imageUrl} 
+            alt={brand.name} 
+            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 brightness-[0.8] group-hover:brightness-[0.9]"
+          />
+          {brand.showText && (
+            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500" />
+          )}
         </div>
-        
-        {/* Premium minimal borderless label at the bottom */}
-        <div className="w-full flex items-center justify-center pt-2 border-t border-black/5">
-          <span className="text-[7.5px] md:text-[9.5px] font-bold uppercase tracking-[0.24em] text-neutral-500 group-hover:text-neutral-900 transition-colors duration-300 text-center select-none truncate">
-            {brand.name}
-          </span>
-        </div>
-      </m.div>
+
+        {brand.showText && (
+          <div className="absolute inset-0 z-10 flex w-full h-full items-end justify-start p-6 md:p-8">
+            <span 
+              className={cn(
+                "select-none transition-transform duration-500 block text-white drop-shadow-md",
+                brand.fontClass
+              )}
+            >
+              {brand.logoText}
+            </span>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

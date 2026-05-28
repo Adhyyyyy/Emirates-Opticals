@@ -1,7 +1,6 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { getOffers } from "@/actions/cms-marketing";
 import { X } from "lucide-react";
 
@@ -52,35 +51,25 @@ export function AnnouncementBar({ onDismissToggle }: AnnouncementBarProps) {
 
   // Exact fallback if no active offers, or dynamic text if offers exist
   const activeText = offers.length > 0 
-    ? `${offers[currentIndex].title}: ${offers[currentIndex].description} — CODE: ${offers[currentIndex].promoCode}`
+    ? `[${offers[currentIndex].percentage}] ${offers[currentIndex].title} â€” ${offers[currentIndex].description}`
     : "Flex Spending Accepted: Use your FSA/HSA cards on Emirates Opticians.";
 
-  return (
-    <div className="w-full bg-[#C9A84C] text-[#0A0A0A] h-[36px] flex items-center justify-center relative px-8 z-50">
-      
-      {/* Centered Announcement Message */}
-      <div className="flex items-center justify-center gap-3 text-[12px] font-sans font-medium uppercase tracking-[0.1em] text-center w-full">
-        <div className="relative overflow-hidden flex items-center justify-center">
-          <AnimatePresence mode="wait">
-            <motion.span
-              key={currentIndex}
-              initial={{ y: 8, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -8, opacity: 0 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
-              className="truncate max-w-[280px] sm:max-w-none text-[#0A0A0A]"
-            >
-              {activeText}
-            </motion.span>
-          </AnimatePresence>
-        </div>
+  const ctaText = "EXPLORE SHOWROOMS";
+  const ctaLink = "/branches";
 
-        <a 
-          href="/offers" 
-          className="underline font-bold text-[#0A0A0A] hover:text-black transition-colors shrink-0 ml-1"
-        >
-          CLAIM OFFER
-        </a>
+  return (
+    <div className="announcement-bar-wrap w-full bg-white border-b border-black/5 text-[#0A0A0A] h-[36px] flex items-center overflow-hidden relative px-8 z-50">
+      
+      {/* Scrolling Ticker */}
+      <div className="flex-1 overflow-hidden">
+        <div className="announcement-ticker flex whitespace-nowrap items-center">
+          <span className="text-[11px] font-sans font-semibold uppercase tracking-[0.08em] text-[#0A0A0A] mr-20">
+            {activeText} &nbsp;Â·&nbsp; <a href={ctaLink} className="underline font-bold">{ctaText}</a>
+          </span>
+          <span className="text-[11px] font-sans font-semibold uppercase tracking-[0.08em] text-[#0A0A0A] mr-20">
+            {activeText} &nbsp;Â·&nbsp; <a href={ctaLink} className="underline font-bold">{ctaText}</a>
+          </span>
+        </div>
       </div>
 
       {/* Dismiss Button on Right Edge */}

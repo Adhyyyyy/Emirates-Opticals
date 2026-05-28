@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useTransition, useRef } from "react";
 import { registerMediaAsset, deleteMediaAsset } from "@/actions/cms-media";
@@ -428,7 +428,7 @@ export function MediaLibrary({ initialAssets }: MediaLibraryProps) {
                         <Database className="w-3 h-3 text-brand-gold" />
                         {asset.size}
                       </span>
-                      <span>•</span>
+                      <span>â€¢</span>
                       <span>{asset.type}</span>
                     </div>
                   </div>

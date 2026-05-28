@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import { m } from "framer-motion";
@@ -34,9 +34,9 @@ export function ServicesHero() {
           transition={{ duration: 1, delay: 0.4 }}
           className="text-4xl md:text-6xl lg:text-7xl font-light text-white uppercase tracking-tight leading-[1.05] font-heading drop-shadow-lg"
         >
-          Comprehensive
+          World-Class
           <br />
-          <em className="italic font-light text-amber-400/90">Optical Services</em>
+          <em className="italic font-light text-amber-400/90">Eye Care</em>
         </m.h1>
       </div>
 

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -121,17 +121,17 @@ export function ProductGrid({ products }: ProductGridProps) {
       if (priceFilters && priceFilters.length > 0) {
         const price = product.price;
         let matches = false;
-        if (priceFilters.includes("Under ₹5,000") && price < 5000) matches = true;
-        if (priceFilters.includes("₹5,000 - ₹15,000") && price >= 5000 && price <= 15000) matches = true;
-        if (priceFilters.includes("₹15,000 - ₹30,000") && price >= 15000 && price <= 30000) matches = true;
-        if (priceFilters.includes("₹30,000 - ₹50,000") && price >= 30000 && price <= 50000) matches = true;
-        if (priceFilters.includes("Luxury (Above ₹50,000)") && price > 50000) matches = true;
+        if (priceFilters.includes("Under â‚¹5,000") && price < 5000) matches = true;
+        if (priceFilters.includes("â‚¹5,000 - â‚¹15,000") && price >= 5000 && price <= 15000) matches = true;
+        if (priceFilters.includes("â‚¹15,000 - â‚¹30,000") && price >= 15000 && price <= 30000) matches = true;
+        if (priceFilters.includes("â‚¹30,000 - â‚¹50,000") && price >= 30000 && price <= 50000) matches = true;
+        if (priceFilters.includes("Luxury (Above â‚¹50,000)") && price > 50000) matches = true;
         if (!matches) return false;
       }
 
       return true;
     });
-  }, [products, searchQuery, activeFilters]);
+  }, [products, searchQuery, activeFilters, isMounted]);
 
   // Sorting logic applied to the filtered list
   const sortedProducts = useMemo(() => {
@@ -260,6 +260,7 @@ export function ProductGrid({ products }: ProductGridProps) {
       {/* Grid Display */}
       {currentProducts.length > 0 ? (
         <GridStagger 
+          key={`${currentPage}-${sortBy}`}
           className={cn(
             "grid gap-y-10 md:gap-x-8 md:gap-y-16",
             viewMode === "grid" 
@@ -286,7 +287,7 @@ export function ProductGrid({ products }: ProductGridProps) {
           
           {/* Page Counter Stats */}
           <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-brand-charcoal/40">
-            Showing {indexOfFirstProduct + 1}–{Math.min(indexOfLastProduct, sortedProducts.length)} of {sortedProducts.length} Collections
+            Showing {indexOfFirstProduct + 1}â€“{Math.min(indexOfLastProduct, sortedProducts.length)} of {sortedProducts.length} Collections
           </span>
 
           {/* Dynamic Page Buttons */}

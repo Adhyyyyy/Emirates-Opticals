@@ -1,4 +1,4 @@
-"use server";
+﻿"use server";
 
 import { revalidatePath } from "next/cache";
 import { createServerClient } from "@supabase/ssr";
@@ -166,7 +166,7 @@ export async function applyForJob(data: {
 
     return { success: true, id: application.id };
   } catch (error) {
-    console.warn("❌ Prisma career application save failed, logging to static storage:", error);
+    console.warn("âŒ Prisma career application save failed, logging to static storage:", error);
     
     try {
       const applicationsFile = path.join(process.cwd(), "lib/data/applications.json");
@@ -190,7 +190,7 @@ export async function applyForJob(data: {
       
       return { success: true, staticLogged: true };
     } catch (fsErr) {
-      console.error("❌ FS backup careers application save failed:", fsErr);
+      console.error("âŒ FS backup careers application save failed:", fsErr);
       return { error: "Application transmission offline. Please call or WhatsApp us." };
     }
   }

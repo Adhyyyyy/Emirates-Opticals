@@ -38,7 +38,7 @@ export default async function ProductsPage() {
       id: item.id,
       name: item.name,
       brand: item.brand?.name || "Independent",
-      price: item.price,
+      price: item.price || 0,
       status: item.isActive ? "PUBLISHED" : "DRAFT",
       image: item.images[0]?.url || "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&q=80&w=600",
       stock: item.inventory?.reduce((acc: number, inv: any) => acc + inv.quantity, 0) || 0,

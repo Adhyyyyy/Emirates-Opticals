@@ -169,7 +169,7 @@ export async function bulkImportProducts(products: any[]) {
       const createdProducts = [];
 
       for (const item of products) {
-        if (!item.name || !item.price || !item.brandName || !item.categoryName) {
+        if (!item.name || !item.brandName || !item.categoryName) {
           throw new Error(`Incomplete parameters on item: ${JSON.stringify(item)}`);
         }
 
@@ -215,7 +215,6 @@ export async function bulkImportProducts(products: any[]) {
             name: item.name,
             slug: productSlug,
             description: item.description || "Crafted luxury eyewear.",
-            price: Number(item.price),
             gender: item.gender || "UNISEX",
             frameShape: item.frameShape || "",
             material: item.material || "",

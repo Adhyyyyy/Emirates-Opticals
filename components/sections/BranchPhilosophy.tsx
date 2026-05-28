@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import { m } from "framer-motion";
@@ -48,7 +48,7 @@ export function BranchPhilosophy() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-sm text-neutral-500 font-light leading-relaxed max-w-lg"
             >
-              With multiple branches across Kerala, Emirates Optician combines authentic luxury eyewear, expert eye care, and personalized styling consultation — making premium optical experiences easily accessible to every customer.
+              With multiple branches across Kerala, Emirates Optician combines authentic luxury eyewear, expert eye care, and personalized styling consultation â€” making premium optical experiences easily accessible to every customer.
             </m.p>
           </div>
 

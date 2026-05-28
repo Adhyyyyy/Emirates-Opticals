@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import { m } from "framer-motion";
@@ -18,7 +18,7 @@ export function ServiceFinalCTA() {
             transition={{ duration: 0.7 }}
             className="text-[10px] uppercase tracking-[0.2em] text-amber-400/70 mb-3 block font-medium"
           >
-            Visit Us Today
+            Your Vision Journey
           </m.span>
           <m.h2
             initial={{ opacity: 0, y: 16 }}
@@ -27,9 +27,9 @@ export function ServiceFinalCTA() {
             transition={{ duration: 0.9, delay: 0.1 }}
             className="text-4xl md:text-5xl font-light text-white leading-[1.1] tracking-tight mb-4 uppercase font-heading"
           >
-            Ready to
+            Ready to Experience
             <br />
-            <em className="font-serif italic text-amber-300/90" style={{ fontStyle: "italic" }}>Get Started?</em>
+            <em className="font-serif italic text-amber-300/90" style={{ fontStyle: "italic" }}>Premium Eye Care?</em>
           </m.h2>
           <m.p
             initial={{ opacity: 0, y: 12 }}
@@ -38,7 +38,7 @@ export function ServiceFinalCTA() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-sm text-neutral-400 leading-relaxed max-w-[420px]"
           >
-            Visit any of our branches for a free eye test and personalized consultation with our experts.
+            Book your complimentary eye test and discover eyewear curated around your lifestyle.
           </m.p>
         </div>
 
@@ -51,14 +51,14 @@ export function ServiceFinalCTA() {
         >
           <Link
             href="/book-eye-test"
-            className="bg-amber-400 text-neutral-900 text-xs uppercase tracking-[0.15em] px-8 py-4 rounded-full font-medium hover:bg-amber-300 transition-all duration-200 inline-flex items-center justify-center gap-2"
+            className="bg-[#C9A84C] text-[#0D0D0D] text-xs uppercase tracking-[0.15em] px-8 py-4 rounded-[3px] font-bold hover:bg-[#B8952E] hover:text-white transition-all duration-300 inline-flex items-center justify-center gap-2"
           >
             <Calendar className="w-3.5 h-3.5" />
             Book Free Eye Test
           </Link>
           <Link
             href="/branches"
-            className="border border-white/20 text-white text-xs uppercase tracking-[0.15em] px-8 py-4 rounded-full hover:border-white hover:bg-white/5 transition-all duration-200 inline-flex items-center justify-center gap-2"
+            className="border border-white/20 text-white text-xs uppercase tracking-[0.15em] px-8 py-4 rounded-[3px] hover:border-white hover:bg-white/5 transition-all duration-300 inline-flex items-center justify-center gap-2"
           >
             <MapPin className="w-3.5 h-3.5" />
             Find a Branch

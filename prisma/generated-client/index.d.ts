@@ -4835,11 +4835,18 @@ export namespace Prisma {
     isNewArrival: boolean | null
     isActive: boolean | null
     gender: string | null
+    style: string | null
     frameShape: string | null
     material: string | null
     lensType: string | null
     color: string | null
     size: string | null
+    isInHouseProduct: boolean | null
+    collectionType: string | null
+    signatureCollectionName: string | null
+    craftsmanshipDetails: string | null
+    recommendedUsage: string | null
+    frameWeightCategory: string | null
     brandId: string | null
     categoryId: string | null
     metaTitle: string | null
@@ -4859,11 +4866,18 @@ export namespace Prisma {
     isNewArrival: boolean | null
     isActive: boolean | null
     gender: string | null
+    style: string | null
     frameShape: string | null
     material: string | null
     lensType: string | null
     color: string | null
     size: string | null
+    isInHouseProduct: boolean | null
+    collectionType: string | null
+    signatureCollectionName: string | null
+    craftsmanshipDetails: string | null
+    recommendedUsage: string | null
+    frameWeightCategory: string | null
     brandId: string | null
     categoryId: string | null
     metaTitle: string | null
@@ -4883,11 +4897,18 @@ export namespace Prisma {
     isNewArrival: number
     isActive: number
     gender: number
+    style: number
     frameShape: number
     material: number
     lensType: number
     color: number
     size: number
+    isInHouseProduct: number
+    collectionType: number
+    signatureCollectionName: number
+    craftsmanshipDetails: number
+    recommendedUsage: number
+    frameWeightCategory: number
     brandId: number
     categoryId: number
     metaTitle: number
@@ -4917,11 +4938,18 @@ export namespace Prisma {
     isNewArrival?: true
     isActive?: true
     gender?: true
+    style?: true
     frameShape?: true
     material?: true
     lensType?: true
     color?: true
     size?: true
+    isInHouseProduct?: true
+    collectionType?: true
+    signatureCollectionName?: true
+    craftsmanshipDetails?: true
+    recommendedUsage?: true
+    frameWeightCategory?: true
     brandId?: true
     categoryId?: true
     metaTitle?: true
@@ -4941,11 +4969,18 @@ export namespace Prisma {
     isNewArrival?: true
     isActive?: true
     gender?: true
+    style?: true
     frameShape?: true
     material?: true
     lensType?: true
     color?: true
     size?: true
+    isInHouseProduct?: true
+    collectionType?: true
+    signatureCollectionName?: true
+    craftsmanshipDetails?: true
+    recommendedUsage?: true
+    frameWeightCategory?: true
     brandId?: true
     categoryId?: true
     metaTitle?: true
@@ -4965,11 +5000,18 @@ export namespace Prisma {
     isNewArrival?: true
     isActive?: true
     gender?: true
+    style?: true
     frameShape?: true
     material?: true
     lensType?: true
     color?: true
     size?: true
+    isInHouseProduct?: true
+    collectionType?: true
+    signatureCollectionName?: true
+    craftsmanshipDetails?: true
+    recommendedUsage?: true
+    frameWeightCategory?: true
     brandId?: true
     categoryId?: true
     metaTitle?: true
@@ -5076,11 +5118,18 @@ export namespace Prisma {
     isNewArrival: boolean
     isActive: boolean
     gender: string | null
+    style: string | null
     frameShape: string | null
     material: string | null
     lensType: string | null
     color: string | null
     size: string | null
+    isInHouseProduct: boolean
+    collectionType: string
+    signatureCollectionName: string | null
+    craftsmanshipDetails: string | null
+    recommendedUsage: string | null
+    frameWeightCategory: string | null
     brandId: string
     categoryId: string
     metaTitle: string | null
@@ -5119,11 +5168,18 @@ export namespace Prisma {
     isNewArrival?: boolean
     isActive?: boolean
     gender?: boolean
+    style?: boolean
     frameShape?: boolean
     material?: boolean
     lensType?: boolean
     color?: boolean
     size?: boolean
+    isInHouseProduct?: boolean
+    collectionType?: boolean
+    signatureCollectionName?: boolean
+    craftsmanshipDetails?: boolean
+    recommendedUsage?: boolean
+    frameWeightCategory?: boolean
     brandId?: boolean
     categoryId?: boolean
     metaTitle?: boolean
@@ -5149,11 +5205,18 @@ export namespace Prisma {
     isNewArrival?: boolean
     isActive?: boolean
     gender?: boolean
+    style?: boolean
     frameShape?: boolean
     material?: boolean
     lensType?: boolean
     color?: boolean
     size?: boolean
+    isInHouseProduct?: boolean
+    collectionType?: boolean
+    signatureCollectionName?: boolean
+    craftsmanshipDetails?: boolean
+    recommendedUsage?: boolean
+    frameWeightCategory?: boolean
     brandId?: boolean
     categoryId?: boolean
     metaTitle?: boolean
@@ -5175,11 +5238,18 @@ export namespace Prisma {
     isNewArrival?: boolean
     isActive?: boolean
     gender?: boolean
+    style?: boolean
     frameShape?: boolean
     material?: boolean
     lensType?: boolean
     color?: boolean
     size?: boolean
+    isInHouseProduct?: boolean
+    collectionType?: boolean
+    signatureCollectionName?: boolean
+    craftsmanshipDetails?: boolean
+    recommendedUsage?: boolean
+    frameWeightCategory?: boolean
     brandId?: boolean
     categoryId?: boolean
     metaTitle?: boolean
@@ -5201,11 +5271,18 @@ export namespace Prisma {
     isNewArrival?: boolean
     isActive?: boolean
     gender?: boolean
+    style?: boolean
     frameShape?: boolean
     material?: boolean
     lensType?: boolean
     color?: boolean
     size?: boolean
+    isInHouseProduct?: boolean
+    collectionType?: boolean
+    signatureCollectionName?: boolean
+    craftsmanshipDetails?: boolean
+    recommendedUsage?: boolean
+    frameWeightCategory?: boolean
     brandId?: boolean
     categoryId?: boolean
     metaTitle?: boolean
@@ -5215,7 +5292,7 @@ export namespace Prisma {
     deletedAt?: boolean
   }
 
-  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "description" | "price" | "isFeatured" | "isNewArrival" | "isActive" | "gender" | "frameShape" | "material" | "lensType" | "color" | "size" | "brandId" | "categoryId" | "metaTitle" | "metaDesc" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["product"]>
+  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "description" | "price" | "isFeatured" | "isNewArrival" | "isActive" | "gender" | "style" | "frameShape" | "material" | "lensType" | "color" | "size" | "isInHouseProduct" | "collectionType" | "signatureCollectionName" | "craftsmanshipDetails" | "recommendedUsage" | "frameWeightCategory" | "brandId" | "categoryId" | "metaTitle" | "metaDesc" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["product"]>
   export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     brand?: boolean | BrandDefaultArgs<ExtArgs>
     category?: boolean | CategoryDefaultArgs<ExtArgs>
@@ -5252,11 +5329,18 @@ export namespace Prisma {
       isNewArrival: boolean
       isActive: boolean
       gender: string | null
+      style: string | null
       frameShape: string | null
       material: string | null
       lensType: string | null
       color: string | null
       size: string | null
+      isInHouseProduct: boolean
+      collectionType: string
+      signatureCollectionName: string | null
+      craftsmanshipDetails: string | null
+      recommendedUsage: string | null
+      frameWeightCategory: string | null
       brandId: string
       categoryId: string
       metaTitle: string | null
@@ -5701,11 +5785,18 @@ export namespace Prisma {
     readonly isNewArrival: FieldRef<"Product", 'Boolean'>
     readonly isActive: FieldRef<"Product", 'Boolean'>
     readonly gender: FieldRef<"Product", 'String'>
+    readonly style: FieldRef<"Product", 'String'>
     readonly frameShape: FieldRef<"Product", 'String'>
     readonly material: FieldRef<"Product", 'String'>
     readonly lensType: FieldRef<"Product", 'String'>
     readonly color: FieldRef<"Product", 'String'>
     readonly size: FieldRef<"Product", 'String'>
+    readonly isInHouseProduct: FieldRef<"Product", 'Boolean'>
+    readonly collectionType: FieldRef<"Product", 'String'>
+    readonly signatureCollectionName: FieldRef<"Product", 'String'>
+    readonly craftsmanshipDetails: FieldRef<"Product", 'String'>
+    readonly recommendedUsage: FieldRef<"Product", 'String'>
+    readonly frameWeightCategory: FieldRef<"Product", 'String'>
     readonly brandId: FieldRef<"Product", 'String'>
     readonly categoryId: FieldRef<"Product", 'String'>
     readonly metaTitle: FieldRef<"Product", 'String'>
@@ -17314,11 +17405,18 @@ export namespace Prisma {
     isNewArrival: 'isNewArrival',
     isActive: 'isActive',
     gender: 'gender',
+    style: 'style',
     frameShape: 'frameShape',
     material: 'material',
     lensType: 'lensType',
     color: 'color',
     size: 'size',
+    isInHouseProduct: 'isInHouseProduct',
+    collectionType: 'collectionType',
+    signatureCollectionName: 'signatureCollectionName',
+    craftsmanshipDetails: 'craftsmanshipDetails',
+    recommendedUsage: 'recommendedUsage',
+    frameWeightCategory: 'frameWeightCategory',
     brandId: 'brandId',
     categoryId: 'categoryId',
     metaTitle: 'metaTitle',
@@ -17840,11 +17938,18 @@ export namespace Prisma {
     isNewArrival?: BoolFilter<"Product"> | boolean
     isActive?: BoolFilter<"Product"> | boolean
     gender?: StringNullableFilter<"Product"> | string | null
+    style?: StringNullableFilter<"Product"> | string | null
     frameShape?: StringNullableFilter<"Product"> | string | null
     material?: StringNullableFilter<"Product"> | string | null
     lensType?: StringNullableFilter<"Product"> | string | null
     color?: StringNullableFilter<"Product"> | string | null
     size?: StringNullableFilter<"Product"> | string | null
+    isInHouseProduct?: BoolFilter<"Product"> | boolean
+    collectionType?: StringFilter<"Product"> | string
+    signatureCollectionName?: StringNullableFilter<"Product"> | string | null
+    craftsmanshipDetails?: StringNullableFilter<"Product"> | string | null
+    recommendedUsage?: StringNullableFilter<"Product"> | string | null
+    frameWeightCategory?: StringNullableFilter<"Product"> | string | null
     brandId?: StringFilter<"Product"> | string
     categoryId?: StringFilter<"Product"> | string
     metaTitle?: StringNullableFilter<"Product"> | string | null
@@ -17869,11 +17974,18 @@ export namespace Prisma {
     isNewArrival?: SortOrder
     isActive?: SortOrder
     gender?: SortOrderInput | SortOrder
+    style?: SortOrderInput | SortOrder
     frameShape?: SortOrderInput | SortOrder
     material?: SortOrderInput | SortOrder
     lensType?: SortOrderInput | SortOrder
     color?: SortOrderInput | SortOrder
     size?: SortOrderInput | SortOrder
+    isInHouseProduct?: SortOrder
+    collectionType?: SortOrder
+    signatureCollectionName?: SortOrderInput | SortOrder
+    craftsmanshipDetails?: SortOrderInput | SortOrder
+    recommendedUsage?: SortOrderInput | SortOrder
+    frameWeightCategory?: SortOrderInput | SortOrder
     brandId?: SortOrder
     categoryId?: SortOrder
     metaTitle?: SortOrderInput | SortOrder
@@ -17901,11 +18013,18 @@ export namespace Prisma {
     isNewArrival?: BoolFilter<"Product"> | boolean
     isActive?: BoolFilter<"Product"> | boolean
     gender?: StringNullableFilter<"Product"> | string | null
+    style?: StringNullableFilter<"Product"> | string | null
     frameShape?: StringNullableFilter<"Product"> | string | null
     material?: StringNullableFilter<"Product"> | string | null
     lensType?: StringNullableFilter<"Product"> | string | null
     color?: StringNullableFilter<"Product"> | string | null
     size?: StringNullableFilter<"Product"> | string | null
+    isInHouseProduct?: BoolFilter<"Product"> | boolean
+    collectionType?: StringFilter<"Product"> | string
+    signatureCollectionName?: StringNullableFilter<"Product"> | string | null
+    craftsmanshipDetails?: StringNullableFilter<"Product"> | string | null
+    recommendedUsage?: StringNullableFilter<"Product"> | string | null
+    frameWeightCategory?: StringNullableFilter<"Product"> | string | null
     brandId?: StringFilter<"Product"> | string
     categoryId?: StringFilter<"Product"> | string
     metaTitle?: StringNullableFilter<"Product"> | string | null
@@ -17930,11 +18049,18 @@ export namespace Prisma {
     isNewArrival?: SortOrder
     isActive?: SortOrder
     gender?: SortOrderInput | SortOrder
+    style?: SortOrderInput | SortOrder
     frameShape?: SortOrderInput | SortOrder
     material?: SortOrderInput | SortOrder
     lensType?: SortOrderInput | SortOrder
     color?: SortOrderInput | SortOrder
     size?: SortOrderInput | SortOrder
+    isInHouseProduct?: SortOrder
+    collectionType?: SortOrder
+    signatureCollectionName?: SortOrderInput | SortOrder
+    craftsmanshipDetails?: SortOrderInput | SortOrder
+    recommendedUsage?: SortOrderInput | SortOrder
+    frameWeightCategory?: SortOrderInput | SortOrder
     brandId?: SortOrder
     categoryId?: SortOrder
     metaTitle?: SortOrderInput | SortOrder
@@ -17962,11 +18088,18 @@ export namespace Prisma {
     isNewArrival?: BoolWithAggregatesFilter<"Product"> | boolean
     isActive?: BoolWithAggregatesFilter<"Product"> | boolean
     gender?: StringNullableWithAggregatesFilter<"Product"> | string | null
+    style?: StringNullableWithAggregatesFilter<"Product"> | string | null
     frameShape?: StringNullableWithAggregatesFilter<"Product"> | string | null
     material?: StringNullableWithAggregatesFilter<"Product"> | string | null
     lensType?: StringNullableWithAggregatesFilter<"Product"> | string | null
     color?: StringNullableWithAggregatesFilter<"Product"> | string | null
     size?: StringNullableWithAggregatesFilter<"Product"> | string | null
+    isInHouseProduct?: BoolWithAggregatesFilter<"Product"> | boolean
+    collectionType?: StringWithAggregatesFilter<"Product"> | string
+    signatureCollectionName?: StringNullableWithAggregatesFilter<"Product"> | string | null
+    craftsmanshipDetails?: StringNullableWithAggregatesFilter<"Product"> | string | null
+    recommendedUsage?: StringNullableWithAggregatesFilter<"Product"> | string | null
+    frameWeightCategory?: StringNullableWithAggregatesFilter<"Product"> | string | null
     brandId?: StringWithAggregatesFilter<"Product"> | string
     categoryId?: StringWithAggregatesFilter<"Product"> | string
     metaTitle?: StringNullableWithAggregatesFilter<"Product"> | string | null
@@ -18921,16 +19054,23 @@ export namespace Prisma {
     name: string
     slug: string
     description: string
-    price: number
+    price?: number
     isFeatured?: boolean
     isNewArrival?: boolean
     isActive?: boolean
     gender?: string | null
+    style?: string | null
     frameShape?: string | null
     material?: string | null
     lensType?: string | null
     color?: string | null
     size?: string | null
+    isInHouseProduct?: boolean
+    collectionType?: string
+    signatureCollectionName?: string | null
+    craftsmanshipDetails?: string | null
+    recommendedUsage?: string | null
+    frameWeightCategory?: string | null
     metaTitle?: string | null
     metaDesc?: string | null
     createdAt?: Date | string
@@ -18948,16 +19088,23 @@ export namespace Prisma {
     name: string
     slug: string
     description: string
-    price: number
+    price?: number
     isFeatured?: boolean
     isNewArrival?: boolean
     isActive?: boolean
     gender?: string | null
+    style?: string | null
     frameShape?: string | null
     material?: string | null
     lensType?: string | null
     color?: string | null
     size?: string | null
+    isInHouseProduct?: boolean
+    collectionType?: string
+    signatureCollectionName?: string | null
+    craftsmanshipDetails?: string | null
+    recommendedUsage?: string | null
+    frameWeightCategory?: string | null
     brandId: string
     categoryId: string
     metaTitle?: string | null
@@ -18980,11 +19127,18 @@ export namespace Prisma {
     isNewArrival?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
+    style?: NullableStringFieldUpdateOperationsInput | string | null
     frameShape?: NullableStringFieldUpdateOperationsInput | string | null
     material?: NullableStringFieldUpdateOperationsInput | string | null
     lensType?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
+    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
+    collectionType?: StringFieldUpdateOperationsInput | string
+    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
+    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
+    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDesc?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19007,11 +19161,18 @@ export namespace Prisma {
     isNewArrival?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
+    style?: NullableStringFieldUpdateOperationsInput | string | null
     frameShape?: NullableStringFieldUpdateOperationsInput | string | null
     material?: NullableStringFieldUpdateOperationsInput | string | null
     lensType?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
+    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
+    collectionType?: StringFieldUpdateOperationsInput | string
+    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
+    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
+    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
     brandId?: StringFieldUpdateOperationsInput | string
     categoryId?: StringFieldUpdateOperationsInput | string
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19029,16 +19190,23 @@ export namespace Prisma {
     name: string
     slug: string
     description: string
-    price: number
+    price?: number
     isFeatured?: boolean
     isNewArrival?: boolean
     isActive?: boolean
     gender?: string | null
+    style?: string | null
     frameShape?: string | null
     material?: string | null
     lensType?: string | null
     color?: string | null
     size?: string | null
+    isInHouseProduct?: boolean
+    collectionType?: string
+    signatureCollectionName?: string | null
+    craftsmanshipDetails?: string | null
+    recommendedUsage?: string | null
+    frameWeightCategory?: string | null
     brandId: string
     categoryId: string
     metaTitle?: string | null
@@ -19058,11 +19226,18 @@ export namespace Prisma {
     isNewArrival?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
+    style?: NullableStringFieldUpdateOperationsInput | string | null
     frameShape?: NullableStringFieldUpdateOperationsInput | string | null
     material?: NullableStringFieldUpdateOperationsInput | string | null
     lensType?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
+    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
+    collectionType?: StringFieldUpdateOperationsInput | string
+    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
+    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
+    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDesc?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19080,11 +19255,18 @@ export namespace Prisma {
     isNewArrival?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
+    style?: NullableStringFieldUpdateOperationsInput | string | null
     frameShape?: NullableStringFieldUpdateOperationsInput | string | null
     material?: NullableStringFieldUpdateOperationsInput | string | null
     lensType?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
+    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
+    collectionType?: StringFieldUpdateOperationsInput | string
+    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
+    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
+    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
     brandId?: StringFieldUpdateOperationsInput | string
     categoryId?: StringFieldUpdateOperationsInput | string
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20169,11 +20351,18 @@ export namespace Prisma {
     isNewArrival?: SortOrder
     isActive?: SortOrder
     gender?: SortOrder
+    style?: SortOrder
     frameShape?: SortOrder
     material?: SortOrder
     lensType?: SortOrder
     color?: SortOrder
     size?: SortOrder
+    isInHouseProduct?: SortOrder
+    collectionType?: SortOrder
+    signatureCollectionName?: SortOrder
+    craftsmanshipDetails?: SortOrder
+    recommendedUsage?: SortOrder
+    frameWeightCategory?: SortOrder
     brandId?: SortOrder
     categoryId?: SortOrder
     metaTitle?: SortOrder
@@ -20197,11 +20386,18 @@ export namespace Prisma {
     isNewArrival?: SortOrder
     isActive?: SortOrder
     gender?: SortOrder
+    style?: SortOrder
     frameShape?: SortOrder
     material?: SortOrder
     lensType?: SortOrder
     color?: SortOrder
     size?: SortOrder
+    isInHouseProduct?: SortOrder
+    collectionType?: SortOrder
+    signatureCollectionName?: SortOrder
+    craftsmanshipDetails?: SortOrder
+    recommendedUsage?: SortOrder
+    frameWeightCategory?: SortOrder
     brandId?: SortOrder
     categoryId?: SortOrder
     metaTitle?: SortOrder
@@ -20221,11 +20417,18 @@ export namespace Prisma {
     isNewArrival?: SortOrder
     isActive?: SortOrder
     gender?: SortOrder
+    style?: SortOrder
     frameShape?: SortOrder
     material?: SortOrder
     lensType?: SortOrder
     color?: SortOrder
     size?: SortOrder
+    isInHouseProduct?: SortOrder
+    collectionType?: SortOrder
+    signatureCollectionName?: SortOrder
+    craftsmanshipDetails?: SortOrder
+    recommendedUsage?: SortOrder
+    frameWeightCategory?: SortOrder
     brandId?: SortOrder
     categoryId?: SortOrder
     metaTitle?: SortOrder
@@ -22612,16 +22815,23 @@ export namespace Prisma {
     name: string
     slug: string
     description: string
-    price: number
+    price?: number
     isFeatured?: boolean
     isNewArrival?: boolean
     isActive?: boolean
     gender?: string | null
+    style?: string | null
     frameShape?: string | null
     material?: string | null
     lensType?: string | null
     color?: string | null
     size?: string | null
+    isInHouseProduct?: boolean
+    collectionType?: string
+    signatureCollectionName?: string | null
+    craftsmanshipDetails?: string | null
+    recommendedUsage?: string | null
+    frameWeightCategory?: string | null
     metaTitle?: string | null
     metaDesc?: string | null
     createdAt?: Date | string
@@ -22638,16 +22848,23 @@ export namespace Prisma {
     name: string
     slug: string
     description: string
-    price: number
+    price?: number
     isFeatured?: boolean
     isNewArrival?: boolean
     isActive?: boolean
     gender?: string | null
+    style?: string | null
     frameShape?: string | null
     material?: string | null
     lensType?: string | null
     color?: string | null
     size?: string | null
+    isInHouseProduct?: boolean
+    collectionType?: string
+    signatureCollectionName?: string | null
+    craftsmanshipDetails?: string | null
+    recommendedUsage?: string | null
+    frameWeightCategory?: string | null
     brandId: string
     categoryId: string
     metaTitle?: string | null
@@ -22685,11 +22902,18 @@ export namespace Prisma {
     isNewArrival?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
+    style?: NullableStringFieldUpdateOperationsInput | string | null
     frameShape?: NullableStringFieldUpdateOperationsInput | string | null
     material?: NullableStringFieldUpdateOperationsInput | string | null
     lensType?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
+    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
+    collectionType?: StringFieldUpdateOperationsInput | string
+    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
+    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
+    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDesc?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -22711,11 +22935,18 @@ export namespace Prisma {
     isNewArrival?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
+    style?: NullableStringFieldUpdateOperationsInput | string | null
     frameShape?: NullableStringFieldUpdateOperationsInput | string | null
     material?: NullableStringFieldUpdateOperationsInput | string | null
     lensType?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
+    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
+    collectionType?: StringFieldUpdateOperationsInput | string
+    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
+    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
+    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
     brandId?: StringFieldUpdateOperationsInput | string
     categoryId?: StringFieldUpdateOperationsInput | string
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
@@ -22732,16 +22963,23 @@ export namespace Prisma {
     name: string
     slug: string
     description: string
-    price: number
+    price?: number
     isFeatured?: boolean
     isNewArrival?: boolean
     isActive?: boolean
     gender?: string | null
+    style?: string | null
     frameShape?: string | null
     material?: string | null
     lensType?: string | null
     color?: string | null
     size?: string | null
+    isInHouseProduct?: boolean
+    collectionType?: string
+    signatureCollectionName?: string | null
+    craftsmanshipDetails?: string | null
+    recommendedUsage?: string | null
+    frameWeightCategory?: string | null
     metaTitle?: string | null
     metaDesc?: string | null
     createdAt?: Date | string
@@ -22758,16 +22996,23 @@ export namespace Prisma {
     name: string
     slug: string
     description: string
-    price: number
+    price?: number
     isFeatured?: boolean
     isNewArrival?: boolean
     isActive?: boolean
     gender?: string | null
+    style?: string | null
     frameShape?: string | null
     material?: string | null
     lensType?: string | null
     color?: string | null
     size?: string | null
+    isInHouseProduct?: boolean
+    collectionType?: string
+    signatureCollectionName?: string | null
+    craftsmanshipDetails?: string | null
+    recommendedUsage?: string | null
+    frameWeightCategory?: string | null
     categoryId: string
     metaTitle?: string | null
     metaDesc?: string | null
@@ -22818,11 +23063,18 @@ export namespace Prisma {
     isNewArrival?: BoolFilter<"Product"> | boolean
     isActive?: BoolFilter<"Product"> | boolean
     gender?: StringNullableFilter<"Product"> | string | null
+    style?: StringNullableFilter<"Product"> | string | null
     frameShape?: StringNullableFilter<"Product"> | string | null
     material?: StringNullableFilter<"Product"> | string | null
     lensType?: StringNullableFilter<"Product"> | string | null
     color?: StringNullableFilter<"Product"> | string | null
     size?: StringNullableFilter<"Product"> | string | null
+    isInHouseProduct?: BoolFilter<"Product"> | boolean
+    collectionType?: StringFilter<"Product"> | string
+    signatureCollectionName?: StringNullableFilter<"Product"> | string | null
+    craftsmanshipDetails?: StringNullableFilter<"Product"> | string | null
+    recommendedUsage?: StringNullableFilter<"Product"> | string | null
+    frameWeightCategory?: StringNullableFilter<"Product"> | string | null
     brandId?: StringFilter<"Product"> | string
     categoryId?: StringFilter<"Product"> | string
     metaTitle?: StringNullableFilter<"Product"> | string | null
@@ -22837,16 +23089,23 @@ export namespace Prisma {
     name: string
     slug: string
     description: string
-    price: number
+    price?: number
     isFeatured?: boolean
     isNewArrival?: boolean
     isActive?: boolean
     gender?: string | null
+    style?: string | null
     frameShape?: string | null
     material?: string | null
     lensType?: string | null
     color?: string | null
     size?: string | null
+    isInHouseProduct?: boolean
+    collectionType?: string
+    signatureCollectionName?: string | null
+    craftsmanshipDetails?: string | null
+    recommendedUsage?: string | null
+    frameWeightCategory?: string | null
     metaTitle?: string | null
     metaDesc?: string | null
     createdAt?: Date | string
@@ -22863,16 +23122,23 @@ export namespace Prisma {
     name: string
     slug: string
     description: string
-    price: number
+    price?: number
     isFeatured?: boolean
     isNewArrival?: boolean
     isActive?: boolean
     gender?: string | null
+    style?: string | null
     frameShape?: string | null
     material?: string | null
     lensType?: string | null
     color?: string | null
     size?: string | null
+    isInHouseProduct?: boolean
+    collectionType?: string
+    signatureCollectionName?: string | null
+    craftsmanshipDetails?: string | null
+    recommendedUsage?: string | null
+    frameWeightCategory?: string | null
     brandId: string
     metaTitle?: string | null
     metaDesc?: string | null
@@ -22915,16 +23181,23 @@ export namespace Prisma {
     name: string
     slug: string
     description: string
-    price: number
+    price?: number
     isFeatured?: boolean
     isNewArrival?: boolean
     isActive?: boolean
     gender?: string | null
+    style?: string | null
     frameShape?: string | null
     material?: string | null
     lensType?: string | null
     color?: string | null
     size?: string | null
+    isInHouseProduct?: boolean
+    collectionType?: string
+    signatureCollectionName?: string | null
+    craftsmanshipDetails?: string | null
+    recommendedUsage?: string | null
+    frameWeightCategory?: string | null
     metaTitle?: string | null
     metaDesc?: string | null
     createdAt?: Date | string
@@ -22941,16 +23214,23 @@ export namespace Prisma {
     name: string
     slug: string
     description: string
-    price: number
+    price?: number
     isFeatured?: boolean
     isNewArrival?: boolean
     isActive?: boolean
     gender?: string | null
+    style?: string | null
     frameShape?: string | null
     material?: string | null
     lensType?: string | null
     color?: string | null
     size?: string | null
+    isInHouseProduct?: boolean
+    collectionType?: string
+    signatureCollectionName?: string | null
+    craftsmanshipDetails?: string | null
+    recommendedUsage?: string | null
+    frameWeightCategory?: string | null
     brandId: string
     categoryId: string
     metaTitle?: string | null
@@ -23039,11 +23319,18 @@ export namespace Prisma {
     isNewArrival?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
+    style?: NullableStringFieldUpdateOperationsInput | string | null
     frameShape?: NullableStringFieldUpdateOperationsInput | string | null
     material?: NullableStringFieldUpdateOperationsInput | string | null
     lensType?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
+    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
+    collectionType?: StringFieldUpdateOperationsInput | string
+    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
+    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
+    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDesc?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -23065,11 +23352,18 @@ export namespace Prisma {
     isNewArrival?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
+    style?: NullableStringFieldUpdateOperationsInput | string | null
     frameShape?: NullableStringFieldUpdateOperationsInput | string | null
     material?: NullableStringFieldUpdateOperationsInput | string | null
     lensType?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
+    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
+    collectionType?: StringFieldUpdateOperationsInput | string
+    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
+    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
+    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
     brandId?: StringFieldUpdateOperationsInput | string
     categoryId?: StringFieldUpdateOperationsInput | string
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
@@ -23362,16 +23656,23 @@ export namespace Prisma {
     name: string
     slug: string
     description: string
-    price: number
+    price?: number
     isFeatured?: boolean
     isNewArrival?: boolean
     isActive?: boolean
     gender?: string | null
+    style?: string | null
     frameShape?: string | null
     material?: string | null
     lensType?: string | null
     color?: string | null
     size?: string | null
+    isInHouseProduct?: boolean
+    collectionType?: string
+    signatureCollectionName?: string | null
+    craftsmanshipDetails?: string | null
+    recommendedUsage?: string | null
+    frameWeightCategory?: string | null
     metaTitle?: string | null
     metaDesc?: string | null
     createdAt?: Date | string
@@ -23388,16 +23689,23 @@ export namespace Prisma {
     name: string
     slug: string
     description: string
-    price: number
+    price?: number
     isFeatured?: boolean
     isNewArrival?: boolean
     isActive?: boolean
     gender?: string | null
+    style?: string | null
     frameShape?: string | null
     material?: string | null
     lensType?: string | null
     color?: string | null
     size?: string | null
+    isInHouseProduct?: boolean
+    collectionType?: string
+    signatureCollectionName?: string | null
+    craftsmanshipDetails?: string | null
+    recommendedUsage?: string | null
+    frameWeightCategory?: string | null
     brandId: string
     categoryId: string
     metaTitle?: string | null
@@ -23527,11 +23835,18 @@ export namespace Prisma {
     isNewArrival?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
+    style?: NullableStringFieldUpdateOperationsInput | string | null
     frameShape?: NullableStringFieldUpdateOperationsInput | string | null
     material?: NullableStringFieldUpdateOperationsInput | string | null
     lensType?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
+    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
+    collectionType?: StringFieldUpdateOperationsInput | string
+    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
+    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
+    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDesc?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -23553,11 +23868,18 @@ export namespace Prisma {
     isNewArrival?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
+    style?: NullableStringFieldUpdateOperationsInput | string | null
     frameShape?: NullableStringFieldUpdateOperationsInput | string | null
     material?: NullableStringFieldUpdateOperationsInput | string | null
     lensType?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
+    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
+    collectionType?: StringFieldUpdateOperationsInput | string
+    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
+    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
+    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
     brandId?: StringFieldUpdateOperationsInput | string
     categoryId?: StringFieldUpdateOperationsInput | string
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
@@ -24289,16 +24611,23 @@ export namespace Prisma {
     name: string
     slug: string
     description: string
-    price: number
+    price?: number
     isFeatured?: boolean
     isNewArrival?: boolean
     isActive?: boolean
     gender?: string | null
+    style?: string | null
     frameShape?: string | null
     material?: string | null
     lensType?: string | null
     color?: string | null
     size?: string | null
+    isInHouseProduct?: boolean
+    collectionType?: string
+    signatureCollectionName?: string | null
+    craftsmanshipDetails?: string | null
+    recommendedUsage?: string | null
+    frameWeightCategory?: string | null
     categoryId: string
     metaTitle?: string | null
     metaDesc?: string | null
@@ -24317,11 +24646,18 @@ export namespace Prisma {
     isNewArrival?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
+    style?: NullableStringFieldUpdateOperationsInput | string | null
     frameShape?: NullableStringFieldUpdateOperationsInput | string | null
     material?: NullableStringFieldUpdateOperationsInput | string | null
     lensType?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
+    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
+    collectionType?: StringFieldUpdateOperationsInput | string
+    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
+    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
+    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDesc?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24343,11 +24679,18 @@ export namespace Prisma {
     isNewArrival?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
+    style?: NullableStringFieldUpdateOperationsInput | string | null
     frameShape?: NullableStringFieldUpdateOperationsInput | string | null
     material?: NullableStringFieldUpdateOperationsInput | string | null
     lensType?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
+    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
+    collectionType?: StringFieldUpdateOperationsInput | string
+    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
+    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
+    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
     categoryId?: StringFieldUpdateOperationsInput | string
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDesc?: NullableStringFieldUpdateOperationsInput | string | null
@@ -24369,11 +24712,18 @@ export namespace Prisma {
     isNewArrival?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
+    style?: NullableStringFieldUpdateOperationsInput | string | null
     frameShape?: NullableStringFieldUpdateOperationsInput | string | null
     material?: NullableStringFieldUpdateOperationsInput | string | null
     lensType?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
+    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
+    collectionType?: StringFieldUpdateOperationsInput | string
+    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
+    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
+    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
     categoryId?: StringFieldUpdateOperationsInput | string
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDesc?: NullableStringFieldUpdateOperationsInput | string | null
@@ -24387,16 +24737,23 @@ export namespace Prisma {
     name: string
     slug: string
     description: string
-    price: number
+    price?: number
     isFeatured?: boolean
     isNewArrival?: boolean
     isActive?: boolean
     gender?: string | null
+    style?: string | null
     frameShape?: string | null
     material?: string | null
     lensType?: string | null
     color?: string | null
     size?: string | null
+    isInHouseProduct?: boolean
+    collectionType?: string
+    signatureCollectionName?: string | null
+    craftsmanshipDetails?: string | null
+    recommendedUsage?: string | null
+    frameWeightCategory?: string | null
     brandId: string
     metaTitle?: string | null
     metaDesc?: string | null
@@ -24415,11 +24772,18 @@ export namespace Prisma {
     isNewArrival?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
+    style?: NullableStringFieldUpdateOperationsInput | string | null
     frameShape?: NullableStringFieldUpdateOperationsInput | string | null
     material?: NullableStringFieldUpdateOperationsInput | string | null
     lensType?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
+    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
+    collectionType?: StringFieldUpdateOperationsInput | string
+    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
+    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
+    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDesc?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24441,11 +24805,18 @@ export namespace Prisma {
     isNewArrival?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
+    style?: NullableStringFieldUpdateOperationsInput | string | null
     frameShape?: NullableStringFieldUpdateOperationsInput | string | null
     material?: NullableStringFieldUpdateOperationsInput | string | null
     lensType?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
+    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
+    collectionType?: StringFieldUpdateOperationsInput | string
+    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
+    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
+    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
     brandId?: StringFieldUpdateOperationsInput | string
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDesc?: NullableStringFieldUpdateOperationsInput | string | null
@@ -24467,11 +24838,18 @@ export namespace Prisma {
     isNewArrival?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
+    style?: NullableStringFieldUpdateOperationsInput | string | null
     frameShape?: NullableStringFieldUpdateOperationsInput | string | null
     material?: NullableStringFieldUpdateOperationsInput | string | null
     lensType?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
+    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
+    collectionType?: StringFieldUpdateOperationsInput | string
+    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
+    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
+    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
     brandId?: StringFieldUpdateOperationsInput | string
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDesc?: NullableStringFieldUpdateOperationsInput | string | null

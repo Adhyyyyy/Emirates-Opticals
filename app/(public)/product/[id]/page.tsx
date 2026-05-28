@@ -88,7 +88,7 @@ export default async function ProductDetailsPage({ params }: ProductDetailsPageP
         brand: dbProduct.brand?.name || "Independent",
         category: (dbProduct.category?.name || "Optical Frames") as Product["category"],
         description: dbProduct.description || "",
-        price: dbProduct.price,
+        price: dbProduct.price || 0,
         images: dbProduct.images.map(img => img.url),
         stockStatus: globalStatus,
         branches,
@@ -97,7 +97,13 @@ export default async function ProductDetailsPage({ params }: ProductDetailsPageP
         frameMaterial: dbProduct.material || "Standard",
         lensType: dbProduct.lensType || "Standard",
         color: dbProduct.color || "Standard",
-        collectionType: dbProduct.category?.name || "Standard",
+        style: dbProduct.style || "Classic",
+        collectionType: dbProduct.collectionType || "Designer Brands",
+        isInHouseProduct: dbProduct.isInHouseProduct || false,
+        signatureCollectionName: dbProduct.signatureCollectionName || undefined,
+        craftsmanshipDetails: dbProduct.craftsmanshipDetails || undefined,
+        recommendedUsage: dbProduct.recommendedUsage || undefined,
+        frameWeightCategory: dbProduct.frameWeightCategory || undefined,
         isFeatured: dbProduct.isFeatured,
         isNewArrival: dbProduct.isNewArrival
       };

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useRef, useState, useEffect } from "react";
 import { m } from "framer-motion";
@@ -10,7 +10,7 @@ interface Product {
   id: string;
   brand: string;
   name: string;
-  price: number;
+
   colorsCount: number;
   primaryImage: string;
   secondaryImage: string;
@@ -25,7 +25,7 @@ const FALLBACK_BEST_SELLERS = [
     id: "best-1",
     brand: "Jacques Marie Mage",
     name: "Avenue Square",
-    price: 1250,
+
     colorsCount: 3,
     primaryImage: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&q=80&w=800",
     secondaryImage: "https://images.unsplash.com/photo-1511499767390-90342f16b1a7?auto=format&fit=crop&q=80&w=800",
@@ -35,7 +35,7 @@ const FALLBACK_BEST_SELLERS = [
     id: "best-2",
     brand: "Oliver Peoples",
     name: "Coombs Oval",
-    price: 480,
+
     colorsCount: 2,
     primaryImage: "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&q=80&w=800",
     secondaryImage: "https://images.unsplash.com/photo-1591076482161-42ce6da69f67?auto=format&fit=crop&q=80&w=800",
@@ -44,7 +44,7 @@ const FALLBACK_BEST_SELLERS = [
     id: "best-3",
     brand: "DITA",
     name: "Mach-One",
-    price: 850,
+
     colorsCount: 5,
     primaryImage: "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&q=80&w=800",
     secondaryImage: "https://images.unsplash.com/photo-1509633282173-3eb4499382a6?auto=format&fit=crop&q=80&w=800",
@@ -54,7 +54,7 @@ const FALLBACK_BEST_SELLERS = [
     id: "best-4",
     brand: "Cartier",
     name: "Rimless Elite",
-    price: 2400,
+
     colorsCount: 4,
     primaryImage: "https://images.unsplash.com/photo-1508296695146-257a814070b4?auto=format&fit=crop&q=80&w=800",
     secondaryImage: "https://images.unsplash.com/photo-1554151228-14d9def656e4?auto=format&fit=crop&q=80&w=800",

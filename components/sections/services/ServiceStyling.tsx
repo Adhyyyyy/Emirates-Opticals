@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import { m } from "framer-motion";
@@ -6,10 +6,11 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 const FEATURES = [
-  "Personalized face shape analysis",
-  "Authentic international brands",
-  "Wide range of styles and materials",
-  "Professional fitting and adjustments"
+  "Face Shape Analysis",
+  "Luxury Brand Selection",
+  "Comfort Fit Guidance",
+  "Fashion Styling",
+  "Personal Recommendations"
 ];
 
 export function ServiceStyling() {
@@ -19,20 +20,20 @@ export function ServiceStyling() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
           {/* Left: Image */}
-          <m.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.9 }}
-            className="relative aspect-[4/5] overflow-hidden rounded-2xl group shadow-lg"
-          >
-            <img
-              src="https://images.unsplash.com/photo-1554151228-14d9def656e4?auto=format&fit=crop&q=80&w=1200"
-              alt="Expert Styling Consultation"
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-neutral-900/5 group-hover:bg-transparent transition-colors duration-700 rounded-2xl" />
-          </m.div>
+            <m.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.9 }}
+              className="relative aspect-[4/5] overflow-hidden rounded-[3px] group shadow-lg"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1554151228-14d9def656e4?auto=format&fit=crop&q=80&w=1200"
+                alt="Expert Styling Consultation"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-neutral-900/5 group-hover:bg-transparent transition-colors duration-700 rounded-[3px]" />
+            </m.div>
 
           {/* Right: Content */}
           <div>
@@ -52,7 +53,7 @@ export function ServiceStyling() {
               transition={{ duration: 0.9, delay: 0.1 }}
               className="text-3xl md:text-4xl font-light text-neutral-900 tracking-tight uppercase font-heading leading-tight mb-6"
             >
-              Frames & Styling
+              Styling
               <br />
               <em className="italic font-light text-amber-500/80">Consultation</em>
             </m.h2>
@@ -63,7 +64,7 @@ export function ServiceStyling() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-sm text-neutral-500 font-light leading-relaxed mb-10 max-w-xl"
             >
-              Finding the perfect frames is an art. Our expert stylists consider your face shape, skin tone, lifestyle, and personal preferences to recommend frames that enhance your unique features.
+              Discover frames that complement your face shape, personality, profession, and lifestyle.
             </m.p>
 
             <div className="flex flex-col gap-4 mb-10">
@@ -86,7 +87,7 @@ export function ServiceStyling() {
 
             <Link
               href="/brands"
-              className="bg-neutral-900 text-white text-xs uppercase tracking-[0.15em] px-7 py-3.5 rounded-full hover:bg-neutral-700 transition inline-flex items-center gap-2 font-medium"
+              className="bg-[#C9A84C] text-[#0D0D0D] text-xs uppercase tracking-[0.15em] px-7 py-3.5 rounded-[3px] font-bold hover:bg-[#B8952E] hover:text-white transition-all duration-300 inline-flex items-center gap-2"
             >
               Explore Our Brands <ArrowRight className="w-3.5 h-3.5" />
             </Link>

@@ -12,17 +12,25 @@ export const productSchema = z.object({
   slug: z.string().min(1, "Slug is required"),
   description: z.string().min(10, "Description must be detailed"),
   shortDescription: z.string().optional(),
-  price: z.number().min(0, "Price must be positive"),
   brandId: z.string().min(1, "Please select a brand"),
   categoryId: z.string().min(1, "Please select a category"),
-  
+  price: z.number().min(0, "Price must be positive").optional(),
   // Specifications
   gender: z.string().optional(),
+  style: z.string().optional(),
   frameShape: z.string().optional(),
   material: z.string().optional(),
   lensType: z.string().optional(),
   color: z.string().optional(),
   size: z.string().optional(),
+  
+  // Hybrid Ecosystem Fields
+  isInHouseProduct: z.boolean().default(false),
+  collectionType: z.enum(["Designer Brands", "Emirates Signature"]).default("Designer Brands"),
+  signatureCollectionName: z.string().optional(),
+  craftsmanshipDetails: z.string().optional(),
+  recommendedUsage: z.string().optional(),
+  frameWeightCategory: z.string().optional(),
   
   // Status & Flags
   isFeatured: z.boolean().default(false),
@@ -36,9 +44,6 @@ export const productSchema = z.object({
   // SEO
   metaTitle: z.string().optional(),
   metaDesc: z.string().optional(),
-  
-  // Stock Initialization
-  initialStock: z.number().min(0).default(0),
 });
 
 // --- APPOINTMENT BOOKING ---

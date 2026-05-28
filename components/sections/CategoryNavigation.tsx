@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { m } from "framer-motion";
 import Image from "next/image";
@@ -10,32 +10,32 @@ const CATEGORIES = [
     id: "optical",
     title: "Optical Mastery",
     subtitle: "Clinical precision meets high fashion",
-    image: "https://images.unsplash.com/photo-1591076482161-42ce6da69f67?auto=format&fit=crop&q=80&w=1200",
+    image: "https://images.unsplash.com/photo-1582142407894-ec85a1260a46?auto=format&fit=crop&q=80&w=1200",
     href: "/shop/optical",
   },
   {
     id: "sun",
     title: "Sun Editorial",
     subtitle: "The definitive shade collection",
-    image: "https://images.unsplash.com/photo-1554151228-14d9def656e4?auto=format&fit=crop&q=80&w=1200",
+    image: "https://images.unsplash.com/photo-1589718539308-169b183615fa?auto=format&fit=crop&q=80&w=1200",
     href: "/shop/sun",
   },
   {
     id: "lenses",
     title: "Lens Atelier",
     subtitle: "Advanced clarity technologies",
-    image: "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&q=80&w=1200",
+    image: "https://images.unsplash.com/photo-1563903530908-afdd155d057a?auto=format&fit=crop&q=80&w=1200",
     href: "/shop/lenses",
   },
 ];
 
 export function CategoryNavigation() {
   return (
-    <section className="w-full bg-[#F7F5F0] section-padding overflow-hidden border-b border-[#E8E4DC]">
+    <section className="w-full bg-gradient-to-b from-[#F7F5F0] via-white to-[#F7F5F0] section-padding overflow-hidden border-b border-[#E8E4DC]">
       <div className="section-container">
         
         {/* Harmonized Section Header */}
-        <div className="flex flex-col items-center text-center mb-10 md:mb-24 mt-20 md:mt-24">
+        <div className="flex flex-col items-center text-center mb-10 md:mb-16">
           <Reveal delay={0.2}>
             <span className="meta-editorial mb-4">
               The Visionist Gateway
@@ -54,7 +54,7 @@ export function CategoryNavigation() {
             <Link 
               key={cat.id} 
               href={cat.href} 
-              className="flex flex-col rounded-2xl overflow-hidden bg-white border border-neutral-100 relative group h-full hover:shadow-xl transition-all duration-500"
+              className="flex flex-col rounded-[3px] overflow-hidden bg-white border border-neutral-100 relative group h-full hover:shadow-xl transition-all duration-500"
             >
               {/* Image Frame - Forced Aspect Ratio for Identical Height */}
               <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#FAF9F6]">
@@ -77,7 +77,7 @@ export function CategoryNavigation() {
                 {/* Title and Sliding Arrow */}
                 <div className="flex items-center gap-1.5 overflow-hidden">
                   <span className="text-sm text-neutral-900 transform -translate-x-3 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500 ease-out select-none font-sans">
-                    →
+                    â†’
                   </span>
                   <h3 className="text-base font-medium text-neutral-900 transition-transform duration-500 group-hover:translate-x-0.5">
                     {cat.title}

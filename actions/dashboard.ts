@@ -1,4 +1,4 @@
-"use server";
+﻿"use server";
 
 import prisma from "@/lib/prisma";
 import { getOffers } from "./cms-marketing";
@@ -139,7 +139,6 @@ export async function getDashboardMetrics() {
         recentProducts: localStock.map(s => ({
           id: s.product.id,
           name: s.product.name,
-          price: s.product.price,
           brand: s.product.brand.name,
           image: s.product.images?.[0]?.url || "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=200",
           quantity: s.quantity,
@@ -157,7 +156,6 @@ export async function getDashboardMetrics() {
         topProducts: branchFeatured.map(s => ({
           id: s.product.id,
           name: s.product.name,
-          price: s.product.price,
           brand: s.product.brand.name,
           image: s.product.images?.[0]?.url || "https://images.unsplash.com/photo-1591076482161-42ce6da69f67?w=200",
         })),
@@ -250,7 +248,7 @@ export async function getDashboardMetrics() {
       recentProducts: recentProducts.map(p => ({
         id: p.id,
         name: p.name,
-        price: p.price,
+
         brand: p.brand.name,
         image: p.images?.[0]?.url || "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=200",
         createdAt: p.createdAt
@@ -266,7 +264,7 @@ export async function getDashboardMetrics() {
       topProducts: topProducts.map(p => ({
         id: p.id,
         name: p.name,
-        price: p.price,
+
         brand: p.brand.name,
         image: p.images?.[0]?.url || "https://images.unsplash.com/photo-1591076482161-42ce6da69f67?w=200",
       })),

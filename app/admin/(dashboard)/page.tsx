@@ -330,7 +330,7 @@ export default function DashboardPage() {
                       <div className="min-w-0">
                         <span className="text-[7.5px] font-bold uppercase tracking-widest text-brand-gold block">{p.brand}</span>
                         <h5 className="text-xs font-bold text-brand-charcoal truncate uppercase tracking-tight" title={p.name}>{p.name}</h5>
-                        <span className="text-[11px] font-medium text-brand-charcoal/50 block mt-0.5">₹{p.price.toLocaleString("en-IN")}</span>
+                        <span className="text-[11px] font-medium text-brand-charcoal/50 block mt-0.5">{p.brand}</span>
                       </div>
                     </div>
                     
@@ -508,7 +508,7 @@ export default function DashboardPage() {
                           <span className="text-[7.5px] font-bold text-brand-gold uppercase tracking-wider block">{p.brand}</span>
                         </div>
                       </div>
-                      <span className="text-xs font-bold text-brand-charcoal whitespace-nowrap shrink-0">₹{p.price.toLocaleString("en-IN")}</span>
+                      <span className="text-xs font-bold text-brand-charcoal whitespace-nowrap shrink-0">{p.brand}</span>
                     </div>
                   ))
                 )}

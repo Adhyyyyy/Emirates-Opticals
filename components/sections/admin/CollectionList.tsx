@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useTransition } from "react";
 import { OptimizedImage } from "@/components/common/OptimizedImage";
@@ -92,7 +92,7 @@ export function CollectionList({ initialProducts }: CollectionListProps) {
                         <p className="text-xs font-bold text-brand-charcoal uppercase tracking-tighter mb-1">{product.name}</p>
                         <div className="flex items-center gap-2">
                           <span className="text-[9px] font-bold text-brand-gold uppercase tracking-[0.2em]">{product.brand.name}</span>
-                          <span className="text-[9px] text-brand-charcoal/30">•</span>
+                          <span className="text-[9px] text-brand-charcoal/30">â€¢</span>
                           <span className="text-[9px] font-medium text-brand-charcoal/40 uppercase tracking-widest">{product.category.name}</span>
                         </div>
                       </div>

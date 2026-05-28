@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState } from "react";
 import { m, AnimatePresence } from "framer-motion";
@@ -12,16 +12,20 @@ const FILTER_GROUPS = [
     options: ["Men", "Women", "Unisex", "Kids"]
   },
   {
-    title: "Price Range",
-    options: ["Under ₹5,000", "₹5,000 - ₹15,000", "₹15,000 - ₹30,000", "₹30,000 - ₹50,000", "Luxury (Above ₹50,000)"]
+    title: "Collection Type",
+    options: ["Designer Brands", "Emirates Signature"]
   },
   {
     title: "Brand",
-    options: ["PRADA", "Ray-Ban", "Oakley", "Cartier", "Gucci", "Tom Ford", "BVLGARI", "Maui Jim"]
+    options: ["Prada", "Gucci", "Cartier", "Ray-Ban", "Tom Ford", "Oakley", "Carrera", "Montblanc", "Dolce & Gabbana", "BVLGARI", "Police", "Lacoste", "Calvin Klein", "Diesel", "Maui Jim", "Vogue Eyewear"]
   },
   {
     title: "Category",
-    options: ["Optical Frames", "Sunglasses", "Blue Light Glasses", "Sports Eyewear", "Luxury Collection"]
+    options: ["Optical Frames", "Sunglasses", "Lens Solutions", "Luxury Collections", "New Arrivals"]
+  },
+  {
+    title: "Style",
+    options: ["Classic", "Modern", "Vintage", "Sport", "Avant-Garde"]
   },
   {
     title: "Frame Shape",
@@ -53,7 +57,7 @@ const FILTER_GROUPS = [
 ];
 
 export function ShopFilters() {
-  const [openGroups, setOpenGroups] = useState<string[]>(["Gender", "Price Range", "Category"]);
+  const [openGroups, setOpenGroups] = useState<string[]>(["Collection Type", "Category", "Brand"]);
   const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
 
   const router = useRouter();

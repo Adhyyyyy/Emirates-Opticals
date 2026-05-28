@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import { m } from "framer-motion";
@@ -38,36 +38,42 @@ interface SocialGalleryProps {
 const STATIC_FALLBACK_POSTS: InstagramPost[] = [
   { 
     id: "s1", 
-    imageUrl: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&q=80&w=800", 
+    imageUrl: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=800", 
     permalink: "https://instagram.com/emirates__optician", 
     caption: "Premium Collections Reveal Atelier Kerala" 
   },
   { 
     id: "s2", 
-    imageUrl: "https://images.unsplash.com/photo-1577803645773-f96470509666?auto=format&fit=crop&q=80&w=800", 
+    imageUrl: "https://images.unsplash.com/photo-1483412033650-1015ddeb83d1?auto=format&fit=crop&q=80&w=800", 
     permalink: "https://instagram.com/emirates__optician", 
     caption: "Editorial Design Excellence Curation" 
   },
   { 
     id: "s3", 
-    imageUrl: "https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?auto=format&fit=crop&q=80&w=800", 
+    imageUrl: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&q=80&w=800", 
     permalink: "https://instagram.com/emirates__optician", 
     caption: "Seaside Clarity Polarized Lenses" 
+  },
+  { 
+    id: "s4", 
+    imageUrl: "https://images.unsplash.com/photo-1577803645773-f96470509666?auto=format&fit=crop&q=80&w=800", 
+    permalink: "https://instagram.com/emirates__optician", 
+    caption: "Timeless Elegance Silhouette Frames" 
+  },
+  { 
+    id: "s5", 
+    imageUrl: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&q=80&w=800", 
+    permalink: "https://instagram.com/emirates__optician", 
+    caption: "Modern Geometry Vision Care" 
   }
 ];
-
-const limitCaption = (text: string, maxWords: number): string => {
-  const words = text.trim().split(/\s+/);
-  if (words.length <= maxWords) return text;
-  return words.slice(0, maxWords).join(" ") + "...";
-};
 
 export function SocialGallery({ initialPosts = [] }: SocialGalleryProps) {
   const posts = initialPosts.length >= 3 ? initialPosts : STATIC_FALLBACK_POSTS;
 
   return (
-    <section className="w-full bg-neutral-950 py-20 overflow-hidden" id="homepage-instagram">
-      <div className="section-container">
+    <section className="w-full bg-white py-16 md:py-24 overflow-hidden border-t border-brand-charcoal/5" id="homepage-instagram">
+      <div className="w-full">
 
         {/* Minimal Header Area */}
         <div className="max-w-[600px] mx-auto text-center flex flex-col items-center gap-3 mb-12">
@@ -78,25 +84,15 @@ export function SocialGallery({ initialPosts = [] }: SocialGalleryProps) {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <InstagramIcon className="w-8 h-8 text-neutral-500" />
+            <InstagramIcon className="w-8 h-8 text-brand-charcoal/50" />
           </m.div>
-
-          <m.span
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-medium block"
-          >
-            Visual Journal
-          </m.span>
 
           <m.h2
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="text-4xl md:text-5xl font-light text-white tracking-tight font-heading uppercase"
+            className="font-heading font-extralight text-3xl md:text-5xl tracking-tight text-brand-charcoal uppercase leading-[1.1]"
           >
             Life in Focus
           </m.h2>
@@ -109,85 +105,48 @@ export function SocialGallery({ initialPosts = [] }: SocialGalleryProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-xs text-neutral-500 tracking-widest hover:text-white transition-colors duration-300 font-medium"
+            className="text-xs text-brand-charcoal/60 tracking-widest hover:text-brand-charcoal transition-colors duration-300 font-medium"
           >
             @emirates_optician
           </m.a>
         </div>
 
-        {/* Asymmetric 3-Column Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 w-full">
-
-          {/* Post 0 — Hero Left spans 2 columns & rows on desktop */}
-          <m.a
-            href={posts[0].permalink}
-            target="_blank"
-            rel="noopener noreferrer"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.9 }}
-            className="md:col-span-2 md:row-span-2 h-[320px] md:h-[520px] max-h-[520px] rounded-2xl overflow-hidden relative group bg-neutral-900 block"
-          >
-            <Image
-              src={posts[0].imageUrl}
-              alt={posts[0].caption || "Life in Focus"}
-              fill
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
-              sizes="(max-width: 768px) 100vw, 66vw"
-            />
-            {/* Caption overlay (only for dynamic hero image) */}
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 rounded-b-2xl z-10">
-              <p className="text-xs text-white uppercase tracking-[0.1em] font-medium max-w-[90%] truncate">
-                {limitCaption(posts[0].caption, 5)}
-              </p>
-            </div>
-            {/* Subtle hovering vignette */}
-            <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-all duration-300 rounded-2xl" />
-          </m.a>
-
-          {/* Post 1 — Top Right Card */}
-          <m.a
-            href={posts[1].permalink}
-            target="_blank"
-            rel="noopener noreferrer"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.9, delay: 0.15 }}
-            className="md:col-span-1 aspect-[4/3] rounded-2xl overflow-hidden relative group bg-neutral-900 block"
-          >
-            <Image
-              src={posts[1].imageUrl}
-              alt={posts[1].caption || "Life in Focus"}
-              fill
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
-              sizes="(max-width: 768px) 100vw, 33vw"
-            />
-            <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-all duration-300 rounded-2xl" />
-          </m.a>
-
-          {/* Post 2 — Bottom Right Card */}
-          <m.a
-            href={posts[2].permalink}
-            target="_blank"
-            rel="noopener noreferrer"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.9, delay: 0.3 }}
-            className="md:col-span-1 aspect-[4/3] rounded-2xl overflow-hidden relative group bg-neutral-900 block"
-          >
-            <Image
-              src={posts[2].imageUrl}
-              alt={posts[2].caption || "Life in Focus"}
-              fill
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
-              sizes="(max-width: 768px) 100vw, 33vw"
-            />
-            <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-all duration-300 rounded-2xl" />
-          </m.a>
-
+        {/* Horizontal Scrolling Gallery (Prevents Vertical Congestion) */}
+        <div className="w-full relative group max-w-[1600px] mx-auto">
+          <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 px-4 md:px-8 pb-8 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+            {posts.map((post, index) => (
+              <m.a
+                key={post.id}
+                href={post.permalink}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="shrink-0 w-[260px] md:w-[320px] aspect-[4/5] md:aspect-square relative rounded-[3px] overflow-hidden snap-center group/card bg-neutral-900 block"
+              >
+                <Image
+                  src={post.imageUrl}
+                  alt={post.caption || "Life in Focus"}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover/card:scale-105"
+                  sizes="(max-width: 768px) 260px, 320px"
+                />
+                
+                {/* Sleek Dark Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover/card:opacity-90 transition-opacity duration-300" />
+                
+                {/* Caption content */}
+                <div className="absolute bottom-0 left-0 right-0 p-5 transform translate-y-2 group-hover/card:translate-y-0 transition-transform duration-300">
+                  <InstagramIcon className="w-5 h-5 text-white/70 mb-3" />
+                  <p className="text-xs text-white uppercase tracking-[0.1em] font-medium leading-relaxed line-clamp-2 shadow-sm">
+                    {post.caption}
+                  </p>
+                </div>
+              </m.a>
+            ))}
+          </div>
         </div>
 
         {/* Pill Outline Follow CTA */}
@@ -196,13 +155,13 @@ export function SocialGallery({ initialPosts = [] }: SocialGalleryProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-10 flex justify-center"
+          className="mt-6 md:mt-10 flex justify-center px-4"
         >
           <a
             href="https://instagram.com/emirates__optician"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.15em] text-white border border-white/20 px-8 py-3 rounded-full hover:bg-white hover:text-black transition-all duration-300 font-bold"
+            className="inline-flex w-full sm:w-auto items-center justify-center gap-3 text-[10px] md:text-[11px] uppercase tracking-[0.2em] font-bold px-10 py-4 rounded-[3px] transition-colors duration-500 shadow-lg bg-[#C9A84C] text-[#0A0A0A] hover:bg-[#B8952E] hover:text-white"
           >
             <InstagramIcon className="w-4 h-4" />
             Follow on Instagram

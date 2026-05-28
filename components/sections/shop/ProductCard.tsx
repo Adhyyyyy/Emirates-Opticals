@@ -47,23 +47,28 @@ export function ProductCard({ product }: ProductCardProps) {
 
   return (
     <div 
-      className="group relative bg-white border border-black/5 rounded-2xl p-1.5 transition-all duration-700 hover:border-brand-gold/20 hover:shadow-2xl flex flex-col h-full"
+      className="group relative bg-white border border-black/5 rounded-2xl p-1.5 transition-all duration-500 hover:border-brand-gold/30 hover:shadow-[0_20px_60px_rgba(0,0,0,0.12)] flex flex-col h-full"
     >
       {/* Product Image Section */}
-      <Link href={`/product/${product.slug}`} className="block relative aspect-[4/3] overflow-hidden bg-brand-pearl/10 rounded-2xl">
+      <Link href={`/product/${product.slug}`} className="block relative aspect-[4/5] overflow-hidden bg-brand-pearl/10 rounded-2xl">
         <img 
           src={product.images[0]} 
           alt={product.name}
           className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
         />
         
-        {/* Badges */}
         <div className="absolute top-3 left-3 flex flex-col gap-1.5">
-          {product.isNewArrival && (
-            <span className="bg-brand-gold text-white text-[7px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-sm">New</span>
+          {product.isInHouseProduct ? (
+            <span className="bg-brand-gold text-white text-[7px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-[2px] shadow-sm flex items-center gap-1">
+              Emirates Signature
+            </span>
+          ) : (
+            product.isNewArrival && (
+              <span className="bg-brand-charcoal text-white text-[7px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-[2px]">New</span>
+            )
           )}
           {product.category === "Luxury Collection" && (
-            <span className="bg-brand-charcoal text-white text-[7px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-sm">Luxury</span>
+            <span className="bg-[#0A0A0A] text-white text-[7px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-[2px] border border-white/20">Luxury</span>
           )}
         </div>
 
@@ -76,45 +81,44 @@ export function ProductCard({ product }: ProductCardProps) {
         </button>
 
         {/* Quick Branch Availability Info */}
-        <div className="absolute bottom-0 inset-x-0 bg-white/80 backdrop-blur-sm p-2 translate-y-full group-hover:translate-y-0 transition-transform duration-500 flex items-center justify-between border-t border-black/5">
-          <div className="flex items-center gap-1">
-            <MapPin className="w-2.5 h-2.5 text-brand-gold" />
-            <span className="text-[8px] font-bold uppercase tracking-wider text-brand-charcoal/60">
-              {product.branches.length} Branch{product.branches.length > 1 ? 'es' : ''}
+        <div className="absolute bottom-0 inset-x-0 bg-white/90 backdrop-blur-md p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-500 flex items-center justify-center border-t border-brand-charcoal/5">
+          <div className="flex items-center gap-1.5 text-brand-charcoal">
+            <MapPin className="w-3 h-3 text-brand-gold" />
+            <span className="text-[9px] font-bold uppercase tracking-[0.2em]">
+              Available at {product.branches.length} Branch{product.branches.length > 1 ? 'es' : ''}
             </span>
           </div>
-          <span className={cn(
-            "text-[7px] font-bold uppercase px-1 py-0.5 rounded-sm",
-            product.stockStatus === "In Stock" ? "text-green-600 bg-green-50" : "text-orange-600 bg-orange-50"
-          )}>
-            {product.stockStatus}
-          </span>
         </div>
       </Link>
 
       {/* Product Info Section */}
-      <div className="p-3 sm:p-4 flex-1 flex flex-col justify-between">
-        <Link href={`/product/${product.slug}`} className="block mb-1.5">
-          <span className="text-[8px] sm:text-[9px] font-bold text-brand-gold uppercase tracking-[0.12em] sm:tracking-[0.15em] block mb-0.5">
-            {product.brand}
+      <div className="p-3 sm:p-5 flex-1 flex flex-col justify-between">
+        <Link href={`/product/${product.slug}`} className="block mb-2">
+          <span className="text-[8px] sm:text-[9px] font-bold text-brand-gold uppercase tracking-[0.2em] block mb-1">
+            {product.isInHouseProduct && product.signatureCollectionName ? product.signatureCollectionName : product.brand}
           </span>
-          <h3 className="text-xs sm:text-sm font-medium uppercase tracking-tight text-brand-charcoal line-clamp-1 group-hover:text-brand-gold transition-colors duration-500">
+          <h3 className="text-sm sm:text-base font-heading tracking-tight uppercase text-brand-charcoal line-clamp-1 group-hover:text-brand-gold transition-colors duration-500">
             {product.name}
           </h3>
         </Link>
 
-        <div className="flex items-center justify-between mt-0.5 mb-3">
-          <span className="text-xs sm:text-sm font-semibold text-brand-charcoal">₹{product.price.toLocaleString("en-IN")}</span>
-          <span className="text-[7px] sm:text-[8px] text-brand-charcoal/40 font-bold uppercase tracking-widest">{product.gender} • {product.frameShape}</span>
+        <div className="flex items-center justify-between mt-1 mb-4">
+          <span className="text-[8px] sm:text-[9px] text-brand-charcoal/50 font-bold uppercase tracking-[0.15em]">
+            {product.gender} • {product.frameShape}
+          </span>
+          {product.price > 0 && (
+            <span className="text-[9px] sm:text-[10px] font-semibold text-brand-charcoal">
+              ₹{product.price.toLocaleString("en-IN")}
+            </span>
+          )}
         </div>
 
         {/* Elegant Minimalist Bottom CTA */}
         <button 
           onClick={(e) => handleEnquire(e, "product")}
-          className="w-full bg-brand-charcoal hover:bg-brand-gold text-white text-[8px] sm:text-[9px] font-bold uppercase tracking-[0.15em] sm:tracking-[0.2em] py-2.5 sm:py-3 rounded-md sm:rounded-lg transition-all duration-500 flex items-center justify-center gap-1 sm:gap-1.5 mt-auto"
+          className="w-full bg-[#FAF9F6] border border-brand-charcoal/10 hover:border-brand-gold hover:bg-brand-gold text-brand-charcoal hover:text-white text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] py-3 rounded-[3px] transition-all duration-500 flex items-center justify-center gap-2 mt-auto shadow-sm"
         >
-          <MessageCircle className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-          <span>Enquire <span className="hidden sm:inline">on WhatsApp</span></span>
+          <span>Enquire Now</span>
         </button>
       </div>
 
@@ -190,6 +194,7 @@ export function ProductCard({ product }: ProductCardProps) {
           </motion.div>
         )}
       </AnimatePresence>
+
     </div>
   );
 }

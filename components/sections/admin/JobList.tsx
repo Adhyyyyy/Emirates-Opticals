@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useTransition } from "react";
 import { createJob, deleteJob, toggleJobStatus } from "@/actions/cms-careers";
@@ -256,7 +256,7 @@ export function JobList({ initialJobs, branches }: JobListProps) {
                 <div className="space-y-1.5 flex flex-col h-full">
                   <label className="text-[9px] uppercase tracking-widest font-bold text-brand-charcoal/40 block">
                     Key Requirements
-                    <span className="ml-2 font-normal text-brand-gold/60 lowercase">— one per line</span>
+                    <span className="ml-2 font-normal text-brand-gold/60 lowercase">â€” one per line</span>
                   </label>
                   <textarea 
                     rows={12}

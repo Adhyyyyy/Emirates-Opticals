@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useEffect } from "react";
 import { m, AnimatePresence } from "framer-motion";
@@ -35,11 +35,10 @@ export function QuickContactBar() {
           transition={{ type: "spring", stiffness: 260, damping: 25 }}
           className="fixed bottom-6 inset-x-4 sm:left-auto sm:right-6 sm:w-96 z-[999] pointer-events-none"
         >
-          {/* Glassmorphic Shell */}
-          <div className="w-full bg-black/60 backdrop-blur-xl border border-white/10 p-4 rounded-2xl shadow-2xl flex items-center justify-between gap-4 pointer-events-auto relative overflow-hidden">
+          {/* Premium Black Shell */}
+          <div className="w-full bg-[#0D0D0D] border border-[#C9A84C]/60 p-4 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.6)] flex items-center justify-between gap-4 pointer-events-auto relative overflow-hidden">
             
-            {/* Ambient Gold Pulse background */}
-            <div className="absolute top-0 right-0 w-24 h-24 bg-[#C9A84C]/5 rounded-full blur-xl pointer-events-none" />
+
 
             {/* Left: Contact Info */}
             <div className="flex flex-col gap-0.5 select-none">

@@ -12,11 +12,13 @@ export const PRODUCTS: Product[] = [
     images: ["https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&q=80&w=800"],
     stockStatus: "In Stock",
     gender: "Men",
+    style: "Classic",
     frameShape: "Rectangular",
     frameMaterial: "Acetate",
     lensType: "Demo Lens",
     color: "Matte Black",
-    collectionType: "Luxury",
+    collectionType: "Designer Brands",
+    isInHouseProduct: false,
     isFeatured: true,
     isNewArrival: true,
     branches: [
@@ -35,11 +37,13 @@ export const PRODUCTS: Product[] = [
     images: ["https://images.unsplash.com/photo-1511499767350-a1590fdb7307?auto=format&fit=crop&q=80&w=800"],
     stockStatus: "In Stock",
     gender: "Unisex",
+    style: "Vintage",
     frameShape: "Aviator",
     frameMaterial: "Metal",
     lensType: "Polarized",
     color: "Gold / G-15 Green",
-    collectionType: "Classic",
+    collectionType: "Designer Brands",
+    isInHouseProduct: false,
     branches: [
       { branchName: "Thiruvalla", branchSlug: "thiruvalla", whatsapp: "918000000002", stockStatus: "In Stock" },
       { branchName: "Pandalam", branchSlug: "pandalam", whatsapp: "918000000005", stockStatus: "In Stock" }
@@ -56,11 +60,13 @@ export const PRODUCTS: Product[] = [
     images: ["https://images.unsplash.com/photo-1556306535-0f09a537f0a3?auto=format&fit=crop&q=80&w=800"],
     stockStatus: "In Stock",
     gender: "Men",
+    style: "Sport",
     frameShape: "Sport",
     frameMaterial: "O-Matter",
     lensType: "Prizm Road",
     color: "Polished Black",
-    collectionType: "Performance",
+    collectionType: "Designer Brands",
+    isInHouseProduct: false,
     branches: [
       { branchName: "Kakkanad", branchSlug: "kakkanad", whatsapp: "918000000006", stockStatus: "In Stock" }
     ]
@@ -76,11 +82,13 @@ export const PRODUCTS: Product[] = [
     images: ["https://images.unsplash.com/photo-1591076482161-42ce6da69f67?auto=format&fit=crop&q=80&w=800"],
     stockStatus: "Low Stock",
     gender: "Men",
+    style: "Classic",
     frameShape: "Square",
     frameMaterial: "Gold Plated",
     lensType: "Premium Demo",
     color: "Brushed Gold",
-    collectionType: "Haute Luxury",
+    collectionType: "Designer Brands",
+    isInHouseProduct: false,
     branches: [
       { branchName: "Changanassery", branchSlug: "changanassery", whatsapp: "919682929968", stockStatus: "Low Stock" }
     ]

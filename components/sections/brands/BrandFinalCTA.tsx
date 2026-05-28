@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import { m } from "framer-motion";
@@ -51,13 +51,13 @@ export function BrandFinalCTA() {
         >
           <Link
             href="/shop"
-            className="bg-amber-400 text-neutral-900 text-xs uppercase tracking-[0.15em] px-8 py-4 rounded-full font-medium hover:bg-amber-300 transition-all duration-200 inline-flex items-center justify-center gap-2"
+            className="bg-[#C9A84C] text-[#0D0D0D] text-xs uppercase tracking-[0.15em] px-8 py-4 rounded-[3px] font-bold hover:bg-[#B8952E] hover:text-white transition-all duration-300 inline-flex items-center justify-center gap-2"
           >
             Explore Collections <ArrowRight className="w-3.5 h-3.5" />
           </Link>
           <Link
             href="/branches"
-            className="border border-white/20 text-white text-xs uppercase tracking-[0.15em] px-8 py-4 rounded-full hover:border-white hover:bg-white/5 transition-all duration-200 inline-flex items-center justify-center gap-2"
+            className="border border-white/20 text-white text-xs uppercase tracking-[0.15em] px-8 py-4 rounded-[3px] hover:border-white hover:bg-white/5 transition-all duration-300 inline-flex items-center justify-center gap-2"
           >
             <MapPin className="w-3.5 h-3.5" />
             Find a Branch

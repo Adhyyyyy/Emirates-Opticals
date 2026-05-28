@@ -37,7 +37,7 @@ const RAW_PRODUCTS = [
     name: "Prada Cinema Shield",
     slug: "prada-cinema-shield",
     description: "Italian luxury with a bold shield silhouette and refined metallic detailing. These fashion-forward frames feature premium gradient lenses for unparalleled class.",
-    price: 29500,
+
     brandSlug: "prada",
     categorySlug: "sunglasses",
     gender: "UNISEX",
@@ -54,7 +54,7 @@ const RAW_PRODUCTS = [
     name: "Prada Linea Rossa Active",
     slug: "prada-linea-rossa-active",
     description: "Designed for the active lifestyle, combining technical excellence with contemporary aesthetics. Features robust rubberized hinges and high-contrast polarized sport lenses.",
-    price: 24500,
+
     brandSlug: "prada",
     categorySlug: "sunglasses",
     gender: "MALE",
@@ -71,7 +71,7 @@ const RAW_PRODUCTS = [
     name: "Prada Runway Oversized",
     slug: "prada-runway-oversized",
     description: "Direct from the Milan fashion show. Bold, chunky acetate styling in a dramatic cat-eye design. Features high-quality scratch-resistant organic lenses.",
-    price: 32000,
+
     brandSlug: "prada",
     categorySlug: "sunglasses",
     gender: "FEMALE",
@@ -88,7 +88,7 @@ const RAW_PRODUCTS = [
     name: "Cartier Santos de Cartier",
     slug: "cartier-santos-de-cartier",
     description: "Exceptional craftsmanship inspired by the legendary Santos watch. Embellished with the signature gold-plated Santos screws on the bridge and temple arms.",
-    price: 89000,
+
     brandSlug: "cartier",
     categorySlug: "sunglasses",
     gender: "MALE",
@@ -105,7 +105,7 @@ const RAW_PRODUCTS = [
     name: "Cartier C Décor Rimless",
     slug: "cartier-c-decor-rimless",
     description: "The pinnacle of minimalism and prestige. Features exquisite solid wood temples, rimless design, and the instantly recognizable gold-finished Cartier C monogram.",
-    price: 95000,
+
     brandSlug: "cartier",
     categorySlug: "sunglasses",
     gender: "UNISEX",
@@ -122,7 +122,7 @@ const RAW_PRODUCTS = [
     name: "Cartier Panthère Aviator",
     slug: "cartier-panthere-aviator",
     description: "A feminine and powerful design featuring the iconic three-dimensional Panther head sculpted elegantly on the lens corners. Truly a masterwork of optical jewelry.",
-    price: 110000,
+
     brandSlug: "cartier",
     categorySlug: "sunglasses",
     gender: "FEMALE",
@@ -139,7 +139,7 @@ const RAW_PRODUCTS = [
     name: "Ray-Ban Aviator Classic",
     slug: "ray-ban-aviator-classic",
     description: "The world's most iconic sunglasses. Originally designed for U.S. aviators in 1937, featuring the classic gold metal frame and dark green G-15 mineral glass lenses.",
-    price: 12800,
+
     brandSlug: "ray-ban",
     categorySlug: "sunglasses",
     gender: "UNISEX",
@@ -156,7 +156,7 @@ const RAW_PRODUCTS = [
     name: "Ray-Ban Wayfarer Ease",
     slug: "ray-ban-wayfarer-ease",
     description: "A modern, slightly more comfortable spin on the iconic 1952 original. The distinct trapezoidal shape provides immediate retro appeal and long-term wearability.",
-    price: 11500,
+
     brandSlug: "ray-ban",
     categorySlug: "sunglasses",
     gender: "UNISEX",
@@ -173,7 +173,7 @@ const RAW_PRODUCTS = [
     name: "Ray-Ban Clubmaster Classic",
     slug: "ray-ban-clubmaster-classic",
     description: "Retro and timeless. The Clubmaster was inspired by the counterculture of the 1960s. Combines an acetate browline with sleek metal under-rims.",
-    price: 13500,
+
     brandSlug: "ray-ban",
     categorySlug: "sunglasses",
     gender: "UNISEX",
@@ -190,7 +190,7 @@ const RAW_PRODUCTS = [
     name: "Ray-Ban Hexagonal Flat Lenses",
     slug: "ray-ban-hexagonal-flat-lenses",
     description: "A striking evolution of the classic round frame, featuring geometric hexagonal metal construction and thin profile flat glass lenses.",
-    price: 14200,
+
     brandSlug: "ray-ban",
     categorySlug: "sunglasses",
     gender: "UNISEX",
@@ -207,7 +207,7 @@ const RAW_PRODUCTS = [
     name: "Gucci Double G Round",
     slug: "gucci-double-g-round",
     description: "Vintage bohemian vibe with contemporary oversized dimensions. Accented with the iconic interlocking GG logo cast in antiqued gold-toned metal on the temples.",
-    price: 28000,
+
     brandSlug: "gucci",
     categorySlug: "sunglasses",
     gender: "FEMALE",
@@ -224,7 +224,7 @@ const RAW_PRODUCTS = [
     name: "Gucci Oversized Square",
     slug: "gucci-oversized-square",
     description: "Statement luxury sunglasses with a thick, architectural square profile. Featuring the prestigious green and red Gucci Web stripe and gold foil logo.",
-    price: 31500,
+
     brandSlug: "gucci",
     categorySlug: "sunglasses",
     gender: "FEMALE",
@@ -241,7 +241,7 @@ const RAW_PRODUCTS = [
     name: "Gucci Aviator Metal",
     slug: "gucci-aviator-metal",
     description: "A sporty yet undeniably elegant aviator design. Lightweight metal construction with premium polarization to reduce glare in the tropical Kerala sun.",
-    price: 34000,
+
     brandSlug: "gucci",
     categorySlug: "sunglasses",
     gender: "MALE",
@@ -258,7 +258,7 @@ const RAW_PRODUCTS = [
     name: "Tom Ford FT0248 Henry",
     slug: "tom-ford-ft0248-henry",
     description: "As worn by James Bond. A premium browline style with a sleek metal bridge and Tom Ford's signature elegant gold 'T' temple embellishment.",
-    price: 27500,
+
     brandSlug: "tom-ford",
     categorySlug: "sunglasses",
     gender: "UNISEX",
@@ -275,7 +275,7 @@ const RAW_PRODUCTS = [
     name: "Tom Ford FT0876 Fletcher",
     slug: "tom-ford-ft0876-fletcher",
     description: "A masculine and architectural square silhouette. Handcrafted in Italy using lightweight premium acetate, ensuring complete structural integrity and luxury style.",
-    price: 29000,
+
     brandSlug: "tom-ford",
     categorySlug: "sunglasses",
     gender: "MALE",
@@ -292,7 +292,7 @@ const RAW_PRODUCTS = [
     name: "Tom Ford FT0912 Valentina",
     slug: "tom-ford-ft0912-valentina",
     description: "Sensual, dramatic cat-eye frames with soft curves and premium acetate finishing. Provides a vintage Hollywood look to elevate any attire.",
-    price: 33000,
+
     brandSlug: "tom-ford",
     categorySlug: "sunglasses",
     gender: "FEMALE",
@@ -309,7 +309,7 @@ const RAW_PRODUCTS = [
     name: "Oakley Holbrook Prizm",
     slug: "oakley-holbrook-prizm",
     description: "Classic design meets modern performance. Inspired by screen heroes from the 1940s, 50s, and 60s, outfitted with patented high-definition Prizm optics.",
-    price: 15900,
+
     brandSlug: "oakley",
     categorySlug: "sunglasses",
     gender: "MALE",
@@ -326,7 +326,7 @@ const RAW_PRODUCTS = [
     name: "Oakley Radar EV Path",
     slug: "oakley-radar-ev-path",
     description: "A milestone in athletic performance heritage. Features a taller lens shield, expanding the upper field of view. Unobtainium nosepads and earsocks ensure non-slip grip.",
-    price: 19800,
+
     brandSlug: "oakley",
     categorySlug: "sunglasses",
     gender: "UNISEX",
@@ -343,7 +343,7 @@ const RAW_PRODUCTS = [
     name: "Chanel Butterfly Pearl",
     slug: "chanel-butterfly-pearl",
     description: "Elegant clear butterfly frames. The acetate temple arms are adorned with three hand-inserted cultured pearls, capturing the signature Parisian couture aesthetics.",
-    price: 38000,
+
     brandSlug: "chanel",
     categorySlug: "sunglasses",
     gender: "FEMALE",
@@ -360,7 +360,7 @@ const RAW_PRODUCTS = [
     name: "Chanel Shield Chain",
     slug: "chanel-shield-chain",
     description: "High-fashion shield sunglasses. The temples feature an interwoven leather and gold chain detail, directly inspired by the iconic Chanel Classic Flap bag.",
-    price: 42000,
+
     brandSlug: "chanel",
     categorySlug: "sunglasses",
     gender: "FEMALE",
@@ -379,7 +379,7 @@ const RAW_PRODUCTS = [
     name: "Prada Heritage Optical",
     slug: "prada-heritage-optical",
     description: "Refined and intellectual. Made from thick, high-density acetate in custom matte navy blue. Fitted with premium blue-light blocking lenses.",
-    price: 19500,
+
     brandSlug: "prada",
     categorySlug: "eyeglasses",
     gender: "MALE",
@@ -396,7 +396,7 @@ const RAW_PRODUCTS = [
     name: "Prada Journal Round",
     slug: "prada-journal-round",
     description: "Vintage-inspired circle frames with a modern thin profile. Extremely lightweight and comfortable for all-day office wear and screen usage.",
-    price: 21000,
+
     brandSlug: "prada",
     categorySlug: "eyeglasses",
     gender: "UNISEX",
@@ -413,7 +413,7 @@ const RAW_PRODUCTS = [
     name: "Cartier Signature C Optical",
     slug: "cartier-signature-c-optical",
     description: "Pure Japanese aerospace titanium combined with precious wood temples. Hand-polished details with gold electroplated monogram hinges.",
-    price: 68000,
+
     brandSlug: "cartier",
     categorySlug: "eyeglasses",
     gender: "MALE",
@@ -430,7 +430,7 @@ const RAW_PRODUCTS = [
     name: "Cartier Santos Dumont Optical",
     slug: "cartier-santos-dumont-optical",
     description: "Sophisticated pilot-inspired optics. Features a delicate double bridge detailed with custom screws, representing Parisian luxury in corporate spaces.",
-    price: 75000,
+
     brandSlug: "cartier",
     categorySlug: "eyeglasses",
     gender: "UNISEX",
@@ -447,7 +447,7 @@ const RAW_PRODUCTS = [
     name: "Ray-Ban Round Metal Optics",
     slug: "ray-ban-round-metal-optics",
     description: "An absolute retro classic. Round metal prescription frames inspired by the counterculture of the 1960s, finished in timeless matte gold.",
-    price: 8900,
+
     brandSlug: "ray-ban",
     categorySlug: "eyeglasses",
     gender: "UNISEX",
@@ -464,7 +464,7 @@ const RAW_PRODUCTS = [
     name: "Ray-Ban Clubmaster Optics",
     slug: "ray-ban-clubmaster-optics",
     description: "The intellectual choice. Combines vintage details with high-quality dark tortoise acetate and polished gold-finished rims.",
-    price: 9800,
+
     brandSlug: "ray-ban",
     categorySlug: "eyeglasses",
     gender: "UNISEX",
@@ -481,7 +481,7 @@ const RAW_PRODUCTS = [
     name: "Ray-Ban Caravan Optics",
     slug: "ray-ban-caravan-optics",
     description: "A geometric, square alternative to the aviator. Sturdy, architectural metal framing that defines clean contours for a strong masculine style.",
-    price: 9200,
+
     brandSlug: "ray-ban",
     categorySlug: "eyeglasses",
     gender: "MALE",
@@ -498,7 +498,7 @@ const RAW_PRODUCTS = [
     name: "Gucci GG Logo Rectangular",
     slug: "gucci-gg-logo-rectangular",
     description: "Feminine, highly polished black acetate frame. Elegant gold double-G emblem on the hinges. Professional yet high-fashion.",
-    price: 22000,
+
     brandSlug: "gucci",
     categorySlug: "eyeglasses",
     gender: "FEMALE",
@@ -515,7 +515,7 @@ const RAW_PRODUCTS = [
     name: "Gucci Web Block Round",
     slug: "gucci-web-block-round",
     description: "Fine gold metal round spectacles featuring the iconic Gucci web pattern on the temples. Lightweight and incredibly aesthetic.",
-    price: 24500,
+
     brandSlug: "gucci",
     categorySlug: "eyeglasses",
     gender: "UNISEX",
@@ -532,7 +532,7 @@ const RAW_PRODUCTS = [
     name: "Tom Ford FT5634 Blue Block",
     slug: "tom-ford-ft5634-blue-block",
     description: "Thick, bold statement eyeglasses pre-fitted with blue-light filtering technology. Handcrafted in Italy with iconic shiny gold T-logos.",
-    price: 23000,
+
     brandSlug: "tom-ford",
     categorySlug: "eyeglasses",
     gender: "UNISEX",
@@ -549,7 +549,7 @@ const RAW_PRODUCTS = [
     name: "Tom Ford FT5542 Vintage Round",
     slug: "tom-ford-ft5542-vintage-round",
     description: "An elegant combination of polished rose gold rims and black acetate temples. Delivers an academic, highly sophisticated look.",
-    price: 25000,
+
     brandSlug: "tom-ford",
     categorySlug: "eyeglasses",
     gender: "UNISEX",
@@ -566,7 +566,7 @@ const RAW_PRODUCTS = [
     name: "Chanel Pantos Optical",
     slug: "chanel-pantos-optical",
     description: "Elegant clear pink oval frames with custom, highly detailed tweed textures embedded in the metal temples. Pure French design philosophy.",
-    price: 29500,
+
     brandSlug: "chanel",
     categorySlug: "eyeglasses",
     gender: "FEMALE",
@@ -583,7 +583,7 @@ const RAW_PRODUCTS = [
     name: "Chanel Square Lambskin",
     slug: "chanel-square-lambskin",
     description: "Ultra-premium rectangular frames with hand-stitched black calf lambskin wrapped around the temple arms. Provides unmatched comfort and style.",
-    price: 35000,
+
     brandSlug: "chanel",
     categorySlug: "eyeglasses",
     gender: "FEMALE",
@@ -600,7 +600,7 @@ const RAW_PRODUCTS = [
     name: "Oakley Pitchman R",
     slug: "oakley-pitchman-r",
     description: "Fitted with screwless Hollowpoint hinges, combining durable O-Matter material with ultra-thin steel temples for an absolute sports-luxury feel.",
-    price: 14500,
+
     brandSlug: "oakley",
     categorySlug: "eyeglasses",
     gender: "MALE",
@@ -617,7 +617,7 @@ const RAW_PRODUCTS = [
     name: "Oakley Socket 5.5",
     slug: "oakley-socket-5-5",
     description: "An industrial-grade C-5 alloy frame featuring custom wire-core temples. Combines high tensile strength with comfortable, customized fits.",
-    price: 12800,
+
     brandSlug: "oakley",
     categorySlug: "eyeglasses",
     gender: "MALE",
@@ -634,7 +634,7 @@ const RAW_PRODUCTS = [
     name: "Prada Linea Rossa Optical",
     slug: "prada-linea-rossa-optical",
     description: "Sporty, dynamic rectangular frames crafted in Italy. Featuring the signature red Prada line accent on rubberized, non-slip temple sleeves.",
-    price: 18200,
+
     brandSlug: "prada",
     categorySlug: "eyeglasses",
     gender: "MALE",
@@ -651,7 +651,7 @@ const RAW_PRODUCTS = [
     name: "Cartier Trinity Optical",
     slug: "cartier-trinity-optical",
     description: "A poetic masterpiece. Features three intertwined gold, white, and rose gold rings on the temples, representing love, fidelity, and friendship.",
-    price: 82000,
+
     brandSlug: "cartier",
     categorySlug: "eyeglasses",
     gender: "FEMALE",
@@ -668,7 +668,7 @@ const RAW_PRODUCTS = [
     name: "Ray-Ban Erika Optics",
     slug: "ray-ban-erika-optics",
     description: "Extremely popular soft round shape with a rubberized front finish and fine, lightweight metallic temple arms. Effortless everyday luxury.",
-    price: 8200,
+
     brandSlug: "ray-ban",
     categorySlug: "eyeglasses",
     gender: "FEMALE",
@@ -685,7 +685,7 @@ const RAW_PRODUCTS = [
     name: "Gucci Cat-Eye Crystal",
     slug: "gucci-cat-eye-crystal",
     description: "A gorgeous, cat-eye model featuring individually hand-set tiny Swarovski crystals along the upper acetate rims. Exudes confidence and glamor.",
-    price: 27000,
+
     brandSlug: "gucci",
     categorySlug: "eyeglasses",
     gender: "FEMALE",
@@ -702,7 +702,7 @@ const RAW_PRODUCTS = [
     name: "Tom Ford FT5294 Classic",
     slug: "tom-ford-ft5294-classic",
     description: "The definitive vintage academic circle frames. Exquisitely handcrafted in Italy from rich havana-patterned acetate and polished metal.",
-    price: 22500,
+
     brandSlug: "tom-ford",
     categorySlug: "eyeglasses",
     gender: "MALE",
@@ -721,7 +721,7 @@ const RAW_PRODUCTS = [
     name: "Acuvue Oasys 1-Day",
     slug: "acuvue-oasys-1-day",
     description: "Unmatched moisture and breathability. Hydraluxe technology mimics natural tears to keep eyes comfortable even through intensive digital screen work.",
-    price: 3500,
+
     brandSlug: "acuvue",
     categorySlug: "contact-lenses",
     gender: "UNISEX",
@@ -738,7 +738,7 @@ const RAW_PRODUCTS = [
     name: "Acuvue Moist 1-Day (Multifocal)",
     slug: "acuvue-moist-1-day-multifocal",
     description: "Specifically engineered for clear presbyopic vision. Provides transition-free focus across near, intermediate, and far distances all day.",
-    price: 4200,
+
     brandSlug: "acuvue",
     categorySlug: "contact-lenses",
     gender: "UNISEX",
@@ -755,7 +755,7 @@ const RAW_PRODUCTS = [
     name: "Alcon Air Optix Colors",
     slug: "alcon-air-optix-colors",
     description: "Stunning color enhancement with high breathability. SmartShield technology prevents deposit build-up, ensuring pristine clarity all month long.",
-    price: 2800,
+
     brandSlug: "alcon",
     categorySlug: "contact-lenses",
     gender: "UNISEX",
@@ -772,7 +772,7 @@ const RAW_PRODUCTS = [
     name: "Bausch & Lomb Ultra",
     slug: "bausch-lomb-ultra",
     description: "Features MoistureSeal technology, maintaining 95% of lens moisture for a full 16 hours. Excellent choice for heavy computer and mobile users.",
-    price: 1800,
+
     brandSlug: "bausch-lomb",
     categorySlug: "contact-lenses",
     gender: "UNISEX",
@@ -789,7 +789,7 @@ const RAW_PRODUCTS = [
     name: "Alcon Dailies Total 1",
     slug: "alcon-dailies-total-1",
     description: "The world's first water gradient contact lens. Reaches nearly 100% water at the outermost surface, creating a cushion of moisture that feels like nothing.",
-    price: 4900,
+
     brandSlug: "alcon",
     categorySlug: "contact-lenses",
     gender: "UNISEX",
@@ -808,7 +808,7 @@ const RAW_PRODUCTS = [
     name: "Cartier Leather Eyewear Case",
     slug: "cartier-leather-eyewear-case",
     description: "Exquisite case lined with premium velvet inside and finished in Cartier's iconic burgundy calfskin with gold corner detailing.",
-    price: 15000,
+
     brandSlug: "cartier",
     categorySlug: "accessories",
     gender: "UNISEX",
@@ -825,7 +825,7 @@ const RAW_PRODUCTS = [
     name: "Prada Saffiano Glass Cord",
     slug: "prada-saffiano-glass-cord",
     description: "A high-fashion leather glass retainer strap in textured Saffiano leather, equipped with metal loop buckles and gold lettering.",
-    price: 12000,
+
     brandSlug: "prada",
     categorySlug: "accessories",
     gender: "UNISEX",
@@ -842,7 +842,7 @@ const RAW_PRODUCTS = [
     name: "Emirates Opticians Premium Kit",
     slug: "emirates-opticians-premium-kit",
     description: "Includes an eco-friendly anti-static lens cleaning fluid, a high-density micro-fiber cloth in luxury forest emerald green, and a travel case.",
-    price: 850,
+
     brandSlug: "emirates-opticians",
     categorySlug: "accessories",
     gender: "UNISEX",
@@ -859,7 +859,7 @@ const RAW_PRODUCTS = [
     name: "Ray-Ban Vintage Leather Pouch",
     slug: "ray-ban-vintage-leather-pouch",
     description: "Distressed retro tan leather snap pouch lined with velvet. Authentic Ray-Ban vintage accessory, providing highly resilient protection.",
-    price: 3200,
+
     brandSlug: "ray-ban",
     categorySlug: "accessories",
     gender: "UNISEX",
@@ -876,7 +876,7 @@ const RAW_PRODUCTS = [
     name: "Oakley Microbag Large",
     slug: "oakley-microbag-large",
     description: "Official Oakley microfiber storage and cleaning bag. Specially formulated material prevents scratches on delicate lens coatings.",
-    price: 950,
+
     brandSlug: "oakley",
     categorySlug: "accessories",
     gender: "UNISEX",
@@ -965,7 +965,7 @@ async function seedCatalog() {
           name: rawProduct.name,
           slug: rawProduct.slug,
           description: rawProduct.description,
-          price: rawProduct.price,
+          price: (rawProduct as any).price || 0,
           gender: rawProduct.gender,
           frameShape: rawProduct.frameShape,
           material: rawProduct.material,

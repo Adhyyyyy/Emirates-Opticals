@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -18,7 +18,7 @@ const FILTER_GROUPS = [
 
 export function FilterSidebar() {
   const [gender, setGender] = useState("Unisex");
-  const [openGroups, setOpenGroups] = useState<string[]>([]);
+  const [openGroups, setOpenGroups] = useState<string[]>(["designers"]);
 
   const toggleGroup = (id: string) => {
     setOpenGroups(prev => 
@@ -28,6 +28,17 @@ export function FilterSidebar() {
 
   return (
     <aside className="w-full md:w-72 flex flex-col gap-10 sticky top-32">
+      
+      {/* CLEAR ALL */}
+      <div className="flex items-center justify-between">
+        <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-black">Filters</span>
+        <button
+          onClick={() => { setOpenGroups([]); setGender("Unisex"); }}
+          className="text-[9px] font-bold uppercase tracking-widest text-black/30 hover:text-[#C9A84C] transition-colors underline underline-offset-2"
+        >
+          Clear All
+        </button>
+      </div>
       
       {/* Gender Selector - Cinematic Slider */}
       <div className="flex flex-col gap-4">

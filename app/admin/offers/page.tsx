@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import { getOffers } from "@/actions/cms-marketing";
 import { OfferList } from "@/components/sections/admin/OfferList";
 import { Reveal } from "@/components/motion/Reveal";
@@ -38,8 +38,8 @@ export default async function OffersAdminPage() {
     });
     
     isBranchAdmin = dbUser?.role === "BRANCH_ADMIN" || dbUser?.role === "STAFF";
-    currentAdminBranchId = dbUser?.branchId || null;
-    branchName = dbUser?.branch?.name || "";
+    currentAdminBranchId = isBranchAdmin ? (dbUser?.branchId || null) : null;
+    branchName = isBranchAdmin ? (dbUser?.branch?.name || "") : "";
   }
 
   // 2. Fetch all physical showrooms
@@ -75,8 +75,8 @@ export default async function OffersAdminPage() {
             </h1>
             <p className="text-sm text-brand-charcoal/40 font-light max-w-xl leading-relaxed">
               {isBranchAdmin 
-                ? `Deploy targeted campaigns, voucher discount codes, and online visual banners specifically for the ${branchName} showroom.`
-                : "Configure global network vouchers, boutique-targeted campaigns, date schedules, and aesthetic storefront discount sliders."
+                ? `Deploy targeted campaigns, exclusive in-store events, and luxury brand showcases specifically for the ${branchName} showroom.`
+                : "Configure global showroom promotions, boutique-targeted campaigns, date schedules, and aesthetic storefront event sliders."
               }
             </p>
           </Reveal>

@@ -1,18 +1,46 @@
 [
   {
-    "id": "1",
-    "title": "Ramadan Premium Edit",
-    "description": "Enjoy up to 30% off on all luxury brands, including Prada, Gucci, and Cartier sunglasses.",
-    "promoCode": "EID30",
-    "discountVal": "30% OFF",
-    "isActive": true
+    "id": "promo-1",
+    "title": "Summer Luxury Escapade",
+    "description": "Indulge in our curated selection of premium summer sunglasses. Complete your seasonal look with world-class craftsmanship.",
+    "percentage": "20% OFF",
+    "branchId": "Global",
+    "startDate": "2026-05-25",
+    "endDate": "2026-08-31",
+    "isActive": true,
+    "createdAt": "2026-05-28T07:29:52.000Z"
   },
   {
-    "id": "2",
-    "title": "Complimentary Diagnostic Testing",
-    "description": "Book any professional eye test online and receive a complimentary specialized lens diagnosis.",
-    "promoCode": "DIAGNOSE",
-    "discountVal": "FREE TEST",
-    "isActive": false
+    "id": "promo-2",
+    "title": "Cartier Prestige Showcase",
+    "description": "Discover the new season's Cartier eyewear collection. Featuring timeless elegance and a bespoke leather collector case.",
+    "percentage": "EXCLUSIVE",
+    "branchId": "cmpalqyaf000g7oercng4zb3v",
+    "startDate": "2026-05-20",
+    "endDate": "2026-06-15",
+    "isActive": true,
+    "createdAt": "2026-05-28T07:30:12.000Z"
+  },
+  {
+    "id": "promo-3",
+    "title": "Ramadan Premium Edit",
+    "description": "Enjoy exclusive privileges on all luxury collections during the holy month, including specialized styling consultations.",
+    "percentage": "30% OFF",
+    "branchId": "Global",
+    "startDate": "2026-05-01",
+    "endDate": "2026-06-30",
+    "isActive": true,
+    "createdAt": "2026-05-28T07:31:05.000Z"
+  },
+  {
+    "id": "promo-4",
+    "title": "Complimentary Vision Assessment",
+    "description": "Schedule a comprehensive diagnostic eye examination with our senior expert optometrists using advanced imaging tech.",
+    "percentage": "FREE EVENT",
+    "branchId": "Global",
+    "startDate": "2026-05-28",
+    "endDate": "2026-12-31",
+    "isActive": true,
+    "createdAt": "2026-05-28T07:32:00.000Z"
   }
 ]

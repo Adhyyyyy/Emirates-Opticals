@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { m } from "framer-motion";
 import { Eye, ShieldCheck, Microscope } from "lucide-react";
@@ -16,7 +16,7 @@ const PILLARS = [
   },
   {
     title: "Our Eyes on Every Detail",
-    description: "Expert fit and styling support from our Visionists—part stylist, part optical whiz.",
+    description: "Expert fit and styling support from our Visionistsâ€”part stylist, part optical whiz.",
     icon: ShieldCheck
   }
 ];

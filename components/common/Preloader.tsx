@@ -1,17 +1,17 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useEffect } from "react";
 import { m, AnimatePresence } from "framer-motion";
-import { EASE_LUXURY } from "@/lib/motion";
+import { Glasses } from "lucide-react";
 
 export function Preloader() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate initial asset loading or wait for window load
+    // Quick load time for the spinner
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2800); // 2.8s for a cinematic 'slow-burn' feel
+    }, 800); 
 
     return () => clearTimeout(timer);
   }, []);
@@ -22,50 +22,26 @@ export function Preloader() {
         <m.div
           initial={{ opacity: 1 }}
           exit={{ 
-            y: "-100%",
-            transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] }
+            opacity: 0,
+            transition: { duration: 0.8, ease: "easeInOut" }
           }}
-          className="fixed inset-0 z-[9999] bg-black flex flex-col items-center justify-center overflow-hidden"
+          className="fixed inset-0 z-[9999] bg-white flex flex-col items-center justify-center overflow-hidden"
         >
-          {/* Layer 1: Ambient Noise/Texture */}
-          <div className="absolute inset-0 noise-overlay opacity-[0.05] pointer-events-none" />
-
-          {/* Layer 2: Branded Narrative */}
-          <div className="relative flex flex-col items-center gap-8">
-            <m.div
-              initial={{ opacity: 0, letterSpacing: "1em", scale: 1.1 }}
-              animate={{ opacity: 1, letterSpacing: "0.4em", scale: 1 }}
-              transition={{ duration: 1.8, ease: EASE_LUXURY }}
-              className="flex flex-col items-center"
-            >
-              <span className="text-xl md:text-3xl text-white font-light uppercase tracking-[0.4em] font-heading">
-                Emirates
-              </span>
-              <span className="text-[10px] md:text-xs text-white/40 font-bold uppercase tracking-[0.8em] mt-4 ml-[0.8em]">
-                Opticians
-              </span>
-            </m.div>
-
-            {/* Layer 3: Minimalist Progress Signal */}
-            <div className="w-48 h-[1px] bg-white/10 relative overflow-hidden mt-4">
-              <m.div
-                initial={{ x: "-100%" }}
-                animate={{ x: "0%" }}
-                transition={{ duration: 2.5, ease: "linear" }}
-                className="absolute inset-0 bg-white"
-              />
-            </div>
-          </div>
-
-          {/* Atmospheric Subtext */}
           <m.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.3 }}
-            transition={{ delay: 1, duration: 1 }}
-            className="absolute bottom-12 text-[8px] font-bold uppercase tracking-[0.5em] text-white"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+            className="text-[#C9A84C]"
           >
-            Spring Editorial 2026
+            <Glasses className="w-12 h-12 md:w-16 md:h-16 stroke-[1.5]" />
           </m.div>
+          <m.span 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="mt-6 text-[10px] md:text-xs font-bold uppercase tracking-[0.4em] text-neutral-400"
+          >
+            Loading Style
+          </m.span>
         </m.div>
       )}
     </AnimatePresence>

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -108,7 +108,7 @@ export function ProductHeroGallery({ product }: ProductHeroGalleryProps) {
                   </button>
                 </div>
                 <Reveal delay={0.3}>
-                  <p className="text-3xl font-light text-brand-charcoal mb-8">₹{product.price.toLocaleString("en-IN")}</p>
+                  <p className="text-3xl font-light text-brand-charcoal mb-8">â‚¹{product.price.toLocaleString("en-IN")}</p>
                 </Reveal>
                 <Reveal delay={0.4}>
                   <p className="text-brand-charcoal/60 font-light leading-relaxed italic font-serif text-lg">

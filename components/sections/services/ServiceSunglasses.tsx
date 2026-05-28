@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import { m } from "framer-motion";
@@ -6,10 +6,10 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 const FEATURES = [
-  "100% UV protection guaranteed",
-  "Polarized lens options",
-  "Ray-Ban, Oakley, PRADA, and more",
-  "Prescription sunglasses available"
+  "UV Protection",
+  "Polarized Lenses",
+  "Prescription Sunglasses",
+  "Luxury Designer Brands"
 ];
 
 export function ServiceSunglasses() {
@@ -36,9 +36,9 @@ export function ServiceSunglasses() {
               transition={{ duration: 0.9, delay: 0.1 }}
               className="text-3xl md:text-4xl font-light text-neutral-900 tracking-tight uppercase font-heading leading-tight mb-6"
             >
-              Premium Sunglasses
+              Luxury
               <br />
-              <em className="italic font-light text-amber-500/80">Collection</em>
+              <em className="italic font-light text-amber-500/80">Sunglasses</em>
             </m.h2>
             <m.p
               initial={{ opacity: 0, y: 12 }}
@@ -47,7 +47,7 @@ export function ServiceSunglasses() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-sm text-neutral-500 font-light leading-relaxed mb-8 max-w-xl"
             >
-              Protect your eyes in style with our curated collection of authentic branded sunglasses from the world&apos;s leading designers.
+              Authentic designer sunglasses curated for luxury aesthetics and superior visual protection.
             </m.p>
 
             <div className="flex flex-col gap-3 mb-3">
@@ -74,7 +74,7 @@ export function ServiceSunglasses() {
 
             <Link
               href="/shop"
-              className="bg-neutral-900 text-white text-xs uppercase tracking-[0.15em] px-7 py-3.5 rounded-full hover:bg-neutral-700 transition inline-flex items-center gap-2 font-medium"
+              className="bg-[#C9A84C] text-[#0D0D0D] text-xs uppercase tracking-[0.15em] px-7 py-3.5 rounded-[3px] font-bold hover:bg-[#B8952E] hover:text-white transition-all duration-300 inline-flex items-center gap-2"
             >
               Explore Sunglasses <ArrowRight className="w-3.5 h-3.5" />
             </Link>
@@ -86,14 +86,14 @@ export function ServiceSunglasses() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.9 }}
-            className="order-1 lg:order-2 relative aspect-[4/3] overflow-hidden rounded-2xl group shadow-lg"
+            className="order-1 lg:order-2 relative aspect-[4/3] overflow-hidden rounded-[3px] group shadow-lg"
           >
             <img
               src="https://images.unsplash.com/photo-1511499767350-a1590fdb7307?auto=format&fit=crop&q=80&w=1200"
               alt="Luxury Sunglasses"
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-neutral-900/10 group-hover:bg-transparent transition-colors duration-700 rounded-2xl" />
+            <div className="absolute inset-0 bg-neutral-900/10 group-hover:bg-transparent transition-colors duration-700 rounded-[3px]" />
           </m.div>
 
         </div>

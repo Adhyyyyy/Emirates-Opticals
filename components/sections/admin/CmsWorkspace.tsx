@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useTransition } from "react";
 import { 
@@ -136,8 +136,7 @@ export function CmsWorkspace({ initialBanners, initialOffers, branches }: CmsWor
       const res = await createOffer({
         title: offerTitle,
         description: offerDesc,
-        promoCode: offerPromoCode,
-        discountVal: offerDiscount,
+        percentage: offerDiscount || "EXCLUSIVE",
         branchId: offerBranchId,
         startDate: offerStartDate || undefined,
         endDate: offerEndDate || undefined
@@ -456,9 +455,9 @@ export function CmsWorkspace({ initialBanners, initialOffers, branches }: CmsWor
                               <div className="flex items-center gap-3 text-[9px] font-bold uppercase tracking-widest text-brand-charcoal/40 pt-2">
                                 <Clock className="w-3.5 h-3.5 text-brand-gold" />
                                 <span>
-                                  {o.startDate ? new Date(o.startDate).toLocaleDateString() : "Immediate"} 
-                                  {" — "} 
-                                  {o.endDate ? new Date(o.endDate).toLocaleDateString() : "Ongoing"}
+                                  {o.startDate ? new Date(o.startDate).toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" }) : "Immediate"} 
+                                  {" â€” "} 
+                                  {o.endDate ? new Date(o.endDate).toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" }) : "Ongoing"}
                                 </span>
                               </div>
                             )}
@@ -557,7 +556,7 @@ export function CmsWorkspace({ initialBanners, initialOffers, branches }: CmsWor
                         required
                         value={offerDiscount}
                         onChange={(e) => setOfferDiscount(e.target.value)}
-                        placeholder="e.g. 20% OFF or ₹2,000 off"
+                        placeholder="e.g. 20% OFF or â‚¹2,000 off"
                         className="w-full bg-brand-pearl/20 border-none rounded-xl py-3 px-4 text-xs focus:ring-1 focus:ring-brand-gold/20 outline-none"
                       />
                     </div>

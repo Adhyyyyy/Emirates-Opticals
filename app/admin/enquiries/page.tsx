@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import { DataTable } from "@/components/ui/admin/DataTable";
 import { columns, EnquiryColumn } from "@/features/enquiries/components/columns";
 import { Reveal, GridStagger, StaggerItem } from "@/components/motion/Reveal";

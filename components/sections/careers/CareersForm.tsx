@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState } from "react";
 import { m, AnimatePresence } from "framer-motion";
@@ -292,7 +292,7 @@ export function CareersForm({ branches = [] }: CareersFormProps) {
                 type="submit"
                 disabled={isSubmitting}
                 className={cn(
-                  "bg-neutral-900 text-white text-xs uppercase tracking-[0.15em] px-8 py-4 rounded-full font-medium hover:bg-neutral-700 transition-all duration-200 inline-flex items-center justify-center gap-2",
+                  "bg-[#C9A84C] text-[#0D0D0D] text-xs uppercase tracking-[0.15em] px-8 py-4 rounded-[3px] font-bold hover:bg-[#B8952E] hover:text-white transition-all duration-300 inline-flex items-center justify-center gap-2",
                   isSubmitting && "opacity-50 cursor-not-allowed"
                 )}
               >
@@ -327,7 +327,7 @@ export function CareersForm({ branches = [] }: CareersFormProps) {
                 </p>
                 <button
                   onClick={() => setSubmitStatus(null)}
-                  className="bg-neutral-900 text-white text-xs uppercase tracking-[0.15em] px-8 py-3 rounded-full font-medium hover:bg-neutral-700 transition-all duration-200"
+                  className="bg-[#C9A84C] text-[#0D0D0D] text-xs uppercase tracking-[0.15em] px-8 py-3 rounded-[3px] font-bold hover:bg-[#B8952E] hover:text-white transition-all duration-300"
                 >
                   Dismiss
                 </button>

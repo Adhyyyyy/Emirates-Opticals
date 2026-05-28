@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import { m } from "framer-motion";
@@ -47,7 +47,7 @@ export function BrandPhilosophy() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-sm text-neutral-500 font-light leading-relaxed mb-10 max-w-xl"
             >
-              At Emirates Optician, every frame is sourced directly from authorized distributors and trusted global partners — ensuring authenticity, craftsmanship, and exceptional visual experience in every collection.
+              At Emirates Optician, every frame is sourced directly from authorized distributors and trusted global partners â€” ensuring authenticity, craftsmanship, and exceptional visual experience in every collection.
             </m.p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-5 gap-x-8">

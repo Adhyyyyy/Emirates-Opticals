@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import { AboutHero } from "@/components/sections/about/AboutHero";
 import { AboutStory } from "@/components/sections/about/AboutStory";
 import { AboutValues } from "@/components/sections/about/AboutValues";
@@ -15,7 +15,6 @@ export default function AboutPage() {
     <div className="flex flex-col w-full">
       <AboutHero />
       <AboutStory />
-      <AboutValues />
       <AboutWhyChoose />
       <AboutFinalCTA />
     </div>

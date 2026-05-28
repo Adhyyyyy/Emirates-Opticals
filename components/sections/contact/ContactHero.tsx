@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -34,7 +34,7 @@ export function ContactHero() {
 
           <Reveal delay={0.4}>
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-normal text-white uppercase tracking-[-0.03em] leading-[0.95] mb-12 drop-shadow-lg font-heading">
-              We’re Here To<br />
+              Weâ€™re Here To<br />
               Help You See<br />
               <em className="italic font-light">Better</em>
             </h1>

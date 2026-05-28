@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -13,7 +13,7 @@ export function ContactFinalCTA() {
           <Reveal>
             <h2 className="text-5xl md:text-7xl lg:text-8xl font-extralight tracking-tight text-brand-charcoal uppercase font-heading leading-tight mb-10">
               Need Assistance?<br />
-              We’re Just A <em className="italic">Message Away.</em>
+              Weâ€™re Just A <em className="italic">Message Away.</em>
             </h2>
           </Reveal>
           

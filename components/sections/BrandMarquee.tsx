@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 
@@ -12,7 +12,7 @@ export function BrandMarquee() {
   const display = [...BRANDS, ...BRANDS];
 
   return (
-    <div className="w-full bg-[#0A0A0A] border-t border-[#1E1E1E] border-b border-b-[#1E1E1E] overflow-hidden py-4 select-none">
+    <div className="w-full bg-brand-charcoal border-t border-white/5 border-b border-b-white/5 overflow-hidden py-4 select-none">
       <div
         className="flex gap-12 items-center"
         style={{
@@ -23,11 +23,11 @@ export function BrandMarquee() {
         {display.map((brand, idx) => (
           <div key={idx} className="flex items-center gap-12 shrink-0">
             <span
-              className="text-[11px] font-bold uppercase tracking-[0.25em] text-white/40 hover:text-[#C9A84C] transition-colors duration-300 whitespace-nowrap cursor-default"
+              className="text-[11px] font-bold uppercase tracking-[0.25em] text-white/40 hover:text-brand-gold transition-colors duration-300 whitespace-nowrap cursor-default"
             >
               {brand}
             </span>
-            <span className="text-[#C9A84C]/20 text-lg font-thin">✦</span>
+            <span className="text-brand-gold/20 text-lg font-thin">âœ¦</span>
           </div>
         ))}
       </div>

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { ReactNode } from "react";
 import { m } from "framer-motion";
@@ -28,14 +28,14 @@ export function LuxuryButton({
 }: LuxuryButtonProps) {
   
   const variants = {
-    primary: "bg-black text-white hover:bg-black/90",
-    secondary: "bg-white text-black border border-black/10 hover:border-black",
-    outline: "bg-transparent border border-black/20 text-black hover:bg-black hover:text-white",
-    text: "bg-transparent text-black p-0",
+    primary: "bg-brand-charcoal text-white hover:bg-brand-charcoal/90",
+    secondary: "bg-white text-brand-charcoal border border-brand-charcoal/10 hover:border-brand-charcoal",
+    outline: "bg-transparent border border-brand-charcoal/20 text-brand-charcoal hover:bg-brand-charcoal hover:text-white",
+    text: "bg-transparent text-brand-charcoal p-0",
   };
 
   const commonClasses = cn(
-    "group relative px-10 py-4 text-[10px] md:text-[11px] font-bold uppercase tracking-[0.3em] flex items-center justify-center gap-3 transition-colors duration-500 rounded-full",
+    "group relative px-10 py-4 text-[10px] md:text-[11px] font-bold uppercase tracking-[0.3em] flex items-center justify-center gap-3 transition-colors duration-500 rounded-[3px]",
     variants[variant],
     className
   );

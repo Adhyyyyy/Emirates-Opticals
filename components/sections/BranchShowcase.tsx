@@ -1,8 +1,8 @@
-"use client";
+﻿"use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { m, AnimatePresence } from "framer-motion";
-import { MapPin, Award, Compass } from "lucide-react";
+import { MapPin, Award, Compass, Calendar, ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
@@ -13,80 +13,138 @@ interface Branch {
   address: string;
   phone: string;
   hours: string;
-  coords: { x: number; y: number };
 }
 
 const BRANCHES: Branch[] = [
   {
     id: "kakkanad",
-    name: "Kakkanad Contemporary Hub",
+    name: "Kakkanad Contemporary Boutique",
     area: "Seaport-Airport Road",
-    address: "Seaport - Airport Rd, Chittethukara, Kakkanad, Kerala 682037, India",
+    address: "Seaport-Airport Rd, Chittethukara, Kakkanad, Kerala 682037",
     phone: "+91 77364 41211",
-    hours: "10:00 AM — 08:00 PM",
-    coords: { x: 45, y: 35 },
+    hours: "10:00 AM â€” 08:00 PM",
+  },
+  {
+    id: "angamaly",
+    name: "Angamaly Premium Lounge",
+    area: "MC Road",
+    address: "MC Road, Near KSRTC Bus Stand, Angamaly, Kerala 683572",
+    phone: "+91 85478 66751",
+    hours: "09:30 AM â€” 08:00 PM",
+  },
+  {
+    id: "kothamangalam",
+    name: "Kothamangalam Eyewear Gallery",
+    area: "Aluva-Munnar Road",
+    address: "AM Road, Near Private Bus Stand, Kothamangalam, Kerala 686691",
+    phone: "+91 85478 66752",
+    hours: "09:30 AM â€” 07:30 PM",
   },
   {
     id: "irumpanam",
     name: "Irumpanam Sports Atelier",
     area: "Seaport-Airport Road",
-    address: "MM Arcade, Seaport - Airport Rd, Irumpanam, Thrippunithura, Kochi, Ernakulam, Kerala 682309, India",
+    address: "MM Arcade, Seaport-Airport Rd, Irumpanam, Kerala 682309",
     phone: "+91 88899 90533",
-    hours: "10:00 AM — 09:00 PM",
-    coords: { x: 48, y: 45 },
+    hours: "10:00 AM â€” 09:00 PM",
+  },
+  {
+    id: "ettumanur",
+    name: "Ettumanur Vision Center",
+    area: "MC Road",
+    address: "MC Road, Near Ettumanur Temple, Ettumanur, Kerala 686631",
+    phone: "+91 85478 66754",
+    hours: "09:30 AM â€” 07:30 PM",
   },
   {
     id: "kottayam",
     name: "Kottayam Premium Flagship",
     area: "Kottayam-Kumily Road",
-    address: "M D Commercial Centre, opp. Joseph Antony's Petrol Pump, Kottayam, Kerala 686001, India",
+    address: "M D Commercial Centre, Opp. Petrol Pump, Kottayam, Kerala 686001",
     phone: "+91 85478 66755",
-    hours: "09:30 AM — 08:00 PM",
-    coords: { x: 52, y: 60 },
+    hours: "09:30 AM â€” 08:00 PM",
   },
   {
     id: "changanassery",
     name: "Changanassery Grand Lounge",
     area: "Mathumoola",
-    address: "Manjippuzha Tower, Mathumoola, Changanassery, Kerala 686103, India",
+    address: "Manjippuzha Tower, Mathumoola, Changanassery, Kerala 686103",
     phone: "+91 87140 32601",
-    hours: "09:30 AM — 07:30 PM",
-    coords: { x: 55, y: 70 },
+    hours: "09:30 AM â€” 07:30 PM",
   },
   {
     id: "thiruvalla",
     name: "Thiruvalla Luxury Boutique",
     area: "Thirumoolapuram",
-    address: "Karappunnasseril arcade, Thirumoolapuram, Thiruvalla, Kerala 689115, India",
+    address: "Karappunnasseril Arcade, Thirumoolapuram, Thiruvalla, Kerala 689115",
     phone: "+91 87140 32602",
-    hours: "10:00 AM — 07:00 PM",
-    coords: { x: 58, y: 80 },
+    hours: "10:00 AM â€” 07:00 PM",
+  },
+  {
+    id: "kumbanad",
+    name: "Kumbanad Signature Hub",
+    area: "TK Road",
+    address: "TK Road, Near Kumbanad Junction, Kumbanad, Kerala 689547",
+    phone: "+91 87140 32603",
+    hours: "09:30 AM â€” 07:30 PM",
+  },
+  {
+    id: "pandalam",
+    name: "Pandalam Optic Studio",
+    area: "MC Road",
+    address: "MC Road, Near Pandalam Bridge, Pandalam, Kerala 689501",
+    phone: "+91 87140 32604",
+    hours: "09:30 AM â€” 07:30 PM",
   },
 ];
 
 export function BranchShowcase() {
-  const [activeBranch, setActiveBranch] = useState<Branch>(BRANCHES[0]);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+
+  const activeBranch = BRANCHES[activeIndex];
 
   const handleDirections = (address: string) => {
     const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
     window.open(url, "_blank");
   };
 
+  const nextBranch = useCallback(() => {
+    setActiveIndex((current) => (current + 1) % BRANCHES.length);
+  }, []);
+
+  const prevBranch = () => {
+    setIsAutoPlaying(false);
+    setActiveIndex((current) => (current - 1 + BRANCHES.length) % BRANCHES.length);
+  };
+
+  const manualNext = () => {
+    setIsAutoPlaying(false);
+    nextBranch();
+  };
+
+  const jumpToBranch = (index: number) => {
+    setIsAutoPlaying(false);
+    setActiveIndex(index);
+  };
+
+  // Auto-play interval
+  useEffect(() => {
+    if (!isAutoPlaying) return;
+
+    const timer = setInterval(() => {
+      nextBranch();
+    }, 6000); // 6 second rotation
+
+    return () => clearInterval(timer);
+  }, [isAutoPlaying, nextBranch]);
+
   return (
-    <section className="bg-white py-20 overflow-hidden border-t border-black/5" id="boutique-locator">
+    <section className="bg-white section-padding overflow-hidden border-t border-brand-charcoal/5" id="boutique-locator">
       <div className="section-container">
         
         {/* Centered Editorial Header */}
-        <div className="flex flex-col items-center text-center mb-10">
-          <m.span
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1 }}
-            className="meta-editorial mb-3 text-center"
-          >
-            Atelier Directory
-          </m.span>
+        <div className="flex flex-col items-center mb-12 md:mb-16 relative z-10 text-center">
           <m.h2 
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -94,116 +152,83 @@ export function BranchShowcase() {
             transition={{ duration: 1, delay: 0.1 }}
             className="h2-editorial text-center"
           >
-            Our Destination Boutiques
+            Our Branch Network
           </m.h2>
+          <m.p 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="text-neutral-500 mt-4 max-w-lg text-sm md:text-base font-light"
+          >
+            Discover our premium eyewear boutiques located across Kerala.
+          </m.p>
         </div>
 
-        {/* Symmetric Split Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-6 items-stretch w-full">
+        {/* Carousel Container */}
+        <div className="max-w-4xl mx-auto relative">
           
-          {/* Left Column: Interactive Map Representation */}
-          <div className="rounded-2xl overflow-hidden min-h-[480px] relative bg-[#fbfbf9] border border-black/5 flex items-center justify-center group w-full">
-            {/* Stylized Outline Map Overlay */}
-            <div className="absolute inset-0 opacity-[0.04] pointer-events-none p-12">
-              <svg viewBox="0 0 100 100" className="w-full h-full fill-black">
-                <path d="M40,10 Q50,0 60,10 T70,30 T60,50 T40,70 T30,90 Z" />
-              </svg>
-            </div>
-
-            {/* Interactive Markers */}
-            {BRANCHES.map((branch) => (
-              <m.button
-                key={branch.id}
-                onClick={() => setActiveBranch(branch)}
-                className="absolute z-10 group/marker"
-                style={{ left: `${branch.coords.x}%`, top: `${branch.coords.y}%` }}
-                whileHover={{ scale: 1.25 }}
-              >
-                <div className={cn(
-                  "w-5 h-5 rounded-full border-2 transition-all duration-500 flex items-center justify-center shadow-lg",
-                  activeBranch.id === branch.id 
-                    ? "bg-[#C9A84C] border-black scale-125" 
-                    : "bg-white border-black/20 hover:border-black"
-                )}>
-                  {activeBranch.id === branch.id && (
-                    <m.div 
-                      layoutId="pulse"
-                      className="absolute inset-0 bg-[#C9A84C] rounded-full animate-ping opacity-30" 
-                    />
-                  )}
-                  <MapPin className={cn("w-2.5 h-2.5", activeBranch.id === branch.id ? "text-black" : "text-black/30")} />
-                </div>
-                <span className="absolute top-7 left-1/2 -translate-x-1/2 text-[7px] font-extrabold uppercase tracking-[0.25em] bg-black text-white px-2 py-0.5 rounded shadow-xl opacity-0 group-hover/marker:opacity-100 transition-opacity whitespace-nowrap">
-                  {branch.name.split(" ")[0]}
-                </span>
-              </m.button>
-            ))}
-
-            <div className="text-[10px] font-extrabold uppercase tracking-[0.45em] text-black/5 vertical-text select-none absolute bottom-8 right-8">
-              KERALA REGION
-            </div>
-          </div>
-
-          {/* Right Column: Active Branch Detail Panel */}
-          <div className="flex flex-col justify-between gap-6 pl-0 md:pl-8 overflow-hidden">
+          {/* Active Branch Display */}
+          <div className="relative min-h-[460px] md:min-h-[400px] overflow-hidden bg-[#FAF9F6] border border-neutral-100 rounded-[3px] shadow-sm p-5 md:p-12">
             <AnimatePresence mode="wait">
               <m.div
                 key={activeBranch.id}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 0, scale: 0.98 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 1.02 }}
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className="flex flex-col justify-between h-full gap-6 w-full"
+                className="flex flex-col h-full justify-between"
               >
                 {/* Top Info Header Segment */}
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-4 text-center items-center">
                   <div className="flex items-center gap-2">
-                    <span className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.15em] text-amber-600 font-medium bg-amber-50 px-2.5 py-1 rounded-full select-none">
+                    <span className="inline-flex items-center gap-2 text-[9px] md:text-[10px] uppercase tracking-[0.15em] text-brand-gold font-medium bg-brand-gold/10 px-3 py-1.5 rounded-[3px] select-none">
                       <Award className="w-3.5 h-3.5" />
-                      Certified Eyecare & Curation Center
+                      Premium Eyecare Boutique
                     </span>
                   </div>
                   
-                  <h4 className="text-4xl md:text-5xl font-light text-neutral-900 leading-[1.1] tracking-tight max-w-full truncate">
+                  <h4 className="font-heading font-extralight tracking-tight text-brand-charcoal uppercase leading-[1.1] text-2xl sm:text-3xl md:text-5xl mt-2">
                     {activeBranch.name}
                   </h4>
                   
-                  <p className="text-[11px] uppercase tracking-[0.2em] text-amber-500 mt-1 mb-2 select-none">
+                  <p className="eyebrow-editorial text-brand-gold mt-1 mb-2 select-none text-xs md:text-sm">
                     {activeBranch.area}
                   </p>
                 </div>
 
-                {/* Symmetric Info Grid with divider */}
-                <div className="grid grid-cols-2 gap-6 border-y border-neutral-100 py-6">
+                {/* Info Grid with divider */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 border-y border-neutral-200/50 py-6 md:py-8 mt-6 md:mt-8">
                   
                   {/* Address Column */}
-                  <div className="flex flex-col gap-1.5">
-                    <span className="text-[10px] uppercase tracking-[0.15em] text-neutral-400 mb-1 block select-none">
-                      Address
+                  <div className="flex flex-col gap-3 items-center md:items-start text-center md:text-left">
+                    <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.15em] text-neutral-400 block select-none flex items-center gap-2">
+                      <MapPin className="w-3.5 h-3.5" />
+                      Location
                     </span>
-                    <p className="text-sm text-neutral-700 leading-relaxed font-light uppercase">
+                    <p className="text-sm md:text-base text-neutral-700 leading-relaxed font-light uppercase">
                       {activeBranch.address}
                     </p>
                   </div>
 
                   {/* Hours & Contact Column (with divider) */}
-                  <div className="flex flex-col gap-4 border-l border-neutral-100 pl-6">
-                    <div className="flex flex-col gap-1.5">
-                      <span className="text-[10px] uppercase tracking-[0.15em] text-neutral-400 mb-1 block select-none">
+                  <div className="flex flex-col gap-6 md:border-l md:border-neutral-200/50 md:pl-12 items-center md:items-start text-center md:text-left">
+                    <div className="flex flex-col gap-2">
+                      <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.15em] text-neutral-400 block select-none">
                         Atelier Hours
                       </span>
-                      <p className="text-sm text-neutral-700 leading-relaxed font-light">
+                      <p className="text-sm md:text-base text-neutral-700 leading-relaxed font-light">
                         {activeBranch.hours}
                       </p>
                     </div>
 
-                    <div className="flex flex-col gap-1.5">
-                      <span className="text-[10px] uppercase tracking-[0.15em] text-neutral-400 mb-1 block select-none">
+                    <div className="flex flex-col gap-2">
+                      <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.15em] text-neutral-400 block select-none">
                         Contact Hotline
                       </span>
                       <a 
                         href={`tel:${activeBranch.phone.replace(/\s+/g, "")}`} 
-                        className="text-sm font-medium text-neutral-900 hover:text-amber-500 transition"
+                        className="text-sm md:text-base font-medium text-neutral-900 hover:text-brand-gold transition-colors"
                       >
                         {activeBranch.phone}
                       </a>
@@ -213,25 +238,65 @@ export function BranchShowcase() {
                 </div>
 
                 {/* Call-to-action Footer Actions */}
-                <div className="flex gap-3 mt-auto w-full">
+                <div className="flex flex-col sm:flex-row justify-center gap-3 md:gap-4 mt-8 w-full max-w-xl mx-auto">
                   <Link 
                     href="/book-eye-test"
-                    className="bg-neutral-900 text-white text-xs uppercase tracking-[0.15em] px-7 py-3.5 rounded-full hover:bg-neutral-700 transition flex-1 text-center font-medium block"
+                    className="bg-[#C9A84C] text-[#0A0A0A] text-[10px] sm:text-[11px] uppercase tracking-[0.2em] px-8 py-4 rounded-[3px] hover:bg-[#B8952E] hover:text-white transition-colors duration-500 flex-1 flex items-center justify-center gap-3 font-bold shadow-lg"
                   >
-                    Book Appointments
+                    <Calendar className="w-4 h-4" />
+                    Book Eye Test
                   </Link>
                   
                   <button 
                     onClick={() => handleDirections(activeBranch.address)}
-                    className="border border-neutral-300 text-neutral-700 text-xs uppercase tracking-[0.15em] px-6 py-3.5 rounded-full hover:border-neutral-900 hover:text-neutral-900 transition font-medium shrink-0 flex items-center justify-center gap-2 group/directions"
+                    className="border border-neutral-300 bg-white text-neutral-700 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.15em] px-8 py-4 rounded-[3px] hover:border-neutral-900 hover:text-neutral-900 hover:bg-neutral-50 transition-all flex items-center justify-center gap-3 group/directions shadow-sm flex-1"
                   >
-                    <Compass className="w-3.5 h-3.5 text-neutral-500 group-hover/directions:text-neutral-900 transition-colors" />
+                    <Compass className="w-4 h-4 text-neutral-500 group-hover/directions:text-neutral-900 transition-colors" />
                     <span>Get Directions</span>
                   </button>
                 </div>
 
               </m.div>
             </AnimatePresence>
+          </div>
+
+          {/* Carousel Controls Bar (Arrows + Dots) */}
+          <div className="flex justify-between items-center mt-8 px-2 md:px-0">
+            <button 
+              onClick={prevBranch}
+              className="p-2.5 bg-white border border-neutral-200 rounded-full text-neutral-400 hover:text-brand-charcoal hover:border-brand-charcoal hover:shadow-lg transition-all duration-300"
+              aria-label="Previous Branch"
+            >
+              <ChevronLeft className="w-5 h-5 stroke-[1.5]" />
+            </button>
+
+            <div className="flex justify-center items-center gap-2">
+              {BRANCHES.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => jumpToBranch(idx)}
+                  className="group p-1"
+                  aria-label={`Go to branch slide ${idx + 1}`}
+                >
+                  <div 
+                    className={cn(
+                      "h-1.5 rounded-full transition-all duration-500 ease-in-out",
+                      activeIndex === idx 
+                        ? "w-8 bg-[#C9A84C]" 
+                        : "w-1.5 bg-neutral-300 group-hover:bg-neutral-400"
+                    )} 
+                  />
+                </button>
+              ))}
+            </div>
+
+            <button 
+              onClick={manualNext}
+              className="p-2.5 bg-white border border-neutral-200 rounded-full text-neutral-400 hover:text-brand-charcoal hover:border-brand-charcoal hover:shadow-lg transition-all duration-300"
+              aria-label="Next Branch"
+            >
+              <ChevronRight className="w-5 h-5 stroke-[1.5]" />
+            </button>
           </div>
 
         </div>

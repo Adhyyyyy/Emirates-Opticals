@@ -12,7 +12,7 @@ interface ProductCardProps {
   id: string;
   brand: string;
   name: string;
-  price: number;
+  price?: number;
   colorsCount: number;
   primaryImage: string;
   secondaryImage: string;
@@ -61,7 +61,7 @@ export function ProductCard({
             initial={{ y: 10, opacity: 0 }}
             animate={{ y: showHoverEffects ? 0 : 10, opacity: showHoverEffects ? 1 : 0 }}
             transition={{ duration: 0.6, ease: EASE_LUXURY }}
-            className="flex items-center gap-1.5 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full border border-black/5 shadow-sm"
+            className="flex items-center gap-1.5 bg-white/90 backdrop-blur-md px-3 py-1 rounded-[3px] border border-black/5 shadow-sm"
           >
             <div className="w-2.5 h-2.5 relative">
               <div className="absolute inset-0 border-[1.5px] border-black rounded-full opacity-20" />
@@ -95,13 +95,16 @@ export function ProductCard({
       {/* Main Product Frame - Weighted Lift & Shadow */}
       <m.div 
         animate={{ 
-          y: showHoverEffects ? -12 : 0,
+          y: showHoverEffects ? -8 : 0,
           boxShadow: showHoverEffects 
-            ? "0 40px 80px -20px rgba(0,0,0,0.12)" 
-            : "0 0px 0px 0px rgba(0,0,0,0)"
+            ? "0 12px 40px rgba(0,0,0,0.15)" 
+            : "0 0px 0px 0px rgba(0,0,0,0)",
+          borderColor: showHoverEffects 
+            ? "rgba(201, 168, 76, 0.3)" 
+            : "rgba(10, 10, 10, 0.05)"
         }}
-        transition={{ duration: 1.2, ease: EASE_LUXURY }}
-        className="relative w-full aspect-[4/3] bg-[#fcfcfc] flex items-center justify-center overflow-hidden cursor-pointer mb-8 group-hover:bg-white rounded-2xl"
+        transition={{ duration: 0.8, ease: EASE_LUXURY }}
+        className="relative w-full aspect-[4/3] bg-white border border-brand-charcoal/5 flex items-center justify-center overflow-hidden cursor-pointer mb-8 rounded-[3px]"
       >
         <AnimatePresence mode="wait">
           <m.div
@@ -148,7 +151,7 @@ export function ProductCard({
         </p>
         <div className="flex flex-col items-center mt-1">
           <p className="text-[12px] md:text-[13px] font-bold text-black">
-            ₹{(price || 0).toLocaleString("en-IN")}
+            â‚¹{(price || 0).toLocaleString("en-IN")}
           </p>
           <m.p 
             animate={{ opacity: isMobile ? 1 : (isHovered ? 1 : 0) }}

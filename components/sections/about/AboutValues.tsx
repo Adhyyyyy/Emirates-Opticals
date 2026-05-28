@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import { m } from "framer-motion";
@@ -7,23 +7,23 @@ import { ShieldCheck, UserCheck, Heart, Sparkles } from "lucide-react";
 const VALUES = [
   {
     icon: ShieldCheck,
-    title: "Authenticity Guaranteed",
-    desc: "We source only genuine branded eyewear directly from authorized distributors, protecting you from imitations."
+    title: "100% Authentic Brands",
+    desc: "Every frame and sunglass is sourced only from authorized distributors."
   },
   {
     icon: Sparkles,
-    title: "Quality Excellence",
-    desc: "Premium lenses, precise fitting, and rigorous quality checks ensure your complete satisfaction."
+    title: "Advanced Eye Testing",
+    desc: "Modern diagnostic technology and experienced optometrists."
   },
   {
     icon: UserCheck,
-    title: "Expert Guidance",
-    desc: "Our trained opticians and stylists help you find frames that perfectly complement your face and lifestyle."
+    title: "Expert Styling Guidance",
+    desc: "Professional recommendations tailored to your features and lifestyle."
   },
   {
     icon: Heart,
-    title: "Customer-First Approach",
-    desc: "Free eye testing, ample parking, after-sales support, and genuine care for your optical health."
+    title: "Premium Experience",
+    desc: "Luxury retail atmosphere designed around comfort and trust."
   }
 ];
 

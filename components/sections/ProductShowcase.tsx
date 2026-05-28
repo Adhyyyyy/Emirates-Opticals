@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useMemo } from "react";
 import { m, AnimatePresence } from "framer-motion";
@@ -36,7 +36,7 @@ export function ProductShowcase({ initialProducts }: ProductShowcaseProps) {
   }, [filteredProducts]);
 
   return (
-    <section className="bg-[#FAF8F5] py-20 overflow-hidden" id="homepage-showcase">
+    <section className="bg-gradient-to-b from-[#FAF9F6] to-white section-padding overflow-hidden" id="homepage-showcase">
       <div className="section-container">
         
         {/* Harmonized Centered Section Header */}
@@ -70,10 +70,10 @@ export function ProductShowcase({ initialProducts }: ProductShowcaseProps) {
               key={cat}
               onClick={() => setActiveCategory(cat)}
               className={cn(
-                "text-xs uppercase tracking-[0.15em] px-5 py-2 rounded-full border border-neutral-200 cursor-pointer transition-all duration-200 hover:bg-neutral-900 hover:text-white focus:outline-none",
+                "text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] px-5 py-2 rounded-[3px] border border-brand-charcoal/10 cursor-pointer transition-all duration-500 hover:bg-brand-charcoal hover:text-white focus:outline-none",
                 activeCategory === cat
-                  ? "bg-neutral-900 text-white border-neutral-900"
-                  : "bg-transparent text-neutral-600"
+                  ? "bg-brand-charcoal text-white border-brand-charcoal"
+                  : "bg-transparent text-brand-charcoal/60"
               )}
             >
               {cat}
@@ -94,7 +94,7 @@ export function ProductShowcase({ initialProducts }: ProductShowcaseProps) {
             >
               {displayedProducts.map((product) => {
                 // Handle image arrays and string stand-ins cleanly
-                const imageSrc = product.images?.[0] || "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400";
+                const imageSrc = product.images?.[0] || "https://images.unsplash.com/photo-1577803645773-f96470509666?w=400";
                 
                 return (
                   <Link
@@ -103,7 +103,7 @@ export function ProductShowcase({ initialProducts }: ProductShowcaseProps) {
                     className="group cursor-pointer block"
                   >
                     {/* Image container */}
-                    <div className="rounded-2xl overflow-hidden relative aspect-[3/4] bg-neutral-100">
+                    <div className="rounded-[3px] overflow-hidden relative aspect-[3/4] bg-brand-charcoal/5">
                       <Image
                         src={imageSrc}
                         alt={product.name}
@@ -112,19 +112,18 @@ export function ProductShowcase({ initialProducts }: ProductShowcaseProps) {
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                       {/* Hover overlay */}
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 rounded-2xl animate-in fade-in duration-300" />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 rounded-[3px] animate-in fade-in duration-300" />
                     </div>
                     
-                    {/* Card footer (outside image) */}
                     <div className="mt-2 px-1">
-                      <span className="text-[10px] uppercase tracking-[0.15em] text-neutral-400 mb-0.5 block">
+                      <span className="eyebrow-editorial text-brand-charcoal/40 mb-0.5">
                         {product.brand}
                       </span>
-                      <h3 className="text-sm font-medium text-neutral-900 leading-snug mb-1">
+                      <h3 className="text-sm font-medium text-brand-charcoal leading-snug mb-1">
                         {product.name}
                       </h3>
-                      <p className="text-sm text-neutral-600 font-normal">
-                        ₹{(product.price || 0).toLocaleString("en-IN")}
+                      <p className="text-sm text-brand-charcoal/70 font-normal">
+                        â‚¹{(product.price || 0).toLocaleString("en-IN")}
                       </p>
                     </div>
                   </Link>
@@ -135,7 +134,7 @@ export function ProductShowcase({ initialProducts }: ProductShowcaseProps) {
             <m.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="text-center py-20 border border-dashed border-black/10 rounded-2xl flex flex-col items-center justify-center bg-[#FAF9F6]"
+              className="text-center py-20 border border-dashed border-black/10 rounded-[3px] flex flex-col items-center justify-center bg-[#FAF9F6]"
             >
               <p className="text-xs uppercase tracking-widest text-black/40 font-bold mb-2">No matching frames</p>
               <p className="text-[11px] font-light text-black/30 mb-6">Try refining your curation filters.</p>
@@ -143,7 +142,7 @@ export function ProductShowcase({ initialProducts }: ProductShowcaseProps) {
                 onClick={() => {
                   setActiveCategory("All Curation");
                 }}
-                className="text-[10px] font-extrabold uppercase tracking-widest bg-neutral-900 text-white hover:bg-neutral-800 py-3.5 px-8 transition-all rounded-full"
+                className="text-[10px] font-extrabold uppercase tracking-[0.2em] bg-brand-charcoal text-white hover:bg-brand-charcoal/90 py-3.5 px-8 transition-all duration-500 rounded-[3px]"
               >
                 Reset Curation Filters
               </button>

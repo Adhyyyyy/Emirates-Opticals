@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import { m } from "framer-motion";
@@ -54,9 +54,9 @@ export function AboutStory() {
               transition={{ duration: 0.9, delay: 0.1 }}
               className="text-3xl md:text-4xl font-light text-neutral-900 tracking-tight uppercase font-heading leading-tight mb-8"
             >
-              A Vision Built On
+              Luxury Meets
               <br />
-              <em className="italic font-light text-amber-500/80">Trust & Authenticity</em>
+              <em className="italic font-light text-amber-500/80">Optical Precision</em>
             </m.h2>
 
             <m.div
@@ -67,13 +67,13 @@ export function AboutStory() {
               className="space-y-5 text-neutral-500 font-light leading-relaxed text-sm max-w-xl mb-10"
             >
               <p>
-                Emirates Optician was founded with a clear mission: to bring world-class optical solutions to the people of Kerala. We recognized a growing need for authentic branded eyewear and professional eye care services in our communities.
+                Every Emirates Optician experience is built around expert eye care, luxury eyewear, and personalized styling. We recognized a growing need for authentic branded eyewear and professional eye care services.
               </p>
               <p>
-                What started as a single store has grown into a trusted network of branches across Kerala, each offering the same commitment to quality, authenticity, and customer care. We&apos;ve built our reputation by standing firmly against cheap imitations and by delivering genuine value through authentic international and Indian brands.
+                From iconic designer frames to advanced lens technology, every detail is curated for confidence and comfort. We've built our reputation by standing firmly against cheap imitations and by delivering genuine value through authentic international brands.
               </p>
               <p>
-                Today, Emirates Optician serves thousands of satisfied customers who trust us for their optical needs — from free professional eye testing to finding the perfect frames that reflect their personal style.
+                Today, Emirates Optician provides a modern optical experience â€” elegant retail environments, expert guidance, and authentic eyewear collections designed for modern lifestyles.
               </p>
             </m.div>
 

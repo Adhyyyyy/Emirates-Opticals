@@ -1,4 +1,4 @@
-"use server";
+﻿"use server";
 
 import { revalidatePath } from "next/cache";
 import { createServerClient } from "@supabase/ssr";
@@ -150,8 +150,7 @@ export async function getOffers() {
 export async function createOffer(data: {
   title: string;
   description: string;
-  promoCode: string;
-  discountVal: string;
+  percentage: string;
   branchId?: string; // target specific branch or "Global"
   startDate?: string;
   endDate?: string;

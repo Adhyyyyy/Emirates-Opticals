@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState } from "react";
 import { m, AnimatePresence } from "framer-motion";
@@ -191,7 +191,7 @@ export default function LoginPage() {
                     <input 
                       {...register("password")}
                       type={showPassword ? "text" : "password"} 
-                      placeholder="••••••••••••"
+                      placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
                       className="w-full bg-transparent border-b border-black/10 py-5 pl-10 pr-4 text-sm font-medium text-brand-charcoal outline-none focus:border-brand-gold transition-all duration-500 placeholder:text-brand-charcoal/30"
                     />
                   </div>

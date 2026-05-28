@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { m } from "framer-motion";
 import { 
@@ -13,64 +13,55 @@ import {
 const SERVICES = [
   {
     id: 1,
-    title: "Free Eye Testing",
-    description: "Comprehensive eye examinations conducted by our resident ophthalmologists using state-of-the-art diagnostic technology.",
+    title: "Professional Eye Testing",
+    description: "Comprehensive eye examinations using advanced diagnostic equipment to assess visual clarity and overall eye health.",
     icon: Eye,
   },
   {
     id: 2,
-    title: "Expert Styling",
-    description: "Curated eyewear consultations to find the perfect frame that complements your facial architecture and personal style.",
-    icon: Sparkles,
-  },
-  {
-    id: 3,
-    title: "Premium Lenses",
-    description: "Advanced lens technologies including blue-light protection, digital-strain relief, and ultra-thin high-index materials.",
+    title: "Premium Lens Solutions",
+    description: "High-quality lenses tailored to your lifestyle, including progressive, blue-cut, and anti-glare technologies.",
     icon: Layers,
   },
   {
-    id: 4,
-    title: "Warranty Support",
-    description: "Comprehensive 2-year manufacturer warranty on all luxury frames and premium lens coatings for absolute peace of mind.",
-    icon: ShieldCheck,
+    id: 3,
+    title: "Styling Consultation",
+    description: "Expert guidance to help you find frames that perfectly complement your face shape and personal style.",
+    icon: Sparkles,
   },
   {
-    id: 5,
-    title: "Authentic Brands",
-    description: "Guaranteed authenticity on all global luxury brands, including Jacques Marie Mage, DITA, and Cartier.",
+    id: 4,
+    title: "Premium Sunglasses",
+    description: "Luxury sunglasses combining premium aesthetics with superior UV protection and polarized options.",
     icon: Award,
   },
   {
+    id: 5,
+    title: "100% Authentic Brands",
+    description: "Every luxury frame and sunglass is guaranteed authentic, sourced directly from authorized global distributors.",
+    icon: ShieldCheck,
+  },
+  {
     id: 6,
-    title: "After-Sales Care",
-    description: "Lifetime complimentary adjustments and deep-sonic cleaning to ensure your eyewear remains in showroom condition.",
+    title: "After-Sales Support",
+    description: "Lifetime complimentary adjustments and deep-sonic cleaning to ensure your eyewear remains pristine.",
     icon: HeartHandshake,
   },
 ];
 
 export function ServiceShowcase() {
   return (
-    <section className="bg-[#fcfcfc] py-20 md:py-24 border-y border-black/5" id="homepage-experience">
+    <section className="bg-white section-padding" id="homepage-experience">
       <div className="section-container">
         
         {/* Header Section */}
         <div className="flex flex-col items-center text-center">
-          <m.span
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1 }}
-            className="text-[10px] uppercase tracking-[0.2em] text-neutral-400 mb-3 block"
-          >
-            The Emirates Experience
-          </m.span>
           <m.h2 
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1, delay: 0.1 }}
-            className="text-3xl md:text-4xl font-light text-neutral-900 tracking-tight mb-14 uppercase text-center"
+            className="h2-editorial uppercase mb-14 text-center"
           >
             Expert Care. Exceptional Luxury.
           </m.h2>
@@ -87,18 +78,21 @@ export function ServiceShowcase() {
               transition={{ duration: 0.8, delay: idx * 0.1 }}
               className="group flex flex-col gap-4"
             >
-              {/* Identical Outlined Icon Container */}
-              <div className="w-11 h-11 rounded-xl border border-neutral-200 flex items-center justify-center bg-white text-neutral-700 group-hover:border-neutral-400 group-hover:bg-neutral-50 transition-all duration-200 shrink-0">
-                <service.icon className="w-5 h-5 stroke-[1.5]" />
+              {/* Premium Gold Circle Icon Container */}
+              <div className="relative w-12 h-12 shrink-0">
+                <div className="absolute inset-0 rounded-full bg-brand-gold/10 group-hover:bg-brand-gold/20 transition-colors duration-300" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <service.icon className="w-5 h-5 stroke-[1.5] text-brand-gold group-hover:scale-110 transition-transform duration-300" />
+                </div>
               </div>
               
               {/* Feature Title */}
-              <h4 className="text-sm font-semibold uppercase tracking-[0.12em] text-neutral-900 mt-1">
+              <h4 className="text-sm font-semibold uppercase tracking-[0.12em] text-brand-charcoal mt-1">
                 {service.title}
               </h4>
               
               {/* Feature Description with subtle hover state */}
-              <p className="text-sm text-neutral-500 leading-relaxed font-light group-hover:text-neutral-700 transition-colors duration-200">
+              <p className="text-sm text-neutral-600 leading-relaxed font-light group-hover:text-brand-charcoal transition-colors duration-200">
                 {service.description}
               </p>
             </m.div>

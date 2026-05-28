@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import { SlidersHorizontal, Search, ChevronDown, LayoutGrid, List } from "lucide-react";
 
 export default function ShopLoading() {

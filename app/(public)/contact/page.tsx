@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import { ContactPageContent } from "@/components/sections/contact/ContactPageContent";
 
 export const metadata = {

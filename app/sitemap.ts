@@ -1,4 +1,4 @@
-import { MetadataRoute } from "next";
+﻿import { MetadataRoute } from "next";
 import { PRODUCTS as STATIC_PRODUCTS } from "@/lib/shop/data";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

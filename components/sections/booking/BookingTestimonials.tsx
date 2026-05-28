@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -46,7 +46,7 @@ export function BookingTestimonials() {
                 </div>
 
                 <p className="text-lg md:text-xl font-light text-brand-charcoal italic leading-relaxed mb-10 flex-1">
-                  “{review.text}”
+                  â€œ{review.text}â€
                 </p>
 
                 <div className="flex items-center gap-4">

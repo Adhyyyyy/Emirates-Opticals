@@ -1,74 +1,44 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import { m } from "framer-motion";
 import Link from "next/link";
-import { Calendar, MapPin } from "lucide-react";
+import { ChevronRight, Calendar, MapPin, Glasses } from "lucide-react";
 
 export function HelpChoosingCTA() {
   return (
-    <section className="w-full bg-neutral-900 py-20" id="help-choosing-cta">
-      <div className="section-container flex flex-col md:flex-row items-center justify-between gap-12">
+    <section className="bg-black section-padding border-t border-white/5" id="help-choosing-cta">
+      <div className="section-container">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-12 text-center md:text-left">
+          
+          <div className="flex flex-col gap-4 max-w-[600px]">
+            <h2 className="font-heading font-extralight text-3xl sm:text-4xl md:text-5xl tracking-tight text-white uppercase leading-tight">
+              Ready to Experience Premium Care
+            </h2>
+            <p className="body-editorial-light max-w-xl text-white/50">
+              Book your complimentary eye test and discover eyewear designed entirely around your lifestyle and needs.
+            </p>
+          </div>
 
-        {/* Left Copy */}
-        <div className="flex flex-col max-w-[420px]">
-          <m.span
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="text-[10px] uppercase tracking-[0.2em] text-amber-400/70 mb-3 block font-medium"
-          >
-            Complimentary Styling
-          </m.span>
+          <div className="flex flex-col items-center md:items-end gap-6 w-full md:w-auto mt-4 md:mt-0">
+            <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
+              <Link
+                href="/book-eye-test"
+                className="group relative w-full sm:w-auto px-10 py-4 text-[10px] md:text-[11px] font-bold uppercase tracking-[0.3em] flex items-center justify-center gap-3 transition-colors duration-500 rounded-[3px] bg-[#C9A84C] text-[#0A0A0A] hover:bg-[#B8952E] hover:text-white shadow-lg"
+              >
+                Book Eye Test
+                <ChevronRight className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-1" />
+              </Link>
+              <Link
+                href="/branches"
+                className="group relative w-full sm:w-auto px-10 py-4 text-[10px] md:text-[11px] font-bold uppercase tracking-[0.3em] flex items-center justify-center gap-3 transition-colors duration-500 rounded-[3px] bg-transparent border border-[#C9A84C] text-[#C9A84C] hover:bg-[#C9A84C] hover:text-[#0A0A0A]"
+              >
+                Find a Branch
+              </Link>
+            </div>
+          </div>
 
-          <m.h2
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.9, delay: 0.1 }}
-            className="text-4xl md:text-5xl font-light text-white leading-[1.1] tracking-tight mb-4 uppercase font-heading"
-          >
-            Need help <br />
-            <em className="font-serif italic text-amber-300/90 not-italic" style={{ fontStyle: "italic" }}>Choosing?</em>
-          </m.h2>
-
-          <m.p
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-sm text-neutral-400 leading-relaxed max-w-[420px]"
-          >
-            Our certified Visionists offer free in-store consultations — matching your face shape, lifestyle, and prescription to the perfect frame.
-          </m.p>
         </div>
-
-        {/* Right CTAs */}
-        <m.div
-          initial={{ opacity: 0, x: 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.25 }}
-          className="flex flex-col md:flex-row gap-3 shrink-0"
-        >
-          <Link
-            href="/book-eye-test"
-            className="bg-amber-400 text-neutral-900 text-xs uppercase tracking-[0.15em] px-8 py-4 rounded-full font-medium hover:bg-amber-300 transition-all duration-200 inline-flex items-center justify-center gap-2"
-          >
-            <Calendar className="w-3.5 h-3.5" />
-            Book Eye Test
-          </Link>
-
-          <Link
-            href="/branches"
-            className="border border-white/20 text-white text-xs uppercase tracking-[0.15em] px-8 py-4 rounded-full hover:border-white hover:bg-white/5 transition-all duration-200 inline-flex items-center justify-center gap-2"
-          >
-            <MapPin className="w-3.5 h-3.5" />
-            Find a Branch
-          </Link>
-        </m.div>
-
       </div>
     </section>
   );

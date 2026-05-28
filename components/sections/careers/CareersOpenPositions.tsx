@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState } from "react";
 import { m, AnimatePresence } from "framer-motion";
@@ -138,7 +138,7 @@ export function CareersOpenPositions({ positions = [], branches = [] }: CareersO
                                 href={applyUrl} 
                                 target="_blank" 
                                 rel="noopener noreferrer" 
-                                className="bg-neutral-900 text-white text-xs uppercase tracking-[0.15em] px-8 py-4 rounded-full font-medium hover:bg-neutral-700 transition-all duration-200 inline-flex items-center gap-2"
+                                className="bg-neutral-900 text-white text-xs uppercase tracking-[0.15em] px-8 py-4 rounded-[3px] font-medium hover:bg-[#C9A84C] hover:text-[#0D0D0D] transition-all duration-300 inline-flex items-center gap-2"
                               >
                                 <Sparkles className="w-3.5 h-3.5" />
                                 Apply For This Position

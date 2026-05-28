@@ -105,18 +105,27 @@ model Product {
   name          String
   slug          String    @unique
   description   String
-  price         Float
+  price         Float     @default(0)
+  // Specification Fields
   isFeatured    Boolean   @default(false)
   isNewArrival  Boolean   @default(false)
   isActive      Boolean   @default(true)
-
-  // Specification Fields
+  
   gender        String?
+  style         String?   // Classic, Vintage, Modern, Sport
   frameShape    String?
   material      String?
   lensType      String?
   color         String?
   size          String? // S, M, L or metrics like "54-18-145"
+
+  // Hybrid Ecosystem Fields (Emirates Signature Collections)
+  isInHouseProduct        Boolean   @default(false)
+  collectionType          String    @default("Designer Brands") // "Designer Brands", "Emirates Signature"
+  signatureCollectionName String?   // "Emirates Contemporary", "Emirates Atelier"
+  craftsmanshipDetails    String?
+  recommendedUsage        String?
+  frameWeightCategory     String?
 
   // Brand & Category
   brandId       String

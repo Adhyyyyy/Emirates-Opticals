@@ -28,7 +28,7 @@ export async function getProducts() {
 
     return { data: products };
   } catch (error) {
-    console.error("❌ Catalog Retrieval Error:", error);
+    console.error("âŒ Catalog Retrieval Error:", error);
     return { error: "Failed to synchronize global collections" };
   }
 }
@@ -65,7 +65,6 @@ export async function createProduct(data: any) {
     shortDescription, 
     isBestseller, 
     status,
-    initialStock, // Capture stock intelligence
     ...productData 
   } = validated.data;
 
@@ -94,13 +93,13 @@ export async function createProduct(data: any) {
           create: branchId 
             ? [{
                 branchId: branchId,
-                quantity: initialStock,
-                status: initialStock === 0 ? "OUT_OF_STOCK" : initialStock <= 5 ? "LOW_STOCK" : "IN_STOCK",
+                quantity: 0,
+                status: "IN_STOCK",
               }]
             : branches.map(b => ({
                 branchId: b.id,
-                quantity: initialStock,
-                status: initialStock === 0 ? "OUT_OF_STOCK" : initialStock <= 5 ? "LOW_STOCK" : "IN_STOCK",
+                quantity: 0,
+                status: "IN_STOCK",
               }))
         }
       },
@@ -131,7 +130,6 @@ export async function updateProduct(id: string, data: any) {
     shortDescription, 
     isBestseller, 
     status, 
-    initialStock, // Capture stock intelligence from Edit form
     ...productData 
   } = validated.data;
 
@@ -158,38 +156,30 @@ export async function updateProduct(id: string, data: any) {
     ];
 
     // If initiated by a Branch Admin, synchronize their specific boutique inventory
-    if (branchId && initialStock !== undefined) {
+    if (branchId) {
       operations.push(
         prisma.inventory.upsert({
           where: { productId_branchId: { productId: id, branchId } },
-          update: { 
-            quantity: initialStock,
-            status: initialStock === 0 ? "OUT_OF_STOCK" : initialStock <= 5 ? "LOW_STOCK" : "IN_STOCK",
-          },
+          update: { },
           create: {
             productId: id,
             branchId: branchId,
-            quantity: initialStock,
-            status: initialStock === 0 ? "OUT_OF_STOCK" : initialStock <= 5 ? "LOW_STOCK" : "IN_STOCK",
+            quantity: 0,
+            status: "IN_STOCK",
           }
         })
       );
-    } else if (!branchId && initialStock !== undefined) {
+    } else if (!branchId) {
       // If initiated by a Super Admin, synchronize/reset this stock quantity across all active branches!
       const branches = await prisma.branch.findMany({ where: { deletedAt: null } });
       for (const b of branches) {
         operations.push(
           prisma.inventory.upsert({
             where: { productId_branchId: { productId: id, branchId: b.id } },
-            update: { 
-              quantity: initialStock,
-              status: initialStock === 0 ? "OUT_OF_STOCK" : initialStock <= 5 ? "LOW_STOCK" : "IN_STOCK",
-            },
+            update: { },
             create: {
               productId: id,
               branchId: b.id,
-              quantity: initialStock,
-              status: initialStock === 0 ? "OUT_OF_STOCK" : initialStock <= 5 ? "LOW_STOCK" : "IN_STOCK",
             }
           })
         );
@@ -232,7 +222,7 @@ export async function deleteProduct(id: string) {
     revalidatePath("/admin/inventory");
     return { success: true };
   } catch (err) {
-    console.error("❌ Single Deletion Failure:", err);
+    console.error("âŒ Single Deletion Failure:", err);
     return { error: "Failed to remove product from catalog" };
   }
 }
@@ -262,7 +252,7 @@ export async function deleteProducts(ids: string[]) {
     revalidatePath("/admin/inventory");
     return { success: true };
   } catch (err) {
-    console.error("❌ Bulk Deletion Failure:", err);
+    console.error("âŒ Bulk Deletion Failure:", err);
     return { error: "Failed to remove selected products from catalog" };
   }
 }

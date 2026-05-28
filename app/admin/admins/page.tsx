@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useEffect } from "react";
 import { Reveal, GridStagger, StaggerItem } from "@/components/motion/Reveal";
@@ -370,7 +370,7 @@ export default function AdminsPage() {
                         required
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        placeholder="••••••••"
+                        placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
                         className="w-full bg-brand-pearl/20 border-none rounded-xl py-4 pl-12 pr-4 text-xs focus:ring-1 focus:ring-brand-gold/20 outline-none"
                       />
                     </div>

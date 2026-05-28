@@ -1,14 +1,14 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import { m } from "framer-motion";
 import { Eye, Zap, ShieldCheck, Search } from "lucide-react";
 
 const LENS_TYPES = [
-  { icon: Eye, title: "Single Vision", desc: "For distance or reading" },
-  { icon: Zap, title: "Progressive", desc: "Seamless multi-focal" },
+  { icon: Eye, title: "Single Vision", desc: "Precision for distance or reading" },
+  { icon: Zap, title: "Progressive", desc: "Seamless multi-focal transitions" },
   { icon: ShieldCheck, title: "Blue-Cut", desc: "Digital eye strain protection" },
-  { icon: Search, title: "Anti-Glare", desc: "Enhanced visual clarity" }
+  { icon: Search, title: "Photochromic", desc: "Adapts to changing light conditions" }
 ];
 
 export function ServiceLensSolutions() {
@@ -33,7 +33,7 @@ export function ServiceLensSolutions() {
             transition={{ duration: 0.9, delay: 0.1 }}
             className="text-3xl md:text-4xl font-light text-white tracking-tight uppercase mb-4"
           >
-            Quality <em className="italic font-light text-amber-400/80">Lenses</em>
+            Premium <em className="italic font-light text-amber-400/80">Lens Solutions</em>
           </m.h2>
           <m.p
             initial={{ opacity: 0, y: 12 }}
@@ -42,7 +42,7 @@ export function ServiceLensSolutions() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-sm text-neutral-400 font-light max-w-xl mx-auto leading-relaxed"
           >
-            Choose from a wide range of premium lenses designed to meet your specific vision needs and lifestyle.
+            Explore precision-crafted lens technologies designed for comfort, clarity, and long-term visual performance.
           </m.p>
         </div>
 
@@ -54,9 +54,9 @@ export function ServiceLensSolutions() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: idx * 0.1 }}
-              className="bg-white/5 border border-white/10 p-8 rounded-2xl hover:border-amber-400/30 transition-all duration-300 flex flex-col gap-5 group"
+              className="bg-white/5 border border-white/10 p-8 rounded-[3px] hover:border-amber-400/30 transition-all duration-300 flex flex-col gap-5 group"
             >
-              <div className="w-11 h-11 rounded-xl border border-white/10 flex items-center justify-center bg-white/5 text-amber-400 group-hover:border-amber-400/30 transition-all duration-200 shrink-0">
+              <div className="w-11 h-11 rounded-[3px] border border-white/10 flex items-center justify-center bg-white/5 text-amber-400 group-hover:border-amber-400/30 transition-all duration-200 shrink-0">
                 <lens.icon className="w-5 h-5 stroke-[1.5]" />
               </div>
               <h3 className="text-sm font-semibold uppercase tracking-[0.12em] text-white">

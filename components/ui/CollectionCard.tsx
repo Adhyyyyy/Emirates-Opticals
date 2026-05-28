@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { m } from "framer-motion";
 import Link from "next/link";
@@ -30,9 +30,9 @@ export function CollectionCard({
       <m.div 
         whileHover={{ y: -8 }}
         transition={{ duration: 0.8, ease: EASE_LUXURY }}
-        className="relative w-full overflow-hidden rounded-[2.5rem] bg-brand-pearl/20 border border-black/5 p-2 transition-all duration-700 hover:border-brand-gold/30 hover:shadow-[0_40px_80px_rgba(0,0,0,0.06)]"
+        className="relative w-full p-2 card-luxury"
       >
-        <div className={`relative w-full ${aspectRatio} overflow-hidden rounded-[2.25rem]`}>
+        <div className={`relative w-full ${aspectRatio} overflow-hidden rounded-[2px]`}>
           {/* Gentle light overlay to prevent image blowing out */}
           <div className="absolute inset-0 bg-black/[0.02] z-10 transition-colors duration-700 group-hover:bg-black/[0.05]" />
           
@@ -45,7 +45,7 @@ export function CollectionCard({
 
           {/* Top Left Floating Frosted Glass Index Indicator */}
           <div className="absolute top-6 left-6 z-20">
-            <div className="bg-white/80 backdrop-blur-md border border-black/5 px-4 py-2 rounded-full shadow-sm flex items-center gap-2">
+            <div className="bg-white/80 backdrop-blur-md border border-black/5 px-4 py-2 rounded-[3px] shadow-sm flex items-center gap-2">
               <span className="text-[10px] font-bold text-brand-gold font-mono tracking-widest">{serial}</span>
               <div className="w-3 h-[1px] bg-brand-gold/30" />
               <span className="text-[8px] font-bold text-brand-charcoal/40 uppercase tracking-[0.2em]">Collection</span>
@@ -79,7 +79,7 @@ export function CollectionCard({
             transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
             className="text-[10px] text-brand-charcoal/40 group-hover:text-brand-gold transition-colors duration-300"
           >
-            →
+            â†’
           </m.span>
         </div>
       </div>

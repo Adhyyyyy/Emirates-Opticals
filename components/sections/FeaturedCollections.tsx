@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import Link from "next/link";
@@ -6,37 +6,34 @@ import Link from "next/link";
 const COLLECTIONS = [
   {
     id: 1,
-    title: "Elevate your sport game",
-    subtitle: "Maui Jim Collection",
-    href: "/collections/maui-jim",
-    image: "https://images.unsplash.com/photo-1577803645773-f96470509666?auto=format&fit=crop&q=80&w=1200"
+    title: "Luxury Frames",
+    subtitle: "Premium Handcrafted Eyewear",
+    href: "/collections/luxury",
+    image: "/featured/1.webp"
   },
   {
     id: 2,
-    title: "Travel in style",
-    subtitle: "Atelier Accessories",
-    href: "/collections/accessories",
-    image: "https://images.unsplash.com/photo-1591076482161-42ce6da69f67?auto=format&fit=crop&q=80&w=1200"
+    title: "Modern Sunglasses",
+    subtitle: "Advanced Lens Technology",
+    href: "/collections/sunglasses",
+    image: "/featured/2.webp"
   },
   {
     id: 3,
-    title: "Discover latest designer frames",
-    subtitle: "Luxury Optical Frames",
-    href: "/collections/optical",
-    image: "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&q=80&w=1200"
+    title: "Everyday Essentials",
+    subtitle: "Versatile Daily Eyewear",
+    href: "/collections/essentials",
+    image: "/featured/3.webp"
   }
 ];
 
 export function FeaturedCollections() {
   return (
-    <section className="bg-[#FAF9F6] overflow-hidden section-padding border-y border-black/5">
-      <div className="section-container">
+    <section className="bg-gradient-to-tr from-[#FAF9F6] to-white overflow-hidden section-padding border-y border-black/5">
+      <div className="w-full">
 
         {/* Section Header */}
         <div className="flex flex-col items-center text-center mb-10 md:mb-16">
-          <span className="meta-editorial mb-4">
-            Curated Architecture
-          </span>
           <h2 className="h2-editorial">
             Featured Collections
           </h2>
@@ -46,9 +43,8 @@ export function FeaturedCollections() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 md:max-h-[620px] w-full">
           
           {/* Left Card: Row Span 2, max height 620px */}
-          <Link 
-            href={COLLECTIONS[0].href}
-            className="md:row-span-2 h-[400px] md:h-full max-h-[620px] rounded-2xl overflow-hidden relative group border border-black/5 block"
+          <div 
+            className="md:row-span-2 h-[400px] md:h-full max-h-[620px] rounded-[3px] overflow-hidden relative group border border-black/5 block"
           >
             <img 
               src={COLLECTIONS[0].image} 
@@ -67,12 +63,11 @@ export function FeaturedCollections() {
                 {COLLECTIONS[0].title}
               </h3>
             </div>
-          </Link>
+          </div>
 
           {/* Right Top Card */}
-          <Link 
-            href={COLLECTIONS[1].href}
-            className="rounded-2xl overflow-hidden relative group h-[290px] md:h-[300px] border border-black/5 block"
+          <div 
+            className="rounded-[3px] overflow-hidden relative group h-[290px] md:h-[300px] border border-black/5 block"
           >
             <img 
               src={COLLECTIONS[1].image} 
@@ -91,12 +86,11 @@ export function FeaturedCollections() {
                 {COLLECTIONS[1].title}
               </h3>
             </div>
-          </Link>
+          </div>
 
           {/* Right Bottom Card */}
-          <Link 
-            href={COLLECTIONS[2].href}
-            className="rounded-2xl overflow-hidden relative group h-[290px] md:h-[300px] border border-black/5 block"
+          <div 
+            className="rounded-[3px] overflow-hidden relative group h-[290px] md:h-[300px] border border-black/5 block"
           >
             <img 
               src={COLLECTIONS[2].image} 
@@ -115,7 +109,7 @@ export function FeaturedCollections() {
                 {COLLECTIONS[2].title}
               </h3>
             </div>
-          </Link>
+          </div>
 
         </div>
 
