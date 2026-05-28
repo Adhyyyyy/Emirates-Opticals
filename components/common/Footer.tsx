@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React from "react";
 import Link from "next/link";
@@ -119,8 +119,8 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-3 group">
                 <Mail className="w-4 h-4 text-neutral-500 group-hover:text-white shrink-0 transition-colors" />
-                <a href="mailto:info@emiratesopticians.com" className="text-sm text-neutral-400 hover:text-white transition-colors font-light">
-                  info@emiratesopticians.com
+                <a href="mailto:info@emiratesoptician.in" className="text-sm text-neutral-400 hover:text-white transition-colors font-light">
+                  info@emiratesoptician.in
                 </a>
               </li>
             </ul>

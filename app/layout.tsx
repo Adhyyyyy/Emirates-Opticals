@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Emirates Opticians | Premium Luxury Eyewear & Eye Testing Kerala',
     description: 'Explore authentic boutique sunglasses, frame styling consultations, and state-of-the-art optical computerized checks at Emirates Opticians across Kerala.',
-    url: 'https://emiratesopticians.com',
+    url: 'https://emiratesoptician.in',
     siteName: 'Emirates Opticians',
     type: "website",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: 'Emirates Opticians Luxury Showroom' }],

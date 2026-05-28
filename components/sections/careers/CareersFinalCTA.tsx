@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React from "react";
 import { m } from "framer-motion";
@@ -64,7 +64,7 @@ export function CareersFinalCTA() {
             Explore Branches
           </Link>
           <a
-            href="mailto:careers@emiratesopticians.com"
+            href="mailto:careers@emiratesoptician.in"
             className="border border-white/20 text-white text-xs uppercase tracking-[0.15em] px-8 py-4 rounded-[3px] hover:border-white hover:bg-white/5 transition-all duration-300 inline-flex items-center justify-center gap-2"
           >
             <Mail className="w-3.5 h-3.5" />

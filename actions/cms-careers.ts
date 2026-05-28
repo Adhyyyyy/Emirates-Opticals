@@ -1,4 +1,4 @@
-﻿"use server";
+"use server";
 
 import { revalidatePath } from "next/cache";
 import { createServerClient } from "@supabase/ssr";
@@ -157,7 +157,7 @@ export async function applyForJob(data: {
         name: data.name,
         email: data.email,
         phone: data.phone,
-        resumeUrl: data.resumeUrl || "https://emiratesopticians.com/resumes/mock-resume.pdf",
+        resumeUrl: data.resumeUrl || "https://emiratesoptician.in/resumes/mock-resume.pdf",
         coverLetter: `Position: ${data.position}\nExperience: ${data.experience}\nLocation: ${data.location}\n\n${data.coverLetter || ""}`,
         branchId: branchId,
         status: "PENDING"
