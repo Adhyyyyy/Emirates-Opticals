@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { ReactNode } from "react";
 import { m, AnimatePresence } from "framer-motion";
@@ -33,6 +33,13 @@ export function PageTransition({ children }: { children: ReactNode }) {
             duration: 0.6,
             ease: EASE_LUXURY
           }
+        }}
+        onAnimationComplete={() => {
+          // Force layout & scroll recalculation immediately after route transition resolves
+          setTimeout(() => {
+            window.dispatchEvent(new Event("scroll"));
+            window.dispatchEvent(new Event("resize"));
+          }, 80);
         }}
         className="w-full relative"
       >

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 /**
  * RevealObserver
@@ -9,6 +10,8 @@ import { useEffect } from "react";
  * CSS in globals.css handles the actual fade-up animation.
  */
 export function RevealObserver() {
+  const pathname = usePathname();
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -34,11 +37,18 @@ export function RevealObserver() {
     const mutationObserver = new MutationObserver(observe);
     mutationObserver.observe(document.body, { childList: true, subtree: true });
 
+    // Manually wake up all browser scroll & resize calculations for new page layout
+    const timer = setTimeout(() => {
+      window.dispatchEvent(new Event("scroll"));
+      window.dispatchEvent(new Event("resize"));
+    }, 120);
+
     return () => {
       observer.disconnect();
       mutationObserver.disconnect();
+      clearTimeout(timer);
     };
-  }, []);
+  }, [pathname]);
 
   return null;
 }
