@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ReactNode } from "react";
+import React, { ReactNode, useEffect } from "react";
 import { m, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { EASE_LUXURY, EASE_EXPO, DURATION_SLOW } from "@/lib/motion";
@@ -11,6 +11,13 @@ import { EASE_LUXURY, EASE_EXPO, DURATION_SLOW } from "@/lib/motion";
  */
 export function PageTransition({ children }: { children: ReactNode }) {
   const pathname = usePathname();
+
+  useEffect(() => {
+    // Force hard reset of scroll position to top on route change
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" as any });
+    document.documentElement.scrollTo({ top: 0, left: 0, behavior: "instant" as any });
+    document.body.scrollTo({ top: 0, left: 0, behavior: "instant" as any });
+  }, [pathname]);
 
   return (
     <AnimatePresence mode="wait" initial={false}>
