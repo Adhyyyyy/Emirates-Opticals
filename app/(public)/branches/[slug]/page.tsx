@@ -20,7 +20,7 @@ const BRANCH_DATA: Record<string, {
     phone: "+91 77364 41211",
     hours: "Monday - Saturday: 10:00 AM - 08:00 PM (Sunday Closed)",
     mapEmbed: "https://maps.google.com/maps?q=10.0159,76.3418&t=&z=15&ie=UTF8&iwloc=&output=embed",
-    metaDesc: "Visit Emirates Opticians in Kakkanad for professional computerized eye testing, authentic premium luxury eyewear, and specialized optician services."
+    metaDesc: "Visit Emirates Optician in Kakkanad for professional computerized eye testing, authentic premium luxury eyewear, and specialized optician services."
   },
   kottayam: {
     name: "Kottayam Branch",
@@ -29,7 +29,7 @@ const BRANCH_DATA: Record<string, {
     phone: "+91 85478 66755",
     hours: "Monday - Saturday: 09:00 AM - 08:00 PM (Sunday Closed)",
     mapEmbed: "https://maps.google.com/maps?q=9.5916,76.5222&t=&z=15&ie=UTF8&iwloc=&output=embed",
-    metaDesc: "Discover high-fidelity international eyewear brands and professional optometric eye examinations at Emirates Opticians MC Road Kottayam."
+    metaDesc: "Discover high-fidelity international eyewear brands and professional optometric eye examinations at Emirates Optician MC Road Kottayam."
   },
   changanassery: {
     name: "Changanassery Branch",
@@ -38,7 +38,7 @@ const BRANCH_DATA: Record<string, {
     phone: "+91 87140 32601",
     hours: "Monday - Saturday: 09:30 AM - 07:30 PM (Sunday Closed)",
     mapEmbed: "https://maps.google.com/maps?q=9.4447,76.5413&t=&z=15&ie=UTF8&iwloc=&output=embed",
-    metaDesc: "Get premium optical diagnostic eye testing and authentic sunglasses collections at Emirates Opticians MC Road Changanassery."
+    metaDesc: "Get premium optical diagnostic eye testing and authentic sunglasses collections at Emirates Optician MC Road Changanassery."
   },
   thiruvalla: {
     name: "Thiruvalla Branch",
@@ -47,7 +47,7 @@ const BRANCH_DATA: Record<string, {
     phone: "+91 87140 32602",
     hours: "Monday - Saturday: 09:30 AM - 07:30 PM (Sunday Closed)",
     mapEmbed: "https://maps.google.com/maps?q=9.3835,76.5740&t=&z=15&ie=UTF8&iwloc=&output=embed",
-    metaDesc: "Experience luxury styling consultations and computerized eye examinations at Emirates Opticians Pushpagiri road Thiruvalla."
+    metaDesc: "Experience luxury styling consultations and computerized eye examinations at Emirates Optician Pushpagiri road Thiruvalla."
   },
   kumbanad: {
     name: "Kumbanad Branch",
@@ -56,7 +56,7 @@ const BRANCH_DATA: Record<string, {
     phone: "+91 87140 32603",
     hours: "Monday - Saturday: 09:30 AM - 07:30 PM (Sunday Closed)",
     mapEmbed: "https://maps.google.com/maps?q=9.3892,76.6577&t=&z=15&ie=UTF8&iwloc=&output=embed",
-    metaDesc: "Find authentic luxury sunglasses and specialized contact lens solutions at Emirates Opticians TK Road Kumbanad branch showroom."
+    metaDesc: "Find authentic luxury sunglasses and specialized contact lens solutions at Emirates Optician TK Road Kumbanad branch showroom."
   },
   kothamangalam: {
     name: "Kothamangalam Branch",
@@ -74,7 +74,7 @@ const BRANCH_DATA: Record<string, {
     phone: "+91 87140 32606",
     hours: "Monday - Saturday: 09:30 AM - 07:30 PM (Sunday Closed)",
     mapEmbed: "https://maps.google.com/maps?q=9.2312,76.6133&t=&z=15&ie=UTF8&iwloc=&output=embed",
-    metaDesc: "Enjoy elite eyewear collections and highly accurate computerized eye vision tests at Emirates Opticians MC Road Pandalam."
+    metaDesc: "Enjoy elite eyewear collections and highly accurate computerized eye vision tests at Emirates Optician MC Road Pandalam."
   },
   ettumanur: {
     name: "Ettumanur Branch",
@@ -101,7 +101,7 @@ const BRANCH_DATA: Record<string, {
     phone: "+91 88899 90533",
     hours: "Monday - Saturday: 10:00 AM - 08:00 PM (Sunday Closed)",
     mapEmbed: "https://maps.google.com/maps?q=9.9576,76.3478&t=&z=15&ie=UTF8&iwloc=&output=embed",
-    metaDesc: "Shop international luxury eyewear brands and receive comprehensive optician eye diagnostics at Emirates Opticians Irumpanam showroom."
+    metaDesc: "Shop international luxury eyewear brands and receive comprehensive optician eye diagnostics at Emirates Optician Irumpanam showroom."
   }
 };
 
@@ -109,8 +109,9 @@ export async function generateStaticParams() {
   return Object.keys(BRANCH_DATA).map((slug) => ({ slug }));
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const branch = BRANCH_DATA[params.slug];
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const resolvedParams = await params;
+  const branch = BRANCH_DATA[resolvedParams.slug];
   if (!branch) return {};
   return {
     title: `Premium Optician in ${branch.name} | Eye Testing & Luxury Eyewear`,
@@ -118,15 +119,16 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default function BranchPage({ params }: { params: { slug: string } }) {
-  const branch = BRANCH_DATA[params.slug];
+export default async function BranchPage({ params }: { params: Promise<{ slug: string }> }) {
+  const resolvedParams = await params;
+  const branch = BRANCH_DATA[resolvedParams.slug];
   if (!branch) notFound();
 
   // Custom Local OpticalStore Schema
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "OpticalStore",
-    "name": `Emirates Opticians - ${branch.name}`,
+    "name": `Emirates Optician - ${branch.name}`,
     "description": branch.metaDesc,
     "address": {
       "@type": "PostalAddress",
@@ -161,7 +163,7 @@ export default function BranchPage({ params }: { params: { slug: string } }) {
           {/* Left Details Panel */}
           <div className="lg:col-span-6 flex flex-col gap-6">
             <h1 className="text-4xl md:text-5xl font-heading font-extralight uppercase tracking-tight text-black leading-tight">
-              Emirates Opticians <br />
+              Emirates Optician <br />
               <span className="text-[#C9A84C] font-normal italic">{branch.name}</span>
             </h1>
             <p className="text-black/60 text-[14px] leading-relaxed max-w-lg">
@@ -214,7 +216,7 @@ export default function BranchPage({ params }: { params: { slug: string } }) {
                 allowFullScreen={true}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title={`Emirates Opticians - ${branch.name} Directions`}
+                title={`Emirates Optician - ${branch.name} Directions`}
               />
             </div>
             

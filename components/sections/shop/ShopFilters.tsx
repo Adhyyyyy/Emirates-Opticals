@@ -38,7 +38,7 @@ const FILTER_GROUPS = [
     type: "list",
     options: [
       "Acuvue", "Alcon", "Bausch & Lomb", "BVLGARI", "Calvin Klein", "Cartier", 
-      "Chanel", "Diesel", "Dolce & Gabbana", "Emirates Opticians", "Gucci", 
+      "Chanel", "Diesel", "Dolce & Gabbana", "Emirates Optician", "Gucci", 
       "Lacoste", "Montblanc", "Oakley", "Police", "Prada", "Ray-Ban", 
       "Tom Ford", "Vogue Eyewear"
     ]

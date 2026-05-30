@@ -43,7 +43,7 @@ export function QuickContactBar() {
             {/* Left: Contact Info */}
             <div className="flex flex-col gap-0.5 select-none">
               <span className="text-[7px] font-bold uppercase tracking-[0.25em] text-[#C9A84C]">
-                Emirates Opticians
+                Emirates Optician
               </span>
               <span className="text-[10px] font-medium text-white/80 tracking-wide uppercase">
                 Direct Assistance
@@ -64,7 +64,7 @@ export function QuickContactBar() {
 
               {/* WhatsApp enquiry */}
               <a
-                href="https://wa.me/919682929968?text=Hi%20Emirates%20Opticians%2C%20I%20would%20like%20to%20chat%20with%20an%20expert%20stylist."
+                href="https://wa.me/919682929968?text=Hi%20Emirates%20Optician%2C%20I%20would%20like%20to%20chat%20with%20an%20expert%20stylist."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-xl bg-black/40 hover:bg-[#C9A84C] border border-white/10 text-white hover:text-white transition-all duration-300 flex items-center justify-center shadow-lg group"

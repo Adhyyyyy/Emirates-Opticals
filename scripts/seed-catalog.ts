@@ -12,7 +12,7 @@ const BRANDS = [
   { name: "Acuvue", slug: "acuvue", description: "World leader in contact lenses by Johnson & Johnson." },
   { name: "Alcon", slug: "alcon", description: "Global leader in eye care and contact lenses." },
   { name: "Bausch & Lomb", slug: "bausch-lomb", description: "Premium vision care product brand." },
-  { name: "Emirates Opticians", slug: "emirates-opticians", description: "Our bespoke house brand for exquisite eyewear care." }
+  { name: "Emirates Optician", slug: "emirates-optician", description: "Our bespoke house brand for exquisite eyewear care." }
 ];
 
 const CATEGORIES = [

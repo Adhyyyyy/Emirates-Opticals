@@ -95,7 +95,7 @@ export default function LoginPage() {
         <div className="flex items-center justify-center mb-6">
           <Image 
             src="/assets/emirates_logo.png" 
-            alt="Emirates Opticians Logo" 
+            alt="Emirates Optician Logo" 
             width={240} 
             height={70} 
             className="h-20 w-auto object-contain"

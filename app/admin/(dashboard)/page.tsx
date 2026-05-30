@@ -74,7 +74,7 @@ export default function DashboardPage() {
           <div className="flex items-center gap-2 mb-2">
             <span className="w-1.5 h-1.5 rounded-full bg-brand-gold" />
             <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-brand-gold">
-              Emirates Opticians Administration
+              Emirates Optician Administration
             </span>
           </div>
           <h1 className="text-3xl font-light font-heading uppercase tracking-tight text-brand-charcoal">

@@ -52,7 +52,7 @@ export function AnnouncementBar({ onDismissToggle }: AnnouncementBarProps) {
   // Exact fallback if no active offers, or dynamic text if offers exist
   const activeText = offers.length > 0 
     ? `[${offers[currentIndex].percentage}] ${offers[currentIndex].title} — ${offers[currentIndex].description}`
-    : "Flex Spending Accepted: Use your FSA/HSA cards on Emirates Opticians.";
+    : "Flex Spending Accepted: Use your FSA/HSA cards on Emirates Optician.";
 
   const ctaText = "EXPLORE SHOWROOMS";
   const ctaLink = "/branches";

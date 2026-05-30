@@ -87,7 +87,7 @@ export function PromotionsShowcase() {
               <span className="italic font-light text-brand-gold">Offers</span>
             </h2>
             <p className="text-sm md:text-[15px] text-neutral-600 leading-relaxed font-light max-w-md">
-              Discover our latest showroom events, seasonal privileges, and special discounts available at Emirates Opticians.
+              Discover our latest showroom events, seasonal privileges, and special discounts available at Emirates Optician.
             </p>
           </m.div>
 

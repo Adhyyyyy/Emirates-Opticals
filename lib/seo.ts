@@ -49,9 +49,9 @@ export function constructMetadata({
       creator: SITE_CONFIG.twitterHandle,
     },
     icons: {
-      icon: "/favicon.ico",
-      shortcut: "/favicon-16x16.png",
-      apple: "/apple-touch-icon.png",
+      icon: "/assets/emirates_logo.png",
+      shortcut: "/assets/emirates_logo.png",
+      apple: "/assets/emirates_logo.png",
     },
     metadataBase: new URL(SITE_CONFIG.url),
     ...(noIndex && {

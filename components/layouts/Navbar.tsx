@@ -57,7 +57,7 @@ export function Navbar() {
           <Link href="/" className="group block">
             <Image 
               src="/assets/emirates_logo.png" 
-              alt="Emirates Opticians" 
+              alt="Emirates Optician" 
               width={180} 
               height={50} 
               className="h-14 md:h-16 lg:h-18 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]" 
@@ -136,7 +136,7 @@ export function Navbar() {
               <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="block">
                 <Image 
                   src="/assets/emirates_logo.png" 
-                  alt="Emirates Opticians" 
+                  alt="Emirates Optician" 
                   width={150} 
                   height={42} 
                   className="h-10 w-auto object-contain" 

@@ -3,7 +3,7 @@ import { BranchGrid } from "@/components/sections/BranchGrid";
 import { HelpChoosingCTA } from "@/components/sections/HelpChoosingCTA";
 
 export const metadata = {
-  title: "Our Branches | Emirates Opticians",
+  title: "Our Branches | Emirates Optician",
   description: "Visit our premium optical destinations across Kerala for authentic luxury eyewear and professional eye care.",
 };
 

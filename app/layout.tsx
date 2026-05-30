@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "../styles/globals.css";
-import { cn } from "@/lib/utils";
 import { PageTransition } from "@/components/motion/PageTransition";
 
 import { SmoothScroll } from "@/components/motion/SmoothScroll";
@@ -13,29 +12,29 @@ const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-headin
 export const metadata: Metadata = {
   metadataBase: new URL('https://emiratesoptician.in'),
   title: {
-    default: 'Emirates Opticians | Authentic Luxury Eyewear & Eye Testing Kerala',
-    template: '%s | Emirates Opticians'
+    default: 'Emirates Optician | Authentic Luxury Eyewear & Eye Testing Kerala',
+    template: '%s | Emirates Optician'
   },
   description: 'Experience authentic luxury eyewear, international boutique sunglasses, and computerized eye testing across our premium Kerala optician showrooms.',
   icons: {
-    icon: "/favicon.svg",
-    apple: "/favicon.svg",
+    icon: "/assets/emirates_logo.png",
+    apple: "/assets/emirates_logo.png",
   },
   alternates: {
     canonical: './',
   },
   openGraph: {
-    title: 'Emirates Opticians | Premium Luxury Eyewear & Eye Testing Kerala',
-    description: 'Explore authentic boutique sunglasses, frame styling consultations, and state-of-the-art optical computerized checks at Emirates Opticians across Kerala.',
+    title: 'Emirates Optician | Premium Luxury Eyewear & Eye Testing Kerala',
+    description: 'Explore authentic boutique sunglasses, frame styling consultations, and state-of-the-art optical computerized checks at Emirates Optician across Kerala.',
     url: 'https://emiratesoptician.in',
-    siteName: 'Emirates Opticians',
+    siteName: 'Emirates Optician',
     type: "website",
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: 'Emirates Opticians Luxury Showroom' }],
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: 'Emirates Optician Luxury Showroom' }],
     locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Emirates Opticians | Premium Luxury Eyewear Kerala',
+    title: 'Emirates Optician | Premium Luxury Eyewear Kerala',
     description: 'Authentic international eyewear brands and professional optometry checks across multiple showrooms.',
     images: ['/og-image.jpg'],
   },

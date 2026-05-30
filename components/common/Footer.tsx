@@ -39,7 +39,7 @@ export function Footer() {
             <Link href="/" className="group mb-6 block">
               <Image 
                 src="/assets/emirates_logo.png" 
-                alt="Emirates Opticians" 
+                alt="Emirates Optician" 
                 width={180} 
                 height={50} 
                 className="h-9 lg:h-11 w-auto object-contain brightness-0 invert transition-transform duration-300 group-hover:scale-[1.02]" 
@@ -151,7 +151,7 @@ export function Footer() {
         {/* Bottom Bar segment */}
         <div className="flex flex-col md:flex-row justify-between items-center pt-8 text-xs text-neutral-500 gap-4">
           <span className="font-light">
-            &copy; {currentYear} Emirates Opticians. All rights reserved.
+            &copy; {currentYear} Emirates Optician. All rights reserved.
           </span>
 
           <div className="flex items-center gap-6">
