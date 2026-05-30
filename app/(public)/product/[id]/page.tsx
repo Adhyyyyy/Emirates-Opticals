@@ -120,14 +120,7 @@ export default async function ProductDetailsPage({ params }: ProductDetailsPageP
 
   return (
     <div className="flex flex-col w-full bg-white">
-      {/* 1. Cinematic Hero Gallery */}
       <ProductHeroGallery product={product} />
-
-      {/* 2. Product Specifications */}
-      <ProductSpecs product={product} />
-
-      {/* 3. Branch Availability & Stock */}
-      <ProductBranchStock product={product} />
     </div>
   );
 }

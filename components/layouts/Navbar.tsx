@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { m, AnimatePresence } from "framer-motion";
 import { Calendar, Menu, X, ArrowRight, Search, Heart, User, Home, Glasses, Sparkles, Eye, MapPin, Info, Briefcase, Mail } from "lucide-react";
@@ -53,13 +54,15 @@ export function Navbar() {
       >
         {/* Symmetrical Left: Logo Branding */}
         <div className="flex items-center justify-start shrink-0">
-          <Link href="/" className="flex flex-col items-start leading-none gap-0.5 group">
-            <span className="font-heading text-[20px] lg:text-[22px] font-bold tracking-tight text-black uppercase transition-colors group-hover:text-[#C9A84C]">
-              EMIRATES
-            </span>
-            <span className="font-sans text-[9px] lg:text-[11px] uppercase tracking-[0.25em] text-black/80 group-hover:text-black transition-colors">
-              OPTICIANS
-            </span>
+          <Link href="/" className="group block">
+            <Image 
+              src="/assets/emirates_logo.png" 
+              alt="Emirates Opticians" 
+              width={180} 
+              height={50} 
+              className="h-14 md:h-16 lg:h-18 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]" 
+              priority
+            />
           </Link>
         </div>
 
@@ -87,14 +90,21 @@ export function Navbar() {
         </ul>
 
         {/* Symmetrical Right: Action tools */}
-        <div className="flex items-center justify-end gap-5 lg:gap-6 shrink-0">
+        <div className="flex items-center justify-end gap-4 lg:gap-5 shrink-0">
           
-    
+          {/* Sleek Staff Login Link */}
+          <Link 
+            href="/login"
+            className="hidden md:inline-flex items-center gap-1.5 text-[10px] lg:text-[11.5px] font-sans font-medium uppercase tracking-[0.2em] text-black/75 hover:text-[#C9A84C] transition-colors duration-300 mr-1 lg:mr-2"
+          >
+            <User className="w-3.5 h-3.5 stroke-[1.5]" />
+            <span>Login</span>
+          </Link>
 
-          {/* Responsive Luxury "BOOK EYE TEST" CTA */}
+          {/* Optimized Responsive Luxury "BOOK EYE TEST" CTA */}
           <Link 
             href="/book-eye-test"
-            className="inline-flex items-center justify-center bg-[#C9A84C] text-[#0A0A0A] hover:bg-[#B8952E] hover:text-white px-4 md:px-6 h-[36px] lg:h-[48px] text-[10px] lg:text-[13px] font-bold uppercase tracking-[0.1em] transition-all duration-300 rounded-[3px] whitespace-nowrap shadow-md lg:shadow-lg"
+            className="inline-flex items-center justify-center bg-[#C9A84C] text-[#0A0A0A] hover:bg-[#B8952E] hover:text-white px-4 md:px-5 h-[34px] lg:h-[40px] text-[10px] lg:text-[11.5px] font-bold uppercase tracking-[0.12em] transition-all duration-300 rounded-[3px] whitespace-nowrap shadow-sm hover:shadow-md"
           >
             <span className="lg:hidden">Book</span>
             <span className="hidden lg:inline">Book Eye Test</span>
@@ -123,13 +133,15 @@ export function Navbar() {
           >
             {/* Header branding in Drawer */}
             <div className="flex justify-between items-center mb-8">
-              <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="flex flex-col items-start leading-none gap-0.5">
-                <span className="font-heading text-[20px] font-bold tracking-tight text-black uppercase">
-                  EMIRATES
-                </span>
-                <span className="font-sans text-[9px] uppercase tracking-[0.25em] text-black/80">
-                  OPTICIANS
-                </span>
+              <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="block">
+                <Image 
+                  src="/assets/emirates_logo.png" 
+                  alt="Emirates Opticians" 
+                  width={150} 
+                  height={42} 
+                  className="h-10 w-auto object-contain" 
+                  priority
+                />
               </Link>
               <button 
                 onClick={() => setIsMobileMenuOpen(false)} 
@@ -181,14 +193,22 @@ export function Navbar() {
             </nav>
 
             {/* Mobile Actions bottom block */}
-            <div className="mt-12 pt-8 border-t border-black/10 flex flex-col gap-6">
+            <div className="mt-12 pt-8 border-t border-black/10 flex flex-col gap-3">
               <Link 
                 href="/book-eye-test" 
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="w-full h-[52px] bg-[#C9A84C] text-[#0A0A0A] hover:bg-[#B8952E] hover:text-white uppercase tracking-widest text-xs font-bold flex items-center justify-center gap-2 rounded-[3px] transition-colors"
+                className="w-full h-[46px] bg-[#C9A84C] text-[#0A0A0A] hover:bg-[#B8952E] hover:text-white uppercase tracking-widest text-xs font-bold flex items-center justify-center gap-2 rounded-[3px] transition-colors"
               >
                 <Calendar className="w-4 h-4" />
                 Book Eye Test
+              </Link>
+              <Link 
+                href="/login" 
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="w-full h-[46px] border border-black/10 hover:border-[#C9A84C] text-black hover:text-[#C9A84C] uppercase tracking-widest text-xs font-semibold flex items-center justify-center gap-2 rounded-[3px] transition-colors bg-black/[0.02]"
+              >
+                <User className="w-4 h-4" />
+                Staff Login
               </Link>
             </div>
           </m.div>

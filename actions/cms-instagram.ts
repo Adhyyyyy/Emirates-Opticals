@@ -1,4 +1,4 @@
-﻿"use server";
+"use server";
 
 import { revalidatePath } from "next/cache";
 import fs from "fs";
@@ -53,7 +53,7 @@ function ensureCacheExists() {
   }
   if (!fs.existsSync(CACHE_FILE_PATH)) {
     const defaultData = {
-      handle: "@emirates__optician",
+      handle: "@emiratesoptician_opticals",
       status: "ACTIVE",
       lastSync: new Date().toISOString(),
       posts: INITIAL_FALLBACK_POSTS
@@ -85,7 +85,7 @@ export async function getInstagramFeed() {
     console.error("Error reading social feed cache:", error);
     // Graceful error handling: Return immediate fallback data rather than crashing
     return {
-      handle: "@emirates__optician",
+      handle: "@emiratesoptician_opticals",
       status: "STALE",
       lastSync: new Date().toISOString(),
       posts: INITIAL_FALLBACK_POSTS
@@ -109,7 +109,7 @@ export async function syncInstagramFeed() {
     const randomizedPosts = [...INITIAL_FALLBACK_POSTS].sort(() => Math.random() - 0.5);
 
     const updatedData = {
-      handle: "@emirates__optician",
+      handle: "@emiratesoptician_opticals",
       status: "ACTIVE",
       lastSync: new Date().toISOString(),
       posts: randomizedPosts

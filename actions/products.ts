@@ -65,6 +65,8 @@ export async function createProduct(data: any) {
     shortDescription, 
     isBestseller, 
     status,
+    initialStock = 0,
+    selectedBranches = [],
     ...productData 
   } = validated.data;
 
@@ -73,7 +75,16 @@ export async function createProduct(data: any) {
   try {
     // 1. Fetch all active branches in the registry
     const branches = await prisma.branch.findMany({
-      where: { deletedAt: null }
+      where: { 
+        deletedAt: null,
+        slug: {
+          in: [
+            "changanassery", "thiruvalla", "kumbanad", 
+            "kothamangalam", "pandalam", "kakkanad", 
+            "kottayam", "ettumanur", "angamaly", "irumpanam"
+          ]
+        }
+      }
     });
 
     const product = await prisma.product.create({
@@ -88,19 +99,23 @@ export async function createProduct(data: any) {
         },
         // Auto-provision branch inventory:
         // - If Branch Admin: Provision only for their branch.
-        // - If Super Admin: Provision identical initial stock across all active boutiques!
+        // - If Super Admin: Provision initial stock for only selected branches, setting others to 0.
         inventory: {
           create: branchId 
             ? [{
                 branchId: branchId,
-                quantity: 0,
-                status: "IN_STOCK",
+                quantity: initialStock,
+                status: initialStock > 0 ? "IN_STOCK" : "OUT_OF_STOCK",
               }]
-            : branches.map(b => ({
-                branchId: b.id,
-                quantity: 0,
-                status: "IN_STOCK",
-              }))
+            : branches.map(b => {
+                const isSelected = selectedBranches.length === 0 || selectedBranches.includes(b.id);
+                const qty = isSelected ? initialStock : 0;
+                return {
+                  branchId: b.id,
+                  quantity: qty,
+                  status: qty > 0 ? "IN_STOCK" : "OUT_OF_STOCK",
+                };
+              })
         }
       },
     });

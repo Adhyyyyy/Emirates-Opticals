@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useTransition } from "react";
 import { createJob, deleteJob, toggleJobStatus } from "@/actions/cms-careers";
@@ -34,9 +34,10 @@ interface Job {
 interface JobListProps {
   initialJobs: Job[];
   branches: any[];
+  currentAdminBranchId?: string | null;
 }
 
-export function JobList({ initialJobs, branches }: JobListProps) {
+export function JobList({ initialJobs, branches, currentAdminBranchId }: JobListProps) {
   const [jobs, setJobs] = useState<Job[]>(initialJobs);
   const [isPosting, setIsPosting] = useState(false);
   const [activeFilter, setActiveFilter] = useState<"all" | "open" | "closed">("all");
@@ -46,7 +47,7 @@ export function JobList({ initialJobs, branches }: JobListProps) {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [reqsText, setReqsText] = useState("");
-  const [branchId, setBranchId] = useState("Global");
+  const [branchId, setBranchId] = useState(currentAdminBranchId || "Global");
   const [googleFormUrl, setGoogleFormUrl] = useState("");
   const [expiryDate, setExpiryDate] = useState("");
   
@@ -84,7 +85,7 @@ export function JobList({ initialJobs, branches }: JobListProps) {
         setTitle("");
         setDesc("");
         setReqsText("");
-        setBranchId("Global");
+        setBranchId(currentAdminBranchId || "Global");
         setGoogleFormUrl("");
         setExpiryDate("");
         setIsPosting(false);
@@ -215,16 +216,23 @@ export function JobList({ initialJobs, branches }: JobListProps) {
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-1.5">
                       <label className="text-[9px] uppercase tracking-widest font-bold text-brand-charcoal/40 block">Target Boutique Node</label>
-                      <select
-                        value={branchId}
-                        onChange={(e) => setBranchId(e.target.value)}
-                        className="w-full bg-brand-pearl/20 border-none p-3.5 text-xs focus:ring-1 focus:ring-brand-gold/20 rounded-xl outline-none"
-                      >
-                        <option value="Global">Global (All branches)</option>
-                        {branches.map(br => (
-                          <option key={br.id} value={br.id}>{br.name}</option>
-                        ))}
-                      </select>
+                      {currentAdminBranchId ? (
+                        <div className="bg-brand-pearl/40 p-3.5 rounded-xl text-xs font-bold text-brand-charcoal flex items-center gap-2 border border-black/5">
+                          <MapPin className="w-4 h-4 text-brand-gold shrink-0" />
+                          <span>Scoped to Boutique</span>
+                        </div>
+                      ) : (
+                        <select
+                          value={branchId}
+                          onChange={(e) => setBranchId(e.target.value)}
+                          className="w-full bg-brand-pearl/20 border-none p-3.5 text-xs focus:ring-1 focus:ring-brand-gold/20 rounded-xl outline-none"
+                        >
+                          <option value="Global">Global (All branches)</option>
+                          {branches.map(br => (
+                            <option key={br.id} value={br.id}>{br.name}</option>
+                          ))}
+                        </select>
+                      )}
                     </div>
 
                     <div className="space-y-1.5">

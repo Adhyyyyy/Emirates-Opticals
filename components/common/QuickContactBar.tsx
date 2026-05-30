@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useEffect } from "react";
 import { m, AnimatePresence } from "framer-motion";
@@ -94,9 +94,10 @@ export function QuickContactBar() {
             {/* Dismiss trigger */}
             <button
               onClick={() => setIsDismissed(true)}
-              className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-black/50 border border-white/10 flex items-center justify-center text-white/40 hover:text-white transition-colors"
+              className="absolute top-2 right-2 w-7 h-7 rounded-full bg-black/80 border border-white/20 hover:border-[#C9A84C] flex items-center justify-center text-white/50 hover:text-white transition-all cursor-pointer shadow-lg"
+              title="Close"
             >
-              <X className="w-2.5 h-2.5" />
+              <X className="w-3.5 h-3.5" />
             </button>
 
           </div>

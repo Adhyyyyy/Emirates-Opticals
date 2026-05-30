@@ -10,8 +10,8 @@ declare global {
 const pool = global.pgPool || new pg.Pool({ 
   connectionString: process.env.DATABASE_URL,
   max: 5, // Keep connection footprint small in development
-  idleTimeoutMillis: 5000, // Prune idle sockets quickly (prevents stale Neon/Supabase proxy connections)
-  connectionTimeoutMillis: 5000, // Recover fast if server is sleeping
+  idleTimeoutMillis: 10000, // Prune idle sockets (prevents stale Neon/Supabase proxy connections)
+  connectionTimeoutMillis: 30000, // Allow up to 30s for serverless databases to wake from sleep
 });
 
 pool.on("error", (err) => {
@@ -35,5 +35,5 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 export default prisma;
-export * from "../prisma/generated-client";
+
 

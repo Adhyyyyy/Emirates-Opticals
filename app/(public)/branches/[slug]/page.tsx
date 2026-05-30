@@ -27,7 +27,7 @@ const BRANCH_DATA: Record<string, {
     landmark: "Opposite Joseph Antony's Petrol Pump, MC Road",
     address: "Emirates Optician, M D Commercial Centre, Kottayam - Kumily Rd, Opposite Joseph Antony's Petrol Pump, Kottayam, Kerala 686001, India",
     phone: "+91 85478 66755",
-    hours: "Monday - Saturday: 09:30 AM - 08:00 PM (Sunday Closed)",
+    hours: "Monday - Saturday: 09:00 AM - 08:00 PM (Sunday Closed)",
     mapEmbed: "https://maps.google.com/maps?q=9.5916,76.5222&t=&z=15&ie=UTF8&iwloc=&output=embed",
     metaDesc: "Discover high-fidelity international eyewear brands and professional optometric eye examinations at Emirates Opticians MC Road Kottayam."
   },
@@ -45,7 +45,7 @@ const BRANCH_DATA: Record<string, {
     landmark: "Near Thirumoolapuram, TK Road",
     address: "Emirates Optician, Karappunnasseril Arcade, Thirumoolapuram, Thiruvalla, Kerala 689115, India",
     phone: "+91 87140 32602",
-    hours: "Monday - Saturday: 10:00 AM - 07:00 PM (Sunday Closed)",
+    hours: "Monday - Saturday: 09:30 AM - 07:30 PM (Sunday Closed)",
     mapEmbed: "https://maps.google.com/maps?q=9.3835,76.5740&t=&z=15&ie=UTF8&iwloc=&output=embed",
     metaDesc: "Experience luxury styling consultations and computerized eye examinations at Emirates Opticians Pushpagiri road Thiruvalla."
   },
@@ -54,7 +54,7 @@ const BRANCH_DATA: Record<string, {
     landmark: "Near Bethel Complex, Kumbanad",
     address: "Emirates Optician, Bethel Complex, Kumbanad, Kerala 689547, India",
     phone: "+91 87140 32603",
-    hours: "Monday - Saturday: 09:30 AM - 07:00 PM (Sunday Closed)",
+    hours: "Monday - Saturday: 09:30 AM - 07:30 PM (Sunday Closed)",
     mapEmbed: "https://maps.google.com/maps?q=9.3892,76.6577&t=&z=15&ie=UTF8&iwloc=&output=embed",
     metaDesc: "Find authentic luxury sunglasses and specialized contact lens solutions at Emirates Opticians TK Road Kumbanad branch showroom."
   },
@@ -72,7 +72,7 @@ const BRANCH_DATA: Record<string, {
     landmark: "Near Thonallor Junction, MC Road",
     address: "Emirates Optician, Karandiyil Building, IV/558-2, Thonallor, Pandalam, Kerala 689501, India",
     phone: "+91 87140 32606",
-    hours: "Monday - Saturday: 10:00 AM - 07:30 PM (Sunday Closed)",
+    hours: "Monday - Saturday: 09:30 AM - 07:30 PM (Sunday Closed)",
     mapEmbed: "https://maps.google.com/maps?q=9.2312,76.6133&t=&z=15&ie=UTF8&iwloc=&output=embed",
     metaDesc: "Enjoy elite eyewear collections and highly accurate computerized eye vision tests at Emirates Opticians MC Road Pandalam."
   },
@@ -99,7 +99,7 @@ const BRANCH_DATA: Record<string, {
     landmark: "Near MM Arcade, Seaport - Airport Rd",
     address: "Emirates Optician, MM Arcade, Seaport - Airport Rd, Irumpanam, Thrippunithura, Kochi, Ernakulam, Kerala 682309, India",
     phone: "+91 88899 90533",
-    hours: "Monday - Saturday: 10:00 AM - 09:00 PM (Sunday Closed)",
+    hours: "Monday - Saturday: 10:00 AM - 08:00 PM (Sunday Closed)",
     mapEmbed: "https://maps.google.com/maps?q=9.9576,76.3478&t=&z=15&ie=UTF8&iwloc=&output=embed",
     metaDesc: "Shop international luxury eyewear brands and receive comprehensive optician eye diagnostics at Emirates Opticians Irumpanam showroom."
   }

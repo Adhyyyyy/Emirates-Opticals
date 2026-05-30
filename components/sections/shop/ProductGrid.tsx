@@ -134,6 +134,55 @@ export function ProductGrid({ products }: ProductGridProps) {
         if (!materialFilters.includes(product.frameMaterial)) return false;
       }
 
+      // 6b. Contact Lens Usage Frequency Match
+      const usageFilters = activeFilters["usage_frequency"];
+      if (usageFilters && usageFilters.length > 0) {
+        if (!usageFilters.includes(product.style || "")) return false;
+      }
+
+      // 6c. Contact Lens Water Content Match
+      const waterFilters = activeFilters["water_content"];
+      if (waterFilters && waterFilters.length > 0) {
+        const hasMatchingWater = waterFilters.some(wf => 
+          (product.frameWeightCategory || "").includes(wf.replace("%", ""))
+        );
+        if (!hasMatchingWater) return false;
+      }
+
+      // 6d. Contact Lens Base Curve Match
+      const curveFilters = activeFilters["base_curve"];
+      if (curveFilters && curveFilters.length > 0) {
+        const hasMatchingCurve = curveFilters.some(cf => 
+          (product.size || "").includes(cf.replace("mm", "").trim())
+        );
+        if (!hasMatchingCurve) return false;
+      }
+
+      // 6e. Precision Lens Design Match
+      const designFilters = activeFilters["lens_design"];
+      if (designFilters && designFilters.length > 0) {
+        if (!designFilters.includes(product.lensType || "")) return false;
+      }
+
+      // 6f. Precision Lens Material Index Match
+      const indexFilters = activeFilters["material_index"];
+      if (indexFilters && indexFilters.length > 0) {
+        const hasMatchingIndex = indexFilters.some(idx => {
+          const indexValue = idx.match(/\d\.\d+/)?.[0];
+          return indexValue && (product.frameMaterial || "").includes(indexValue);
+        });
+        if (!hasMatchingIndex) return false;
+      }
+
+      // 6g. Volume Capacity Match
+      const volumeFilters = activeFilters["volume_capacity"];
+      if (volumeFilters && volumeFilters.length > 0) {
+        const hasMatchingVolume = volumeFilters.some(vf => 
+          (product.size || "").includes(vf.replace("ml", "").trim())
+        );
+        if (!hasMatchingVolume) return false;
+      }
+
       // 7. Availability / Collections Match
       const availabilityFilters = activeFilters["availability"];
       if (availabilityFilters && availabilityFilters.length > 0) {

@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, Filter, X, SlidersHorizontal, Check, Sparkles, HelpCircle } from "lucide-react";
+import { ChevronDown, Filter, X, SlidersHorizontal, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
@@ -29,30 +29,71 @@ const FILTER_GROUPS = [
     ]
   },
   {
-    title: "Brand",
-    type: "list",
-    options: ["Prada", "Gucci", "Cartier", "Ray-Ban", "Tom Ford", "Oakley", "Carrera", "Montblanc", "Dolce & Gabbana", "BVLGARI", "Police", "Lacoste", "Calvin Klein", "Diesel", "Maui Jim", "Vogue Eyewear"]
-  },
-  {
     title: "Category",
     type: "list",
-    options: ["Optical Frames", "Sunglasses", "Lens Solutions", "Luxury Collections", "New Arrivals"]
+    options: ["Optical Frames", "Sunglasses", "Contact Lenses", "Lens Solutions", "Luxury Collections", "New Arrivals"]
   },
-
+  {
+    title: "Brand",
+    type: "list",
+    options: [
+      "Acuvue", "Alcon", "Bausch & Lomb", "BVLGARI", "Calvin Klein", "Cartier", 
+      "Chanel", "Diesel", "Dolce & Gabbana", "Emirates Opticians", "Gucci", 
+      "Lacoste", "Montblanc", "Oakley", "Police", "Prada", "Ray-Ban", 
+      "Tom Ford", "Vogue Eyewear"
+    ]
+  },
+  // Eyewear Specific Filters
   {
     title: "Frame Shape",
     type: "list",
-    options: ["Aviator", "Wayfarer", "Rectangular", "Square", "Round", "Cat Eye", "Oval"]
+    scope: ["Frames"],
+    options: ["Aviator", "Wayfarer", "Rectangular", "Square", "Round", "Cat Eye", "Oval", "Geometric"]
   },
   {
     title: "Frame Material",
     type: "list",
-    options: ["Acetate", "Metal", "Titanium", "Gold Plated", "O-Matter"]
+    scope: ["Frames"],
+    options: ["Acetate", "Metal", "Titanium", "Gold Plated", "O-Matter", "Carbon Fiber"]
+  },
+  // Contact Lenses Specific Filters
+  {
+    title: "Usage Frequency",
+    type: "list",
+    scope: ["ContactLenses"],
+    options: ["Daily Disposable", "Weekly Disposable", "Monthly Disposable", "Yearly Disposable"]
   },
   {
-    title: "Availability",
+    title: "Water Content",
     type: "list",
-    options: ["In Stock", "New Arrivals", "Best Sellers"]
+    scope: ["ContactLenses"],
+    options: ["38%", "48%", "55%", "68%"]
+  },
+  {
+    title: "Base Curve",
+    type: "list",
+    scope: ["ContactLenses"],
+    options: ["8.4mm", "8.5mm", "8.6mm", "8.7mm", "8.8mm"]
+  },
+  // Precision Lenses Specific Filters
+  {
+    title: "Lens Design",
+    type: "list",
+    scope: ["PrecisionLenses"],
+    options: ["Single Vision", "Progressive", "Bifocal", "Blue-Cut Protective"]
+  },
+  {
+    title: "Material Index",
+    type: "list",
+    scope: ["PrecisionLenses"],
+    options: ["1.50 Standard", "1.56 Mid-Index", "1.61 High-Index", "1.67 Ultra-High", "1.74 Thinnest"]
+  },
+  // Solutions Specific Filters
+  {
+    title: "Volume Capacity",
+    type: "list",
+    scope: ["Solutions"],
+    options: ["60ml", "120ml", "240ml", "360ml"]
   },
   {
     title: "Branches",
@@ -73,21 +114,70 @@ const FILTER_GROUPS = [
 ];
 
 export function ShopFilters() {
-  const [openGroups, setOpenGroups] = useState<string[]>(["Collection Type", "Gender", "Price Range", "Category"]);
+  const [openGroups, setOpenGroups] = useState<string[]>([
+    "Collection Type", 
+    "Gender", 
+    "Price Range", 
+    "Category",
+    "Frame Shape",
+    "Usage Frequency",
+    "Lens Design"
+  ]);
   const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
+  const [expandedLists, setExpandedLists] = useState<string[]>([]);
+
+  const toggleListExpansion = (title: string) => {
+    setExpandedLists(prev =>
+      prev.includes(title) ? prev.filter(t => t !== title) : [...prev, title]
+    );
+  };
 
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
   // Active filters derived from URL
-  const activeFilters = React.useMemo(() => {
+  const activeFilters = useMemo(() => {
     const filters: Record<string, string[]> = {};
     searchParams.forEach((value, key) => {
       filters[key] = value.split(";");
     });
     return filters;
   }, [searchParams]);
+
+  const activeCategory = activeFilters.category?.[0];
+
+  // Dynamically filter which specification panels are visible based on active category
+  const visibleFilterGroups = useMemo(() => {
+    return FILTER_GROUPS.filter(group => {
+      if (!group.scope) return true; // Global filter always visible
+
+      if (!activeCategory) {
+        // Default to frame shape filters if no category is picked (default view)
+        return group.scope.includes("Frames");
+      }
+
+      if (activeCategory === "Contact Lenses") {
+        return group.scope.includes("ContactLenses");
+      }
+      if (activeCategory === "Lens Solutions") {
+        return group.scope.includes("Solutions");
+      }
+      if (activeCategory === "Precision Lenses") {
+        return group.scope.includes("PrecisionLenses");
+      }
+      if (
+        activeCategory === "Optical Frames" || 
+        activeCategory === "Sunglasses" || 
+        activeCategory === "Luxury Collections" || 
+        activeCategory === "New Arrivals"
+      ) {
+        return group.scope.includes("Frames");
+      }
+
+      return false;
+    });
+  }, [activeCategory]);
 
   const toggleGroup = (title: string) => {
     setOpenGroups(prev => 
@@ -122,7 +212,18 @@ export function ShopFilters() {
 
   const FilterContent = () => (
     <div className="space-y-8">
-      {FILTER_GROUPS.map((group) => {
+      {/* Category Scope Ribbon Badge */}
+      {activeCategory && (
+        <div className="bg-brand-pearl/30 border border-brand-gold/15 p-4 rounded-xl flex items-center gap-3 mb-6">
+          <span className="w-2 h-2 rounded-full bg-brand-gold animate-pulse" />
+          <div className="flex-1">
+            <p className="text-[8px] font-bold text-brand-gold uppercase tracking-[0.25em]">Filter Scope</p>
+            <p className="text-[10px] font-bold text-brand-charcoal uppercase tracking-widest mt-0.5">{activeCategory} Specifications</p>
+          </div>
+        </div>
+      )}
+
+      {visibleFilterGroups.map((group) => {
         const key = group.title.toLowerCase().replace(/\s+/g, "_");
         const activeCount = (activeFilters[key] || []).length;
         const isOpen = openGroups.includes(group.title);
@@ -257,38 +358,60 @@ export function ShopFilters() {
                   )}
 
                   {/* Standard search lists */}
-                  {group.type === "list" && (
-                    <div className="space-y-2.5 max-h-56 overflow-y-auto custom-scrollbar pr-2">
-                      {group.options.map((option) => {
-                        const isChecked = (activeFilters[key] || []).includes(option);
+                  {(group.type === "list" || !group.type) && (
+                    <div className="space-y-3">
+                      {(() => {
+                        const isExpanded = expandedLists.includes(group.title);
+                        const hasMore = group.options.length > 5;
+                        const visibleOptions = isExpanded ? group.options : group.options.slice(0, 5);
+
                         return (
-                          <div
-                            key={option}
-                            onClick={() => toggleFilter(group.title, option)}
-                            className="flex items-center justify-between cursor-pointer group/opt py-1.5 px-2.5 rounded hover:bg-brand-pearl/20 transition-all duration-300"
-                          >
-                            <div className="flex items-center gap-3">
-                              <div className="relative w-3.5 h-3.5 border border-black/10 rounded-full flex items-center justify-center transition-colors group-hover/opt:border-brand-gold">
-                                <div className={cn(
-                                  "w-1.5 h-1.5 rounded-full bg-brand-gold transition-transform duration-300",
-                                  isChecked ? "scale-100" : "scale-0 group-hover/opt:scale-50"
-                                )} />
-                              </div>
-                              <span className={cn(
-                                "text-[10px] uppercase tracking-wider transition-colors duration-300",
-                                isChecked ? "text-brand-charcoal font-bold" : "text-brand-charcoal/50 group-hover/opt:text-brand-charcoal"
-                              )}>
-                                {option}
-                              </span>
+                          <>
+                            <div className="space-y-2">
+                              {visibleOptions.map((option) => {
+                                const isChecked = (activeFilters[key] || []).includes(option);
+                                return (
+                                  <div
+                                    key={option}
+                                    onClick={() => toggleFilter(group.title, option)}
+                                    className="flex items-center justify-between cursor-pointer group/opt py-2 px-3 rounded-[3px] border border-transparent hover:border-black/[0.04] hover:bg-brand-pearl/10 transition-all duration-300 select-none"
+                                  >
+                                    <div className="flex items-center gap-3">
+                                      <div className="relative w-3.5 h-3.5 border border-black/10 rounded-full flex items-center justify-center transition-colors group-hover/opt:border-brand-gold">
+                                        <div className={cn(
+                                          "w-1.5 h-1.5 rounded-full bg-brand-gold transition-transform duration-300",
+                                          isChecked ? "scale-100" : "scale-0 group-hover/opt:scale-50"
+                                        )} />
+                                      </div>
+                                      <span className={cn(
+                                        "text-[10px] uppercase tracking-wider transition-colors duration-300",
+                                        isChecked ? "text-brand-charcoal font-bold" : "text-brand-charcoal/50 group-hover/opt:text-brand-charcoal"
+                                      )}>
+                                        {option}
+                                      </span>
+                                    </div>
+                                    {isChecked && (
+                                      <span className="text-[7px] font-bold text-brand-gold uppercase tracking-[0.25em] bg-brand-gold/5 px-2 py-0.5 rounded-[2px]">
+                                        Active
+                                      </span>
+                                    )}
+                                  </div>
+                                );
+                              })}
                             </div>
-                            {isChecked && (
-                              <span className="text-[7px] font-bold text-brand-gold uppercase tracking-[0.25em] bg-brand-gold/5 px-2 py-0.5 rounded-[2px]">
-                                Active
-                              </span>
+
+                            {hasMore && (
+                              <button
+                                type="button"
+                                onClick={() => toggleListExpansion(group.title)}
+                                className="mt-2 text-[9px] font-bold uppercase tracking-widest text-brand-gold hover:text-brand-charcoal transition-colors duration-300 flex items-center gap-1.5 py-2.5 px-3 bg-brand-gold/[0.04] hover:bg-brand-gold/[0.08] rounded-[3px] w-full justify-center border border-brand-gold/10"
+                              >
+                                <span>{isExpanded ? "− Show Less" : `+ Show More (${group.options.length - 5})`}</span>
+                              </button>
                             )}
-                          </div>
+                          </>
                         );
-                      })}
+                      })()}
                     </div>
                   )}
                 </motion.div>

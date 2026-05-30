@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { Product, BranchStock } from "@/types/shop";
 import { getWhatsAppUrl } from "@/lib/shop/whatsapp";
-import { MessageCircle, Calendar, Phone, Heart, Share2, MapPin, ShieldCheck, ChevronLeft, X, ArrowLeft } from "lucide-react";
+import { MessageCircle, Calendar, Phone, Share2, MapPin, ShieldCheck, ChevronRight, X, ArrowLeft, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface ProductHeroGalleryProps {
@@ -32,231 +32,235 @@ export function ProductHeroGallery({ product }: ProductHeroGalleryProps) {
     setShowBranchSelector(false);
   };
 
+  // Group specs beautifully for clean, typographic presentation
+  const specs = [
+    { label: "Collection", value: product.collectionType || "Designer Brands" },
+    { label: "Frame Material", value: product.frameMaterial || "Premium Cellulose Acetate" },
+    { label: "Lens Type", value: product.lensType || "Precision Demo Lens" },
+    { label: "Silhouette Shape", value: product.frameShape || "Standard Geometric" },
+    { label: "Gender Profile", value: product.gender || "Unisex" },
+    { label: "Color Palette", value: product.color || "Polished Classic" },
+    { label: "Style Direction", value: product.style || "Modern Editorial" },
+    ...(product.craftsmanshipDetails ? [{ label: "Craftsmanship", value: product.craftsmanshipDetails }] : []),
+    ...(product.recommendedUsage ? [{ label: "Recommendation", value: product.recommendedUsage }] : []),
+  ];
+
   return (
     <>
-      <section className="w-full bg-white pt-36 lg:pt-40 pb-20 overflow-hidden">
-        <div className="section-container">
-          {/* Breadcrumb */}
-          <div className="flex items-center gap-3 mb-12">
+      <section className="w-full bg-white pt-28 md:pt-32 pb-24 overflow-hidden">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+          {/* Elegant Breadcrumb */}
+          <div className="flex items-center gap-2 mb-8 md:mb-12">
             <Link
               href="/shop"
-              className="flex items-center gap-2 text-[9px] font-bold uppercase tracking-[0.25em] text-brand-charcoal/30 hover:text-brand-gold transition-colors group"
+              className="text-[9px] font-bold uppercase tracking-[0.25em] text-brand-charcoal/30 hover:text-brand-gold transition-colors flex items-center gap-1.5 group"
             >
               <ArrowLeft className="w-3 h-3 group-hover:-translate-x-0.5 transition-transform" />
-              Collections
+              Catalog
             </Link>
-            <span className="text-brand-charcoal/15">/</span>
-            <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-brand-charcoal/50">{product.brand}</span>
-            <span className="text-brand-charcoal/15">/</span>
-            <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-brand-charcoal line-clamp-1 max-w-[180px]">{product.name}</span>
+            <span className="text-brand-charcoal/10 text-[9px] font-bold">/</span>
+            <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-brand-charcoal/40">{product.brand}</span>
+            <span className="text-brand-charcoal/10 text-[9px] font-bold">/</span>
+            <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-brand-charcoal line-clamp-1 max-w-[150px]">{product.name}</span>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 xl:gap-20">
-
-            {/* ── LEFT: Gallery ── */}
-            <div className="lg:col-span-7 flex flex-col gap-5">
-              {/* Main Image */}
-              <div className="relative aspect-[4/5] bg-[#F5F3EF] rounded-[3px] overflow-hidden group">
-                <AnimatePresence mode="wait">
-                  <motion.img
-                    key={activeImage}
-                    src={product.images[activeImage]}
-                    alt={product.name}
-                    initial={{ opacity: 0, scale: 1.04 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.97 }}
-                    transition={{ duration: 0.7, ease: [0.19, 1, 0.22, 1] }}
-                    className="w-full h-full object-cover"
-                  />
-                </AnimatePresence>
-
-                {/* Badges */}
-                <div className="absolute top-6 left-6 flex flex-col gap-2 z-10">
-                  {product.isInHouseProduct ? (
-                    <span className="bg-brand-gold text-white text-[8px] font-bold uppercase tracking-[0.2em] px-3 py-1.5 shadow-lg rounded-[2px]">
-                      ✦ Emirates Signature
-                    </span>
-                  ) : product.isNewArrival ? (
-                    <span className="bg-brand-charcoal text-white text-[8px] font-bold uppercase tracking-[0.2em] px-3 py-1.5 rounded-[2px]">
-                      New Arrival
-                    </span>
-                  ) : null}
-                </div>
-
-                {/* Hover Actions */}
-                <div className="absolute bottom-6 right-6 flex gap-3 opacity-0 group-hover:opacity-100 translate-y-3 group-hover:translate-y-0 transition-all duration-500 z-10">
-                  <button
-                    onClick={() => navigator.share?.({ title: product.name, url: window.location.href })}
-                    className="p-3 bg-white/80 backdrop-blur-sm rounded-full hover:bg-brand-gold hover:text-white transition-all shadow-lg"
-                  >
-                    <Share2 className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
-
-              {/* Thumbnail Strip */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 xl:gap-24 items-start">
+            
+            {/* ── LEFT COLUMN: Elegant Gallery ── */}
+            <div className="lg:col-span-7 flex flex-col md:flex-row gap-6">
+              {/* Vertical Thumbnail List for Desktop */}
               {product.images.length > 1 && (
-                <div className="flex gap-3 overflow-x-auto pb-1">
+                <div className="hidden md:flex flex-col gap-3 shrink-0 max-h-[500px] overflow-y-auto">
                   {product.images.map((img, idx) => (
                     <button
                       key={idx}
                       onClick={() => setActiveImage(idx)}
                       className={cn(
-                        "flex-shrink-0 w-20 aspect-[3/4] rounded-[3px] overflow-hidden border-2 transition-all duration-400",
+                        "w-16 aspect-[3/4] rounded-[2px] overflow-hidden border transition-all duration-300",
                         activeImage === idx
-                          ? "border-brand-gold opacity-100"
-                          : "border-transparent opacity-40 hover:opacity-80 hover:border-brand-charcoal/20"
+                          ? "border-brand-gold opacity-100 shadow-md"
+                          : "border-transparent opacity-40 hover:opacity-80"
                       )}
                     >
-                      <img src={img} alt="Gallery" className="w-full h-full object-cover" />
+                      <img src={img} alt="Thumbnail" className="w-full h-full object-cover" />
+                    </button>
+                  ))}
+                </div>
+              )}
+
+              {/* Master Display Image */}
+              <div className="flex-1 relative aspect-[4/5] bg-brand-pearl/20 rounded-[3px] overflow-hidden border border-black/[0.02]">
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={activeImage}
+                    src={product.images[activeImage]}
+                    alt={product.name}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="w-full h-full object-cover"
+                  />
+                </AnimatePresence>
+
+                {/* Subtle Signature Badge */}
+                {product.isInHouseProduct && (
+                  <span className="absolute top-4 left-4 bg-brand-charcoal border border-brand-gold/30 text-brand-gold text-[7px] font-bold uppercase tracking-[0.22em] px-3 py-1.5 rounded-[2px] shadow-lg flex items-center gap-1.5 z-10">
+                    <Sparkles className="w-2.5 h-2.5 text-brand-gold" />
+                    Emirates Signature
+                  </span>
+                )}
+              </div>
+
+              {/* Horizontal Thumbnail Strip for Mobile */}
+              {product.images.length > 1 && (
+                <div className="flex md:hidden gap-3 overflow-x-auto pb-1 mt-2">
+                  {product.images.map((img, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setActiveImage(idx)}
+                      className={cn(
+                        "w-14 aspect-[3/4] shrink-0 rounded-[2px] overflow-hidden border transition-all",
+                        activeImage === idx ? "border-brand-gold opacity-100" : "border-transparent opacity-40"
+                      )}
+                    >
+                      <img src={img} alt="Thumbnail" className="w-full h-full object-cover" />
                     </button>
                   ))}
                 </div>
               )}
             </div>
 
-            {/* ── RIGHT: Info Panel ── */}
-            <div className="lg:col-span-5">
-              <div className="sticky top-32 flex flex-col gap-8">
-
-                {/* Brand & Collection */}
+            {/* ── RIGHT COLUMN: Editorial Sticky Sidebar ── */}
+            <div className="lg:col-span-5 sticky top-36">
+              <div className="flex flex-col gap-8">
+                
+                {/* Product Title & Brand Block */}
                 <div>
-                  <div className="flex items-center gap-3 mb-5">
-                    <span className="text-[9px] font-bold text-brand-gold uppercase tracking-[0.35em]">
-                      {product.isInHouseProduct && product.signatureCollectionName
-                        ? product.signatureCollectionName
-                        : product.brand}
-                    </span>
-                    <div className="flex-1 h-[1px] bg-brand-gold/20" />
-                    <span className="text-[9px] font-bold text-brand-charcoal/25 uppercase tracking-[0.2em]">
-                      {product.collectionType || product.style}
-                    </span>
-                  </div>
-
-                  <h1 className="text-4xl md:text-5xl lg:text-[3.2rem] font-extralight font-heading uppercase tracking-tight text-brand-charcoal leading-[0.92] mb-6">
+                  <span className="text-[10px] font-bold text-brand-gold uppercase tracking-[0.35em] block mb-3">
+                    {product.brand}
+                  </span>
+                  <h1 className="text-3xl md:text-4xl font-extralight font-heading uppercase tracking-tight text-brand-charcoal leading-tight mb-4">
                     {product.name}
                   </h1>
 
-                  {/* Price */}
-                  <div className="flex items-baseline gap-3 mb-6">
-                    <span className="text-2xl font-light text-brand-charcoal">
-                      {product.price > 0
-                        ? `₹${product.price.toLocaleString("en-IN")}`
-                        : "Price on Request"}
-                    </span>
-                    {product.price > 0 && (
-                      <span className="text-[9px] font-bold uppercase tracking-widest text-brand-charcoal/30">Enquire for best offer</span>
-                    )}
+                  {/* Clean Price */}
+                  <div className="text-xl font-light text-brand-charcoal tracking-tight">
+                    {product.price > 0
+                      ? `₹${product.price.toLocaleString("en-IN")}`
+                      : "Price on Request"}
                   </div>
+                </div>
 
-                  <p className="text-brand-charcoal/55 font-light leading-relaxed text-[15px] italic font-serif border-l-2 border-brand-gold/30 pl-4">
+                {/* Clean Narrative Description */}
+                {product.description && (
+                  <p className="text-brand-charcoal/65 font-light leading-relaxed text-[13px] border-l border-brand-gold/20 pl-4 italic">
                     "{product.description}"
                   </p>
+                )}
+
+                {/* Data-Rich Specifications Table (Typographic Elegance) */}
+                <div className="border-t border-black/[0.06] pt-6">
+                  <h3 className="text-[9px] font-bold uppercase tracking-[0.25em] text-brand-charcoal/40 mb-4">
+                    Product Details
+                  </h3>
+                  <div className="grid grid-cols-2 gap-x-8 gap-y-3.5">
+                    {specs.map((spec, i) => (
+                      <div key={i} className="flex flex-col pb-3 border-b border-black/[0.02]">
+                        <span className="text-[7.5px] font-bold uppercase tracking-wider text-brand-charcoal/30 mb-0.5">
+                          {spec.label}
+                        </span>
+                        <span className="text-[11px] font-medium text-brand-charcoal/80 uppercase tracking-tight">
+                          {spec.value}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
-                {/* Availability */}
-                <div className="flex items-center gap-2.5 py-4 border-y border-black/[0.06]">
-                  <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                  <span className="text-[9px] font-bold uppercase tracking-[0.28em] text-emerald-600">Available for Enquiry</span>
-                  <span className="ml-auto text-[9px] font-bold uppercase tracking-[0.15em] text-brand-charcoal/30">
-                    {product.branches.length} Location{product.branches.length !== 1 ? "s" : ""}
-                  </span>
-                </div>
 
-                {/* CTAs */}
-                <div className="space-y-3">
+
+                {/* Unified Premium Editorial CTAs */}
+                <div className="border-t border-black/[0.06] pt-6 space-y-3">
                   <button
                     onClick={() => handleAction("product")}
-                    className="w-full py-5 bg-brand-charcoal text-white hover:bg-brand-gold text-[10px] font-bold uppercase tracking-[0.25em] flex items-center justify-center gap-3 rounded-[3px] transition-all duration-500 shadow-[0_8px_30px_rgba(0,0,0,0.15)] hover:shadow-[0_12px_40px_rgba(201,168,76,0.3)]"
+                    className="w-full py-4.5 bg-brand-charcoal text-white hover:bg-brand-gold text-[9px] font-bold uppercase tracking-[0.25em] flex items-center justify-center gap-2.5 rounded-[3px] transition-all duration-500 shadow-md hover:shadow-lg"
                   >
                     <MessageCircle className="w-4 h-4" />
-                    Enquire Now via WhatsApp
+                    Enquire via WhatsApp
                   </button>
 
                   <div className="grid grid-cols-2 gap-3">
                     <button
                       onClick={() => handleAction("appointment")}
-                      className="py-4 border border-brand-charcoal/10 hover:border-brand-gold text-brand-charcoal hover:text-brand-gold text-[9px] font-bold uppercase tracking-[0.2em] flex items-center justify-center gap-2 rounded-[3px] transition-all duration-500"
+                      className="py-3.5 border border-black/[0.08] hover:border-brand-gold text-brand-charcoal hover:text-brand-gold text-[8.5px] font-bold uppercase tracking-[0.2em] flex items-center justify-center gap-2 rounded-[3px] transition-all duration-500"
                     >
                       <Calendar className="w-3.5 h-3.5" />
-                      Book Appointment
+                      Book Eye Test
                     </button>
                     <button
                       onClick={() => handleAction("contact")}
-                      className="py-4 border border-brand-charcoal/10 hover:border-brand-gold text-brand-charcoal hover:text-brand-gold text-[9px] font-bold uppercase tracking-[0.2em] flex items-center justify-center gap-2 rounded-[3px] transition-all duration-500"
+                      className="py-3.5 border border-black/[0.08] hover:border-brand-gold text-brand-charcoal hover:text-brand-gold text-[8.5px] font-bold uppercase tracking-[0.2em] flex items-center justify-center gap-2 rounded-[3px] transition-all duration-500"
                     >
                       <Phone className="w-3.5 h-3.5" />
-                      Contact Branch
+                      Contact Lounge
                     </button>
                   </div>
                 </div>
 
-                {/* Trust Pillars */}
-                <div className="grid grid-cols-3 gap-4 pt-2">
-                  {[
-                    { icon: ShieldCheck, label: "Authentic" },
-                    { icon: MapPin, label: "Multi-Branch" },
-                    { icon: Share2, label: "Warranty" },
-                  ].map((item, i) => (
-                    <div key={i} className="flex flex-col items-center gap-2 p-3 bg-[#FAF9F6] rounded-[3px] group hover:bg-brand-gold/5 transition-colors">
-                      <item.icon className="w-4 h-4 text-brand-gold" />
-                      <span className="text-[8px] font-bold uppercase tracking-[0.2em] text-brand-charcoal/40">{item.label}</span>
-                    </div>
-                  ))}
-                </div>
-
               </div>
             </div>
-          </div>
-        </div>
 
-        {/* Mobile Floating CTA */}
-        <div className="lg:hidden fixed bottom-0 inset-x-0 z-[100] p-4 bg-white/90 backdrop-blur-xl border-t border-black/[0.06] shadow-[0_-8px_30px_rgba(0,0,0,0.08)]">
-          <button
-            onClick={() => handleAction("product")}
-            className="w-full py-4 bg-brand-charcoal text-white hover:bg-brand-gold text-[10px] font-bold uppercase tracking-[0.25em] rounded-[3px] transition-all duration-500"
-          >
-            Enquire Now
-          </button>
+          </div>
         </div>
       </section>
 
-      {/* ── Branch Selector ── */}
+      {/* ── Mobile Floating CTA Strip ── */}
+      <div className="lg:hidden fixed bottom-0 inset-x-0 z-[100] p-4 bg-white/95 backdrop-blur-md border-t border-black/[0.05] shadow-[0_-10px_30px_rgba(0,0,0,0.05)]">
+        <button
+          onClick={() => handleAction("product")}
+          className="w-full py-4 bg-brand-charcoal text-white text-[9px] font-bold uppercase tracking-[0.25em] rounded-[3px]"
+        >
+          Enquire Availability
+        </button>
+      </div>
+
+      {/* ── Multi-Branch Boutique Location Selector ── */}
       <AnimatePresence>
         {showBranchSelector && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[200] bg-black/70 backdrop-blur-md flex items-end sm:items-center justify-center p-0 sm:p-6"
+            className="fixed inset-0 z-[200] bg-black/85 backdrop-blur-md flex items-end sm:items-center justify-center p-0 sm:p-6"
             onClick={() => setShowBranchSelector(false)}
           >
             <motion.div
-              initial={{ y: 40, opacity: 0 }}
+              initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 40, opacity: 0 }}
-              transition={{ type: "spring", damping: 28, stiffness: 280 }}
+              exit={{ y: 30, opacity: 0 }}
+              transition={{ type: "spring", damping: 30, stiffness: 300 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-brand-charcoal w-full sm:max-w-md rounded-t-[2rem] sm:rounded-[1.5rem] p-8"
+              className="bg-brand-charcoal w-full sm:max-w-md rounded-t-[2rem] sm:rounded-[1rem] p-8 shadow-[0_-20px_60px_rgba(0,0,0,0.4)]"
             >
-              <div className="flex items-start justify-between mb-8">
+              <div className="flex items-start justify-between mb-6">
                 <div>
-                  <span className="text-[8px] font-bold text-brand-gold uppercase tracking-[0.35em] block mb-1">Select Location</span>
-                  <h3 className="text-base font-bold text-white uppercase tracking-tighter">Choose Your Branch</h3>
+                  <span className="text-[8px] font-bold text-brand-gold uppercase tracking-[0.35em] block mb-1">Select Lounge</span>
+                  <h3 className="text-base font-bold text-white uppercase tracking-tighter">Choose Boutique Branch</h3>
                 </div>
                 <button
                   onClick={() => setShowBranchSelector(false)}
-                  className="p-2 text-white/30 hover:text-brand-gold rounded-full hover:bg-white/5 transition-all"
+                  className="p-2 text-white/30 hover:text-brand-gold rounded-full transition-all"
                 >
                   <X className="w-4 h-4" />
                 </button>
               </div>
-              <div className="space-y-2 max-h-[55vh] overflow-y-auto" data-lenis-prevent>
+              <div className="space-y-2 max-h-[50vh] overflow-y-auto" data-lenis-prevent>
                 {product.branches.map((branch) => (
                   <button
                     key={branch.branchSlug}
                     onClick={() => handleBranchSelect(branch)}
-                    className="w-full p-4 border border-white/[0.06] hover:border-brand-gold/30 hover:bg-white/[0.03] rounded-xl flex items-center justify-between group/b transition-all duration-400"
+                    className="w-full p-4 border border-white/[0.05] hover:border-brand-gold/30 hover:bg-white/[0.02] rounded-[3px] flex items-center justify-between group/b transition-all duration-300"
                   >
                     <div className="text-left">
                       <span className="text-sm font-bold text-white uppercase tracking-tight block mb-1 group-hover/b:text-brand-gold transition-colors">
@@ -271,12 +275,12 @@ export function ProductHeroGallery({ product }: ProductHeroGalleryProps) {
                         {branch.stockStatus}
                       </span>
                     </div>
-                    <ChevronLeft className="w-4 h-4 text-white/20 group-hover/b:text-brand-gold rotate-180 group-hover/b:translate-x-1 transition-all duration-400" />
+                    <ChevronRight className="w-4 h-4 text-white/20 group-hover/b:text-brand-gold group-hover/b:translate-x-1 transition-all" />
                   </button>
                 ))}
               </div>
-              <p className="text-center text-[8px] font-bold uppercase tracking-[0.2em] text-white/20 mt-6 pt-5 border-t border-white/[0.06]">
-                Tap a branch to open WhatsApp
+              <p className="text-center text-[8px] font-bold uppercase tracking-[0.2em] text-white/20 mt-6 pt-5 border-t border-white/[0.05]">
+                Tap branch to connect instantly on WhatsApp
               </p>
             </motion.div>
           </motion.div>

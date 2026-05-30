@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { MessageCircle, MapPin, Phone, Mail } from "lucide-react";
 
 // Inline Social SVGs
@@ -35,23 +36,24 @@ export function Footer() {
           
           {/* Column 1: Brand Info & Socials */}
           <div className="flex flex-col items-start lg:pr-8">
-            <Link href="/" className="flex flex-col items-start leading-none gap-0.5 group mb-6">
-              <span className="font-heading text-2xl font-bold tracking-tight text-white uppercase transition-colors group-hover:text-[#C9A84C]">
-                EMIRATES
-              </span>
-              <span className="font-sans text-[10px] uppercase tracking-[0.25em] text-white/80 group-hover:text-white transition-colors">
-                OPTICIANS
-              </span>
+            <Link href="/" className="group mb-6 block">
+              <Image 
+                src="/assets/emirates_logo.png" 
+                alt="Emirates Opticians" 
+                width={180} 
+                height={50} 
+                className="h-9 lg:h-11 w-auto object-contain brightness-0 invert transition-transform duration-300 group-hover:scale-[1.02]" 
+              />
             </Link>
             <p className="text-sm text-neutral-400 leading-relaxed font-light mb-8">
               Kerala's premier destination for luxury eyewear, precision optometry, and exclusive designer collections.
             </p>
             
             <div className="flex items-center gap-4">
-              <a href="https://instagram.com/emirates__optician" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:bg-[#C9A84C] hover:text-[#0A0A0A] hover:border-[#C9A84C] transition-all duration-300">
+              <a href="https://www.instagram.com/emiratesoptician_opticals?igsh=c2E1ZWNwcGQ0eWl1" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:bg-[#C9A84C] hover:text-[#0A0A0A] hover:border-[#C9A84C] transition-all duration-300">
                 <InstagramIcon className="w-4 h-4" />
               </a>
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:bg-[#C9A84C] hover:text-[#0A0A0A] hover:border-[#C9A84C] transition-all duration-300">
+              <a href="https://www.facebook.com/profile.php?id=61576396662769" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:bg-[#C9A84C] hover:text-[#0A0A0A] hover:border-[#C9A84C] transition-all duration-300">
                 <FacebookIcon className="w-4 h-4" />
               </a>
               <a href="https://wa.me/917736441211" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:bg-[#C9A84C] hover:text-[#0A0A0A] hover:border-[#C9A84C] transition-all duration-300">

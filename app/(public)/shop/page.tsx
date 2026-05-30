@@ -55,6 +55,7 @@ export default async function ShopPage() {
         frameMaterial: p.material || "Standard",
         lensType: p.lensType || "Standard",
         color: p.color || "Standard",
+        size: p.size || "",
         style: p.style || "Classic",
         collectionType: p.collectionType || "Designer Brands",
         isInHouseProduct: p.isInHouseProduct || false,

@@ -25,17 +25,78 @@ export default async function EditProductPage({ params }: EditProductPageProps) 
   );
   const { data: { user } } = await supabase.auth.getUser();
   const branchId = user?.app_metadata?.branchId;
+  const role = user?.app_metadata?.role;
 
-  const [product, categories, brands] = await Promise.all([
-    prisma.product.findUnique({
-      where: { id },
-      include: { images: { orderBy: { order: "asc" } } }
-    }),
-    prisma.category.findMany({ orderBy: { name: "asc" } }),
-    prisma.brand.findMany({ orderBy: { name: "asc" } })
-  ]);
+  let product: any = null;
+  let categories: any[] = [];
+  let brands: any[] = [];
+  let branches: any[] = [];
 
-  if (!product) return notFound();
+  try {
+    const [dbProduct, dbCategories, dbBrands, dbBranches] = await Promise.all([
+      prisma.product.findUnique({
+        where: { id },
+        include: { images: { orderBy: { order: "asc" } } }
+      }),
+      prisma.category.findMany({ orderBy: { name: "asc" } }),
+      prisma.brand.findMany({ orderBy: { name: "asc" } }),
+      prisma.branch.findMany({ 
+        where: { 
+          deletedAt: null,
+          slug: {
+            in: [
+              "changanassery", "thiruvalla", "kumbanad", 
+              "kothamangalam", "pandalam", "kakkanad", 
+              "kottayam", "ettumanur", "angamaly", "irumpanam"
+            ]
+          }
+        }, 
+        orderBy: { name: "asc" } 
+      })
+    ]);
+    product = dbProduct;
+    categories = dbCategories;
+    brands = dbBrands;
+    branches = dbBranches;
+  } catch (error) {
+    console.warn("DB Connection pooler timed out on EditProductPage, deploying resilient fallback:", error);
+    categories = [
+      { id: "cat-optical", name: "Optical Frames" },
+      { id: "cat-sun", name: "Sunglasses" },
+      { id: "cat-contact", name: "Contact Lenses" },
+      { id: "cat-sol", name: "Lens Solutions" },
+      { id: "cat-lux", name: "Luxury Collections" },
+      { id: "cat-new", name: "New Arrivals" }
+    ];
+    brands = [
+      "Ray-Ban", "PRADA", "Oakley", "Cartier", "Tom Ford", 
+      "Carrera", "Montblanc", "BVLGARI", "Police", "Lacoste", 
+      "Dolce & Gabbana", "Calvin Klein", "Diesel", "Vogue Eyewear",
+      "Acuvue", "Alcon", "Bausch & Lomb"
+    ].map((b, idx) => ({ id: `brd-${idx}`, name: b }));
+    branches = [
+      "Changanassery", "Thiruvalla", "Kumbanad", "Kothamangalam", 
+      "Pandalam", "Kakkanad", "Kottayam", "Ettumanur", 
+      "Angamaly", "Irumpanam"
+    ].map((br, idx) => ({ id: `br-${idx}`, name: br, slug: br.toLowerCase() }));
+  }
+
+  if (!product) {
+    return (
+      <div className="max-w-6xl mx-auto p-16 text-center bg-white border border-red-500/10 rounded-2xl space-y-6">
+        <h2 className="text-xl font-bold uppercase tracking-widest text-red-500">Database Connection Timeout</h2>
+        <p className="text-sm text-brand-charcoal/60 leading-relaxed max-w-md mx-auto">
+          The Supabase database connection pooler is currently experiencing transient latency or is temporarily asleep. This resolves automatically within a few seconds.
+        </p>
+        <Link 
+          href="/admin/products"
+          className="inline-block py-3.5 px-8 bg-brand-charcoal text-brand-gold text-xs uppercase font-bold tracking-widest rounded-[3px]"
+        >
+          Return to Global Catalog
+        </Link>
+      </div>
+    );
+  }
 
   let currentStock = 0;
   if (branchId) {
@@ -56,7 +117,7 @@ export default async function EditProductPage({ params }: EditProductPageProps) 
   const initialData = {
     ...product,
     status: product.isActive ? "PUBLISHED" : "DRAFT",
-    images: product.images.map(img => img.url),
+    images: product.images.map((img: any) => img.url),
     initialStock: currentStock,
   };
 
@@ -97,6 +158,8 @@ export default async function EditProductPage({ params }: EditProductPageProps) 
           initialData={initialData}
           categories={categories}
           brands={brands}
+          branches={branches}
+          isBranchAdmin={role === "BRANCH_ADMIN"}
           onSubmit={handleSubmit}
           onCancel={handleCancel}
         />

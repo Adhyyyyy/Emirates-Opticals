@@ -15,6 +15,8 @@ export const productSchema = z.object({
   brandId: z.string().min(1, "Please select a brand"),
   categoryId: z.string().min(1, "Please select a category"),
   price: z.number().min(0, "Price must be positive").optional(),
+  initialStock: z.coerce.number().min(0).default(0),
+  selectedBranches: z.array(z.string()).optional(),
   // Specifications
   gender: z.string().optional(),
   style: z.string().optional(),

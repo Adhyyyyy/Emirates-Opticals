@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -39,21 +39,25 @@ export default async function AdminLayout({
 
   // Just-In-Time Database Profile Synchronization
   if (role === "SUPER_ADMIN" || role === "BRANCH_ADMIN" || role === "STAFF") {
-    const prisma = (await import("@/lib/prisma")).default;
-    await prisma.user.upsert({
-      where: { email: user.email! },
-      update: {
-        role: role as any,
-        name: name,
-        branchId: user.app_metadata?.branchId || undefined,
-      },
-      create: {
-        email: user.email!,
-        role: role as any,
-        name: name,
-        branchId: user.app_metadata?.branchId || undefined,
-      },
-    });
+    try {
+      const prisma = (await import("@/lib/prisma")).default;
+      await prisma.user.upsert({
+        where: { email: user.email! },
+        update: {
+          role: role as any,
+          name: name,
+          branchId: user.app_metadata?.branchId || undefined,
+        },
+        create: {
+          email: user.email!,
+          role: role as any,
+          name: name,
+          branchId: user.app_metadata?.branchId || undefined,
+        },
+      });
+    } catch (error) {
+      console.warn("Recovered gracefully from transient admin profile synchronization latency:", error);
+    }
   }
 
   return (

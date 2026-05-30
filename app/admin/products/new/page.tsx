@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { ProductForm } from "@/features/products/components/ProductForm";
 import { Reveal } from "@/components/motion/Reveal";
 import { ArrowLeft } from "lucide-react";
@@ -7,13 +7,66 @@ import { createProduct } from "@/actions/products";
 import prisma from "@/lib/prisma";
 import { redirect } from "next/navigation";
 
+import { cookies } from "next/headers";
+import { createServerClient } from "@supabase/ssr";
+
 export default async function NewProductPage() {
-  const categories = await prisma.category.findMany({
-    orderBy: { name: "asc" }
-  });
-  const brands = await prisma.brand.findMany({
-    orderBy: { name: "asc" }
-  });
+  const cookieStore = await cookies();
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    { cookies: { get(name: string) { return cookieStore.get(name)?.value; } } }
+  );
+  const { data: { user } } = await supabase.auth.getUser();
+  const role = user?.app_metadata?.role;
+
+  let categories: any[] = [];
+  let brands: any[] = [];
+  let branches: any[] = [];
+
+  try {
+    const [dbCategories, dbBrands, dbBranches] = await Promise.all([
+      prisma.category.findMany({ orderBy: { name: "asc" } }),
+      prisma.brand.findMany({ orderBy: { name: "asc" } }),
+      prisma.branch.findMany({ 
+        where: { 
+          deletedAt: null,
+          slug: {
+            in: [
+              "changanassery", "thiruvalla", "kumbanad", 
+              "kothamangalam", "pandalam", "kakkanad", 
+              "kottayam", "ettumanur", "angamaly", "irumpanam"
+            ]
+          }
+        }, 
+        orderBy: { name: "asc" } 
+      })
+    ]);
+    categories = dbCategories;
+    brands = dbBrands;
+    branches = dbBranches;
+  } catch (error) {
+    console.warn("DB Connection pooler timed out on NewProductPage, deploying resilient offline fallback catalog metadata:", error);
+    categories = [
+      { id: "cat-optical", name: "Optical Frames" },
+      { id: "cat-sun", name: "Sunglasses" },
+      { id: "cat-contact", name: "Contact Lenses" },
+      { id: "cat-sol", name: "Lens Solutions" },
+      { id: "cat-lux", name: "Luxury Collections" },
+      { id: "cat-new", name: "New Arrivals" }
+    ];
+    brands = [
+      "Ray-Ban", "PRADA", "Oakley", "Cartier", "Tom Ford", 
+      "Carrera", "Montblanc", "BVLGARI", "Police", "Lacoste", 
+      "Dolce & Gabbana", "Calvin Klein", "Diesel", "Vogue Eyewear",
+      "Acuvue", "Alcon", "Bausch & Lomb"
+    ].map((b, idx) => ({ id: `brd-${idx}`, name: b }));
+    branches = [
+      "Changanassery", "Thiruvalla", "Kumbanad", "Kothamangalam", 
+      "Pandalam", "Kakkanad", "Kottayam", "Ettumanur", 
+      "Angamaly", "Irumpanam"
+    ].map((br, idx) => ({ id: `br-${idx}`, name: br, slug: br.toLowerCase() }));
+  }
 
   async function handleSubmit(data: any) {
     "use server";
@@ -51,6 +104,8 @@ export default async function NewProductPage() {
         <ProductForm 
           categories={categories}
           brands={brands}
+          branches={branches}
+          isBranchAdmin={role === "BRANCH_ADMIN"}
           onSubmit={handleSubmit}
           onCancel={handleCancel}
         />

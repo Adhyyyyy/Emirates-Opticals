@@ -1,4 +1,4 @@
-﻿"use server";
+"use server";
 
 import { revalidatePath } from "next/cache";
 import prisma from "@/lib/prisma";
@@ -24,7 +24,16 @@ async function getAuthSession() {
 export async function getBranches() {
   try {
     const branches = await prisma.branch.findMany({
-      where: { deletedAt: null },
+      where: { 
+        deletedAt: null,
+        slug: {
+          in: [
+            "changanassery", "thiruvalla", "kumbanad", 
+            "kothamangalam", "pandalam", "kakkanad", 
+            "kottayam", "ettumanur", "angamaly", "irumpanam"
+          ]
+        }
+      },
       orderBy: { createdAt: "asc" }
     });
     return { data: branches };

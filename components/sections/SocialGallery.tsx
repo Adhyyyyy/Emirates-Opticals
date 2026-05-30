@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React from "react";
 import { m } from "framer-motion";
@@ -39,31 +39,31 @@ const STATIC_FALLBACK_POSTS: InstagramPost[] = [
   { 
     id: "s1", 
     imageUrl: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=800", 
-    permalink: "https://instagram.com/emirates__optician", 
+    permalink: "https://www.instagram.com/emiratesoptician_opticals?igsh=c2E1ZWNwcGQ0eWl1", 
     caption: "Premium Collections Reveal Atelier Kerala" 
   },
   { 
     id: "s2", 
     imageUrl: "https://images.unsplash.com/photo-1483412033650-1015ddeb83d1?auto=format&fit=crop&q=80&w=800", 
-    permalink: "https://instagram.com/emirates__optician", 
+    permalink: "https://www.instagram.com/emiratesoptician_opticals?igsh=c2E1ZWNwcGQ0eWl1", 
     caption: "Editorial Design Excellence Curation" 
   },
   { 
     id: "s3", 
     imageUrl: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&q=80&w=800", 
-    permalink: "https://instagram.com/emirates__optician", 
+    permalink: "https://www.instagram.com/emiratesoptician_opticals?igsh=c2E1ZWNwcGQ0eWl1", 
     caption: "Seaside Clarity Polarized Lenses" 
   },
   { 
     id: "s4", 
     imageUrl: "https://images.unsplash.com/photo-1577803645773-f96470509666?auto=format&fit=crop&q=80&w=800", 
-    permalink: "https://instagram.com/emirates__optician", 
+    permalink: "https://www.instagram.com/emiratesoptician_opticals?igsh=c2E1ZWNwcGQ0eWl1", 
     caption: "Timeless Elegance Silhouette Frames" 
   },
   { 
     id: "s5", 
     imageUrl: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&q=80&w=800", 
-    permalink: "https://instagram.com/emirates__optician", 
+    permalink: "https://www.instagram.com/emiratesoptician_opticals?igsh=c2E1ZWNwcGQ0eWl1", 
     caption: "Modern Geometry Vision Care" 
   }
 ];
@@ -98,7 +98,7 @@ export function SocialGallery({ initialPosts = [] }: SocialGalleryProps) {
           </m.h2>
 
           <m.a
-            href="https://instagram.com/emirates__optician"
+            href="https://www.instagram.com/emiratesoptician_opticals?igsh=c2E1ZWNwcGQ0eWl1"
             target="_blank"
             rel="noopener noreferrer"
             initial={{ opacity: 0, y: 10 }}
@@ -107,7 +107,7 @@ export function SocialGallery({ initialPosts = [] }: SocialGalleryProps) {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="text-xs text-brand-charcoal/60 tracking-widest hover:text-brand-charcoal transition-colors duration-300 font-medium"
           >
-            @emirates_optician
+            @emiratesoptician_opticals
           </m.a>
         </div>
 
@@ -158,7 +158,7 @@ export function SocialGallery({ initialPosts = [] }: SocialGalleryProps) {
           className="mt-6 md:mt-10 flex justify-center px-4"
         >
           <a
-            href="https://instagram.com/emirates__optician"
+            href="https://www.instagram.com/emiratesoptician_opticals?igsh=c2E1ZWNwcGQ0eWl1"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex w-full sm:w-auto items-center justify-center gap-3 text-[10px] md:text-[11px] uppercase tracking-[0.2em] font-bold px-10 py-4 rounded-[3px] transition-colors duration-500 shadow-lg bg-[#C9A84C] text-[#0A0A0A] hover:bg-[#B8952E] hover:text-white"

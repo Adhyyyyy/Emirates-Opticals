@@ -22,6 +22,7 @@ export type Product = {
   frameMaterial: string;
   lensType: string;
   color: string;
+  size?: string;
   
   // Hybrid Ecosystem Fields
   collectionType: string;

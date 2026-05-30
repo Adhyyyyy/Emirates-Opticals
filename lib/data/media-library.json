@@ -1,0 +1,47 @@
+[
+  {
+    "id": "m_seed_101",
+    "name": "Summer Havana Eyewear banner.webp",
+    "url": "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&q=80&w=800",
+    "folder": "Banners",
+    "size": "142 KB",
+    "type": "image/webp",
+    "createdAt": "2026-05-30T10:00:46.744Z"
+  },
+  {
+    "id": "m_seed_102",
+    "name": "Prada Black Acetate Frame.webp",
+    "url": "https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&q=80&w=800",
+    "folder": "Products",
+    "size": "86 KB",
+    "type": "image/webp",
+    "createdAt": "2026-05-30T10:00:46.744Z"
+  },
+  {
+    "id": "m_seed_103",
+    "name": "RayBan Classic Aviator gold.webp",
+    "url": "https://images.unsplash.com/photo-1577803645773-f96470509666?auto=format&fit=crop&q=80&w=800",
+    "folder": "Products",
+    "size": "94 KB",
+    "type": "image/webp",
+    "createdAt": "2026-05-30T10:00:46.744Z"
+  },
+  {
+    "id": "m_seed_104",
+    "name": "Thiruvalla Showroom Boutique Entrance.webp",
+    "url": "https://images.unsplash.com/photo-1591076482161-42ce6da69f67?auto=format&fit=crop&q=80&w=800",
+    "folder": "Branches",
+    "size": "210 KB",
+    "type": "image/webp",
+    "createdAt": "2026-05-30T10:00:46.744Z"
+  },
+  {
+    "id": "m_seed_105",
+    "name": "Cinematic Sunglasses Seaside.webp",
+    "url": "https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?auto=format&fit=crop&q=80&w=800",
+    "folder": "Marketing",
+    "size": "115 KB",
+    "type": "image/webp",
+    "createdAt": "2026-05-30T10:00:46.744Z"
+  }
+]
