@@ -1,4 +1,4 @@
-﻿"use server";
+"use server";
 
 import { revalidatePath } from "next/cache";
 import prisma from "@/lib/prisma";
@@ -37,13 +37,23 @@ export async function createAppointment(data: any) {
   }
 
   try {
+    const { time, date, notes, ...rest } = validated.data;
+    
+    // Consolidate the client's chosen time slot into the database notes
+    const consolidatedNotes = `[Preferred Time: ${time}]${notes ? ` ${notes}` : ""}`;
+
     const appointment = await prisma.appointment.create({
-      data: validated.data,
+      data: {
+        ...rest,
+        date: new Date(date), // Map ISO string to proper database DateTime
+        notes: consolidatedNotes,
+      },
     });
 
     revalidatePath("/admin/appointments");
     return { success: true, id: appointment.id };
   } catch (err) {
+    console.error("Booking error:", err);
     return { error: "Booking synchronization failed" };
   }
 }

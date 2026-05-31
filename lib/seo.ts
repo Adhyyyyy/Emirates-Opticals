@@ -8,7 +8,7 @@ import { Metadata } from "next";
 const SITE_CONFIG = {
   name: "Emirates Optician",
   description: "Luxury Optical Boutique & Premium Eyewear in Kerala. Expert eye tests, designer frames, and personalized vision care.",
-  url: "https://emiratesoptician.com",
+  url: "https://emiratesoptician.in",
   ogImage: "/og-main.jpg",
   twitterHandle: "@emiratesoptician",
 };

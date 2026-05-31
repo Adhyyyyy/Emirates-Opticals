@@ -31,7 +31,7 @@ export default async function AdminLayout({
   } = await supabase.auth.getUser();
 
   if (!user) {
-    redirect("/auth/login");
+    redirect("/login");
   }
 
   const role = user.app_metadata?.role || "CUSTOMER";

@@ -1,4 +1,4 @@
-﻿"use server";
+"use server";
 
 import { revalidatePath } from "next/cache";
 import prisma from "@/lib/prisma";
@@ -39,11 +39,33 @@ export async function createEnquiry(data: {
   message: string;
 }) {
   try {
-    const dbType = data.type === "WHATSAPP" ? "WHATSAPP_LEAD" : data.type;
+    const { customerName, customerEmail, customerPhone, type, ...rest } = data;
+    const dbType = type === "WHATSAPP" ? "WHATSAPP_LEAD" : type;
+
+    // Resolve or upsert standard Customer User profile
+    let userId = undefined;
+    if (customerEmail) {
+      const customer = await prisma.user.upsert({
+        where: { email: customerEmail },
+        update: {
+          name: customerName,
+          phone: customerPhone,
+        },
+        create: {
+          email: customerEmail,
+          name: customerName,
+          phone: customerPhone,
+          role: "CUSTOMER",
+        },
+      });
+      userId = customer.id;
+    }
+
     const enquiry = await prisma.enquiry.create({
       data: {
-        ...data,
+        ...rest,
         type: dbType as any,
+        userId: userId,
         status: "NEW"
       },
     });
@@ -51,6 +73,7 @@ export async function createEnquiry(data: {
     revalidatePath("/admin/enquiries");
     return { success: true, id: enquiry.id };
   } catch (err) {
+    console.error("Enquiry creation failure:", err);
     return { error: "Lead synchronization failed" };
   }
 }
@@ -73,7 +96,8 @@ export async function getEnquiries(branchId?: string) {
       where: targetBranchId ? { branchId: targetBranchId } : {},
       include: {
         branch: { select: { name: true } },
-        product: { select: { name: true, brand: true } }
+        product: { select: { name: true, brand: true } },
+        user: { select: { name: true, phone: true } }
       },
       orderBy: { createdAt: "desc" }
     });
