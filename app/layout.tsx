@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     apple: "/assets/emirates_logo.png",
   },
   alternates: {
-    canonical: './',
+    canonical: "/",
   },
   openGraph: {
     title: 'Emirates Optician | Premium Luxury Eyewear & Eye Testing Kerala',
