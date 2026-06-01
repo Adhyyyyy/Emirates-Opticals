@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -11,37 +11,61 @@ const BRANCHES = [
   {
     name: "Emirates Optician, Changanassery",
     address: "Manjippuzha Tower, Mathumoola, Changanassery, Kerala 686103",
-    phone: "+91 96829 29968",
+    phone: "+91 87140 32601",
     img: "https://images.unsplash.com/photo-1556306535-0f09a537f0a3?auto=format&fit=crop&q=80&w=800"
   },
   {
     name: "Emirates Optician, Thiruvalla",
     address: "Karappunnasseril Arcade, Thirumoolapuram, Thiruvalla, Kerala 689115",
-    phone: "+91 80000 00002",
+    phone: "+91 87140 32602",
     img: "https://images.unsplash.com/photo-1591076482161-42ce6da69f67?auto=format&fit=crop&q=80&w=800"
   },
   {
     name: "Emirates Optician, Kumbanad",
     address: "Bethel Complex, Kumbanad, Kerala 689547",
-    phone: "+91 80000 00003",
+    phone: "+91 87140 32603",
     img: "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&q=80&w=800"
   },
   {
     name: "Emirates Optician, Kothamangalam",
     address: "Pulickal Square, Malayinkeezhu Kozhipally Bypass Rd, Kothamangalam, Kerala 686691",
-    phone: "+91 80000 00004",
+    phone: "+91 87140 32607",
     img: "https://images.unsplash.com/photo-1554151228-14d9def656e4?auto=format&fit=crop&q=80&w=800"
   },
   {
     name: "Emirates Optician, Pandalam",
     address: "Karandiyil Building, IV/558-2, Thonallor, Pandalam, Kerala 689501",
-    phone: "+91 80000 00005",
+    phone: "+91 87140 32606",
     img: "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&q=80&w=800"
   },
   {
     name: "Emirates Optician, Kakkanad",
     address: "Seaport-Airport Road, Chittethukara, Kakkanad, Kerala 682037",
-    phone: "+91 80000 00006",
+    phone: "+91 77364 41211",
+    img: "https://images.unsplash.com/photo-1591076482161-42ce6da69f67?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    name: "Emirates Optician, Kottayam",
+    address: "M D Commercial Centre, Kottayam - Kumily Rd, opposite Joseph Antony's Petrol Pump, Kottayam, Kerala 686001",
+    phone: "+91 85478 66755",
+    img: "https://images.unsplash.com/photo-1556306535-0f09a537f0a3?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    name: "Emirates Optician, Ettumanur",
+    address: "Adams 2 101, near HP petrol station, Kavala, Ettumanoor, Kerala 686562",
+    phone: "+91 87140 32604",
+    img: "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    name: "Emirates Optician, Angamaly",
+    address: "Kuruvila Square, Junction, M C Road, near Moolans FamilyMart, East Nagar, Kavaraparmbu, Angamaly, Kerala 683572",
+    phone: "+91 87140 32605",
+    img: "https://images.unsplash.com/photo-1554151228-14d9def656e4?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    name: "Emirates Optician, Irumpanam",
+    address: "MM Arcade, Seaport - Airport Rd, Irumpanam, Thrippunithura, Kochi, Ernakulam, Kerala 682309",
+    phone: "+91 88899 90533",
     img: "https://images.unsplash.com/photo-1591076482161-42ce6da69f67?auto=format&fit=crop&q=80&w=800"
   }
 ];

@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -46,6 +46,34 @@ const BRANCHES = [
     name: "Emirates Optician, Kakkanad",
     address: "Seaport-Airport Road, Chittethukara, Kakkanad",
     timings: "10:00 AM - 9:00 PM",
+    parking: "Available",
+    img: "https://images.unsplash.com/photo-1591076482161-42ce6da69f67?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    name: "Emirates Optician, Kottayam",
+    address: "M D Commercial Centre, Kottayam - Kumily Rd, opposite Joseph Antony's Petrol Pump, Kottayam",
+    timings: "9:00 AM - 8:00 PM",
+    parking: "Available",
+    img: "https://images.unsplash.com/photo-1556306535-0f09a537f0a3?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    name: "Emirates Optician, Ettumanur",
+    address: "Adams 2 101, near HP petrol station, Kavala, Ettumanoor",
+    timings: "9:00 AM - 8:00 PM",
+    parking: "Available",
+    img: "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    name: "Emirates Optician, Angamaly",
+    address: "Kuruvila Square, Junction, M C Road, near Moolans FamilyMart, East Nagar, Kavaraparmbu, Angamaly",
+    timings: "9:00 AM - 8:00 PM",
+    parking: "Available",
+    img: "https://images.unsplash.com/photo-1554151228-14d9def656e4?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    name: "Emirates Optician, Irumpanam",
+    address: "MM Arcade, Seaport - Airport Rd, Irumpanam, Thrippunithura, Kochi, Ernakulam",
+    timings: "10:00 AM - 8:00 PM",
     parking: "Available",
     img: "https://images.unsplash.com/photo-1591076482161-42ce6da69f67?auto=format&fit=crop&q=80&w=800"
   }

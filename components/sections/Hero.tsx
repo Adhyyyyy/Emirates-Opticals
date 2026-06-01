@@ -11,17 +11,17 @@ import { Phone, MessageCircle, Eye, MapPin } from "lucide-react";
 const FALLBACK_SLIDES = [
   {
     url: "/Hero/Hero.webp",
-    mobileUrl: "/Hero/Hero.webp",
+    mobileUrl: "/Hero/mobile1.webp",
     title: "LUXURY MEETS VISION"
   },
   {
     url: "/Hero/Navigation_Bar_-_How_It_Works.webp",
-    mobileUrl: "/Hero/Navigation_Bar_-_How_It_Works.webp",
+    mobileUrl: "/Hero/mobile2.webp",
     title: "CRAFTED AROUND STYLE"
   },
   {
     url: "/Hero/download.webp",
-    mobileUrl: "/Hero/download.webp",
+    mobileUrl: "/Hero/mobile3.webp",
     title: "CURATED FOR CONFIDENCE"
   }
 ];

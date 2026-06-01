@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
@@ -7,12 +7,16 @@ import { LuxuryButton } from "@/components/ui/LuxuryButton";
 import { MessageCircle, Send } from "lucide-react";
 
 const BRANCHES = [
-  { name: "Changanassery Branch", phone: "919682929968" }, // Added 91 for India
-  { name: "Thiruvalla Branch", phone: "918000000002" },
-  { name: "Kumbanad Branch", phone: "918000000003" },
-  { name: "Kothamangalam Branch", phone: "918000000004" },
-  { name: "Pandalam Branch", phone: "918000000005" },
-  { name: "Kakkanad Branch", phone: "918000000006" }
+  { name: "Changanassery Branch", phone: "918714032601" },
+  { name: "Thiruvalla Branch", phone: "918714032602" },
+  { name: "Kumbanad Branch", phone: "918714032603" },
+  { name: "Kothamangalam Branch", phone: "918714032607" },
+  { name: "Pandalam Branch", phone: "918714032606" },
+  { name: "Kakkanad Branch", phone: "917736441211" },
+  { name: "Kottayam Branch", phone: "918547866755" },
+  { name: "Ettumanur Branch", phone: "918714032604" },
+  { name: "Angamaly Branch", phone: "918714032605" },
+  { name: "Irumpanam Branch", phone: "918889990533" }
 ];
 
 export function ContactForm() {
