@@ -45,7 +45,7 @@ export function AboutStory() {
               {/* Overlaid luxury tag */}
               <div className="absolute bottom-4 left-4">
                 <span className="text-[9px] font-bold text-white tracking-[0.2em] uppercase font-heading drop-shadow-md bg-brand-charcoal/45 px-3 py-1 rounded-[2px] backdrop-blur-sm border border-white/10">
-                  EST. 2002
+                  EST. 1969
                 </span>
               </div>
             </div>

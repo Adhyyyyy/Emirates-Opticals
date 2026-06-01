@@ -80,7 +80,7 @@ export async function createProduct(data: any) {
         slug: {
           in: [
             "changanassery", "thiruvalla", "kumbanad", 
-            "kothamangalam", "pandalam", "kakkanad", 
+            "kothamangalam", "pandalam", 
             "kottayam", "ettumanur", "angamaly", "irumpanam"
           ]
         }

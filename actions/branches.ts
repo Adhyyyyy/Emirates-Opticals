@@ -29,7 +29,7 @@ export async function getBranches() {
         slug: {
           in: [
             "changanassery", "thiruvalla", "kumbanad", 
-            "kothamangalam", "pandalam", "kakkanad", 
+            "kothamangalam", "pandalam", 
             "kottayam", "ettumanur", "angamaly", "irumpanam"
           ]
         }

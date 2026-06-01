@@ -206,7 +206,7 @@ export async function bulkImportProducts(products: any[]) {
 
         // 4. Create Product image array
         const imagesToCreate = Array.isArray(item.images) && item.images.length > 0 
-          ? item.images 
+          ? item.images.slice(0, 3) 
           : ["https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&q=80&w=600"];
 
         // 5. Create Product
@@ -214,6 +214,7 @@ export async function bulkImportProducts(products: any[]) {
           data: {
             name: item.name,
             slug: productSlug,
+            price: item.price !== undefined ? Number(item.price) : 0,
             description: item.description || "Crafted luxury eyewear.",
             gender: item.gender || "UNISEX",
             frameShape: item.frameShape || "",
@@ -221,6 +222,12 @@ export async function bulkImportProducts(products: any[]) {
             lensType: item.lensType || "",
             color: item.color || "",
             size: item.size || "",
+            style: item.style || "Classic",
+            collectionType: item.collectionType || "Designer Brands",
+            craftsmanshipDetails: item.craftsmanshipDetails || "",
+            frameWeightCategory: item.frameWeightCategory || "",
+            recommendedUsage: item.recommendedUsage || "",
+            signatureCollectionName: item.signatureCollectionName || "",
             brandId: brand.id,
             categoryId: category.id,
             isActive: true,

@@ -12,7 +12,7 @@ const BRANCHES = [
   { name: "Kumbanad Branch", phone: "918714032603" },
   { name: "Kothamangalam Branch", phone: "918714032607" },
   { name: "Pandalam Branch", phone: "918714032606" },
-  { name: "Kakkanad Branch", phone: "917736441211" },
+
   { name: "Kottayam Branch", phone: "918547866755" },
   { name: "Ettumanur Branch", phone: "918714032604" },
   { name: "Angamaly Branch", phone: "918714032605" },

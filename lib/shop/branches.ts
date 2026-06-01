@@ -13,13 +13,6 @@ export interface BranchConfig {
 
 export const BRANCH_DIRECTORY: BranchConfig[] = [
   {
-    id: "br-1",
-    name: "Kakkanad",
-    slug: "kakkanad",
-    whatsapp: "+919876543210",
-    location: "Ernakulam, Kerala"
-  },
-  {
     id: "br-2",
     name: "Thiruvalla",
     slug: "thiruvalla",

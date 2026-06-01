@@ -56,7 +56,7 @@ export function Footer() {
               <a href="https://www.facebook.com/profile.php?id=61576396662769" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:bg-[#C9A84C] hover:text-[#0A0A0A] hover:border-[#C9A84C] transition-all duration-300">
                 <FacebookIcon className="w-4 h-4" />
               </a>
-              <a href="https://wa.me/917736441211" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:bg-[#C9A84C] hover:text-[#0A0A0A] hover:border-[#C9A84C] transition-all duration-300">
+              <a href="https://wa.me/919988674574" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:bg-[#C9A84C] hover:text-[#0A0A0A] hover:border-[#C9A84C] transition-all duration-300">
                 <MessageCircle className="w-4 h-4" />
               </a>
             </div>
@@ -108,15 +108,15 @@ export function Footer() {
               <li className="flex items-start gap-3 group">
                 <MapPin className="w-4 h-4 text-neutral-500 group-hover:text-white mt-1 shrink-0 transition-colors" />
                 <span className="text-sm text-neutral-400 leading-relaxed font-light">
-                  Seaport-Airport Rd,<br />
-                  Chittethukara, Kakkanad,<br />
-                  Kerala 682037
+                  Manjippuzha Tower,<br />
+                  Mathumoola, Changanassery,<br />
+                  Kerala 686103
                 </span>
               </li>
               <li className="flex items-center gap-3 group">
                 <Phone className="w-4 h-4 text-neutral-500 group-hover:text-white shrink-0 transition-colors" />
-                <a href="tel:+917736441211" className="text-sm text-neutral-400 hover:text-white transition-colors font-light">
-                  +91 77364 41211
+                <a href="tel:+919988674574" className="text-sm text-neutral-400 hover:text-white transition-colors font-light">
+                  +91 99886 74574
                 </a>
               </li>
               <li className="flex items-center gap-3 group">

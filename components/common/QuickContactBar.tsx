@@ -55,7 +55,7 @@ export function QuickContactBar() {
               
               {/* Call hotline */}
               <a
-                href="tel:+919682929968"
+                href="tel:+919988674574"
                 className="w-10 h-10 rounded-xl bg-white hover:bg-[#C9A84C] text-black hover:text-white transition-all duration-300 flex items-center justify-center shadow-lg group"
                 title="Call Now"
               >
@@ -64,7 +64,7 @@ export function QuickContactBar() {
 
               {/* WhatsApp enquiry */}
               <a
-                href="https://wa.me/919682929968?text=Hi%20Emirates%20Optician%2C%20I%20would%20like%20to%20chat%20with%20an%20expert%20stylist."
+                href="https://wa.me/919988674574?text=Hi%20Emirates%20Optician%2C%20I%20would%20like%20to%20chat%20with%20an%20expert%20stylist."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-xl bg-black/40 hover:bg-[#C9A84C] border border-white/10 text-white hover:text-white transition-all duration-300 flex items-center justify-center shadow-lg group"

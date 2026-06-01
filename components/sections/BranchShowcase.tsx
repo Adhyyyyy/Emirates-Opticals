@@ -17,14 +17,6 @@ interface Branch {
 
 const BRANCHES: Branch[] = [
   {
-    id: "kakkanad",
-    name: "Kakkanad Contemporary Boutique",
-    area: "Seaport-Airport Road",
-    address: "Seaport-Airport Rd, Chittethukara, Kakkanad, Kerala 682037",
-    phone: "+91 77364 41211",
-    hours: "10:00 AM — 08:00 PM",
-  },
-  {
     id: "angamaly",
     name: "Angamaly Premium Lounge",
     area: "MC Road",

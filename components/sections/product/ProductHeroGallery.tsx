@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { Product, BranchStock } from "@/types/shop";
 import { getWhatsAppUrl } from "@/lib/shop/whatsapp";
@@ -82,7 +83,7 @@ export function ProductHeroGallery({ product }: ProductHeroGalleryProps) {
                           : "border-transparent opacity-40 hover:opacity-80"
                       )}
                     >
-                      <img src={img} alt="Thumbnail" className="w-full h-full object-cover" />
+                      <Image src={img} alt={`Product view ${idx + 1}`} fill sizes="64px" className="object-cover" />
                     </button>
                   ))}
                 </div>
@@ -90,18 +91,25 @@ export function ProductHeroGallery({ product }: ProductHeroGalleryProps) {
 
               {/* Master Display Image */}
               <div className="flex-1 relative aspect-[4/5] bg-brand-pearl/20 rounded-[3px] overflow-hidden border border-black/[0.02]">
-                <AnimatePresence mode="wait">
-                  <motion.img
-                    key={activeImage}
-                    src={product.images[activeImage]}
-                    alt={product.name}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="w-full h-full object-cover"
-                  />
-                </AnimatePresence>
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={activeImage}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.5 }}
+                      className="absolute inset-0"
+                    >
+                      <Image
+                        src={product.images[activeImage]}
+                        alt={product.name}
+                        fill
+                        priority
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        className="object-cover"
+                      />
+                    </motion.div>
+                  </AnimatePresence>
 
                 {/* Subtle Signature Badge */}
                 {product.isInHouseProduct && (
@@ -124,7 +132,7 @@ export function ProductHeroGallery({ product }: ProductHeroGalleryProps) {
                         activeImage === idx ? "border-brand-gold opacity-100" : "border-transparent opacity-40"
                       )}
                     >
-                      <img src={img} alt="Thumbnail" className="w-full h-full object-cover" />
+                      <Image src={img} alt={`Product view ${idx + 1}`} fill sizes="56px" className="object-cover" />
                     </button>
                   ))}
                 </div>

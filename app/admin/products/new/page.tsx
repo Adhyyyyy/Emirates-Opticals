@@ -34,7 +34,7 @@ export default async function NewProductPage() {
           slug: {
             in: [
               "changanassery", "thiruvalla", "kumbanad", 
-              "kothamangalam", "pandalam", "kakkanad", 
+              "kothamangalam", "pandalam", 
               "kottayam", "ettumanur", "angamaly", "irumpanam"
             ]
           }
@@ -63,7 +63,7 @@ export default async function NewProductPage() {
     ].map((b, idx) => ({ id: `brd-${idx}`, name: b }));
     branches = [
       "Changanassery", "Thiruvalla", "Kumbanad", "Kothamangalam", 
-      "Pandalam", "Kakkanad", "Kottayam", "Ettumanur", 
+      "Pandalam", "Kottayam", "Ettumanur", 
       "Angamaly", "Irumpanam"
     ].map((br, idx) => ({ id: `br-${idx}`, name: br, slug: br.toLowerCase() }));
   }
@@ -72,7 +72,7 @@ export default async function NewProductPage() {
     "use server";
     const result = await createProduct(data);
     if (result.success) {
-      redirect("/admin/products");
+      redirect("/admin/products?success=created");
     }
   }
 

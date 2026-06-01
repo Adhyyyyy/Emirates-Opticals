@@ -104,7 +104,6 @@ const FILTER_GROUPS = [
       "Kumbanad", 
       "Kothamangalam", 
       "Pandalam", 
-      "Kakkanad", 
       "Kottayam", 
       "Ettumanur", 
       "Angamaly", 

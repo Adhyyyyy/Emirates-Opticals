@@ -10,7 +10,7 @@ const BRANCHES = [
   { name: "Kumbanad", phone: "918714032603" },
   { name: "Kothamangalam", phone: "918714032607" },
   { name: "Pandalam", phone: "918714032606" },
-  { name: "Kakkanad", phone: "917736441211" },
+
   { name: "Kottayam", phone: "918547866755" },
   { name: "Ettumanur", phone: "918714032604" },
   { name: "Angamaly", phone: "918714032605" },
@@ -48,7 +48,7 @@ export function BookingForm() {
     setIsSubmitting(true);
 
     const selectedBranch = BRANCHES.find(b => b.name === formData.branch);
-    const targetPhone = selectedBranch ? selectedBranch.phone : "919682929968";
+    const targetPhone = selectedBranch ? selectedBranch.phone : "919988674574";
 
     // Construct WhatsApp Message
     const message = `*Emirates Optician Eye Test Booking*%0A%0A` +

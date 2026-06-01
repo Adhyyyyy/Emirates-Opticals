@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import Link from "next/link";
 
 const COLLECTIONS = [
@@ -46,12 +47,13 @@ export function FeaturedCollections() {
           <div 
             className="md:row-span-2 h-[400px] md:h-full max-h-[620px] rounded-[3px] overflow-hidden relative group border border-black/5 block"
           >
-            <img 
+            <Image 
               src={COLLECTIONS[0].image} 
               alt={COLLECTIONS[0].title}
-              loading="lazy"
-              decoding="async"
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
             />
             {/* Gradient Scrim */}
             <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/75 via-black/35 to-transparent z-[1]" />
@@ -71,12 +73,12 @@ export function FeaturedCollections() {
           <div 
             className="rounded-[3px] overflow-hidden relative group h-[290px] md:h-[300px] border border-black/5 block"
           >
-            <img 
+            <Image 
               src={COLLECTIONS[1].image} 
               alt={COLLECTIONS[1].title}
-              loading="lazy"
-              decoding="async"
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
             />
             {/* Gradient Scrim */}
             <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/75 via-black/35 to-transparent z-[1]" />
@@ -96,12 +98,12 @@ export function FeaturedCollections() {
           <div 
             className="rounded-[3px] overflow-hidden relative group h-[290px] md:h-[300px] border border-black/5 block"
           >
-            <img 
+            <Image 
               src={COLLECTIONS[2].image} 
               alt={COLLECTIONS[2].title}
-              loading="lazy"
-              decoding="async"
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
             />
             {/* Gradient Scrim */}
             <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/75 via-black/35 to-transparent z-[1]" />

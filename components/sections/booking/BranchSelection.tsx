@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Reveal, GridStagger, StaggerItem } from "@/components/motion/Reveal";
 import { MapPin, Clock, Info, Navigation } from "lucide-react";
@@ -41,13 +42,6 @@ const BRANCHES = [
     timings: "9:30 AM - 8:00 PM",
     parking: "Available",
     img: "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&q=80&w=800"
-  },
-  {
-    name: "Emirates Optician, Kakkanad",
-    address: "Seaport-Airport Road, Chittethukara, Kakkanad",
-    timings: "10:00 AM - 9:00 PM",
-    parking: "Available",
-    img: "https://images.unsplash.com/photo-1591076482161-42ce6da69f67?auto=format&fit=crop&q=80&w=800"
   },
   {
     name: "Emirates Optician, Kottayam",
@@ -98,10 +92,12 @@ export function BranchSelection() {
               <div className="group bg-brand-pearl border border-black/5 hover:border-brand-gold/30 transition-all duration-700 h-full flex flex-col overflow-hidden">
                 {/* Branch Image */}
                 <div className="relative h-64 overflow-hidden">
-                  <img 
+                  <Image 
                     src={branch.img} 
                     alt={branch.name}
-                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-1000 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-brand-charcoal/20 group-hover:bg-transparent transition-colors duration-1000" />
                 </div>

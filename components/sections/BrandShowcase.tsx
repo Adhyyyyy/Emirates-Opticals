@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { m } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -96,12 +97,12 @@ function BrandCard({ brand }: any) {
       >
         {/* Full Bleed Image */}
         <div className="absolute inset-0 z-0 overflow-hidden">
-          <img 
+          <Image 
             src={brand.imageUrl} 
             alt={brand.name} 
-            loading="lazy"
-            decoding="async"
-            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 brightness-[0.8] group-hover:brightness-[0.9]"
+            fill
+            sizes="(max-width: 768px) 280px, 380px"
+            className="object-cover transition-transform duration-1000 group-hover:scale-105 brightness-[0.8] group-hover:brightness-[0.9]"
           />
           {brand.showText && (
             <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500" />

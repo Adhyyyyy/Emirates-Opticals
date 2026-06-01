@@ -22,8 +22,8 @@ export const PRODUCTS: Product[] = [
     isFeatured: true,
     isNewArrival: true,
     branches: [
-      { branchName: "Changanassery", branchSlug: "changanassery", whatsapp: "919682929968", stockStatus: "In Stock" },
-      { branchName: "Kakkanad", branchSlug: "kakkanad", whatsapp: "918000000006", stockStatus: "Low Stock" }
+      { branchName: "Changanassery", branchSlug: "changanassery", whatsapp: "919682929968", stockStatus: "In Stock" }
+
     ]
   },
   {
@@ -68,7 +68,7 @@ export const PRODUCTS: Product[] = [
     collectionType: "Designer Brands",
     isInHouseProduct: false,
     branches: [
-      { branchName: "Kakkanad", branchSlug: "kakkanad", whatsapp: "918000000006", stockStatus: "In Stock" }
+      { branchName: "Thiruvalla", branchSlug: "thiruvalla", whatsapp: "918714032602", stockStatus: "In Stock" }
     ]
   },
   {

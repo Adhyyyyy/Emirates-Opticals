@@ -18,7 +18,7 @@ const STATIC_BRANCHES = [
   { id: "kumbanad", name: "Kumbanad" },
   { id: "kothamangalam", name: "Kothamangalam" },
   { id: "pandalam", name: "Pandalam" },
-  { id: "kakkanad", name: "Kakkanad" },
+
   { id: "kottayam", name: "Kottayam" },
   { id: "ettumanur", name: "Ettumanur" },
   { id: "angamaly", name: "Angamaly" },

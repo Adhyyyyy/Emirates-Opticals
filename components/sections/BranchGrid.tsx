@@ -63,17 +63,6 @@ const KERALA_BRANCHES = [
     description: "An elegant optical lounge offering tailored frame fitting and state-of-the-art diagnostics."
   },
   {
-    id: "br-kakkanad",
-    name: "Emirates Optician, Kakkanad",
-    address: "Seaport - Airport Rd, Chittethukara, Kakkanad, Kerala 682037, India",
-    phone: "+91 77364 41211",
-    hours: "Monday - Saturday: 10:00 AM - 8:00 PM",
-    coordinates: "10.0159, 76.3418",
-    slug: "kakkanad",
-    image: "/branches/kakkanad.png",
-    description: "Modern premium optical experience with luxury eyewear collections."
-  },
-  {
     id: "br-kottayam",
     name: "Emirates Optician, Kottayam",
     address: "M D Commercial Centre Adjacent to Kallarackal Ladies Collections Adjacent to Karakkattu Ladies Collections, Kottayam - Kumily Rd, opposite Joseph Antony's Petrol Pump, Kottayam, Kerala 686001, India",

@@ -7,6 +7,7 @@ import { AdminHeader } from "@/components/layouts/admin/AdminHeader";
 import { AdminShell } from "@/components/layouts/admin/AdminShell";
 import { AdminMobileNav } from "@/components/layouts/admin/AdminMobileNav";
 import { SessionTimeoutProvider } from "@/components/auth/SessionTimeoutProvider";
+import { AdminNotification } from "@/components/layouts/admin/AdminNotification";
 
 export default async function AdminLayout({
   children,
@@ -73,6 +74,9 @@ export default async function AdminLayout({
         <AdminShell>
           <AdminHeader userName={name} userRole={role} />
           <main className="flex-1 p-8 md:p-12 overflow-y-auto">
+            <React.Suspense fallback={null}>
+              <AdminNotification />
+            </React.Suspense>
             {children}
           </main>
         </AdminShell>

@@ -19,7 +19,7 @@ const BRANCHES = [
   { name: "Kumbanad", phone: "918714032603" },
   { name: "Kothamangalam", phone: "918714032607" },
   { name: "Pandalam", phone: "918714032606" },
-  { name: "Kakkanad", phone: "917736441211" },
+
   { name: "Kottayam", phone: "918547866755" },
   { name: "Ettumanur", phone: "918714032604" },
   { name: "Angamaly", phone: "918714032605" },
@@ -65,7 +65,7 @@ export function ContactPageContent() {
     setIsSubmitting(true);
 
     const branch = BRANCHES.find((b) => b.name === formData.branch);
-    const phone = branch?.phone ?? "919682929968";
+    const phone = branch?.phone ?? "919988674574";
 
     const msg =
       `Hello Emirates Optician,%0A%0A` +
@@ -168,7 +168,7 @@ export function ContactPageContent() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                href="tel:9682929968"
+                href="tel:9988674574"
                 className="flex items-start gap-5 p-6 border border-black/[0.03] rounded-2xl bg-white shadow-sm hover:shadow-2xl hover:shadow-brand-charcoal/[0.04] transition-all duration-700 group"
               >
                 {/* Custom square bracket style */}
@@ -177,7 +177,7 @@ export function ContactPageContent() {
                 </div>
                 <div>
                   <span className="text-[9px] font-bold uppercase tracking-widest text-brand-charcoal/30 block mb-1">Call Us</span>
-                  <p className="text-sm font-bold text-brand-charcoal group-hover:text-brand-gold transition-colors duration-300">9682929968</p>
+                  <p className="text-sm font-bold text-brand-charcoal group-hover:text-brand-gold transition-colors duration-300">9988674574</p>
                   <p className="text-[11px] text-brand-charcoal/40 font-light mt-0.5">Monday – Sunday, 9 AM – 7 PM</p>
                 </div>
               </motion.a>

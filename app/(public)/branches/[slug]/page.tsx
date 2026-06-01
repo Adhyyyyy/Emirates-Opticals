@@ -13,15 +13,6 @@ const BRANCH_DATA: Record<string, {
   mapEmbed: string;
   metaDesc: string;
 }> = {
-  kakkanad: {
-    name: "Kakkanad Branch",
-    landmark: "Near Chittethukara Junction, Seaport - Airport Rd",
-    address: "Emirates Optician, Seaport - Airport Rd, Chittethukara, Kakkanad, Kerala 682037, India",
-    phone: "+91 77364 41211",
-    hours: "Monday - Saturday: 10:00 AM - 08:00 PM (Sunday Closed)",
-    mapEmbed: "https://maps.google.com/maps?q=10.0159,76.3418&t=&z=15&ie=UTF8&iwloc=&output=embed",
-    metaDesc: "Visit Emirates Optician in Kakkanad for professional computerized eye testing, authentic premium luxury eyewear, and specialized optician services."
-  },
   kottayam: {
     name: "Kottayam Branch",
     landmark: "Opposite Joseph Antony's Petrol Pump, MC Road",
