@@ -122,6 +122,9 @@ export async function createProduct(data: any) {
 
     revalidatePath("/admin/products");
     revalidatePath("/admin/inventory");
+    revalidatePath("/shop");
+    revalidatePath("/");
+    revalidatePath("/product", "layout");
     return { success: true, id: product.id };
   } catch (err: any) {
     console.error("Create product failed:", err);
@@ -205,6 +208,9 @@ export async function updateProduct(id: string, data: any) {
 
     revalidatePath("/admin/products");
     revalidatePath("/admin/inventory");
+    revalidatePath("/shop");
+    revalidatePath("/");
+    revalidatePath("/product", "layout");
     return { success: true };
   } catch (err: any) {
     console.error("Update product failed:", err);
@@ -235,6 +241,9 @@ export async function deleteProduct(id: string) {
 
     revalidatePath("/admin/products");
     revalidatePath("/admin/inventory");
+    revalidatePath("/shop");
+    revalidatePath("/");
+    revalidatePath("/product", "layout");
     return { success: true };
   } catch (err) {
     console.error("âŒ Single Deletion Failure:", err);
@@ -265,6 +274,9 @@ export async function deleteProducts(ids: string[]) {
 
     revalidatePath("/admin/products");
     revalidatePath("/admin/inventory");
+    revalidatePath("/shop");
+    revalidatePath("/");
+    revalidatePath("/product", "layout");
     return { success: true };
   } catch (err) {
     console.error("âŒ Bulk Deletion Failure:", err);

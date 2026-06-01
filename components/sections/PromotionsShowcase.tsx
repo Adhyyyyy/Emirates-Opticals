@@ -29,8 +29,14 @@ export function PromotionsShowcase() {
           const now = new Date();
           const active = data.filter((o: any) => {
             if (!o.isActive) return false;
-            if (o.startDate && new Date(o.startDate) > now) return false;
-            if (o.endDate && new Date(o.endDate) < now) return false;
+            
+            // Parse YYYY-MM-DD in local time to avoid false off-by-one UTC timezone mismatches
+            if (o.endDate) {
+              const [y, m, d] = o.endDate.split("-").map(Number);
+              const eDate = new Date(y, m - 1, d);
+              eDate.setHours(23, 59, 59, 999);
+              if (eDate < now) return false;
+            }
             return true;
           });
           activeList = active.map((o: any) => ({

@@ -157,30 +157,30 @@ exports.Prisma.ProductScalarFieldEnum = {
   name: 'name',
   slug: 'slug',
   description: 'description',
-  price: 'price',
   isFeatured: 'isFeatured',
   isNewArrival: 'isNewArrival',
   isActive: 'isActive',
   gender: 'gender',
-  style: 'style',
   frameShape: 'frameShape',
   material: 'material',
   lensType: 'lensType',
   color: 'color',
   size: 'size',
-  isInHouseProduct: 'isInHouseProduct',
-  collectionType: 'collectionType',
-  signatureCollectionName: 'signatureCollectionName',
-  craftsmanshipDetails: 'craftsmanshipDetails',
-  recommendedUsage: 'recommendedUsage',
-  frameWeightCategory: 'frameWeightCategory',
   brandId: 'brandId',
   categoryId: 'categoryId',
   metaTitle: 'metaTitle',
   metaDesc: 'metaDesc',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  deletedAt: 'deletedAt'
+  deletedAt: 'deletedAt',
+  collectionType: 'collectionType',
+  craftsmanshipDetails: 'craftsmanshipDetails',
+  frameWeightCategory: 'frameWeightCategory',
+  isInHouseProduct: 'isInHouseProduct',
+  recommendedUsage: 'recommendedUsage',
+  signatureCollectionName: 'signatureCollectionName',
+  style: 'style',
+  price: 'price'
 };
 
 exports.Prisma.ProductImageScalarFieldEnum = {
@@ -242,8 +242,8 @@ exports.Prisma.EnquiryScalarFieldEnum = {
   type: 'type',
   message: 'message',
   isWhatsApp: 'isWhatsApp',
-  status: 'status',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  status: 'status'
 };
 
 exports.Prisma.CareerApplicationScalarFieldEnum = {
@@ -265,6 +265,7 @@ exports.Prisma.BannerScalarFieldEnum = {
   subtitle: 'subtitle',
   imageUrl: 'imageUrl',
   linkUrl: 'linkUrl',
+  branchId: 'branchId',
   order: 'order',
   isActive: 'isActive'
 };
@@ -285,6 +286,30 @@ exports.Prisma.CampaignScalarFieldEnum = {
   startDate: 'startDate',
   endDate: 'endDate',
   isActive: 'isActive'
+};
+
+exports.Prisma.JobScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  desc: 'desc',
+  requirements: 'requirements',
+  branchId: 'branchId',
+  googleFormUrl: 'googleFormUrl',
+  expiryDate: 'expiryDate',
+  isActive: 'isActive',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.OfferScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  percentage: 'percentage',
+  branchId: 'branchId',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  isActive: 'isActive',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -343,7 +368,9 @@ exports.Prisma.ModelName = {
   CareerApplication: 'CareerApplication',
   Banner: 'Banner',
   Testimonial: 'Testimonial',
-  Campaign: 'Campaign'
+  Campaign: 'Campaign',
+  Job: 'Job',
+  Offer: 'Offer'
 };
 
 /**

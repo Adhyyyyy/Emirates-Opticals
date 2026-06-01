@@ -256,28 +256,33 @@ export function ProductHeroGallery({ product }: ProductHeroGalleryProps) {
                 </button>
               </div>
               <div className="space-y-2 max-h-[50vh] overflow-y-auto" data-lenis-prevent>
-                {product.branches.map((branch) => (
-                  <button
-                    key={branch.branchSlug}
-                    onClick={() => handleBranchSelect(branch)}
-                    className="w-full p-4 border border-white/[0.05] hover:border-brand-gold/30 hover:bg-white/[0.02] rounded-[3px] flex items-center justify-between group/b transition-all duration-300"
-                  >
-                    <div className="text-left">
-                      <span className="text-sm font-bold text-white uppercase tracking-tight block mb-1 group-hover/b:text-brand-gold transition-colors">
-                        {branch.branchName}
-                      </span>
-                      <span className={cn(
-                        "text-[7px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-[2px]",
-                        branch.stockStatus === "In Stock"
-                          ? "text-emerald-400 bg-emerald-500/10"
-                          : "text-amber-400 bg-amber-500/10"
-                      )}>
-                        {branch.stockStatus}
-                      </span>
-                    </div>
-                    <ChevronRight className="w-4 h-4 text-white/20 group-hover/b:text-brand-gold group-hover/b:translate-x-1 transition-all" />
-                  </button>
-                ))}
+                {[...product.branches]
+                  .sort((a, b) => {
+                    const priority: Record<string, number> = { "In Stock": 3, "Low Stock": 2, "Out of Stock": 1 };
+                    return (priority[b.stockStatus] || 0) - (priority[a.stockStatus] || 0);
+                  })
+                  .map((branch) => (
+                    <button
+                      key={branch.branchSlug}
+                      onClick={() => handleBranchSelect(branch)}
+                      className="w-full p-4 border border-white/[0.05] hover:border-brand-gold/30 hover:bg-white/[0.02] rounded-[3px] flex items-center justify-between group/b transition-all duration-300"
+                    >
+                      <div className="text-left">
+                        <span className="text-sm font-bold text-white uppercase tracking-tight block mb-1 group-hover/b:text-brand-gold transition-colors">
+                          {branch.branchName}
+                        </span>
+                        <span className={cn(
+                          "text-[7px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-[2px]",
+                          branch.stockStatus === "In Stock"
+                            ? "text-emerald-400 bg-emerald-500/10"
+                            : "text-amber-400 bg-amber-500/10"
+                        )}>
+                          {branch.stockStatus}
+                        </span>
+                      </div>
+                      <ChevronRight className="w-4 h-4 text-white/20 group-hover/b:text-brand-gold group-hover/b:translate-x-1 transition-all" />
+                    </button>
+                  ))}
               </div>
               <p className="text-center text-[8px] font-bold uppercase tracking-[0.2em] text-white/20 mt-6 pt-5 border-t border-white/[0.05]">
                 Tap branch to connect instantly on WhatsApp

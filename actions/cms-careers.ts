@@ -3,8 +3,6 @@
 import { revalidatePath } from "next/cache";
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
-import fs from "fs";
-import path from "path";
 import prisma from "@/lib/prisma";
 
 /**
@@ -27,28 +25,25 @@ async function getAuthSession() {
 }
 
 /**
- * PATH RESOLVERS FOR JOBS PROTOCOL
- */
-const JOBS_FILE_PATH = path.join(process.cwd(), "lib/data/jobs.json");
-
-function ensureJobsFileExists() {
-  const dir = path.dirname(JOBS_FILE_PATH);
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true });
-  }
-  if (!fs.existsSync(JOBS_FILE_PATH)) {
-    fs.writeFileSync(JOBS_FILE_PATH, "[]", "utf-8");
-  }
-}
-
-/**
- * JOBS CRUD ACTIONS
+ * JOBS CRUD ACTIONS — FULLY DATABASE BACKED
  */
 export async function getJobs() {
   try {
-    ensureJobsFileExists();
-    const rawData = fs.readFileSync(JOBS_FILE_PATH, "utf-8");
-    return JSON.parse(rawData);
+    const dbJobs = await prisma.job.findMany({
+      orderBy: { createdAt: "desc" }
+    });
+    
+    return dbJobs.map(j => ({
+      id: j.id,
+      title: j.title,
+      desc: j.desc,
+      requirements: j.requirements,
+      branchId: j.branchId,
+      googleFormUrl: j.googleFormUrl || undefined,
+      expiryDate: j.expiryDate || undefined,
+      isActive: j.isActive,
+      createdAt: j.createdAt.toISOString()
+    }));
   } catch (error) {
     console.error("Failed to read jobs registry:", error);
     return [];
@@ -69,21 +64,35 @@ export async function createJob(data: {
   }
 
   try {
-    ensureJobsFileExists();
-    const jobs = await getJobs();
-    const newJob = {
-      id: Date.now().toString(),
-      ...data,
-      isActive: true,
-      createdAt: new Date().toISOString()
-    };
-
-    jobs.push(newJob);
-    fs.writeFileSync(JOBS_FILE_PATH, JSON.stringify(jobs, null, 2), "utf-8");
+    const newJob = await prisma.job.create({
+      data: {
+        title: data.title,
+        desc: data.desc,
+        requirements: data.requirements,
+        branchId: data.branchId || "Global",
+        googleFormUrl: data.googleFormUrl || null,
+        expiryDate: data.expiryDate || null,
+        isActive: true
+      }
+    });
 
     revalidatePath("/careers");
     revalidatePath("/admin/jobs");
-    return { success: true, data: newJob };
+    
+    return { 
+      success: true, 
+      data: {
+        id: newJob.id,
+        title: newJob.title,
+        desc: newJob.desc,
+        requirements: newJob.requirements,
+        branchId: newJob.branchId,
+        googleFormUrl: newJob.googleFormUrl || undefined,
+        expiryDate: newJob.expiryDate || undefined,
+        isActive: newJob.isActive,
+        createdAt: newJob.createdAt.toISOString()
+      } 
+    };
   } catch (error) {
     console.error("Create job error:", error);
     return { error: "Failed to publish job opening" };
@@ -97,11 +106,10 @@ export async function toggleJobStatus(id: string, isActive: boolean) {
   }
 
   try {
-    const jobs = await getJobs();
-    const updated = jobs.map((j: any) => 
-      j.id === id ? { ...j, isActive } : j
-    );
-    fs.writeFileSync(JOBS_FILE_PATH, JSON.stringify(updated, null, 2), "utf-8");
+    await prisma.job.update({
+      where: { id },
+      data: { isActive }
+    });
 
     revalidatePath("/careers");
     revalidatePath("/admin/jobs");
@@ -119,9 +127,9 @@ export async function deleteJob(id: string) {
   }
 
   try {
-    const jobs = await getJobs();
-    const filtered = jobs.filter((j: any) => j.id !== id);
-    fs.writeFileSync(JOBS_FILE_PATH, JSON.stringify(filtered, null, 2), "utf-8");
+    await prisma.job.delete({
+      where: { id }
+    });
 
     revalidatePath("/careers");
     revalidatePath("/admin/jobs");
@@ -166,32 +174,7 @@ export async function applyForJob(data: {
 
     return { success: true, id: application.id };
   } catch (error) {
-    console.warn("âŒ Prisma career application save failed, logging to static storage:", error);
-    
-    try {
-      const applicationsFile = path.join(process.cwd(), "lib/data/applications.json");
-      const dir = path.dirname(applicationsFile);
-      if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-      
-      let apps = [];
-      if (fs.existsSync(applicationsFile)) {
-        apps = JSON.parse(fs.readFileSync(applicationsFile, "utf-8"));
-      }
-      
-      const newApp = {
-        id: Date.now().toString(),
-        ...data,
-        createdAt: new Date().toISOString(),
-        status: "PENDING"
-      };
-      
-      apps.push(newApp);
-      fs.writeFileSync(applicationsFile, JSON.stringify(apps, null, 2), "utf-8");
-      
-      return { success: true, staticLogged: true };
-    } catch (fsErr) {
-      console.error("âŒ FS backup careers application save failed:", fsErr);
-      return { error: "Application transmission offline. Please call or WhatsApp us." };
-    }
+    console.error("❌ Prisma career application save failed:", error);
+    return { error: "Application transmission offline. Please call or WhatsApp us." };
   }
 }

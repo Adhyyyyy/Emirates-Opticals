@@ -6,7 +6,8 @@ import prisma from "@/lib/prisma";
 import { Product, BranchStock } from "@/types/shop";
 import { PRODUCTS as STATIC_PRODUCTS } from "@/lib/shop/data";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
+export const revalidate = 0; // Disable catalog caching to render database additions instantly
 
 export const metadata = {
   title: "Shop Luxury Eyewear | Authentic Collections - Emirates Optician",

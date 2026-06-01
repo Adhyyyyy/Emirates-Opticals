@@ -1,4 +1,4 @@
-﻿import { Hero } from "@/components/sections/Hero";
+import { Hero } from "@/components/sections/Hero";
 import { CategoryNavigation } from "@/components/sections/CategoryNavigation";
 import { FeaturedCollections } from "@/components/sections/FeaturedCollections";
 import { BrandShowcase } from "@/components/sections/BrandShowcase";
@@ -21,7 +21,8 @@ import { getBanners, getOffers } from "@/actions/cms-marketing";
 import { getJobs } from "@/actions/cms-careers";
 import { getInstagramFeed } from "@/actions/cms-instagram";
 
-export const revalidate = 3600; // Cache on edge for 1 hour, auto ISR
+export const dynamic = "force-dynamic";
+export const revalidate = 0; // Disable static caching to allow real-time offer and banner synchronization
 
 export default async function HomePage() {
   // â”€â”€ 1. ASYNCHRONOUS DATA FEEDS â”€â”€

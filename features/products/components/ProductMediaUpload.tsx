@@ -53,6 +53,11 @@ export function ProductMediaUpload({ value, onChange }: ProductMediaUploadProps)
       rawFiles = Array.from(e.dataTransfer.files);
     }
 
+    if (files.length + rawFiles.length > 3) {
+      alert("You can upload a maximum of 3 luxury product photos.");
+      return;
+    }
+
     const newFiles = rawFiles.map(f => ({
       id: Math.random().toString(36).substr(2, 9),
       url: URL.createObjectURL(f),
@@ -84,26 +89,28 @@ export function ProductMediaUpload({ value, onChange }: ProductMediaUploadProps)
   return (
     <div className="space-y-8">
       {/* Premium Dropzone */}
-      <div 
-        onDragOver={(e) => e.preventDefault()}
-        onDrop={onDrop}
-        className="relative group cursor-pointer"
-      >
-        <input 
-          type="file" 
-          multiple 
-          accept="image/*"
-          onChange={onDrop}
-          className="absolute inset-0 w-full h-full opacity-0 z-10 cursor-pointer"
-        />
-        <div className="border-2 border-dashed border-black/5 bg-brand-pearl/30 rounded-[2rem] p-12 text-center group-hover:border-brand-gold group-hover:bg-brand-pearl/50 transition-all duration-700">
-          <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl group-hover:scale-110 transition-transform duration-700">
-            <Upload className="w-6 h-6 text-brand-gold" />
+      {files.length < 3 && (
+        <div 
+          onDragOver={(e) => e.preventDefault()}
+          onDrop={onDrop}
+          className="relative group cursor-pointer"
+        >
+          <input 
+            type="file" 
+            multiple 
+            accept="image/*"
+            onChange={onDrop}
+            className="absolute inset-0 w-full h-full opacity-0 z-10 cursor-pointer"
+          />
+          <div className="border-2 border-dashed border-black/5 bg-brand-pearl/30 rounded-[2rem] p-12 text-center group-hover:border-brand-gold group-hover:bg-brand-pearl/50 transition-all duration-700">
+            <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl group-hover:scale-110 transition-transform duration-700">
+              <Upload className="w-6 h-6 text-brand-gold" />
+            </div>
+            <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-brand-charcoal mb-2">Drop Luxury Assets</h3>
+            <p className="text-[10px] text-brand-charcoal/40 font-medium uppercase tracking-widest">JPG, PNG, WebP • Max 3 Photos • Max 5MB per file</p>
           </div>
-          <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-brand-charcoal mb-2">Drop Luxury Assets</h3>
-          <p className="text-[10px] text-brand-charcoal/40 font-medium uppercase tracking-widest">JPG, PNG, WebP • Max 5MB per file</p>
         </div>
-      </div>
+      )}
 
       {/* Dynamic Preview Grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
@@ -161,7 +168,7 @@ export function ProductMediaUpload({ value, onChange }: ProductMediaUploadProps)
         </AnimatePresence>
 
         {/* Add More Trigger (Small) */}
-        {files.length > 0 && (
+        {files.length > 0 && files.length < 3 && (
           <div className="relative group aspect-[3/4]">
             <input 
               type="file" 

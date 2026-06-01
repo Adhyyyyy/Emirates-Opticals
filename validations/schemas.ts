@@ -41,7 +41,9 @@ export const productSchema = z.object({
   status: z.enum(["DRAFT", "PUBLISHED", "ARCHIVED"]).default("DRAFT"),
   
   // Media
-  images: z.array(z.string()).min(1, "At least one product image is required"),
+  images: z.array(z.string())
+    .min(1, "At least one product image is required")
+    .max(3, "Maximum of 3 product images allowed"),
   
   // SEO
   metaTitle: z.string().optional(),

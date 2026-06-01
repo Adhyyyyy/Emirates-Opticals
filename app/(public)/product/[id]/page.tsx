@@ -10,7 +10,8 @@ import { ProductHeroGallery } from "@/components/sections/product/ProductHeroGal
 import { ProductBranchStock } from "@/components/sections/product/ProductBranchStock";
 import { ProductSpecs } from "@/components/sections/product/ProductSpecs";
 
-export const revalidate = 3600; // Cache on edge for 1 hour, auto ISR
+export const dynamic = "force-dynamic";
+export const revalidate = 0; // Disable caching to fetch all uploaded photos in real-time
 
 interface ProductDetailsPageProps {
   params: Promise<{ id: string }>;

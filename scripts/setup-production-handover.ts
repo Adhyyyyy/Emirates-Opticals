@@ -157,8 +157,14 @@ async function setupProductionHandover() {
     console.log("   - Cleared product catalog entities.");
     await prisma.user.deleteMany({});
     console.log("   - Cleared User roles registry.");
+    await prisma.branch.deleteMany({});
+    console.log("   - Cleared physical showrooms registry.");
     await prisma.banner.deleteMany({});
     console.log("   - Cleared marketing banners/offers.");
+    await prisma.job.deleteMany({});
+    console.log("   - Cleared dynamic careers job openings.");
+    await prisma.offer.deleteMany({});
+    console.log("   - Cleared dynamic campaign offers.");
     await prisma.testimonial.deleteMany({});
     console.log("   - Cleared customer testimonials.");
     await prisma.campaign.deleteMany({});

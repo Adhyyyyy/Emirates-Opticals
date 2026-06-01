@@ -29,9 +29,9 @@ const FALLBACK_SLIDES = [
 interface Banner {
   id: string;
   title: string;
-  subtitle?: string;
+  subtitle?: string | null;
   imageUrl: string;
-  linkUrl?: string;
+  linkUrl?: string | null;
   isActive: boolean;
 }
 
@@ -39,8 +39,10 @@ interface Offer {
   id: string;
   title: string;
   description: string;
-  promoCode: string;
-  discountVal: string;
+  percentage: string;
+  branchId?: string;
+  startDate?: string;
+  endDate?: string;
   isActive: boolean;
 }
 
@@ -54,7 +56,19 @@ export function Hero({ banners = [], offers = [] }: HeroProps) {
 
   // Filter active items
   const activeBanners = banners.filter(b => b.isActive);
-  const activeOffers = offers.filter(o => o.isActive);
+  const activeOffers = offers.filter(o => {
+    if (!o.isActive) return false;
+    
+    // Parse YYYY-MM-DD in local time to avoid false off-by-one UTC timezone mismatches
+    if (o.endDate) {
+      const today = new Date();
+      const [y, m, d] = o.endDate.split("-").map(Number);
+      const eDate = new Date(y, m - 1, d);
+      eDate.setHours(23, 59, 59, 999);
+      if (eDate < today) return false;
+    }
+    return true;
+  });
 
   // Background images logic: Use active banner URLs if present, otherwise fall back
   const backgroundItems = activeBanners.length > 0 
@@ -110,7 +124,7 @@ export function Hero({ banners = [], offers = [] }: HeroProps) {
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20 z-[3]" />
       </div>
 
-      {/* â”€â”€ TOP LAYER: ACTIVE PROMOTIONAL TICKER â”€â”€ */}
+      {/* ── TOP LAYER: ACTIVE PROMOTIONAL TICKER ── */}
       <div className="relative z-30 w-full pt-16 md:pt-28">
       </div>
 

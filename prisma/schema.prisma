@@ -4,7 +4,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider  = "postgresql"
 }
 
 model User {
@@ -206,6 +206,7 @@ model Banner {
   subtitle String?
   imageUrl String
   linkUrl  String?
+  branchId String  @default("Global")
   order    Int     @default(0)
   isActive Boolean @default(true)
 }
@@ -255,4 +256,28 @@ enum EnquiryType {
   BRANCH
   GENERAL
   WHATSAPP_LEAD
+}
+
+model Job {
+  id            String   @id @default(cuid())
+  title         String
+  desc          String
+  requirements  String[]
+  branchId      String   @default("Global")
+  googleFormUrl String?
+  expiryDate    String?
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+}
+
+model Offer {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  percentage  String   @default("")
+  branchId    String   @default("Global")
+  startDate   String?
+  endDate     String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
 }

@@ -78,6 +78,16 @@ export type Testimonial = $Result.DefaultSelection<Prisma.$TestimonialPayload>
  * 
  */
 export type Campaign = $Result.DefaultSelection<Prisma.$CampaignPayload>
+/**
+ * Model Job
+ * 
+ */
+export type Job = $Result.DefaultSelection<Prisma.$JobPayload>
+/**
+ * Model Offer
+ * 
+ */
+export type Offer = $Result.DefaultSelection<Prisma.$OfferPayload>
 
 /**
  * Enums
@@ -391,6 +401,26 @@ export class PrismaClient<
     * ```
     */
   get campaign(): Prisma.CampaignDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.job`: Exposes CRUD operations for the **Job** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Jobs
+    * const jobs = await prisma.job.findMany()
+    * ```
+    */
+  get job(): Prisma.JobDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.offer`: Exposes CRUD operations for the **Offer** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Offers
+    * const offers = await prisma.offer.findMany()
+    * ```
+    */
+  get offer(): Prisma.OfferDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -837,7 +867,9 @@ export namespace Prisma {
     CareerApplication: 'CareerApplication',
     Banner: 'Banner',
     Testimonial: 'Testimonial',
-    Campaign: 'Campaign'
+    Campaign: 'Campaign',
+    Job: 'Job',
+    Offer: 'Offer'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -853,7 +885,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "branch" | "product" | "productImage" | "brand" | "category" | "inventory" | "appointment" | "enquiry" | "careerApplication" | "banner" | "testimonial" | "campaign"
+      modelProps: "user" | "branch" | "product" | "productImage" | "brand" | "category" | "inventory" | "appointment" | "enquiry" | "careerApplication" | "banner" | "testimonial" | "campaign" | "job" | "offer"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1819,6 +1851,154 @@ export namespace Prisma {
           }
         }
       }
+      Job: {
+        payload: Prisma.$JobPayload<ExtArgs>
+        fields: Prisma.JobFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.JobFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.JobFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobPayload>
+          }
+          findFirst: {
+            args: Prisma.JobFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.JobFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobPayload>
+          }
+          findMany: {
+            args: Prisma.JobFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobPayload>[]
+          }
+          create: {
+            args: Prisma.JobCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobPayload>
+          }
+          createMany: {
+            args: Prisma.JobCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.JobCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobPayload>[]
+          }
+          delete: {
+            args: Prisma.JobDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobPayload>
+          }
+          update: {
+            args: Prisma.JobUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobPayload>
+          }
+          deleteMany: {
+            args: Prisma.JobDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.JobUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.JobUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobPayload>[]
+          }
+          upsert: {
+            args: Prisma.JobUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobPayload>
+          }
+          aggregate: {
+            args: Prisma.JobAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateJob>
+          }
+          groupBy: {
+            args: Prisma.JobGroupByArgs<ExtArgs>
+            result: $Utils.Optional<JobGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.JobCountArgs<ExtArgs>
+            result: $Utils.Optional<JobCountAggregateOutputType> | number
+          }
+        }
+      }
+      Offer: {
+        payload: Prisma.$OfferPayload<ExtArgs>
+        fields: Prisma.OfferFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.OfferFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OfferPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.OfferFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OfferPayload>
+          }
+          findFirst: {
+            args: Prisma.OfferFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OfferPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.OfferFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OfferPayload>
+          }
+          findMany: {
+            args: Prisma.OfferFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OfferPayload>[]
+          }
+          create: {
+            args: Prisma.OfferCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OfferPayload>
+          }
+          createMany: {
+            args: Prisma.OfferCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.OfferCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OfferPayload>[]
+          }
+          delete: {
+            args: Prisma.OfferDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OfferPayload>
+          }
+          update: {
+            args: Prisma.OfferUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OfferPayload>
+          }
+          deleteMany: {
+            args: Prisma.OfferDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.OfferUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.OfferUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OfferPayload>[]
+          }
+          upsert: {
+            args: Prisma.OfferUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OfferPayload>
+          }
+          aggregate: {
+            args: Prisma.OfferAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateOffer>
+          }
+          groupBy: {
+            args: Prisma.OfferGroupByArgs<ExtArgs>
+            result: $Utils.Optional<OfferGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.OfferCountArgs<ExtArgs>
+            result: $Utils.Optional<OfferCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1940,6 +2120,8 @@ export namespace Prisma {
     banner?: BannerOmit
     testimonial?: TestimonialOmit
     campaign?: CampaignOmit
+    job?: JobOmit
+    offer?: OfferOmit
   }
 
   /* Types for Logging */
@@ -2021,14 +2203,14 @@ export namespace Prisma {
 
   export type UserCountOutputType = {
     appointments: number
-    enquiries: number
     applications: number
+    enquiries: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     appointments?: boolean | UserCountOutputTypeCountAppointmentsArgs
-    enquiries?: boolean | UserCountOutputTypeCountEnquiriesArgs
     applications?: boolean | UserCountOutputTypeCountApplicationsArgs
+    enquiries?: boolean | UserCountOutputTypeCountEnquiriesArgs
   }
 
   // Custom InputTypes
@@ -2052,15 +2234,15 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountEnquiriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: EnquiryWhereInput
+  export type UserCountOutputTypeCountApplicationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CareerApplicationWhereInput
   }
 
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountApplicationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: CareerApplicationWhereInput
+  export type UserCountOutputTypeCountEnquiriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EnquiryWhereInput
   }
 
 
@@ -2069,19 +2251,19 @@ export namespace Prisma {
    */
 
   export type BranchCountOutputType = {
-    users: number
-    stock: number
     appointments: number
-    enquiries: number
     applications: number
+    enquiries: number
+    stock: number
+    users: number
   }
 
   export type BranchCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    users?: boolean | BranchCountOutputTypeCountUsersArgs
-    stock?: boolean | BranchCountOutputTypeCountStockArgs
     appointments?: boolean | BranchCountOutputTypeCountAppointmentsArgs
-    enquiries?: boolean | BranchCountOutputTypeCountEnquiriesArgs
     applications?: boolean | BranchCountOutputTypeCountApplicationsArgs
+    enquiries?: boolean | BranchCountOutputTypeCountEnquiriesArgs
+    stock?: boolean | BranchCountOutputTypeCountStockArgs
+    users?: boolean | BranchCountOutputTypeCountUsersArgs
   }
 
   // Custom InputTypes
@@ -2098,22 +2280,15 @@ export namespace Prisma {
   /**
    * BranchCountOutputType without action
    */
-  export type BranchCountOutputTypeCountUsersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: UserWhereInput
-  }
-
-  /**
-   * BranchCountOutputType without action
-   */
-  export type BranchCountOutputTypeCountStockArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: InventoryWhereInput
-  }
-
-  /**
-   * BranchCountOutputType without action
-   */
   export type BranchCountOutputTypeCountAppointmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AppointmentWhereInput
+  }
+
+  /**
+   * BranchCountOutputType without action
+   */
+  export type BranchCountOutputTypeCountApplicationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CareerApplicationWhereInput
   }
 
   /**
@@ -2126,8 +2301,15 @@ export namespace Prisma {
   /**
    * BranchCountOutputType without action
    */
-  export type BranchCountOutputTypeCountApplicationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: CareerApplicationWhereInput
+  export type BranchCountOutputTypeCountStockArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InventoryWhereInput
+  }
+
+  /**
+   * BranchCountOutputType without action
+   */
+  export type BranchCountOutputTypeCountUsersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserWhereInput
   }
 
 
@@ -2136,15 +2318,15 @@ export namespace Prisma {
    */
 
   export type ProductCountOutputType = {
-    images: number
-    inventory: number
     enquiries: number
+    inventory: number
+    images: number
   }
 
   export type ProductCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    images?: boolean | ProductCountOutputTypeCountImagesArgs
-    inventory?: boolean | ProductCountOutputTypeCountInventoryArgs
     enquiries?: boolean | ProductCountOutputTypeCountEnquiriesArgs
+    inventory?: boolean | ProductCountOutputTypeCountInventoryArgs
+    images?: boolean | ProductCountOutputTypeCountImagesArgs
   }
 
   // Custom InputTypes
@@ -2161,8 +2343,8 @@ export namespace Prisma {
   /**
    * ProductCountOutputType without action
    */
-  export type ProductCountOutputTypeCountImagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ProductImageWhereInput
+  export type ProductCountOutputTypeCountEnquiriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EnquiryWhereInput
   }
 
   /**
@@ -2175,8 +2357,8 @@ export namespace Prisma {
   /**
    * ProductCountOutputType without action
    */
-  export type ProductCountOutputTypeCountEnquiriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: EnquiryWhereInput
+  export type ProductCountOutputTypeCountImagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProductImageWhereInput
   }
 
 
@@ -2450,10 +2632,10 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     deletedAt?: boolean
-    branch?: boolean | User$branchArgs<ExtArgs>
     appointments?: boolean | User$appointmentsArgs<ExtArgs>
-    enquiries?: boolean | User$enquiriesArgs<ExtArgs>
     applications?: boolean | User$applicationsArgs<ExtArgs>
+    enquiries?: boolean | User$enquiriesArgs<ExtArgs>
+    branch?: boolean | User$branchArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2500,10 +2682,10 @@ export namespace Prisma {
 
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "name" | "phone" | "role" | "avatar" | "branchId" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    branch?: boolean | User$branchArgs<ExtArgs>
     appointments?: boolean | User$appointmentsArgs<ExtArgs>
-    enquiries?: boolean | User$enquiriesArgs<ExtArgs>
     applications?: boolean | User$applicationsArgs<ExtArgs>
+    enquiries?: boolean | User$enquiriesArgs<ExtArgs>
+    branch?: boolean | User$branchArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2516,10 +2698,10 @@ export namespace Prisma {
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
-      branch: Prisma.$BranchPayload<ExtArgs> | null
       appointments: Prisma.$AppointmentPayload<ExtArgs>[]
-      enquiries: Prisma.$EnquiryPayload<ExtArgs>[]
       applications: Prisma.$CareerApplicationPayload<ExtArgs>[]
+      enquiries: Prisma.$EnquiryPayload<ExtArgs>[]
+      branch: Prisma.$BranchPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2926,10 +3108,10 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    branch<T extends User$branchArgs<ExtArgs> = {}>(args?: Subset<T, User$branchArgs<ExtArgs>>): Prisma__BranchClient<$Result.GetResult<Prisma.$BranchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     appointments<T extends User$appointmentsArgs<ExtArgs> = {}>(args?: Subset<T, User$appointmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AppointmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    enquiries<T extends User$enquiriesArgs<ExtArgs> = {}>(args?: Subset<T, User$enquiriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EnquiryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     applications<T extends User$applicationsArgs<ExtArgs> = {}>(args?: Subset<T, User$applicationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CareerApplicationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    enquiries<T extends User$enquiriesArgs<ExtArgs> = {}>(args?: Subset<T, User$enquiriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EnquiryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    branch<T extends User$branchArgs<ExtArgs> = {}>(args?: Subset<T, User$branchArgs<ExtArgs>>): Prisma__BranchClient<$Result.GetResult<Prisma.$BranchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3370,25 +3552,6 @@ export namespace Prisma {
   }
 
   /**
-   * User.branch
-   */
-  export type User$branchArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Branch
-     */
-    select?: BranchSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Branch
-     */
-    omit?: BranchOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BranchInclude<ExtArgs> | null
-    where?: BranchWhereInput
-  }
-
-  /**
    * User.appointments
    */
   export type User$appointmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3410,6 +3573,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: AppointmentScalarFieldEnum | AppointmentScalarFieldEnum[]
+  }
+
+  /**
+   * User.applications
+   */
+  export type User$applicationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CareerApplication
+     */
+    select?: CareerApplicationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CareerApplication
+     */
+    omit?: CareerApplicationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CareerApplicationInclude<ExtArgs> | null
+    where?: CareerApplicationWhereInput
+    orderBy?: CareerApplicationOrderByWithRelationInput | CareerApplicationOrderByWithRelationInput[]
+    cursor?: CareerApplicationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CareerApplicationScalarFieldEnum | CareerApplicationScalarFieldEnum[]
   }
 
   /**
@@ -3437,27 +3624,22 @@ export namespace Prisma {
   }
 
   /**
-   * User.applications
+   * User.branch
    */
-  export type User$applicationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$branchArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the CareerApplication
+     * Select specific fields to fetch from the Branch
      */
-    select?: CareerApplicationSelect<ExtArgs> | null
+    select?: BranchSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the CareerApplication
+     * Omit specific fields from the Branch
      */
-    omit?: CareerApplicationOmit<ExtArgs> | null
+    omit?: BranchOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: CareerApplicationInclude<ExtArgs> | null
-    where?: CareerApplicationWhereInput
-    orderBy?: CareerApplicationOrderByWithRelationInput | CareerApplicationOrderByWithRelationInput[]
-    cursor?: CareerApplicationWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: CareerApplicationScalarFieldEnum | CareerApplicationScalarFieldEnum[]
+    include?: BranchInclude<ExtArgs> | null
+    where?: BranchWhereInput
   }
 
   /**
@@ -3727,11 +3909,11 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     deletedAt?: boolean
-    users?: boolean | Branch$usersArgs<ExtArgs>
-    stock?: boolean | Branch$stockArgs<ExtArgs>
     appointments?: boolean | Branch$appointmentsArgs<ExtArgs>
-    enquiries?: boolean | Branch$enquiriesArgs<ExtArgs>
     applications?: boolean | Branch$applicationsArgs<ExtArgs>
+    enquiries?: boolean | Branch$enquiriesArgs<ExtArgs>
+    stock?: boolean | Branch$stockArgs<ExtArgs>
+    users?: boolean | Branch$usersArgs<ExtArgs>
     _count?: boolean | BranchCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["branch"]>
 
@@ -3794,11 +3976,11 @@ export namespace Prisma {
 
   export type BranchOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "address" | "location" | "phone" | "whatsapp" | "email" | "timings" | "coordinates" | "images" | "isMain" | "isActive" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["branch"]>
   export type BranchInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    users?: boolean | Branch$usersArgs<ExtArgs>
-    stock?: boolean | Branch$stockArgs<ExtArgs>
     appointments?: boolean | Branch$appointmentsArgs<ExtArgs>
-    enquiries?: boolean | Branch$enquiriesArgs<ExtArgs>
     applications?: boolean | Branch$applicationsArgs<ExtArgs>
+    enquiries?: boolean | Branch$enquiriesArgs<ExtArgs>
+    stock?: boolean | Branch$stockArgs<ExtArgs>
+    users?: boolean | Branch$usersArgs<ExtArgs>
     _count?: boolean | BranchCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type BranchIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -3807,11 +3989,11 @@ export namespace Prisma {
   export type $BranchPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Branch"
     objects: {
-      users: Prisma.$UserPayload<ExtArgs>[]
-      stock: Prisma.$InventoryPayload<ExtArgs>[]
       appointments: Prisma.$AppointmentPayload<ExtArgs>[]
-      enquiries: Prisma.$EnquiryPayload<ExtArgs>[]
       applications: Prisma.$CareerApplicationPayload<ExtArgs>[]
+      enquiries: Prisma.$EnquiryPayload<ExtArgs>[]
+      stock: Prisma.$InventoryPayload<ExtArgs>[]
+      users: Prisma.$UserPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4224,11 +4406,11 @@ export namespace Prisma {
    */
   export interface Prisma__BranchClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    users<T extends Branch$usersArgs<ExtArgs> = {}>(args?: Subset<T, Branch$usersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    stock<T extends Branch$stockArgs<ExtArgs> = {}>(args?: Subset<T, Branch$stockArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InventoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     appointments<T extends Branch$appointmentsArgs<ExtArgs> = {}>(args?: Subset<T, Branch$appointmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AppointmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    enquiries<T extends Branch$enquiriesArgs<ExtArgs> = {}>(args?: Subset<T, Branch$enquiriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EnquiryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     applications<T extends Branch$applicationsArgs<ExtArgs> = {}>(args?: Subset<T, Branch$applicationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CareerApplicationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    enquiries<T extends Branch$enquiriesArgs<ExtArgs> = {}>(args?: Subset<T, Branch$enquiriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EnquiryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    stock<T extends Branch$stockArgs<ExtArgs> = {}>(args?: Subset<T, Branch$stockArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InventoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    users<T extends Branch$usersArgs<ExtArgs> = {}>(args?: Subset<T, Branch$usersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4667,54 +4849,6 @@ export namespace Prisma {
   }
 
   /**
-   * Branch.users
-   */
-  export type Branch$usersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    where?: UserWhereInput
-    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
-    cursor?: UserWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
-  }
-
-  /**
-   * Branch.stock
-   */
-  export type Branch$stockArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Inventory
-     */
-    select?: InventorySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Inventory
-     */
-    omit?: InventoryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: InventoryInclude<ExtArgs> | null
-    where?: InventoryWhereInput
-    orderBy?: InventoryOrderByWithRelationInput | InventoryOrderByWithRelationInput[]
-    cursor?: InventoryWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: InventoryScalarFieldEnum | InventoryScalarFieldEnum[]
-  }
-
-  /**
    * Branch.appointments
    */
   export type Branch$appointmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4736,6 +4870,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: AppointmentScalarFieldEnum | AppointmentScalarFieldEnum[]
+  }
+
+  /**
+   * Branch.applications
+   */
+  export type Branch$applicationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CareerApplication
+     */
+    select?: CareerApplicationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CareerApplication
+     */
+    omit?: CareerApplicationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CareerApplicationInclude<ExtArgs> | null
+    where?: CareerApplicationWhereInput
+    orderBy?: CareerApplicationOrderByWithRelationInput | CareerApplicationOrderByWithRelationInput[]
+    cursor?: CareerApplicationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CareerApplicationScalarFieldEnum | CareerApplicationScalarFieldEnum[]
   }
 
   /**
@@ -4763,27 +4921,51 @@ export namespace Prisma {
   }
 
   /**
-   * Branch.applications
+   * Branch.stock
    */
-  export type Branch$applicationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Branch$stockArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the CareerApplication
+     * Select specific fields to fetch from the Inventory
      */
-    select?: CareerApplicationSelect<ExtArgs> | null
+    select?: InventorySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the CareerApplication
+     * Omit specific fields from the Inventory
      */
-    omit?: CareerApplicationOmit<ExtArgs> | null
+    omit?: InventoryOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: CareerApplicationInclude<ExtArgs> | null
-    where?: CareerApplicationWhereInput
-    orderBy?: CareerApplicationOrderByWithRelationInput | CareerApplicationOrderByWithRelationInput[]
-    cursor?: CareerApplicationWhereUniqueInput
+    include?: InventoryInclude<ExtArgs> | null
+    where?: InventoryWhereInput
+    orderBy?: InventoryOrderByWithRelationInput | InventoryOrderByWithRelationInput[]
+    cursor?: InventoryWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: CareerApplicationScalarFieldEnum | CareerApplicationScalarFieldEnum[]
+    distinct?: InventoryScalarFieldEnum | InventoryScalarFieldEnum[]
+  }
+
+  /**
+   * Branch.users
+   */
+  export type Branch$usersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    cursor?: UserWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
   }
 
   /**
@@ -4830,23 +5012,15 @@ export namespace Prisma {
     name: string | null
     slug: string | null
     description: string | null
-    price: number | null
     isFeatured: boolean | null
     isNewArrival: boolean | null
     isActive: boolean | null
     gender: string | null
-    style: string | null
     frameShape: string | null
     material: string | null
     lensType: string | null
     color: string | null
     size: string | null
-    isInHouseProduct: boolean | null
-    collectionType: string | null
-    signatureCollectionName: string | null
-    craftsmanshipDetails: string | null
-    recommendedUsage: string | null
-    frameWeightCategory: string | null
     brandId: string | null
     categoryId: string | null
     metaTitle: string | null
@@ -4854,6 +5028,14 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     deletedAt: Date | null
+    collectionType: string | null
+    craftsmanshipDetails: string | null
+    frameWeightCategory: string | null
+    isInHouseProduct: boolean | null
+    recommendedUsage: string | null
+    signatureCollectionName: string | null
+    style: string | null
+    price: number | null
   }
 
   export type ProductMaxAggregateOutputType = {
@@ -4861,23 +5043,15 @@ export namespace Prisma {
     name: string | null
     slug: string | null
     description: string | null
-    price: number | null
     isFeatured: boolean | null
     isNewArrival: boolean | null
     isActive: boolean | null
     gender: string | null
-    style: string | null
     frameShape: string | null
     material: string | null
     lensType: string | null
     color: string | null
     size: string | null
-    isInHouseProduct: boolean | null
-    collectionType: string | null
-    signatureCollectionName: string | null
-    craftsmanshipDetails: string | null
-    recommendedUsage: string | null
-    frameWeightCategory: string | null
     brandId: string | null
     categoryId: string | null
     metaTitle: string | null
@@ -4885,6 +5059,14 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     deletedAt: Date | null
+    collectionType: string | null
+    craftsmanshipDetails: string | null
+    frameWeightCategory: string | null
+    isInHouseProduct: boolean | null
+    recommendedUsage: string | null
+    signatureCollectionName: string | null
+    style: string | null
+    price: number | null
   }
 
   export type ProductCountAggregateOutputType = {
@@ -4892,23 +5074,15 @@ export namespace Prisma {
     name: number
     slug: number
     description: number
-    price: number
     isFeatured: number
     isNewArrival: number
     isActive: number
     gender: number
-    style: number
     frameShape: number
     material: number
     lensType: number
     color: number
     size: number
-    isInHouseProduct: number
-    collectionType: number
-    signatureCollectionName: number
-    craftsmanshipDetails: number
-    recommendedUsage: number
-    frameWeightCategory: number
     brandId: number
     categoryId: number
     metaTitle: number
@@ -4916,6 +5090,14 @@ export namespace Prisma {
     createdAt: number
     updatedAt: number
     deletedAt: number
+    collectionType: number
+    craftsmanshipDetails: number
+    frameWeightCategory: number
+    isInHouseProduct: number
+    recommendedUsage: number
+    signatureCollectionName: number
+    style: number
+    price: number
     _all: number
   }
 
@@ -4933,23 +5115,15 @@ export namespace Prisma {
     name?: true
     slug?: true
     description?: true
-    price?: true
     isFeatured?: true
     isNewArrival?: true
     isActive?: true
     gender?: true
-    style?: true
     frameShape?: true
     material?: true
     lensType?: true
     color?: true
     size?: true
-    isInHouseProduct?: true
-    collectionType?: true
-    signatureCollectionName?: true
-    craftsmanshipDetails?: true
-    recommendedUsage?: true
-    frameWeightCategory?: true
     brandId?: true
     categoryId?: true
     metaTitle?: true
@@ -4957,6 +5131,14 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     deletedAt?: true
+    collectionType?: true
+    craftsmanshipDetails?: true
+    frameWeightCategory?: true
+    isInHouseProduct?: true
+    recommendedUsage?: true
+    signatureCollectionName?: true
+    style?: true
+    price?: true
   }
 
   export type ProductMaxAggregateInputType = {
@@ -4964,23 +5146,15 @@ export namespace Prisma {
     name?: true
     slug?: true
     description?: true
-    price?: true
     isFeatured?: true
     isNewArrival?: true
     isActive?: true
     gender?: true
-    style?: true
     frameShape?: true
     material?: true
     lensType?: true
     color?: true
     size?: true
-    isInHouseProduct?: true
-    collectionType?: true
-    signatureCollectionName?: true
-    craftsmanshipDetails?: true
-    recommendedUsage?: true
-    frameWeightCategory?: true
     brandId?: true
     categoryId?: true
     metaTitle?: true
@@ -4988,6 +5162,14 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     deletedAt?: true
+    collectionType?: true
+    craftsmanshipDetails?: true
+    frameWeightCategory?: true
+    isInHouseProduct?: true
+    recommendedUsage?: true
+    signatureCollectionName?: true
+    style?: true
+    price?: true
   }
 
   export type ProductCountAggregateInputType = {
@@ -4995,23 +5177,15 @@ export namespace Prisma {
     name?: true
     slug?: true
     description?: true
-    price?: true
     isFeatured?: true
     isNewArrival?: true
     isActive?: true
     gender?: true
-    style?: true
     frameShape?: true
     material?: true
     lensType?: true
     color?: true
     size?: true
-    isInHouseProduct?: true
-    collectionType?: true
-    signatureCollectionName?: true
-    craftsmanshipDetails?: true
-    recommendedUsage?: true
-    frameWeightCategory?: true
     brandId?: true
     categoryId?: true
     metaTitle?: true
@@ -5019,6 +5193,14 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     deletedAt?: true
+    collectionType?: true
+    craftsmanshipDetails?: true
+    frameWeightCategory?: true
+    isInHouseProduct?: true
+    recommendedUsage?: true
+    signatureCollectionName?: true
+    style?: true
+    price?: true
     _all?: true
   }
 
@@ -5113,23 +5295,15 @@ export namespace Prisma {
     name: string
     slug: string
     description: string
-    price: number
     isFeatured: boolean
     isNewArrival: boolean
     isActive: boolean
     gender: string | null
-    style: string | null
     frameShape: string | null
     material: string | null
     lensType: string | null
     color: string | null
     size: string | null
-    isInHouseProduct: boolean
-    collectionType: string
-    signatureCollectionName: string | null
-    craftsmanshipDetails: string | null
-    recommendedUsage: string | null
-    frameWeightCategory: string | null
     brandId: string
     categoryId: string
     metaTitle: string | null
@@ -5137,6 +5311,14 @@ export namespace Prisma {
     createdAt: Date
     updatedAt: Date
     deletedAt: Date | null
+    collectionType: string
+    craftsmanshipDetails: string | null
+    frameWeightCategory: string | null
+    isInHouseProduct: boolean
+    recommendedUsage: string | null
+    signatureCollectionName: string | null
+    style: string | null
+    price: number
     _count: ProductCountAggregateOutputType | null
     _avg: ProductAvgAggregateOutputType | null
     _sum: ProductSumAggregateOutputType | null
@@ -5163,23 +5345,15 @@ export namespace Prisma {
     name?: boolean
     slug?: boolean
     description?: boolean
-    price?: boolean
     isFeatured?: boolean
     isNewArrival?: boolean
     isActive?: boolean
     gender?: boolean
-    style?: boolean
     frameShape?: boolean
     material?: boolean
     lensType?: boolean
     color?: boolean
     size?: boolean
-    isInHouseProduct?: boolean
-    collectionType?: boolean
-    signatureCollectionName?: boolean
-    craftsmanshipDetails?: boolean
-    recommendedUsage?: boolean
-    frameWeightCategory?: boolean
     brandId?: boolean
     categoryId?: boolean
     metaTitle?: boolean
@@ -5187,11 +5361,19 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     deletedAt?: boolean
+    collectionType?: boolean
+    craftsmanshipDetails?: boolean
+    frameWeightCategory?: boolean
+    isInHouseProduct?: boolean
+    recommendedUsage?: boolean
+    signatureCollectionName?: boolean
+    style?: boolean
+    price?: boolean
+    enquiries?: boolean | Product$enquiriesArgs<ExtArgs>
+    inventory?: boolean | Product$inventoryArgs<ExtArgs>
     brand?: boolean | BrandDefaultArgs<ExtArgs>
     category?: boolean | CategoryDefaultArgs<ExtArgs>
     images?: boolean | Product$imagesArgs<ExtArgs>
-    inventory?: boolean | Product$inventoryArgs<ExtArgs>
-    enquiries?: boolean | Product$enquiriesArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
 
@@ -5200,23 +5382,15 @@ export namespace Prisma {
     name?: boolean
     slug?: boolean
     description?: boolean
-    price?: boolean
     isFeatured?: boolean
     isNewArrival?: boolean
     isActive?: boolean
     gender?: boolean
-    style?: boolean
     frameShape?: boolean
     material?: boolean
     lensType?: boolean
     color?: boolean
     size?: boolean
-    isInHouseProduct?: boolean
-    collectionType?: boolean
-    signatureCollectionName?: boolean
-    craftsmanshipDetails?: boolean
-    recommendedUsage?: boolean
-    frameWeightCategory?: boolean
     brandId?: boolean
     categoryId?: boolean
     metaTitle?: boolean
@@ -5224,6 +5398,14 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     deletedAt?: boolean
+    collectionType?: boolean
+    craftsmanshipDetails?: boolean
+    frameWeightCategory?: boolean
+    isInHouseProduct?: boolean
+    recommendedUsage?: boolean
+    signatureCollectionName?: boolean
+    style?: boolean
+    price?: boolean
     brand?: boolean | BrandDefaultArgs<ExtArgs>
     category?: boolean | CategoryDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
@@ -5233,23 +5415,15 @@ export namespace Prisma {
     name?: boolean
     slug?: boolean
     description?: boolean
-    price?: boolean
     isFeatured?: boolean
     isNewArrival?: boolean
     isActive?: boolean
     gender?: boolean
-    style?: boolean
     frameShape?: boolean
     material?: boolean
     lensType?: boolean
     color?: boolean
     size?: boolean
-    isInHouseProduct?: boolean
-    collectionType?: boolean
-    signatureCollectionName?: boolean
-    craftsmanshipDetails?: boolean
-    recommendedUsage?: boolean
-    frameWeightCategory?: boolean
     brandId?: boolean
     categoryId?: boolean
     metaTitle?: boolean
@@ -5257,6 +5431,14 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     deletedAt?: boolean
+    collectionType?: boolean
+    craftsmanshipDetails?: boolean
+    frameWeightCategory?: boolean
+    isInHouseProduct?: boolean
+    recommendedUsage?: boolean
+    signatureCollectionName?: boolean
+    style?: boolean
+    price?: boolean
     brand?: boolean | BrandDefaultArgs<ExtArgs>
     category?: boolean | CategoryDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
@@ -5266,23 +5448,15 @@ export namespace Prisma {
     name?: boolean
     slug?: boolean
     description?: boolean
-    price?: boolean
     isFeatured?: boolean
     isNewArrival?: boolean
     isActive?: boolean
     gender?: boolean
-    style?: boolean
     frameShape?: boolean
     material?: boolean
     lensType?: boolean
     color?: boolean
     size?: boolean
-    isInHouseProduct?: boolean
-    collectionType?: boolean
-    signatureCollectionName?: boolean
-    craftsmanshipDetails?: boolean
-    recommendedUsage?: boolean
-    frameWeightCategory?: boolean
     brandId?: boolean
     categoryId?: boolean
     metaTitle?: boolean
@@ -5290,15 +5464,23 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     deletedAt?: boolean
+    collectionType?: boolean
+    craftsmanshipDetails?: boolean
+    frameWeightCategory?: boolean
+    isInHouseProduct?: boolean
+    recommendedUsage?: boolean
+    signatureCollectionName?: boolean
+    style?: boolean
+    price?: boolean
   }
 
-  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "description" | "price" | "isFeatured" | "isNewArrival" | "isActive" | "gender" | "style" | "frameShape" | "material" | "lensType" | "color" | "size" | "isInHouseProduct" | "collectionType" | "signatureCollectionName" | "craftsmanshipDetails" | "recommendedUsage" | "frameWeightCategory" | "brandId" | "categoryId" | "metaTitle" | "metaDesc" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["product"]>
+  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "description" | "isFeatured" | "isNewArrival" | "isActive" | "gender" | "frameShape" | "material" | "lensType" | "color" | "size" | "brandId" | "categoryId" | "metaTitle" | "metaDesc" | "createdAt" | "updatedAt" | "deletedAt" | "collectionType" | "craftsmanshipDetails" | "frameWeightCategory" | "isInHouseProduct" | "recommendedUsage" | "signatureCollectionName" | "style" | "price", ExtArgs["result"]["product"]>
   export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    enquiries?: boolean | Product$enquiriesArgs<ExtArgs>
+    inventory?: boolean | Product$inventoryArgs<ExtArgs>
     brand?: boolean | BrandDefaultArgs<ExtArgs>
     category?: boolean | CategoryDefaultArgs<ExtArgs>
     images?: boolean | Product$imagesArgs<ExtArgs>
-    inventory?: boolean | Product$inventoryArgs<ExtArgs>
-    enquiries?: boolean | Product$enquiriesArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ProductIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5313,34 +5495,26 @@ export namespace Prisma {
   export type $ProductPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Product"
     objects: {
+      enquiries: Prisma.$EnquiryPayload<ExtArgs>[]
+      inventory: Prisma.$InventoryPayload<ExtArgs>[]
       brand: Prisma.$BrandPayload<ExtArgs>
       category: Prisma.$CategoryPayload<ExtArgs>
       images: Prisma.$ProductImagePayload<ExtArgs>[]
-      inventory: Prisma.$InventoryPayload<ExtArgs>[]
-      enquiries: Prisma.$EnquiryPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
       slug: string
       description: string
-      price: number
       isFeatured: boolean
       isNewArrival: boolean
       isActive: boolean
       gender: string | null
-      style: string | null
       frameShape: string | null
       material: string | null
       lensType: string | null
       color: string | null
       size: string | null
-      isInHouseProduct: boolean
-      collectionType: string
-      signatureCollectionName: string | null
-      craftsmanshipDetails: string | null
-      recommendedUsage: string | null
-      frameWeightCategory: string | null
       brandId: string
       categoryId: string
       metaTitle: string | null
@@ -5348,6 +5522,14 @@ export namespace Prisma {
       createdAt: Date
       updatedAt: Date
       deletedAt: Date | null
+      collectionType: string
+      craftsmanshipDetails: string | null
+      frameWeightCategory: string | null
+      isInHouseProduct: boolean
+      recommendedUsage: string | null
+      signatureCollectionName: string | null
+      style: string | null
+      price: number
     }, ExtArgs["result"]["product"]>
     composites: {}
   }
@@ -5742,11 +5924,11 @@ export namespace Prisma {
    */
   export interface Prisma__ProductClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    enquiries<T extends Product$enquiriesArgs<ExtArgs> = {}>(args?: Subset<T, Product$enquiriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EnquiryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    inventory<T extends Product$inventoryArgs<ExtArgs> = {}>(args?: Subset<T, Product$inventoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InventoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     brand<T extends BrandDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BrandDefaultArgs<ExtArgs>>): Prisma__BrandClient<$Result.GetResult<Prisma.$BrandPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     category<T extends CategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CategoryDefaultArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     images<T extends Product$imagesArgs<ExtArgs> = {}>(args?: Subset<T, Product$imagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    inventory<T extends Product$inventoryArgs<ExtArgs> = {}>(args?: Subset<T, Product$inventoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InventoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    enquiries<T extends Product$enquiriesArgs<ExtArgs> = {}>(args?: Subset<T, Product$enquiriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EnquiryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5780,23 +5962,15 @@ export namespace Prisma {
     readonly name: FieldRef<"Product", 'String'>
     readonly slug: FieldRef<"Product", 'String'>
     readonly description: FieldRef<"Product", 'String'>
-    readonly price: FieldRef<"Product", 'Float'>
     readonly isFeatured: FieldRef<"Product", 'Boolean'>
     readonly isNewArrival: FieldRef<"Product", 'Boolean'>
     readonly isActive: FieldRef<"Product", 'Boolean'>
     readonly gender: FieldRef<"Product", 'String'>
-    readonly style: FieldRef<"Product", 'String'>
     readonly frameShape: FieldRef<"Product", 'String'>
     readonly material: FieldRef<"Product", 'String'>
     readonly lensType: FieldRef<"Product", 'String'>
     readonly color: FieldRef<"Product", 'String'>
     readonly size: FieldRef<"Product", 'String'>
-    readonly isInHouseProduct: FieldRef<"Product", 'Boolean'>
-    readonly collectionType: FieldRef<"Product", 'String'>
-    readonly signatureCollectionName: FieldRef<"Product", 'String'>
-    readonly craftsmanshipDetails: FieldRef<"Product", 'String'>
-    readonly recommendedUsage: FieldRef<"Product", 'String'>
-    readonly frameWeightCategory: FieldRef<"Product", 'String'>
     readonly brandId: FieldRef<"Product", 'String'>
     readonly categoryId: FieldRef<"Product", 'String'>
     readonly metaTitle: FieldRef<"Product", 'String'>
@@ -5804,6 +5978,14 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"Product", 'DateTime'>
     readonly updatedAt: FieldRef<"Product", 'DateTime'>
     readonly deletedAt: FieldRef<"Product", 'DateTime'>
+    readonly collectionType: FieldRef<"Product", 'String'>
+    readonly craftsmanshipDetails: FieldRef<"Product", 'String'>
+    readonly frameWeightCategory: FieldRef<"Product", 'String'>
+    readonly isInHouseProduct: FieldRef<"Product", 'Boolean'>
+    readonly recommendedUsage: FieldRef<"Product", 'String'>
+    readonly signatureCollectionName: FieldRef<"Product", 'String'>
+    readonly style: FieldRef<"Product", 'String'>
+    readonly price: FieldRef<"Product", 'Float'>
   }
     
 
@@ -6205,27 +6387,27 @@ export namespace Prisma {
   }
 
   /**
-   * Product.images
+   * Product.enquiries
    */
-  export type Product$imagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Product$enquiriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ProductImage
+     * Select specific fields to fetch from the Enquiry
      */
-    select?: ProductImageSelect<ExtArgs> | null
+    select?: EnquirySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the ProductImage
+     * Omit specific fields from the Enquiry
      */
-    omit?: ProductImageOmit<ExtArgs> | null
+    omit?: EnquiryOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ProductImageInclude<ExtArgs> | null
-    where?: ProductImageWhereInput
-    orderBy?: ProductImageOrderByWithRelationInput | ProductImageOrderByWithRelationInput[]
-    cursor?: ProductImageWhereUniqueInput
+    include?: EnquiryInclude<ExtArgs> | null
+    where?: EnquiryWhereInput
+    orderBy?: EnquiryOrderByWithRelationInput | EnquiryOrderByWithRelationInput[]
+    cursor?: EnquiryWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: ProductImageScalarFieldEnum | ProductImageScalarFieldEnum[]
+    distinct?: EnquiryScalarFieldEnum | EnquiryScalarFieldEnum[]
   }
 
   /**
@@ -6253,27 +6435,27 @@ export namespace Prisma {
   }
 
   /**
-   * Product.enquiries
+   * Product.images
    */
-  export type Product$enquiriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Product$imagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Enquiry
+     * Select specific fields to fetch from the ProductImage
      */
-    select?: EnquirySelect<ExtArgs> | null
+    select?: ProductImageSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Enquiry
+     * Omit specific fields from the ProductImage
      */
-    omit?: EnquiryOmit<ExtArgs> | null
+    omit?: ProductImageOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EnquiryInclude<ExtArgs> | null
-    where?: EnquiryWhereInput
-    orderBy?: EnquiryOrderByWithRelationInput | EnquiryOrderByWithRelationInput[]
-    cursor?: EnquiryWhereUniqueInput
+    include?: ProductImageInclude<ExtArgs> | null
+    where?: ProductImageWhereInput
+    orderBy?: ProductImageOrderByWithRelationInput | ProductImageOrderByWithRelationInput[]
+    cursor?: ProductImageWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: EnquiryScalarFieldEnum | EnquiryScalarFieldEnum[]
+    distinct?: ProductImageScalarFieldEnum | ProductImageScalarFieldEnum[]
   }
 
   /**
@@ -9800,8 +9982,8 @@ export namespace Prisma {
     quantity?: boolean
     status?: boolean
     updatedAt?: boolean
-    product?: boolean | ProductDefaultArgs<ExtArgs>
     branch?: boolean | BranchDefaultArgs<ExtArgs>
+    product?: boolean | ProductDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["inventory"]>
 
   export type InventorySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -9811,8 +9993,8 @@ export namespace Prisma {
     quantity?: boolean
     status?: boolean
     updatedAt?: boolean
-    product?: boolean | ProductDefaultArgs<ExtArgs>
     branch?: boolean | BranchDefaultArgs<ExtArgs>
+    product?: boolean | ProductDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["inventory"]>
 
   export type InventorySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -9822,8 +10004,8 @@ export namespace Prisma {
     quantity?: boolean
     status?: boolean
     updatedAt?: boolean
-    product?: boolean | ProductDefaultArgs<ExtArgs>
     branch?: boolean | BranchDefaultArgs<ExtArgs>
+    product?: boolean | ProductDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["inventory"]>
 
   export type InventorySelectScalar = {
@@ -9837,23 +10019,23 @@ export namespace Prisma {
 
   export type InventoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "productId" | "branchId" | "quantity" | "status" | "updatedAt", ExtArgs["result"]["inventory"]>
   export type InventoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    product?: boolean | ProductDefaultArgs<ExtArgs>
     branch?: boolean | BranchDefaultArgs<ExtArgs>
+    product?: boolean | ProductDefaultArgs<ExtArgs>
   }
   export type InventoryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    product?: boolean | ProductDefaultArgs<ExtArgs>
     branch?: boolean | BranchDefaultArgs<ExtArgs>
+    product?: boolean | ProductDefaultArgs<ExtArgs>
   }
   export type InventoryIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    product?: boolean | ProductDefaultArgs<ExtArgs>
     branch?: boolean | BranchDefaultArgs<ExtArgs>
+    product?: boolean | ProductDefaultArgs<ExtArgs>
   }
 
   export type $InventoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Inventory"
     objects: {
-      product: Prisma.$ProductPayload<ExtArgs>
       branch: Prisma.$BranchPayload<ExtArgs>
+      product: Prisma.$ProductPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -10256,8 +10438,8 @@ export namespace Prisma {
    */
   export interface Prisma__InventoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    product<T extends ProductDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProductDefaultArgs<ExtArgs>>): Prisma__ProductClient<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     branch<T extends BranchDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BranchDefaultArgs<ExtArgs>>): Prisma__BranchClient<$Result.GetResult<Prisma.$BranchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    product<T extends ProductDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProductDefaultArgs<ExtArgs>>): Prisma__ProductClient<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10924,8 +11106,8 @@ export namespace Prisma {
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    user?: boolean | Appointment$userArgs<ExtArgs>
     branch?: boolean | BranchDefaultArgs<ExtArgs>
+    user?: boolean | Appointment$userArgs<ExtArgs>
   }, ExtArgs["result"]["appointment"]>
 
   export type AppointmentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -10940,8 +11122,8 @@ export namespace Prisma {
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    user?: boolean | Appointment$userArgs<ExtArgs>
     branch?: boolean | BranchDefaultArgs<ExtArgs>
+    user?: boolean | Appointment$userArgs<ExtArgs>
   }, ExtArgs["result"]["appointment"]>
 
   export type AppointmentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -10956,8 +11138,8 @@ export namespace Prisma {
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    user?: boolean | Appointment$userArgs<ExtArgs>
     branch?: boolean | BranchDefaultArgs<ExtArgs>
+    user?: boolean | Appointment$userArgs<ExtArgs>
   }, ExtArgs["result"]["appointment"]>
 
   export type AppointmentSelectScalar = {
@@ -10976,23 +11158,23 @@ export namespace Prisma {
 
   export type AppointmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "customerName" | "customerEmail" | "customerPhone" | "branchId" | "date" | "status" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["appointment"]>
   export type AppointmentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | Appointment$userArgs<ExtArgs>
     branch?: boolean | BranchDefaultArgs<ExtArgs>
+    user?: boolean | Appointment$userArgs<ExtArgs>
   }
   export type AppointmentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | Appointment$userArgs<ExtArgs>
     branch?: boolean | BranchDefaultArgs<ExtArgs>
+    user?: boolean | Appointment$userArgs<ExtArgs>
   }
   export type AppointmentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | Appointment$userArgs<ExtArgs>
     branch?: boolean | BranchDefaultArgs<ExtArgs>
+    user?: boolean | Appointment$userArgs<ExtArgs>
   }
 
   export type $AppointmentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Appointment"
     objects: {
-      user: Prisma.$UserPayload<ExtArgs> | null
       branch: Prisma.$BranchPayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -11400,8 +11582,8 @@ export namespace Prisma {
    */
   export interface Prisma__AppointmentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends Appointment$userArgs<ExtArgs> = {}>(args?: Subset<T, Appointment$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     branch<T extends BranchDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BranchDefaultArgs<ExtArgs>>): Prisma__BranchClient<$Result.GetResult<Prisma.$BranchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    user<T extends Appointment$userArgs<ExtArgs> = {}>(args?: Subset<T, Appointment$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -11898,8 +12080,8 @@ export namespace Prisma {
     type: $Enums.EnquiryType | null
     message: string | null
     isWhatsApp: boolean | null
-    status: string | null
     createdAt: Date | null
+    status: string | null
   }
 
   export type EnquiryMaxAggregateOutputType = {
@@ -11910,8 +12092,8 @@ export namespace Prisma {
     type: $Enums.EnquiryType | null
     message: string | null
     isWhatsApp: boolean | null
-    status: string | null
     createdAt: Date | null
+    status: string | null
   }
 
   export type EnquiryCountAggregateOutputType = {
@@ -11922,8 +12104,8 @@ export namespace Prisma {
     type: number
     message: number
     isWhatsApp: number
-    status: number
     createdAt: number
+    status: number
     _all: number
   }
 
@@ -11936,8 +12118,8 @@ export namespace Prisma {
     type?: true
     message?: true
     isWhatsApp?: true
-    status?: true
     createdAt?: true
+    status?: true
   }
 
   export type EnquiryMaxAggregateInputType = {
@@ -11948,8 +12130,8 @@ export namespace Prisma {
     type?: true
     message?: true
     isWhatsApp?: true
-    status?: true
     createdAt?: true
+    status?: true
   }
 
   export type EnquiryCountAggregateInputType = {
@@ -11960,8 +12142,8 @@ export namespace Prisma {
     type?: true
     message?: true
     isWhatsApp?: true
-    status?: true
     createdAt?: true
+    status?: true
     _all?: true
   }
 
@@ -12045,8 +12227,8 @@ export namespace Prisma {
     type: $Enums.EnquiryType
     message: string
     isWhatsApp: boolean
-    status: string
     createdAt: Date
+    status: string
     _count: EnquiryCountAggregateOutputType | null
     _min: EnquiryMinAggregateOutputType | null
     _max: EnquiryMaxAggregateOutputType | null
@@ -12074,11 +12256,11 @@ export namespace Prisma {
     type?: boolean
     message?: boolean
     isWhatsApp?: boolean
-    status?: boolean
     createdAt?: boolean
-    user?: boolean | Enquiry$userArgs<ExtArgs>
-    product?: boolean | Enquiry$productArgs<ExtArgs>
+    status?: boolean
     branch?: boolean | BranchDefaultArgs<ExtArgs>
+    product?: boolean | Enquiry$productArgs<ExtArgs>
+    user?: boolean | Enquiry$userArgs<ExtArgs>
   }, ExtArgs["result"]["enquiry"]>
 
   export type EnquirySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -12089,11 +12271,11 @@ export namespace Prisma {
     type?: boolean
     message?: boolean
     isWhatsApp?: boolean
-    status?: boolean
     createdAt?: boolean
-    user?: boolean | Enquiry$userArgs<ExtArgs>
-    product?: boolean | Enquiry$productArgs<ExtArgs>
+    status?: boolean
     branch?: boolean | BranchDefaultArgs<ExtArgs>
+    product?: boolean | Enquiry$productArgs<ExtArgs>
+    user?: boolean | Enquiry$userArgs<ExtArgs>
   }, ExtArgs["result"]["enquiry"]>
 
   export type EnquirySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -12104,11 +12286,11 @@ export namespace Prisma {
     type?: boolean
     message?: boolean
     isWhatsApp?: boolean
-    status?: boolean
     createdAt?: boolean
-    user?: boolean | Enquiry$userArgs<ExtArgs>
-    product?: boolean | Enquiry$productArgs<ExtArgs>
+    status?: boolean
     branch?: boolean | BranchDefaultArgs<ExtArgs>
+    product?: boolean | Enquiry$productArgs<ExtArgs>
+    user?: boolean | Enquiry$userArgs<ExtArgs>
   }, ExtArgs["result"]["enquiry"]>
 
   export type EnquirySelectScalar = {
@@ -12119,33 +12301,33 @@ export namespace Prisma {
     type?: boolean
     message?: boolean
     isWhatsApp?: boolean
-    status?: boolean
     createdAt?: boolean
+    status?: boolean
   }
 
-  export type EnquiryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "productId" | "branchId" | "type" | "message" | "isWhatsApp" | "status" | "createdAt", ExtArgs["result"]["enquiry"]>
+  export type EnquiryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "productId" | "branchId" | "type" | "message" | "isWhatsApp" | "createdAt" | "status", ExtArgs["result"]["enquiry"]>
   export type EnquiryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | Enquiry$userArgs<ExtArgs>
-    product?: boolean | Enquiry$productArgs<ExtArgs>
     branch?: boolean | BranchDefaultArgs<ExtArgs>
+    product?: boolean | Enquiry$productArgs<ExtArgs>
+    user?: boolean | Enquiry$userArgs<ExtArgs>
   }
   export type EnquiryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | Enquiry$userArgs<ExtArgs>
-    product?: boolean | Enquiry$productArgs<ExtArgs>
     branch?: boolean | BranchDefaultArgs<ExtArgs>
+    product?: boolean | Enquiry$productArgs<ExtArgs>
+    user?: boolean | Enquiry$userArgs<ExtArgs>
   }
   export type EnquiryIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | Enquiry$userArgs<ExtArgs>
-    product?: boolean | Enquiry$productArgs<ExtArgs>
     branch?: boolean | BranchDefaultArgs<ExtArgs>
+    product?: boolean | Enquiry$productArgs<ExtArgs>
+    user?: boolean | Enquiry$userArgs<ExtArgs>
   }
 
   export type $EnquiryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Enquiry"
     objects: {
-      user: Prisma.$UserPayload<ExtArgs> | null
-      product: Prisma.$ProductPayload<ExtArgs> | null
       branch: Prisma.$BranchPayload<ExtArgs>
+      product: Prisma.$ProductPayload<ExtArgs> | null
+      user: Prisma.$UserPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -12155,8 +12337,8 @@ export namespace Prisma {
       type: $Enums.EnquiryType
       message: string
       isWhatsApp: boolean
-      status: string
       createdAt: Date
+      status: string
     }, ExtArgs["result"]["enquiry"]>
     composites: {}
   }
@@ -12551,9 +12733,9 @@ export namespace Prisma {
    */
   export interface Prisma__EnquiryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends Enquiry$userArgs<ExtArgs> = {}>(args?: Subset<T, Enquiry$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    product<T extends Enquiry$productArgs<ExtArgs> = {}>(args?: Subset<T, Enquiry$productArgs<ExtArgs>>): Prisma__ProductClient<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     branch<T extends BranchDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BranchDefaultArgs<ExtArgs>>): Prisma__BranchClient<$Result.GetResult<Prisma.$BranchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    product<T extends Enquiry$productArgs<ExtArgs> = {}>(args?: Subset<T, Enquiry$productArgs<ExtArgs>>): Prisma__ProductClient<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    user<T extends Enquiry$userArgs<ExtArgs> = {}>(args?: Subset<T, Enquiry$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -12590,8 +12772,8 @@ export namespace Prisma {
     readonly type: FieldRef<"Enquiry", 'EnquiryType'>
     readonly message: FieldRef<"Enquiry", 'String'>
     readonly isWhatsApp: FieldRef<"Enquiry", 'Boolean'>
-    readonly status: FieldRef<"Enquiry", 'String'>
     readonly createdAt: FieldRef<"Enquiry", 'DateTime'>
+    readonly status: FieldRef<"Enquiry", 'String'>
   }
     
 
@@ -12993,25 +13175,6 @@ export namespace Prisma {
   }
 
   /**
-   * Enquiry.user
-   */
-  export type Enquiry$userArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    where?: UserWhereInput
-  }
-
-  /**
    * Enquiry.product
    */
   export type Enquiry$productArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -13028,6 +13191,25 @@ export namespace Prisma {
      */
     include?: ProductInclude<ExtArgs> | null
     where?: ProductWhereInput
+  }
+
+  /**
+   * Enquiry.user
+   */
+  export type Enquiry$userArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
   }
 
   /**
@@ -13253,8 +13435,8 @@ export namespace Prisma {
     branchId?: boolean
     status?: boolean
     createdAt?: boolean
-    user?: boolean | CareerApplication$userArgs<ExtArgs>
     branch?: boolean | CareerApplication$branchArgs<ExtArgs>
+    user?: boolean | CareerApplication$userArgs<ExtArgs>
   }, ExtArgs["result"]["careerApplication"]>
 
   export type CareerApplicationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -13268,8 +13450,8 @@ export namespace Prisma {
     branchId?: boolean
     status?: boolean
     createdAt?: boolean
-    user?: boolean | CareerApplication$userArgs<ExtArgs>
     branch?: boolean | CareerApplication$branchArgs<ExtArgs>
+    user?: boolean | CareerApplication$userArgs<ExtArgs>
   }, ExtArgs["result"]["careerApplication"]>
 
   export type CareerApplicationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -13283,8 +13465,8 @@ export namespace Prisma {
     branchId?: boolean
     status?: boolean
     createdAt?: boolean
-    user?: boolean | CareerApplication$userArgs<ExtArgs>
     branch?: boolean | CareerApplication$branchArgs<ExtArgs>
+    user?: boolean | CareerApplication$userArgs<ExtArgs>
   }, ExtArgs["result"]["careerApplication"]>
 
   export type CareerApplicationSelectScalar = {
@@ -13302,23 +13484,23 @@ export namespace Prisma {
 
   export type CareerApplicationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "name" | "email" | "phone" | "resumeUrl" | "coverLetter" | "branchId" | "status" | "createdAt", ExtArgs["result"]["careerApplication"]>
   export type CareerApplicationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | CareerApplication$userArgs<ExtArgs>
     branch?: boolean | CareerApplication$branchArgs<ExtArgs>
+    user?: boolean | CareerApplication$userArgs<ExtArgs>
   }
   export type CareerApplicationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | CareerApplication$userArgs<ExtArgs>
     branch?: boolean | CareerApplication$branchArgs<ExtArgs>
+    user?: boolean | CareerApplication$userArgs<ExtArgs>
   }
   export type CareerApplicationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | CareerApplication$userArgs<ExtArgs>
     branch?: boolean | CareerApplication$branchArgs<ExtArgs>
+    user?: boolean | CareerApplication$userArgs<ExtArgs>
   }
 
   export type $CareerApplicationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "CareerApplication"
     objects: {
-      user: Prisma.$UserPayload<ExtArgs> | null
       branch: Prisma.$BranchPayload<ExtArgs> | null
+      user: Prisma.$UserPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -13725,8 +13907,8 @@ export namespace Prisma {
    */
   export interface Prisma__CareerApplicationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends CareerApplication$userArgs<ExtArgs> = {}>(args?: Subset<T, CareerApplication$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     branch<T extends CareerApplication$branchArgs<ExtArgs> = {}>(args?: Subset<T, CareerApplication$branchArgs<ExtArgs>>): Prisma__BranchClient<$Result.GetResult<Prisma.$BranchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    user<T extends CareerApplication$userArgs<ExtArgs> = {}>(args?: Subset<T, CareerApplication$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -14167,25 +14349,6 @@ export namespace Prisma {
   }
 
   /**
-   * CareerApplication.user
-   */
-  export type CareerApplication$userArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    where?: UserWhereInput
-  }
-
-  /**
    * CareerApplication.branch
    */
   export type CareerApplication$branchArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -14202,6 +14365,25 @@ export namespace Prisma {
      */
     include?: BranchInclude<ExtArgs> | null
     where?: BranchWhereInput
+  }
+
+  /**
+   * CareerApplication.user
+   */
+  export type CareerApplication$userArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
   }
 
   /**
@@ -14249,6 +14431,7 @@ export namespace Prisma {
     subtitle: string | null
     imageUrl: string | null
     linkUrl: string | null
+    branchId: string | null
     order: number | null
     isActive: boolean | null
   }
@@ -14259,6 +14442,7 @@ export namespace Prisma {
     subtitle: string | null
     imageUrl: string | null
     linkUrl: string | null
+    branchId: string | null
     order: number | null
     isActive: boolean | null
   }
@@ -14269,6 +14453,7 @@ export namespace Prisma {
     subtitle: number
     imageUrl: number
     linkUrl: number
+    branchId: number
     order: number
     isActive: number
     _all: number
@@ -14289,6 +14474,7 @@ export namespace Prisma {
     subtitle?: true
     imageUrl?: true
     linkUrl?: true
+    branchId?: true
     order?: true
     isActive?: true
   }
@@ -14299,6 +14485,7 @@ export namespace Prisma {
     subtitle?: true
     imageUrl?: true
     linkUrl?: true
+    branchId?: true
     order?: true
     isActive?: true
   }
@@ -14309,6 +14496,7 @@ export namespace Prisma {
     subtitle?: true
     imageUrl?: true
     linkUrl?: true
+    branchId?: true
     order?: true
     isActive?: true
     _all?: true
@@ -14406,6 +14594,7 @@ export namespace Prisma {
     subtitle: string | null
     imageUrl: string
     linkUrl: string | null
+    branchId: string
     order: number
     isActive: boolean
     _count: BannerCountAggregateOutputType | null
@@ -14435,6 +14624,7 @@ export namespace Prisma {
     subtitle?: boolean
     imageUrl?: boolean
     linkUrl?: boolean
+    branchId?: boolean
     order?: boolean
     isActive?: boolean
   }, ExtArgs["result"]["banner"]>
@@ -14445,6 +14635,7 @@ export namespace Prisma {
     subtitle?: boolean
     imageUrl?: boolean
     linkUrl?: boolean
+    branchId?: boolean
     order?: boolean
     isActive?: boolean
   }, ExtArgs["result"]["banner"]>
@@ -14455,6 +14646,7 @@ export namespace Prisma {
     subtitle?: boolean
     imageUrl?: boolean
     linkUrl?: boolean
+    branchId?: boolean
     order?: boolean
     isActive?: boolean
   }, ExtArgs["result"]["banner"]>
@@ -14465,11 +14657,12 @@ export namespace Prisma {
     subtitle?: boolean
     imageUrl?: boolean
     linkUrl?: boolean
+    branchId?: boolean
     order?: boolean
     isActive?: boolean
   }
 
-  export type BannerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "subtitle" | "imageUrl" | "linkUrl" | "order" | "isActive", ExtArgs["result"]["banner"]>
+  export type BannerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "subtitle" | "imageUrl" | "linkUrl" | "branchId" | "order" | "isActive", ExtArgs["result"]["banner"]>
 
   export type $BannerPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Banner"
@@ -14480,6 +14673,7 @@ export namespace Prisma {
       subtitle: string | null
       imageUrl: string
       linkUrl: string | null
+      branchId: string
       order: number
       isActive: boolean
     }, ExtArgs["result"]["banner"]>
@@ -14910,6 +15104,7 @@ export namespace Prisma {
     readonly subtitle: FieldRef<"Banner", 'String'>
     readonly imageUrl: FieldRef<"Banner", 'String'>
     readonly linkUrl: FieldRef<"Banner", 'String'>
+    readonly branchId: FieldRef<"Banner", 'String'>
     readonly order: FieldRef<"Banner", 'Int'>
     readonly isActive: FieldRef<"Banner", 'Boolean'>
   }
@@ -17344,6 +17539,2106 @@ export namespace Prisma {
 
 
   /**
+   * Model Job
+   */
+
+  export type AggregateJob = {
+    _count: JobCountAggregateOutputType | null
+    _min: JobMinAggregateOutputType | null
+    _max: JobMaxAggregateOutputType | null
+  }
+
+  export type JobMinAggregateOutputType = {
+    id: string | null
+    title: string | null
+    desc: string | null
+    branchId: string | null
+    googleFormUrl: string | null
+    expiryDate: string | null
+    isActive: boolean | null
+    createdAt: Date | null
+  }
+
+  export type JobMaxAggregateOutputType = {
+    id: string | null
+    title: string | null
+    desc: string | null
+    branchId: string | null
+    googleFormUrl: string | null
+    expiryDate: string | null
+    isActive: boolean | null
+    createdAt: Date | null
+  }
+
+  export type JobCountAggregateOutputType = {
+    id: number
+    title: number
+    desc: number
+    requirements: number
+    branchId: number
+    googleFormUrl: number
+    expiryDate: number
+    isActive: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type JobMinAggregateInputType = {
+    id?: true
+    title?: true
+    desc?: true
+    branchId?: true
+    googleFormUrl?: true
+    expiryDate?: true
+    isActive?: true
+    createdAt?: true
+  }
+
+  export type JobMaxAggregateInputType = {
+    id?: true
+    title?: true
+    desc?: true
+    branchId?: true
+    googleFormUrl?: true
+    expiryDate?: true
+    isActive?: true
+    createdAt?: true
+  }
+
+  export type JobCountAggregateInputType = {
+    id?: true
+    title?: true
+    desc?: true
+    requirements?: true
+    branchId?: true
+    googleFormUrl?: true
+    expiryDate?: true
+    isActive?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type JobAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Job to aggregate.
+     */
+    where?: JobWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Jobs to fetch.
+     */
+    orderBy?: JobOrderByWithRelationInput | JobOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: JobWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Jobs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Jobs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Jobs
+    **/
+    _count?: true | JobCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: JobMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: JobMaxAggregateInputType
+  }
+
+  export type GetJobAggregateType<T extends JobAggregateArgs> = {
+        [P in keyof T & keyof AggregateJob]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateJob[P]>
+      : GetScalarType<T[P], AggregateJob[P]>
+  }
+
+
+
+
+  export type JobGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: JobWhereInput
+    orderBy?: JobOrderByWithAggregationInput | JobOrderByWithAggregationInput[]
+    by: JobScalarFieldEnum[] | JobScalarFieldEnum
+    having?: JobScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: JobCountAggregateInputType | true
+    _min?: JobMinAggregateInputType
+    _max?: JobMaxAggregateInputType
+  }
+
+  export type JobGroupByOutputType = {
+    id: string
+    title: string
+    desc: string
+    requirements: string[]
+    branchId: string
+    googleFormUrl: string | null
+    expiryDate: string | null
+    isActive: boolean
+    createdAt: Date
+    _count: JobCountAggregateOutputType | null
+    _min: JobMinAggregateOutputType | null
+    _max: JobMaxAggregateOutputType | null
+  }
+
+  type GetJobGroupByPayload<T extends JobGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<JobGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof JobGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], JobGroupByOutputType[P]>
+            : GetScalarType<T[P], JobGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type JobSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    desc?: boolean
+    requirements?: boolean
+    branchId?: boolean
+    googleFormUrl?: boolean
+    expiryDate?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["job"]>
+
+  export type JobSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    desc?: boolean
+    requirements?: boolean
+    branchId?: boolean
+    googleFormUrl?: boolean
+    expiryDate?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["job"]>
+
+  export type JobSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    desc?: boolean
+    requirements?: boolean
+    branchId?: boolean
+    googleFormUrl?: boolean
+    expiryDate?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["job"]>
+
+  export type JobSelectScalar = {
+    id?: boolean
+    title?: boolean
+    desc?: boolean
+    requirements?: boolean
+    branchId?: boolean
+    googleFormUrl?: boolean
+    expiryDate?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+  }
+
+  export type JobOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "desc" | "requirements" | "branchId" | "googleFormUrl" | "expiryDate" | "isActive" | "createdAt", ExtArgs["result"]["job"]>
+
+  export type $JobPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Job"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      title: string
+      desc: string
+      requirements: string[]
+      branchId: string
+      googleFormUrl: string | null
+      expiryDate: string | null
+      isActive: boolean
+      createdAt: Date
+    }, ExtArgs["result"]["job"]>
+    composites: {}
+  }
+
+  type JobGetPayload<S extends boolean | null | undefined | JobDefaultArgs> = $Result.GetResult<Prisma.$JobPayload, S>
+
+  type JobCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<JobFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: JobCountAggregateInputType | true
+    }
+
+  export interface JobDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Job'], meta: { name: 'Job' } }
+    /**
+     * Find zero or one Job that matches the filter.
+     * @param {JobFindUniqueArgs} args - Arguments to find a Job
+     * @example
+     * // Get one Job
+     * const job = await prisma.job.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends JobFindUniqueArgs>(args: SelectSubset<T, JobFindUniqueArgs<ExtArgs>>): Prisma__JobClient<$Result.GetResult<Prisma.$JobPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Job that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {JobFindUniqueOrThrowArgs} args - Arguments to find a Job
+     * @example
+     * // Get one Job
+     * const job = await prisma.job.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends JobFindUniqueOrThrowArgs>(args: SelectSubset<T, JobFindUniqueOrThrowArgs<ExtArgs>>): Prisma__JobClient<$Result.GetResult<Prisma.$JobPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Job that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JobFindFirstArgs} args - Arguments to find a Job
+     * @example
+     * // Get one Job
+     * const job = await prisma.job.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends JobFindFirstArgs>(args?: SelectSubset<T, JobFindFirstArgs<ExtArgs>>): Prisma__JobClient<$Result.GetResult<Prisma.$JobPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Job that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JobFindFirstOrThrowArgs} args - Arguments to find a Job
+     * @example
+     * // Get one Job
+     * const job = await prisma.job.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends JobFindFirstOrThrowArgs>(args?: SelectSubset<T, JobFindFirstOrThrowArgs<ExtArgs>>): Prisma__JobClient<$Result.GetResult<Prisma.$JobPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Jobs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JobFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Jobs
+     * const jobs = await prisma.job.findMany()
+     * 
+     * // Get first 10 Jobs
+     * const jobs = await prisma.job.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const jobWithIdOnly = await prisma.job.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends JobFindManyArgs>(args?: SelectSubset<T, JobFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JobPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Job.
+     * @param {JobCreateArgs} args - Arguments to create a Job.
+     * @example
+     * // Create one Job
+     * const Job = await prisma.job.create({
+     *   data: {
+     *     // ... data to create a Job
+     *   }
+     * })
+     * 
+     */
+    create<T extends JobCreateArgs>(args: SelectSubset<T, JobCreateArgs<ExtArgs>>): Prisma__JobClient<$Result.GetResult<Prisma.$JobPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Jobs.
+     * @param {JobCreateManyArgs} args - Arguments to create many Jobs.
+     * @example
+     * // Create many Jobs
+     * const job = await prisma.job.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends JobCreateManyArgs>(args?: SelectSubset<T, JobCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Jobs and returns the data saved in the database.
+     * @param {JobCreateManyAndReturnArgs} args - Arguments to create many Jobs.
+     * @example
+     * // Create many Jobs
+     * const job = await prisma.job.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Jobs and only return the `id`
+     * const jobWithIdOnly = await prisma.job.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends JobCreateManyAndReturnArgs>(args?: SelectSubset<T, JobCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JobPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Job.
+     * @param {JobDeleteArgs} args - Arguments to delete one Job.
+     * @example
+     * // Delete one Job
+     * const Job = await prisma.job.delete({
+     *   where: {
+     *     // ... filter to delete one Job
+     *   }
+     * })
+     * 
+     */
+    delete<T extends JobDeleteArgs>(args: SelectSubset<T, JobDeleteArgs<ExtArgs>>): Prisma__JobClient<$Result.GetResult<Prisma.$JobPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Job.
+     * @param {JobUpdateArgs} args - Arguments to update one Job.
+     * @example
+     * // Update one Job
+     * const job = await prisma.job.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends JobUpdateArgs>(args: SelectSubset<T, JobUpdateArgs<ExtArgs>>): Prisma__JobClient<$Result.GetResult<Prisma.$JobPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Jobs.
+     * @param {JobDeleteManyArgs} args - Arguments to filter Jobs to delete.
+     * @example
+     * // Delete a few Jobs
+     * const { count } = await prisma.job.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends JobDeleteManyArgs>(args?: SelectSubset<T, JobDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Jobs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JobUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Jobs
+     * const job = await prisma.job.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends JobUpdateManyArgs>(args: SelectSubset<T, JobUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Jobs and returns the data updated in the database.
+     * @param {JobUpdateManyAndReturnArgs} args - Arguments to update many Jobs.
+     * @example
+     * // Update many Jobs
+     * const job = await prisma.job.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Jobs and only return the `id`
+     * const jobWithIdOnly = await prisma.job.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends JobUpdateManyAndReturnArgs>(args: SelectSubset<T, JobUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JobPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Job.
+     * @param {JobUpsertArgs} args - Arguments to update or create a Job.
+     * @example
+     * // Update or create a Job
+     * const job = await prisma.job.upsert({
+     *   create: {
+     *     // ... data to create a Job
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Job we want to update
+     *   }
+     * })
+     */
+    upsert<T extends JobUpsertArgs>(args: SelectSubset<T, JobUpsertArgs<ExtArgs>>): Prisma__JobClient<$Result.GetResult<Prisma.$JobPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Jobs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JobCountArgs} args - Arguments to filter Jobs to count.
+     * @example
+     * // Count the number of Jobs
+     * const count = await prisma.job.count({
+     *   where: {
+     *     // ... the filter for the Jobs we want to count
+     *   }
+     * })
+    **/
+    count<T extends JobCountArgs>(
+      args?: Subset<T, JobCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], JobCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Job.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JobAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends JobAggregateArgs>(args: Subset<T, JobAggregateArgs>): Prisma.PrismaPromise<GetJobAggregateType<T>>
+
+    /**
+     * Group by Job.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JobGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends JobGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: JobGroupByArgs['orderBy'] }
+        : { orderBy?: JobGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, JobGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetJobGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Job model
+   */
+  readonly fields: JobFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Job.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__JobClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Job model
+   */
+  interface JobFieldRefs {
+    readonly id: FieldRef<"Job", 'String'>
+    readonly title: FieldRef<"Job", 'String'>
+    readonly desc: FieldRef<"Job", 'String'>
+    readonly requirements: FieldRef<"Job", 'String[]'>
+    readonly branchId: FieldRef<"Job", 'String'>
+    readonly googleFormUrl: FieldRef<"Job", 'String'>
+    readonly expiryDate: FieldRef<"Job", 'String'>
+    readonly isActive: FieldRef<"Job", 'Boolean'>
+    readonly createdAt: FieldRef<"Job", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Job findUnique
+   */
+  export type JobFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Job
+     */
+    select?: JobSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Job
+     */
+    omit?: JobOmit<ExtArgs> | null
+    /**
+     * Filter, which Job to fetch.
+     */
+    where: JobWhereUniqueInput
+  }
+
+  /**
+   * Job findUniqueOrThrow
+   */
+  export type JobFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Job
+     */
+    select?: JobSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Job
+     */
+    omit?: JobOmit<ExtArgs> | null
+    /**
+     * Filter, which Job to fetch.
+     */
+    where: JobWhereUniqueInput
+  }
+
+  /**
+   * Job findFirst
+   */
+  export type JobFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Job
+     */
+    select?: JobSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Job
+     */
+    omit?: JobOmit<ExtArgs> | null
+    /**
+     * Filter, which Job to fetch.
+     */
+    where?: JobWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Jobs to fetch.
+     */
+    orderBy?: JobOrderByWithRelationInput | JobOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Jobs.
+     */
+    cursor?: JobWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Jobs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Jobs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Jobs.
+     */
+    distinct?: JobScalarFieldEnum | JobScalarFieldEnum[]
+  }
+
+  /**
+   * Job findFirstOrThrow
+   */
+  export type JobFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Job
+     */
+    select?: JobSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Job
+     */
+    omit?: JobOmit<ExtArgs> | null
+    /**
+     * Filter, which Job to fetch.
+     */
+    where?: JobWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Jobs to fetch.
+     */
+    orderBy?: JobOrderByWithRelationInput | JobOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Jobs.
+     */
+    cursor?: JobWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Jobs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Jobs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Jobs.
+     */
+    distinct?: JobScalarFieldEnum | JobScalarFieldEnum[]
+  }
+
+  /**
+   * Job findMany
+   */
+  export type JobFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Job
+     */
+    select?: JobSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Job
+     */
+    omit?: JobOmit<ExtArgs> | null
+    /**
+     * Filter, which Jobs to fetch.
+     */
+    where?: JobWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Jobs to fetch.
+     */
+    orderBy?: JobOrderByWithRelationInput | JobOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Jobs.
+     */
+    cursor?: JobWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Jobs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Jobs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Jobs.
+     */
+    distinct?: JobScalarFieldEnum | JobScalarFieldEnum[]
+  }
+
+  /**
+   * Job create
+   */
+  export type JobCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Job
+     */
+    select?: JobSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Job
+     */
+    omit?: JobOmit<ExtArgs> | null
+    /**
+     * The data needed to create a Job.
+     */
+    data: XOR<JobCreateInput, JobUncheckedCreateInput>
+  }
+
+  /**
+   * Job createMany
+   */
+  export type JobCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Jobs.
+     */
+    data: JobCreateManyInput | JobCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Job createManyAndReturn
+   */
+  export type JobCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Job
+     */
+    select?: JobSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Job
+     */
+    omit?: JobOmit<ExtArgs> | null
+    /**
+     * The data used to create many Jobs.
+     */
+    data: JobCreateManyInput | JobCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Job update
+   */
+  export type JobUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Job
+     */
+    select?: JobSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Job
+     */
+    omit?: JobOmit<ExtArgs> | null
+    /**
+     * The data needed to update a Job.
+     */
+    data: XOR<JobUpdateInput, JobUncheckedUpdateInput>
+    /**
+     * Choose, which Job to update.
+     */
+    where: JobWhereUniqueInput
+  }
+
+  /**
+   * Job updateMany
+   */
+  export type JobUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Jobs.
+     */
+    data: XOR<JobUpdateManyMutationInput, JobUncheckedUpdateManyInput>
+    /**
+     * Filter which Jobs to update
+     */
+    where?: JobWhereInput
+    /**
+     * Limit how many Jobs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Job updateManyAndReturn
+   */
+  export type JobUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Job
+     */
+    select?: JobSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Job
+     */
+    omit?: JobOmit<ExtArgs> | null
+    /**
+     * The data used to update Jobs.
+     */
+    data: XOR<JobUpdateManyMutationInput, JobUncheckedUpdateManyInput>
+    /**
+     * Filter which Jobs to update
+     */
+    where?: JobWhereInput
+    /**
+     * Limit how many Jobs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Job upsert
+   */
+  export type JobUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Job
+     */
+    select?: JobSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Job
+     */
+    omit?: JobOmit<ExtArgs> | null
+    /**
+     * The filter to search for the Job to update in case it exists.
+     */
+    where: JobWhereUniqueInput
+    /**
+     * In case the Job found by the `where` argument doesn't exist, create a new Job with this data.
+     */
+    create: XOR<JobCreateInput, JobUncheckedCreateInput>
+    /**
+     * In case the Job was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<JobUpdateInput, JobUncheckedUpdateInput>
+  }
+
+  /**
+   * Job delete
+   */
+  export type JobDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Job
+     */
+    select?: JobSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Job
+     */
+    omit?: JobOmit<ExtArgs> | null
+    /**
+     * Filter which Job to delete.
+     */
+    where: JobWhereUniqueInput
+  }
+
+  /**
+   * Job deleteMany
+   */
+  export type JobDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Jobs to delete
+     */
+    where?: JobWhereInput
+    /**
+     * Limit how many Jobs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Job without action
+   */
+  export type JobDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Job
+     */
+    select?: JobSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Job
+     */
+    omit?: JobOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Offer
+   */
+
+  export type AggregateOffer = {
+    _count: OfferCountAggregateOutputType | null
+    _min: OfferMinAggregateOutputType | null
+    _max: OfferMaxAggregateOutputType | null
+  }
+
+  export type OfferMinAggregateOutputType = {
+    id: string | null
+    title: string | null
+    description: string | null
+    percentage: string | null
+    branchId: string | null
+    startDate: string | null
+    endDate: string | null
+    isActive: boolean | null
+    createdAt: Date | null
+  }
+
+  export type OfferMaxAggregateOutputType = {
+    id: string | null
+    title: string | null
+    description: string | null
+    percentage: string | null
+    branchId: string | null
+    startDate: string | null
+    endDate: string | null
+    isActive: boolean | null
+    createdAt: Date | null
+  }
+
+  export type OfferCountAggregateOutputType = {
+    id: number
+    title: number
+    description: number
+    percentage: number
+    branchId: number
+    startDate: number
+    endDate: number
+    isActive: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type OfferMinAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    percentage?: true
+    branchId?: true
+    startDate?: true
+    endDate?: true
+    isActive?: true
+    createdAt?: true
+  }
+
+  export type OfferMaxAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    percentage?: true
+    branchId?: true
+    startDate?: true
+    endDate?: true
+    isActive?: true
+    createdAt?: true
+  }
+
+  export type OfferCountAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    percentage?: true
+    branchId?: true
+    startDate?: true
+    endDate?: true
+    isActive?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type OfferAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Offer to aggregate.
+     */
+    where?: OfferWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Offers to fetch.
+     */
+    orderBy?: OfferOrderByWithRelationInput | OfferOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: OfferWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Offers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Offers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Offers
+    **/
+    _count?: true | OfferCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: OfferMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: OfferMaxAggregateInputType
+  }
+
+  export type GetOfferAggregateType<T extends OfferAggregateArgs> = {
+        [P in keyof T & keyof AggregateOffer]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateOffer[P]>
+      : GetScalarType<T[P], AggregateOffer[P]>
+  }
+
+
+
+
+  export type OfferGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: OfferWhereInput
+    orderBy?: OfferOrderByWithAggregationInput | OfferOrderByWithAggregationInput[]
+    by: OfferScalarFieldEnum[] | OfferScalarFieldEnum
+    having?: OfferScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: OfferCountAggregateInputType | true
+    _min?: OfferMinAggregateInputType
+    _max?: OfferMaxAggregateInputType
+  }
+
+  export type OfferGroupByOutputType = {
+    id: string
+    title: string
+    description: string
+    percentage: string
+    branchId: string
+    startDate: string | null
+    endDate: string | null
+    isActive: boolean
+    createdAt: Date
+    _count: OfferCountAggregateOutputType | null
+    _min: OfferMinAggregateOutputType | null
+    _max: OfferMaxAggregateOutputType | null
+  }
+
+  type GetOfferGroupByPayload<T extends OfferGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<OfferGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof OfferGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], OfferGroupByOutputType[P]>
+            : GetScalarType<T[P], OfferGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type OfferSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    percentage?: boolean
+    branchId?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["offer"]>
+
+  export type OfferSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    percentage?: boolean
+    branchId?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["offer"]>
+
+  export type OfferSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    percentage?: boolean
+    branchId?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["offer"]>
+
+  export type OfferSelectScalar = {
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    percentage?: boolean
+    branchId?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+  }
+
+  export type OfferOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "percentage" | "branchId" | "startDate" | "endDate" | "isActive" | "createdAt", ExtArgs["result"]["offer"]>
+
+  export type $OfferPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Offer"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      title: string
+      description: string
+      percentage: string
+      branchId: string
+      startDate: string | null
+      endDate: string | null
+      isActive: boolean
+      createdAt: Date
+    }, ExtArgs["result"]["offer"]>
+    composites: {}
+  }
+
+  type OfferGetPayload<S extends boolean | null | undefined | OfferDefaultArgs> = $Result.GetResult<Prisma.$OfferPayload, S>
+
+  type OfferCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<OfferFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: OfferCountAggregateInputType | true
+    }
+
+  export interface OfferDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Offer'], meta: { name: 'Offer' } }
+    /**
+     * Find zero or one Offer that matches the filter.
+     * @param {OfferFindUniqueArgs} args - Arguments to find a Offer
+     * @example
+     * // Get one Offer
+     * const offer = await prisma.offer.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends OfferFindUniqueArgs>(args: SelectSubset<T, OfferFindUniqueArgs<ExtArgs>>): Prisma__OfferClient<$Result.GetResult<Prisma.$OfferPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Offer that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {OfferFindUniqueOrThrowArgs} args - Arguments to find a Offer
+     * @example
+     * // Get one Offer
+     * const offer = await prisma.offer.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends OfferFindUniqueOrThrowArgs>(args: SelectSubset<T, OfferFindUniqueOrThrowArgs<ExtArgs>>): Prisma__OfferClient<$Result.GetResult<Prisma.$OfferPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Offer that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OfferFindFirstArgs} args - Arguments to find a Offer
+     * @example
+     * // Get one Offer
+     * const offer = await prisma.offer.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends OfferFindFirstArgs>(args?: SelectSubset<T, OfferFindFirstArgs<ExtArgs>>): Prisma__OfferClient<$Result.GetResult<Prisma.$OfferPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Offer that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OfferFindFirstOrThrowArgs} args - Arguments to find a Offer
+     * @example
+     * // Get one Offer
+     * const offer = await prisma.offer.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends OfferFindFirstOrThrowArgs>(args?: SelectSubset<T, OfferFindFirstOrThrowArgs<ExtArgs>>): Prisma__OfferClient<$Result.GetResult<Prisma.$OfferPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Offers that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OfferFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Offers
+     * const offers = await prisma.offer.findMany()
+     * 
+     * // Get first 10 Offers
+     * const offers = await prisma.offer.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const offerWithIdOnly = await prisma.offer.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends OfferFindManyArgs>(args?: SelectSubset<T, OfferFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OfferPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Offer.
+     * @param {OfferCreateArgs} args - Arguments to create a Offer.
+     * @example
+     * // Create one Offer
+     * const Offer = await prisma.offer.create({
+     *   data: {
+     *     // ... data to create a Offer
+     *   }
+     * })
+     * 
+     */
+    create<T extends OfferCreateArgs>(args: SelectSubset<T, OfferCreateArgs<ExtArgs>>): Prisma__OfferClient<$Result.GetResult<Prisma.$OfferPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Offers.
+     * @param {OfferCreateManyArgs} args - Arguments to create many Offers.
+     * @example
+     * // Create many Offers
+     * const offer = await prisma.offer.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends OfferCreateManyArgs>(args?: SelectSubset<T, OfferCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Offers and returns the data saved in the database.
+     * @param {OfferCreateManyAndReturnArgs} args - Arguments to create many Offers.
+     * @example
+     * // Create many Offers
+     * const offer = await prisma.offer.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Offers and only return the `id`
+     * const offerWithIdOnly = await prisma.offer.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends OfferCreateManyAndReturnArgs>(args?: SelectSubset<T, OfferCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OfferPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Offer.
+     * @param {OfferDeleteArgs} args - Arguments to delete one Offer.
+     * @example
+     * // Delete one Offer
+     * const Offer = await prisma.offer.delete({
+     *   where: {
+     *     // ... filter to delete one Offer
+     *   }
+     * })
+     * 
+     */
+    delete<T extends OfferDeleteArgs>(args: SelectSubset<T, OfferDeleteArgs<ExtArgs>>): Prisma__OfferClient<$Result.GetResult<Prisma.$OfferPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Offer.
+     * @param {OfferUpdateArgs} args - Arguments to update one Offer.
+     * @example
+     * // Update one Offer
+     * const offer = await prisma.offer.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends OfferUpdateArgs>(args: SelectSubset<T, OfferUpdateArgs<ExtArgs>>): Prisma__OfferClient<$Result.GetResult<Prisma.$OfferPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Offers.
+     * @param {OfferDeleteManyArgs} args - Arguments to filter Offers to delete.
+     * @example
+     * // Delete a few Offers
+     * const { count } = await prisma.offer.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends OfferDeleteManyArgs>(args?: SelectSubset<T, OfferDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Offers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OfferUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Offers
+     * const offer = await prisma.offer.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends OfferUpdateManyArgs>(args: SelectSubset<T, OfferUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Offers and returns the data updated in the database.
+     * @param {OfferUpdateManyAndReturnArgs} args - Arguments to update many Offers.
+     * @example
+     * // Update many Offers
+     * const offer = await prisma.offer.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Offers and only return the `id`
+     * const offerWithIdOnly = await prisma.offer.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends OfferUpdateManyAndReturnArgs>(args: SelectSubset<T, OfferUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OfferPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Offer.
+     * @param {OfferUpsertArgs} args - Arguments to update or create a Offer.
+     * @example
+     * // Update or create a Offer
+     * const offer = await prisma.offer.upsert({
+     *   create: {
+     *     // ... data to create a Offer
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Offer we want to update
+     *   }
+     * })
+     */
+    upsert<T extends OfferUpsertArgs>(args: SelectSubset<T, OfferUpsertArgs<ExtArgs>>): Prisma__OfferClient<$Result.GetResult<Prisma.$OfferPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Offers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OfferCountArgs} args - Arguments to filter Offers to count.
+     * @example
+     * // Count the number of Offers
+     * const count = await prisma.offer.count({
+     *   where: {
+     *     // ... the filter for the Offers we want to count
+     *   }
+     * })
+    **/
+    count<T extends OfferCountArgs>(
+      args?: Subset<T, OfferCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], OfferCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Offer.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OfferAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends OfferAggregateArgs>(args: Subset<T, OfferAggregateArgs>): Prisma.PrismaPromise<GetOfferAggregateType<T>>
+
+    /**
+     * Group by Offer.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OfferGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends OfferGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: OfferGroupByArgs['orderBy'] }
+        : { orderBy?: OfferGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, OfferGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetOfferGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Offer model
+   */
+  readonly fields: OfferFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Offer.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__OfferClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Offer model
+   */
+  interface OfferFieldRefs {
+    readonly id: FieldRef<"Offer", 'String'>
+    readonly title: FieldRef<"Offer", 'String'>
+    readonly description: FieldRef<"Offer", 'String'>
+    readonly percentage: FieldRef<"Offer", 'String'>
+    readonly branchId: FieldRef<"Offer", 'String'>
+    readonly startDate: FieldRef<"Offer", 'String'>
+    readonly endDate: FieldRef<"Offer", 'String'>
+    readonly isActive: FieldRef<"Offer", 'Boolean'>
+    readonly createdAt: FieldRef<"Offer", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Offer findUnique
+   */
+  export type OfferFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Offer
+     */
+    select?: OfferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Offer
+     */
+    omit?: OfferOmit<ExtArgs> | null
+    /**
+     * Filter, which Offer to fetch.
+     */
+    where: OfferWhereUniqueInput
+  }
+
+  /**
+   * Offer findUniqueOrThrow
+   */
+  export type OfferFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Offer
+     */
+    select?: OfferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Offer
+     */
+    omit?: OfferOmit<ExtArgs> | null
+    /**
+     * Filter, which Offer to fetch.
+     */
+    where: OfferWhereUniqueInput
+  }
+
+  /**
+   * Offer findFirst
+   */
+  export type OfferFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Offer
+     */
+    select?: OfferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Offer
+     */
+    omit?: OfferOmit<ExtArgs> | null
+    /**
+     * Filter, which Offer to fetch.
+     */
+    where?: OfferWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Offers to fetch.
+     */
+    orderBy?: OfferOrderByWithRelationInput | OfferOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Offers.
+     */
+    cursor?: OfferWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Offers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Offers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Offers.
+     */
+    distinct?: OfferScalarFieldEnum | OfferScalarFieldEnum[]
+  }
+
+  /**
+   * Offer findFirstOrThrow
+   */
+  export type OfferFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Offer
+     */
+    select?: OfferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Offer
+     */
+    omit?: OfferOmit<ExtArgs> | null
+    /**
+     * Filter, which Offer to fetch.
+     */
+    where?: OfferWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Offers to fetch.
+     */
+    orderBy?: OfferOrderByWithRelationInput | OfferOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Offers.
+     */
+    cursor?: OfferWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Offers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Offers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Offers.
+     */
+    distinct?: OfferScalarFieldEnum | OfferScalarFieldEnum[]
+  }
+
+  /**
+   * Offer findMany
+   */
+  export type OfferFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Offer
+     */
+    select?: OfferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Offer
+     */
+    omit?: OfferOmit<ExtArgs> | null
+    /**
+     * Filter, which Offers to fetch.
+     */
+    where?: OfferWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Offers to fetch.
+     */
+    orderBy?: OfferOrderByWithRelationInput | OfferOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Offers.
+     */
+    cursor?: OfferWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Offers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Offers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Offers.
+     */
+    distinct?: OfferScalarFieldEnum | OfferScalarFieldEnum[]
+  }
+
+  /**
+   * Offer create
+   */
+  export type OfferCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Offer
+     */
+    select?: OfferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Offer
+     */
+    omit?: OfferOmit<ExtArgs> | null
+    /**
+     * The data needed to create a Offer.
+     */
+    data: XOR<OfferCreateInput, OfferUncheckedCreateInput>
+  }
+
+  /**
+   * Offer createMany
+   */
+  export type OfferCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Offers.
+     */
+    data: OfferCreateManyInput | OfferCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Offer createManyAndReturn
+   */
+  export type OfferCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Offer
+     */
+    select?: OfferSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Offer
+     */
+    omit?: OfferOmit<ExtArgs> | null
+    /**
+     * The data used to create many Offers.
+     */
+    data: OfferCreateManyInput | OfferCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Offer update
+   */
+  export type OfferUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Offer
+     */
+    select?: OfferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Offer
+     */
+    omit?: OfferOmit<ExtArgs> | null
+    /**
+     * The data needed to update a Offer.
+     */
+    data: XOR<OfferUpdateInput, OfferUncheckedUpdateInput>
+    /**
+     * Choose, which Offer to update.
+     */
+    where: OfferWhereUniqueInput
+  }
+
+  /**
+   * Offer updateMany
+   */
+  export type OfferUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Offers.
+     */
+    data: XOR<OfferUpdateManyMutationInput, OfferUncheckedUpdateManyInput>
+    /**
+     * Filter which Offers to update
+     */
+    where?: OfferWhereInput
+    /**
+     * Limit how many Offers to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Offer updateManyAndReturn
+   */
+  export type OfferUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Offer
+     */
+    select?: OfferSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Offer
+     */
+    omit?: OfferOmit<ExtArgs> | null
+    /**
+     * The data used to update Offers.
+     */
+    data: XOR<OfferUpdateManyMutationInput, OfferUncheckedUpdateManyInput>
+    /**
+     * Filter which Offers to update
+     */
+    where?: OfferWhereInput
+    /**
+     * Limit how many Offers to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Offer upsert
+   */
+  export type OfferUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Offer
+     */
+    select?: OfferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Offer
+     */
+    omit?: OfferOmit<ExtArgs> | null
+    /**
+     * The filter to search for the Offer to update in case it exists.
+     */
+    where: OfferWhereUniqueInput
+    /**
+     * In case the Offer found by the `where` argument doesn't exist, create a new Offer with this data.
+     */
+    create: XOR<OfferCreateInput, OfferUncheckedCreateInput>
+    /**
+     * In case the Offer was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<OfferUpdateInput, OfferUncheckedUpdateInput>
+  }
+
+  /**
+   * Offer delete
+   */
+  export type OfferDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Offer
+     */
+    select?: OfferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Offer
+     */
+    omit?: OfferOmit<ExtArgs> | null
+    /**
+     * Filter which Offer to delete.
+     */
+    where: OfferWhereUniqueInput
+  }
+
+  /**
+   * Offer deleteMany
+   */
+  export type OfferDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Offers to delete
+     */
+    where?: OfferWhereInput
+    /**
+     * Limit how many Offers to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Offer without action
+   */
+  export type OfferDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Offer
+     */
+    select?: OfferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Offer
+     */
+    omit?: OfferOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -17400,30 +19695,30 @@ export namespace Prisma {
     name: 'name',
     slug: 'slug',
     description: 'description',
-    price: 'price',
     isFeatured: 'isFeatured',
     isNewArrival: 'isNewArrival',
     isActive: 'isActive',
     gender: 'gender',
-    style: 'style',
     frameShape: 'frameShape',
     material: 'material',
     lensType: 'lensType',
     color: 'color',
     size: 'size',
-    isInHouseProduct: 'isInHouseProduct',
-    collectionType: 'collectionType',
-    signatureCollectionName: 'signatureCollectionName',
-    craftsmanshipDetails: 'craftsmanshipDetails',
-    recommendedUsage: 'recommendedUsage',
-    frameWeightCategory: 'frameWeightCategory',
     brandId: 'brandId',
     categoryId: 'categoryId',
     metaTitle: 'metaTitle',
     metaDesc: 'metaDesc',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
-    deletedAt: 'deletedAt'
+    deletedAt: 'deletedAt',
+    collectionType: 'collectionType',
+    craftsmanshipDetails: 'craftsmanshipDetails',
+    frameWeightCategory: 'frameWeightCategory',
+    isInHouseProduct: 'isInHouseProduct',
+    recommendedUsage: 'recommendedUsage',
+    signatureCollectionName: 'signatureCollectionName',
+    style: 'style',
+    price: 'price'
   };
 
   export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
@@ -17503,8 +19798,8 @@ export namespace Prisma {
     type: 'type',
     message: 'message',
     isWhatsApp: 'isWhatsApp',
-    status: 'status',
-    createdAt: 'createdAt'
+    createdAt: 'createdAt',
+    status: 'status'
   };
 
   export type EnquiryScalarFieldEnum = (typeof EnquiryScalarFieldEnum)[keyof typeof EnquiryScalarFieldEnum]
@@ -17532,6 +19827,7 @@ export namespace Prisma {
     subtitle: 'subtitle',
     imageUrl: 'imageUrl',
     linkUrl: 'linkUrl',
+    branchId: 'branchId',
     order: 'order',
     isActive: 'isActive'
   };
@@ -17561,6 +19857,36 @@ export namespace Prisma {
   };
 
   export type CampaignScalarFieldEnum = (typeof CampaignScalarFieldEnum)[keyof typeof CampaignScalarFieldEnum]
+
+
+  export const JobScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    desc: 'desc',
+    requirements: 'requirements',
+    branchId: 'branchId',
+    googleFormUrl: 'googleFormUrl',
+    expiryDate: 'expiryDate',
+    isActive: 'isActive',
+    createdAt: 'createdAt'
+  };
+
+  export type JobScalarFieldEnum = (typeof JobScalarFieldEnum)[keyof typeof JobScalarFieldEnum]
+
+
+  export const OfferScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    description: 'description',
+    percentage: 'percentage',
+    branchId: 'branchId',
+    startDate: 'startDate',
+    endDate: 'endDate',
+    isActive: 'isActive',
+    createdAt: 'createdAt'
+  };
+
+  export type OfferScalarFieldEnum = (typeof OfferScalarFieldEnum)[keyof typeof OfferScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -17728,10 +20054,10 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     deletedAt?: DateTimeNullableFilter<"User"> | Date | string | null
-    branch?: XOR<BranchNullableScalarRelationFilter, BranchWhereInput> | null
     appointments?: AppointmentListRelationFilter
-    enquiries?: EnquiryListRelationFilter
     applications?: CareerApplicationListRelationFilter
+    enquiries?: EnquiryListRelationFilter
+    branch?: XOR<BranchNullableScalarRelationFilter, BranchWhereInput> | null
   }
 
   export type UserOrderByWithRelationInput = {
@@ -17745,10 +20071,10 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     deletedAt?: SortOrderInput | SortOrder
-    branch?: BranchOrderByWithRelationInput
     appointments?: AppointmentOrderByRelationAggregateInput
-    enquiries?: EnquiryOrderByRelationAggregateInput
     applications?: CareerApplicationOrderByRelationAggregateInput
+    enquiries?: EnquiryOrderByRelationAggregateInput
+    branch?: BranchOrderByWithRelationInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -17765,10 +20091,10 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     deletedAt?: DateTimeNullableFilter<"User"> | Date | string | null
-    branch?: XOR<BranchNullableScalarRelationFilter, BranchWhereInput> | null
     appointments?: AppointmentListRelationFilter
-    enquiries?: EnquiryListRelationFilter
     applications?: CareerApplicationListRelationFilter
+    enquiries?: EnquiryListRelationFilter
+    branch?: XOR<BranchNullableScalarRelationFilter, BranchWhereInput> | null
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -17823,11 +20149,11 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Branch"> | Date | string
     updatedAt?: DateTimeFilter<"Branch"> | Date | string
     deletedAt?: DateTimeNullableFilter<"Branch"> | Date | string | null
-    users?: UserListRelationFilter
-    stock?: InventoryListRelationFilter
     appointments?: AppointmentListRelationFilter
-    enquiries?: EnquiryListRelationFilter
     applications?: CareerApplicationListRelationFilter
+    enquiries?: EnquiryListRelationFilter
+    stock?: InventoryListRelationFilter
+    users?: UserListRelationFilter
   }
 
   export type BranchOrderByWithRelationInput = {
@@ -17847,11 +20173,11 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     deletedAt?: SortOrderInput | SortOrder
-    users?: UserOrderByRelationAggregateInput
-    stock?: InventoryOrderByRelationAggregateInput
     appointments?: AppointmentOrderByRelationAggregateInput
-    enquiries?: EnquiryOrderByRelationAggregateInput
     applications?: CareerApplicationOrderByRelationAggregateInput
+    enquiries?: EnquiryOrderByRelationAggregateInput
+    stock?: InventoryOrderByRelationAggregateInput
+    users?: UserOrderByRelationAggregateInput
   }
 
   export type BranchWhereUniqueInput = Prisma.AtLeast<{
@@ -17874,11 +20200,11 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Branch"> | Date | string
     updatedAt?: DateTimeFilter<"Branch"> | Date | string
     deletedAt?: DateTimeNullableFilter<"Branch"> | Date | string | null
-    users?: UserListRelationFilter
-    stock?: InventoryListRelationFilter
     appointments?: AppointmentListRelationFilter
-    enquiries?: EnquiryListRelationFilter
     applications?: CareerApplicationListRelationFilter
+    enquiries?: EnquiryListRelationFilter
+    stock?: InventoryListRelationFilter
+    users?: UserListRelationFilter
   }, "id" | "slug">
 
   export type BranchOrderByWithAggregationInput = {
@@ -17933,23 +20259,15 @@ export namespace Prisma {
     name?: StringFilter<"Product"> | string
     slug?: StringFilter<"Product"> | string
     description?: StringFilter<"Product"> | string
-    price?: FloatFilter<"Product"> | number
     isFeatured?: BoolFilter<"Product"> | boolean
     isNewArrival?: BoolFilter<"Product"> | boolean
     isActive?: BoolFilter<"Product"> | boolean
     gender?: StringNullableFilter<"Product"> | string | null
-    style?: StringNullableFilter<"Product"> | string | null
     frameShape?: StringNullableFilter<"Product"> | string | null
     material?: StringNullableFilter<"Product"> | string | null
     lensType?: StringNullableFilter<"Product"> | string | null
     color?: StringNullableFilter<"Product"> | string | null
     size?: StringNullableFilter<"Product"> | string | null
-    isInHouseProduct?: BoolFilter<"Product"> | boolean
-    collectionType?: StringFilter<"Product"> | string
-    signatureCollectionName?: StringNullableFilter<"Product"> | string | null
-    craftsmanshipDetails?: StringNullableFilter<"Product"> | string | null
-    recommendedUsage?: StringNullableFilter<"Product"> | string | null
-    frameWeightCategory?: StringNullableFilter<"Product"> | string | null
     brandId?: StringFilter<"Product"> | string
     categoryId?: StringFilter<"Product"> | string
     metaTitle?: StringNullableFilter<"Product"> | string | null
@@ -17957,11 +20275,19 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Product"> | Date | string
     updatedAt?: DateTimeFilter<"Product"> | Date | string
     deletedAt?: DateTimeNullableFilter<"Product"> | Date | string | null
+    collectionType?: StringFilter<"Product"> | string
+    craftsmanshipDetails?: StringNullableFilter<"Product"> | string | null
+    frameWeightCategory?: StringNullableFilter<"Product"> | string | null
+    isInHouseProduct?: BoolFilter<"Product"> | boolean
+    recommendedUsage?: StringNullableFilter<"Product"> | string | null
+    signatureCollectionName?: StringNullableFilter<"Product"> | string | null
+    style?: StringNullableFilter<"Product"> | string | null
+    price?: FloatFilter<"Product"> | number
+    enquiries?: EnquiryListRelationFilter
+    inventory?: InventoryListRelationFilter
     brand?: XOR<BrandScalarRelationFilter, BrandWhereInput>
     category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
     images?: ProductImageListRelationFilter
-    inventory?: InventoryListRelationFilter
-    enquiries?: EnquiryListRelationFilter
   }
 
   export type ProductOrderByWithRelationInput = {
@@ -17969,23 +20295,15 @@ export namespace Prisma {
     name?: SortOrder
     slug?: SortOrder
     description?: SortOrder
-    price?: SortOrder
     isFeatured?: SortOrder
     isNewArrival?: SortOrder
     isActive?: SortOrder
     gender?: SortOrderInput | SortOrder
-    style?: SortOrderInput | SortOrder
     frameShape?: SortOrderInput | SortOrder
     material?: SortOrderInput | SortOrder
     lensType?: SortOrderInput | SortOrder
     color?: SortOrderInput | SortOrder
     size?: SortOrderInput | SortOrder
-    isInHouseProduct?: SortOrder
-    collectionType?: SortOrder
-    signatureCollectionName?: SortOrderInput | SortOrder
-    craftsmanshipDetails?: SortOrderInput | SortOrder
-    recommendedUsage?: SortOrderInput | SortOrder
-    frameWeightCategory?: SortOrderInput | SortOrder
     brandId?: SortOrder
     categoryId?: SortOrder
     metaTitle?: SortOrderInput | SortOrder
@@ -17993,11 +20311,19 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     deletedAt?: SortOrderInput | SortOrder
+    collectionType?: SortOrder
+    craftsmanshipDetails?: SortOrderInput | SortOrder
+    frameWeightCategory?: SortOrderInput | SortOrder
+    isInHouseProduct?: SortOrder
+    recommendedUsage?: SortOrderInput | SortOrder
+    signatureCollectionName?: SortOrderInput | SortOrder
+    style?: SortOrderInput | SortOrder
+    price?: SortOrder
+    enquiries?: EnquiryOrderByRelationAggregateInput
+    inventory?: InventoryOrderByRelationAggregateInput
     brand?: BrandOrderByWithRelationInput
     category?: CategoryOrderByWithRelationInput
     images?: ProductImageOrderByRelationAggregateInput
-    inventory?: InventoryOrderByRelationAggregateInput
-    enquiries?: EnquiryOrderByRelationAggregateInput
   }
 
   export type ProductWhereUniqueInput = Prisma.AtLeast<{
@@ -18008,23 +20334,15 @@ export namespace Prisma {
     NOT?: ProductWhereInput | ProductWhereInput[]
     name?: StringFilter<"Product"> | string
     description?: StringFilter<"Product"> | string
-    price?: FloatFilter<"Product"> | number
     isFeatured?: BoolFilter<"Product"> | boolean
     isNewArrival?: BoolFilter<"Product"> | boolean
     isActive?: BoolFilter<"Product"> | boolean
     gender?: StringNullableFilter<"Product"> | string | null
-    style?: StringNullableFilter<"Product"> | string | null
     frameShape?: StringNullableFilter<"Product"> | string | null
     material?: StringNullableFilter<"Product"> | string | null
     lensType?: StringNullableFilter<"Product"> | string | null
     color?: StringNullableFilter<"Product"> | string | null
     size?: StringNullableFilter<"Product"> | string | null
-    isInHouseProduct?: BoolFilter<"Product"> | boolean
-    collectionType?: StringFilter<"Product"> | string
-    signatureCollectionName?: StringNullableFilter<"Product"> | string | null
-    craftsmanshipDetails?: StringNullableFilter<"Product"> | string | null
-    recommendedUsage?: StringNullableFilter<"Product"> | string | null
-    frameWeightCategory?: StringNullableFilter<"Product"> | string | null
     brandId?: StringFilter<"Product"> | string
     categoryId?: StringFilter<"Product"> | string
     metaTitle?: StringNullableFilter<"Product"> | string | null
@@ -18032,11 +20350,19 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Product"> | Date | string
     updatedAt?: DateTimeFilter<"Product"> | Date | string
     deletedAt?: DateTimeNullableFilter<"Product"> | Date | string | null
+    collectionType?: StringFilter<"Product"> | string
+    craftsmanshipDetails?: StringNullableFilter<"Product"> | string | null
+    frameWeightCategory?: StringNullableFilter<"Product"> | string | null
+    isInHouseProduct?: BoolFilter<"Product"> | boolean
+    recommendedUsage?: StringNullableFilter<"Product"> | string | null
+    signatureCollectionName?: StringNullableFilter<"Product"> | string | null
+    style?: StringNullableFilter<"Product"> | string | null
+    price?: FloatFilter<"Product"> | number
+    enquiries?: EnquiryListRelationFilter
+    inventory?: InventoryListRelationFilter
     brand?: XOR<BrandScalarRelationFilter, BrandWhereInput>
     category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
     images?: ProductImageListRelationFilter
-    inventory?: InventoryListRelationFilter
-    enquiries?: EnquiryListRelationFilter
   }, "id" | "slug">
 
   export type ProductOrderByWithAggregationInput = {
@@ -18044,23 +20370,15 @@ export namespace Prisma {
     name?: SortOrder
     slug?: SortOrder
     description?: SortOrder
-    price?: SortOrder
     isFeatured?: SortOrder
     isNewArrival?: SortOrder
     isActive?: SortOrder
     gender?: SortOrderInput | SortOrder
-    style?: SortOrderInput | SortOrder
     frameShape?: SortOrderInput | SortOrder
     material?: SortOrderInput | SortOrder
     lensType?: SortOrderInput | SortOrder
     color?: SortOrderInput | SortOrder
     size?: SortOrderInput | SortOrder
-    isInHouseProduct?: SortOrder
-    collectionType?: SortOrder
-    signatureCollectionName?: SortOrderInput | SortOrder
-    craftsmanshipDetails?: SortOrderInput | SortOrder
-    recommendedUsage?: SortOrderInput | SortOrder
-    frameWeightCategory?: SortOrderInput | SortOrder
     brandId?: SortOrder
     categoryId?: SortOrder
     metaTitle?: SortOrderInput | SortOrder
@@ -18068,6 +20386,14 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     deletedAt?: SortOrderInput | SortOrder
+    collectionType?: SortOrder
+    craftsmanshipDetails?: SortOrderInput | SortOrder
+    frameWeightCategory?: SortOrderInput | SortOrder
+    isInHouseProduct?: SortOrder
+    recommendedUsage?: SortOrderInput | SortOrder
+    signatureCollectionName?: SortOrderInput | SortOrder
+    style?: SortOrderInput | SortOrder
+    price?: SortOrder
     _count?: ProductCountOrderByAggregateInput
     _avg?: ProductAvgOrderByAggregateInput
     _max?: ProductMaxOrderByAggregateInput
@@ -18083,23 +20409,15 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"Product"> | string
     slug?: StringWithAggregatesFilter<"Product"> | string
     description?: StringWithAggregatesFilter<"Product"> | string
-    price?: FloatWithAggregatesFilter<"Product"> | number
     isFeatured?: BoolWithAggregatesFilter<"Product"> | boolean
     isNewArrival?: BoolWithAggregatesFilter<"Product"> | boolean
     isActive?: BoolWithAggregatesFilter<"Product"> | boolean
     gender?: StringNullableWithAggregatesFilter<"Product"> | string | null
-    style?: StringNullableWithAggregatesFilter<"Product"> | string | null
     frameShape?: StringNullableWithAggregatesFilter<"Product"> | string | null
     material?: StringNullableWithAggregatesFilter<"Product"> | string | null
     lensType?: StringNullableWithAggregatesFilter<"Product"> | string | null
     color?: StringNullableWithAggregatesFilter<"Product"> | string | null
     size?: StringNullableWithAggregatesFilter<"Product"> | string | null
-    isInHouseProduct?: BoolWithAggregatesFilter<"Product"> | boolean
-    collectionType?: StringWithAggregatesFilter<"Product"> | string
-    signatureCollectionName?: StringNullableWithAggregatesFilter<"Product"> | string | null
-    craftsmanshipDetails?: StringNullableWithAggregatesFilter<"Product"> | string | null
-    recommendedUsage?: StringNullableWithAggregatesFilter<"Product"> | string | null
-    frameWeightCategory?: StringNullableWithAggregatesFilter<"Product"> | string | null
     brandId?: StringWithAggregatesFilter<"Product"> | string
     categoryId?: StringWithAggregatesFilter<"Product"> | string
     metaTitle?: StringNullableWithAggregatesFilter<"Product"> | string | null
@@ -18107,6 +20425,14 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Product"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Product"> | Date | string
     deletedAt?: DateTimeNullableWithAggregatesFilter<"Product"> | Date | string | null
+    collectionType?: StringWithAggregatesFilter<"Product"> | string
+    craftsmanshipDetails?: StringNullableWithAggregatesFilter<"Product"> | string | null
+    frameWeightCategory?: StringNullableWithAggregatesFilter<"Product"> | string | null
+    isInHouseProduct?: BoolWithAggregatesFilter<"Product"> | boolean
+    recommendedUsage?: StringNullableWithAggregatesFilter<"Product"> | string | null
+    signatureCollectionName?: StringNullableWithAggregatesFilter<"Product"> | string | null
+    style?: StringNullableWithAggregatesFilter<"Product"> | string | null
+    price?: FloatWithAggregatesFilter<"Product"> | number
   }
 
   export type ProductImageWhereInput = {
@@ -18306,8 +20632,8 @@ export namespace Prisma {
     quantity?: IntFilter<"Inventory"> | number
     status?: EnumInventoryStatusFilter<"Inventory"> | $Enums.InventoryStatus
     updatedAt?: DateTimeFilter<"Inventory"> | Date | string
-    product?: XOR<ProductScalarRelationFilter, ProductWhereInput>
     branch?: XOR<BranchScalarRelationFilter, BranchWhereInput>
+    product?: XOR<ProductScalarRelationFilter, ProductWhereInput>
   }
 
   export type InventoryOrderByWithRelationInput = {
@@ -18317,8 +20643,8 @@ export namespace Prisma {
     quantity?: SortOrder
     status?: SortOrder
     updatedAt?: SortOrder
-    product?: ProductOrderByWithRelationInput
     branch?: BranchOrderByWithRelationInput
+    product?: ProductOrderByWithRelationInput
   }
 
   export type InventoryWhereUniqueInput = Prisma.AtLeast<{
@@ -18332,8 +20658,8 @@ export namespace Prisma {
     quantity?: IntFilter<"Inventory"> | number
     status?: EnumInventoryStatusFilter<"Inventory"> | $Enums.InventoryStatus
     updatedAt?: DateTimeFilter<"Inventory"> | Date | string
-    product?: XOR<ProductScalarRelationFilter, ProductWhereInput>
     branch?: XOR<BranchScalarRelationFilter, BranchWhereInput>
+    product?: XOR<ProductScalarRelationFilter, ProductWhereInput>
   }, "id" | "productId_branchId">
 
   export type InventoryOrderByWithAggregationInput = {
@@ -18377,8 +20703,8 @@ export namespace Prisma {
     notes?: StringNullableFilter<"Appointment"> | string | null
     createdAt?: DateTimeFilter<"Appointment"> | Date | string
     updatedAt?: DateTimeFilter<"Appointment"> | Date | string
-    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     branch?: XOR<BranchScalarRelationFilter, BranchWhereInput>
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }
 
   export type AppointmentOrderByWithRelationInput = {
@@ -18393,8 +20719,8 @@ export namespace Prisma {
     notes?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    user?: UserOrderByWithRelationInput
     branch?: BranchOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
   }
 
   export type AppointmentWhereUniqueInput = Prisma.AtLeast<{
@@ -18412,8 +20738,8 @@ export namespace Prisma {
     notes?: StringNullableFilter<"Appointment"> | string | null
     createdAt?: DateTimeFilter<"Appointment"> | Date | string
     updatedAt?: DateTimeFilter<"Appointment"> | Date | string
-    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     branch?: XOR<BranchScalarRelationFilter, BranchWhereInput>
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }, "id">
 
   export type AppointmentOrderByWithAggregationInput = {
@@ -18461,11 +20787,11 @@ export namespace Prisma {
     type?: EnumEnquiryTypeFilter<"Enquiry"> | $Enums.EnquiryType
     message?: StringFilter<"Enquiry"> | string
     isWhatsApp?: BoolFilter<"Enquiry"> | boolean
-    status?: StringFilter<"Enquiry"> | string
     createdAt?: DateTimeFilter<"Enquiry"> | Date | string
-    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
-    product?: XOR<ProductNullableScalarRelationFilter, ProductWhereInput> | null
+    status?: StringFilter<"Enquiry"> | string
     branch?: XOR<BranchScalarRelationFilter, BranchWhereInput>
+    product?: XOR<ProductNullableScalarRelationFilter, ProductWhereInput> | null
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }
 
   export type EnquiryOrderByWithRelationInput = {
@@ -18476,11 +20802,11 @@ export namespace Prisma {
     type?: SortOrder
     message?: SortOrder
     isWhatsApp?: SortOrder
-    status?: SortOrder
     createdAt?: SortOrder
-    user?: UserOrderByWithRelationInput
-    product?: ProductOrderByWithRelationInput
+    status?: SortOrder
     branch?: BranchOrderByWithRelationInput
+    product?: ProductOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
   }
 
   export type EnquiryWhereUniqueInput = Prisma.AtLeast<{
@@ -18494,11 +20820,11 @@ export namespace Prisma {
     type?: EnumEnquiryTypeFilter<"Enquiry"> | $Enums.EnquiryType
     message?: StringFilter<"Enquiry"> | string
     isWhatsApp?: BoolFilter<"Enquiry"> | boolean
-    status?: StringFilter<"Enquiry"> | string
     createdAt?: DateTimeFilter<"Enquiry"> | Date | string
-    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
-    product?: XOR<ProductNullableScalarRelationFilter, ProductWhereInput> | null
+    status?: StringFilter<"Enquiry"> | string
     branch?: XOR<BranchScalarRelationFilter, BranchWhereInput>
+    product?: XOR<ProductNullableScalarRelationFilter, ProductWhereInput> | null
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }, "id">
 
   export type EnquiryOrderByWithAggregationInput = {
@@ -18509,8 +20835,8 @@ export namespace Prisma {
     type?: SortOrder
     message?: SortOrder
     isWhatsApp?: SortOrder
-    status?: SortOrder
     createdAt?: SortOrder
+    status?: SortOrder
     _count?: EnquiryCountOrderByAggregateInput
     _max?: EnquiryMaxOrderByAggregateInput
     _min?: EnquiryMinOrderByAggregateInput
@@ -18527,8 +20853,8 @@ export namespace Prisma {
     type?: EnumEnquiryTypeWithAggregatesFilter<"Enquiry"> | $Enums.EnquiryType
     message?: StringWithAggregatesFilter<"Enquiry"> | string
     isWhatsApp?: BoolWithAggregatesFilter<"Enquiry"> | boolean
-    status?: StringWithAggregatesFilter<"Enquiry"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Enquiry"> | Date | string
+    status?: StringWithAggregatesFilter<"Enquiry"> | string
   }
 
   export type CareerApplicationWhereInput = {
@@ -18545,8 +20871,8 @@ export namespace Prisma {
     branchId?: StringNullableFilter<"CareerApplication"> | string | null
     status?: StringFilter<"CareerApplication"> | string
     createdAt?: DateTimeFilter<"CareerApplication"> | Date | string
-    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     branch?: XOR<BranchNullableScalarRelationFilter, BranchWhereInput> | null
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }
 
   export type CareerApplicationOrderByWithRelationInput = {
@@ -18560,8 +20886,8 @@ export namespace Prisma {
     branchId?: SortOrderInput | SortOrder
     status?: SortOrder
     createdAt?: SortOrder
-    user?: UserOrderByWithRelationInput
     branch?: BranchOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
   }
 
   export type CareerApplicationWhereUniqueInput = Prisma.AtLeast<{
@@ -18578,8 +20904,8 @@ export namespace Prisma {
     branchId?: StringNullableFilter<"CareerApplication"> | string | null
     status?: StringFilter<"CareerApplication"> | string
     createdAt?: DateTimeFilter<"CareerApplication"> | Date | string
-    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     branch?: XOR<BranchNullableScalarRelationFilter, BranchWhereInput> | null
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }, "id">
 
   export type CareerApplicationOrderByWithAggregationInput = {
@@ -18623,6 +20949,7 @@ export namespace Prisma {
     subtitle?: StringNullableFilter<"Banner"> | string | null
     imageUrl?: StringFilter<"Banner"> | string
     linkUrl?: StringNullableFilter<"Banner"> | string | null
+    branchId?: StringFilter<"Banner"> | string
     order?: IntFilter<"Banner"> | number
     isActive?: BoolFilter<"Banner"> | boolean
   }
@@ -18633,6 +20960,7 @@ export namespace Prisma {
     subtitle?: SortOrderInput | SortOrder
     imageUrl?: SortOrder
     linkUrl?: SortOrderInput | SortOrder
+    branchId?: SortOrder
     order?: SortOrder
     isActive?: SortOrder
   }
@@ -18646,6 +20974,7 @@ export namespace Prisma {
     subtitle?: StringNullableFilter<"Banner"> | string | null
     imageUrl?: StringFilter<"Banner"> | string
     linkUrl?: StringNullableFilter<"Banner"> | string | null
+    branchId?: StringFilter<"Banner"> | string
     order?: IntFilter<"Banner"> | number
     isActive?: BoolFilter<"Banner"> | boolean
   }, "id">
@@ -18656,6 +20985,7 @@ export namespace Prisma {
     subtitle?: SortOrderInput | SortOrder
     imageUrl?: SortOrder
     linkUrl?: SortOrderInput | SortOrder
+    branchId?: SortOrder
     order?: SortOrder
     isActive?: SortOrder
     _count?: BannerCountOrderByAggregateInput
@@ -18674,6 +21004,7 @@ export namespace Prisma {
     subtitle?: StringNullableWithAggregatesFilter<"Banner"> | string | null
     imageUrl?: StringWithAggregatesFilter<"Banner"> | string
     linkUrl?: StringNullableWithAggregatesFilter<"Banner"> | string | null
+    branchId?: StringWithAggregatesFilter<"Banner"> | string
     order?: IntWithAggregatesFilter<"Banner"> | number
     isActive?: BoolWithAggregatesFilter<"Banner"> | boolean
   }
@@ -18794,6 +21125,150 @@ export namespace Prisma {
     isActive?: BoolWithAggregatesFilter<"Campaign"> | boolean
   }
 
+  export type JobWhereInput = {
+    AND?: JobWhereInput | JobWhereInput[]
+    OR?: JobWhereInput[]
+    NOT?: JobWhereInput | JobWhereInput[]
+    id?: StringFilter<"Job"> | string
+    title?: StringFilter<"Job"> | string
+    desc?: StringFilter<"Job"> | string
+    requirements?: StringNullableListFilter<"Job">
+    branchId?: StringFilter<"Job"> | string
+    googleFormUrl?: StringNullableFilter<"Job"> | string | null
+    expiryDate?: StringNullableFilter<"Job"> | string | null
+    isActive?: BoolFilter<"Job"> | boolean
+    createdAt?: DateTimeFilter<"Job"> | Date | string
+  }
+
+  export type JobOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    desc?: SortOrder
+    requirements?: SortOrder
+    branchId?: SortOrder
+    googleFormUrl?: SortOrderInput | SortOrder
+    expiryDate?: SortOrderInput | SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type JobWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: JobWhereInput | JobWhereInput[]
+    OR?: JobWhereInput[]
+    NOT?: JobWhereInput | JobWhereInput[]
+    title?: StringFilter<"Job"> | string
+    desc?: StringFilter<"Job"> | string
+    requirements?: StringNullableListFilter<"Job">
+    branchId?: StringFilter<"Job"> | string
+    googleFormUrl?: StringNullableFilter<"Job"> | string | null
+    expiryDate?: StringNullableFilter<"Job"> | string | null
+    isActive?: BoolFilter<"Job"> | boolean
+    createdAt?: DateTimeFilter<"Job"> | Date | string
+  }, "id">
+
+  export type JobOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    desc?: SortOrder
+    requirements?: SortOrder
+    branchId?: SortOrder
+    googleFormUrl?: SortOrderInput | SortOrder
+    expiryDate?: SortOrderInput | SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    _count?: JobCountOrderByAggregateInput
+    _max?: JobMaxOrderByAggregateInput
+    _min?: JobMinOrderByAggregateInput
+  }
+
+  export type JobScalarWhereWithAggregatesInput = {
+    AND?: JobScalarWhereWithAggregatesInput | JobScalarWhereWithAggregatesInput[]
+    OR?: JobScalarWhereWithAggregatesInput[]
+    NOT?: JobScalarWhereWithAggregatesInput | JobScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Job"> | string
+    title?: StringWithAggregatesFilter<"Job"> | string
+    desc?: StringWithAggregatesFilter<"Job"> | string
+    requirements?: StringNullableListFilter<"Job">
+    branchId?: StringWithAggregatesFilter<"Job"> | string
+    googleFormUrl?: StringNullableWithAggregatesFilter<"Job"> | string | null
+    expiryDate?: StringNullableWithAggregatesFilter<"Job"> | string | null
+    isActive?: BoolWithAggregatesFilter<"Job"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"Job"> | Date | string
+  }
+
+  export type OfferWhereInput = {
+    AND?: OfferWhereInput | OfferWhereInput[]
+    OR?: OfferWhereInput[]
+    NOT?: OfferWhereInput | OfferWhereInput[]
+    id?: StringFilter<"Offer"> | string
+    title?: StringFilter<"Offer"> | string
+    description?: StringFilter<"Offer"> | string
+    percentage?: StringFilter<"Offer"> | string
+    branchId?: StringFilter<"Offer"> | string
+    startDate?: StringNullableFilter<"Offer"> | string | null
+    endDate?: StringNullableFilter<"Offer"> | string | null
+    isActive?: BoolFilter<"Offer"> | boolean
+    createdAt?: DateTimeFilter<"Offer"> | Date | string
+  }
+
+  export type OfferOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    percentage?: SortOrder
+    branchId?: SortOrder
+    startDate?: SortOrderInput | SortOrder
+    endDate?: SortOrderInput | SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type OfferWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: OfferWhereInput | OfferWhereInput[]
+    OR?: OfferWhereInput[]
+    NOT?: OfferWhereInput | OfferWhereInput[]
+    title?: StringFilter<"Offer"> | string
+    description?: StringFilter<"Offer"> | string
+    percentage?: StringFilter<"Offer"> | string
+    branchId?: StringFilter<"Offer"> | string
+    startDate?: StringNullableFilter<"Offer"> | string | null
+    endDate?: StringNullableFilter<"Offer"> | string | null
+    isActive?: BoolFilter<"Offer"> | boolean
+    createdAt?: DateTimeFilter<"Offer"> | Date | string
+  }, "id">
+
+  export type OfferOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    percentage?: SortOrder
+    branchId?: SortOrder
+    startDate?: SortOrderInput | SortOrder
+    endDate?: SortOrderInput | SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    _count?: OfferCountOrderByAggregateInput
+    _max?: OfferMaxOrderByAggregateInput
+    _min?: OfferMinOrderByAggregateInput
+  }
+
+  export type OfferScalarWhereWithAggregatesInput = {
+    AND?: OfferScalarWhereWithAggregatesInput | OfferScalarWhereWithAggregatesInput[]
+    OR?: OfferScalarWhereWithAggregatesInput[]
+    NOT?: OfferScalarWhereWithAggregatesInput | OfferScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Offer"> | string
+    title?: StringWithAggregatesFilter<"Offer"> | string
+    description?: StringWithAggregatesFilter<"Offer"> | string
+    percentage?: StringWithAggregatesFilter<"Offer"> | string
+    branchId?: StringWithAggregatesFilter<"Offer"> | string
+    startDate?: StringNullableWithAggregatesFilter<"Offer"> | string | null
+    endDate?: StringNullableWithAggregatesFilter<"Offer"> | string | null
+    isActive?: BoolWithAggregatesFilter<"Offer"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"Offer"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     email: string
@@ -18804,10 +21279,10 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
-    branch?: BranchCreateNestedOneWithoutUsersInput
     appointments?: AppointmentCreateNestedManyWithoutUserInput
-    enquiries?: EnquiryCreateNestedManyWithoutUserInput
     applications?: CareerApplicationCreateNestedManyWithoutUserInput
+    enquiries?: EnquiryCreateNestedManyWithoutUserInput
+    branch?: BranchCreateNestedOneWithoutUsersInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -18822,8 +21297,8 @@ export namespace Prisma {
     updatedAt?: Date | string
     deletedAt?: Date | string | null
     appointments?: AppointmentUncheckedCreateNestedManyWithoutUserInput
-    enquiries?: EnquiryUncheckedCreateNestedManyWithoutUserInput
     applications?: CareerApplicationUncheckedCreateNestedManyWithoutUserInput
+    enquiries?: EnquiryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -18836,10 +21311,10 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    branch?: BranchUpdateOneWithoutUsersNestedInput
     appointments?: AppointmentUpdateManyWithoutUserNestedInput
-    enquiries?: EnquiryUpdateManyWithoutUserNestedInput
     applications?: CareerApplicationUpdateManyWithoutUserNestedInput
+    enquiries?: EnquiryUpdateManyWithoutUserNestedInput
+    branch?: BranchUpdateOneWithoutUsersNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -18854,8 +21329,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     appointments?: AppointmentUncheckedUpdateManyWithoutUserNestedInput
-    enquiries?: EnquiryUncheckedUpdateManyWithoutUserNestedInput
     applications?: CareerApplicationUncheckedUpdateManyWithoutUserNestedInput
+    enquiries?: EnquiryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -18913,11 +21388,11 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
-    users?: UserCreateNestedManyWithoutBranchInput
-    stock?: InventoryCreateNestedManyWithoutBranchInput
     appointments?: AppointmentCreateNestedManyWithoutBranchInput
-    enquiries?: EnquiryCreateNestedManyWithoutBranchInput
     applications?: CareerApplicationCreateNestedManyWithoutBranchInput
+    enquiries?: EnquiryCreateNestedManyWithoutBranchInput
+    stock?: InventoryCreateNestedManyWithoutBranchInput
+    users?: UserCreateNestedManyWithoutBranchInput
   }
 
   export type BranchUncheckedCreateInput = {
@@ -18937,11 +21412,11 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
-    users?: UserUncheckedCreateNestedManyWithoutBranchInput
-    stock?: InventoryUncheckedCreateNestedManyWithoutBranchInput
     appointments?: AppointmentUncheckedCreateNestedManyWithoutBranchInput
-    enquiries?: EnquiryUncheckedCreateNestedManyWithoutBranchInput
     applications?: CareerApplicationUncheckedCreateNestedManyWithoutBranchInput
+    enquiries?: EnquiryUncheckedCreateNestedManyWithoutBranchInput
+    stock?: InventoryUncheckedCreateNestedManyWithoutBranchInput
+    users?: UserUncheckedCreateNestedManyWithoutBranchInput
   }
 
   export type BranchUpdateInput = {
@@ -18961,11 +21436,11 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    users?: UserUpdateManyWithoutBranchNestedInput
-    stock?: InventoryUpdateManyWithoutBranchNestedInput
     appointments?: AppointmentUpdateManyWithoutBranchNestedInput
-    enquiries?: EnquiryUpdateManyWithoutBranchNestedInput
     applications?: CareerApplicationUpdateManyWithoutBranchNestedInput
+    enquiries?: EnquiryUpdateManyWithoutBranchNestedInput
+    stock?: InventoryUpdateManyWithoutBranchNestedInput
+    users?: UserUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchUncheckedUpdateInput = {
@@ -18985,11 +21460,11 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    users?: UserUncheckedUpdateManyWithoutBranchNestedInput
-    stock?: InventoryUncheckedUpdateManyWithoutBranchNestedInput
     appointments?: AppointmentUncheckedUpdateManyWithoutBranchNestedInput
-    enquiries?: EnquiryUncheckedUpdateManyWithoutBranchNestedInput
     applications?: CareerApplicationUncheckedUpdateManyWithoutBranchNestedInput
+    enquiries?: EnquiryUncheckedUpdateManyWithoutBranchNestedInput
+    stock?: InventoryUncheckedUpdateManyWithoutBranchNestedInput
+    users?: UserUncheckedUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchCreateManyInput = {
@@ -19054,33 +21529,33 @@ export namespace Prisma {
     name: string
     slug: string
     description: string
-    price?: number
     isFeatured?: boolean
     isNewArrival?: boolean
     isActive?: boolean
     gender?: string | null
-    style?: string | null
     frameShape?: string | null
     material?: string | null
     lensType?: string | null
     color?: string | null
     size?: string | null
-    isInHouseProduct?: boolean
-    collectionType?: string
-    signatureCollectionName?: string | null
-    craftsmanshipDetails?: string | null
-    recommendedUsage?: string | null
-    frameWeightCategory?: string | null
     metaTitle?: string | null
     metaDesc?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
+    collectionType?: string
+    craftsmanshipDetails?: string | null
+    frameWeightCategory?: string | null
+    isInHouseProduct?: boolean
+    recommendedUsage?: string | null
+    signatureCollectionName?: string | null
+    style?: string | null
+    price?: number
+    enquiries?: EnquiryCreateNestedManyWithoutProductInput
+    inventory?: InventoryCreateNestedManyWithoutProductInput
     brand: BrandCreateNestedOneWithoutProductsInput
     category: CategoryCreateNestedOneWithoutProductsInput
     images?: ProductImageCreateNestedManyWithoutProductInput
-    inventory?: InventoryCreateNestedManyWithoutProductInput
-    enquiries?: EnquiryCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateInput = {
@@ -19088,23 +21563,15 @@ export namespace Prisma {
     name: string
     slug: string
     description: string
-    price?: number
     isFeatured?: boolean
     isNewArrival?: boolean
     isActive?: boolean
     gender?: string | null
-    style?: string | null
     frameShape?: string | null
     material?: string | null
     lensType?: string | null
     color?: string | null
     size?: string | null
-    isInHouseProduct?: boolean
-    collectionType?: string
-    signatureCollectionName?: string | null
-    craftsmanshipDetails?: string | null
-    recommendedUsage?: string | null
-    frameWeightCategory?: string | null
     brandId: string
     categoryId: string
     metaTitle?: string | null
@@ -19112,9 +21579,17 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
-    images?: ProductImageUncheckedCreateNestedManyWithoutProductInput
-    inventory?: InventoryUncheckedCreateNestedManyWithoutProductInput
+    collectionType?: string
+    craftsmanshipDetails?: string | null
+    frameWeightCategory?: string | null
+    isInHouseProduct?: boolean
+    recommendedUsage?: string | null
+    signatureCollectionName?: string | null
+    style?: string | null
+    price?: number
     enquiries?: EnquiryUncheckedCreateNestedManyWithoutProductInput
+    inventory?: InventoryUncheckedCreateNestedManyWithoutProductInput
+    images?: ProductImageUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductUpdateInput = {
@@ -19122,33 +21597,33 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     isNewArrival?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
-    style?: NullableStringFieldUpdateOperationsInput | string | null
     frameShape?: NullableStringFieldUpdateOperationsInput | string | null
     material?: NullableStringFieldUpdateOperationsInput | string | null
     lensType?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
-    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
-    collectionType?: StringFieldUpdateOperationsInput | string
-    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
-    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
-    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
-    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDesc?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    collectionType?: StringFieldUpdateOperationsInput | string
+    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
+    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
+    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
+    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
+    style?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: FloatFieldUpdateOperationsInput | number
+    enquiries?: EnquiryUpdateManyWithoutProductNestedInput
+    inventory?: InventoryUpdateManyWithoutProductNestedInput
     brand?: BrandUpdateOneRequiredWithoutProductsNestedInput
     category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
     images?: ProductImageUpdateManyWithoutProductNestedInput
-    inventory?: InventoryUpdateManyWithoutProductNestedInput
-    enquiries?: EnquiryUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateInput = {
@@ -19156,23 +21631,15 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     isNewArrival?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
-    style?: NullableStringFieldUpdateOperationsInput | string | null
     frameShape?: NullableStringFieldUpdateOperationsInput | string | null
     material?: NullableStringFieldUpdateOperationsInput | string | null
     lensType?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
-    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
-    collectionType?: StringFieldUpdateOperationsInput | string
-    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
-    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
-    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
-    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
     brandId?: StringFieldUpdateOperationsInput | string
     categoryId?: StringFieldUpdateOperationsInput | string
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19180,9 +21647,17 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    images?: ProductImageUncheckedUpdateManyWithoutProductNestedInput
-    inventory?: InventoryUncheckedUpdateManyWithoutProductNestedInput
+    collectionType?: StringFieldUpdateOperationsInput | string
+    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
+    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
+    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
+    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
+    style?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: FloatFieldUpdateOperationsInput | number
     enquiries?: EnquiryUncheckedUpdateManyWithoutProductNestedInput
+    inventory?: InventoryUncheckedUpdateManyWithoutProductNestedInput
+    images?: ProductImageUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type ProductCreateManyInput = {
@@ -19190,23 +21665,15 @@ export namespace Prisma {
     name: string
     slug: string
     description: string
-    price?: number
     isFeatured?: boolean
     isNewArrival?: boolean
     isActive?: boolean
     gender?: string | null
-    style?: string | null
     frameShape?: string | null
     material?: string | null
     lensType?: string | null
     color?: string | null
     size?: string | null
-    isInHouseProduct?: boolean
-    collectionType?: string
-    signatureCollectionName?: string | null
-    craftsmanshipDetails?: string | null
-    recommendedUsage?: string | null
-    frameWeightCategory?: string | null
     brandId: string
     categoryId: string
     metaTitle?: string | null
@@ -19214,6 +21681,14 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
+    collectionType?: string
+    craftsmanshipDetails?: string | null
+    frameWeightCategory?: string | null
+    isInHouseProduct?: boolean
+    recommendedUsage?: string | null
+    signatureCollectionName?: string | null
+    style?: string | null
+    price?: number
   }
 
   export type ProductUpdateManyMutationInput = {
@@ -19221,28 +21696,28 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     isNewArrival?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
-    style?: NullableStringFieldUpdateOperationsInput | string | null
     frameShape?: NullableStringFieldUpdateOperationsInput | string | null
     material?: NullableStringFieldUpdateOperationsInput | string | null
     lensType?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
-    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
-    collectionType?: StringFieldUpdateOperationsInput | string
-    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
-    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
-    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
-    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDesc?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    collectionType?: StringFieldUpdateOperationsInput | string
+    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
+    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
+    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
+    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
+    style?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: FloatFieldUpdateOperationsInput | number
   }
 
   export type ProductUncheckedUpdateManyInput = {
@@ -19250,23 +21725,15 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     isNewArrival?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
-    style?: NullableStringFieldUpdateOperationsInput | string | null
     frameShape?: NullableStringFieldUpdateOperationsInput | string | null
     material?: NullableStringFieldUpdateOperationsInput | string | null
     lensType?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
-    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
-    collectionType?: StringFieldUpdateOperationsInput | string
-    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
-    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
-    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
-    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
     brandId?: StringFieldUpdateOperationsInput | string
     categoryId?: StringFieldUpdateOperationsInput | string
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19274,6 +21741,14 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    collectionType?: StringFieldUpdateOperationsInput | string
+    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
+    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
+    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
+    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
+    style?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: FloatFieldUpdateOperationsInput | number
   }
 
   export type ProductImageCreateInput = {
@@ -19484,8 +21959,8 @@ export namespace Prisma {
     quantity?: number
     status?: $Enums.InventoryStatus
     updatedAt?: Date | string
-    product: ProductCreateNestedOneWithoutInventoryInput
     branch: BranchCreateNestedOneWithoutStockInput
+    product: ProductCreateNestedOneWithoutInventoryInput
   }
 
   export type InventoryUncheckedCreateInput = {
@@ -19502,8 +21977,8 @@ export namespace Prisma {
     quantity?: IntFieldUpdateOperationsInput | number
     status?: EnumInventoryStatusFieldUpdateOperationsInput | $Enums.InventoryStatus
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    product?: ProductUpdateOneRequiredWithoutInventoryNestedInput
     branch?: BranchUpdateOneRequiredWithoutStockNestedInput
+    product?: ProductUpdateOneRequiredWithoutInventoryNestedInput
   }
 
   export type InventoryUncheckedUpdateInput = {
@@ -19550,8 +22025,8 @@ export namespace Prisma {
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    user?: UserCreateNestedOneWithoutAppointmentsInput
     branch: BranchCreateNestedOneWithoutAppointmentsInput
+    user?: UserCreateNestedOneWithoutAppointmentsInput
   }
 
   export type AppointmentUncheckedCreateInput = {
@@ -19578,8 +22053,8 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneWithoutAppointmentsNestedInput
     branch?: BranchUpdateOneRequiredWithoutAppointmentsNestedInput
+    user?: UserUpdateOneWithoutAppointmentsNestedInput
   }
 
   export type AppointmentUncheckedUpdateInput = {
@@ -19641,11 +22116,11 @@ export namespace Prisma {
     type?: $Enums.EnquiryType
     message: string
     isWhatsApp?: boolean
-    status?: string
     createdAt?: Date | string
-    user?: UserCreateNestedOneWithoutEnquiriesInput
-    product?: ProductCreateNestedOneWithoutEnquiriesInput
+    status?: string
     branch: BranchCreateNestedOneWithoutEnquiriesInput
+    product?: ProductCreateNestedOneWithoutEnquiriesInput
+    user?: UserCreateNestedOneWithoutEnquiriesInput
   }
 
   export type EnquiryUncheckedCreateInput = {
@@ -19656,8 +22131,8 @@ export namespace Prisma {
     type?: $Enums.EnquiryType
     message: string
     isWhatsApp?: boolean
-    status?: string
     createdAt?: Date | string
+    status?: string
   }
 
   export type EnquiryUpdateInput = {
@@ -19665,11 +22140,11 @@ export namespace Prisma {
     type?: EnumEnquiryTypeFieldUpdateOperationsInput | $Enums.EnquiryType
     message?: StringFieldUpdateOperationsInput | string
     isWhatsApp?: BoolFieldUpdateOperationsInput | boolean
-    status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneWithoutEnquiriesNestedInput
-    product?: ProductUpdateOneWithoutEnquiriesNestedInput
+    status?: StringFieldUpdateOperationsInput | string
     branch?: BranchUpdateOneRequiredWithoutEnquiriesNestedInput
+    product?: ProductUpdateOneWithoutEnquiriesNestedInput
+    user?: UserUpdateOneWithoutEnquiriesNestedInput
   }
 
   export type EnquiryUncheckedUpdateInput = {
@@ -19680,8 +22155,8 @@ export namespace Prisma {
     type?: EnumEnquiryTypeFieldUpdateOperationsInput | $Enums.EnquiryType
     message?: StringFieldUpdateOperationsInput | string
     isWhatsApp?: BoolFieldUpdateOperationsInput | boolean
-    status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
   }
 
   export type EnquiryCreateManyInput = {
@@ -19692,8 +22167,8 @@ export namespace Prisma {
     type?: $Enums.EnquiryType
     message: string
     isWhatsApp?: boolean
-    status?: string
     createdAt?: Date | string
+    status?: string
   }
 
   export type EnquiryUpdateManyMutationInput = {
@@ -19701,8 +22176,8 @@ export namespace Prisma {
     type?: EnumEnquiryTypeFieldUpdateOperationsInput | $Enums.EnquiryType
     message?: StringFieldUpdateOperationsInput | string
     isWhatsApp?: BoolFieldUpdateOperationsInput | boolean
-    status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
   }
 
   export type EnquiryUncheckedUpdateManyInput = {
@@ -19713,8 +22188,8 @@ export namespace Prisma {
     type?: EnumEnquiryTypeFieldUpdateOperationsInput | $Enums.EnquiryType
     message?: StringFieldUpdateOperationsInput | string
     isWhatsApp?: BoolFieldUpdateOperationsInput | boolean
-    status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
   }
 
   export type CareerApplicationCreateInput = {
@@ -19726,8 +22201,8 @@ export namespace Prisma {
     coverLetter?: string | null
     status?: string
     createdAt?: Date | string
-    user?: UserCreateNestedOneWithoutApplicationsInput
     branch?: BranchCreateNestedOneWithoutApplicationsInput
+    user?: UserCreateNestedOneWithoutApplicationsInput
   }
 
   export type CareerApplicationUncheckedCreateInput = {
@@ -19752,8 +22227,8 @@ export namespace Prisma {
     coverLetter?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneWithoutApplicationsNestedInput
     branch?: BranchUpdateOneWithoutApplicationsNestedInput
+    user?: UserUpdateOneWithoutApplicationsNestedInput
   }
 
   export type CareerApplicationUncheckedUpdateInput = {
@@ -19812,6 +22287,7 @@ export namespace Prisma {
     subtitle?: string | null
     imageUrl: string
     linkUrl?: string | null
+    branchId?: string
     order?: number
     isActive?: boolean
   }
@@ -19822,6 +22298,7 @@ export namespace Prisma {
     subtitle?: string | null
     imageUrl: string
     linkUrl?: string | null
+    branchId?: string
     order?: number
     isActive?: boolean
   }
@@ -19832,6 +22309,7 @@ export namespace Prisma {
     subtitle?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: StringFieldUpdateOperationsInput | string
     linkUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    branchId?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
   }
@@ -19842,6 +22320,7 @@ export namespace Prisma {
     subtitle?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: StringFieldUpdateOperationsInput | string
     linkUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    branchId?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
   }
@@ -19852,6 +22331,7 @@ export namespace Prisma {
     subtitle?: string | null
     imageUrl: string
     linkUrl?: string | null
+    branchId?: string
     order?: number
     isActive?: boolean
   }
@@ -19862,6 +22342,7 @@ export namespace Prisma {
     subtitle?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: StringFieldUpdateOperationsInput | string
     linkUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    branchId?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
   }
@@ -19872,6 +22353,7 @@ export namespace Prisma {
     subtitle?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: StringFieldUpdateOperationsInput | string
     linkUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    branchId?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
   }
@@ -20002,6 +22484,174 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
   }
 
+  export type JobCreateInput = {
+    id?: string
+    title: string
+    desc: string
+    requirements?: JobCreaterequirementsInput | string[]
+    branchId?: string
+    googleFormUrl?: string | null
+    expiryDate?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+  }
+
+  export type JobUncheckedCreateInput = {
+    id?: string
+    title: string
+    desc: string
+    requirements?: JobCreaterequirementsInput | string[]
+    branchId?: string
+    googleFormUrl?: string | null
+    expiryDate?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+  }
+
+  export type JobUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    desc?: StringFieldUpdateOperationsInput | string
+    requirements?: JobUpdaterequirementsInput | string[]
+    branchId?: StringFieldUpdateOperationsInput | string
+    googleFormUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    expiryDate?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type JobUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    desc?: StringFieldUpdateOperationsInput | string
+    requirements?: JobUpdaterequirementsInput | string[]
+    branchId?: StringFieldUpdateOperationsInput | string
+    googleFormUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    expiryDate?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type JobCreateManyInput = {
+    id?: string
+    title: string
+    desc: string
+    requirements?: JobCreaterequirementsInput | string[]
+    branchId?: string
+    googleFormUrl?: string | null
+    expiryDate?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+  }
+
+  export type JobUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    desc?: StringFieldUpdateOperationsInput | string
+    requirements?: JobUpdaterequirementsInput | string[]
+    branchId?: StringFieldUpdateOperationsInput | string
+    googleFormUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    expiryDate?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type JobUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    desc?: StringFieldUpdateOperationsInput | string
+    requirements?: JobUpdaterequirementsInput | string[]
+    branchId?: StringFieldUpdateOperationsInput | string
+    googleFormUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    expiryDate?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OfferCreateInput = {
+    id?: string
+    title: string
+    description: string
+    percentage?: string
+    branchId?: string
+    startDate?: string | null
+    endDate?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+  }
+
+  export type OfferUncheckedCreateInput = {
+    id?: string
+    title: string
+    description: string
+    percentage?: string
+    branchId?: string
+    startDate?: string | null
+    endDate?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+  }
+
+  export type OfferUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    percentage?: StringFieldUpdateOperationsInput | string
+    branchId?: StringFieldUpdateOperationsInput | string
+    startDate?: NullableStringFieldUpdateOperationsInput | string | null
+    endDate?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OfferUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    percentage?: StringFieldUpdateOperationsInput | string
+    branchId?: StringFieldUpdateOperationsInput | string
+    startDate?: NullableStringFieldUpdateOperationsInput | string | null
+    endDate?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OfferCreateManyInput = {
+    id?: string
+    title: string
+    description: string
+    percentage?: string
+    branchId?: string
+    startDate?: string | null
+    endDate?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+  }
+
+  export type OfferUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    percentage?: StringFieldUpdateOperationsInput | string
+    branchId?: StringFieldUpdateOperationsInput | string
+    startDate?: NullableStringFieldUpdateOperationsInput | string | null
+    endDate?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OfferUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    percentage?: StringFieldUpdateOperationsInput | string
+    branchId?: StringFieldUpdateOperationsInput | string
+    startDate?: NullableStringFieldUpdateOperationsInput | string | null
+    endDate?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -20061,15 +22711,16 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
-  export type BranchNullableScalarRelationFilter = {
-    is?: BranchWhereInput | null
-    isNot?: BranchWhereInput | null
-  }
-
   export type AppointmentListRelationFilter = {
     every?: AppointmentWhereInput
     some?: AppointmentWhereInput
     none?: AppointmentWhereInput
+  }
+
+  export type CareerApplicationListRelationFilter = {
+    every?: CareerApplicationWhereInput
+    some?: CareerApplicationWhereInput
+    none?: CareerApplicationWhereInput
   }
 
   export type EnquiryListRelationFilter = {
@@ -20078,10 +22729,9 @@ export namespace Prisma {
     none?: EnquiryWhereInput
   }
 
-  export type CareerApplicationListRelationFilter = {
-    every?: CareerApplicationWhereInput
-    some?: CareerApplicationWhereInput
-    none?: CareerApplicationWhereInput
+  export type BranchNullableScalarRelationFilter = {
+    is?: BranchWhereInput | null
+    isNot?: BranchWhereInput | null
   }
 
   export type SortOrderInput = {
@@ -20093,11 +22743,11 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type EnquiryOrderByRelationAggregateInput = {
+  export type CareerApplicationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
-  export type CareerApplicationOrderByRelationAggregateInput = {
+  export type EnquiryOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -20227,23 +22877,23 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
-  export type UserListRelationFilter = {
-    every?: UserWhereInput
-    some?: UserWhereInput
-    none?: UserWhereInput
-  }
-
   export type InventoryListRelationFilter = {
     every?: InventoryWhereInput
     some?: InventoryWhereInput
     none?: InventoryWhereInput
   }
 
-  export type UserOrderByRelationAggregateInput = {
-    _count?: SortOrder
+  export type UserListRelationFilter = {
+    every?: UserWhereInput
+    some?: UserWhereInput
+    none?: UserWhereInput
   }
 
   export type InventoryOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type UserOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -20346,23 +22996,15 @@ export namespace Prisma {
     name?: SortOrder
     slug?: SortOrder
     description?: SortOrder
-    price?: SortOrder
     isFeatured?: SortOrder
     isNewArrival?: SortOrder
     isActive?: SortOrder
     gender?: SortOrder
-    style?: SortOrder
     frameShape?: SortOrder
     material?: SortOrder
     lensType?: SortOrder
     color?: SortOrder
     size?: SortOrder
-    isInHouseProduct?: SortOrder
-    collectionType?: SortOrder
-    signatureCollectionName?: SortOrder
-    craftsmanshipDetails?: SortOrder
-    recommendedUsage?: SortOrder
-    frameWeightCategory?: SortOrder
     brandId?: SortOrder
     categoryId?: SortOrder
     metaTitle?: SortOrder
@@ -20370,6 +23012,14 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     deletedAt?: SortOrder
+    collectionType?: SortOrder
+    craftsmanshipDetails?: SortOrder
+    frameWeightCategory?: SortOrder
+    isInHouseProduct?: SortOrder
+    recommendedUsage?: SortOrder
+    signatureCollectionName?: SortOrder
+    style?: SortOrder
+    price?: SortOrder
   }
 
   export type ProductAvgOrderByAggregateInput = {
@@ -20381,23 +23031,15 @@ export namespace Prisma {
     name?: SortOrder
     slug?: SortOrder
     description?: SortOrder
-    price?: SortOrder
     isFeatured?: SortOrder
     isNewArrival?: SortOrder
     isActive?: SortOrder
     gender?: SortOrder
-    style?: SortOrder
     frameShape?: SortOrder
     material?: SortOrder
     lensType?: SortOrder
     color?: SortOrder
     size?: SortOrder
-    isInHouseProduct?: SortOrder
-    collectionType?: SortOrder
-    signatureCollectionName?: SortOrder
-    craftsmanshipDetails?: SortOrder
-    recommendedUsage?: SortOrder
-    frameWeightCategory?: SortOrder
     brandId?: SortOrder
     categoryId?: SortOrder
     metaTitle?: SortOrder
@@ -20405,6 +23047,14 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     deletedAt?: SortOrder
+    collectionType?: SortOrder
+    craftsmanshipDetails?: SortOrder
+    frameWeightCategory?: SortOrder
+    isInHouseProduct?: SortOrder
+    recommendedUsage?: SortOrder
+    signatureCollectionName?: SortOrder
+    style?: SortOrder
+    price?: SortOrder
   }
 
   export type ProductMinOrderByAggregateInput = {
@@ -20412,23 +23062,15 @@ export namespace Prisma {
     name?: SortOrder
     slug?: SortOrder
     description?: SortOrder
-    price?: SortOrder
     isFeatured?: SortOrder
     isNewArrival?: SortOrder
     isActive?: SortOrder
     gender?: SortOrder
-    style?: SortOrder
     frameShape?: SortOrder
     material?: SortOrder
     lensType?: SortOrder
     color?: SortOrder
     size?: SortOrder
-    isInHouseProduct?: SortOrder
-    collectionType?: SortOrder
-    signatureCollectionName?: SortOrder
-    craftsmanshipDetails?: SortOrder
-    recommendedUsage?: SortOrder
-    frameWeightCategory?: SortOrder
     brandId?: SortOrder
     categoryId?: SortOrder
     metaTitle?: SortOrder
@@ -20436,6 +23078,14 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     deletedAt?: SortOrder
+    collectionType?: SortOrder
+    craftsmanshipDetails?: SortOrder
+    frameWeightCategory?: SortOrder
+    isInHouseProduct?: SortOrder
+    recommendedUsage?: SortOrder
+    signatureCollectionName?: SortOrder
+    style?: SortOrder
+    price?: SortOrder
   }
 
   export type ProductSumOrderByAggregateInput = {
@@ -20738,8 +23388,8 @@ export namespace Prisma {
     type?: SortOrder
     message?: SortOrder
     isWhatsApp?: SortOrder
-    status?: SortOrder
     createdAt?: SortOrder
+    status?: SortOrder
   }
 
   export type EnquiryMaxOrderByAggregateInput = {
@@ -20750,8 +23400,8 @@ export namespace Prisma {
     type?: SortOrder
     message?: SortOrder
     isWhatsApp?: SortOrder
-    status?: SortOrder
     createdAt?: SortOrder
+    status?: SortOrder
   }
 
   export type EnquiryMinOrderByAggregateInput = {
@@ -20762,8 +23412,8 @@ export namespace Prisma {
     type?: SortOrder
     message?: SortOrder
     isWhatsApp?: SortOrder
-    status?: SortOrder
     createdAt?: SortOrder
+    status?: SortOrder
   }
 
   export type EnumEnquiryTypeWithAggregatesFilter<$PrismaModel = never> = {
@@ -20821,6 +23471,7 @@ export namespace Prisma {
     subtitle?: SortOrder
     imageUrl?: SortOrder
     linkUrl?: SortOrder
+    branchId?: SortOrder
     order?: SortOrder
     isActive?: SortOrder
   }
@@ -20835,6 +23486,7 @@ export namespace Prisma {
     subtitle?: SortOrder
     imageUrl?: SortOrder
     linkUrl?: SortOrder
+    branchId?: SortOrder
     order?: SortOrder
     isActive?: SortOrder
   }
@@ -20845,6 +23497,7 @@ export namespace Prisma {
     subtitle?: SortOrder
     imageUrl?: SortOrder
     linkUrl?: SortOrder
+    branchId?: SortOrder
     order?: SortOrder
     isActive?: SortOrder
   }
@@ -20915,10 +23568,74 @@ export namespace Prisma {
     isActive?: SortOrder
   }
 
-  export type BranchCreateNestedOneWithoutUsersInput = {
-    create?: XOR<BranchCreateWithoutUsersInput, BranchUncheckedCreateWithoutUsersInput>
-    connectOrCreate?: BranchCreateOrConnectWithoutUsersInput
-    connect?: BranchWhereUniqueInput
+  export type JobCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    desc?: SortOrder
+    requirements?: SortOrder
+    branchId?: SortOrder
+    googleFormUrl?: SortOrder
+    expiryDate?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type JobMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    desc?: SortOrder
+    branchId?: SortOrder
+    googleFormUrl?: SortOrder
+    expiryDate?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type JobMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    desc?: SortOrder
+    branchId?: SortOrder
+    googleFormUrl?: SortOrder
+    expiryDate?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type OfferCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    percentage?: SortOrder
+    branchId?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type OfferMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    percentage?: SortOrder
+    branchId?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type OfferMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    percentage?: SortOrder
+    branchId?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type AppointmentCreateNestedManyWithoutUserInput = {
@@ -20928,6 +23645,13 @@ export namespace Prisma {
     connect?: AppointmentWhereUniqueInput | AppointmentWhereUniqueInput[]
   }
 
+  export type CareerApplicationCreateNestedManyWithoutUserInput = {
+    create?: XOR<CareerApplicationCreateWithoutUserInput, CareerApplicationUncheckedCreateWithoutUserInput> | CareerApplicationCreateWithoutUserInput[] | CareerApplicationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CareerApplicationCreateOrConnectWithoutUserInput | CareerApplicationCreateOrConnectWithoutUserInput[]
+    createMany?: CareerApplicationCreateManyUserInputEnvelope
+    connect?: CareerApplicationWhereUniqueInput | CareerApplicationWhereUniqueInput[]
+  }
+
   export type EnquiryCreateNestedManyWithoutUserInput = {
     create?: XOR<EnquiryCreateWithoutUserInput, EnquiryUncheckedCreateWithoutUserInput> | EnquiryCreateWithoutUserInput[] | EnquiryUncheckedCreateWithoutUserInput[]
     connectOrCreate?: EnquiryCreateOrConnectWithoutUserInput | EnquiryCreateOrConnectWithoutUserInput[]
@@ -20935,11 +23659,10 @@ export namespace Prisma {
     connect?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
   }
 
-  export type CareerApplicationCreateNestedManyWithoutUserInput = {
-    create?: XOR<CareerApplicationCreateWithoutUserInput, CareerApplicationUncheckedCreateWithoutUserInput> | CareerApplicationCreateWithoutUserInput[] | CareerApplicationUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: CareerApplicationCreateOrConnectWithoutUserInput | CareerApplicationCreateOrConnectWithoutUserInput[]
-    createMany?: CareerApplicationCreateManyUserInputEnvelope
-    connect?: CareerApplicationWhereUniqueInput | CareerApplicationWhereUniqueInput[]
+  export type BranchCreateNestedOneWithoutUsersInput = {
+    create?: XOR<BranchCreateWithoutUsersInput, BranchUncheckedCreateWithoutUsersInput>
+    connectOrCreate?: BranchCreateOrConnectWithoutUsersInput
+    connect?: BranchWhereUniqueInput
   }
 
   export type AppointmentUncheckedCreateNestedManyWithoutUserInput = {
@@ -20949,18 +23672,18 @@ export namespace Prisma {
     connect?: AppointmentWhereUniqueInput | AppointmentWhereUniqueInput[]
   }
 
-  export type EnquiryUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<EnquiryCreateWithoutUserInput, EnquiryUncheckedCreateWithoutUserInput> | EnquiryCreateWithoutUserInput[] | EnquiryUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: EnquiryCreateOrConnectWithoutUserInput | EnquiryCreateOrConnectWithoutUserInput[]
-    createMany?: EnquiryCreateManyUserInputEnvelope
-    connect?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
-  }
-
   export type CareerApplicationUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<CareerApplicationCreateWithoutUserInput, CareerApplicationUncheckedCreateWithoutUserInput> | CareerApplicationCreateWithoutUserInput[] | CareerApplicationUncheckedCreateWithoutUserInput[]
     connectOrCreate?: CareerApplicationCreateOrConnectWithoutUserInput | CareerApplicationCreateOrConnectWithoutUserInput[]
     createMany?: CareerApplicationCreateManyUserInputEnvelope
     connect?: CareerApplicationWhereUniqueInput | CareerApplicationWhereUniqueInput[]
+  }
+
+  export type EnquiryUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<EnquiryCreateWithoutUserInput, EnquiryUncheckedCreateWithoutUserInput> | EnquiryCreateWithoutUserInput[] | EnquiryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: EnquiryCreateOrConnectWithoutUserInput | EnquiryCreateOrConnectWithoutUserInput[]
+    createMany?: EnquiryCreateManyUserInputEnvelope
+    connect?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -20983,16 +23706,6 @@ export namespace Prisma {
     set?: Date | string | null
   }
 
-  export type BranchUpdateOneWithoutUsersNestedInput = {
-    create?: XOR<BranchCreateWithoutUsersInput, BranchUncheckedCreateWithoutUsersInput>
-    connectOrCreate?: BranchCreateOrConnectWithoutUsersInput
-    upsert?: BranchUpsertWithoutUsersInput
-    disconnect?: BranchWhereInput | boolean
-    delete?: BranchWhereInput | boolean
-    connect?: BranchWhereUniqueInput
-    update?: XOR<XOR<BranchUpdateToOneWithWhereWithoutUsersInput, BranchUpdateWithoutUsersInput>, BranchUncheckedUpdateWithoutUsersInput>
-  }
-
   export type AppointmentUpdateManyWithoutUserNestedInput = {
     create?: XOR<AppointmentCreateWithoutUserInput, AppointmentUncheckedCreateWithoutUserInput> | AppointmentCreateWithoutUserInput[] | AppointmentUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AppointmentCreateOrConnectWithoutUserInput | AppointmentCreateOrConnectWithoutUserInput[]
@@ -21005,20 +23718,6 @@ export namespace Prisma {
     update?: AppointmentUpdateWithWhereUniqueWithoutUserInput | AppointmentUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: AppointmentUpdateManyWithWhereWithoutUserInput | AppointmentUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: AppointmentScalarWhereInput | AppointmentScalarWhereInput[]
-  }
-
-  export type EnquiryUpdateManyWithoutUserNestedInput = {
-    create?: XOR<EnquiryCreateWithoutUserInput, EnquiryUncheckedCreateWithoutUserInput> | EnquiryCreateWithoutUserInput[] | EnquiryUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: EnquiryCreateOrConnectWithoutUserInput | EnquiryCreateOrConnectWithoutUserInput[]
-    upsert?: EnquiryUpsertWithWhereUniqueWithoutUserInput | EnquiryUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: EnquiryCreateManyUserInputEnvelope
-    set?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
-    disconnect?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
-    delete?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
-    connect?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
-    update?: EnquiryUpdateWithWhereUniqueWithoutUserInput | EnquiryUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: EnquiryUpdateManyWithWhereWithoutUserInput | EnquiryUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: EnquiryScalarWhereInput | EnquiryScalarWhereInput[]
   }
 
   export type CareerApplicationUpdateManyWithoutUserNestedInput = {
@@ -21035,6 +23734,30 @@ export namespace Prisma {
     deleteMany?: CareerApplicationScalarWhereInput | CareerApplicationScalarWhereInput[]
   }
 
+  export type EnquiryUpdateManyWithoutUserNestedInput = {
+    create?: XOR<EnquiryCreateWithoutUserInput, EnquiryUncheckedCreateWithoutUserInput> | EnquiryCreateWithoutUserInput[] | EnquiryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: EnquiryCreateOrConnectWithoutUserInput | EnquiryCreateOrConnectWithoutUserInput[]
+    upsert?: EnquiryUpsertWithWhereUniqueWithoutUserInput | EnquiryUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: EnquiryCreateManyUserInputEnvelope
+    set?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
+    disconnect?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
+    delete?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
+    connect?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
+    update?: EnquiryUpdateWithWhereUniqueWithoutUserInput | EnquiryUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: EnquiryUpdateManyWithWhereWithoutUserInput | EnquiryUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: EnquiryScalarWhereInput | EnquiryScalarWhereInput[]
+  }
+
+  export type BranchUpdateOneWithoutUsersNestedInput = {
+    create?: XOR<BranchCreateWithoutUsersInput, BranchUncheckedCreateWithoutUsersInput>
+    connectOrCreate?: BranchCreateOrConnectWithoutUsersInput
+    upsert?: BranchUpsertWithoutUsersInput
+    disconnect?: BranchWhereInput | boolean
+    delete?: BranchWhereInput | boolean
+    connect?: BranchWhereUniqueInput
+    update?: XOR<XOR<BranchUpdateToOneWithWhereWithoutUsersInput, BranchUpdateWithoutUsersInput>, BranchUncheckedUpdateWithoutUsersInput>
+  }
+
   export type AppointmentUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<AppointmentCreateWithoutUserInput, AppointmentUncheckedCreateWithoutUserInput> | AppointmentCreateWithoutUserInput[] | AppointmentUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AppointmentCreateOrConnectWithoutUserInput | AppointmentCreateOrConnectWithoutUserInput[]
@@ -21047,20 +23770,6 @@ export namespace Prisma {
     update?: AppointmentUpdateWithWhereUniqueWithoutUserInput | AppointmentUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: AppointmentUpdateManyWithWhereWithoutUserInput | AppointmentUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: AppointmentScalarWhereInput | AppointmentScalarWhereInput[]
-  }
-
-  export type EnquiryUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<EnquiryCreateWithoutUserInput, EnquiryUncheckedCreateWithoutUserInput> | EnquiryCreateWithoutUserInput[] | EnquiryUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: EnquiryCreateOrConnectWithoutUserInput | EnquiryCreateOrConnectWithoutUserInput[]
-    upsert?: EnquiryUpsertWithWhereUniqueWithoutUserInput | EnquiryUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: EnquiryCreateManyUserInputEnvelope
-    set?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
-    disconnect?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
-    delete?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
-    connect?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
-    update?: EnquiryUpdateWithWhereUniqueWithoutUserInput | EnquiryUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: EnquiryUpdateManyWithWhereWithoutUserInput | EnquiryUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: EnquiryScalarWhereInput | EnquiryScalarWhereInput[]
   }
 
   export type CareerApplicationUncheckedUpdateManyWithoutUserNestedInput = {
@@ -21077,22 +23786,22 @@ export namespace Prisma {
     deleteMany?: CareerApplicationScalarWhereInput | CareerApplicationScalarWhereInput[]
   }
 
+  export type EnquiryUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<EnquiryCreateWithoutUserInput, EnquiryUncheckedCreateWithoutUserInput> | EnquiryCreateWithoutUserInput[] | EnquiryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: EnquiryCreateOrConnectWithoutUserInput | EnquiryCreateOrConnectWithoutUserInput[]
+    upsert?: EnquiryUpsertWithWhereUniqueWithoutUserInput | EnquiryUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: EnquiryCreateManyUserInputEnvelope
+    set?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
+    disconnect?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
+    delete?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
+    connect?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
+    update?: EnquiryUpdateWithWhereUniqueWithoutUserInput | EnquiryUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: EnquiryUpdateManyWithWhereWithoutUserInput | EnquiryUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: EnquiryScalarWhereInput | EnquiryScalarWhereInput[]
+  }
+
   export type BranchCreateimagesInput = {
     set: string[]
-  }
-
-  export type UserCreateNestedManyWithoutBranchInput = {
-    create?: XOR<UserCreateWithoutBranchInput, UserUncheckedCreateWithoutBranchInput> | UserCreateWithoutBranchInput[] | UserUncheckedCreateWithoutBranchInput[]
-    connectOrCreate?: UserCreateOrConnectWithoutBranchInput | UserCreateOrConnectWithoutBranchInput[]
-    createMany?: UserCreateManyBranchInputEnvelope
-    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
-  }
-
-  export type InventoryCreateNestedManyWithoutBranchInput = {
-    create?: XOR<InventoryCreateWithoutBranchInput, InventoryUncheckedCreateWithoutBranchInput> | InventoryCreateWithoutBranchInput[] | InventoryUncheckedCreateWithoutBranchInput[]
-    connectOrCreate?: InventoryCreateOrConnectWithoutBranchInput | InventoryCreateOrConnectWithoutBranchInput[]
-    createMany?: InventoryCreateManyBranchInputEnvelope
-    connect?: InventoryWhereUniqueInput | InventoryWhereUniqueInput[]
   }
 
   export type AppointmentCreateNestedManyWithoutBranchInput = {
@@ -21102,13 +23811,6 @@ export namespace Prisma {
     connect?: AppointmentWhereUniqueInput | AppointmentWhereUniqueInput[]
   }
 
-  export type EnquiryCreateNestedManyWithoutBranchInput = {
-    create?: XOR<EnquiryCreateWithoutBranchInput, EnquiryUncheckedCreateWithoutBranchInput> | EnquiryCreateWithoutBranchInput[] | EnquiryUncheckedCreateWithoutBranchInput[]
-    connectOrCreate?: EnquiryCreateOrConnectWithoutBranchInput | EnquiryCreateOrConnectWithoutBranchInput[]
-    createMany?: EnquiryCreateManyBranchInputEnvelope
-    connect?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
-  }
-
   export type CareerApplicationCreateNestedManyWithoutBranchInput = {
     create?: XOR<CareerApplicationCreateWithoutBranchInput, CareerApplicationUncheckedCreateWithoutBranchInput> | CareerApplicationCreateWithoutBranchInput[] | CareerApplicationUncheckedCreateWithoutBranchInput[]
     connectOrCreate?: CareerApplicationCreateOrConnectWithoutBranchInput | CareerApplicationCreateOrConnectWithoutBranchInput[]
@@ -21116,18 +23818,25 @@ export namespace Prisma {
     connect?: CareerApplicationWhereUniqueInput | CareerApplicationWhereUniqueInput[]
   }
 
-  export type UserUncheckedCreateNestedManyWithoutBranchInput = {
-    create?: XOR<UserCreateWithoutBranchInput, UserUncheckedCreateWithoutBranchInput> | UserCreateWithoutBranchInput[] | UserUncheckedCreateWithoutBranchInput[]
-    connectOrCreate?: UserCreateOrConnectWithoutBranchInput | UserCreateOrConnectWithoutBranchInput[]
-    createMany?: UserCreateManyBranchInputEnvelope
-    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+  export type EnquiryCreateNestedManyWithoutBranchInput = {
+    create?: XOR<EnquiryCreateWithoutBranchInput, EnquiryUncheckedCreateWithoutBranchInput> | EnquiryCreateWithoutBranchInput[] | EnquiryUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: EnquiryCreateOrConnectWithoutBranchInput | EnquiryCreateOrConnectWithoutBranchInput[]
+    createMany?: EnquiryCreateManyBranchInputEnvelope
+    connect?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
   }
 
-  export type InventoryUncheckedCreateNestedManyWithoutBranchInput = {
+  export type InventoryCreateNestedManyWithoutBranchInput = {
     create?: XOR<InventoryCreateWithoutBranchInput, InventoryUncheckedCreateWithoutBranchInput> | InventoryCreateWithoutBranchInput[] | InventoryUncheckedCreateWithoutBranchInput[]
     connectOrCreate?: InventoryCreateOrConnectWithoutBranchInput | InventoryCreateOrConnectWithoutBranchInput[]
     createMany?: InventoryCreateManyBranchInputEnvelope
     connect?: InventoryWhereUniqueInput | InventoryWhereUniqueInput[]
+  }
+
+  export type UserCreateNestedManyWithoutBranchInput = {
+    create?: XOR<UserCreateWithoutBranchInput, UserUncheckedCreateWithoutBranchInput> | UserCreateWithoutBranchInput[] | UserUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutBranchInput | UserCreateOrConnectWithoutBranchInput[]
+    createMany?: UserCreateManyBranchInputEnvelope
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
   }
 
   export type AppointmentUncheckedCreateNestedManyWithoutBranchInput = {
@@ -21137,6 +23846,13 @@ export namespace Prisma {
     connect?: AppointmentWhereUniqueInput | AppointmentWhereUniqueInput[]
   }
 
+  export type CareerApplicationUncheckedCreateNestedManyWithoutBranchInput = {
+    create?: XOR<CareerApplicationCreateWithoutBranchInput, CareerApplicationUncheckedCreateWithoutBranchInput> | CareerApplicationCreateWithoutBranchInput[] | CareerApplicationUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: CareerApplicationCreateOrConnectWithoutBranchInput | CareerApplicationCreateOrConnectWithoutBranchInput[]
+    createMany?: CareerApplicationCreateManyBranchInputEnvelope
+    connect?: CareerApplicationWhereUniqueInput | CareerApplicationWhereUniqueInput[]
+  }
+
   export type EnquiryUncheckedCreateNestedManyWithoutBranchInput = {
     create?: XOR<EnquiryCreateWithoutBranchInput, EnquiryUncheckedCreateWithoutBranchInput> | EnquiryCreateWithoutBranchInput[] | EnquiryUncheckedCreateWithoutBranchInput[]
     connectOrCreate?: EnquiryCreateOrConnectWithoutBranchInput | EnquiryCreateOrConnectWithoutBranchInput[]
@@ -21144,11 +23860,18 @@ export namespace Prisma {
     connect?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
   }
 
-  export type CareerApplicationUncheckedCreateNestedManyWithoutBranchInput = {
-    create?: XOR<CareerApplicationCreateWithoutBranchInput, CareerApplicationUncheckedCreateWithoutBranchInput> | CareerApplicationCreateWithoutBranchInput[] | CareerApplicationUncheckedCreateWithoutBranchInput[]
-    connectOrCreate?: CareerApplicationCreateOrConnectWithoutBranchInput | CareerApplicationCreateOrConnectWithoutBranchInput[]
-    createMany?: CareerApplicationCreateManyBranchInputEnvelope
-    connect?: CareerApplicationWhereUniqueInput | CareerApplicationWhereUniqueInput[]
+  export type InventoryUncheckedCreateNestedManyWithoutBranchInput = {
+    create?: XOR<InventoryCreateWithoutBranchInput, InventoryUncheckedCreateWithoutBranchInput> | InventoryCreateWithoutBranchInput[] | InventoryUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: InventoryCreateOrConnectWithoutBranchInput | InventoryCreateOrConnectWithoutBranchInput[]
+    createMany?: InventoryCreateManyBranchInputEnvelope
+    connect?: InventoryWhereUniqueInput | InventoryWhereUniqueInput[]
+  }
+
+  export type UserUncheckedCreateNestedManyWithoutBranchInput = {
+    create?: XOR<UserCreateWithoutBranchInput, UserUncheckedCreateWithoutBranchInput> | UserCreateWithoutBranchInput[] | UserUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutBranchInput | UserCreateOrConnectWithoutBranchInput[]
+    createMany?: UserCreateManyBranchInputEnvelope
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
   }
 
   export type BranchUpdateimagesInput = {
@@ -21158,34 +23881,6 @@ export namespace Prisma {
 
   export type BoolFieldUpdateOperationsInput = {
     set?: boolean
-  }
-
-  export type UserUpdateManyWithoutBranchNestedInput = {
-    create?: XOR<UserCreateWithoutBranchInput, UserUncheckedCreateWithoutBranchInput> | UserCreateWithoutBranchInput[] | UserUncheckedCreateWithoutBranchInput[]
-    connectOrCreate?: UserCreateOrConnectWithoutBranchInput | UserCreateOrConnectWithoutBranchInput[]
-    upsert?: UserUpsertWithWhereUniqueWithoutBranchInput | UserUpsertWithWhereUniqueWithoutBranchInput[]
-    createMany?: UserCreateManyBranchInputEnvelope
-    set?: UserWhereUniqueInput | UserWhereUniqueInput[]
-    disconnect?: UserWhereUniqueInput | UserWhereUniqueInput[]
-    delete?: UserWhereUniqueInput | UserWhereUniqueInput[]
-    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
-    update?: UserUpdateWithWhereUniqueWithoutBranchInput | UserUpdateWithWhereUniqueWithoutBranchInput[]
-    updateMany?: UserUpdateManyWithWhereWithoutBranchInput | UserUpdateManyWithWhereWithoutBranchInput[]
-    deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
-  }
-
-  export type InventoryUpdateManyWithoutBranchNestedInput = {
-    create?: XOR<InventoryCreateWithoutBranchInput, InventoryUncheckedCreateWithoutBranchInput> | InventoryCreateWithoutBranchInput[] | InventoryUncheckedCreateWithoutBranchInput[]
-    connectOrCreate?: InventoryCreateOrConnectWithoutBranchInput | InventoryCreateOrConnectWithoutBranchInput[]
-    upsert?: InventoryUpsertWithWhereUniqueWithoutBranchInput | InventoryUpsertWithWhereUniqueWithoutBranchInput[]
-    createMany?: InventoryCreateManyBranchInputEnvelope
-    set?: InventoryWhereUniqueInput | InventoryWhereUniqueInput[]
-    disconnect?: InventoryWhereUniqueInput | InventoryWhereUniqueInput[]
-    delete?: InventoryWhereUniqueInput | InventoryWhereUniqueInput[]
-    connect?: InventoryWhereUniqueInput | InventoryWhereUniqueInput[]
-    update?: InventoryUpdateWithWhereUniqueWithoutBranchInput | InventoryUpdateWithWhereUniqueWithoutBranchInput[]
-    updateMany?: InventoryUpdateManyWithWhereWithoutBranchInput | InventoryUpdateManyWithWhereWithoutBranchInput[]
-    deleteMany?: InventoryScalarWhereInput | InventoryScalarWhereInput[]
   }
 
   export type AppointmentUpdateManyWithoutBranchNestedInput = {
@@ -21202,20 +23897,6 @@ export namespace Prisma {
     deleteMany?: AppointmentScalarWhereInput | AppointmentScalarWhereInput[]
   }
 
-  export type EnquiryUpdateManyWithoutBranchNestedInput = {
-    create?: XOR<EnquiryCreateWithoutBranchInput, EnquiryUncheckedCreateWithoutBranchInput> | EnquiryCreateWithoutBranchInput[] | EnquiryUncheckedCreateWithoutBranchInput[]
-    connectOrCreate?: EnquiryCreateOrConnectWithoutBranchInput | EnquiryCreateOrConnectWithoutBranchInput[]
-    upsert?: EnquiryUpsertWithWhereUniqueWithoutBranchInput | EnquiryUpsertWithWhereUniqueWithoutBranchInput[]
-    createMany?: EnquiryCreateManyBranchInputEnvelope
-    set?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
-    disconnect?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
-    delete?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
-    connect?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
-    update?: EnquiryUpdateWithWhereUniqueWithoutBranchInput | EnquiryUpdateWithWhereUniqueWithoutBranchInput[]
-    updateMany?: EnquiryUpdateManyWithWhereWithoutBranchInput | EnquiryUpdateManyWithWhereWithoutBranchInput[]
-    deleteMany?: EnquiryScalarWhereInput | EnquiryScalarWhereInput[]
-  }
-
   export type CareerApplicationUpdateManyWithoutBranchNestedInput = {
     create?: XOR<CareerApplicationCreateWithoutBranchInput, CareerApplicationUncheckedCreateWithoutBranchInput> | CareerApplicationCreateWithoutBranchInput[] | CareerApplicationUncheckedCreateWithoutBranchInput[]
     connectOrCreate?: CareerApplicationCreateOrConnectWithoutBranchInput | CareerApplicationCreateOrConnectWithoutBranchInput[]
@@ -21230,21 +23911,21 @@ export namespace Prisma {
     deleteMany?: CareerApplicationScalarWhereInput | CareerApplicationScalarWhereInput[]
   }
 
-  export type UserUncheckedUpdateManyWithoutBranchNestedInput = {
-    create?: XOR<UserCreateWithoutBranchInput, UserUncheckedCreateWithoutBranchInput> | UserCreateWithoutBranchInput[] | UserUncheckedCreateWithoutBranchInput[]
-    connectOrCreate?: UserCreateOrConnectWithoutBranchInput | UserCreateOrConnectWithoutBranchInput[]
-    upsert?: UserUpsertWithWhereUniqueWithoutBranchInput | UserUpsertWithWhereUniqueWithoutBranchInput[]
-    createMany?: UserCreateManyBranchInputEnvelope
-    set?: UserWhereUniqueInput | UserWhereUniqueInput[]
-    disconnect?: UserWhereUniqueInput | UserWhereUniqueInput[]
-    delete?: UserWhereUniqueInput | UserWhereUniqueInput[]
-    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
-    update?: UserUpdateWithWhereUniqueWithoutBranchInput | UserUpdateWithWhereUniqueWithoutBranchInput[]
-    updateMany?: UserUpdateManyWithWhereWithoutBranchInput | UserUpdateManyWithWhereWithoutBranchInput[]
-    deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
+  export type EnquiryUpdateManyWithoutBranchNestedInput = {
+    create?: XOR<EnquiryCreateWithoutBranchInput, EnquiryUncheckedCreateWithoutBranchInput> | EnquiryCreateWithoutBranchInput[] | EnquiryUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: EnquiryCreateOrConnectWithoutBranchInput | EnquiryCreateOrConnectWithoutBranchInput[]
+    upsert?: EnquiryUpsertWithWhereUniqueWithoutBranchInput | EnquiryUpsertWithWhereUniqueWithoutBranchInput[]
+    createMany?: EnquiryCreateManyBranchInputEnvelope
+    set?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
+    disconnect?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
+    delete?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
+    connect?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
+    update?: EnquiryUpdateWithWhereUniqueWithoutBranchInput | EnquiryUpdateWithWhereUniqueWithoutBranchInput[]
+    updateMany?: EnquiryUpdateManyWithWhereWithoutBranchInput | EnquiryUpdateManyWithWhereWithoutBranchInput[]
+    deleteMany?: EnquiryScalarWhereInput | EnquiryScalarWhereInput[]
   }
 
-  export type InventoryUncheckedUpdateManyWithoutBranchNestedInput = {
+  export type InventoryUpdateManyWithoutBranchNestedInput = {
     create?: XOR<InventoryCreateWithoutBranchInput, InventoryUncheckedCreateWithoutBranchInput> | InventoryCreateWithoutBranchInput[] | InventoryUncheckedCreateWithoutBranchInput[]
     connectOrCreate?: InventoryCreateOrConnectWithoutBranchInput | InventoryCreateOrConnectWithoutBranchInput[]
     upsert?: InventoryUpsertWithWhereUniqueWithoutBranchInput | InventoryUpsertWithWhereUniqueWithoutBranchInput[]
@@ -21256,6 +23937,20 @@ export namespace Prisma {
     update?: InventoryUpdateWithWhereUniqueWithoutBranchInput | InventoryUpdateWithWhereUniqueWithoutBranchInput[]
     updateMany?: InventoryUpdateManyWithWhereWithoutBranchInput | InventoryUpdateManyWithWhereWithoutBranchInput[]
     deleteMany?: InventoryScalarWhereInput | InventoryScalarWhereInput[]
+  }
+
+  export type UserUpdateManyWithoutBranchNestedInput = {
+    create?: XOR<UserCreateWithoutBranchInput, UserUncheckedCreateWithoutBranchInput> | UserCreateWithoutBranchInput[] | UserUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutBranchInput | UserCreateOrConnectWithoutBranchInput[]
+    upsert?: UserUpsertWithWhereUniqueWithoutBranchInput | UserUpsertWithWhereUniqueWithoutBranchInput[]
+    createMany?: UserCreateManyBranchInputEnvelope
+    set?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    disconnect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    delete?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    update?: UserUpdateWithWhereUniqueWithoutBranchInput | UserUpdateWithWhereUniqueWithoutBranchInput[]
+    updateMany?: UserUpdateManyWithWhereWithoutBranchInput | UserUpdateManyWithWhereWithoutBranchInput[]
+    deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
   }
 
   export type AppointmentUncheckedUpdateManyWithoutBranchNestedInput = {
@@ -21272,6 +23967,20 @@ export namespace Prisma {
     deleteMany?: AppointmentScalarWhereInput | AppointmentScalarWhereInput[]
   }
 
+  export type CareerApplicationUncheckedUpdateManyWithoutBranchNestedInput = {
+    create?: XOR<CareerApplicationCreateWithoutBranchInput, CareerApplicationUncheckedCreateWithoutBranchInput> | CareerApplicationCreateWithoutBranchInput[] | CareerApplicationUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: CareerApplicationCreateOrConnectWithoutBranchInput | CareerApplicationCreateOrConnectWithoutBranchInput[]
+    upsert?: CareerApplicationUpsertWithWhereUniqueWithoutBranchInput | CareerApplicationUpsertWithWhereUniqueWithoutBranchInput[]
+    createMany?: CareerApplicationCreateManyBranchInputEnvelope
+    set?: CareerApplicationWhereUniqueInput | CareerApplicationWhereUniqueInput[]
+    disconnect?: CareerApplicationWhereUniqueInput | CareerApplicationWhereUniqueInput[]
+    delete?: CareerApplicationWhereUniqueInput | CareerApplicationWhereUniqueInput[]
+    connect?: CareerApplicationWhereUniqueInput | CareerApplicationWhereUniqueInput[]
+    update?: CareerApplicationUpdateWithWhereUniqueWithoutBranchInput | CareerApplicationUpdateWithWhereUniqueWithoutBranchInput[]
+    updateMany?: CareerApplicationUpdateManyWithWhereWithoutBranchInput | CareerApplicationUpdateManyWithWhereWithoutBranchInput[]
+    deleteMany?: CareerApplicationScalarWhereInput | CareerApplicationScalarWhereInput[]
+  }
+
   export type EnquiryUncheckedUpdateManyWithoutBranchNestedInput = {
     create?: XOR<EnquiryCreateWithoutBranchInput, EnquiryUncheckedCreateWithoutBranchInput> | EnquiryCreateWithoutBranchInput[] | EnquiryUncheckedCreateWithoutBranchInput[]
     connectOrCreate?: EnquiryCreateOrConnectWithoutBranchInput | EnquiryCreateOrConnectWithoutBranchInput[]
@@ -21286,18 +23995,46 @@ export namespace Prisma {
     deleteMany?: EnquiryScalarWhereInput | EnquiryScalarWhereInput[]
   }
 
-  export type CareerApplicationUncheckedUpdateManyWithoutBranchNestedInput = {
-    create?: XOR<CareerApplicationCreateWithoutBranchInput, CareerApplicationUncheckedCreateWithoutBranchInput> | CareerApplicationCreateWithoutBranchInput[] | CareerApplicationUncheckedCreateWithoutBranchInput[]
-    connectOrCreate?: CareerApplicationCreateOrConnectWithoutBranchInput | CareerApplicationCreateOrConnectWithoutBranchInput[]
-    upsert?: CareerApplicationUpsertWithWhereUniqueWithoutBranchInput | CareerApplicationUpsertWithWhereUniqueWithoutBranchInput[]
-    createMany?: CareerApplicationCreateManyBranchInputEnvelope
-    set?: CareerApplicationWhereUniqueInput | CareerApplicationWhereUniqueInput[]
-    disconnect?: CareerApplicationWhereUniqueInput | CareerApplicationWhereUniqueInput[]
-    delete?: CareerApplicationWhereUniqueInput | CareerApplicationWhereUniqueInput[]
-    connect?: CareerApplicationWhereUniqueInput | CareerApplicationWhereUniqueInput[]
-    update?: CareerApplicationUpdateWithWhereUniqueWithoutBranchInput | CareerApplicationUpdateWithWhereUniqueWithoutBranchInput[]
-    updateMany?: CareerApplicationUpdateManyWithWhereWithoutBranchInput | CareerApplicationUpdateManyWithWhereWithoutBranchInput[]
-    deleteMany?: CareerApplicationScalarWhereInput | CareerApplicationScalarWhereInput[]
+  export type InventoryUncheckedUpdateManyWithoutBranchNestedInput = {
+    create?: XOR<InventoryCreateWithoutBranchInput, InventoryUncheckedCreateWithoutBranchInput> | InventoryCreateWithoutBranchInput[] | InventoryUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: InventoryCreateOrConnectWithoutBranchInput | InventoryCreateOrConnectWithoutBranchInput[]
+    upsert?: InventoryUpsertWithWhereUniqueWithoutBranchInput | InventoryUpsertWithWhereUniqueWithoutBranchInput[]
+    createMany?: InventoryCreateManyBranchInputEnvelope
+    set?: InventoryWhereUniqueInput | InventoryWhereUniqueInput[]
+    disconnect?: InventoryWhereUniqueInput | InventoryWhereUniqueInput[]
+    delete?: InventoryWhereUniqueInput | InventoryWhereUniqueInput[]
+    connect?: InventoryWhereUniqueInput | InventoryWhereUniqueInput[]
+    update?: InventoryUpdateWithWhereUniqueWithoutBranchInput | InventoryUpdateWithWhereUniqueWithoutBranchInput[]
+    updateMany?: InventoryUpdateManyWithWhereWithoutBranchInput | InventoryUpdateManyWithWhereWithoutBranchInput[]
+    deleteMany?: InventoryScalarWhereInput | InventoryScalarWhereInput[]
+  }
+
+  export type UserUncheckedUpdateManyWithoutBranchNestedInput = {
+    create?: XOR<UserCreateWithoutBranchInput, UserUncheckedCreateWithoutBranchInput> | UserCreateWithoutBranchInput[] | UserUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutBranchInput | UserCreateOrConnectWithoutBranchInput[]
+    upsert?: UserUpsertWithWhereUniqueWithoutBranchInput | UserUpsertWithWhereUniqueWithoutBranchInput[]
+    createMany?: UserCreateManyBranchInputEnvelope
+    set?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    disconnect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    delete?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    update?: UserUpdateWithWhereUniqueWithoutBranchInput | UserUpdateWithWhereUniqueWithoutBranchInput[]
+    updateMany?: UserUpdateManyWithWhereWithoutBranchInput | UserUpdateManyWithWhereWithoutBranchInput[]
+    deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
+  }
+
+  export type EnquiryCreateNestedManyWithoutProductInput = {
+    create?: XOR<EnquiryCreateWithoutProductInput, EnquiryUncheckedCreateWithoutProductInput> | EnquiryCreateWithoutProductInput[] | EnquiryUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: EnquiryCreateOrConnectWithoutProductInput | EnquiryCreateOrConnectWithoutProductInput[]
+    createMany?: EnquiryCreateManyProductInputEnvelope
+    connect?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
+  }
+
+  export type InventoryCreateNestedManyWithoutProductInput = {
+    create?: XOR<InventoryCreateWithoutProductInput, InventoryUncheckedCreateWithoutProductInput> | InventoryCreateWithoutProductInput[] | InventoryUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: InventoryCreateOrConnectWithoutProductInput | InventoryCreateOrConnectWithoutProductInput[]
+    createMany?: InventoryCreateManyProductInputEnvelope
+    connect?: InventoryWhereUniqueInput | InventoryWhereUniqueInput[]
   }
 
   export type BrandCreateNestedOneWithoutProductsInput = {
@@ -21319,25 +24056,11 @@ export namespace Prisma {
     connect?: ProductImageWhereUniqueInput | ProductImageWhereUniqueInput[]
   }
 
-  export type InventoryCreateNestedManyWithoutProductInput = {
-    create?: XOR<InventoryCreateWithoutProductInput, InventoryUncheckedCreateWithoutProductInput> | InventoryCreateWithoutProductInput[] | InventoryUncheckedCreateWithoutProductInput[]
-    connectOrCreate?: InventoryCreateOrConnectWithoutProductInput | InventoryCreateOrConnectWithoutProductInput[]
-    createMany?: InventoryCreateManyProductInputEnvelope
-    connect?: InventoryWhereUniqueInput | InventoryWhereUniqueInput[]
-  }
-
-  export type EnquiryCreateNestedManyWithoutProductInput = {
+  export type EnquiryUncheckedCreateNestedManyWithoutProductInput = {
     create?: XOR<EnquiryCreateWithoutProductInput, EnquiryUncheckedCreateWithoutProductInput> | EnquiryCreateWithoutProductInput[] | EnquiryUncheckedCreateWithoutProductInput[]
     connectOrCreate?: EnquiryCreateOrConnectWithoutProductInput | EnquiryCreateOrConnectWithoutProductInput[]
     createMany?: EnquiryCreateManyProductInputEnvelope
     connect?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
-  }
-
-  export type ProductImageUncheckedCreateNestedManyWithoutProductInput = {
-    create?: XOR<ProductImageCreateWithoutProductInput, ProductImageUncheckedCreateWithoutProductInput> | ProductImageCreateWithoutProductInput[] | ProductImageUncheckedCreateWithoutProductInput[]
-    connectOrCreate?: ProductImageCreateOrConnectWithoutProductInput | ProductImageCreateOrConnectWithoutProductInput[]
-    createMany?: ProductImageCreateManyProductInputEnvelope
-    connect?: ProductImageWhereUniqueInput | ProductImageWhereUniqueInput[]
   }
 
   export type InventoryUncheckedCreateNestedManyWithoutProductInput = {
@@ -21347,11 +24070,11 @@ export namespace Prisma {
     connect?: InventoryWhereUniqueInput | InventoryWhereUniqueInput[]
   }
 
-  export type EnquiryUncheckedCreateNestedManyWithoutProductInput = {
-    create?: XOR<EnquiryCreateWithoutProductInput, EnquiryUncheckedCreateWithoutProductInput> | EnquiryCreateWithoutProductInput[] | EnquiryUncheckedCreateWithoutProductInput[]
-    connectOrCreate?: EnquiryCreateOrConnectWithoutProductInput | EnquiryCreateOrConnectWithoutProductInput[]
-    createMany?: EnquiryCreateManyProductInputEnvelope
-    connect?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
+  export type ProductImageUncheckedCreateNestedManyWithoutProductInput = {
+    create?: XOR<ProductImageCreateWithoutProductInput, ProductImageUncheckedCreateWithoutProductInput> | ProductImageCreateWithoutProductInput[] | ProductImageUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: ProductImageCreateOrConnectWithoutProductInput | ProductImageCreateOrConnectWithoutProductInput[]
+    createMany?: ProductImageCreateManyProductInputEnvelope
+    connect?: ProductImageWhereUniqueInput | ProductImageWhereUniqueInput[]
   }
 
   export type FloatFieldUpdateOperationsInput = {
@@ -21360,6 +24083,34 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type EnquiryUpdateManyWithoutProductNestedInput = {
+    create?: XOR<EnquiryCreateWithoutProductInput, EnquiryUncheckedCreateWithoutProductInput> | EnquiryCreateWithoutProductInput[] | EnquiryUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: EnquiryCreateOrConnectWithoutProductInput | EnquiryCreateOrConnectWithoutProductInput[]
+    upsert?: EnquiryUpsertWithWhereUniqueWithoutProductInput | EnquiryUpsertWithWhereUniqueWithoutProductInput[]
+    createMany?: EnquiryCreateManyProductInputEnvelope
+    set?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
+    disconnect?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
+    delete?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
+    connect?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
+    update?: EnquiryUpdateWithWhereUniqueWithoutProductInput | EnquiryUpdateWithWhereUniqueWithoutProductInput[]
+    updateMany?: EnquiryUpdateManyWithWhereWithoutProductInput | EnquiryUpdateManyWithWhereWithoutProductInput[]
+    deleteMany?: EnquiryScalarWhereInput | EnquiryScalarWhereInput[]
+  }
+
+  export type InventoryUpdateManyWithoutProductNestedInput = {
+    create?: XOR<InventoryCreateWithoutProductInput, InventoryUncheckedCreateWithoutProductInput> | InventoryCreateWithoutProductInput[] | InventoryUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: InventoryCreateOrConnectWithoutProductInput | InventoryCreateOrConnectWithoutProductInput[]
+    upsert?: InventoryUpsertWithWhereUniqueWithoutProductInput | InventoryUpsertWithWhereUniqueWithoutProductInput[]
+    createMany?: InventoryCreateManyProductInputEnvelope
+    set?: InventoryWhereUniqueInput | InventoryWhereUniqueInput[]
+    disconnect?: InventoryWhereUniqueInput | InventoryWhereUniqueInput[]
+    delete?: InventoryWhereUniqueInput | InventoryWhereUniqueInput[]
+    connect?: InventoryWhereUniqueInput | InventoryWhereUniqueInput[]
+    update?: InventoryUpdateWithWhereUniqueWithoutProductInput | InventoryUpdateWithWhereUniqueWithoutProductInput[]
+    updateMany?: InventoryUpdateManyWithWhereWithoutProductInput | InventoryUpdateManyWithWhereWithoutProductInput[]
+    deleteMany?: InventoryScalarWhereInput | InventoryScalarWhereInput[]
   }
 
   export type BrandUpdateOneRequiredWithoutProductsNestedInput = {
@@ -21392,21 +24143,7 @@ export namespace Prisma {
     deleteMany?: ProductImageScalarWhereInput | ProductImageScalarWhereInput[]
   }
 
-  export type InventoryUpdateManyWithoutProductNestedInput = {
-    create?: XOR<InventoryCreateWithoutProductInput, InventoryUncheckedCreateWithoutProductInput> | InventoryCreateWithoutProductInput[] | InventoryUncheckedCreateWithoutProductInput[]
-    connectOrCreate?: InventoryCreateOrConnectWithoutProductInput | InventoryCreateOrConnectWithoutProductInput[]
-    upsert?: InventoryUpsertWithWhereUniqueWithoutProductInput | InventoryUpsertWithWhereUniqueWithoutProductInput[]
-    createMany?: InventoryCreateManyProductInputEnvelope
-    set?: InventoryWhereUniqueInput | InventoryWhereUniqueInput[]
-    disconnect?: InventoryWhereUniqueInput | InventoryWhereUniqueInput[]
-    delete?: InventoryWhereUniqueInput | InventoryWhereUniqueInput[]
-    connect?: InventoryWhereUniqueInput | InventoryWhereUniqueInput[]
-    update?: InventoryUpdateWithWhereUniqueWithoutProductInput | InventoryUpdateWithWhereUniqueWithoutProductInput[]
-    updateMany?: InventoryUpdateManyWithWhereWithoutProductInput | InventoryUpdateManyWithWhereWithoutProductInput[]
-    deleteMany?: InventoryScalarWhereInput | InventoryScalarWhereInput[]
-  }
-
-  export type EnquiryUpdateManyWithoutProductNestedInput = {
+  export type EnquiryUncheckedUpdateManyWithoutProductNestedInput = {
     create?: XOR<EnquiryCreateWithoutProductInput, EnquiryUncheckedCreateWithoutProductInput> | EnquiryCreateWithoutProductInput[] | EnquiryUncheckedCreateWithoutProductInput[]
     connectOrCreate?: EnquiryCreateOrConnectWithoutProductInput | EnquiryCreateOrConnectWithoutProductInput[]
     upsert?: EnquiryUpsertWithWhereUniqueWithoutProductInput | EnquiryUpsertWithWhereUniqueWithoutProductInput[]
@@ -21418,20 +24155,6 @@ export namespace Prisma {
     update?: EnquiryUpdateWithWhereUniqueWithoutProductInput | EnquiryUpdateWithWhereUniqueWithoutProductInput[]
     updateMany?: EnquiryUpdateManyWithWhereWithoutProductInput | EnquiryUpdateManyWithWhereWithoutProductInput[]
     deleteMany?: EnquiryScalarWhereInput | EnquiryScalarWhereInput[]
-  }
-
-  export type ProductImageUncheckedUpdateManyWithoutProductNestedInput = {
-    create?: XOR<ProductImageCreateWithoutProductInput, ProductImageUncheckedCreateWithoutProductInput> | ProductImageCreateWithoutProductInput[] | ProductImageUncheckedCreateWithoutProductInput[]
-    connectOrCreate?: ProductImageCreateOrConnectWithoutProductInput | ProductImageCreateOrConnectWithoutProductInput[]
-    upsert?: ProductImageUpsertWithWhereUniqueWithoutProductInput | ProductImageUpsertWithWhereUniqueWithoutProductInput[]
-    createMany?: ProductImageCreateManyProductInputEnvelope
-    set?: ProductImageWhereUniqueInput | ProductImageWhereUniqueInput[]
-    disconnect?: ProductImageWhereUniqueInput | ProductImageWhereUniqueInput[]
-    delete?: ProductImageWhereUniqueInput | ProductImageWhereUniqueInput[]
-    connect?: ProductImageWhereUniqueInput | ProductImageWhereUniqueInput[]
-    update?: ProductImageUpdateWithWhereUniqueWithoutProductInput | ProductImageUpdateWithWhereUniqueWithoutProductInput[]
-    updateMany?: ProductImageUpdateManyWithWhereWithoutProductInput | ProductImageUpdateManyWithWhereWithoutProductInput[]
-    deleteMany?: ProductImageScalarWhereInput | ProductImageScalarWhereInput[]
   }
 
   export type InventoryUncheckedUpdateManyWithoutProductNestedInput = {
@@ -21448,18 +24171,18 @@ export namespace Prisma {
     deleteMany?: InventoryScalarWhereInput | InventoryScalarWhereInput[]
   }
 
-  export type EnquiryUncheckedUpdateManyWithoutProductNestedInput = {
-    create?: XOR<EnquiryCreateWithoutProductInput, EnquiryUncheckedCreateWithoutProductInput> | EnquiryCreateWithoutProductInput[] | EnquiryUncheckedCreateWithoutProductInput[]
-    connectOrCreate?: EnquiryCreateOrConnectWithoutProductInput | EnquiryCreateOrConnectWithoutProductInput[]
-    upsert?: EnquiryUpsertWithWhereUniqueWithoutProductInput | EnquiryUpsertWithWhereUniqueWithoutProductInput[]
-    createMany?: EnquiryCreateManyProductInputEnvelope
-    set?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
-    disconnect?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
-    delete?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
-    connect?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
-    update?: EnquiryUpdateWithWhereUniqueWithoutProductInput | EnquiryUpdateWithWhereUniqueWithoutProductInput[]
-    updateMany?: EnquiryUpdateManyWithWhereWithoutProductInput | EnquiryUpdateManyWithWhereWithoutProductInput[]
-    deleteMany?: EnquiryScalarWhereInput | EnquiryScalarWhereInput[]
+  export type ProductImageUncheckedUpdateManyWithoutProductNestedInput = {
+    create?: XOR<ProductImageCreateWithoutProductInput, ProductImageUncheckedCreateWithoutProductInput> | ProductImageCreateWithoutProductInput[] | ProductImageUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: ProductImageCreateOrConnectWithoutProductInput | ProductImageCreateOrConnectWithoutProductInput[]
+    upsert?: ProductImageUpsertWithWhereUniqueWithoutProductInput | ProductImageUpsertWithWhereUniqueWithoutProductInput[]
+    createMany?: ProductImageCreateManyProductInputEnvelope
+    set?: ProductImageWhereUniqueInput | ProductImageWhereUniqueInput[]
+    disconnect?: ProductImageWhereUniqueInput | ProductImageWhereUniqueInput[]
+    delete?: ProductImageWhereUniqueInput | ProductImageWhereUniqueInput[]
+    connect?: ProductImageWhereUniqueInput | ProductImageWhereUniqueInput[]
+    update?: ProductImageUpdateWithWhereUniqueWithoutProductInput | ProductImageUpdateWithWhereUniqueWithoutProductInput[]
+    updateMany?: ProductImageUpdateManyWithWhereWithoutProductInput | ProductImageUpdateManyWithWhereWithoutProductInput[]
+    deleteMany?: ProductImageScalarWhereInput | ProductImageScalarWhereInput[]
   }
 
   export type ProductCreateNestedOneWithoutImagesInput = {
@@ -21568,28 +24291,20 @@ export namespace Prisma {
     deleteMany?: ProductScalarWhereInput | ProductScalarWhereInput[]
   }
 
-  export type ProductCreateNestedOneWithoutInventoryInput = {
-    create?: XOR<ProductCreateWithoutInventoryInput, ProductUncheckedCreateWithoutInventoryInput>
-    connectOrCreate?: ProductCreateOrConnectWithoutInventoryInput
-    connect?: ProductWhereUniqueInput
-  }
-
   export type BranchCreateNestedOneWithoutStockInput = {
     create?: XOR<BranchCreateWithoutStockInput, BranchUncheckedCreateWithoutStockInput>
     connectOrCreate?: BranchCreateOrConnectWithoutStockInput
     connect?: BranchWhereUniqueInput
   }
 
-  export type EnumInventoryStatusFieldUpdateOperationsInput = {
-    set?: $Enums.InventoryStatus
-  }
-
-  export type ProductUpdateOneRequiredWithoutInventoryNestedInput = {
+  export type ProductCreateNestedOneWithoutInventoryInput = {
     create?: XOR<ProductCreateWithoutInventoryInput, ProductUncheckedCreateWithoutInventoryInput>
     connectOrCreate?: ProductCreateOrConnectWithoutInventoryInput
-    upsert?: ProductUpsertWithoutInventoryInput
     connect?: ProductWhereUniqueInput
-    update?: XOR<XOR<ProductUpdateToOneWithWhereWithoutInventoryInput, ProductUpdateWithoutInventoryInput>, ProductUncheckedUpdateWithoutInventoryInput>
+  }
+
+  export type EnumInventoryStatusFieldUpdateOperationsInput = {
+    set?: $Enums.InventoryStatus
   }
 
   export type BranchUpdateOneRequiredWithoutStockNestedInput = {
@@ -21600,10 +24315,12 @@ export namespace Prisma {
     update?: XOR<XOR<BranchUpdateToOneWithWhereWithoutStockInput, BranchUpdateWithoutStockInput>, BranchUncheckedUpdateWithoutStockInput>
   }
 
-  export type UserCreateNestedOneWithoutAppointmentsInput = {
-    create?: XOR<UserCreateWithoutAppointmentsInput, UserUncheckedCreateWithoutAppointmentsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutAppointmentsInput
-    connect?: UserWhereUniqueInput
+  export type ProductUpdateOneRequiredWithoutInventoryNestedInput = {
+    create?: XOR<ProductCreateWithoutInventoryInput, ProductUncheckedCreateWithoutInventoryInput>
+    connectOrCreate?: ProductCreateOrConnectWithoutInventoryInput
+    upsert?: ProductUpsertWithoutInventoryInput
+    connect?: ProductWhereUniqueInput
+    update?: XOR<XOR<ProductUpdateToOneWithWhereWithoutInventoryInput, ProductUpdateWithoutInventoryInput>, ProductUncheckedUpdateWithoutInventoryInput>
   }
 
   export type BranchCreateNestedOneWithoutAppointmentsInput = {
@@ -21612,8 +24329,22 @@ export namespace Prisma {
     connect?: BranchWhereUniqueInput
   }
 
+  export type UserCreateNestedOneWithoutAppointmentsInput = {
+    create?: XOR<UserCreateWithoutAppointmentsInput, UserUncheckedCreateWithoutAppointmentsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutAppointmentsInput
+    connect?: UserWhereUniqueInput
+  }
+
   export type EnumAppointmentStatusFieldUpdateOperationsInput = {
     set?: $Enums.AppointmentStatus
+  }
+
+  export type BranchUpdateOneRequiredWithoutAppointmentsNestedInput = {
+    create?: XOR<BranchCreateWithoutAppointmentsInput, BranchUncheckedCreateWithoutAppointmentsInput>
+    connectOrCreate?: BranchCreateOrConnectWithoutAppointmentsInput
+    upsert?: BranchUpsertWithoutAppointmentsInput
+    connect?: BranchWhereUniqueInput
+    update?: XOR<XOR<BranchUpdateToOneWithWhereWithoutAppointmentsInput, BranchUpdateWithoutAppointmentsInput>, BranchUncheckedUpdateWithoutAppointmentsInput>
   }
 
   export type UserUpdateOneWithoutAppointmentsNestedInput = {
@@ -21626,18 +24357,10 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAppointmentsInput, UserUpdateWithoutAppointmentsInput>, UserUncheckedUpdateWithoutAppointmentsInput>
   }
 
-  export type BranchUpdateOneRequiredWithoutAppointmentsNestedInput = {
-    create?: XOR<BranchCreateWithoutAppointmentsInput, BranchUncheckedCreateWithoutAppointmentsInput>
-    connectOrCreate?: BranchCreateOrConnectWithoutAppointmentsInput
-    upsert?: BranchUpsertWithoutAppointmentsInput
+  export type BranchCreateNestedOneWithoutEnquiriesInput = {
+    create?: XOR<BranchCreateWithoutEnquiriesInput, BranchUncheckedCreateWithoutEnquiriesInput>
+    connectOrCreate?: BranchCreateOrConnectWithoutEnquiriesInput
     connect?: BranchWhereUniqueInput
-    update?: XOR<XOR<BranchUpdateToOneWithWhereWithoutAppointmentsInput, BranchUpdateWithoutAppointmentsInput>, BranchUncheckedUpdateWithoutAppointmentsInput>
-  }
-
-  export type UserCreateNestedOneWithoutEnquiriesInput = {
-    create?: XOR<UserCreateWithoutEnquiriesInput, UserUncheckedCreateWithoutEnquiriesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutEnquiriesInput
-    connect?: UserWhereUniqueInput
   }
 
   export type ProductCreateNestedOneWithoutEnquiriesInput = {
@@ -21646,24 +24369,22 @@ export namespace Prisma {
     connect?: ProductWhereUniqueInput
   }
 
-  export type BranchCreateNestedOneWithoutEnquiriesInput = {
-    create?: XOR<BranchCreateWithoutEnquiriesInput, BranchUncheckedCreateWithoutEnquiriesInput>
-    connectOrCreate?: BranchCreateOrConnectWithoutEnquiriesInput
-    connect?: BranchWhereUniqueInput
+  export type UserCreateNestedOneWithoutEnquiriesInput = {
+    create?: XOR<UserCreateWithoutEnquiriesInput, UserUncheckedCreateWithoutEnquiriesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutEnquiriesInput
+    connect?: UserWhereUniqueInput
   }
 
   export type EnumEnquiryTypeFieldUpdateOperationsInput = {
     set?: $Enums.EnquiryType
   }
 
-  export type UserUpdateOneWithoutEnquiriesNestedInput = {
-    create?: XOR<UserCreateWithoutEnquiriesInput, UserUncheckedCreateWithoutEnquiriesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutEnquiriesInput
-    upsert?: UserUpsertWithoutEnquiriesInput
-    disconnect?: UserWhereInput | boolean
-    delete?: UserWhereInput | boolean
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutEnquiriesInput, UserUpdateWithoutEnquiriesInput>, UserUncheckedUpdateWithoutEnquiriesInput>
+  export type BranchUpdateOneRequiredWithoutEnquiriesNestedInput = {
+    create?: XOR<BranchCreateWithoutEnquiriesInput, BranchUncheckedCreateWithoutEnquiriesInput>
+    connectOrCreate?: BranchCreateOrConnectWithoutEnquiriesInput
+    upsert?: BranchUpsertWithoutEnquiriesInput
+    connect?: BranchWhereUniqueInput
+    update?: XOR<XOR<BranchUpdateToOneWithWhereWithoutEnquiriesInput, BranchUpdateWithoutEnquiriesInput>, BranchUncheckedUpdateWithoutEnquiriesInput>
   }
 
   export type ProductUpdateOneWithoutEnquiriesNestedInput = {
@@ -21676,12 +24397,20 @@ export namespace Prisma {
     update?: XOR<XOR<ProductUpdateToOneWithWhereWithoutEnquiriesInput, ProductUpdateWithoutEnquiriesInput>, ProductUncheckedUpdateWithoutEnquiriesInput>
   }
 
-  export type BranchUpdateOneRequiredWithoutEnquiriesNestedInput = {
-    create?: XOR<BranchCreateWithoutEnquiriesInput, BranchUncheckedCreateWithoutEnquiriesInput>
-    connectOrCreate?: BranchCreateOrConnectWithoutEnquiriesInput
-    upsert?: BranchUpsertWithoutEnquiriesInput
+  export type UserUpdateOneWithoutEnquiriesNestedInput = {
+    create?: XOR<UserCreateWithoutEnquiriesInput, UserUncheckedCreateWithoutEnquiriesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutEnquiriesInput
+    upsert?: UserUpsertWithoutEnquiriesInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutEnquiriesInput, UserUpdateWithoutEnquiriesInput>, UserUncheckedUpdateWithoutEnquiriesInput>
+  }
+
+  export type BranchCreateNestedOneWithoutApplicationsInput = {
+    create?: XOR<BranchCreateWithoutApplicationsInput, BranchUncheckedCreateWithoutApplicationsInput>
+    connectOrCreate?: BranchCreateOrConnectWithoutApplicationsInput
     connect?: BranchWhereUniqueInput
-    update?: XOR<XOR<BranchUpdateToOneWithWhereWithoutEnquiriesInput, BranchUpdateWithoutEnquiriesInput>, BranchUncheckedUpdateWithoutEnquiriesInput>
   }
 
   export type UserCreateNestedOneWithoutApplicationsInput = {
@@ -21690,10 +24419,14 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
-  export type BranchCreateNestedOneWithoutApplicationsInput = {
+  export type BranchUpdateOneWithoutApplicationsNestedInput = {
     create?: XOR<BranchCreateWithoutApplicationsInput, BranchUncheckedCreateWithoutApplicationsInput>
     connectOrCreate?: BranchCreateOrConnectWithoutApplicationsInput
+    upsert?: BranchUpsertWithoutApplicationsInput
+    disconnect?: BranchWhereInput | boolean
+    delete?: BranchWhereInput | boolean
     connect?: BranchWhereUniqueInput
+    update?: XOR<XOR<BranchUpdateToOneWithWhereWithoutApplicationsInput, BranchUpdateWithoutApplicationsInput>, BranchUncheckedUpdateWithoutApplicationsInput>
   }
 
   export type UserUpdateOneWithoutApplicationsNestedInput = {
@@ -21706,14 +24439,13 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutApplicationsInput, UserUpdateWithoutApplicationsInput>, UserUncheckedUpdateWithoutApplicationsInput>
   }
 
-  export type BranchUpdateOneWithoutApplicationsNestedInput = {
-    create?: XOR<BranchCreateWithoutApplicationsInput, BranchUncheckedCreateWithoutApplicationsInput>
-    connectOrCreate?: BranchCreateOrConnectWithoutApplicationsInput
-    upsert?: BranchUpsertWithoutApplicationsInput
-    disconnect?: BranchWhereInput | boolean
-    delete?: BranchWhereInput | boolean
-    connect?: BranchWhereUniqueInput
-    update?: XOR<XOR<BranchUpdateToOneWithWhereWithoutApplicationsInput, BranchUpdateWithoutApplicationsInput>, BranchUncheckedUpdateWithoutApplicationsInput>
+  export type JobCreaterequirementsInput = {
+    set: string[]
+  }
+
+  export type JobUpdaterequirementsInput = {
+    set?: string[]
+    push?: string | string[]
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -21974,57 +24706,6 @@ export namespace Prisma {
     _max?: NestedEnumEnquiryTypeFilter<$PrismaModel>
   }
 
-  export type BranchCreateWithoutUsersInput = {
-    id?: string
-    name: string
-    slug: string
-    address: string
-    location: string
-    phone: string
-    whatsapp: string
-    email?: string | null
-    timings?: string | null
-    coordinates?: string | null
-    images?: BranchCreateimagesInput | string[]
-    isMain?: boolean
-    isActive?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    deletedAt?: Date | string | null
-    stock?: InventoryCreateNestedManyWithoutBranchInput
-    appointments?: AppointmentCreateNestedManyWithoutBranchInput
-    enquiries?: EnquiryCreateNestedManyWithoutBranchInput
-    applications?: CareerApplicationCreateNestedManyWithoutBranchInput
-  }
-
-  export type BranchUncheckedCreateWithoutUsersInput = {
-    id?: string
-    name: string
-    slug: string
-    address: string
-    location: string
-    phone: string
-    whatsapp: string
-    email?: string | null
-    timings?: string | null
-    coordinates?: string | null
-    images?: BranchCreateimagesInput | string[]
-    isMain?: boolean
-    isActive?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    deletedAt?: Date | string | null
-    stock?: InventoryUncheckedCreateNestedManyWithoutBranchInput
-    appointments?: AppointmentUncheckedCreateNestedManyWithoutBranchInput
-    enquiries?: EnquiryUncheckedCreateNestedManyWithoutBranchInput
-    applications?: CareerApplicationUncheckedCreateNestedManyWithoutBranchInput
-  }
-
-  export type BranchCreateOrConnectWithoutUsersInput = {
-    where: BranchWhereUniqueInput
-    create: XOR<BranchCreateWithoutUsersInput, BranchUncheckedCreateWithoutUsersInput>
-  }
-
   export type AppointmentCreateWithoutUserInput = {
     id?: string
     customerName: string
@@ -22058,38 +24739,6 @@ export namespace Prisma {
 
   export type AppointmentCreateManyUserInputEnvelope = {
     data: AppointmentCreateManyUserInput | AppointmentCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type EnquiryCreateWithoutUserInput = {
-    id?: string
-    type?: $Enums.EnquiryType
-    message: string
-    isWhatsApp?: boolean
-    status?: string
-    createdAt?: Date | string
-    product?: ProductCreateNestedOneWithoutEnquiriesInput
-    branch: BranchCreateNestedOneWithoutEnquiriesInput
-  }
-
-  export type EnquiryUncheckedCreateWithoutUserInput = {
-    id?: string
-    productId?: string | null
-    branchId: string
-    type?: $Enums.EnquiryType
-    message: string
-    isWhatsApp?: boolean
-    status?: string
-    createdAt?: Date | string
-  }
-
-  export type EnquiryCreateOrConnectWithoutUserInput = {
-    where: EnquiryWhereUniqueInput
-    create: XOR<EnquiryCreateWithoutUserInput, EnquiryUncheckedCreateWithoutUserInput>
-  }
-
-  export type EnquiryCreateManyUserInputEnvelope = {
-    data: EnquiryCreateManyUserInput | EnquiryCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -22127,61 +24776,87 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type BranchUpsertWithoutUsersInput = {
-    update: XOR<BranchUpdateWithoutUsersInput, BranchUncheckedUpdateWithoutUsersInput>
+  export type EnquiryCreateWithoutUserInput = {
+    id?: string
+    type?: $Enums.EnquiryType
+    message: string
+    isWhatsApp?: boolean
+    createdAt?: Date | string
+    status?: string
+    branch: BranchCreateNestedOneWithoutEnquiriesInput
+    product?: ProductCreateNestedOneWithoutEnquiriesInput
+  }
+
+  export type EnquiryUncheckedCreateWithoutUserInput = {
+    id?: string
+    productId?: string | null
+    branchId: string
+    type?: $Enums.EnquiryType
+    message: string
+    isWhatsApp?: boolean
+    createdAt?: Date | string
+    status?: string
+  }
+
+  export type EnquiryCreateOrConnectWithoutUserInput = {
+    where: EnquiryWhereUniqueInput
+    create: XOR<EnquiryCreateWithoutUserInput, EnquiryUncheckedCreateWithoutUserInput>
+  }
+
+  export type EnquiryCreateManyUserInputEnvelope = {
+    data: EnquiryCreateManyUserInput | EnquiryCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BranchCreateWithoutUsersInput = {
+    id?: string
+    name: string
+    slug: string
+    address: string
+    location: string
+    phone: string
+    whatsapp: string
+    email?: string | null
+    timings?: string | null
+    coordinates?: string | null
+    images?: BranchCreateimagesInput | string[]
+    isMain?: boolean
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
+    appointments?: AppointmentCreateNestedManyWithoutBranchInput
+    applications?: CareerApplicationCreateNestedManyWithoutBranchInput
+    enquiries?: EnquiryCreateNestedManyWithoutBranchInput
+    stock?: InventoryCreateNestedManyWithoutBranchInput
+  }
+
+  export type BranchUncheckedCreateWithoutUsersInput = {
+    id?: string
+    name: string
+    slug: string
+    address: string
+    location: string
+    phone: string
+    whatsapp: string
+    email?: string | null
+    timings?: string | null
+    coordinates?: string | null
+    images?: BranchCreateimagesInput | string[]
+    isMain?: boolean
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
+    appointments?: AppointmentUncheckedCreateNestedManyWithoutBranchInput
+    applications?: CareerApplicationUncheckedCreateNestedManyWithoutBranchInput
+    enquiries?: EnquiryUncheckedCreateNestedManyWithoutBranchInput
+    stock?: InventoryUncheckedCreateNestedManyWithoutBranchInput
+  }
+
+  export type BranchCreateOrConnectWithoutUsersInput = {
+    where: BranchWhereUniqueInput
     create: XOR<BranchCreateWithoutUsersInput, BranchUncheckedCreateWithoutUsersInput>
-    where?: BranchWhereInput
-  }
-
-  export type BranchUpdateToOneWithWhereWithoutUsersInput = {
-    where?: BranchWhereInput
-    data: XOR<BranchUpdateWithoutUsersInput, BranchUncheckedUpdateWithoutUsersInput>
-  }
-
-  export type BranchUpdateWithoutUsersInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    location?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
-    whatsapp?: StringFieldUpdateOperationsInput | string
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    timings?: NullableStringFieldUpdateOperationsInput | string | null
-    coordinates?: NullableStringFieldUpdateOperationsInput | string | null
-    images?: BranchUpdateimagesInput | string[]
-    isMain?: BoolFieldUpdateOperationsInput | boolean
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    stock?: InventoryUpdateManyWithoutBranchNestedInput
-    appointments?: AppointmentUpdateManyWithoutBranchNestedInput
-    enquiries?: EnquiryUpdateManyWithoutBranchNestedInput
-    applications?: CareerApplicationUpdateManyWithoutBranchNestedInput
-  }
-
-  export type BranchUncheckedUpdateWithoutUsersInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    location?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
-    whatsapp?: StringFieldUpdateOperationsInput | string
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    timings?: NullableStringFieldUpdateOperationsInput | string | null
-    coordinates?: NullableStringFieldUpdateOperationsInput | string | null
-    images?: BranchUpdateimagesInput | string[]
-    isMain?: BoolFieldUpdateOperationsInput | boolean
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    stock?: InventoryUncheckedUpdateManyWithoutBranchNestedInput
-    appointments?: AppointmentUncheckedUpdateManyWithoutBranchNestedInput
-    enquiries?: EnquiryUncheckedUpdateManyWithoutBranchNestedInput
-    applications?: CareerApplicationUncheckedUpdateManyWithoutBranchNestedInput
   }
 
   export type AppointmentUpsertWithWhereUniqueWithoutUserInput = {
@@ -22217,37 +24892,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Appointment"> | Date | string
   }
 
-  export type EnquiryUpsertWithWhereUniqueWithoutUserInput = {
-    where: EnquiryWhereUniqueInput
-    update: XOR<EnquiryUpdateWithoutUserInput, EnquiryUncheckedUpdateWithoutUserInput>
-    create: XOR<EnquiryCreateWithoutUserInput, EnquiryUncheckedCreateWithoutUserInput>
-  }
-
-  export type EnquiryUpdateWithWhereUniqueWithoutUserInput = {
-    where: EnquiryWhereUniqueInput
-    data: XOR<EnquiryUpdateWithoutUserInput, EnquiryUncheckedUpdateWithoutUserInput>
-  }
-
-  export type EnquiryUpdateManyWithWhereWithoutUserInput = {
-    where: EnquiryScalarWhereInput
-    data: XOR<EnquiryUpdateManyMutationInput, EnquiryUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type EnquiryScalarWhereInput = {
-    AND?: EnquiryScalarWhereInput | EnquiryScalarWhereInput[]
-    OR?: EnquiryScalarWhereInput[]
-    NOT?: EnquiryScalarWhereInput | EnquiryScalarWhereInput[]
-    id?: StringFilter<"Enquiry"> | string
-    userId?: StringNullableFilter<"Enquiry"> | string | null
-    productId?: StringNullableFilter<"Enquiry"> | string | null
-    branchId?: StringFilter<"Enquiry"> | string
-    type?: EnumEnquiryTypeFilter<"Enquiry"> | $Enums.EnquiryType
-    message?: StringFilter<"Enquiry"> | string
-    isWhatsApp?: BoolFilter<"Enquiry"> | boolean
-    status?: StringFilter<"Enquiry"> | string
-    createdAt?: DateTimeFilter<"Enquiry"> | Date | string
-  }
-
   export type CareerApplicationUpsertWithWhereUniqueWithoutUserInput = {
     where: CareerApplicationWhereUniqueInput
     update: XOR<CareerApplicationUpdateWithoutUserInput, CareerApplicationUncheckedUpdateWithoutUserInput>
@@ -22280,70 +24924,92 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"CareerApplication"> | Date | string
   }
 
-  export type UserCreateWithoutBranchInput = {
-    id?: string
-    email: string
-    name?: string | null
-    phone?: string | null
-    role?: $Enums.Role
-    avatar?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    deletedAt?: Date | string | null
-    appointments?: AppointmentCreateNestedManyWithoutUserInput
-    enquiries?: EnquiryCreateNestedManyWithoutUserInput
-    applications?: CareerApplicationCreateNestedManyWithoutUserInput
+  export type EnquiryUpsertWithWhereUniqueWithoutUserInput = {
+    where: EnquiryWhereUniqueInput
+    update: XOR<EnquiryUpdateWithoutUserInput, EnquiryUncheckedUpdateWithoutUserInput>
+    create: XOR<EnquiryCreateWithoutUserInput, EnquiryUncheckedCreateWithoutUserInput>
   }
 
-  export type UserUncheckedCreateWithoutBranchInput = {
-    id?: string
-    email: string
-    name?: string | null
-    phone?: string | null
-    role?: $Enums.Role
-    avatar?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    deletedAt?: Date | string | null
-    appointments?: AppointmentUncheckedCreateNestedManyWithoutUserInput
-    enquiries?: EnquiryUncheckedCreateNestedManyWithoutUserInput
-    applications?: CareerApplicationUncheckedCreateNestedManyWithoutUserInput
+  export type EnquiryUpdateWithWhereUniqueWithoutUserInput = {
+    where: EnquiryWhereUniqueInput
+    data: XOR<EnquiryUpdateWithoutUserInput, EnquiryUncheckedUpdateWithoutUserInput>
   }
 
-  export type UserCreateOrConnectWithoutBranchInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutBranchInput, UserUncheckedCreateWithoutBranchInput>
+  export type EnquiryUpdateManyWithWhereWithoutUserInput = {
+    where: EnquiryScalarWhereInput
+    data: XOR<EnquiryUpdateManyMutationInput, EnquiryUncheckedUpdateManyWithoutUserInput>
   }
 
-  export type UserCreateManyBranchInputEnvelope = {
-    data: UserCreateManyBranchInput | UserCreateManyBranchInput[]
-    skipDuplicates?: boolean
+  export type EnquiryScalarWhereInput = {
+    AND?: EnquiryScalarWhereInput | EnquiryScalarWhereInput[]
+    OR?: EnquiryScalarWhereInput[]
+    NOT?: EnquiryScalarWhereInput | EnquiryScalarWhereInput[]
+    id?: StringFilter<"Enquiry"> | string
+    userId?: StringNullableFilter<"Enquiry"> | string | null
+    productId?: StringNullableFilter<"Enquiry"> | string | null
+    branchId?: StringFilter<"Enquiry"> | string
+    type?: EnumEnquiryTypeFilter<"Enquiry"> | $Enums.EnquiryType
+    message?: StringFilter<"Enquiry"> | string
+    isWhatsApp?: BoolFilter<"Enquiry"> | boolean
+    createdAt?: DateTimeFilter<"Enquiry"> | Date | string
+    status?: StringFilter<"Enquiry"> | string
   }
 
-  export type InventoryCreateWithoutBranchInput = {
-    id?: string
-    quantity?: number
-    status?: $Enums.InventoryStatus
-    updatedAt?: Date | string
-    product: ProductCreateNestedOneWithoutInventoryInput
+  export type BranchUpsertWithoutUsersInput = {
+    update: XOR<BranchUpdateWithoutUsersInput, BranchUncheckedUpdateWithoutUsersInput>
+    create: XOR<BranchCreateWithoutUsersInput, BranchUncheckedCreateWithoutUsersInput>
+    where?: BranchWhereInput
   }
 
-  export type InventoryUncheckedCreateWithoutBranchInput = {
-    id?: string
-    productId: string
-    quantity?: number
-    status?: $Enums.InventoryStatus
-    updatedAt?: Date | string
+  export type BranchUpdateToOneWithWhereWithoutUsersInput = {
+    where?: BranchWhereInput
+    data: XOR<BranchUpdateWithoutUsersInput, BranchUncheckedUpdateWithoutUsersInput>
   }
 
-  export type InventoryCreateOrConnectWithoutBranchInput = {
-    where: InventoryWhereUniqueInput
-    create: XOR<InventoryCreateWithoutBranchInput, InventoryUncheckedCreateWithoutBranchInput>
+  export type BranchUpdateWithoutUsersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    whatsapp?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    timings?: NullableStringFieldUpdateOperationsInput | string | null
+    coordinates?: NullableStringFieldUpdateOperationsInput | string | null
+    images?: BranchUpdateimagesInput | string[]
+    isMain?: BoolFieldUpdateOperationsInput | boolean
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    appointments?: AppointmentUpdateManyWithoutBranchNestedInput
+    applications?: CareerApplicationUpdateManyWithoutBranchNestedInput
+    enquiries?: EnquiryUpdateManyWithoutBranchNestedInput
+    stock?: InventoryUpdateManyWithoutBranchNestedInput
   }
 
-  export type InventoryCreateManyBranchInputEnvelope = {
-    data: InventoryCreateManyBranchInput | InventoryCreateManyBranchInput[]
-    skipDuplicates?: boolean
+  export type BranchUncheckedUpdateWithoutUsersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    whatsapp?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    timings?: NullableStringFieldUpdateOperationsInput | string | null
+    coordinates?: NullableStringFieldUpdateOperationsInput | string | null
+    images?: BranchUpdateimagesInput | string[]
+    isMain?: BoolFieldUpdateOperationsInput | boolean
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    appointments?: AppointmentUncheckedUpdateManyWithoutBranchNestedInput
+    applications?: CareerApplicationUncheckedUpdateManyWithoutBranchNestedInput
+    enquiries?: EnquiryUncheckedUpdateManyWithoutBranchNestedInput
+    stock?: InventoryUncheckedUpdateManyWithoutBranchNestedInput
   }
 
   export type AppointmentCreateWithoutBranchInput = {
@@ -22382,38 +25048,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type EnquiryCreateWithoutBranchInput = {
-    id?: string
-    type?: $Enums.EnquiryType
-    message: string
-    isWhatsApp?: boolean
-    status?: string
-    createdAt?: Date | string
-    user?: UserCreateNestedOneWithoutEnquiriesInput
-    product?: ProductCreateNestedOneWithoutEnquiriesInput
-  }
-
-  export type EnquiryUncheckedCreateWithoutBranchInput = {
-    id?: string
-    userId?: string | null
-    productId?: string | null
-    type?: $Enums.EnquiryType
-    message: string
-    isWhatsApp?: boolean
-    status?: string
-    createdAt?: Date | string
-  }
-
-  export type EnquiryCreateOrConnectWithoutBranchInput = {
-    where: EnquiryWhereUniqueInput
-    create: XOR<EnquiryCreateWithoutBranchInput, EnquiryUncheckedCreateWithoutBranchInput>
-  }
-
-  export type EnquiryCreateManyBranchInputEnvelope = {
-    data: EnquiryCreateManyBranchInput | EnquiryCreateManyBranchInput[]
-    skipDuplicates?: boolean
-  }
-
   export type CareerApplicationCreateWithoutBranchInput = {
     id?: string
     name: string
@@ -22448,6 +25082,180 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type EnquiryCreateWithoutBranchInput = {
+    id?: string
+    type?: $Enums.EnquiryType
+    message: string
+    isWhatsApp?: boolean
+    createdAt?: Date | string
+    status?: string
+    product?: ProductCreateNestedOneWithoutEnquiriesInput
+    user?: UserCreateNestedOneWithoutEnquiriesInput
+  }
+
+  export type EnquiryUncheckedCreateWithoutBranchInput = {
+    id?: string
+    userId?: string | null
+    productId?: string | null
+    type?: $Enums.EnquiryType
+    message: string
+    isWhatsApp?: boolean
+    createdAt?: Date | string
+    status?: string
+  }
+
+  export type EnquiryCreateOrConnectWithoutBranchInput = {
+    where: EnquiryWhereUniqueInput
+    create: XOR<EnquiryCreateWithoutBranchInput, EnquiryUncheckedCreateWithoutBranchInput>
+  }
+
+  export type EnquiryCreateManyBranchInputEnvelope = {
+    data: EnquiryCreateManyBranchInput | EnquiryCreateManyBranchInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type InventoryCreateWithoutBranchInput = {
+    id?: string
+    quantity?: number
+    status?: $Enums.InventoryStatus
+    updatedAt?: Date | string
+    product: ProductCreateNestedOneWithoutInventoryInput
+  }
+
+  export type InventoryUncheckedCreateWithoutBranchInput = {
+    id?: string
+    productId: string
+    quantity?: number
+    status?: $Enums.InventoryStatus
+    updatedAt?: Date | string
+  }
+
+  export type InventoryCreateOrConnectWithoutBranchInput = {
+    where: InventoryWhereUniqueInput
+    create: XOR<InventoryCreateWithoutBranchInput, InventoryUncheckedCreateWithoutBranchInput>
+  }
+
+  export type InventoryCreateManyBranchInputEnvelope = {
+    data: InventoryCreateManyBranchInput | InventoryCreateManyBranchInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserCreateWithoutBranchInput = {
+    id?: string
+    email: string
+    name?: string | null
+    phone?: string | null
+    role?: $Enums.Role
+    avatar?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
+    appointments?: AppointmentCreateNestedManyWithoutUserInput
+    applications?: CareerApplicationCreateNestedManyWithoutUserInput
+    enquiries?: EnquiryCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutBranchInput = {
+    id?: string
+    email: string
+    name?: string | null
+    phone?: string | null
+    role?: $Enums.Role
+    avatar?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
+    appointments?: AppointmentUncheckedCreateNestedManyWithoutUserInput
+    applications?: CareerApplicationUncheckedCreateNestedManyWithoutUserInput
+    enquiries?: EnquiryUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutBranchInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutBranchInput, UserUncheckedCreateWithoutBranchInput>
+  }
+
+  export type UserCreateManyBranchInputEnvelope = {
+    data: UserCreateManyBranchInput | UserCreateManyBranchInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AppointmentUpsertWithWhereUniqueWithoutBranchInput = {
+    where: AppointmentWhereUniqueInput
+    update: XOR<AppointmentUpdateWithoutBranchInput, AppointmentUncheckedUpdateWithoutBranchInput>
+    create: XOR<AppointmentCreateWithoutBranchInput, AppointmentUncheckedCreateWithoutBranchInput>
+  }
+
+  export type AppointmentUpdateWithWhereUniqueWithoutBranchInput = {
+    where: AppointmentWhereUniqueInput
+    data: XOR<AppointmentUpdateWithoutBranchInput, AppointmentUncheckedUpdateWithoutBranchInput>
+  }
+
+  export type AppointmentUpdateManyWithWhereWithoutBranchInput = {
+    where: AppointmentScalarWhereInput
+    data: XOR<AppointmentUpdateManyMutationInput, AppointmentUncheckedUpdateManyWithoutBranchInput>
+  }
+
+  export type CareerApplicationUpsertWithWhereUniqueWithoutBranchInput = {
+    where: CareerApplicationWhereUniqueInput
+    update: XOR<CareerApplicationUpdateWithoutBranchInput, CareerApplicationUncheckedUpdateWithoutBranchInput>
+    create: XOR<CareerApplicationCreateWithoutBranchInput, CareerApplicationUncheckedCreateWithoutBranchInput>
+  }
+
+  export type CareerApplicationUpdateWithWhereUniqueWithoutBranchInput = {
+    where: CareerApplicationWhereUniqueInput
+    data: XOR<CareerApplicationUpdateWithoutBranchInput, CareerApplicationUncheckedUpdateWithoutBranchInput>
+  }
+
+  export type CareerApplicationUpdateManyWithWhereWithoutBranchInput = {
+    where: CareerApplicationScalarWhereInput
+    data: XOR<CareerApplicationUpdateManyMutationInput, CareerApplicationUncheckedUpdateManyWithoutBranchInput>
+  }
+
+  export type EnquiryUpsertWithWhereUniqueWithoutBranchInput = {
+    where: EnquiryWhereUniqueInput
+    update: XOR<EnquiryUpdateWithoutBranchInput, EnquiryUncheckedUpdateWithoutBranchInput>
+    create: XOR<EnquiryCreateWithoutBranchInput, EnquiryUncheckedCreateWithoutBranchInput>
+  }
+
+  export type EnquiryUpdateWithWhereUniqueWithoutBranchInput = {
+    where: EnquiryWhereUniqueInput
+    data: XOR<EnquiryUpdateWithoutBranchInput, EnquiryUncheckedUpdateWithoutBranchInput>
+  }
+
+  export type EnquiryUpdateManyWithWhereWithoutBranchInput = {
+    where: EnquiryScalarWhereInput
+    data: XOR<EnquiryUpdateManyMutationInput, EnquiryUncheckedUpdateManyWithoutBranchInput>
+  }
+
+  export type InventoryUpsertWithWhereUniqueWithoutBranchInput = {
+    where: InventoryWhereUniqueInput
+    update: XOR<InventoryUpdateWithoutBranchInput, InventoryUncheckedUpdateWithoutBranchInput>
+    create: XOR<InventoryCreateWithoutBranchInput, InventoryUncheckedCreateWithoutBranchInput>
+  }
+
+  export type InventoryUpdateWithWhereUniqueWithoutBranchInput = {
+    where: InventoryWhereUniqueInput
+    data: XOR<InventoryUpdateWithoutBranchInput, InventoryUncheckedUpdateWithoutBranchInput>
+  }
+
+  export type InventoryUpdateManyWithWhereWithoutBranchInput = {
+    where: InventoryScalarWhereInput
+    data: XOR<InventoryUpdateManyMutationInput, InventoryUncheckedUpdateManyWithoutBranchInput>
+  }
+
+  export type InventoryScalarWhereInput = {
+    AND?: InventoryScalarWhereInput | InventoryScalarWhereInput[]
+    OR?: InventoryScalarWhereInput[]
+    NOT?: InventoryScalarWhereInput | InventoryScalarWhereInput[]
+    id?: StringFilter<"Inventory"> | string
+    productId?: StringFilter<"Inventory"> | string
+    branchId?: StringFilter<"Inventory"> | string
+    quantity?: IntFilter<"Inventory"> | number
+    status?: EnumInventoryStatusFilter<"Inventory"> | $Enums.InventoryStatus
+    updatedAt?: DateTimeFilter<"Inventory"> | Date | string
+  }
+
   export type UserUpsertWithWhereUniqueWithoutBranchInput = {
     where: UserWhereUniqueInput
     update: XOR<UserUpdateWithoutBranchInput, UserUncheckedUpdateWithoutBranchInput>
@@ -22480,80 +25288,62 @@ export namespace Prisma {
     deletedAt?: DateTimeNullableFilter<"User"> | Date | string | null
   }
 
-  export type InventoryUpsertWithWhereUniqueWithoutBranchInput = {
-    where: InventoryWhereUniqueInput
-    update: XOR<InventoryUpdateWithoutBranchInput, InventoryUncheckedUpdateWithoutBranchInput>
-    create: XOR<InventoryCreateWithoutBranchInput, InventoryUncheckedCreateWithoutBranchInput>
+  export type EnquiryCreateWithoutProductInput = {
+    id?: string
+    type?: $Enums.EnquiryType
+    message: string
+    isWhatsApp?: boolean
+    createdAt?: Date | string
+    status?: string
+    branch: BranchCreateNestedOneWithoutEnquiriesInput
+    user?: UserCreateNestedOneWithoutEnquiriesInput
   }
 
-  export type InventoryUpdateWithWhereUniqueWithoutBranchInput = {
-    where: InventoryWhereUniqueInput
-    data: XOR<InventoryUpdateWithoutBranchInput, InventoryUncheckedUpdateWithoutBranchInput>
+  export type EnquiryUncheckedCreateWithoutProductInput = {
+    id?: string
+    userId?: string | null
+    branchId: string
+    type?: $Enums.EnquiryType
+    message: string
+    isWhatsApp?: boolean
+    createdAt?: Date | string
+    status?: string
   }
 
-  export type InventoryUpdateManyWithWhereWithoutBranchInput = {
-    where: InventoryScalarWhereInput
-    data: XOR<InventoryUpdateManyMutationInput, InventoryUncheckedUpdateManyWithoutBranchInput>
-  }
-
-  export type InventoryScalarWhereInput = {
-    AND?: InventoryScalarWhereInput | InventoryScalarWhereInput[]
-    OR?: InventoryScalarWhereInput[]
-    NOT?: InventoryScalarWhereInput | InventoryScalarWhereInput[]
-    id?: StringFilter<"Inventory"> | string
-    productId?: StringFilter<"Inventory"> | string
-    branchId?: StringFilter<"Inventory"> | string
-    quantity?: IntFilter<"Inventory"> | number
-    status?: EnumInventoryStatusFilter<"Inventory"> | $Enums.InventoryStatus
-    updatedAt?: DateTimeFilter<"Inventory"> | Date | string
-  }
-
-  export type AppointmentUpsertWithWhereUniqueWithoutBranchInput = {
-    where: AppointmentWhereUniqueInput
-    update: XOR<AppointmentUpdateWithoutBranchInput, AppointmentUncheckedUpdateWithoutBranchInput>
-    create: XOR<AppointmentCreateWithoutBranchInput, AppointmentUncheckedCreateWithoutBranchInput>
-  }
-
-  export type AppointmentUpdateWithWhereUniqueWithoutBranchInput = {
-    where: AppointmentWhereUniqueInput
-    data: XOR<AppointmentUpdateWithoutBranchInput, AppointmentUncheckedUpdateWithoutBranchInput>
-  }
-
-  export type AppointmentUpdateManyWithWhereWithoutBranchInput = {
-    where: AppointmentScalarWhereInput
-    data: XOR<AppointmentUpdateManyMutationInput, AppointmentUncheckedUpdateManyWithoutBranchInput>
-  }
-
-  export type EnquiryUpsertWithWhereUniqueWithoutBranchInput = {
+  export type EnquiryCreateOrConnectWithoutProductInput = {
     where: EnquiryWhereUniqueInput
-    update: XOR<EnquiryUpdateWithoutBranchInput, EnquiryUncheckedUpdateWithoutBranchInput>
-    create: XOR<EnquiryCreateWithoutBranchInput, EnquiryUncheckedCreateWithoutBranchInput>
+    create: XOR<EnquiryCreateWithoutProductInput, EnquiryUncheckedCreateWithoutProductInput>
   }
 
-  export type EnquiryUpdateWithWhereUniqueWithoutBranchInput = {
-    where: EnquiryWhereUniqueInput
-    data: XOR<EnquiryUpdateWithoutBranchInput, EnquiryUncheckedUpdateWithoutBranchInput>
+  export type EnquiryCreateManyProductInputEnvelope = {
+    data: EnquiryCreateManyProductInput | EnquiryCreateManyProductInput[]
+    skipDuplicates?: boolean
   }
 
-  export type EnquiryUpdateManyWithWhereWithoutBranchInput = {
-    where: EnquiryScalarWhereInput
-    data: XOR<EnquiryUpdateManyMutationInput, EnquiryUncheckedUpdateManyWithoutBranchInput>
+  export type InventoryCreateWithoutProductInput = {
+    id?: string
+    quantity?: number
+    status?: $Enums.InventoryStatus
+    updatedAt?: Date | string
+    branch: BranchCreateNestedOneWithoutStockInput
   }
 
-  export type CareerApplicationUpsertWithWhereUniqueWithoutBranchInput = {
-    where: CareerApplicationWhereUniqueInput
-    update: XOR<CareerApplicationUpdateWithoutBranchInput, CareerApplicationUncheckedUpdateWithoutBranchInput>
-    create: XOR<CareerApplicationCreateWithoutBranchInput, CareerApplicationUncheckedCreateWithoutBranchInput>
+  export type InventoryUncheckedCreateWithoutProductInput = {
+    id?: string
+    branchId: string
+    quantity?: number
+    status?: $Enums.InventoryStatus
+    updatedAt?: Date | string
   }
 
-  export type CareerApplicationUpdateWithWhereUniqueWithoutBranchInput = {
-    where: CareerApplicationWhereUniqueInput
-    data: XOR<CareerApplicationUpdateWithoutBranchInput, CareerApplicationUncheckedUpdateWithoutBranchInput>
+  export type InventoryCreateOrConnectWithoutProductInput = {
+    where: InventoryWhereUniqueInput
+    create: XOR<InventoryCreateWithoutProductInput, InventoryUncheckedCreateWithoutProductInput>
   }
 
-  export type CareerApplicationUpdateManyWithWhereWithoutBranchInput = {
-    where: CareerApplicationScalarWhereInput
-    data: XOR<CareerApplicationUpdateManyMutationInput, CareerApplicationUncheckedUpdateManyWithoutBranchInput>
+  export type InventoryCreateManyProductInputEnvelope = {
+    data: InventoryCreateManyProductInput | InventoryCreateManyProductInput[]
+    skipDuplicates?: boolean
   }
 
   export type BrandCreateWithoutProductsInput = {
@@ -22630,62 +25420,36 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type InventoryCreateWithoutProductInput = {
-    id?: string
-    quantity?: number
-    status?: $Enums.InventoryStatus
-    updatedAt?: Date | string
-    branch: BranchCreateNestedOneWithoutStockInput
-  }
-
-  export type InventoryUncheckedCreateWithoutProductInput = {
-    id?: string
-    branchId: string
-    quantity?: number
-    status?: $Enums.InventoryStatus
-    updatedAt?: Date | string
-  }
-
-  export type InventoryCreateOrConnectWithoutProductInput = {
-    where: InventoryWhereUniqueInput
-    create: XOR<InventoryCreateWithoutProductInput, InventoryUncheckedCreateWithoutProductInput>
-  }
-
-  export type InventoryCreateManyProductInputEnvelope = {
-    data: InventoryCreateManyProductInput | InventoryCreateManyProductInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type EnquiryCreateWithoutProductInput = {
-    id?: string
-    type?: $Enums.EnquiryType
-    message: string
-    isWhatsApp?: boolean
-    status?: string
-    createdAt?: Date | string
-    user?: UserCreateNestedOneWithoutEnquiriesInput
-    branch: BranchCreateNestedOneWithoutEnquiriesInput
-  }
-
-  export type EnquiryUncheckedCreateWithoutProductInput = {
-    id?: string
-    userId?: string | null
-    branchId: string
-    type?: $Enums.EnquiryType
-    message: string
-    isWhatsApp?: boolean
-    status?: string
-    createdAt?: Date | string
-  }
-
-  export type EnquiryCreateOrConnectWithoutProductInput = {
+  export type EnquiryUpsertWithWhereUniqueWithoutProductInput = {
     where: EnquiryWhereUniqueInput
+    update: XOR<EnquiryUpdateWithoutProductInput, EnquiryUncheckedUpdateWithoutProductInput>
     create: XOR<EnquiryCreateWithoutProductInput, EnquiryUncheckedCreateWithoutProductInput>
   }
 
-  export type EnquiryCreateManyProductInputEnvelope = {
-    data: EnquiryCreateManyProductInput | EnquiryCreateManyProductInput[]
-    skipDuplicates?: boolean
+  export type EnquiryUpdateWithWhereUniqueWithoutProductInput = {
+    where: EnquiryWhereUniqueInput
+    data: XOR<EnquiryUpdateWithoutProductInput, EnquiryUncheckedUpdateWithoutProductInput>
+  }
+
+  export type EnquiryUpdateManyWithWhereWithoutProductInput = {
+    where: EnquiryScalarWhereInput
+    data: XOR<EnquiryUpdateManyMutationInput, EnquiryUncheckedUpdateManyWithoutProductInput>
+  }
+
+  export type InventoryUpsertWithWhereUniqueWithoutProductInput = {
+    where: InventoryWhereUniqueInput
+    update: XOR<InventoryUpdateWithoutProductInput, InventoryUncheckedUpdateWithoutProductInput>
+    create: XOR<InventoryCreateWithoutProductInput, InventoryUncheckedCreateWithoutProductInput>
+  }
+
+  export type InventoryUpdateWithWhereUniqueWithoutProductInput = {
+    where: InventoryWhereUniqueInput
+    data: XOR<InventoryUpdateWithoutProductInput, InventoryUncheckedUpdateWithoutProductInput>
+  }
+
+  export type InventoryUpdateManyWithWhereWithoutProductInput = {
+    where: InventoryScalarWhereInput
+    data: XOR<InventoryUpdateManyMutationInput, InventoryUncheckedUpdateManyWithoutProductInput>
   }
 
   export type BrandUpsertWithoutProductsInput = {
@@ -22778,69 +25542,37 @@ export namespace Prisma {
     productId?: StringFilter<"ProductImage"> | string
   }
 
-  export type InventoryUpsertWithWhereUniqueWithoutProductInput = {
-    where: InventoryWhereUniqueInput
-    update: XOR<InventoryUpdateWithoutProductInput, InventoryUncheckedUpdateWithoutProductInput>
-    create: XOR<InventoryCreateWithoutProductInput, InventoryUncheckedCreateWithoutProductInput>
-  }
-
-  export type InventoryUpdateWithWhereUniqueWithoutProductInput = {
-    where: InventoryWhereUniqueInput
-    data: XOR<InventoryUpdateWithoutProductInput, InventoryUncheckedUpdateWithoutProductInput>
-  }
-
-  export type InventoryUpdateManyWithWhereWithoutProductInput = {
-    where: InventoryScalarWhereInput
-    data: XOR<InventoryUpdateManyMutationInput, InventoryUncheckedUpdateManyWithoutProductInput>
-  }
-
-  export type EnquiryUpsertWithWhereUniqueWithoutProductInput = {
-    where: EnquiryWhereUniqueInput
-    update: XOR<EnquiryUpdateWithoutProductInput, EnquiryUncheckedUpdateWithoutProductInput>
-    create: XOR<EnquiryCreateWithoutProductInput, EnquiryUncheckedCreateWithoutProductInput>
-  }
-
-  export type EnquiryUpdateWithWhereUniqueWithoutProductInput = {
-    where: EnquiryWhereUniqueInput
-    data: XOR<EnquiryUpdateWithoutProductInput, EnquiryUncheckedUpdateWithoutProductInput>
-  }
-
-  export type EnquiryUpdateManyWithWhereWithoutProductInput = {
-    where: EnquiryScalarWhereInput
-    data: XOR<EnquiryUpdateManyMutationInput, EnquiryUncheckedUpdateManyWithoutProductInput>
-  }
-
   export type ProductCreateWithoutImagesInput = {
     id?: string
     name: string
     slug: string
     description: string
-    price?: number
     isFeatured?: boolean
     isNewArrival?: boolean
     isActive?: boolean
     gender?: string | null
-    style?: string | null
     frameShape?: string | null
     material?: string | null
     lensType?: string | null
     color?: string | null
     size?: string | null
-    isInHouseProduct?: boolean
-    collectionType?: string
-    signatureCollectionName?: string | null
-    craftsmanshipDetails?: string | null
-    recommendedUsage?: string | null
-    frameWeightCategory?: string | null
     metaTitle?: string | null
     metaDesc?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
+    collectionType?: string
+    craftsmanshipDetails?: string | null
+    frameWeightCategory?: string | null
+    isInHouseProduct?: boolean
+    recommendedUsage?: string | null
+    signatureCollectionName?: string | null
+    style?: string | null
+    price?: number
+    enquiries?: EnquiryCreateNestedManyWithoutProductInput
+    inventory?: InventoryCreateNestedManyWithoutProductInput
     brand: BrandCreateNestedOneWithoutProductsInput
     category: CategoryCreateNestedOneWithoutProductsInput
-    inventory?: InventoryCreateNestedManyWithoutProductInput
-    enquiries?: EnquiryCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateWithoutImagesInput = {
@@ -22848,23 +25580,15 @@ export namespace Prisma {
     name: string
     slug: string
     description: string
-    price?: number
     isFeatured?: boolean
     isNewArrival?: boolean
     isActive?: boolean
     gender?: string | null
-    style?: string | null
     frameShape?: string | null
     material?: string | null
     lensType?: string | null
     color?: string | null
     size?: string | null
-    isInHouseProduct?: boolean
-    collectionType?: string
-    signatureCollectionName?: string | null
-    craftsmanshipDetails?: string | null
-    recommendedUsage?: string | null
-    frameWeightCategory?: string | null
     brandId: string
     categoryId: string
     metaTitle?: string | null
@@ -22872,8 +25596,16 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
-    inventory?: InventoryUncheckedCreateNestedManyWithoutProductInput
+    collectionType?: string
+    craftsmanshipDetails?: string | null
+    frameWeightCategory?: string | null
+    isInHouseProduct?: boolean
+    recommendedUsage?: string | null
+    signatureCollectionName?: string | null
+    style?: string | null
+    price?: number
     enquiries?: EnquiryUncheckedCreateNestedManyWithoutProductInput
+    inventory?: InventoryUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductCreateOrConnectWithoutImagesInput = {
@@ -22897,32 +25629,32 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     isNewArrival?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
-    style?: NullableStringFieldUpdateOperationsInput | string | null
     frameShape?: NullableStringFieldUpdateOperationsInput | string | null
     material?: NullableStringFieldUpdateOperationsInput | string | null
     lensType?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
-    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
-    collectionType?: StringFieldUpdateOperationsInput | string
-    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
-    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
-    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
-    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDesc?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    collectionType?: StringFieldUpdateOperationsInput | string
+    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
+    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
+    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
+    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
+    style?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: FloatFieldUpdateOperationsInput | number
+    enquiries?: EnquiryUpdateManyWithoutProductNestedInput
+    inventory?: InventoryUpdateManyWithoutProductNestedInput
     brand?: BrandUpdateOneRequiredWithoutProductsNestedInput
     category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
-    inventory?: InventoryUpdateManyWithoutProductNestedInput
-    enquiries?: EnquiryUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutImagesInput = {
@@ -22930,23 +25662,15 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     isNewArrival?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
-    style?: NullableStringFieldUpdateOperationsInput | string | null
     frameShape?: NullableStringFieldUpdateOperationsInput | string | null
     material?: NullableStringFieldUpdateOperationsInput | string | null
     lensType?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
-    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
-    collectionType?: StringFieldUpdateOperationsInput | string
-    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
-    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
-    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
-    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
     brandId?: StringFieldUpdateOperationsInput | string
     categoryId?: StringFieldUpdateOperationsInput | string
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
@@ -22954,8 +25678,16 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    inventory?: InventoryUncheckedUpdateManyWithoutProductNestedInput
+    collectionType?: StringFieldUpdateOperationsInput | string
+    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
+    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
+    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
+    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
+    style?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: FloatFieldUpdateOperationsInput | number
     enquiries?: EnquiryUncheckedUpdateManyWithoutProductNestedInput
+    inventory?: InventoryUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type ProductCreateWithoutBrandInput = {
@@ -22963,32 +25695,32 @@ export namespace Prisma {
     name: string
     slug: string
     description: string
-    price?: number
     isFeatured?: boolean
     isNewArrival?: boolean
     isActive?: boolean
     gender?: string | null
-    style?: string | null
     frameShape?: string | null
     material?: string | null
     lensType?: string | null
     color?: string | null
     size?: string | null
-    isInHouseProduct?: boolean
-    collectionType?: string
-    signatureCollectionName?: string | null
-    craftsmanshipDetails?: string | null
-    recommendedUsage?: string | null
-    frameWeightCategory?: string | null
     metaTitle?: string | null
     metaDesc?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
+    collectionType?: string
+    craftsmanshipDetails?: string | null
+    frameWeightCategory?: string | null
+    isInHouseProduct?: boolean
+    recommendedUsage?: string | null
+    signatureCollectionName?: string | null
+    style?: string | null
+    price?: number
+    enquiries?: EnquiryCreateNestedManyWithoutProductInput
+    inventory?: InventoryCreateNestedManyWithoutProductInput
     category: CategoryCreateNestedOneWithoutProductsInput
     images?: ProductImageCreateNestedManyWithoutProductInput
-    inventory?: InventoryCreateNestedManyWithoutProductInput
-    enquiries?: EnquiryCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateWithoutBrandInput = {
@@ -22996,32 +25728,32 @@ export namespace Prisma {
     name: string
     slug: string
     description: string
-    price?: number
     isFeatured?: boolean
     isNewArrival?: boolean
     isActive?: boolean
     gender?: string | null
-    style?: string | null
     frameShape?: string | null
     material?: string | null
     lensType?: string | null
     color?: string | null
     size?: string | null
-    isInHouseProduct?: boolean
-    collectionType?: string
-    signatureCollectionName?: string | null
-    craftsmanshipDetails?: string | null
-    recommendedUsage?: string | null
-    frameWeightCategory?: string | null
     categoryId: string
     metaTitle?: string | null
     metaDesc?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
-    images?: ProductImageUncheckedCreateNestedManyWithoutProductInput
-    inventory?: InventoryUncheckedCreateNestedManyWithoutProductInput
+    collectionType?: string
+    craftsmanshipDetails?: string | null
+    frameWeightCategory?: string | null
+    isInHouseProduct?: boolean
+    recommendedUsage?: string | null
+    signatureCollectionName?: string | null
+    style?: string | null
+    price?: number
     enquiries?: EnquiryUncheckedCreateNestedManyWithoutProductInput
+    inventory?: InventoryUncheckedCreateNestedManyWithoutProductInput
+    images?: ProductImageUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductCreateOrConnectWithoutBrandInput = {
@@ -23058,23 +25790,15 @@ export namespace Prisma {
     name?: StringFilter<"Product"> | string
     slug?: StringFilter<"Product"> | string
     description?: StringFilter<"Product"> | string
-    price?: FloatFilter<"Product"> | number
     isFeatured?: BoolFilter<"Product"> | boolean
     isNewArrival?: BoolFilter<"Product"> | boolean
     isActive?: BoolFilter<"Product"> | boolean
     gender?: StringNullableFilter<"Product"> | string | null
-    style?: StringNullableFilter<"Product"> | string | null
     frameShape?: StringNullableFilter<"Product"> | string | null
     material?: StringNullableFilter<"Product"> | string | null
     lensType?: StringNullableFilter<"Product"> | string | null
     color?: StringNullableFilter<"Product"> | string | null
     size?: StringNullableFilter<"Product"> | string | null
-    isInHouseProduct?: BoolFilter<"Product"> | boolean
-    collectionType?: StringFilter<"Product"> | string
-    signatureCollectionName?: StringNullableFilter<"Product"> | string | null
-    craftsmanshipDetails?: StringNullableFilter<"Product"> | string | null
-    recommendedUsage?: StringNullableFilter<"Product"> | string | null
-    frameWeightCategory?: StringNullableFilter<"Product"> | string | null
     brandId?: StringFilter<"Product"> | string
     categoryId?: StringFilter<"Product"> | string
     metaTitle?: StringNullableFilter<"Product"> | string | null
@@ -23082,6 +25806,14 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Product"> | Date | string
     updatedAt?: DateTimeFilter<"Product"> | Date | string
     deletedAt?: DateTimeNullableFilter<"Product"> | Date | string | null
+    collectionType?: StringFilter<"Product"> | string
+    craftsmanshipDetails?: StringNullableFilter<"Product"> | string | null
+    frameWeightCategory?: StringNullableFilter<"Product"> | string | null
+    isInHouseProduct?: BoolFilter<"Product"> | boolean
+    recommendedUsage?: StringNullableFilter<"Product"> | string | null
+    signatureCollectionName?: StringNullableFilter<"Product"> | string | null
+    style?: StringNullableFilter<"Product"> | string | null
+    price?: FloatFilter<"Product"> | number
   }
 
   export type ProductCreateWithoutCategoryInput = {
@@ -23089,32 +25821,32 @@ export namespace Prisma {
     name: string
     slug: string
     description: string
-    price?: number
     isFeatured?: boolean
     isNewArrival?: boolean
     isActive?: boolean
     gender?: string | null
-    style?: string | null
     frameShape?: string | null
     material?: string | null
     lensType?: string | null
     color?: string | null
     size?: string | null
-    isInHouseProduct?: boolean
-    collectionType?: string
-    signatureCollectionName?: string | null
-    craftsmanshipDetails?: string | null
-    recommendedUsage?: string | null
-    frameWeightCategory?: string | null
     metaTitle?: string | null
     metaDesc?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
+    collectionType?: string
+    craftsmanshipDetails?: string | null
+    frameWeightCategory?: string | null
+    isInHouseProduct?: boolean
+    recommendedUsage?: string | null
+    signatureCollectionName?: string | null
+    style?: string | null
+    price?: number
+    enquiries?: EnquiryCreateNestedManyWithoutProductInput
+    inventory?: InventoryCreateNestedManyWithoutProductInput
     brand: BrandCreateNestedOneWithoutProductsInput
     images?: ProductImageCreateNestedManyWithoutProductInput
-    inventory?: InventoryCreateNestedManyWithoutProductInput
-    enquiries?: EnquiryCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateWithoutCategoryInput = {
@@ -23122,32 +25854,32 @@ export namespace Prisma {
     name: string
     slug: string
     description: string
-    price?: number
     isFeatured?: boolean
     isNewArrival?: boolean
     isActive?: boolean
     gender?: string | null
-    style?: string | null
     frameShape?: string | null
     material?: string | null
     lensType?: string | null
     color?: string | null
     size?: string | null
-    isInHouseProduct?: boolean
-    collectionType?: string
-    signatureCollectionName?: string | null
-    craftsmanshipDetails?: string | null
-    recommendedUsage?: string | null
-    frameWeightCategory?: string | null
     brandId: string
     metaTitle?: string | null
     metaDesc?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
-    images?: ProductImageUncheckedCreateNestedManyWithoutProductInput
-    inventory?: InventoryUncheckedCreateNestedManyWithoutProductInput
+    collectionType?: string
+    craftsmanshipDetails?: string | null
+    frameWeightCategory?: string | null
+    isInHouseProduct?: boolean
+    recommendedUsage?: string | null
+    signatureCollectionName?: string | null
+    style?: string | null
+    price?: number
     enquiries?: EnquiryUncheckedCreateNestedManyWithoutProductInput
+    inventory?: InventoryUncheckedCreateNestedManyWithoutProductInput
+    images?: ProductImageUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductCreateOrConnectWithoutCategoryInput = {
@@ -23176,77 +25908,6 @@ export namespace Prisma {
     data: XOR<ProductUpdateManyMutationInput, ProductUncheckedUpdateManyWithoutCategoryInput>
   }
 
-  export type ProductCreateWithoutInventoryInput = {
-    id?: string
-    name: string
-    slug: string
-    description: string
-    price?: number
-    isFeatured?: boolean
-    isNewArrival?: boolean
-    isActive?: boolean
-    gender?: string | null
-    style?: string | null
-    frameShape?: string | null
-    material?: string | null
-    lensType?: string | null
-    color?: string | null
-    size?: string | null
-    isInHouseProduct?: boolean
-    collectionType?: string
-    signatureCollectionName?: string | null
-    craftsmanshipDetails?: string | null
-    recommendedUsage?: string | null
-    frameWeightCategory?: string | null
-    metaTitle?: string | null
-    metaDesc?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    deletedAt?: Date | string | null
-    brand: BrandCreateNestedOneWithoutProductsInput
-    category: CategoryCreateNestedOneWithoutProductsInput
-    images?: ProductImageCreateNestedManyWithoutProductInput
-    enquiries?: EnquiryCreateNestedManyWithoutProductInput
-  }
-
-  export type ProductUncheckedCreateWithoutInventoryInput = {
-    id?: string
-    name: string
-    slug: string
-    description: string
-    price?: number
-    isFeatured?: boolean
-    isNewArrival?: boolean
-    isActive?: boolean
-    gender?: string | null
-    style?: string | null
-    frameShape?: string | null
-    material?: string | null
-    lensType?: string | null
-    color?: string | null
-    size?: string | null
-    isInHouseProduct?: boolean
-    collectionType?: string
-    signatureCollectionName?: string | null
-    craftsmanshipDetails?: string | null
-    recommendedUsage?: string | null
-    frameWeightCategory?: string | null
-    brandId: string
-    categoryId: string
-    metaTitle?: string | null
-    metaDesc?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    deletedAt?: Date | string | null
-    images?: ProductImageUncheckedCreateNestedManyWithoutProductInput
-    enquiries?: EnquiryUncheckedCreateNestedManyWithoutProductInput
-  }
-
-  export type ProductCreateOrConnectWithoutInventoryInput = {
-    where: ProductWhereUniqueInput
-    create: XOR<ProductCreateWithoutInventoryInput, ProductUncheckedCreateWithoutInventoryInput>
-  }
-
   export type BranchCreateWithoutStockInput = {
     id?: string
     name: string
@@ -23264,10 +25925,10 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
-    users?: UserCreateNestedManyWithoutBranchInput
     appointments?: AppointmentCreateNestedManyWithoutBranchInput
-    enquiries?: EnquiryCreateNestedManyWithoutBranchInput
     applications?: CareerApplicationCreateNestedManyWithoutBranchInput
+    enquiries?: EnquiryCreateNestedManyWithoutBranchInput
+    users?: UserCreateNestedManyWithoutBranchInput
   }
 
   export type BranchUncheckedCreateWithoutStockInput = {
@@ -23287,10 +25948,10 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
-    users?: UserUncheckedCreateNestedManyWithoutBranchInput
     appointments?: AppointmentUncheckedCreateNestedManyWithoutBranchInput
-    enquiries?: EnquiryUncheckedCreateNestedManyWithoutBranchInput
     applications?: CareerApplicationUncheckedCreateNestedManyWithoutBranchInput
+    enquiries?: EnquiryUncheckedCreateNestedManyWithoutBranchInput
+    users?: UserUncheckedCreateNestedManyWithoutBranchInput
   }
 
   export type BranchCreateOrConnectWithoutStockInput = {
@@ -23298,81 +25959,75 @@ export namespace Prisma {
     create: XOR<BranchCreateWithoutStockInput, BranchUncheckedCreateWithoutStockInput>
   }
 
-  export type ProductUpsertWithoutInventoryInput = {
-    update: XOR<ProductUpdateWithoutInventoryInput, ProductUncheckedUpdateWithoutInventoryInput>
+  export type ProductCreateWithoutInventoryInput = {
+    id?: string
+    name: string
+    slug: string
+    description: string
+    isFeatured?: boolean
+    isNewArrival?: boolean
+    isActive?: boolean
+    gender?: string | null
+    frameShape?: string | null
+    material?: string | null
+    lensType?: string | null
+    color?: string | null
+    size?: string | null
+    metaTitle?: string | null
+    metaDesc?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
+    collectionType?: string
+    craftsmanshipDetails?: string | null
+    frameWeightCategory?: string | null
+    isInHouseProduct?: boolean
+    recommendedUsage?: string | null
+    signatureCollectionName?: string | null
+    style?: string | null
+    price?: number
+    enquiries?: EnquiryCreateNestedManyWithoutProductInput
+    brand: BrandCreateNestedOneWithoutProductsInput
+    category: CategoryCreateNestedOneWithoutProductsInput
+    images?: ProductImageCreateNestedManyWithoutProductInput
+  }
+
+  export type ProductUncheckedCreateWithoutInventoryInput = {
+    id?: string
+    name: string
+    slug: string
+    description: string
+    isFeatured?: boolean
+    isNewArrival?: boolean
+    isActive?: boolean
+    gender?: string | null
+    frameShape?: string | null
+    material?: string | null
+    lensType?: string | null
+    color?: string | null
+    size?: string | null
+    brandId: string
+    categoryId: string
+    metaTitle?: string | null
+    metaDesc?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
+    collectionType?: string
+    craftsmanshipDetails?: string | null
+    frameWeightCategory?: string | null
+    isInHouseProduct?: boolean
+    recommendedUsage?: string | null
+    signatureCollectionName?: string | null
+    style?: string | null
+    price?: number
+    enquiries?: EnquiryUncheckedCreateNestedManyWithoutProductInput
+    images?: ProductImageUncheckedCreateNestedManyWithoutProductInput
+  }
+
+  export type ProductCreateOrConnectWithoutInventoryInput = {
+    where: ProductWhereUniqueInput
     create: XOR<ProductCreateWithoutInventoryInput, ProductUncheckedCreateWithoutInventoryInput>
-    where?: ProductWhereInput
-  }
-
-  export type ProductUpdateToOneWithWhereWithoutInventoryInput = {
-    where?: ProductWhereInput
-    data: XOR<ProductUpdateWithoutInventoryInput, ProductUncheckedUpdateWithoutInventoryInput>
-  }
-
-  export type ProductUpdateWithoutInventoryInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
-    isFeatured?: BoolFieldUpdateOperationsInput | boolean
-    isNewArrival?: BoolFieldUpdateOperationsInput | boolean
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    gender?: NullableStringFieldUpdateOperationsInput | string | null
-    style?: NullableStringFieldUpdateOperationsInput | string | null
-    frameShape?: NullableStringFieldUpdateOperationsInput | string | null
-    material?: NullableStringFieldUpdateOperationsInput | string | null
-    lensType?: NullableStringFieldUpdateOperationsInput | string | null
-    color?: NullableStringFieldUpdateOperationsInput | string | null
-    size?: NullableStringFieldUpdateOperationsInput | string | null
-    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
-    collectionType?: StringFieldUpdateOperationsInput | string
-    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
-    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
-    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
-    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
-    metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
-    metaDesc?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    brand?: BrandUpdateOneRequiredWithoutProductsNestedInput
-    category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
-    images?: ProductImageUpdateManyWithoutProductNestedInput
-    enquiries?: EnquiryUpdateManyWithoutProductNestedInput
-  }
-
-  export type ProductUncheckedUpdateWithoutInventoryInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
-    isFeatured?: BoolFieldUpdateOperationsInput | boolean
-    isNewArrival?: BoolFieldUpdateOperationsInput | boolean
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    gender?: NullableStringFieldUpdateOperationsInput | string | null
-    style?: NullableStringFieldUpdateOperationsInput | string | null
-    frameShape?: NullableStringFieldUpdateOperationsInput | string | null
-    material?: NullableStringFieldUpdateOperationsInput | string | null
-    lensType?: NullableStringFieldUpdateOperationsInput | string | null
-    color?: NullableStringFieldUpdateOperationsInput | string | null
-    size?: NullableStringFieldUpdateOperationsInput | string | null
-    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
-    collectionType?: StringFieldUpdateOperationsInput | string
-    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
-    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
-    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
-    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
-    brandId?: StringFieldUpdateOperationsInput | string
-    categoryId?: StringFieldUpdateOperationsInput | string
-    metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
-    metaDesc?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    images?: ProductImageUncheckedUpdateManyWithoutProductNestedInput
-    enquiries?: EnquiryUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type BranchUpsertWithoutStockInput = {
@@ -23403,10 +26058,10 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    users?: UserUpdateManyWithoutBranchNestedInput
     appointments?: AppointmentUpdateManyWithoutBranchNestedInput
-    enquiries?: EnquiryUpdateManyWithoutBranchNestedInput
     applications?: CareerApplicationUpdateManyWithoutBranchNestedInput
+    enquiries?: EnquiryUpdateManyWithoutBranchNestedInput
+    users?: UserUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchUncheckedUpdateWithoutStockInput = {
@@ -23426,45 +26081,87 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    users?: UserUncheckedUpdateManyWithoutBranchNestedInput
     appointments?: AppointmentUncheckedUpdateManyWithoutBranchNestedInput
-    enquiries?: EnquiryUncheckedUpdateManyWithoutBranchNestedInput
     applications?: CareerApplicationUncheckedUpdateManyWithoutBranchNestedInput
+    enquiries?: EnquiryUncheckedUpdateManyWithoutBranchNestedInput
+    users?: UserUncheckedUpdateManyWithoutBranchNestedInput
   }
 
-  export type UserCreateWithoutAppointmentsInput = {
-    id?: string
-    email: string
-    name?: string | null
-    phone?: string | null
-    role?: $Enums.Role
-    avatar?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    deletedAt?: Date | string | null
-    branch?: BranchCreateNestedOneWithoutUsersInput
-    enquiries?: EnquiryCreateNestedManyWithoutUserInput
-    applications?: CareerApplicationCreateNestedManyWithoutUserInput
+  export type ProductUpsertWithoutInventoryInput = {
+    update: XOR<ProductUpdateWithoutInventoryInput, ProductUncheckedUpdateWithoutInventoryInput>
+    create: XOR<ProductCreateWithoutInventoryInput, ProductUncheckedCreateWithoutInventoryInput>
+    where?: ProductWhereInput
   }
 
-  export type UserUncheckedCreateWithoutAppointmentsInput = {
-    id?: string
-    email: string
-    name?: string | null
-    phone?: string | null
-    role?: $Enums.Role
-    avatar?: string | null
-    branchId?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    deletedAt?: Date | string | null
-    enquiries?: EnquiryUncheckedCreateNestedManyWithoutUserInput
-    applications?: CareerApplicationUncheckedCreateNestedManyWithoutUserInput
+  export type ProductUpdateToOneWithWhereWithoutInventoryInput = {
+    where?: ProductWhereInput
+    data: XOR<ProductUpdateWithoutInventoryInput, ProductUncheckedUpdateWithoutInventoryInput>
   }
 
-  export type UserCreateOrConnectWithoutAppointmentsInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutAppointmentsInput, UserUncheckedCreateWithoutAppointmentsInput>
+  export type ProductUpdateWithoutInventoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    isNewArrival?: BoolFieldUpdateOperationsInput | boolean
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    frameShape?: NullableStringFieldUpdateOperationsInput | string | null
+    material?: NullableStringFieldUpdateOperationsInput | string | null
+    lensType?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    size?: NullableStringFieldUpdateOperationsInput | string | null
+    metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    metaDesc?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    collectionType?: StringFieldUpdateOperationsInput | string
+    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
+    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
+    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
+    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
+    style?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: FloatFieldUpdateOperationsInput | number
+    enquiries?: EnquiryUpdateManyWithoutProductNestedInput
+    brand?: BrandUpdateOneRequiredWithoutProductsNestedInput
+    category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
+    images?: ProductImageUpdateManyWithoutProductNestedInput
+  }
+
+  export type ProductUncheckedUpdateWithoutInventoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    isNewArrival?: BoolFieldUpdateOperationsInput | boolean
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    frameShape?: NullableStringFieldUpdateOperationsInput | string | null
+    material?: NullableStringFieldUpdateOperationsInput | string | null
+    lensType?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    size?: NullableStringFieldUpdateOperationsInput | string | null
+    brandId?: StringFieldUpdateOperationsInput | string
+    categoryId?: StringFieldUpdateOperationsInput | string
+    metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    metaDesc?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    collectionType?: StringFieldUpdateOperationsInput | string
+    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
+    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
+    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
+    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
+    style?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: FloatFieldUpdateOperationsInput | number
+    enquiries?: EnquiryUncheckedUpdateManyWithoutProductNestedInput
+    images?: ProductImageUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type BranchCreateWithoutAppointmentsInput = {
@@ -23484,10 +26181,10 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
-    users?: UserCreateNestedManyWithoutBranchInput
-    stock?: InventoryCreateNestedManyWithoutBranchInput
-    enquiries?: EnquiryCreateNestedManyWithoutBranchInput
     applications?: CareerApplicationCreateNestedManyWithoutBranchInput
+    enquiries?: EnquiryCreateNestedManyWithoutBranchInput
+    stock?: InventoryCreateNestedManyWithoutBranchInput
+    users?: UserCreateNestedManyWithoutBranchInput
   }
 
   export type BranchUncheckedCreateWithoutAppointmentsInput = {
@@ -23507,10 +26204,10 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
-    users?: UserUncheckedCreateNestedManyWithoutBranchInput
-    stock?: InventoryUncheckedCreateNestedManyWithoutBranchInput
-    enquiries?: EnquiryUncheckedCreateNestedManyWithoutBranchInput
     applications?: CareerApplicationUncheckedCreateNestedManyWithoutBranchInput
+    enquiries?: EnquiryUncheckedCreateNestedManyWithoutBranchInput
+    stock?: InventoryUncheckedCreateNestedManyWithoutBranchInput
+    users?: UserUncheckedCreateNestedManyWithoutBranchInput
   }
 
   export type BranchCreateOrConnectWithoutAppointmentsInput = {
@@ -23518,45 +26215,39 @@ export namespace Prisma {
     create: XOR<BranchCreateWithoutAppointmentsInput, BranchUncheckedCreateWithoutAppointmentsInput>
   }
 
-  export type UserUpsertWithoutAppointmentsInput = {
-    update: XOR<UserUpdateWithoutAppointmentsInput, UserUncheckedUpdateWithoutAppointmentsInput>
+  export type UserCreateWithoutAppointmentsInput = {
+    id?: string
+    email: string
+    name?: string | null
+    phone?: string | null
+    role?: $Enums.Role
+    avatar?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
+    applications?: CareerApplicationCreateNestedManyWithoutUserInput
+    enquiries?: EnquiryCreateNestedManyWithoutUserInput
+    branch?: BranchCreateNestedOneWithoutUsersInput
+  }
+
+  export type UserUncheckedCreateWithoutAppointmentsInput = {
+    id?: string
+    email: string
+    name?: string | null
+    phone?: string | null
+    role?: $Enums.Role
+    avatar?: string | null
+    branchId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
+    applications?: CareerApplicationUncheckedCreateNestedManyWithoutUserInput
+    enquiries?: EnquiryUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutAppointmentsInput = {
+    where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutAppointmentsInput, UserUncheckedCreateWithoutAppointmentsInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutAppointmentsInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutAppointmentsInput, UserUncheckedUpdateWithoutAppointmentsInput>
-  }
-
-  export type UserUpdateWithoutAppointmentsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    avatar?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    branch?: BranchUpdateOneWithoutUsersNestedInput
-    enquiries?: EnquiryUpdateManyWithoutUserNestedInput
-    applications?: CareerApplicationUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutAppointmentsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    avatar?: NullableStringFieldUpdateOperationsInput | string | null
-    branchId?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    enquiries?: EnquiryUncheckedUpdateManyWithoutUserNestedInput
-    applications?: CareerApplicationUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type BranchUpsertWithoutAppointmentsInput = {
@@ -23587,10 +26278,10 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    users?: UserUpdateManyWithoutBranchNestedInput
-    stock?: InventoryUpdateManyWithoutBranchNestedInput
-    enquiries?: EnquiryUpdateManyWithoutBranchNestedInput
     applications?: CareerApplicationUpdateManyWithoutBranchNestedInput
+    enquiries?: EnquiryUpdateManyWithoutBranchNestedInput
+    stock?: InventoryUpdateManyWithoutBranchNestedInput
+    users?: UserUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchUncheckedUpdateWithoutAppointmentsInput = {
@@ -23610,10 +26301,173 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    users?: UserUncheckedUpdateManyWithoutBranchNestedInput
-    stock?: InventoryUncheckedUpdateManyWithoutBranchNestedInput
-    enquiries?: EnquiryUncheckedUpdateManyWithoutBranchNestedInput
     applications?: CareerApplicationUncheckedUpdateManyWithoutBranchNestedInput
+    enquiries?: EnquiryUncheckedUpdateManyWithoutBranchNestedInput
+    stock?: InventoryUncheckedUpdateManyWithoutBranchNestedInput
+    users?: UserUncheckedUpdateManyWithoutBranchNestedInput
+  }
+
+  export type UserUpsertWithoutAppointmentsInput = {
+    update: XOR<UserUpdateWithoutAppointmentsInput, UserUncheckedUpdateWithoutAppointmentsInput>
+    create: XOR<UserCreateWithoutAppointmentsInput, UserUncheckedCreateWithoutAppointmentsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutAppointmentsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutAppointmentsInput, UserUncheckedUpdateWithoutAppointmentsInput>
+  }
+
+  export type UserUpdateWithoutAppointmentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    applications?: CareerApplicationUpdateManyWithoutUserNestedInput
+    enquiries?: EnquiryUpdateManyWithoutUserNestedInput
+    branch?: BranchUpdateOneWithoutUsersNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutAppointmentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    branchId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    applications?: CareerApplicationUncheckedUpdateManyWithoutUserNestedInput
+    enquiries?: EnquiryUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type BranchCreateWithoutEnquiriesInput = {
+    id?: string
+    name: string
+    slug: string
+    address: string
+    location: string
+    phone: string
+    whatsapp: string
+    email?: string | null
+    timings?: string | null
+    coordinates?: string | null
+    images?: BranchCreateimagesInput | string[]
+    isMain?: boolean
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
+    appointments?: AppointmentCreateNestedManyWithoutBranchInput
+    applications?: CareerApplicationCreateNestedManyWithoutBranchInput
+    stock?: InventoryCreateNestedManyWithoutBranchInput
+    users?: UserCreateNestedManyWithoutBranchInput
+  }
+
+  export type BranchUncheckedCreateWithoutEnquiriesInput = {
+    id?: string
+    name: string
+    slug: string
+    address: string
+    location: string
+    phone: string
+    whatsapp: string
+    email?: string | null
+    timings?: string | null
+    coordinates?: string | null
+    images?: BranchCreateimagesInput | string[]
+    isMain?: boolean
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
+    appointments?: AppointmentUncheckedCreateNestedManyWithoutBranchInput
+    applications?: CareerApplicationUncheckedCreateNestedManyWithoutBranchInput
+    stock?: InventoryUncheckedCreateNestedManyWithoutBranchInput
+    users?: UserUncheckedCreateNestedManyWithoutBranchInput
+  }
+
+  export type BranchCreateOrConnectWithoutEnquiriesInput = {
+    where: BranchWhereUniqueInput
+    create: XOR<BranchCreateWithoutEnquiriesInput, BranchUncheckedCreateWithoutEnquiriesInput>
+  }
+
+  export type ProductCreateWithoutEnquiriesInput = {
+    id?: string
+    name: string
+    slug: string
+    description: string
+    isFeatured?: boolean
+    isNewArrival?: boolean
+    isActive?: boolean
+    gender?: string | null
+    frameShape?: string | null
+    material?: string | null
+    lensType?: string | null
+    color?: string | null
+    size?: string | null
+    metaTitle?: string | null
+    metaDesc?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
+    collectionType?: string
+    craftsmanshipDetails?: string | null
+    frameWeightCategory?: string | null
+    isInHouseProduct?: boolean
+    recommendedUsage?: string | null
+    signatureCollectionName?: string | null
+    style?: string | null
+    price?: number
+    inventory?: InventoryCreateNestedManyWithoutProductInput
+    brand: BrandCreateNestedOneWithoutProductsInput
+    category: CategoryCreateNestedOneWithoutProductsInput
+    images?: ProductImageCreateNestedManyWithoutProductInput
+  }
+
+  export type ProductUncheckedCreateWithoutEnquiriesInput = {
+    id?: string
+    name: string
+    slug: string
+    description: string
+    isFeatured?: boolean
+    isNewArrival?: boolean
+    isActive?: boolean
+    gender?: string | null
+    frameShape?: string | null
+    material?: string | null
+    lensType?: string | null
+    color?: string | null
+    size?: string | null
+    brandId: string
+    categoryId: string
+    metaTitle?: string | null
+    metaDesc?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
+    collectionType?: string
+    craftsmanshipDetails?: string | null
+    frameWeightCategory?: string | null
+    isInHouseProduct?: boolean
+    recommendedUsage?: string | null
+    signatureCollectionName?: string | null
+    style?: string | null
+    price?: number
+    inventory?: InventoryUncheckedCreateNestedManyWithoutProductInput
+    images?: ProductImageUncheckedCreateNestedManyWithoutProductInput
+  }
+
+  export type ProductCreateOrConnectWithoutEnquiriesInput = {
+    where: ProductWhereUniqueInput
+    create: XOR<ProductCreateWithoutEnquiriesInput, ProductUncheckedCreateWithoutEnquiriesInput>
   }
 
   export type UserCreateWithoutEnquiriesInput = {
@@ -23626,9 +26480,9 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
-    branch?: BranchCreateNestedOneWithoutUsersInput
     appointments?: AppointmentCreateNestedManyWithoutUserInput
     applications?: CareerApplicationCreateNestedManyWithoutUserInput
+    branch?: BranchCreateNestedOneWithoutUsersInput
   }
 
   export type UserUncheckedCreateWithoutEnquiriesInput = {
@@ -23649,246 +26503,6 @@ export namespace Prisma {
   export type UserCreateOrConnectWithoutEnquiriesInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutEnquiriesInput, UserUncheckedCreateWithoutEnquiriesInput>
-  }
-
-  export type ProductCreateWithoutEnquiriesInput = {
-    id?: string
-    name: string
-    slug: string
-    description: string
-    price?: number
-    isFeatured?: boolean
-    isNewArrival?: boolean
-    isActive?: boolean
-    gender?: string | null
-    style?: string | null
-    frameShape?: string | null
-    material?: string | null
-    lensType?: string | null
-    color?: string | null
-    size?: string | null
-    isInHouseProduct?: boolean
-    collectionType?: string
-    signatureCollectionName?: string | null
-    craftsmanshipDetails?: string | null
-    recommendedUsage?: string | null
-    frameWeightCategory?: string | null
-    metaTitle?: string | null
-    metaDesc?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    deletedAt?: Date | string | null
-    brand: BrandCreateNestedOneWithoutProductsInput
-    category: CategoryCreateNestedOneWithoutProductsInput
-    images?: ProductImageCreateNestedManyWithoutProductInput
-    inventory?: InventoryCreateNestedManyWithoutProductInput
-  }
-
-  export type ProductUncheckedCreateWithoutEnquiriesInput = {
-    id?: string
-    name: string
-    slug: string
-    description: string
-    price?: number
-    isFeatured?: boolean
-    isNewArrival?: boolean
-    isActive?: boolean
-    gender?: string | null
-    style?: string | null
-    frameShape?: string | null
-    material?: string | null
-    lensType?: string | null
-    color?: string | null
-    size?: string | null
-    isInHouseProduct?: boolean
-    collectionType?: string
-    signatureCollectionName?: string | null
-    craftsmanshipDetails?: string | null
-    recommendedUsage?: string | null
-    frameWeightCategory?: string | null
-    brandId: string
-    categoryId: string
-    metaTitle?: string | null
-    metaDesc?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    deletedAt?: Date | string | null
-    images?: ProductImageUncheckedCreateNestedManyWithoutProductInput
-    inventory?: InventoryUncheckedCreateNestedManyWithoutProductInput
-  }
-
-  export type ProductCreateOrConnectWithoutEnquiriesInput = {
-    where: ProductWhereUniqueInput
-    create: XOR<ProductCreateWithoutEnquiriesInput, ProductUncheckedCreateWithoutEnquiriesInput>
-  }
-
-  export type BranchCreateWithoutEnquiriesInput = {
-    id?: string
-    name: string
-    slug: string
-    address: string
-    location: string
-    phone: string
-    whatsapp: string
-    email?: string | null
-    timings?: string | null
-    coordinates?: string | null
-    images?: BranchCreateimagesInput | string[]
-    isMain?: boolean
-    isActive?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    deletedAt?: Date | string | null
-    users?: UserCreateNestedManyWithoutBranchInput
-    stock?: InventoryCreateNestedManyWithoutBranchInput
-    appointments?: AppointmentCreateNestedManyWithoutBranchInput
-    applications?: CareerApplicationCreateNestedManyWithoutBranchInput
-  }
-
-  export type BranchUncheckedCreateWithoutEnquiriesInput = {
-    id?: string
-    name: string
-    slug: string
-    address: string
-    location: string
-    phone: string
-    whatsapp: string
-    email?: string | null
-    timings?: string | null
-    coordinates?: string | null
-    images?: BranchCreateimagesInput | string[]
-    isMain?: boolean
-    isActive?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    deletedAt?: Date | string | null
-    users?: UserUncheckedCreateNestedManyWithoutBranchInput
-    stock?: InventoryUncheckedCreateNestedManyWithoutBranchInput
-    appointments?: AppointmentUncheckedCreateNestedManyWithoutBranchInput
-    applications?: CareerApplicationUncheckedCreateNestedManyWithoutBranchInput
-  }
-
-  export type BranchCreateOrConnectWithoutEnquiriesInput = {
-    where: BranchWhereUniqueInput
-    create: XOR<BranchCreateWithoutEnquiriesInput, BranchUncheckedCreateWithoutEnquiriesInput>
-  }
-
-  export type UserUpsertWithoutEnquiriesInput = {
-    update: XOR<UserUpdateWithoutEnquiriesInput, UserUncheckedUpdateWithoutEnquiriesInput>
-    create: XOR<UserCreateWithoutEnquiriesInput, UserUncheckedCreateWithoutEnquiriesInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutEnquiriesInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutEnquiriesInput, UserUncheckedUpdateWithoutEnquiriesInput>
-  }
-
-  export type UserUpdateWithoutEnquiriesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    avatar?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    branch?: BranchUpdateOneWithoutUsersNestedInput
-    appointments?: AppointmentUpdateManyWithoutUserNestedInput
-    applications?: CareerApplicationUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutEnquiriesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    avatar?: NullableStringFieldUpdateOperationsInput | string | null
-    branchId?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    appointments?: AppointmentUncheckedUpdateManyWithoutUserNestedInput
-    applications?: CareerApplicationUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type ProductUpsertWithoutEnquiriesInput = {
-    update: XOR<ProductUpdateWithoutEnquiriesInput, ProductUncheckedUpdateWithoutEnquiriesInput>
-    create: XOR<ProductCreateWithoutEnquiriesInput, ProductUncheckedCreateWithoutEnquiriesInput>
-    where?: ProductWhereInput
-  }
-
-  export type ProductUpdateToOneWithWhereWithoutEnquiriesInput = {
-    where?: ProductWhereInput
-    data: XOR<ProductUpdateWithoutEnquiriesInput, ProductUncheckedUpdateWithoutEnquiriesInput>
-  }
-
-  export type ProductUpdateWithoutEnquiriesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
-    isFeatured?: BoolFieldUpdateOperationsInput | boolean
-    isNewArrival?: BoolFieldUpdateOperationsInput | boolean
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    gender?: NullableStringFieldUpdateOperationsInput | string | null
-    style?: NullableStringFieldUpdateOperationsInput | string | null
-    frameShape?: NullableStringFieldUpdateOperationsInput | string | null
-    material?: NullableStringFieldUpdateOperationsInput | string | null
-    lensType?: NullableStringFieldUpdateOperationsInput | string | null
-    color?: NullableStringFieldUpdateOperationsInput | string | null
-    size?: NullableStringFieldUpdateOperationsInput | string | null
-    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
-    collectionType?: StringFieldUpdateOperationsInput | string
-    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
-    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
-    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
-    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
-    metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
-    metaDesc?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    brand?: BrandUpdateOneRequiredWithoutProductsNestedInput
-    category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
-    images?: ProductImageUpdateManyWithoutProductNestedInput
-    inventory?: InventoryUpdateManyWithoutProductNestedInput
-  }
-
-  export type ProductUncheckedUpdateWithoutEnquiriesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
-    isFeatured?: BoolFieldUpdateOperationsInput | boolean
-    isNewArrival?: BoolFieldUpdateOperationsInput | boolean
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    gender?: NullableStringFieldUpdateOperationsInput | string | null
-    style?: NullableStringFieldUpdateOperationsInput | string | null
-    frameShape?: NullableStringFieldUpdateOperationsInput | string | null
-    material?: NullableStringFieldUpdateOperationsInput | string | null
-    lensType?: NullableStringFieldUpdateOperationsInput | string | null
-    color?: NullableStringFieldUpdateOperationsInput | string | null
-    size?: NullableStringFieldUpdateOperationsInput | string | null
-    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
-    collectionType?: StringFieldUpdateOperationsInput | string
-    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
-    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
-    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
-    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
-    brandId?: StringFieldUpdateOperationsInput | string
-    categoryId?: StringFieldUpdateOperationsInput | string
-    metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
-    metaDesc?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    images?: ProductImageUncheckedUpdateManyWithoutProductNestedInput
-    inventory?: InventoryUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type BranchUpsertWithoutEnquiriesInput = {
@@ -23919,10 +26533,10 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    users?: UserUpdateManyWithoutBranchNestedInput
-    stock?: InventoryUpdateManyWithoutBranchNestedInput
     appointments?: AppointmentUpdateManyWithoutBranchNestedInput
     applications?: CareerApplicationUpdateManyWithoutBranchNestedInput
+    stock?: InventoryUpdateManyWithoutBranchNestedInput
+    users?: UserUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchUncheckedUpdateWithoutEnquiriesInput = {
@@ -23942,10 +26556,179 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    users?: UserUncheckedUpdateManyWithoutBranchNestedInput
-    stock?: InventoryUncheckedUpdateManyWithoutBranchNestedInput
     appointments?: AppointmentUncheckedUpdateManyWithoutBranchNestedInput
     applications?: CareerApplicationUncheckedUpdateManyWithoutBranchNestedInput
+    stock?: InventoryUncheckedUpdateManyWithoutBranchNestedInput
+    users?: UserUncheckedUpdateManyWithoutBranchNestedInput
+  }
+
+  export type ProductUpsertWithoutEnquiriesInput = {
+    update: XOR<ProductUpdateWithoutEnquiriesInput, ProductUncheckedUpdateWithoutEnquiriesInput>
+    create: XOR<ProductCreateWithoutEnquiriesInput, ProductUncheckedCreateWithoutEnquiriesInput>
+    where?: ProductWhereInput
+  }
+
+  export type ProductUpdateToOneWithWhereWithoutEnquiriesInput = {
+    where?: ProductWhereInput
+    data: XOR<ProductUpdateWithoutEnquiriesInput, ProductUncheckedUpdateWithoutEnquiriesInput>
+  }
+
+  export type ProductUpdateWithoutEnquiriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    isNewArrival?: BoolFieldUpdateOperationsInput | boolean
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    frameShape?: NullableStringFieldUpdateOperationsInput | string | null
+    material?: NullableStringFieldUpdateOperationsInput | string | null
+    lensType?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    size?: NullableStringFieldUpdateOperationsInput | string | null
+    metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    metaDesc?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    collectionType?: StringFieldUpdateOperationsInput | string
+    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
+    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
+    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
+    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
+    style?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: FloatFieldUpdateOperationsInput | number
+    inventory?: InventoryUpdateManyWithoutProductNestedInput
+    brand?: BrandUpdateOneRequiredWithoutProductsNestedInput
+    category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
+    images?: ProductImageUpdateManyWithoutProductNestedInput
+  }
+
+  export type ProductUncheckedUpdateWithoutEnquiriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    isNewArrival?: BoolFieldUpdateOperationsInput | boolean
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    frameShape?: NullableStringFieldUpdateOperationsInput | string | null
+    material?: NullableStringFieldUpdateOperationsInput | string | null
+    lensType?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    size?: NullableStringFieldUpdateOperationsInput | string | null
+    brandId?: StringFieldUpdateOperationsInput | string
+    categoryId?: StringFieldUpdateOperationsInput | string
+    metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    metaDesc?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    collectionType?: StringFieldUpdateOperationsInput | string
+    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
+    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
+    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
+    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
+    style?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: FloatFieldUpdateOperationsInput | number
+    inventory?: InventoryUncheckedUpdateManyWithoutProductNestedInput
+    images?: ProductImageUncheckedUpdateManyWithoutProductNestedInput
+  }
+
+  export type UserUpsertWithoutEnquiriesInput = {
+    update: XOR<UserUpdateWithoutEnquiriesInput, UserUncheckedUpdateWithoutEnquiriesInput>
+    create: XOR<UserCreateWithoutEnquiriesInput, UserUncheckedCreateWithoutEnquiriesInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutEnquiriesInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutEnquiriesInput, UserUncheckedUpdateWithoutEnquiriesInput>
+  }
+
+  export type UserUpdateWithoutEnquiriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    appointments?: AppointmentUpdateManyWithoutUserNestedInput
+    applications?: CareerApplicationUpdateManyWithoutUserNestedInput
+    branch?: BranchUpdateOneWithoutUsersNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutEnquiriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    branchId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    appointments?: AppointmentUncheckedUpdateManyWithoutUserNestedInput
+    applications?: CareerApplicationUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type BranchCreateWithoutApplicationsInput = {
+    id?: string
+    name: string
+    slug: string
+    address: string
+    location: string
+    phone: string
+    whatsapp: string
+    email?: string | null
+    timings?: string | null
+    coordinates?: string | null
+    images?: BranchCreateimagesInput | string[]
+    isMain?: boolean
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
+    appointments?: AppointmentCreateNestedManyWithoutBranchInput
+    enquiries?: EnquiryCreateNestedManyWithoutBranchInput
+    stock?: InventoryCreateNestedManyWithoutBranchInput
+    users?: UserCreateNestedManyWithoutBranchInput
+  }
+
+  export type BranchUncheckedCreateWithoutApplicationsInput = {
+    id?: string
+    name: string
+    slug: string
+    address: string
+    location: string
+    phone: string
+    whatsapp: string
+    email?: string | null
+    timings?: string | null
+    coordinates?: string | null
+    images?: BranchCreateimagesInput | string[]
+    isMain?: boolean
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
+    appointments?: AppointmentUncheckedCreateNestedManyWithoutBranchInput
+    enquiries?: EnquiryUncheckedCreateNestedManyWithoutBranchInput
+    stock?: InventoryUncheckedCreateNestedManyWithoutBranchInput
+    users?: UserUncheckedCreateNestedManyWithoutBranchInput
+  }
+
+  export type BranchCreateOrConnectWithoutApplicationsInput = {
+    where: BranchWhereUniqueInput
+    create: XOR<BranchCreateWithoutApplicationsInput, BranchUncheckedCreateWithoutApplicationsInput>
   }
 
   export type UserCreateWithoutApplicationsInput = {
@@ -23958,9 +26741,9 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
-    branch?: BranchCreateNestedOneWithoutUsersInput
     appointments?: AppointmentCreateNestedManyWithoutUserInput
     enquiries?: EnquiryCreateNestedManyWithoutUserInput
+    branch?: BranchCreateNestedOneWithoutUsersInput
   }
 
   export type UserUncheckedCreateWithoutApplicationsInput = {
@@ -23981,98 +26764,6 @@ export namespace Prisma {
   export type UserCreateOrConnectWithoutApplicationsInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutApplicationsInput, UserUncheckedCreateWithoutApplicationsInput>
-  }
-
-  export type BranchCreateWithoutApplicationsInput = {
-    id?: string
-    name: string
-    slug: string
-    address: string
-    location: string
-    phone: string
-    whatsapp: string
-    email?: string | null
-    timings?: string | null
-    coordinates?: string | null
-    images?: BranchCreateimagesInput | string[]
-    isMain?: boolean
-    isActive?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    deletedAt?: Date | string | null
-    users?: UserCreateNestedManyWithoutBranchInput
-    stock?: InventoryCreateNestedManyWithoutBranchInput
-    appointments?: AppointmentCreateNestedManyWithoutBranchInput
-    enquiries?: EnquiryCreateNestedManyWithoutBranchInput
-  }
-
-  export type BranchUncheckedCreateWithoutApplicationsInput = {
-    id?: string
-    name: string
-    slug: string
-    address: string
-    location: string
-    phone: string
-    whatsapp: string
-    email?: string | null
-    timings?: string | null
-    coordinates?: string | null
-    images?: BranchCreateimagesInput | string[]
-    isMain?: boolean
-    isActive?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    deletedAt?: Date | string | null
-    users?: UserUncheckedCreateNestedManyWithoutBranchInput
-    stock?: InventoryUncheckedCreateNestedManyWithoutBranchInput
-    appointments?: AppointmentUncheckedCreateNestedManyWithoutBranchInput
-    enquiries?: EnquiryUncheckedCreateNestedManyWithoutBranchInput
-  }
-
-  export type BranchCreateOrConnectWithoutApplicationsInput = {
-    where: BranchWhereUniqueInput
-    create: XOR<BranchCreateWithoutApplicationsInput, BranchUncheckedCreateWithoutApplicationsInput>
-  }
-
-  export type UserUpsertWithoutApplicationsInput = {
-    update: XOR<UserUpdateWithoutApplicationsInput, UserUncheckedUpdateWithoutApplicationsInput>
-    create: XOR<UserCreateWithoutApplicationsInput, UserUncheckedCreateWithoutApplicationsInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutApplicationsInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutApplicationsInput, UserUncheckedUpdateWithoutApplicationsInput>
-  }
-
-  export type UserUpdateWithoutApplicationsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    avatar?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    branch?: BranchUpdateOneWithoutUsersNestedInput
-    appointments?: AppointmentUpdateManyWithoutUserNestedInput
-    enquiries?: EnquiryUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutApplicationsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    avatar?: NullableStringFieldUpdateOperationsInput | string | null
-    branchId?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    appointments?: AppointmentUncheckedUpdateManyWithoutUserNestedInput
-    enquiries?: EnquiryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type BranchUpsertWithoutApplicationsInput = {
@@ -24103,10 +26794,10 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    users?: UserUpdateManyWithoutBranchNestedInput
-    stock?: InventoryUpdateManyWithoutBranchNestedInput
     appointments?: AppointmentUpdateManyWithoutBranchNestedInput
     enquiries?: EnquiryUpdateManyWithoutBranchNestedInput
+    stock?: InventoryUpdateManyWithoutBranchNestedInput
+    users?: UserUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchUncheckedUpdateWithoutApplicationsInput = {
@@ -24126,10 +26817,51 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    users?: UserUncheckedUpdateManyWithoutBranchNestedInput
-    stock?: InventoryUncheckedUpdateManyWithoutBranchNestedInput
     appointments?: AppointmentUncheckedUpdateManyWithoutBranchNestedInput
     enquiries?: EnquiryUncheckedUpdateManyWithoutBranchNestedInput
+    stock?: InventoryUncheckedUpdateManyWithoutBranchNestedInput
+    users?: UserUncheckedUpdateManyWithoutBranchNestedInput
+  }
+
+  export type UserUpsertWithoutApplicationsInput = {
+    update: XOR<UserUpdateWithoutApplicationsInput, UserUncheckedUpdateWithoutApplicationsInput>
+    create: XOR<UserCreateWithoutApplicationsInput, UserUncheckedCreateWithoutApplicationsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutApplicationsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutApplicationsInput, UserUncheckedUpdateWithoutApplicationsInput>
+  }
+
+  export type UserUpdateWithoutApplicationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    appointments?: AppointmentUpdateManyWithoutUserNestedInput
+    enquiries?: EnquiryUpdateManyWithoutUserNestedInput
+    branch?: BranchUpdateOneWithoutUsersNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutApplicationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    branchId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    appointments?: AppointmentUncheckedUpdateManyWithoutUserNestedInput
+    enquiries?: EnquiryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type AppointmentCreateManyUserInput = {
@@ -24145,17 +26877,6 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type EnquiryCreateManyUserInput = {
-    id?: string
-    productId?: string | null
-    branchId: string
-    type?: $Enums.EnquiryType
-    message: string
-    isWhatsApp?: boolean
-    status?: string
-    createdAt?: Date | string
-  }
-
   export type CareerApplicationCreateManyUserInput = {
     id?: string
     name: string
@@ -24166,6 +26887,17 @@ export namespace Prisma {
     branchId?: string | null
     status?: string
     createdAt?: Date | string
+  }
+
+  export type EnquiryCreateManyUserInput = {
+    id?: string
+    productId?: string | null
+    branchId: string
+    type?: $Enums.EnquiryType
+    message: string
+    isWhatsApp?: boolean
+    createdAt?: Date | string
+    status?: string
   }
 
   export type AppointmentUpdateWithoutUserInput = {
@@ -24207,39 +26939,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type EnquiryUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    type?: EnumEnquiryTypeFieldUpdateOperationsInput | $Enums.EnquiryType
-    message?: StringFieldUpdateOperationsInput | string
-    isWhatsApp?: BoolFieldUpdateOperationsInput | boolean
-    status?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    product?: ProductUpdateOneWithoutEnquiriesNestedInput
-    branch?: BranchUpdateOneRequiredWithoutEnquiriesNestedInput
-  }
-
-  export type EnquiryUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    productId?: NullableStringFieldUpdateOperationsInput | string | null
-    branchId?: StringFieldUpdateOperationsInput | string
-    type?: EnumEnquiryTypeFieldUpdateOperationsInput | $Enums.EnquiryType
-    message?: StringFieldUpdateOperationsInput | string
-    isWhatsApp?: BoolFieldUpdateOperationsInput | boolean
-    status?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type EnquiryUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    productId?: NullableStringFieldUpdateOperationsInput | string | null
-    branchId?: StringFieldUpdateOperationsInput | string
-    type?: EnumEnquiryTypeFieldUpdateOperationsInput | $Enums.EnquiryType
-    message?: StringFieldUpdateOperationsInput | string
-    isWhatsApp?: BoolFieldUpdateOperationsInput | boolean
-    status?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
   export type CareerApplicationUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
@@ -24276,24 +26975,37 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type UserCreateManyBranchInput = {
-    id?: string
-    email: string
-    name?: string | null
-    phone?: string | null
-    role?: $Enums.Role
-    avatar?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    deletedAt?: Date | string | null
+  export type EnquiryUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumEnquiryTypeFieldUpdateOperationsInput | $Enums.EnquiryType
+    message?: StringFieldUpdateOperationsInput | string
+    isWhatsApp?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+    branch?: BranchUpdateOneRequiredWithoutEnquiriesNestedInput
+    product?: ProductUpdateOneWithoutEnquiriesNestedInput
   }
 
-  export type InventoryCreateManyBranchInput = {
-    id?: string
-    productId: string
-    quantity?: number
-    status?: $Enums.InventoryStatus
-    updatedAt?: Date | string
+  export type EnquiryUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
+    branchId?: StringFieldUpdateOperationsInput | string
+    type?: EnumEnquiryTypeFieldUpdateOperationsInput | $Enums.EnquiryType
+    message?: StringFieldUpdateOperationsInput | string
+    isWhatsApp?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type EnquiryUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
+    branchId?: StringFieldUpdateOperationsInput | string
+    type?: EnumEnquiryTypeFieldUpdateOperationsInput | $Enums.EnquiryType
+    message?: StringFieldUpdateOperationsInput | string
+    isWhatsApp?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
   }
 
   export type AppointmentCreateManyBranchInput = {
@@ -24309,17 +27021,6 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type EnquiryCreateManyBranchInput = {
-    id?: string
-    userId?: string | null
-    productId?: string | null
-    type?: $Enums.EnquiryType
-    message: string
-    isWhatsApp?: boolean
-    status?: string
-    createdAt?: Date | string
-  }
-
   export type CareerApplicationCreateManyBranchInput = {
     id?: string
     userId?: string | null
@@ -24332,70 +27033,35 @@ export namespace Prisma {
     createdAt?: Date | string
   }
 
-  export type UserUpdateWithoutBranchInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    avatar?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    appointments?: AppointmentUpdateManyWithoutUserNestedInput
-    enquiries?: EnquiryUpdateManyWithoutUserNestedInput
-    applications?: CareerApplicationUpdateManyWithoutUserNestedInput
+  export type EnquiryCreateManyBranchInput = {
+    id?: string
+    userId?: string | null
+    productId?: string | null
+    type?: $Enums.EnquiryType
+    message: string
+    isWhatsApp?: boolean
+    createdAt?: Date | string
+    status?: string
   }
 
-  export type UserUncheckedUpdateWithoutBranchInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    avatar?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    appointments?: AppointmentUncheckedUpdateManyWithoutUserNestedInput
-    enquiries?: EnquiryUncheckedUpdateManyWithoutUserNestedInput
-    applications?: CareerApplicationUncheckedUpdateManyWithoutUserNestedInput
+  export type InventoryCreateManyBranchInput = {
+    id?: string
+    productId: string
+    quantity?: number
+    status?: $Enums.InventoryStatus
+    updatedAt?: Date | string
   }
 
-  export type UserUncheckedUpdateManyWithoutBranchInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    avatar?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type InventoryUpdateWithoutBranchInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    quantity?: IntFieldUpdateOperationsInput | number
-    status?: EnumInventoryStatusFieldUpdateOperationsInput | $Enums.InventoryStatus
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    product?: ProductUpdateOneRequiredWithoutInventoryNestedInput
-  }
-
-  export type InventoryUncheckedUpdateWithoutBranchInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    productId?: StringFieldUpdateOperationsInput | string
-    quantity?: IntFieldUpdateOperationsInput | number
-    status?: EnumInventoryStatusFieldUpdateOperationsInput | $Enums.InventoryStatus
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type InventoryUncheckedUpdateManyWithoutBranchInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    productId?: StringFieldUpdateOperationsInput | string
-    quantity?: IntFieldUpdateOperationsInput | number
-    status?: EnumInventoryStatusFieldUpdateOperationsInput | $Enums.InventoryStatus
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  export type UserCreateManyBranchInput = {
+    id?: string
+    email: string
+    name?: string | null
+    phone?: string | null
+    role?: $Enums.Role
+    avatar?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
   }
 
   export type AppointmentUpdateWithoutBranchInput = {
@@ -24437,39 +27103,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type EnquiryUpdateWithoutBranchInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    type?: EnumEnquiryTypeFieldUpdateOperationsInput | $Enums.EnquiryType
-    message?: StringFieldUpdateOperationsInput | string
-    isWhatsApp?: BoolFieldUpdateOperationsInput | boolean
-    status?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneWithoutEnquiriesNestedInput
-    product?: ProductUpdateOneWithoutEnquiriesNestedInput
-  }
-
-  export type EnquiryUncheckedUpdateWithoutBranchInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
-    productId?: NullableStringFieldUpdateOperationsInput | string | null
-    type?: EnumEnquiryTypeFieldUpdateOperationsInput | $Enums.EnquiryType
-    message?: StringFieldUpdateOperationsInput | string
-    isWhatsApp?: BoolFieldUpdateOperationsInput | boolean
-    status?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type EnquiryUncheckedUpdateManyWithoutBranchInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
-    productId?: NullableStringFieldUpdateOperationsInput | string | null
-    type?: EnumEnquiryTypeFieldUpdateOperationsInput | $Enums.EnquiryType
-    message?: StringFieldUpdateOperationsInput | string
-    isWhatsApp?: BoolFieldUpdateOperationsInput | boolean
-    status?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
   export type CareerApplicationUpdateWithoutBranchInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
@@ -24506,10 +27139,114 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type ProductImageCreateManyProductInput = {
+  export type EnquiryUpdateWithoutBranchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumEnquiryTypeFieldUpdateOperationsInput | $Enums.EnquiryType
+    message?: StringFieldUpdateOperationsInput | string
+    isWhatsApp?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+    product?: ProductUpdateOneWithoutEnquiriesNestedInput
+    user?: UserUpdateOneWithoutEnquiriesNestedInput
+  }
+
+  export type EnquiryUncheckedUpdateWithoutBranchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumEnquiryTypeFieldUpdateOperationsInput | $Enums.EnquiryType
+    message?: StringFieldUpdateOperationsInput | string
+    isWhatsApp?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type EnquiryUncheckedUpdateManyWithoutBranchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumEnquiryTypeFieldUpdateOperationsInput | $Enums.EnquiryType
+    message?: StringFieldUpdateOperationsInput | string
+    isWhatsApp?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type InventoryUpdateWithoutBranchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    status?: EnumInventoryStatusFieldUpdateOperationsInput | $Enums.InventoryStatus
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    product?: ProductUpdateOneRequiredWithoutInventoryNestedInput
+  }
+
+  export type InventoryUncheckedUpdateWithoutBranchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    productId?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    status?: EnumInventoryStatusFieldUpdateOperationsInput | $Enums.InventoryStatus
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InventoryUncheckedUpdateManyWithoutBranchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    productId?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    status?: EnumInventoryStatusFieldUpdateOperationsInput | $Enums.InventoryStatus
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserUpdateWithoutBranchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    appointments?: AppointmentUpdateManyWithoutUserNestedInput
+    applications?: CareerApplicationUpdateManyWithoutUserNestedInput
+    enquiries?: EnquiryUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutBranchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    appointments?: AppointmentUncheckedUpdateManyWithoutUserNestedInput
+    applications?: CareerApplicationUncheckedUpdateManyWithoutUserNestedInput
+    enquiries?: EnquiryUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateManyWithoutBranchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type EnquiryCreateManyProductInput = {
     id?: string
-    url: string
-    order?: number
+    userId?: string | null
+    branchId: string
+    type?: $Enums.EnquiryType
+    message: string
+    isWhatsApp?: boolean
+    createdAt?: Date | string
+    status?: string
   }
 
   export type InventoryCreateManyProductInput = {
@@ -24520,33 +27257,43 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type EnquiryCreateManyProductInput = {
+  export type ProductImageCreateManyProductInput = {
     id?: string
-    userId?: string | null
-    branchId: string
-    type?: $Enums.EnquiryType
-    message: string
-    isWhatsApp?: boolean
-    status?: string
-    createdAt?: Date | string
+    url: string
+    order?: number
   }
 
-  export type ProductImageUpdateWithoutProductInput = {
+  export type EnquiryUpdateWithoutProductInput = {
     id?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-    order?: IntFieldUpdateOperationsInput | number
+    type?: EnumEnquiryTypeFieldUpdateOperationsInput | $Enums.EnquiryType
+    message?: StringFieldUpdateOperationsInput | string
+    isWhatsApp?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+    branch?: BranchUpdateOneRequiredWithoutEnquiriesNestedInput
+    user?: UserUpdateOneWithoutEnquiriesNestedInput
   }
 
-  export type ProductImageUncheckedUpdateWithoutProductInput = {
+  export type EnquiryUncheckedUpdateWithoutProductInput = {
     id?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-    order?: IntFieldUpdateOperationsInput | number
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    branchId?: StringFieldUpdateOperationsInput | string
+    type?: EnumEnquiryTypeFieldUpdateOperationsInput | $Enums.EnquiryType
+    message?: StringFieldUpdateOperationsInput | string
+    isWhatsApp?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
   }
 
-  export type ProductImageUncheckedUpdateManyWithoutProductInput = {
+  export type EnquiryUncheckedUpdateManyWithoutProductInput = {
     id?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-    order?: IntFieldUpdateOperationsInput | number
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    branchId?: StringFieldUpdateOperationsInput | string
+    type?: EnumEnquiryTypeFieldUpdateOperationsInput | $Enums.EnquiryType
+    message?: StringFieldUpdateOperationsInput | string
+    isWhatsApp?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
   }
 
   export type InventoryUpdateWithoutProductInput = {
@@ -24573,37 +27320,22 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type EnquiryUpdateWithoutProductInput = {
+  export type ProductImageUpdateWithoutProductInput = {
     id?: StringFieldUpdateOperationsInput | string
-    type?: EnumEnquiryTypeFieldUpdateOperationsInput | $Enums.EnquiryType
-    message?: StringFieldUpdateOperationsInput | string
-    isWhatsApp?: BoolFieldUpdateOperationsInput | boolean
-    status?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneWithoutEnquiriesNestedInput
-    branch?: BranchUpdateOneRequiredWithoutEnquiriesNestedInput
+    url?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
   }
 
-  export type EnquiryUncheckedUpdateWithoutProductInput = {
+  export type ProductImageUncheckedUpdateWithoutProductInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
-    branchId?: StringFieldUpdateOperationsInput | string
-    type?: EnumEnquiryTypeFieldUpdateOperationsInput | $Enums.EnquiryType
-    message?: StringFieldUpdateOperationsInput | string
-    isWhatsApp?: BoolFieldUpdateOperationsInput | boolean
-    status?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    url?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
   }
 
-  export type EnquiryUncheckedUpdateManyWithoutProductInput = {
+  export type ProductImageUncheckedUpdateManyWithoutProductInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
-    branchId?: StringFieldUpdateOperationsInput | string
-    type?: EnumEnquiryTypeFieldUpdateOperationsInput | $Enums.EnquiryType
-    message?: StringFieldUpdateOperationsInput | string
-    isWhatsApp?: BoolFieldUpdateOperationsInput | boolean
-    status?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    url?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
   }
 
   export type ProductCreateManyBrandInput = {
@@ -24611,29 +27343,29 @@ export namespace Prisma {
     name: string
     slug: string
     description: string
-    price?: number
     isFeatured?: boolean
     isNewArrival?: boolean
     isActive?: boolean
     gender?: string | null
-    style?: string | null
     frameShape?: string | null
     material?: string | null
     lensType?: string | null
     color?: string | null
     size?: string | null
-    isInHouseProduct?: boolean
-    collectionType?: string
-    signatureCollectionName?: string | null
-    craftsmanshipDetails?: string | null
-    recommendedUsage?: string | null
-    frameWeightCategory?: string | null
     categoryId: string
     metaTitle?: string | null
     metaDesc?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
+    collectionType?: string
+    craftsmanshipDetails?: string | null
+    frameWeightCategory?: string | null
+    isInHouseProduct?: boolean
+    recommendedUsage?: string | null
+    signatureCollectionName?: string | null
+    style?: string | null
+    price?: number
   }
 
   export type ProductUpdateWithoutBrandInput = {
@@ -24641,32 +27373,32 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     isNewArrival?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
-    style?: NullableStringFieldUpdateOperationsInput | string | null
     frameShape?: NullableStringFieldUpdateOperationsInput | string | null
     material?: NullableStringFieldUpdateOperationsInput | string | null
     lensType?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
-    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
-    collectionType?: StringFieldUpdateOperationsInput | string
-    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
-    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
-    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
-    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDesc?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    collectionType?: StringFieldUpdateOperationsInput | string
+    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
+    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
+    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
+    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
+    style?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: FloatFieldUpdateOperationsInput | number
+    enquiries?: EnquiryUpdateManyWithoutProductNestedInput
+    inventory?: InventoryUpdateManyWithoutProductNestedInput
     category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
     images?: ProductImageUpdateManyWithoutProductNestedInput
-    inventory?: InventoryUpdateManyWithoutProductNestedInput
-    enquiries?: EnquiryUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutBrandInput = {
@@ -24674,32 +27406,32 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     isNewArrival?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
-    style?: NullableStringFieldUpdateOperationsInput | string | null
     frameShape?: NullableStringFieldUpdateOperationsInput | string | null
     material?: NullableStringFieldUpdateOperationsInput | string | null
     lensType?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
-    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
-    collectionType?: StringFieldUpdateOperationsInput | string
-    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
-    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
-    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
-    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
     categoryId?: StringFieldUpdateOperationsInput | string
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDesc?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    images?: ProductImageUncheckedUpdateManyWithoutProductNestedInput
-    inventory?: InventoryUncheckedUpdateManyWithoutProductNestedInput
+    collectionType?: StringFieldUpdateOperationsInput | string
+    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
+    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
+    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
+    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
+    style?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: FloatFieldUpdateOperationsInput | number
     enquiries?: EnquiryUncheckedUpdateManyWithoutProductNestedInput
+    inventory?: InventoryUncheckedUpdateManyWithoutProductNestedInput
+    images?: ProductImageUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateManyWithoutBrandInput = {
@@ -24707,29 +27439,29 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     isNewArrival?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
-    style?: NullableStringFieldUpdateOperationsInput | string | null
     frameShape?: NullableStringFieldUpdateOperationsInput | string | null
     material?: NullableStringFieldUpdateOperationsInput | string | null
     lensType?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
-    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
-    collectionType?: StringFieldUpdateOperationsInput | string
-    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
-    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
-    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
-    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
     categoryId?: StringFieldUpdateOperationsInput | string
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDesc?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    collectionType?: StringFieldUpdateOperationsInput | string
+    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
+    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
+    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
+    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
+    style?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: FloatFieldUpdateOperationsInput | number
   }
 
   export type ProductCreateManyCategoryInput = {
@@ -24737,29 +27469,29 @@ export namespace Prisma {
     name: string
     slug: string
     description: string
-    price?: number
     isFeatured?: boolean
     isNewArrival?: boolean
     isActive?: boolean
     gender?: string | null
-    style?: string | null
     frameShape?: string | null
     material?: string | null
     lensType?: string | null
     color?: string | null
     size?: string | null
-    isInHouseProduct?: boolean
-    collectionType?: string
-    signatureCollectionName?: string | null
-    craftsmanshipDetails?: string | null
-    recommendedUsage?: string | null
-    frameWeightCategory?: string | null
     brandId: string
     metaTitle?: string | null
     metaDesc?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
+    collectionType?: string
+    craftsmanshipDetails?: string | null
+    frameWeightCategory?: string | null
+    isInHouseProduct?: boolean
+    recommendedUsage?: string | null
+    signatureCollectionName?: string | null
+    style?: string | null
+    price?: number
   }
 
   export type ProductUpdateWithoutCategoryInput = {
@@ -24767,32 +27499,32 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     isNewArrival?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
-    style?: NullableStringFieldUpdateOperationsInput | string | null
     frameShape?: NullableStringFieldUpdateOperationsInput | string | null
     material?: NullableStringFieldUpdateOperationsInput | string | null
     lensType?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
-    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
-    collectionType?: StringFieldUpdateOperationsInput | string
-    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
-    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
-    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
-    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDesc?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    collectionType?: StringFieldUpdateOperationsInput | string
+    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
+    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
+    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
+    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
+    style?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: FloatFieldUpdateOperationsInput | number
+    enquiries?: EnquiryUpdateManyWithoutProductNestedInput
+    inventory?: InventoryUpdateManyWithoutProductNestedInput
     brand?: BrandUpdateOneRequiredWithoutProductsNestedInput
     images?: ProductImageUpdateManyWithoutProductNestedInput
-    inventory?: InventoryUpdateManyWithoutProductNestedInput
-    enquiries?: EnquiryUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutCategoryInput = {
@@ -24800,32 +27532,32 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     isNewArrival?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
-    style?: NullableStringFieldUpdateOperationsInput | string | null
     frameShape?: NullableStringFieldUpdateOperationsInput | string | null
     material?: NullableStringFieldUpdateOperationsInput | string | null
     lensType?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
-    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
-    collectionType?: StringFieldUpdateOperationsInput | string
-    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
-    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
-    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
-    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
     brandId?: StringFieldUpdateOperationsInput | string
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDesc?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    images?: ProductImageUncheckedUpdateManyWithoutProductNestedInput
-    inventory?: InventoryUncheckedUpdateManyWithoutProductNestedInput
+    collectionType?: StringFieldUpdateOperationsInput | string
+    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
+    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
+    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
+    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
+    style?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: FloatFieldUpdateOperationsInput | number
     enquiries?: EnquiryUncheckedUpdateManyWithoutProductNestedInput
+    inventory?: InventoryUncheckedUpdateManyWithoutProductNestedInput
+    images?: ProductImageUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateManyWithoutCategoryInput = {
@@ -24833,29 +27565,29 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     isNewArrival?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
-    style?: NullableStringFieldUpdateOperationsInput | string | null
     frameShape?: NullableStringFieldUpdateOperationsInput | string | null
     material?: NullableStringFieldUpdateOperationsInput | string | null
     lensType?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
-    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
-    collectionType?: StringFieldUpdateOperationsInput | string
-    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
-    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
-    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
-    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
     brandId?: StringFieldUpdateOperationsInput | string
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDesc?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    collectionType?: StringFieldUpdateOperationsInput | string
+    craftsmanshipDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    frameWeightCategory?: NullableStringFieldUpdateOperationsInput | string | null
+    isInHouseProduct?: BoolFieldUpdateOperationsInput | boolean
+    recommendedUsage?: NullableStringFieldUpdateOperationsInput | string | null
+    signatureCollectionName?: NullableStringFieldUpdateOperationsInput | string | null
+    style?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: FloatFieldUpdateOperationsInput | number
   }
 
 

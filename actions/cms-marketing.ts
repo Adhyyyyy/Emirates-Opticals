@@ -1,10 +1,9 @@
-﻿"use server";
+"use server";
 
 import { revalidatePath } from "next/cache";
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
-import fs from "fs";
-import path from "path";
+import prisma from "@/lib/prisma";
 
 /**
  * SECURE AUTH SERVICE UTILITY
@@ -26,30 +25,13 @@ async function getAuthSession() {
 }
 
 /**
- * PATH RESOLVERS FOR MARKETING PROTOCOLS
- */
-const BANNERS_FILE_PATH = path.join(process.cwd(), "lib/data/banners.json");
-const OFFERS_FILE_PATH = path.join(process.cwd(), "lib/data/offers.json");
-
-// Helper to ensure files exist
-function ensureFileExists(filePath: string, defaultContent: string = "[]") {
-  const dir = path.dirname(filePath);
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true });
-  }
-  if (!fs.existsSync(filePath)) {
-    fs.writeFileSync(filePath, defaultContent, "utf-8");
-  }
-}
-
-/**
- * BANNERS ENDPOINTS
+ * BANNERS ENDPOINTS — FULLY DATABASE BACKED
  */
 export async function getBanners() {
   try {
-    ensureFileExists(BANNERS_FILE_PATH, "[]");
-    const rawData = fs.readFileSync(BANNERS_FILE_PATH, "utf-8");
-    return JSON.parse(rawData);
+    return await prisma.banner.findMany({
+      orderBy: { order: "asc" }
+    });
   } catch (error) {
     console.error("Failed to read banners:", error);
     return [];
@@ -69,19 +51,19 @@ export async function createBanner(data: {
   }
 
   try {
-    ensureFileExists(BANNERS_FILE_PATH, "[]");
-    const banners = await getBanners();
-    const newBanner = {
-      id: Date.now().toString(),
-      ...data,
-      order: banners.length,
-      isActive: true,
-      createdAt: new Date().toISOString()
-    };
+    const bannersCount = await prisma.banner.count();
+    const newBanner = await prisma.banner.create({
+      data: {
+        title: data.title,
+        subtitle: data.subtitle || null,
+        imageUrl: data.imageUrl,
+        linkUrl: data.linkUrl || null,
+        branchId: data.branchId || "Global",
+        order: bannersCount,
+        isActive: true
+      }
+    });
     
-    banners.push(newBanner);
-    fs.writeFileSync(BANNERS_FILE_PATH, JSON.stringify(banners, null, 2), "utf-8");
-
     revalidatePath("/");
     revalidatePath("/shop");
     return { success: true, data: newBanner };
@@ -98,11 +80,10 @@ export async function toggleBannerStatus(id: string, isActive: boolean) {
   }
 
   try {
-    const banners = await getBanners();
-    const updated = banners.map((b: any) => 
-      b.id === id ? { ...b, isActive } : b
-    );
-    fs.writeFileSync(BANNERS_FILE_PATH, JSON.stringify(updated, null, 2), "utf-8");
+    await prisma.banner.update({
+      where: { id },
+      data: { isActive }
+    });
 
     revalidatePath("/");
     revalidatePath("/shop");
@@ -120,9 +101,9 @@ export async function deleteBanner(id: string) {
   }
 
   try {
-    const banners = await getBanners();
-    const filtered = banners.filter((b: any) => b.id !== id);
-    fs.writeFileSync(BANNERS_FILE_PATH, JSON.stringify(filtered, null, 2), "utf-8");
+    await prisma.banner.delete({
+      where: { id }
+    });
 
     revalidatePath("/");
     revalidatePath("/shop");
@@ -134,13 +115,25 @@ export async function deleteBanner(id: string) {
 }
 
 /**
- * OFFERS ENDPOINTS
+ * OFFERS ENDPOINTS — FULLY DATABASE BACKED
  */
 export async function getOffers() {
   try {
-    ensureFileExists(OFFERS_FILE_PATH, "[]");
-    const rawData = fs.readFileSync(OFFERS_FILE_PATH, "utf-8");
-    return JSON.parse(rawData);
+    const dbOffers = await prisma.offer.findMany({
+      orderBy: { createdAt: "desc" }
+    });
+    
+    return dbOffers.map(o => ({
+      id: o.id,
+      title: o.title,
+      description: o.description,
+      percentage: o.percentage,
+      branchId: o.branchId,
+      startDate: o.startDate || undefined,
+      endDate: o.endDate || undefined,
+      isActive: o.isActive,
+      createdAt: o.createdAt.toISOString()
+    }));
   } catch (error) {
     console.error("Failed to read offers:", error);
     return [];
@@ -161,21 +154,34 @@ export async function createOffer(data: {
   }
 
   try {
-    ensureFileExists(OFFERS_FILE_PATH, "[]");
-    const offers = await getOffers();
-    const newOffer = {
-      id: Date.now().toString(),
-      ...data,
-      isActive: true,
-      createdAt: new Date().toISOString()
-    };
-
-    offers.push(newOffer);
-    fs.writeFileSync(OFFERS_FILE_PATH, JSON.stringify(offers, null, 2), "utf-8");
+    const newOffer = await prisma.offer.create({
+      data: {
+        title: data.title,
+        description: data.description,
+        percentage: data.percentage,
+        branchId: data.branchId || "Global",
+        startDate: data.startDate || null,
+        endDate: data.endDate || null,
+        isActive: true
+      }
+    });
 
     revalidatePath("/");
     revalidatePath("/shop");
-    return { success: true, data: newOffer };
+    return { 
+      success: true, 
+      data: {
+        id: newOffer.id,
+        title: newOffer.title,
+        description: newOffer.description,
+        percentage: newOffer.percentage,
+        branchId: newOffer.branchId,
+        startDate: newOffer.startDate || undefined,
+        endDate: newOffer.endDate || undefined,
+        isActive: newOffer.isActive,
+        createdAt: newOffer.createdAt.toISOString()
+      } 
+    };
   } catch (error) {
     console.error("Create offer error:", error);
     return { error: "Failed to deploy promotional offer campaign" };
@@ -189,11 +195,10 @@ export async function toggleOfferStatus(id: string, isActive: boolean) {
   }
 
   try {
-    const offers = await getOffers();
-    const updated = offers.map((o: any) => 
-      o.id === id ? { ...o, isActive } : o
-    );
-    fs.writeFileSync(OFFERS_FILE_PATH, JSON.stringify(updated, null, 2), "utf-8");
+    await prisma.offer.update({
+      where: { id },
+      data: { isActive }
+    });
 
     revalidatePath("/");
     revalidatePath("/shop");
@@ -211,9 +216,9 @@ export async function deleteOffer(id: string) {
   }
 
   try {
-    const offers = await getOffers();
-    const filtered = offers.filter((o: any) => o.id !== id);
-    fs.writeFileSync(OFFERS_FILE_PATH, JSON.stringify(filtered, null, 2), "utf-8");
+    await prisma.offer.delete({
+      where: { id }
+    });
 
     revalidatePath("/");
     revalidatePath("/shop");

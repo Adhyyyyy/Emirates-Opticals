@@ -30,8 +30,12 @@ export function CareersOpenPositions({ positions = [], branches = [] }: CareersO
     if (pos.expiryDate) {
       const today = new Date();
       today.setHours(0, 0, 0, 0);
-      const expDate = new Date(pos.expiryDate);
+      
+      // Parse YYYY-MM-DD in local browser time to avoid off-by-one UTC timezone mismatch bugs
+      const [year, month, day] = pos.expiryDate.split("-").map(Number);
+      const expDate = new Date(year, month - 1, day);
       expDate.setHours(0, 0, 0, 0);
+      
       if (expDate < today) return false; // expired
     }
     return true;
