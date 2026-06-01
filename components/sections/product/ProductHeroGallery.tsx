@@ -77,7 +77,7 @@ export function ProductHeroGallery({ product }: ProductHeroGalleryProps) {
                       key={idx}
                       onClick={() => setActiveImage(idx)}
                       className={cn(
-                        "w-16 aspect-[3/4] rounded-[2px] overflow-hidden border transition-all duration-300",
+                        "w-16 aspect-[3/4] rounded-[2px] relative overflow-hidden border transition-all duration-300",
                         activeImage === idx
                           ? "border-brand-gold opacity-100 shadow-md"
                           : "border-transparent opacity-40 hover:opacity-80"
@@ -100,14 +100,16 @@ export function ProductHeroGallery({ product }: ProductHeroGalleryProps) {
                       transition={{ duration: 0.5 }}
                       className="absolute inset-0"
                     >
-                      <Image
-                        src={product.images[activeImage]}
-                        alt={product.name}
-                        fill
-                        priority
-                        sizes="(max-width: 1024px) 100vw, 50vw"
-                        className="object-cover"
-                      />
+                      <div className="relative w-full h-full">
+                        <Image
+                          src={product.images[activeImage]}
+                          alt={product.name}
+                          fill
+                          priority
+                          sizes="(max-width: 1024px) 100vw, 50vw"
+                          className="object-cover"
+                        />
+                      </div>
                     </motion.div>
                   </AnimatePresence>
 
@@ -128,7 +130,7 @@ export function ProductHeroGallery({ product }: ProductHeroGalleryProps) {
                       key={idx}
                       onClick={() => setActiveImage(idx)}
                       className={cn(
-                        "w-14 aspect-[3/4] shrink-0 rounded-[2px] overflow-hidden border transition-all",
+                        "w-14 aspect-[3/4] shrink-0 relative rounded-[2px] overflow-hidden border transition-all",
                         activeImage === idx ? "border-brand-gold opacity-100" : "border-transparent opacity-40"
                       )}
                     >
