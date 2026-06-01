@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState } from "react";
 import { m, AnimatePresence } from "framer-motion";
@@ -105,7 +105,13 @@ export function KeralaMapShowcase() {
                         className="absolute bottom-full left-1/2 -translate-x-1/2 w-48 bg-white p-2 rounded-lg shadow-2xl z-50 pointer-events-none"
                       >
                         <div className="relative aspect-video rounded-md overflow-hidden mb-3">
-                          <img src={branch.image} alt={branch.name} className="object-cover w-full h-full" />
+                           <img 
+                            src={branch.image} 
+                            alt={branch.name} 
+                            loading="lazy"
+                            decoding="async"
+                            className="object-cover w-full h-full" 
+                          />
                         </div>
                         <div className="px-1 py-1">
                           <h4 className="text-[10px] font-bold uppercase tracking-wider text-black mb-1">{branch.name}</h4>

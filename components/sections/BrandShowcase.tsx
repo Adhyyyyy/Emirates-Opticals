@@ -99,6 +99,8 @@ function BrandCard({ brand }: any) {
           <img 
             src={brand.imageUrl} 
             alt={brand.name} 
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 brightness-[0.8] group-hover:brightness-[0.9]"
           />
           {brand.showText && (

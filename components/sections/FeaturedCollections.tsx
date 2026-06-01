@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React from "react";
 import Link from "next/link";
@@ -49,6 +49,8 @@ export function FeaturedCollections() {
             <img 
               src={COLLECTIONS[0].image} 
               alt={COLLECTIONS[0].title}
+              loading="lazy"
+              decoding="async"
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
             {/* Gradient Scrim */}
@@ -72,6 +74,8 @@ export function FeaturedCollections() {
             <img 
               src={COLLECTIONS[1].image} 
               alt={COLLECTIONS[1].title}
+              loading="lazy"
+              decoding="async"
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
             {/* Gradient Scrim */}
@@ -95,6 +99,8 @@ export function FeaturedCollections() {
             <img 
               src={COLLECTIONS[2].image} 
               alt={COLLECTIONS[2].title}
+              loading="lazy"
+              decoding="async"
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
             {/* Gradient Scrim */}
