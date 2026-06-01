@@ -47,7 +47,7 @@ export function AnnouncementBar({ onDismissToggle }: AnnouncementBarProps) {
     }
   };
 
-  if (!mounted || !isVisible) return null;
+  if (!mounted || !isVisible || offers.length === 0) return null;
 
   // Exact fallback if no active offers, or dynamic text if offers exist
   const activeText = offers.length > 0 

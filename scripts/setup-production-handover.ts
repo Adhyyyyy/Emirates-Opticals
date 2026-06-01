@@ -3,7 +3,8 @@ import { PrismaPg } from "@prisma/adapter-pg";
 import pg from "pg";
 import { createClient } from "@supabase/supabase-js";
 import * as dotenv from "dotenv";
-import { resolve } from "path";
+import { resolve, join } from "path";
+import * as fs from "fs";
 
 // Load environment variables from workspace root
 dotenv.config({ path: resolve(process.cwd(), ".env") });
@@ -156,6 +157,38 @@ async function setupProductionHandover() {
     console.log("   - Cleared product catalog entities.");
     await prisma.user.deleteMany({});
     console.log("   - Cleared User roles registry.");
+    await prisma.banner.deleteMany({});
+    console.log("   - Cleared marketing banners/offers.");
+    await prisma.testimonial.deleteMany({});
+    console.log("   - Cleared customer testimonials.");
+    await prisma.campaign.deleteMany({});
+    console.log("   - Cleared seasonal campaigns.");
+
+    // Clear dynamic local dynamic JSON data files
+    try {
+      const dataFiles = [
+        "jobs.json",
+        "applications.json",
+        "banners.json",
+        "offers.json",
+        "activity-logs.json"
+      ];
+      
+      for (const file of dataFiles) {
+        const filePath = join(process.cwd(), "lib", "data", file);
+        fs.writeFileSync(filePath, "[]", "utf-8");
+        console.log(`   - Cleared dynamic local JSON file: ${file}`);
+      }
+
+      // Delete instagram-cache.json so it auto-generates correctly on page load
+      const instagramCachePath = join(process.cwd(), "lib", "data", "instagram-cache.json");
+      if (fs.existsSync(instagramCachePath)) {
+        fs.unlinkSync(instagramCachePath);
+        console.log("   - Cleared Instagram cache registry for fresh dynamic sync.");
+      }
+    } catch (fsError) {
+      console.warn("   - Warning: Could not clear local dynamic JSON files.", fsError);
+    }
 
     // 3. Upsert the 10 real Strategic Kerala Showrooms
     console.log("🌱 Establishing registry for the 10 real Kerala boutiques...");

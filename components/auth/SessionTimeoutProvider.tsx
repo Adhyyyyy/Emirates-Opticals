@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useEffect, useRef } from "react";
 import { signOut } from "@/actions/auth";
@@ -74,8 +74,11 @@ export function SessionTimeoutProvider({ children }: { children: React.ReactNode
     try {
       await signOut();
     } catch (err) {
+      if (err instanceof Error && err.message.includes("NEXT_REDIRECT")) {
+        return;
+      }
       // Force reload to login if action fails
-      window.location.href = "/auth/login?expired=true";
+      window.location.href = "/login?expired=true";
     }
   };
 

@@ -100,19 +100,44 @@ export async function syncInstagramFeed() {
   try {
     ensureCacheExists();
     
-    // Simulate hitting the Instagram Basic Display API endpoint
-    // To make this fully functional without third-party tokens, we fetch new dynamic assets
-    // while keeping the schema perfectly correct. 
-    await new Promise(resolve => setTimeout(resolve, 800)); // slight latency to mirror network calls
+    const token = process.env.INSTAGRAM_ACCESS_TOKEN;
+    let posts: any[] = [];
 
-    // Dynamic permutation generation to show "latest content automatically" upon sync!
-    const randomizedPosts = [...INITIAL_FALLBACK_POSTS].sort(() => Math.random() - 0.5);
+    if (token) {
+      console.log("🔗 Instagram Access Token detected. Initiating Graph API synchronization...");
+      const response = await fetch(
+        `https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,permalink,thumbnail_url,timestamp&limit=6&access_token=${token}`
+      );
+      
+      if (response.ok) {
+        const result = await response.json();
+        if (result && result.data) {
+          posts = result.data
+            .filter((item: any) => ["IMAGE", "CAROUSEL_ALBUM"].includes(item.media_type))
+            .map((item: any) => ({
+              id: item.id,
+              imageUrl: item.media_url,
+              permalink: item.permalink,
+              caption: item.caption || "Life in Focus — Emirates Optician"
+            }));
+          console.log(`✅ Successfully synchronized ${posts.length} live Instagram posts.`);
+        }
+      } else {
+        console.warn(`⚠️ Instagram API returned status: ${response.status}. Falling back to curated cache.`);
+      }
+    }
+
+    // Fallback to high-fidelity curated dynamic posts if no token is configured or fetch yielded empty
+    if (posts.length === 0) {
+      console.log("ℹ️ No Instagram Token configured or feed empty. Curating high-fidelity visual assets.");
+      posts = [...INITIAL_FALLBACK_POSTS].sort(() => Math.random() - 0.5);
+    }
 
     const updatedData = {
       handle: "@emiratesoptician_opticals",
       status: "ACTIVE",
       lastSync: new Date().toISOString(),
-      posts: randomizedPosts
+      posts: posts
     };
 
     fs.writeFileSync(CACHE_FILE_PATH, JSON.stringify(updatedData, null, 2), "utf-8");

@@ -86,7 +86,7 @@ export async function proxy(request: NextRequest) {
   // --- SCALEABLE ROUTE PROTECTION ---
   if (pathname.startsWith('/admin') || pathname.startsWith('/dashboard') || pathname.startsWith('/account')) {
     if (!user) {
-      return NextResponse.redirect(new URL('/auth/login', request.url))
+      return NextResponse.redirect(new URL('/login', request.url))
     }
 
     const userRole = (user.app_metadata?.role as any) || 'CUSTOMER'

@@ -3,7 +3,6 @@ import {
   ShoppingBag, 
   Briefcase, 
   Tag, 
-  Shield,
   LucideIcon
 } from "lucide-react";
 import { UserRole } from "@/lib/auth/rbac";
@@ -39,12 +38,6 @@ export const ADMIN_NAV_ITEMS: NavItem[] = [
     href: "/admin/offers",
     icon: Tag,
     roles: ["SUPER_ADMIN", "BRANCH_ADMIN"],
-  },
-  {
-    title: "Admins",
-    href: "/admin/admins",
-    icon: Shield,
-    roles: ["SUPER_ADMIN"],
   },
 ];
 
