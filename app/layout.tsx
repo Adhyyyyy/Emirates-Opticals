@@ -17,9 +17,14 @@ export const metadata: Metadata = {
   },
   description: 'Experience authentic luxury eyewear, international boutique sunglasses, and computerized eye testing across our premium Kerala optician showrooms.',
   icons: {
-    icon: "/assets/emirates_logo.png",
-    apple: "/assets/emirates_logo.png",
+    icon: [
+      { url: "/assets/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/assets/favicon-16x16.png", sizes: "16x16", type: "image/png" }
+    ],
+    shortcut: "/assets/favicon.ico",
+    apple: "/assets/apple-touch-icon.png",
   },
+  manifest: "/assets/site.webmanifest",
   alternates: {
     canonical: "/",
   },

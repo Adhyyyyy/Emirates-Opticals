@@ -2,8 +2,8 @@ import React from "react";
 import { ContactPageContent } from "@/components/sections/contact/ContactPageContent";
 
 export const metadata = {
-  title: "Contact Us & Book Eye Test | Emirates Optician",
-  description: "Book a free professional eye test at any Emirates Optician branch across Kerala. Schedule your appointment online.",
+  title: "Contact Showrooms & Branch Locations in Kerala | Emirates Optician",
+  description: "Get in touch with Emirates Optician. Find direct contact numbers, Google Map locations, and store hours for Changanassery, Thiruvalla, Kottayam, Angamaly, and other showrooms.",
   alternates: { canonical: "/contact" },
 };
 

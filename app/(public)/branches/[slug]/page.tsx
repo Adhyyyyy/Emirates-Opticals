@@ -4,6 +4,7 @@ import Link from "next/link";
 import { MapPin, Phone, Clock, ShieldCheck, Glasses, Calendar } from "lucide-react";
 
 // Full Comprehensive Data for All 10 Strategic Kerala Locations
+// Full Comprehensive Data for All 10 Strategic Kerala Locations
 const BRANCH_DATA: Record<string, {
   name: string;
   landmark: string;
@@ -12,6 +13,11 @@ const BRANCH_DATA: Record<string, {
   hours: string;
   mapEmbed: string;
   metaDesc: string;
+  image: string;
+  latitude: number;
+  longitude: number;
+  openTime: string;
+  closeTime: string;
 }> = {
   kottayam: {
     name: "Kottayam Branch",
@@ -20,7 +26,12 @@ const BRANCH_DATA: Record<string, {
     phone: "+91 85478 66755",
     hours: "Monday - Saturday: 09:00 AM - 08:00 PM (Sunday Closed)",
     mapEmbed: "https://maps.google.com/maps?q=9.5916,76.5222&t=&z=15&ie=UTF8&iwloc=&output=embed",
-    metaDesc: "Discover high-fidelity international eyewear brands and professional optometric eye examinations at Emirates Optician MC Road Kottayam."
+    metaDesc: "Discover high-fidelity international eyewear brands and professional optometric eye examinations at Emirates Optician MC Road Kottayam.",
+    image: "/branches/kottayam.png",
+    latitude: 9.5916,
+    longitude: 76.5222,
+    openTime: "09:00",
+    closeTime: "20:00"
   },
   changanassery: {
     name: "Changanassery Branch",
@@ -29,7 +40,12 @@ const BRANCH_DATA: Record<string, {
     phone: "+91 87140 32601",
     hours: "Monday - Saturday: 09:30 AM - 07:30 PM (Sunday Closed)",
     mapEmbed: "https://maps.google.com/maps?q=9.4447,76.5413&t=&z=15&ie=UTF8&iwloc=&output=embed",
-    metaDesc: "Get premium optical diagnostic eye testing and authentic sunglasses collections at Emirates Optician MC Road Changanassery."
+    metaDesc: "Get premium optical diagnostic eye testing and authentic sunglasses collections at Emirates Optician MC Road Changanassery.",
+    image: "/branches/changanssery.png",
+    latitude: 9.4447,
+    longitude: 76.5413,
+    openTime: "09:30",
+    closeTime: "19:30"
   },
   thiruvalla: {
     name: "Thiruvalla Branch",
@@ -38,7 +54,12 @@ const BRANCH_DATA: Record<string, {
     phone: "+91 87140 32602",
     hours: "Monday - Saturday: 09:30 AM - 07:30 PM (Sunday Closed)",
     mapEmbed: "https://maps.google.com/maps?q=9.3835,76.5740&t=&z=15&ie=UTF8&iwloc=&output=embed",
-    metaDesc: "Experience luxury styling consultations and computerized eye examinations at Emirates Optician Pushpagiri road Thiruvalla."
+    metaDesc: "Experience luxury styling consultations and computerized eye examinations at Emirates Optician Pushpagiri road Thiruvalla.",
+    image: "/branches/thiruvalla.png",
+    latitude: 9.3835,
+    longitude: 76.5740,
+    openTime: "09:30",
+    closeTime: "19:30"
   },
   kumbanad: {
     name: "Kumbanad Branch",
@@ -47,7 +68,12 @@ const BRANCH_DATA: Record<string, {
     phone: "+91 87140 32603",
     hours: "Monday - Saturday: 09:30 AM - 07:30 PM (Sunday Closed)",
     mapEmbed: "https://maps.google.com/maps?q=9.3892,76.6577&t=&z=15&ie=UTF8&iwloc=&output=embed",
-    metaDesc: "Find authentic luxury sunglasses and specialized contact lens solutions at Emirates Optician TK Road Kumbanad branch showroom."
+    metaDesc: "Find authentic luxury sunglasses and specialized contact lens solutions at Emirates Optician TK Road Kumbanad branch showroom.",
+    image: "/branches/kumbanad.png",
+    latitude: 9.3892,
+    longitude: 76.6577,
+    openTime: "09:30",
+    closeTime: "19:30"
   },
   kothamangalam: {
     name: "Kothamangalam Branch",
@@ -56,7 +82,12 @@ const BRANCH_DATA: Record<string, {
     phone: "+91 87140 32607",
     hours: "Monday - Saturday: 09:00 AM - 08:00 PM (Sunday Closed)",
     mapEmbed: "https://maps.google.com/maps?q=10.0531,76.6218&t=&z=15&ie=UTF8&iwloc=&output=embed",
-    metaDesc: "Your trusted neighborhood optical store in Kothamangalam for authentic fashion eyewear, frames, and precise computerized eye checks."
+    metaDesc: "Your trusted neighborhood optical store in Kothamangalam for authentic fashion eyewear, frames, and precise computerized eye checks.",
+    image: "/branches/Kothamangalam.png",
+    latitude: 10.0531,
+    longitude: 76.6218,
+    openTime: "09:00",
+    closeTime: "20:00"
   },
   pandalam: {
     name: "Pandalam Branch",
@@ -65,7 +96,12 @@ const BRANCH_DATA: Record<string, {
     phone: "+91 87140 32606",
     hours: "Monday - Saturday: 09:30 AM - 07:30 PM (Sunday Closed)",
     mapEmbed: "https://maps.google.com/maps?q=9.2312,76.6133&t=&z=15&ie=UTF8&iwloc=&output=embed",
-    metaDesc: "Enjoy elite eyewear collections and highly accurate computerized eye vision tests at Emirates Optician MC Road Pandalam."
+    metaDesc: "Enjoy elite eyewear collections and highly accurate computerized eye vision tests at Emirates Optician MC Road Pandalam.",
+    image: "/branches/Pandalam.png",
+    latitude: 9.2312,
+    longitude: 76.6133,
+    openTime: "09:30",
+    closeTime: "19:30"
   },
   ettumanur: {
     name: "Ettumanur Branch",
@@ -74,7 +110,12 @@ const BRANCH_DATA: Record<string, {
     phone: "+91 87140 32604",
     hours: "Monday - Saturday: 09:00 AM - 08:00 PM (Sunday Closed)",
     mapEmbed: "https://maps.google.com/maps?q=9.6702,76.5621&t=&z=15&ie=UTF8&iwloc=&output=embed",
-    metaDesc: "Premium global optical boutique in Ettumanur providing authorized luxury frames, sunglasses, and optometric eye care checks."
+    metaDesc: "Premium global optical boutique in Ettumanur providing authorized luxury frames, sunglasses, and optometric eye care checks.",
+    image: "/branches/ettumanur.png",
+    latitude: 9.6702,
+    longitude: 76.5621,
+    openTime: "09:00",
+    closeTime: "20:00"
   },
   angamaly: {
     name: "Angamaly Branch",
@@ -83,7 +124,12 @@ const BRANCH_DATA: Record<string, {
     phone: "+91 87140 32605",
     hours: "Monday - Saturday: 09:00 AM - 08:00 PM (Sunday Closed)",
     mapEmbed: "https://maps.google.com/maps?q=10.1983,76.3862&t=&z=15&ie=UTF8&iwloc=&output=embed",
-    metaDesc: "Your trusted destination in Angamaly for premium global brand sunglasses, computerized optical testing, and frame consulting."
+    metaDesc: "Your trusted destination in Angamaly for premium global brand sunglasses, computerized optical testing, and frame consulting.",
+    image: "/branches/angamaly.png",
+    latitude: 10.1983,
+    longitude: 76.3862,
+    openTime: "09:00",
+    closeTime: "20:00"
   },
   irumpanam: {
     name: "Irumpanam Branch",
@@ -92,7 +138,12 @@ const BRANCH_DATA: Record<string, {
     phone: "+91 88899 90533",
     hours: "Monday - Saturday: 10:00 AM - 08:00 PM (Sunday Closed)",
     mapEmbed: "https://maps.google.com/maps?q=9.9576,76.3478&t=&z=15&ie=UTF8&iwloc=&output=embed",
-    metaDesc: "Shop international luxury eyewear brands and receive comprehensive optician eye diagnostics at Emirates Optician Irumpanam showroom."
+    metaDesc: "Shop international luxury eyewear brands and receive comprehensive optician eye diagnostics at Emirates Optician Irumpanam showroom.",
+    image: "/branches/Irumpanam.png",
+    latitude: 9.9576,
+    longitude: 76.3478,
+    openTime: "10:00",
+    closeTime: "20:00"
   }
 };
 
@@ -106,9 +157,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const resolvedParams = await params;
   const branch = BRANCH_DATA[resolvedParams.slug];
   if (!branch) return {};
+  const cityName = branch.name.replace(" Branch", "");
   return {
-    title: `Premium Optician in ${branch.name} | Eye Testing & Luxury Eyewear`,
+    title: `Best Premium Optician in ${cityName} | Eye Test & Glasses | Emirates Optician`,
     description: branch.metaDesc,
+    alternates: { canonical: `/branches/${resolvedParams.slug}` }
   };
 }
 
@@ -117,21 +170,47 @@ export default async function BranchPage({ params }: { params: Promise<{ slug: s
   const branch = BRANCH_DATA[resolvedParams.slug];
   if (!branch) notFound();
 
+  const cityName = branch.name.replace(" Branch", "");
+
   // Custom Local OpticalStore Schema
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "OpticalStore",
-    "name": `Emirates Optician - ${branch.name}`,
+    "name": `Emirates Optician - ${cityName}`,
     "description": branch.metaDesc,
+    "image": `https://emiratesoptician.in${branch.image}`,
+    "logo": "https://emiratesoptician.in/assets/favicon-32x32.png",
+    "url": `https://emiratesoptician.in/branches/${resolvedParams.slug}`,
+    "telephone": branch.phone,
+    "priceRange": "$$$$",
+    "currenciesAccepted": "INR",
+    "paymentAccepted": "Cash, Credit Card, UPI",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": branch.address,
-      "addressLocality": branch.name,
+      "addressLocality": cityName,
       "addressRegion": "Kerala",
       "addressCountry": "IN"
     },
-    "telephone": branch.phone,
-    "priceRange": "$$$$"
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": branch.latitude,
+      "longitude": branch.longitude
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        "opens": branch.openTime,
+        "closes": branch.closeTime
+      }
+    ],
+    "parentOrganization": {
+      "@type": "LocalBusiness",
+      "name": "Emirates Optician",
+      "url": "https://emiratesoptician.in",
+      "logo": "https://emiratesoptician.in/assets/favicon-32x32.png"
+    }
   };
 
   return (

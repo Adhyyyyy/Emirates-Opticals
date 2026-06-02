@@ -3,8 +3,8 @@ import { BranchGrid } from "@/components/sections/BranchGrid";
 import { HelpChoosingCTA } from "@/components/sections/HelpChoosingCTA";
 
 export const metadata = {
-  title: "Our Branches | Emirates Optician",
-  description: "Visit our premium optical destinations across Kerala for authentic luxury eyewear and professional eye care.",
+  title: "Optical Showrooms & Eye Testing Centres in Kerala | Emirates Optician",
+  description: "Locate your nearest Emirates Optician showroom in Kerala (including Changanassery, Thiruvalla, Kottayam, Angamaly, Ettumanur, Irumpanam, Kothamangalam, Pandalam, Kumbanad). Visit us for professional eye care.",
   alternates: { canonical: "/branches" },
 };
 

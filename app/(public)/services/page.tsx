@@ -7,8 +7,8 @@ import { ServiceSunglasses } from "@/components/sections/services/ServiceSunglas
 import { HelpChoosingCTA } from "@/components/sections/HelpChoosingCTA";
 
 export const metadata = {
-  title: "Professional Optical Services | Eye Care - Emirates Optician",
-  description: "Experience expert eye care, advanced lens technology, luxury sunglasses, and personalized styling consultation at Emirates Optician.",
+  title: "Computerized Eye Testing & Prescription Glasses Services | Emirates Optician",
+  description: "Experience state-of-the-art computerized eye testing, personalized luxury frame styling, and advanced prescription lens solutions at Emirates Optician showrooms across Kerala.",
   alternates: { canonical: "/services" },
 };
 

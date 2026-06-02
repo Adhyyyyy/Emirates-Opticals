@@ -4,8 +4,8 @@ import { BookingForm } from "@/components/sections/booking/BookingForm";
 import { BookingFAQ } from "@/components/sections/booking/BookingFAQ";
 
 export const metadata = {
-  title: "Book Free Eye Test | Professional Eye Care - Emirates Optician",
-  description: "Schedule your free professional eye examination at Emirates Optician. Experience expert consultation and personalized eyewear guidance across Kerala.",
+  title: "Book Computerized Eye Test & Vision Consultation Online | Emirates Optician",
+  description: "Schedule a professional computerized eye checkup and designer frame styling consultation online at any Emirates Optician showroom across Kerala.",
   alternates: { canonical: "/book-eye-test" },
 };
 

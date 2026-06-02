@@ -4,8 +4,8 @@ import { FullBrandGrid } from "@/components/sections/brands/FullBrandGrid";
 import { HelpChoosingCTA } from "@/components/sections/HelpChoosingCTA";
 
 export const metadata = {
-  title: "Global Luxury Brands | Authentic Eyewear - Emirates Optician",
-  description: "Discover a curated collection of authentic luxury eyewear brands at Emirates Optician, featuring Prada, Cartier, Gucci, Ray-Ban, and more.",
+  title: "Luxury Sunglasses & Designer Glasses Brands | Emirates Optician",
+  description: "Browse 100% authentic luxury designer sunglasses and premium spectacles frames from brands like Cartier, Prada, Gucci, and Ray-Ban at our premium Kerala showrooms.",
   alternates: { canonical: "/brands" },
 };
 

@@ -39,42 +39,89 @@ export default async function HomePage() {
 
   return (
     <div className="flex flex-col w-full">
+      {/* Visually Hidden Semantic Heading for Search Engines */}
+      <h1 className="sr-only">Emirates Optician - Premium Optical Showrooms & Advanced Computerized Eye Testing in Kerala</h1>
 
-      {/* ── Structured Data: Organization + LocalBusiness ── */}
+      {/* ── Structured Data: Organization + LocalBusiness + FAQPage ── */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "LocalBusiness",
-          "@id": "https://emiratesoptician.in",
-          "name": "Emirates Optician",
-          "description": "Luxury optical boutique offering authentic international eyewear brands, professional eye testing, and expert frame styling across 9 showrooms in Kerala, India.",
-          "url": "https://emiratesoptician.in",
-          "logo": "https://emiratesoptician.in/assets/emirates_logo.png",
-          "image": "https://emiratesoptician.in/og-image.jpg",
-          "telephone": "+91-9988674574",
-          "email": "info@emiratesoptician.in",
-          "priceRange": "$$$$",
-          "currenciesAccepted": "INR",
-          "paymentAccepted": "Cash, Credit Card, UPI",
-          "areaServed": "Kerala, India",
-          "address": {
-            "@type": "PostalAddress",
-            "addressRegion": "Kerala",
-            "addressCountry": "IN"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify([
+          {
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "@id": "https://emiratesoptician.in",
+            "name": "Emirates Optician",
+            "description": "Luxury optical boutique offering authentic international eyewear brands, professional eye testing, and expert frame styling across 9 showrooms in Kerala, India.",
+            "url": "https://emiratesoptician.in",
+            "logo": "https://emiratesoptician.in/assets/emirates_logo.png",
+            "image": "https://emiratesoptician.in/og-image.jpg",
+            "telephone": "+91-9988674574",
+            "email": "info@emiratesoptician.in",
+            "priceRange": "$$$$",
+            "currenciesAccepted": "INR",
+            "paymentAccepted": "Cash, Credit Card, UPI",
+            "areaServed": [
+              "Changanassery",
+              "Thiruvalla",
+              "Kumbanad",
+              "Kothamangalam",
+              "Pandalam",
+              "Kottayam",
+              "Ettumanur",
+              "Angamaly",
+              "Irumpanam",
+              "Kochi",
+              "Ernakulam",
+              "Kerala"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressRegion": "Kerala",
+              "addressCountry": "IN"
+            },
+            "sameAs": [
+              "https://www.instagram.com/emiratesoptician"
+            ],
+            "openingHoursSpecification": [
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+                "opens": "09:00",
+                "closes": "20:00"
+              }
+            ]
           },
-          "sameAs": [
-            "https://www.instagram.com/emiratesoptician"
-          ],
-          "openingHoursSpecification": [
-            {
-              "@type": "OpeningHoursSpecification",
-              "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
-              "opens": "09:00",
-              "closes": "20:00"
-            }
-          ]
-        })}}
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Where can I get a professional computerized eye test in Kerala?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "You can get a comprehensive computerized eye test at any Emirates Optician showroom across Kerala, including Changanassery, Thiruvalla, Kumbanad, Kothamangalam, Pandalam, Kottayam, Ettumanur, Angamaly, and Irumpanam (Kochi/Ernakulam). All clinics are equipped with state-of-the-art diagnostic equipment operated by qualified optometrists."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Which luxury glasses and sunglasses brands does Emirates Optician sell?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Emirates Optician offers a certified portfolio of 100% authentic international eyewear brands including Cartier, Prada, Gucci, Ray-Ban, Oakley, Porsche Design, and more. Each frame comes with original brand certificates and official warranties."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How can I book an eye test appointment online for Kochi, Kottayam, or other branches?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "You can easily schedule a computerized eye test or luxury frame styling consultation online by visiting the 'Book Eye Test' page on our website or calling your nearest showroom branch directly."
+                }
+              }
+            ]
+          }
+        ])}}
       />
 
       {/* 1. HERO â€” Cinematic, with dynamic visual slides & active offer marquee */}
