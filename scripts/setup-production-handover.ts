@@ -76,16 +76,6 @@ const REAL_BRANCHES = [
     coordinates: "9.2312,76.6133"
   },
   {
-    name: "Emirates Optician, Kakkanad",
-    slug: "kakkanad",
-    address: "Seaport - Airport Rd, Chittethukara, Kakkanad, Kerala 682037, India",
-    location: "Kakkanad",
-    phone: "+91 77364 41211",
-    whatsapp: "917736441211",
-    timings: "10:00 AM - 9:00 PM",
-    coordinates: "10.0159,76.3418"
-  },
-  {
     name: "Emirates Optician, Kottayam",
     slug: "kottayam",
     address: "M D Commercial Centre, Kottayam - Kumily Rd, opposite Joseph Antony's Petrol Pump, Kottayam, Kerala 686001, India",
@@ -236,14 +226,16 @@ async function setupProductionHandover() {
     const adminsToProvision = [
       {
         email: "super@emiratesoptician.in",
-        password: "EmiratesSuperAdmin2026!",
+        password: process.env.SUPER_ADMIN_PASSWORD || "EmiratesSuperAdmin2026!",
         name: "Master Coordinator",
         role: "SUPER_ADMIN" as const,
         branchSlug: null
       },
       ...REAL_BRANCHES.map(br => ({
         email: `${br.slug}@emiratesoptician.in`,
-        password: `${br.slug.charAt(0).toUpperCase() + br.slug.slice(1)}Admin2026!`,
+        password: process.env.BRANCH_ADMIN_PASSWORD_PREFIX
+          ? `${process.env.BRANCH_ADMIN_PASSWORD_PREFIX}${br.slug.charAt(0).toUpperCase() + br.slug.slice(1)}!`
+          : `${br.slug.charAt(0).toUpperCase() + br.slug.slice(1)}Admin2026!`,
         name: `${br.slug.charAt(0).toUpperCase() + br.slug.slice(1)} Showroom Admin`,
         role: "BRANCH_ADMIN" as const,
         branchSlug: br.slug

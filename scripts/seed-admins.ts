@@ -37,10 +37,9 @@ async function seedAdminsAndLeads() {
 
     const changanassery = branches.find(b => b.slug === "changanassery");
     const thiruvalla = branches.find(b => b.slug === "thiruvalla");
-    const kakkanad = branches.find(b => b.slug === "kakkanad");
 
-    if (!changanassery || !thiruvalla || !kakkanad) {
-      throw new Error("❌ Core branches (changanassery, thiruvalla, kakkanad) are missing from the catalog!");
+    if (!changanassery || !thiruvalla) {
+      throw new Error("❌ Core branches (changanassery, thiruvalla) are missing from the catalog!");
     }
 
     // 2. Define Admin Profiles to Provision
@@ -64,20 +63,14 @@ async function seedAdminsAndLeads() {
         branchId: thiruvalla.id,
       },
       {
-        email: "kakkanad@emirates.com",
-        name: "Faris Rahman",
-        role: "BRANCH_ADMIN" as const,
-        branchId: kakkanad.id,
-      },
-      {
         email: "staff.kochi@emirates.com",
         name: "Meera Nair (Optometrist)",
         role: "STAFF" as const,
-        branchId: kakkanad.id,
+        branchId: changanassery.id,
       }
     ];
 
-    const password = "password123";
+    const password = process.env.DEV_SEED_PASSWORD || "password123";
 
     // Fetch existing Supabase auth users
     const { data: authUsers } = await supabase.auth.admin.listUsers();
@@ -163,7 +156,7 @@ async function seedAdminsAndLeads() {
           customerName: "Ramesh Kumar",
           customerEmail: "ramesh@gmail.com",
           customerPhone: "+91 94470 12345",
-          branchId: kakkanad.id,
+          branchId: changanassery.id,
           date: appointmentDates[0],
           status: "PENDING",
           notes: "Requires a comprehensive eye checkup and consultation for progressive lenses."
@@ -193,7 +186,7 @@ async function seedAdminsAndLeads() {
     await prisma.enquiry.createMany({
       data: [
         {
-          branchId: kakkanad.id,
+          branchId: changanassery.id,
           type: "GENERAL",
           message: "Do you have the Cartier Santos Dumont aviator frames available in stock for a trial today?",
           status: "NEW"
@@ -226,8 +219,7 @@ Emails to test:
 - super@emirates.com       (Super Admin - Global Access)
 - changanassery@emirates.com (Branch Admin - Changanassery)
 - thiruvalla@emirates.com    (Branch Admin - Thiruvalla)
-- kakkanad@emirates.com      (Branch Admin - Kakkanad)
-- staff.kochi@emirates.com   (Staff - Kakkanad)
+- staff.kochi@emirates.com   (Staff - Changanassery)
 ------------------------------------------------------------
     `);
 
