@@ -115,9 +115,9 @@ export function BranchGrid() {
         
         {/* Mobile-Only Page Title */}
         <div className="md:hidden text-center mb-12">
-          <h1 className="text-3xl font-light text-brand-charcoal tracking-[0.2em] uppercase font-heading">
+          <h2 className="text-3xl font-light text-brand-charcoal tracking-[0.2em] uppercase font-heading">
             Our Branches
-          </h1>
+          </h2>
         </div>
         {/* Cinematic Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

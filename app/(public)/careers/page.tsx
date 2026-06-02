@@ -10,6 +10,7 @@ export const revalidate = 0;
 export const metadata = {
   title: "Careers | Join Kerala's Premium Optical Brand - Emirates Optician",
   description: "Explore rewarding career opportunities at Emirates Optician. Join a team dedicated to luxury eyewear, professional eye care, and exceptional retail experiences across Kerala.",
+  alternates: { canonical: "/careers" },
 };
 
 const STATIC_BRANCHES = [

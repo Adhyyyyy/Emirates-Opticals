@@ -75,9 +75,9 @@ export function BookingForm() {
         
         {/* Mobile-Only Page Title (no badges or underlines) */}
         <div className="md:hidden text-center mb-12">
-          <h1 className="text-3xl font-light text-brand-charcoal tracking-[0.2em] uppercase font-heading">
+          <h2 className="text-3xl font-light text-brand-charcoal tracking-[0.2em] uppercase font-heading">
             Book Eye Test
-          </h1>
+          </h2>
         </div>
 
         <div className="max-w-4xl mx-auto">

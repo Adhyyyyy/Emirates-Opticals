@@ -47,9 +47,9 @@ export function CareersOpenPositions({ positions = [], branches = [] }: CareersO
         
         {/* Mobile-Only Page Title */}
         <div className="md:hidden text-center mb-12">
-          <h1 className="text-3xl font-light text-brand-charcoal tracking-[0.2em] uppercase font-heading">
+          <h2 className="text-3xl font-light text-brand-charcoal tracking-[0.2em] uppercase font-heading">
             Careers
-          </h1>
+          </h2>
         </div>
 
 

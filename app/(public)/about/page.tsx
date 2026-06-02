@@ -7,6 +7,7 @@ import { HelpChoosingCTA } from "@/components/sections/HelpChoosingCTA";
 export const metadata = {
   title: "About Us | Emirates Optician",
   description: "Kerala's trusted destination for authentic branded eyewear, professional eye care, and expert styling.",
+  alternates: { canonical: "/about" },
 };
 
 export default function AboutPage() {

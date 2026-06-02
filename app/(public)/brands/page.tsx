@@ -6,6 +6,7 @@ import { HelpChoosingCTA } from "@/components/sections/HelpChoosingCTA";
 export const metadata = {
   title: "Global Luxury Brands | Authentic Eyewear - Emirates Optician",
   description: "Discover a curated collection of authentic luxury eyewear brands at Emirates Optician, featuring Prada, Cartier, Gucci, Ray-Ban, and more.",
+  alternates: { canonical: "/brands" },
 };
 
 export default function BrandsPage() {

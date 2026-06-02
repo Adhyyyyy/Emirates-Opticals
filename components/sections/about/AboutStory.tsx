@@ -19,9 +19,9 @@ export function AboutStory() {
         
         {/* Mobile-Only Page Title */}
         <div className="md:hidden text-center mb-12">
-          <h1 className="text-3xl font-light text-brand-charcoal tracking-[0.2em] uppercase font-heading">
+          <h2 className="text-3xl font-light text-brand-charcoal tracking-[0.2em] uppercase font-heading">
             About Us
-          </h1>
+          </h2>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 

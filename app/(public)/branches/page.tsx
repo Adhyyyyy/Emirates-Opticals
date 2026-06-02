@@ -5,6 +5,7 @@ import { HelpChoosingCTA } from "@/components/sections/HelpChoosingCTA";
 export const metadata = {
   title: "Our Branches | Emirates Optician",
   description: "Visit our premium optical destinations across Kerala for authentic luxury eyewear and professional eye care.",
+  alternates: { canonical: "/branches" },
 };
 
 export default function BranchesPage() {

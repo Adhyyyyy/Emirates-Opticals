@@ -9,6 +9,7 @@ import { HelpChoosingCTA } from "@/components/sections/HelpChoosingCTA";
 export const metadata = {
   title: "Professional Optical Services | Eye Care - Emirates Optician",
   description: "Experience expert eye care, advanced lens technology, luxury sunglasses, and personalized styling consultation at Emirates Optician.",
+  alternates: { canonical: "/services" },
 };
 
 export default function ServicesPage() {

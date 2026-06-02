@@ -153,9 +153,9 @@ export function FullBrandGrid() {
         
         {/* Mobile-Only Page Title */}
         <div className="md:hidden text-center mb-12">
-          <h1 className="text-3xl font-light text-brand-charcoal tracking-[0.2em] uppercase font-heading">
+          <h2 className="text-3xl font-light text-brand-charcoal tracking-[0.2em] uppercase font-heading">
             Global Brands
-          </h1>
+          </h2>
         </div>
 
         {/* Category Selector Tabs */}

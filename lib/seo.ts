@@ -76,7 +76,7 @@ export function getOrganizationSchema() {
     logo: `${SITE_CONFIG.url}/logo.png`,
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: "+91-XXXXXXXXXX",
+      telephone: "+91-9988674574",
       contactType: "customer service",
     },
   };

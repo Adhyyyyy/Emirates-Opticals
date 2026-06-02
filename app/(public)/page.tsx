@@ -40,6 +40,43 @@ export default async function HomePage() {
   return (
     <div className="flex flex-col w-full">
 
+      {/* ── Structured Data: Organization + LocalBusiness ── */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "@id": "https://emiratesoptician.in",
+          "name": "Emirates Optician",
+          "description": "Luxury optical boutique offering authentic international eyewear brands, professional eye testing, and expert frame styling across 9 showrooms in Kerala, India.",
+          "url": "https://emiratesoptician.in",
+          "logo": "https://emiratesoptician.in/assets/emirates_logo.png",
+          "image": "https://emiratesoptician.in/og-image.jpg",
+          "telephone": "+91-9988674574",
+          "email": "info@emiratesoptician.in",
+          "priceRange": "$$$$",
+          "currenciesAccepted": "INR",
+          "paymentAccepted": "Cash, Credit Card, UPI",
+          "areaServed": "Kerala, India",
+          "address": {
+            "@type": "PostalAddress",
+            "addressRegion": "Kerala",
+            "addressCountry": "IN"
+          },
+          "sameAs": [
+            "https://www.instagram.com/emiratesoptician"
+          ],
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+              "opens": "09:00",
+              "closes": "20:00"
+            }
+          ]
+        })}}
+      />
+
       {/* 1. HERO â€” Cinematic, with dynamic visual slides & active offer marquee */}
       <Hero banners={banners} offers={offers} />
 
