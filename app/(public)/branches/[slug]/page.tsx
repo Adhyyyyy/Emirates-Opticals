@@ -96,6 +96,8 @@ const BRANCH_DATA: Record<string, {
   }
 };
 
+export const dynamicParams = true;
+
 export async function generateStaticParams() {
   return Object.keys(BRANCH_DATA).map((slug) => ({ slug }));
 }

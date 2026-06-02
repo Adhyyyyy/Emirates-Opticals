@@ -22,7 +22,7 @@ export const PRODUCTS: Product[] = [
     isFeatured: true,
     isNewArrival: true,
     branches: [
-      { branchName: "Changanassery", branchSlug: "changanassery", whatsapp: "919682929968", stockStatus: "In Stock" }
+      { branchName: "Changanassery", branchSlug: "changanassery", whatsapp: "918714032601", stockStatus: "In Stock" }
 
     ]
   },
@@ -45,8 +45,8 @@ export const PRODUCTS: Product[] = [
     collectionType: "Designer Brands",
     isInHouseProduct: false,
     branches: [
-      { branchName: "Thiruvalla", branchSlug: "thiruvalla", whatsapp: "918000000002", stockStatus: "In Stock" },
-      { branchName: "Pandalam", branchSlug: "pandalam", whatsapp: "918000000005", stockStatus: "In Stock" }
+      { branchName: "Thiruvalla", branchSlug: "thiruvalla", whatsapp: "918714032602", stockStatus: "In Stock" },
+      { branchName: "Pandalam", branchSlug: "pandalam", whatsapp: "918714032606", stockStatus: "In Stock" }
     ]
   },
   {
@@ -90,7 +90,7 @@ export const PRODUCTS: Product[] = [
     collectionType: "Designer Brands",
     isInHouseProduct: false,
     branches: [
-      { branchName: "Changanassery", branchSlug: "changanassery", whatsapp: "919682929968", stockStatus: "Low Stock" }
+      { branchName: "Changanassery", branchSlug: "changanassery", whatsapp: "918714032601", stockStatus: "Low Stock" }
     ]
   }
 ];

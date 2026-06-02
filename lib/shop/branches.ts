@@ -16,14 +16,14 @@ export const BRANCH_DIRECTORY: BranchConfig[] = [
     id: "br-2",
     name: "Thiruvalla",
     slug: "thiruvalla",
-    whatsapp: "+918877665544",
+    whatsapp: "+918714032602",
     location: "Pathanamthitta, Kerala"
   },
   {
     id: "br-3",
     name: "Pandalam",
     slug: "pandalam",
-    whatsapp: "+917766554433",
+    whatsapp: "+918714032606",
     location: "Pathanamthitta, Kerala"
   }
 ];

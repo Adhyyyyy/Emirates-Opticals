@@ -10,7 +10,7 @@ export async function proxy(request: NextRequest) {
     img-src 'self' blob: data: https://res.cloudinary.com https://images.unsplash.com;
     font-src 'self' https://fonts.gstatic.com;
     connect-src 'self' ${process.env.NEXT_PUBLIC_SUPABASE_URL} https://api.cloudinary.com;
-    frame-src 'self';
+    frame-src 'self' https://maps.google.com https://www.google.com;
     object-src 'none';
     base-uri 'self';
     form-action 'self';

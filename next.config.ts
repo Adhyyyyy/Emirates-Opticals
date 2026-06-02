@@ -20,7 +20,7 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: "Content-Security-Policy",
-            value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://images.unsplash.com https://res.cloudinary.com; connect-src 'self' https://*.supabase.co wss://*.supabase.co; frame-ancestors 'none';"
+            value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://images.unsplash.com https://res.cloudinary.com; connect-src 'self' https://*.supabase.co wss://*.supabase.co; frame-src 'self' https://maps.google.com https://www.google.com; frame-ancestors 'none';"
           },
           {
             key: "X-Content-Type-Options",
