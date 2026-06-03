@@ -17,7 +17,7 @@ function getPremiumPriceForBrand(brandSlug: string): number {
       return Math.floor(Math.random() * (18000 - 11500 + 1)) + 11500;
     case "ray-ban":
       return Math.floor(Math.random() * (16500 - 9800 + 1)) + 9800;
-    case "emirates-opticians":
+    case "emirates-optician":
       return Math.floor(Math.random() * (8500 - 4500 + 1)) + 4500;
     case "acuvue":
       return Math.floor(Math.random() * (2500 - 1800 + 1)) + 1800;
