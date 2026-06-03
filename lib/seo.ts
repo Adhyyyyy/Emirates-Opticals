@@ -7,7 +7,7 @@ import { Metadata } from "next";
 
 const SITE_CONFIG = {
   name: "Emirates Optician",
-  description: "Luxury Optical Boutique & Premium Eyewear in Kerala. Expert eye tests, designer frames, and personalized vision care.",
+  description: "100% authentic luxury eyewear & designer sunglasses from authorized brands in Kerala. Visit Emirates Optician for certified computerized eye tests and original brand warranty frames.",
   url: "https://emiratesoptician.in",
   ogImage: "/og-main.jpg",
   twitterHandle: "@emiratesoptician",
@@ -50,12 +50,12 @@ export function constructMetadata({
     },
     icons: {
       icon: [
-        { url: "/assets/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-        { url: "/assets/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+        { url: "/favicon.ico", sizes: "any" },
         { url: "/assets/android-chrome-192x192.png", sizes: "192x192", type: "image/png" },
-        { url: "/assets/android-chrome-512x512.png", sizes: "512x512", type: "image/png" }
+        { url: "/assets/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+        { url: "/assets/favicon-16x16.png", sizes: "16x16", type: "image/png" }
       ],
-      shortcut: "/assets/favicon.ico",
+      shortcut: "/favicon.ico",
       apple: "/assets/apple-touch-icon.png",
     },
     manifest: "/assets/site.webmanifest",

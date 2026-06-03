@@ -15,15 +15,15 @@ export const metadata: Metadata = {
     default: 'Emirates Optician | Authentic Luxury Eyewear & Eye Testing Kerala',
     template: '%s | Emirates Optician'
   },
-  description: 'Experience authentic luxury eyewear, international boutique sunglasses, and computerized eye testing across our premium Kerala optician showrooms.',
+  description: '100% authentic luxury eyewear & designer sunglasses from authorized brands in Kerala. Visit Emirates Optician for certified computerized eye tests and original brand warranty frames.',
   icons: {
     icon: [
-      { url: "/assets/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { url: "/assets/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon.ico", sizes: "any" },
       { url: "/assets/android-chrome-192x192.png", sizes: "192x192", type: "image/png" },
-      { url: "/assets/android-chrome-512x512.png", sizes: "512x512", type: "image/png" }
+      { url: "/assets/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/assets/favicon-16x16.png", sizes: "16x16", type: "image/png" }
     ],
-    shortcut: "/assets/favicon.ico",
+    shortcut: "/favicon.ico",
     apple: "/assets/apple-touch-icon.png",
   },
   manifest: "/assets/site.webmanifest",

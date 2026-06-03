@@ -40,7 +40,7 @@ export default async function HomePage() {
   return (
     <div className="flex flex-col w-full">
       {/* Visually Hidden Semantic Heading for Search Engines */}
-      <h1 className="sr-only">Emirates Optician - Premium Optical Showrooms & Advanced Computerized Eye Testing in Kerala</h1>
+      <h1 className="sr-only">Emirates Optician | Authorized Luxury Eyewear Showrooms & Certified Eye Testing in Kerala</h1>
 
       {/* ── Structured Data: Organization + LocalBusiness + FAQPage ── */}
       <script
