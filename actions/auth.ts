@@ -13,6 +13,7 @@ import { loginSchema } from "@/validations/schemas";
 export async function signIn(formData: FormData) {
   const email = formData.get("email") as string;
   const password = formData.get("password") as string;
+  const remember = formData.get("remember") === "true";
   
   // 1. Validation
   const validated = loginSchema.safeParse({ email, password });
@@ -30,7 +31,10 @@ export async function signIn(formData: FormData) {
           return cookieStore.get(name)?.value;
         },
         set(name: string, value: string, options: CookieOptions) {
-          cookieStore.set({ name, value, ...options });
+          const cookieOptions = remember 
+            ? { ...options, maxAge: 60 * 60 * 24 * 365 } // Enforce 1 year persistence
+            : { ...options, maxAge: undefined, expires: undefined }; // Session-only
+          cookieStore.set({ name, value, ...cookieOptions });
         },
         remove(name: string, options: CookieOptions) {
           cookieStore.set({ name, value: "", ...options });
@@ -47,6 +51,13 @@ export async function signIn(formData: FormData) {
 
   if (error) {
     return { error: error.message };
+  }
+
+  // Set persistent login helper cookie for the proxy to read on refreshes
+  if (remember) {
+    cookieStore.set({ name: "sb-remember-me", value: "true", maxAge: 60 * 60 * 24 * 365, path: "/" });
+  } else {
+    cookieStore.set({ name: "sb-remember-me", value: "false", path: "/" });
   }
 
   // 3. Redirect based on role
@@ -79,6 +90,7 @@ export async function signOut() {
     }
   );
 
-  await supabase.auth.signOut();
+  await supabase.auth.signOut({ scope: "local" });
+  cookieStore.set({ name: "sb-remember-me", value: "", maxAge: -1, path: "/" });
   redirect("/login");
 }

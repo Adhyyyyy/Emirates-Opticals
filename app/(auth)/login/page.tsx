@@ -40,6 +40,11 @@ export default function LoginPage() {
       formData.append("email", data.email);
       formData.append("password", data.password);
 
+      const keepSessionCheckbox = document.getElementById("keep-session-checkbox") as HTMLInputElement;
+      if (keepSessionCheckbox) {
+        formData.append("remember", String(keepSessionCheckbox.checked));
+      }
+
       const result = await signIn(formData);
       if (result?.error) {
         setAuthError(result.error);
@@ -179,14 +184,16 @@ export default function LoginPage() {
           {/* Session Persistent Flag */}
           <div className="flex items-center justify-between pt-1">
             <label className="flex items-center gap-3 cursor-pointer select-none group">
-              <input 
-                type="checkbox" 
-                className="sr-only peer"
-                defaultChecked
-              />
-              <div className="w-4 h-4 border border-black/10 bg-white/40 rounded-[2px] backdrop-blur-md flex items-center justify-center peer-checked:bg-[#C9A84C] peer-checked:border-[#C9A84C] transition-all duration-300">
+              <div className="relative flex items-center justify-center">
+                <input 
+                  id="keep-session-checkbox"
+                  type="checkbox" 
+                  className="sr-only peer"
+                  defaultChecked
+                />
+                <div className="w-4 h-4 border border-black/10 bg-white/40 rounded-[2px] backdrop-blur-md transition-all duration-300 peer-checked:bg-[#C9A84C] peer-checked:border-[#C9A84C]" />
                 <svg 
-                  className="w-2.5 h-2.5 text-[#0A0A0A] stroke-[4]" 
+                  className="w-2.5 h-2.5 text-[#0A0A0A] stroke-[4] absolute pointer-events-none opacity-0 scale-50 peer-checked:opacity-100 peer-checked:scale-100 transition-all duration-300" 
                   fill="none" 
                   viewBox="0 0 24 24" 
                   stroke="currentColor"

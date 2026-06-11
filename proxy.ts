@@ -1,8 +1,9 @@
-import { createServerClient, type CookieOptions } from '@supabase/ssr'
+import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 
 export async function proxy(request: NextRequest) {
   // --- SECURITY HEADERS & CSP ---
+  const isProd = process.env.NODE_ENV === 'production';
   const cspHeader = `
     default-src 'self';
     script-src 'self' 'unsafe-eval' 'unsafe-inline';
@@ -15,7 +16,7 @@ export async function proxy(request: NextRequest) {
     base-uri 'self';
     form-action 'self';
     frame-ancestors 'none';
-    upgrade-insecure-requests;
+    ${isProd ? 'upgrade-insecure-requests;' : ''}
   `.replace(/\s{2,}/g, ' ').trim();
 
   let response = NextResponse.next({
@@ -36,42 +37,24 @@ export async function proxy(request: NextRequest) {
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {
-        get(name: string) {
-          return request.cookies.get(name)?.value
+        getAll() {
+          return request.cookies.getAll()
         },
-        set(name: string, value: string, options: CookieOptions) {
-          request.cookies.set({
-            name,
-            value,
-            ...options,
-          })
+        setAll(cookiesToSet) {
+          const remember = request.cookies.get("sb-remember-me")?.value === "true";
+
+          cookiesToSet.forEach(({ name, value }) =>
+            request.cookies.set(name, value)
+          );
           response = NextResponse.next({
-            request: {
-              headers: request.headers,
-            },
-          })
-          response.cookies.set({
-            name,
-            value,
-            ...options,
-          })
-        },
-        remove(name: string, options: CookieOptions) {
-          request.cookies.set({
-            name,
-            value: '',
-            ...options,
-          })
-          response = NextResponse.next({
-            request: {
-              headers: request.headers,
-            },
-          })
-          response.cookies.set({
-            name,
-            value: '',
-            ...options,
-          })
+            request,
+          });
+          cookiesToSet.forEach(({ name, value, options }) => {
+            const cookieOptions = remember 
+              ? { ...options, maxAge: 60 * 60 * 24 * 365 } // Persist for 1 year if checked
+              : { ...options, maxAge: undefined, expires: undefined }; // Session-only if unchecked
+            response.cookies.set(name, value, cookieOptions);
+          });
         },
       },
     }
@@ -83,9 +66,22 @@ export async function proxy(request: NextRequest) {
 
   const pathname = request.nextUrl.pathname;
 
+  // --- AUTO-REDIRECT LOGGED IN USERS AWAY FROM LOGIN ---
+  if (pathname === '/login' && user) {
+    const userRole = (user.app_metadata?.role as any) || 'CUSTOMER';
+    if (userRole === "SUPER_ADMIN" || userRole === "BRANCH_ADMIN") {
+      return NextResponse.redirect(new URL('/admin', request.url));
+    } else if (userRole === "STAFF") {
+      return NextResponse.redirect(new URL('/admin/appointments', request.url));
+    } else {
+      return NextResponse.redirect(new URL('/account', request.url));
+    }
+  }
+
   // --- SCALEABLE ROUTE PROTECTION ---
   if (pathname.startsWith('/admin') || pathname.startsWith('/dashboard') || pathname.startsWith('/account')) {
     if (!user) {
+      console.log("🚫 [Proxy] Redirecting to /login because user is null");
       return NextResponse.redirect(new URL('/login', request.url))
     }
 

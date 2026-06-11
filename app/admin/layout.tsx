@@ -32,6 +32,7 @@ export default async function AdminLayout({
   } = await supabase.auth.getUser();
 
   if (!user) {
+    console.log("🚫 [Layout] Redirecting to /login because user is null");
     redirect("/login");
   }
 
