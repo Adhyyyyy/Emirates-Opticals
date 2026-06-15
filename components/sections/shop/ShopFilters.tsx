@@ -6,118 +6,142 @@ import { ChevronDown, Filter, X, SlidersHorizontal, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
-const FILTER_GROUPS = [
-  {
-    title: "Collection Type",
-    type: "button-group",
-    options: ["Designer Brands", "Emirates Signature"]
-  },
-  {
-    title: "Gender",
-    type: "grid",
-    options: ["Men", "Women", "Unisex", "Kids"]
-  },
-  {
-    title: "Price Range",
-    type: "price-pills",
-    options: [
-      "Under ₹5,000",
-      "₹5,000 - ₹15,000",
-      "₹15,000 - ₹30,000",
-      "₹30,000 - ₹50,000",
-      "Luxury (Above ₹50,000)"
-    ]
-  },
-  {
-    title: "Category",
-    type: "list",
-    options: ["Optical Frames", "Sunglasses", "Contact Lenses", "Lens Solutions", "Luxury Collections", "New Arrivals"]
-  },
-  {
-    title: "Brand",
-    type: "list",
-    options: [
-      "Acuvue", "Alcon", "Bausch & Lomb", "BVLGARI", "Calvin Klein", "Cartier", 
-      "Chanel", "Diesel", "Dolce & Gabbana", "Emirates Optician", "Gucci", 
-      "Lacoste", "Montblanc", "Oakley", "Police", "Prada", "Ray-Ban", 
-      "Tom Ford", "Vogue Eyewear"
-    ]
-  },
-  // Eyewear Specific Filters
-  {
-    title: "Frame Shape",
-    type: "list",
-    scope: ["Frames"],
-    options: ["Aviator", "Wayfarer", "Rectangular", "Square", "Round", "Cat Eye", "Oval", "Geometric"]
-  },
-  {
-    title: "Frame Material",
-    type: "list",
-    scope: ["Frames"],
-    options: ["Acetate", "Metal", "Titanium", "Gold Plated", "O-Matter", "Carbon Fiber"]
-  },
-  // Contact Lenses Specific Filters
-  {
-    title: "Usage Frequency",
-    type: "list",
-    scope: ["ContactLenses"],
-    options: ["Daily Disposable", "Weekly Disposable", "Monthly Disposable", "Yearly Disposable"]
-  },
-  {
-    title: "Water Content",
-    type: "list",
-    scope: ["ContactLenses"],
-    options: ["38%", "48%", "55%", "68%"]
-  },
-  {
-    title: "Base Curve",
-    type: "list",
-    scope: ["ContactLenses"],
-    options: ["8.4mm", "8.5mm", "8.6mm", "8.7mm", "8.8mm"]
-  },
-  // Precision Lenses Specific Filters
-  {
-    title: "Lens Design",
-    type: "list",
-    scope: ["PrecisionLenses"],
-    options: ["Single Vision", "Progressive", "Bifocal", "Blue-Cut Protective"]
-  },
-  {
-    title: "Material Index",
-    type: "list",
-    scope: ["PrecisionLenses"],
-    options: ["1.50 Standard", "1.56 Mid-Index", "1.61 High-Index", "1.67 Ultra-High", "1.74 Thinnest"]
-  },
-  // Solutions Specific Filters
-  {
-    title: "Volume Capacity",
-    type: "list",
-    scope: ["Solutions"],
-    options: ["60ml", "120ml", "240ml", "360ml"]
-  },
-  {
-    title: "Branches",
-    type: "list",
-    options: [
-      "Changanassery", 
-      "Thiruvalla", 
-      "Kumbanad", 
-      "Kothamangalam", 
-      "Pandalam", 
-      "Kottayam", 
-      "Ettumanur", 
-      "Angamaly", 
-      "Irumpanam"
-    ]
-  }
-];
+interface ShopFiltersProps {
+  availableColors?: string[];
+}
 
-export function ShopFilters() {
+export function ShopFilters({ availableColors = [] }: ShopFiltersProps) {
+  const filterGroups = useMemo(() => {
+    const defaultColors = [
+      "Glossy Black", "Matte Black", "Tortoise Shell", "Dark Havana", "Light Havana",
+      "Clear Crystal", "Champagne", "Shiny Gold", "Matte Gold", "Shiny Silver",
+      "Matte Silver", "Rose Gold", "Gunmetal", "Brushed Platinum", "Bronze",
+      "Navy Blue", "Forest Green", "Emerald Green", "Burgundy", "Amber",
+      "Honey", "G-15 Green", "Grey Gradient", "Brown Gradient", "Blue Mirror",
+      "Silver Mirror", "Gold Mirror", "Pink Gradient", "Clear", "Pure Hazel",
+      "Gemstone Green", "Brilliant Blue", "Sterling Gray", "True Sapphire",
+      "Turquoise", "Amethyst"
+    ];
+    const combinedColors = Array.from(new Set([...defaultColors, ...availableColors])).filter(Boolean).sort((a, b) => a.localeCompare(b));
+
+    return [
+      {
+        title: "Collection Type",
+        type: "button-group",
+        options: ["Designer Brands", "Emirates Signature"]
+      },
+      {
+        title: "Gender",
+        type: "grid",
+        options: ["Men", "Women", "Unisex", "Kids"]
+      },
+      {
+        title: "Price Range",
+        type: "price-pills",
+        options: [
+          "Under ₹5,000",
+          "₹5,000 - ₹15,000",
+          "₹15,000 - ₹30,000",
+          "₹30,000 - ₹50,000",
+          "Luxury (Above ₹50,000)"
+        ]
+      },
+      {
+        title: "Category",
+        type: "list",
+        options: ["Optical Frames", "Sunglasses", "Contact Lenses", "Lens Solutions", "Luxury Collections", "New Arrivals"]
+      },
+      {
+        title: "Brand",
+        type: "list",
+        options: [
+          "Acuvue", "Alcon", "Bausch & Lomb", "BVLGARI", "Calvin Klein", "Cartier", 
+          "Chanel", "Diesel", "Dolce & Gabbana", "Emirates Optician", "Gucci", 
+          "Lacoste", "Montblanc", "Oakley", "Police", "Prada", "Ray-Ban", 
+          "Tom Ford", "Vogue Eyewear"
+        ]
+      },
+      {
+        title: "Color Way",
+        type: "list",
+        options: combinedColors
+      },
+      // Eyewear Specific Filters
+      {
+        title: "Frame Shape",
+        type: "list",
+        scope: ["Frames"],
+        options: ["Aviator", "Wayfarer", "Rectangular", "Square", "Round", "Cat Eye", "Oval", "Geometric"]
+      },
+      {
+        title: "Frame Material",
+        type: "list",
+        scope: ["Frames"],
+        options: ["Acetate", "Metal", "Titanium", "Gold Plated", "O-Matter", "Carbon Fiber"]
+      },
+      // Contact Lenses Specific Filters
+      {
+        title: "Usage Frequency",
+        type: "list",
+        scope: ["ContactLenses"],
+        options: ["Daily Disposable", "Weekly Disposable", "Monthly Disposable", "Yearly Disposable"]
+      },
+      {
+        title: "Water Content",
+        type: "list",
+        scope: ["ContactLenses"],
+        options: ["38%", "48%", "55%", "68%"]
+      },
+      {
+        title: "Base Curve",
+        type: "list",
+        scope: ["ContactLenses"],
+        options: ["8.4mm", "8.5mm", "8.6mm", "8.7mm", "8.8mm"]
+      },
+      // Precision Lenses Specific Filters
+      {
+        title: "Lens Design",
+        type: "list",
+        scope: ["PrecisionLenses"],
+        options: ["Single Vision", "Progressive", "Bifocal", "Blue-Cut Protective"]
+      },
+      {
+        title: "Material Index",
+        type: "list",
+        scope: ["PrecisionLenses"],
+        options: ["1.50 Standard", "1.56 Mid-Index", "1.61 High-Index", "1.67 Ultra-High", "1.74 Thinnest"]
+      },
+      // Solutions Specific Filters
+      {
+        title: "Volume Capacity",
+        type: "list",
+        scope: ["Solutions"],
+        options: ["60ml", "120ml", "240ml", "360ml"]
+      },
+      {
+        title: "Branches",
+        type: "list",
+        options: [
+          "Changanassery", 
+          "Thiruvalla", 
+          "Kumbanad", 
+          "Kothamangalam", 
+          "Pandalam", 
+          "Kottayam", 
+          "Ettumanur", 
+          "Angamaly", 
+          "Irumpanam"
+        ]
+      }
+    ];
+  }, [availableColors]);
+
   const [openGroups, setOpenGroups] = useState<string[]>([
     "Collection Type", 
     "Gender", 
     "Price Range", 
     "Category",
+    "Color Way",
     "Frame Shape",
     "Usage Frequency",
     "Lens Design"
@@ -148,7 +172,7 @@ export function ShopFilters() {
 
   // Dynamically filter which specification panels are visible based on active category
   const visibleFilterGroups = useMemo(() => {
-    return FILTER_GROUPS.filter(group => {
+    return filterGroups.filter(group => {
       if (!group.scope) return true; // Global filter always visible
 
       if (!activeCategory) {
@@ -176,7 +200,7 @@ export function ShopFilters() {
 
       return false;
     });
-  }, [activeCategory]);
+  }, [activeCategory, filterGroups]);
 
   const toggleGroup = (title: string) => {
     setOpenGroups(prev => 

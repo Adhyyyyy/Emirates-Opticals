@@ -23,9 +23,10 @@ export default async function NewProductPage() {
   let categories: any[] = [];
   let brands: any[] = [];
   let branches: any[] = [];
+  let existingColors: string[] = [];
 
   try {
-    const [dbCategories, dbBrands, dbBranches] = await Promise.all([
+    const [dbCategories, dbBrands, dbBranches, dbColors] = await Promise.all([
       prisma.category.findMany({ orderBy: { name: "asc" } }),
       prisma.brand.findMany({ orderBy: { name: "asc" } }),
       prisma.branch.findMany({ 
@@ -40,11 +41,27 @@ export default async function NewProductPage() {
           }
         }, 
         orderBy: { name: "asc" } 
+      }),
+      prisma.color.findMany({
+        orderBy: { name: "asc" }
       })
     ]);
     categories = dbCategories;
     brands = dbBrands;
     branches = dbBranches;
+
+    const defaultColors = [
+      "Glossy Black", "Matte Black", "Tortoise Shell", "Dark Havana", "Light Havana",
+      "Clear Crystal", "Champagne", "Shiny Gold", "Matte Gold", "Shiny Silver",
+      "Matte Silver", "Rose Gold", "Gunmetal", "Brushed Platinum", "Bronze",
+      "Navy Blue", "Forest Green", "Emerald Green", "Burgundy", "Amber",
+      "Honey", "G-15 Green", "Grey Gradient", "Brown Gradient", "Blue Mirror",
+      "Silver Mirror", "Gold Mirror", "Pink Gradient", "Clear", "Pure Hazel",
+      "Gemstone Green", "Brilliant Blue", "Sterling Gray", "True Sapphire",
+      "Turquoise", "Amethyst"
+    ];
+    const colorsSet = new Set([...defaultColors, ...dbColors.map(c => c.name)]);
+    existingColors = Array.from(colorsSet).sort();
   } catch (error) {
     console.warn("DB Connection pooler timed out on NewProductPage, deploying resilient offline fallback catalog metadata:", error);
     categories = [
@@ -66,6 +83,7 @@ export default async function NewProductPage() {
       "Pandalam", "Kottayam", "Ettumanur", 
       "Angamaly", "Irumpanam"
     ].map((br, idx) => ({ id: `br-${idx}`, name: br, slug: br.toLowerCase() }));
+    existingColors = ["Black", "Gold", "Silver", "Tortoise", "Brown", "Grey", "Clear", "Blue"];
   }
 
   async function handleSubmit(data: any) {
@@ -74,6 +92,7 @@ export default async function NewProductPage() {
     if (result.success) {
       redirect("/admin/products?success=created");
     }
+    return result; // Return error back to form so it can be displayed
   }
 
   async function handleCancel() {
@@ -105,6 +124,7 @@ export default async function NewProductPage() {
           categories={categories}
           brands={brands}
           branches={branches}
+          existingColors={existingColors}
           isBranchAdmin={role === "BRANCH_ADMIN"}
           onSubmit={handleSubmit}
           onCancel={handleCancel}

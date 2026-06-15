@@ -31,9 +31,10 @@ export default async function EditProductPage({ params }: EditProductPageProps) 
   let categories: any[] = [];
   let brands: any[] = [];
   let branches: any[] = [];
+  let existingColors: string[] = [];
 
   try {
-    const [dbProduct, dbCategories, dbBrands, dbBranches] = await Promise.all([
+    const [dbProduct, dbCategories, dbBrands, dbBranches, dbColors] = await Promise.all([
       prisma.product.findUnique({
         where: { id },
         include: { images: { orderBy: { order: "asc" } } }
@@ -52,12 +53,28 @@ export default async function EditProductPage({ params }: EditProductPageProps) 
           }
         }, 
         orderBy: { name: "asc" } 
+      }),
+      prisma.color.findMany({
+        orderBy: { name: "asc" }
       })
     ]);
     product = dbProduct;
     categories = dbCategories;
     brands = dbBrands;
     branches = dbBranches;
+
+    const defaultColors = [
+      "Glossy Black", "Matte Black", "Tortoise Shell", "Dark Havana", "Light Havana",
+      "Clear Crystal", "Champagne", "Shiny Gold", "Matte Gold", "Shiny Silver",
+      "Matte Silver", "Rose Gold", "Gunmetal", "Brushed Platinum", "Bronze",
+      "Navy Blue", "Forest Green", "Emerald Green", "Burgundy", "Amber",
+      "Honey", "G-15 Green", "Grey Gradient", "Brown Gradient", "Blue Mirror",
+      "Silver Mirror", "Gold Mirror", "Pink Gradient", "Clear", "Pure Hazel",
+      "Gemstone Green", "Brilliant Blue", "Sterling Gray", "True Sapphire",
+      "Turquoise", "Amethyst"
+    ];
+    const colorsSet = new Set([...defaultColors, ...dbColors.map(c => c.name)]);
+    existingColors = Array.from(colorsSet).sort();
   } catch (error) {
     console.warn("DB Connection pooler timed out on EditProductPage, deploying resilient fallback:", error);
     categories = [
@@ -79,6 +96,7 @@ export default async function EditProductPage({ params }: EditProductPageProps) 
       "Pandalam", "Kottayam", "Ettumanur", 
       "Angamaly", "Irumpanam"
     ].map((br, idx) => ({ id: `br-${idx}`, name: br, slug: br.toLowerCase() }));
+    existingColors = ["Black", "Gold", "Silver", "Tortoise", "Brown", "Grey", "Clear", "Blue"];
   }
 
   if (!product) {
@@ -127,6 +145,7 @@ export default async function EditProductPage({ params }: EditProductPageProps) 
     if (result.success) {
       redirect("/admin/products?success=updated");
     }
+    return result; // Return error back to form so it can be displayed
   }
 
   async function handleCancel() {
@@ -159,6 +178,7 @@ export default async function EditProductPage({ params }: EditProductPageProps) 
           categories={categories}
           brands={brands}
           branches={branches}
+          existingColors={existingColors}
           isBranchAdmin={role === "BRANCH_ADMIN"}
           onSubmit={handleSubmit}
           onCancel={handleCancel}

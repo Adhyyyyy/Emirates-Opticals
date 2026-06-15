@@ -127,6 +127,25 @@ export function ProductCard({ product }: ProductCardProps) {
             </h3>
           </Link>
 
+          {/* Colors Tag Strip */}
+          {product.colors && product.colors.length > 0 && (
+            <div className="flex flex-wrap gap-1 mt-2.5 mb-1">
+              {product.colors.slice(0, 3).map((color) => (
+                <span 
+                  key={color} 
+                  className="bg-[#FAF9F6] border border-black/[0.04] text-brand-charcoal/60 text-[6.5px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-[2px]"
+                >
+                  {color}
+                </span>
+              ))}
+              {product.colors.length > 3 && (
+                <span className="text-brand-charcoal/30 text-[6.5px] font-bold uppercase tracking-wider px-1 py-0.5">
+                  +{product.colors.length - 3} More
+                </span>
+              )}
+            </div>
+          )}
+
           {/* Specification Strip */}
           <div className="flex items-center justify-between mt-auto pt-3 border-t border-black/[0.04]">
             <span className="text-[8px] font-bold text-brand-charcoal/40 uppercase tracking-wider flex items-center gap-1.5">

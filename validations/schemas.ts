@@ -24,6 +24,7 @@ export const productSchema = z.object({
   material: z.string().optional(),
   lensType: z.string().optional(),
   color: z.string().optional(),
+  colors: z.array(z.string()).default([]),
   size: z.string().optional(),
   
   // Hybrid Ecosystem Fields

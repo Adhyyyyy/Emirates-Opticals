@@ -329,6 +329,28 @@ async function seedCatalog() {
       categoryMap[category.slug] = c.id;
     }
 
+    console.log("⏳ Injecting Industry-Standard Colors...");
+    const INDUSTRY_COLORS = [
+      "Glossy Black", "Matte Black", "Tortoise Shell", "Dark Havana", "Light Havana",
+      "Clear Crystal", "Champagne", "Shiny Gold", "Matte Gold", "Shiny Silver",
+      "Matte Silver", "Rose Gold", "Gunmetal", "Brushed Platinum", "Bronze",
+      "Navy Blue", "Forest Green", "Emerald Green", "Burgundy", "Amber",
+      "Honey", "G-15 Green", "Grey Gradient", "Brown Gradient", "Blue Mirror",
+      "Silver Mirror", "Gold Mirror", "Pink Gradient", "Clear", "Pure Hazel",
+      "Gemstone Green", "Brilliant Blue", "Sterling Gray", "True Sapphire",
+      "Turquoise", "Amethyst"
+    ];
+    for (const color of INDUSTRY_COLORS) {
+      const formatted = color.trim().split(/\s+/).map(word => 
+        word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+      ).join(" ");
+      await prisma.color.upsert({
+        where: { name: formatted },
+        update: {},
+        create: { name: formatted }
+      });
+    }
+
     console.log("⏳ Injecting Malayalam Boutique Branches...");
     const branchIds: string[] = [];
     for (const branch of BRANCHES) {

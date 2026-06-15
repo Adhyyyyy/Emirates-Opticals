@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { productSchema } from "@/validations/schemas";
 import { ProductMediaUpload } from "./ProductMediaUpload";
@@ -25,19 +25,39 @@ interface ProductFormProps {
   categories: any[];
   brands: any[];
   branches?: any[];
+  existingColors?: string[];
   isBranchAdmin?: boolean;
-  onSubmit: (data: any) => Promise<void>;
+  onSubmit: (data: any) => Promise<any>;
   onCancel: () => void;
 }
 
-export function ProductForm({ initialData, categories, brands, branches = [], isBranchAdmin = false, onSubmit, onCancel }: ProductFormProps) {
+export function ProductForm({ 
+  initialData, 
+  categories, 
+  brands, 
+  branches = [], 
+  existingColors = [], 
+  isBranchAdmin = false, 
+  onSubmit, 
+  onCancel 
+}: ProductFormProps) {
   const [activeTab, setActiveTab] = useState<"basic" | "specs" | "collection" | "media" | "seo">("basic");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [serverError, setServerError] = useState<string | null>(null);
+
+  // Normalize initialData to include colors if it only has color
+  const normalizedInitialData = React.useMemo(() => {
+    if (!initialData) return null;
+    return {
+      ...initialData,
+      colors: initialData.colors || (initialData.color ? [initialData.color] : []),
+    };
+  }, [initialData]);
 
   const form = useForm({
     resolver: zodResolver(productSchema),
     shouldUnregister: false,
-    defaultValues: initialData || {
+    defaultValues: normalizedInitialData || {
       name: "",
       slug: "",
       description: "",
@@ -51,6 +71,7 @@ export function ProductForm({ initialData, categories, brands, branches = [], is
       material: "",
       lensType: "",
       color: "",
+      colors: [],
       size: "",
       isFeatured: false,
       isNewArrival: false,
@@ -71,6 +92,15 @@ export function ProductForm({ initialData, categories, brands, branches = [], is
     },
   });
 
+  const watchedColors = form.watch("colors") || [];
+  useEffect(() => {
+    if (watchedColors.length > 0 && form.getValues("color") !== watchedColors[0]) {
+      form.setValue("color", watchedColors[0], { shouldDirty: true });
+    } else if (watchedColors.length === 0 && form.getValues("color") !== "") {
+      form.setValue("color", "", { shouldDirty: true });
+    }
+  }, [watchedColors]);
+
   // Track if slug has been manually edited so auto-generation stops after user touches it
   const slugManuallyEdited = useRef(!!initialData);
 
@@ -85,8 +115,17 @@ export function ProductForm({ initialData, categories, brands, branches = [], is
 
   const handleFormSubmit = async (data: any) => {
     setIsSubmitting(true);
+    setServerError(null);
     try {
-      await onSubmit(data);
+      const result = await onSubmit(data);
+      if (result?.error) {
+        const errMsg = typeof result.error === "string"
+          ? result.error
+          : "Validation failed. Please check all fields and try again.";
+        setServerError(errMsg);
+      }
+    } catch (err: any) {
+      setServerError(err?.message || "An unexpected error occurred. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -100,27 +139,69 @@ export function ProductForm({ initialData, categories, brands, branches = [], is
     { id: "seo", label: "SEO Protocol", icon: Globe },
   ];
 
+  const getTabErrors = (tabId: string) => {
+    const errors = form.formState.errors;
+    if (tabId === "basic") {
+      return !!(errors.name || errors.slug || errors.price || errors.status || errors.description);
+    }
+    if (tabId === "specs") {
+      return !!(errors.brandId || errors.categoryId || errors.gender || errors.style || errors.frameShape || errors.material || errors.lensType || errors.color || errors.colors || errors.size);
+    }
+    if (tabId === "collection") {
+      return !!(errors.collectionType || errors.signatureCollectionName || errors.recommendedUsage || errors.craftsmanshipDetails);
+    }
+    if (tabId === "media") {
+      return !!errors.images;
+    }
+    if (tabId === "seo") {
+      return !!(errors.metaTitle || errors.metaDesc);
+    }
+    return false;
+  };
+
   return (
     <form onSubmit={form.handleSubmit(handleFormSubmit)} className="space-y-12">
       {/* Premium Tab Navigation */}
       <div className="flex items-center gap-2 p-1 bg-brand-pearl rounded-2xl w-fit border border-black/5">
-        {tabs.map((tab) => (
-          <button
-            key={tab.id}
-            type="button"
-            onClick={() => setActiveTab(tab.id as any)}
-            className={cn(
-              "flex items-center gap-3 px-6 py-3 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all duration-500",
-              activeTab === tab.id 
-                ? "bg-white text-brand-gold shadow-lg" 
-                : "text-brand-charcoal/40 hover:text-brand-charcoal"
-            )}
-          >
-            <tab.icon className="w-3.5 h-3.5" />
-            {tab.label}
-          </button>
-        ))}
+        {tabs.map((tab) => {
+          const hasError = getTabErrors(tab.id);
+          return (
+            <button
+              key={tab.id}
+              type="button"
+              onClick={() => setActiveTab(tab.id as any)}
+              className={cn(
+                "flex items-center gap-3 px-6 py-3 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all duration-500",
+                activeTab === tab.id 
+                  ? "bg-white text-brand-gold shadow-lg" 
+                  : hasError 
+                    ? "text-red-500 hover:text-red-600 bg-red-50/30"
+                    : "text-brand-charcoal/40 hover:text-brand-charcoal"
+              )}
+            >
+              <tab.icon className={cn("w-3.5 h-3.5", hasError && "text-red-500")} />
+              {tab.label}
+              {hasError && (
+                <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse ml-1 shrink-0" />
+              )}
+            </button>
+          );
+        })}
       </div>
+
+      {/* Server Error Banner — visible when save fails */}
+      {serverError && (
+        <div className="flex items-start gap-4 p-5 rounded-2xl bg-red-50 border border-red-200 text-red-700">
+          <AlertCircle className="w-5 h-5 mt-0.5 shrink-0 text-red-500" />
+          <div>
+            <p className="text-[11px] font-bold uppercase tracking-widest text-red-500 mb-1">Save Failed</p>
+            <p className="text-sm font-medium">{serverError}</p>
+          </div>
+          <button type="button" onClick={() => setServerError(null)} className="ml-auto text-red-400 hover:text-red-600 transition-colors">
+            <X className="w-4 h-4" />
+          </button>
+        </div>
+      )}
 
       {/* Form Content Area */}
       <div className="bg-white p-10 md:p-16 border border-black/5 rounded-[3rem] shadow-[0_40px_100px_rgba(0,0,0,0.03)] min-h-[600px]">
@@ -446,8 +527,19 @@ export function ProductForm({ initialData, categories, brands, branches = [], is
                                 <input {...form.register("size")} className="w-full bg-transparent border-b border-black/10 py-4 text-lg font-light focus:outline-none focus:border-brand-gold transition-colors duration-500 font-mono" placeholder="e.g. 54-18-145" />
                               </div>
                               <div className="group relative">
-                                <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-charcoal/40 mb-4 block">Primary Color</label>
-                                <input {...form.register("color")} className="w-full bg-transparent border-b border-black/10 py-4 text-lg font-light focus:outline-none focus:border-brand-gold transition-colors duration-500" placeholder="e.g. Tortoise Shell" />
+                                <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-charcoal/40 mb-4 block">Available Colors</label>
+                                <Controller
+                                  control={form.control}
+                                  name="colors"
+                                  render={({ field }) => (
+                                    <MultiColorInput
+                                      value={field.value}
+                                      onChange={field.onChange}
+                                      placeholder="e.g. Tortoise Shell"
+                                      existingColors={existingColors}
+                                    />
+                                  )}
+                                />
                               </div>
                             </div>
                           </div>
@@ -505,8 +597,19 @@ export function ProductForm({ initialData, categories, brands, branches = [], is
                             </div>
 
                             <div className="group relative">
-                              <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-charcoal/40 mb-4 block">Lens Color / Tint</label>
-                              <input {...form.register("color")} className="w-full bg-transparent border-b border-black/10 py-4 text-lg font-light focus:outline-none focus:border-brand-gold transition-colors duration-500" placeholder="e.g. Clear, Pure Hazel, Amber (or select None)" />
+                              <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-charcoal/40 mb-4 block">Lens Colors / Tints</label>
+                              <Controller
+                                control={form.control}
+                                name="colors"
+                                render={({ field }) => (
+                                  <MultiColorInput
+                                    value={field.value}
+                                    onChange={field.onChange}
+                                    placeholder="e.g. Clear, Pure Hazel"
+                                    existingColors={existingColors}
+                                  />
+                                )}
+                              />
                             </div>
                           </div>
                         </>
@@ -583,8 +686,19 @@ export function ProductForm({ initialData, categories, brands, branches = [], is
 
                           <div className="space-y-10">
                             <div className="group relative">
-                              <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-charcoal/40 mb-4 block">Material Craft / Color Design</label>
-                              <input {...form.register("color")} className="w-full bg-transparent border-b border-black/10 py-4 text-lg font-light focus:outline-none focus:border-brand-gold transition-colors duration-500" placeholder="e.g. Tan Calfskin Leather, Microfine Fiber" />
+                              <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-charcoal/40 mb-4 block">Colors / Materials</label>
+                              <Controller
+                                control={form.control}
+                                name="colors"
+                                render={({ field }) => (
+                                  <MultiColorInput
+                                    value={field.value}
+                                    onChange={field.onChange}
+                                    placeholder="e.g. Tan, Black, Brown"
+                                    existingColors={existingColors}
+                                  />
+                                )}
+                              />
                             </div>
                           </div>
                         </>
@@ -665,8 +779,19 @@ export function ProductForm({ initialData, categories, brands, branches = [], is
                                 <input {...form.register("size")} className="w-full bg-transparent border-b border-black/10 py-4 text-lg font-light focus:outline-none focus:border-brand-gold transition-colors duration-500 font-mono" placeholder="e.g. 54-18-145" />
                               </div>
                               <div className="group relative">
-                                <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-charcoal/40 mb-4 block">Primary Color</label>
-                                <input {...form.register("color")} className="w-full bg-transparent border-b border-black/10 py-4 text-lg font-light focus:outline-none focus:border-brand-gold transition-colors duration-500" placeholder="e.g. Matte Black" />
+                                <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-charcoal/40 mb-4 block">Available Colors</label>
+                                <Controller
+                                  control={form.control}
+                                  name="colors"
+                                  render={({ field }) => (
+                                    <MultiColorInput
+                                      value={field.value}
+                                      onChange={field.onChange}
+                                      placeholder="e.g. Matte Black"
+                                      existingColors={existingColors}
+                                    />
+                                  )}
+                                />
                               </div>
                             </div>
                           </div>
@@ -857,5 +982,126 @@ export function ProductForm({ initialData, categories, brands, branches = [], is
         </div>
       </div>
     </form>
+  );
+}
+
+function MultiColorInput({ 
+  value = [], 
+  onChange, 
+  placeholder = "Add color...",
+  existingColors = []
+}: { 
+  value: string[]; 
+  onChange: (val: string[]) => void; 
+  placeholder?: string; 
+  existingColors?: string[];
+}) {
+  const [inputValue, setInputValue] = useState("");
+  const [showDropdown, setShowDropdown] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setShowDropdown(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const filteredColors = React.useMemo(() => {
+    const query = inputValue.trim().toLowerCase();
+    const available = existingColors
+      .filter(c => !value.map(val => val.toLowerCase()).includes(c.toLowerCase()))
+      .sort((a, b) => a.localeCompare(b));
+    if (!query) return available;
+    return available.filter(c => c.toLowerCase().includes(query));
+  }, [inputValue, existingColors, value]);
+
+  const handleAdd = (e?: React.MouseEvent | React.KeyboardEvent, customVal?: string) => {
+    e?.preventDefault();
+    const targetVal = customVal || inputValue;
+    const clean = targetVal.trim();
+    if (!clean) return;
+    if (value.includes(clean)) {
+      setInputValue("");
+      return;
+    }
+    onChange([...value, clean]);
+    setInputValue("");
+    setShowDropdown(false);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleAdd();
+    }
+  };
+
+  const handleRemove = (colorToRemove: string) => {
+    onChange(value.filter(c => c !== colorToRemove));
+  };
+
+  return (
+    <div className="space-y-3 relative font-sans" ref={dropdownRef}>
+      <div className="flex gap-2">
+        <input
+          value={inputValue}
+          onChange={(e) => {
+            setInputValue(e.target.value);
+            setShowDropdown(true);
+          }}
+          onFocus={() => setShowDropdown(true)}
+          onKeyDown={handleKeyDown}
+          className="flex-1 bg-transparent border-b border-black/10 py-4 text-sm font-light focus:outline-none focus:border-brand-gold transition-colors duration-500"
+          placeholder={placeholder}
+        />
+        <button
+          type="button"
+          onClick={() => handleAdd()}
+          className="px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-brand-gold border border-brand-gold/20 hover:bg-brand-gold/5 rounded-xl transition-all"
+        >
+          Add
+        </button>
+      </div>
+
+      {showDropdown && filteredColors.length > 0 && (
+        <div className="absolute z-[60] left-0 right-0 mt-1 max-h-48 overflow-y-auto bg-white/95 border border-black/5 rounded-xl shadow-xl backdrop-blur-md divide-y divide-black/5 max-w-xs transition-all duration-300">
+          {filteredColors.map((color) => (
+            <button
+              key={color}
+              type="button"
+              onClick={(e) => handleAdd(e, color)}
+              className="w-full text-left px-4 py-3 text-xs text-brand-charcoal hover:bg-brand-gold/10 hover:text-brand-gold transition-colors uppercase tracking-widest font-medium"
+            >
+              {color}
+            </button>
+          ))}
+        </div>
+      )}
+
+      <div className="flex flex-wrap gap-2 mt-2">
+        {value.map((color) => (
+          <span 
+            key={color} 
+            className="flex items-center gap-1.5 bg-brand-pearl border border-black/5 text-brand-charcoal text-[9px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-xl transition-all hover:border-red-200 hover:bg-red-50/10 group"
+          >
+            <span>{color}</span>
+            <button
+              type="button"
+              onClick={() => handleRemove(color)}
+              className="text-brand-charcoal/30 hover:text-red-500 transition-colors"
+            >
+              <X className="w-3 h-3" />
+            </button>
+          </span>
+        ))}
+        {value.length === 0 && (
+          <span className="text-[10px] font-light text-brand-charcoal/30 italic">No colors designated yet</span>
+        )}
+      </div>
+    </div>
   );
 }

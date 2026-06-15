@@ -15,7 +15,6 @@ export function ProductSpecs({ product }: ProductSpecsProps) {
     { label: "Lens Compatibility", value: product.lensType || "Standard" },
     { label: "Frame Shape", value: product.frameShape || "Standard" },
     { label: "Gender", value: product.gender || "Unisex" },
-    { label: "Color Way", value: product.color || "Classic" },
     { label: "Style Direction", value: product.style || "Classic" },
     { label: "Collection", value: product.collectionType || "Designer Brands" },
     { label: "Warranty", value: "2 Year Official" },
@@ -69,7 +68,7 @@ export function ProductSpecs({ product }: ProductSpecsProps) {
                 <span className="text-[8px] font-bold uppercase tracking-[0.32em] text-white/25 block mb-4 group-hover:text-brand-gold transition-colors duration-500">
                   {spec.label}
                 </span>
-                <p className="text-lg md:text-xl font-bold text-white uppercase tracking-tighter group-hover:text-brand-gold transition-colors duration-500 line-clamp-2">
+                <p className="text-lg md:text-xl font-bold text-white uppercase tracking-tighter group-hover:text-brand-gold transition-colors duration-500 line-clamp-2 break-words">
                   {spec.value}
                 </p>
               </div>

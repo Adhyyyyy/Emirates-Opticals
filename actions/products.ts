@@ -73,35 +73,23 @@ export async function createProduct(data: any) {
   const branchId = user.app_metadata?.branchId;
 
   try {
-    // 1. Fetch all active branches in the registry
+    // 1. Fetch all active branches dynamically — no hardcoded slug list needed
     const branches = await prisma.branch.findMany({
-      where: { 
-        deletedAt: null,
-        slug: {
-          in: [
-            "changanassery", "thiruvalla", "kumbanad", 
-            "kothamangalam", "pandalam", 
-            "kottayam", "ettumanur", "angamaly", "irumpanam"
-          ]
-        }
-      }
+      where: { deletedAt: null }
     });
 
     const product = await prisma.product.create({
       data: {
         ...productData,
-        isActive: status === "PUBLISHED", 
+        isActive: status === "PUBLISHED",
         images: {
           create: images.map((url, index) => ({
             url,
             order: index,
           })),
         },
-        // Auto-provision branch inventory:
-        // - If Branch Admin: Provision only for their branch.
-        // - If Super Admin: Provision initial stock for only selected branches, setting others to 0.
         inventory: {
-          create: branchId 
+          create: branchId
             ? [{
                 branchId: branchId,
                 quantity: initialStock,
@@ -113,22 +101,45 @@ export async function createProduct(data: any) {
                 return {
                   branchId: b.id,
                   quantity: qty,
-                  status: qty > 0 ? "IN_STOCK" : "OUT_OF_STOCK",
+                  status: qty > 0 ? "IN_STOCK" : (qty <= 3 ? "LOW_STOCK" : "IN_STOCK"),
                 };
               })
         }
       },
     });
 
+    // Sync colors to the master Color registry sequentially to avoid race conditions
+    if (productData.colors && productData.colors.length > 0) {
+      try {
+        for (const c of productData.colors) {
+          if (!c) continue;
+          const formatted = c.trim().split(/\s+/).map((word: string) =>
+            word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+          ).join(" ");
+          await prisma.color.upsert({
+            where: { name: formatted },
+            update: {},
+            create: { name: formatted }
+          });
+        }
+      } catch (colorSyncErr) {
+        console.warn("Failed to sync colors to Color registry:", colorSyncErr);
+      }
+    }
+
     revalidatePath("/admin/products");
     revalidatePath("/admin/inventory");
     revalidatePath("/shop");
     revalidatePath("/");
-    revalidatePath("/product", "layout");
+    revalidatePath("/product/[id]", "page");
     return { success: true, id: product.id };
   } catch (err: any) {
     console.error("Create product failed:", err);
-    return { error: "Failed to create luxury product protocol" };
+    // Provide an actionable error for slug collisions (Prisma unique constraint)
+    if (err?.code === "P2002" && err?.meta?.target?.includes("slug")) {
+      return { error: "A product with this slug already exists. Please use a unique product name or edit the slug manually." };
+    }
+    return { error: err?.message || "Failed to save product. Please try again." };
   }
 }
 
@@ -188,16 +199,18 @@ export async function updateProduct(id: string, data: any) {
         })
       );
     } else if (!branchId) {
-      // If initiated by a Super Admin, synchronize/reset this stock quantity across all active branches!
+      // Super Admin: ensure all active branches have an inventory record
       const branches = await prisma.branch.findMany({ where: { deletedAt: null } });
       for (const b of branches) {
         operations.push(
           prisma.inventory.upsert({
             where: { productId_branchId: { productId: id, branchId: b.id } },
-            update: { },
+            update: {},
             create: {
               productId: id,
               branchId: b.id,
+              quantity: 0,
+              status: "OUT_OF_STOCK",
             }
           })
         );
@@ -206,15 +219,37 @@ export async function updateProduct(id: string, data: any) {
 
     await prisma.$transaction(operations);
 
+    // Sync colors sequentially to avoid race conditions
+    if (productData.colors && productData.colors.length > 0) {
+      try {
+        for (const c of productData.colors) {
+          if (!c) continue;
+          const formatted = c.trim().split(/\s+/).map((word: string) =>
+            word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+          ).join(" ");
+          await prisma.color.upsert({
+            where: { name: formatted },
+            update: {},
+            create: { name: formatted }
+          });
+        }
+      } catch (colorSyncErr) {
+        console.warn("Failed to sync colors to Color registry:", colorSyncErr);
+      }
+    }
+
     revalidatePath("/admin/products");
     revalidatePath("/admin/inventory");
     revalidatePath("/shop");
     revalidatePath("/");
-    revalidatePath("/product", "layout");
+    revalidatePath("/product/[id]", "page");
     return { success: true };
   } catch (err: any) {
     console.error("Update product failed:", err);
-    return { error: "Failed to update luxury product state" };
+    if (err?.code === "P2002" && err?.meta?.target?.includes("slug")) {
+      return { error: "A product with this slug already exists. Please use a unique slug." };
+    }
+    return { error: err?.message || "Failed to update product. Please try again." };
   }
 }
 

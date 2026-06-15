@@ -134,6 +134,16 @@ export function ProductGrid({ products }: ProductGridProps) {
         if (!materialFilters.includes(product.frameMaterial)) return false;
       }
 
+      // 6a. Color Way Match (Supports substring partial matching across colors list)
+      const colorWayFilters = activeFilters["color_way"];
+      if (colorWayFilters && colorWayFilters.length > 0) {
+        const productColors = product.colors || (product.color ? [product.color] : []);
+        const hasMatchingColor = colorWayFilters.some(filterColor => 
+          productColors.some(pColor => pColor.toLowerCase().includes(filterColor.toLowerCase()))
+        );
+        if (!hasMatchingColor) return false;
+      }
+
       // 6b. Contact Lens Usage Frequency Match
       const usageFilters = activeFilters["usage_frequency"];
       if (usageFilters && usageFilters.length > 0) {

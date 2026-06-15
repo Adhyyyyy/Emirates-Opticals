@@ -98,6 +98,7 @@ export default async function ProductDetailsPage({ params }: ProductDetailsPageP
         frameMaterial: dbProduct.material || "Standard",
         lensType: dbProduct.lensType || "Standard",
         color: dbProduct.color || "Standard",
+        colors: dbProduct.colors || (dbProduct.color ? [dbProduct.color] : []),
         style: dbProduct.style || "Classic",
         collectionType: dbProduct.collectionType || "Designer Brands",
         isInHouseProduct: dbProduct.isInHouseProduct || false,

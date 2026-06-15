@@ -56,6 +56,7 @@ export default async function ShopPage() {
         frameMaterial: p.material || "Standard",
         lensType: p.lensType || "Standard",
         color: p.color || "Standard",
+        colors: p.colors || (p.color ? [p.color] : []),
         size: p.size || "",
         style: p.style || "Classic",
         collectionType: p.collectionType || "Designer Brands",
@@ -73,6 +74,45 @@ export default async function ShopPage() {
     products = STATIC_PRODUCTS;
   }
 
+  // Dynamically collect and format unique colors from active catalog products & Master registry
+  let dbColors: any[] = [];
+  try {
+    dbColors = await prisma.color.findMany({
+      orderBy: { name: "asc" }
+    });
+  } catch (err) {
+    console.warn("Failed to fetch colors from database:", err);
+  }
+
+  const defaultColors = [
+    "Glossy Black", "Matte Black", "Tortoise Shell", "Dark Havana", "Light Havana",
+    "Clear Crystal", "Champagne", "Shiny Gold", "Matte Gold", "Shiny Silver",
+    "Matte Silver", "Rose Gold", "Gunmetal", "Brushed Platinum", "Bronze",
+    "Navy Blue", "Forest Green", "Emerald Green", "Burgundy", "Amber",
+    "Honey", "G-15 Green", "Grey Gradient", "Brown Gradient", "Blue Mirror",
+    "Silver Mirror", "Gold Mirror", "Pink Gradient", "Clear", "Pure Hazel",
+    "Gemstone Green", "Brilliant Blue", "Sterling Gray", "True Sapphire",
+    "Turquoise", "Amethyst"
+  ];
+  const colorsSet = new Set([...defaultColors, ...dbColors.map(c => c.name)]);
+
+  products.forEach(p => {
+    const list = p.colors && p.colors.length > 0 ? p.colors : (p.color ? [p.color] : []);
+    list.forEach(c => {
+      if (!c) return;
+      // Split by "/" to break down compound legacy color strings (e.g. "Emerald Green / Gold" into individual options)
+      c.split("/").forEach(part => {
+        const trimmed = part.trim();
+        if (!trimmed) return;
+        const formatted = trimmed.split(/\s+/).map(word => 
+          word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+        ).join(" ");
+        colorsSet.add(formatted);
+      });
+    });
+  });
+  const allUniqueColors = Array.from(colorsSet).sort();
+
   return (
     <div className="flex flex-col w-full min-h-screen">
 
@@ -85,7 +125,7 @@ export default async function ShopPage() {
             <Suspense fallback={
               <div className="w-full lg:w-64 shrink-0 animate-pulse bg-neutral-100 rounded-[3px] h-96" />
             }>
-              <ShopFilters />
+              <ShopFilters availableColors={allUniqueColors} />
             </Suspense>
 
             {/* Product Grid */}

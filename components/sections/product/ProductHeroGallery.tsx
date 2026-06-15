@@ -40,10 +40,9 @@ export function ProductHeroGallery({ product }: ProductHeroGalleryProps) {
     { label: "Lens Type", value: product.lensType || "Precision Demo Lens" },
     { label: "Silhouette Shape", value: product.frameShape || "Standard Geometric" },
     { label: "Gender Profile", value: product.gender || "Unisex" },
-    { label: "Color Palette", value: product.color || "Polished Classic" },
     { label: "Style Direction", value: product.style || "Modern Editorial" },
-    ...(product.craftsmanshipDetails ? [{ label: "Craftsmanship", value: product.craftsmanshipDetails }] : []),
-    ...(product.recommendedUsage ? [{ label: "Recommendation", value: product.recommendedUsage }] : []),
+    ...(product.craftsmanshipDetails ? [{ label: "Craftsmanship", value: product.craftsmanshipDetails, fullWidth: true }] : []),
+    ...(product.recommendedUsage ? [{ label: "Recommendation", value: product.recommendedUsage, fullWidth: true }] : []),
   ];
 
   return (
@@ -169,18 +168,41 @@ export function ProductHeroGallery({ product }: ProductHeroGalleryProps) {
                   </p>
                 )}
 
+                {/* Available Colors Badges */}
+                {product.colors && product.colors.length > 0 && (
+                  <div className="flex flex-col gap-2.5 pt-4">
+                    <span className="text-[8.5px] font-bold uppercase tracking-[0.25em] text-brand-charcoal/40">Available Colors</span>
+                    <div className="flex flex-wrap gap-2">
+                      {product.colors.map((color) => (
+                        <span 
+                          key={color} 
+                          className="bg-brand-pearl/50 border border-black/5 hover:border-brand-gold/40 text-brand-charcoal text-[9px] font-bold uppercase tracking-wider px-3.5 py-2 rounded-[3px] transition-colors duration-300"
+                        >
+                          {color}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 {/* Data-Rich Specifications Table (Typographic Elegance) */}
                 <div className="border-t border-black/[0.06] pt-6">
                   <h3 className="text-[9px] font-bold uppercase tracking-[0.25em] text-brand-charcoal/40 mb-4">
                     Product Details
                   </h3>
                   <div className="grid grid-cols-2 gap-x-8 gap-y-3.5">
-                    {specs.map((spec, i) => (
-                      <div key={i} className="flex flex-col pb-3 border-b border-black/[0.02]">
+                    {specs.map((spec: any, i) => (
+                      <div 
+                        key={i} 
+                        className={cn(
+                          "flex flex-col pb-3 border-b border-black/[0.02]",
+                          spec.fullWidth ? "col-span-2" : "col-span-1"
+                        )}
+                      >
                         <span className="text-[7.5px] font-bold uppercase tracking-wider text-brand-charcoal/30 mb-0.5">
                           {spec.label}
                         </span>
-                        <span className="text-[11px] font-medium text-brand-charcoal/80 uppercase tracking-tight">
+                        <span className="text-[11px] font-medium text-brand-charcoal/80 uppercase tracking-tight break-words">
                           {spec.value}
                         </span>
                       </div>

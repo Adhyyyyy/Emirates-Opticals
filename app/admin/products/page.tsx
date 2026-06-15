@@ -2,7 +2,7 @@ import React from "react";
 import { DataTable } from "@/components/ui/admin/DataTable";
 import { columns, ProductColumn } from "@/features/products/components/columns";
 import { Reveal } from "@/components/motion/Reveal";
-import { Plus } from "lucide-react";
+import { Plus, Check } from "lucide-react";
 import Link from "next/link";
 import { BulkImportButton } from "@/features/products/components/BulkImportButton";
 import { getProducts, deleteProducts } from "@/actions/products";
@@ -12,7 +12,14 @@ import { createServerClient } from "@supabase/ssr";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-export default async function ProductsPage() {
+interface PageProps {
+  searchParams: Promise<{ success?: string }>;
+}
+
+export default async function ProductsPage({ searchParams }: PageProps) {
+  const params = await searchParams;
+  const success = params?.success;
+  
   const { data: products, error } = await getProducts();
   
   const cookieStore = await cookies();
@@ -55,6 +62,26 @@ export default async function ProductsPage() {
 
   return (
     <div className="space-y-12 text-black">
+      {success && (
+        <Reveal>
+          <div className="bg-emerald-50/40 border border-emerald-500/20 text-emerald-800 p-6 rounded-2xl flex items-center justify-between gap-4 shadow-sm mb-6">
+            <div className="flex items-center gap-4">
+              <div className="w-10 h-10 rounded-full bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-center text-emerald-600 shrink-0">
+                <Check className="w-5 h-5" />
+              </div>
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-emerald-700">System Protocol Completed</p>
+                <p className="text-xs font-light text-brand-charcoal/60 mt-1">
+                  {success === "created" 
+                    ? "The luxury product has been successfully established and populated to the global catalog." 
+                    : "The product specifications have been successfully updated and synchronized."}
+                </p>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      )}
+
       <header className="flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>
           <Reveal>

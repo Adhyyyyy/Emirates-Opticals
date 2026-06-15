@@ -165,6 +165,7 @@ exports.Prisma.ProductScalarFieldEnum = {
   material: 'material',
   lensType: 'lensType',
   color: 'color',
+  colors: 'colors',
   size: 'size',
   brandId: 'brandId',
   categoryId: 'categoryId',
@@ -312,6 +313,12 @@ exports.Prisma.OfferScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.ColorScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -370,7 +377,8 @@ exports.Prisma.ModelName = {
   Testimonial: 'Testimonial',
   Campaign: 'Campaign',
   Job: 'Job',
-  Offer: 'Offer'
+  Offer: 'Offer',
+  Color: 'Color'
 };
 
 /**

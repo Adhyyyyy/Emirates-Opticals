@@ -1,6 +1,5 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
 import fs from "fs";
 import path from "path";
 
@@ -141,7 +140,6 @@ export async function syncInstagramFeed() {
     };
 
     fs.writeFileSync(CACHE_FILE_PATH, JSON.stringify(updatedData, null, 2), "utf-8");
-    revalidatePath("/");
     
     return { success: true, lastSync: updatedData.lastSync };
   } catch (error: any) {

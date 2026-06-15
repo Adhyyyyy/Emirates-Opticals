@@ -17,6 +17,7 @@ export const PRODUCTS: Product[] = [
     frameMaterial: "Acetate",
     lensType: "Demo Lens",
     color: "Matte Black",
+    colors: ["Matte Black"],
     collectionType: "Designer Brands",
     isInHouseProduct: false,
     isFeatured: true,
@@ -42,6 +43,7 @@ export const PRODUCTS: Product[] = [
     frameMaterial: "Metal",
     lensType: "Polarized",
     color: "Gold / G-15 Green",
+    colors: ["Gold", "G-15 Green"],
     collectionType: "Designer Brands",
     isInHouseProduct: false,
     branches: [
@@ -65,6 +67,7 @@ export const PRODUCTS: Product[] = [
     frameMaterial: "O-Matter",
     lensType: "Prizm Road",
     color: "Polished Black",
+    colors: ["Polished Black"],
     collectionType: "Designer Brands",
     isInHouseProduct: false,
     branches: [
@@ -87,6 +90,7 @@ export const PRODUCTS: Product[] = [
     frameMaterial: "Gold Plated",
     lensType: "Premium Demo",
     color: "Brushed Gold",
+    colors: ["Brushed Gold"],
     collectionType: "Designer Brands",
     isInHouseProduct: false,
     branches: [
