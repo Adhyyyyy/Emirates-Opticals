@@ -7679,6 +7679,7 @@ export namespace Prisma {
     logo: string | null
     country: string | null
     isFeatured: boolean | null
+    isSignature: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -7691,6 +7692,7 @@ export namespace Prisma {
     logo: string | null
     country: string | null
     isFeatured: boolean | null
+    isSignature: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -7703,6 +7705,7 @@ export namespace Prisma {
     logo: number
     country: number
     isFeatured: number
+    isSignature: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -7717,6 +7720,7 @@ export namespace Prisma {
     logo?: true
     country?: true
     isFeatured?: true
+    isSignature?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -7729,6 +7733,7 @@ export namespace Prisma {
     logo?: true
     country?: true
     isFeatured?: true
+    isSignature?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -7741,6 +7746,7 @@ export namespace Prisma {
     logo?: true
     country?: true
     isFeatured?: true
+    isSignature?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -7826,6 +7832,7 @@ export namespace Prisma {
     logo: string | null
     country: string | null
     isFeatured: boolean
+    isSignature: boolean
     createdAt: Date
     updatedAt: Date
     _count: BrandCountAggregateOutputType | null
@@ -7855,6 +7862,7 @@ export namespace Prisma {
     logo?: boolean
     country?: boolean
     isFeatured?: boolean
+    isSignature?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     products?: boolean | Brand$productsArgs<ExtArgs>
@@ -7869,6 +7877,7 @@ export namespace Prisma {
     logo?: boolean
     country?: boolean
     isFeatured?: boolean
+    isSignature?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["brand"]>
@@ -7881,6 +7890,7 @@ export namespace Prisma {
     logo?: boolean
     country?: boolean
     isFeatured?: boolean
+    isSignature?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["brand"]>
@@ -7893,11 +7903,12 @@ export namespace Prisma {
     logo?: boolean
     country?: boolean
     isFeatured?: boolean
+    isSignature?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type BrandOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "description" | "logo" | "country" | "isFeatured" | "createdAt" | "updatedAt", ExtArgs["result"]["brand"]>
+  export type BrandOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "description" | "logo" | "country" | "isFeatured" | "isSignature" | "createdAt" | "updatedAt", ExtArgs["result"]["brand"]>
   export type BrandInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     products?: boolean | Brand$productsArgs<ExtArgs>
     _count?: boolean | BrandCountOutputTypeDefaultArgs<ExtArgs>
@@ -7918,6 +7929,7 @@ export namespace Prisma {
       logo: string | null
       country: string | null
       isFeatured: boolean
+      isSignature: boolean
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["brand"]>
@@ -8351,6 +8363,7 @@ export namespace Prisma {
     readonly logo: FieldRef<"Brand", 'String'>
     readonly country: FieldRef<"Brand", 'String'>
     readonly isFeatured: FieldRef<"Brand", 'Boolean'>
+    readonly isSignature: FieldRef<"Brand", 'Boolean'>
     readonly createdAt: FieldRef<"Brand", 'DateTime'>
     readonly updatedAt: FieldRef<"Brand", 'DateTime'>
   }
@@ -18706,6 +18719,7 @@ export namespace Prisma {
     endDate: string | null
     isActive: boolean | null
     createdAt: Date | null
+    imageUrl: string | null
   }
 
   export type OfferMaxAggregateOutputType = {
@@ -18718,6 +18732,7 @@ export namespace Prisma {
     endDate: string | null
     isActive: boolean | null
     createdAt: Date | null
+    imageUrl: string | null
   }
 
   export type OfferCountAggregateOutputType = {
@@ -18730,6 +18745,7 @@ export namespace Prisma {
     endDate: number
     isActive: number
     createdAt: number
+    imageUrl: number
     _all: number
   }
 
@@ -18744,6 +18760,7 @@ export namespace Prisma {
     endDate?: true
     isActive?: true
     createdAt?: true
+    imageUrl?: true
   }
 
   export type OfferMaxAggregateInputType = {
@@ -18756,6 +18773,7 @@ export namespace Prisma {
     endDate?: true
     isActive?: true
     createdAt?: true
+    imageUrl?: true
   }
 
   export type OfferCountAggregateInputType = {
@@ -18768,6 +18786,7 @@ export namespace Prisma {
     endDate?: true
     isActive?: true
     createdAt?: true
+    imageUrl?: true
     _all?: true
   }
 
@@ -18853,6 +18872,7 @@ export namespace Prisma {
     endDate: string | null
     isActive: boolean
     createdAt: Date
+    imageUrl: string | null
     _count: OfferCountAggregateOutputType | null
     _min: OfferMinAggregateOutputType | null
     _max: OfferMaxAggregateOutputType | null
@@ -18882,6 +18902,7 @@ export namespace Prisma {
     endDate?: boolean
     isActive?: boolean
     createdAt?: boolean
+    imageUrl?: boolean
   }, ExtArgs["result"]["offer"]>
 
   export type OfferSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -18894,6 +18915,7 @@ export namespace Prisma {
     endDate?: boolean
     isActive?: boolean
     createdAt?: boolean
+    imageUrl?: boolean
   }, ExtArgs["result"]["offer"]>
 
   export type OfferSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -18906,6 +18928,7 @@ export namespace Prisma {
     endDate?: boolean
     isActive?: boolean
     createdAt?: boolean
+    imageUrl?: boolean
   }, ExtArgs["result"]["offer"]>
 
   export type OfferSelectScalar = {
@@ -18918,9 +18941,10 @@ export namespace Prisma {
     endDate?: boolean
     isActive?: boolean
     createdAt?: boolean
+    imageUrl?: boolean
   }
 
-  export type OfferOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "percentage" | "branchId" | "startDate" | "endDate" | "isActive" | "createdAt", ExtArgs["result"]["offer"]>
+  export type OfferOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "percentage" | "branchId" | "startDate" | "endDate" | "isActive" | "createdAt" | "imageUrl", ExtArgs["result"]["offer"]>
 
   export type $OfferPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Offer"
@@ -18935,6 +18959,7 @@ export namespace Prisma {
       endDate: string | null
       isActive: boolean
       createdAt: Date
+      imageUrl: string | null
     }, ExtArgs["result"]["offer"]>
     composites: {}
   }
@@ -19367,6 +19392,7 @@ export namespace Prisma {
     readonly endDate: FieldRef<"Offer", 'String'>
     readonly isActive: FieldRef<"Offer", 'Boolean'>
     readonly createdAt: FieldRef<"Offer", 'DateTime'>
+    readonly imageUrl: FieldRef<"Offer", 'String'>
   }
     
 
@@ -20817,6 +20843,7 @@ export namespace Prisma {
     logo: 'logo',
     country: 'country',
     isFeatured: 'isFeatured',
+    isSignature: 'isSignature',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -20958,7 +20985,8 @@ export namespace Prisma {
     startDate: 'startDate',
     endDate: 'endDate',
     isActive: 'isActive',
-    createdAt: 'createdAt'
+    createdAt: 'createdAt',
+    imageUrl: 'imageUrl'
   };
 
   export type OfferScalarFieldEnum = (typeof OfferScalarFieldEnum)[keyof typeof OfferScalarFieldEnum]
@@ -21587,6 +21615,7 @@ export namespace Prisma {
     logo?: StringNullableFilter<"Brand"> | string | null
     country?: StringNullableFilter<"Brand"> | string | null
     isFeatured?: BoolFilter<"Brand"> | boolean
+    isSignature?: BoolFilter<"Brand"> | boolean
     createdAt?: DateTimeFilter<"Brand"> | Date | string
     updatedAt?: DateTimeFilter<"Brand"> | Date | string
     products?: ProductListRelationFilter
@@ -21600,6 +21629,7 @@ export namespace Prisma {
     logo?: SortOrderInput | SortOrder
     country?: SortOrderInput | SortOrder
     isFeatured?: SortOrder
+    isSignature?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     products?: ProductOrderByRelationAggregateInput
@@ -21616,6 +21646,7 @@ export namespace Prisma {
     logo?: StringNullableFilter<"Brand"> | string | null
     country?: StringNullableFilter<"Brand"> | string | null
     isFeatured?: BoolFilter<"Brand"> | boolean
+    isSignature?: BoolFilter<"Brand"> | boolean
     createdAt?: DateTimeFilter<"Brand"> | Date | string
     updatedAt?: DateTimeFilter<"Brand"> | Date | string
     products?: ProductListRelationFilter
@@ -21629,6 +21660,7 @@ export namespace Prisma {
     logo?: SortOrderInput | SortOrder
     country?: SortOrderInput | SortOrder
     isFeatured?: SortOrder
+    isSignature?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: BrandCountOrderByAggregateInput
@@ -21647,6 +21679,7 @@ export namespace Prisma {
     logo?: StringNullableWithAggregatesFilter<"Brand"> | string | null
     country?: StringNullableWithAggregatesFilter<"Brand"> | string | null
     isFeatured?: BoolWithAggregatesFilter<"Brand"> | boolean
+    isSignature?: BoolWithAggregatesFilter<"Brand"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Brand"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Brand"> | Date | string
   }
@@ -22299,6 +22332,7 @@ export namespace Prisma {
     endDate?: StringNullableFilter<"Offer"> | string | null
     isActive?: BoolFilter<"Offer"> | boolean
     createdAt?: DateTimeFilter<"Offer"> | Date | string
+    imageUrl?: StringNullableFilter<"Offer"> | string | null
   }
 
   export type OfferOrderByWithRelationInput = {
@@ -22311,6 +22345,7 @@ export namespace Prisma {
     endDate?: SortOrderInput | SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
+    imageUrl?: SortOrderInput | SortOrder
   }
 
   export type OfferWhereUniqueInput = Prisma.AtLeast<{
@@ -22326,6 +22361,7 @@ export namespace Prisma {
     endDate?: StringNullableFilter<"Offer"> | string | null
     isActive?: BoolFilter<"Offer"> | boolean
     createdAt?: DateTimeFilter<"Offer"> | Date | string
+    imageUrl?: StringNullableFilter<"Offer"> | string | null
   }, "id">
 
   export type OfferOrderByWithAggregationInput = {
@@ -22338,6 +22374,7 @@ export namespace Prisma {
     endDate?: SortOrderInput | SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
+    imageUrl?: SortOrderInput | SortOrder
     _count?: OfferCountOrderByAggregateInput
     _max?: OfferMaxOrderByAggregateInput
     _min?: OfferMinOrderByAggregateInput
@@ -22356,6 +22393,7 @@ export namespace Prisma {
     endDate?: StringNullableWithAggregatesFilter<"Offer"> | string | null
     isActive?: BoolWithAggregatesFilter<"Offer"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Offer"> | Date | string
+    imageUrl?: StringNullableWithAggregatesFilter<"Offer"> | string | null
   }
 
   export type ColorWhereInput = {
@@ -22945,6 +22983,7 @@ export namespace Prisma {
     logo?: string | null
     country?: string | null
     isFeatured?: boolean
+    isSignature?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     products?: ProductCreateNestedManyWithoutBrandInput
@@ -22958,6 +22997,7 @@ export namespace Prisma {
     logo?: string | null
     country?: string | null
     isFeatured?: boolean
+    isSignature?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     products?: ProductUncheckedCreateNestedManyWithoutBrandInput
@@ -22971,6 +23011,7 @@ export namespace Prisma {
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     country?: NullableStringFieldUpdateOperationsInput | string | null
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    isSignature?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     products?: ProductUpdateManyWithoutBrandNestedInput
@@ -22984,6 +23025,7 @@ export namespace Prisma {
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     country?: NullableStringFieldUpdateOperationsInput | string | null
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    isSignature?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     products?: ProductUncheckedUpdateManyWithoutBrandNestedInput
@@ -22997,6 +23039,7 @@ export namespace Prisma {
     logo?: string | null
     country?: string | null
     isFeatured?: boolean
+    isSignature?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -23009,6 +23052,7 @@ export namespace Prisma {
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     country?: NullableStringFieldUpdateOperationsInput | string | null
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    isSignature?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -23021,6 +23065,7 @@ export namespace Prisma {
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     country?: NullableStringFieldUpdateOperationsInput | string | null
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    isSignature?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -23716,6 +23761,7 @@ export namespace Prisma {
     endDate?: string | null
     isActive?: boolean
     createdAt?: Date | string
+    imageUrl?: string | null
   }
 
   export type OfferUncheckedCreateInput = {
@@ -23728,6 +23774,7 @@ export namespace Prisma {
     endDate?: string | null
     isActive?: boolean
     createdAt?: Date | string
+    imageUrl?: string | null
   }
 
   export type OfferUpdateInput = {
@@ -23740,6 +23787,7 @@ export namespace Prisma {
     endDate?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type OfferUncheckedUpdateInput = {
@@ -23752,6 +23800,7 @@ export namespace Prisma {
     endDate?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type OfferCreateManyInput = {
@@ -23764,6 +23813,7 @@ export namespace Prisma {
     endDate?: string | null
     isActive?: boolean
     createdAt?: Date | string
+    imageUrl?: string | null
   }
 
   export type OfferUpdateManyMutationInput = {
@@ -23776,6 +23826,7 @@ export namespace Prisma {
     endDate?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type OfferUncheckedUpdateManyInput = {
@@ -23788,6 +23839,7 @@ export namespace Prisma {
     endDate?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ColorCreateInput = {
@@ -24368,6 +24420,7 @@ export namespace Prisma {
     logo?: SortOrder
     country?: SortOrder
     isFeatured?: SortOrder
+    isSignature?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -24380,6 +24433,7 @@ export namespace Prisma {
     logo?: SortOrder
     country?: SortOrder
     isFeatured?: SortOrder
+    isSignature?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -24392,6 +24446,7 @@ export namespace Prisma {
     logo?: SortOrder
     country?: SortOrder
     isFeatured?: SortOrder
+    isSignature?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -24793,6 +24848,7 @@ export namespace Prisma {
     endDate?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
+    imageUrl?: SortOrder
   }
 
   export type OfferMaxOrderByAggregateInput = {
@@ -24805,6 +24861,7 @@ export namespace Prisma {
     endDate?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
+    imageUrl?: SortOrder
   }
 
   export type OfferMinOrderByAggregateInput = {
@@ -24817,6 +24874,7 @@ export namespace Prisma {
     endDate?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
+    imageUrl?: SortOrder
   }
 
   export type ColorCountOrderByAggregateInput = {
@@ -26562,6 +26620,7 @@ export namespace Prisma {
     logo?: string | null
     country?: string | null
     isFeatured?: boolean
+    isSignature?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -26574,6 +26633,7 @@ export namespace Prisma {
     logo?: string | null
     country?: string | null
     isFeatured?: boolean
+    isSignature?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -26679,6 +26739,7 @@ export namespace Prisma {
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     country?: NullableStringFieldUpdateOperationsInput | string | null
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    isSignature?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -26691,6 +26752,7 @@ export namespace Prisma {
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     country?: NullableStringFieldUpdateOperationsInput | string | null
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    isSignature?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

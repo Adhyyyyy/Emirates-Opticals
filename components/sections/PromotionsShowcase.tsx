@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { m, AnimatePresence } from "framer-motion";
 import { getOffers } from "@/actions/cms-marketing";
-import { MapPin, Clock } from "lucide-react";
+import { MapPin, Clock, ArrowLeft, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface Offer {
@@ -14,6 +14,7 @@ interface Offer {
   branchId?: string;
   startDate?: string;
   endDate?: string;
+  imageUrl?: string;
 }
 
 export function PromotionsShowcase() {
@@ -47,6 +48,7 @@ export function PromotionsShowcase() {
             branchId: o.branchId === "Global" ? "All Shops" : o.branchId,
             startDate: o.startDate,
             endDate: o.endDate,
+            imageUrl: o.imageUrl,
           }));
         }
         setOffers(activeList);
@@ -63,22 +65,21 @@ export function PromotionsShowcase() {
     if (offers.length <= 1) return;
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % offers.length);
-    }, 6000); 
+    }, 7000); 
     return () => clearInterval(timer);
   }, [offers.length]);
 
-  const handleDragEnd = (_event: unknown, info: { offset: { x: number; y: number } }) => {
-    if (info.offset.y < -80 && offers.length > 1) {
-      setCurrentIndex((prev) => (prev + 1) % offers.length);
-    }
-  };
+  const hasImages = offers.some(o => o.imageUrl);
 
   return (
-    <section className="bg-[#FAF9F6] section-padding overflow-hidden border-t border-[#E8E4DC]" id="homepage-promotions">
-      <div className="section-container flex flex-col">
+    <section className="relative bg-[#FAF9F6] section-padding overflow-hidden border-t border-[#E8E4DC]" id="homepage-promotions">
+      {/* Background Subtle Accent Glow */}
+      <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-brand-gold/5 rounded-full blur-[120px] pointer-events-none -translate-y-1/2" />
+      
+      <div className="section-container flex flex-col relative z-10">
         
         {/* Inner Grid Split Layout */}
-        <div className="grid md:grid-cols-2 gap-12 items-center w-full">
+        <div className="grid md:grid-cols-2 gap-16 items-center w-full">
           
           {/* Left Column: Editorial Header */}
           <m.div
@@ -86,31 +87,38 @@ export function PromotionsShowcase() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.9 }}
-            className="flex flex-col text-left"
+            className="flex flex-col text-left space-y-6"
           >
-            <h2 className="h2-editorial mb-6 uppercase">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal text-brand-charcoal font-heading leading-[1.1] tracking-tight uppercase">
               Exclusive <br />
-              <span className="italic font-light text-brand-gold">Offers</span>
+              <span className="italic font-light text-brand-gold lowercase font-serif">Campaigns</span>
             </h2>
+            
             <p className="text-sm md:text-[15px] text-neutral-600 leading-relaxed font-light max-w-md">
-              Discover our latest showroom events, seasonal privileges, and special discounts available at Emirates Optician.
+              Unlock seasonal curated advantages, product launches, and priority services across all Emirates Opticals showrooms.
             </p>
           </m.div>
 
           {/* Right Column: Stack of Cards */}
           <div className="flex flex-col items-center justify-center w-full">
-            <div className="relative w-full h-[320px] md:h-[340px]">
+            <div className={cn(
+              "relative w-full transition-all duration-500",
+              offers.length === 0 ? "h-[220px]" : hasImages ? "h-[490px] md:h-[410px]" : "h-[370px] md:h-[390px]"
+            )}>
               {offers.length === 0 ? (
                 // No Offers Fallback
                 <m.div 
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="absolute inset-0 bg-white/50 backdrop-blur-sm border border-brand-charcoal/5 rounded-[3px] flex flex-col items-center justify-center text-center p-8 shadow-sm"
+                  className="absolute inset-0 bg-[#FAF9F6] border border-[#E8E4DC] p-4 flex flex-col items-center justify-center text-center shadow-sm"
                 >
-                  <p className="text-brand-charcoal/60 uppercase tracking-[0.2em] font-bold text-xs mb-2">Check back soon</p>
-                  <h3 className="text-xl md:text-2xl font-semibold text-brand-charcoal font-heading leading-snug">
-                    Currently No Active Offers
-                  </h3>
+                  <div className="w-full h-full border border-brand-gold/10 flex flex-col items-center justify-center p-8 bg-white relative">
+                    <div className="absolute inset-1 border border-brand-gold/5 pointer-events-none" />
+                    <p className="text-brand-charcoal/40 uppercase tracking-[0.25em] font-bold text-[9px] mb-2">Exclusive Privileges</p>
+                    <h3 className="text-lg md:text-xl font-normal text-brand-charcoal font-heading leading-snug uppercase tracking-wide">
+                      Currently No Active Campaigns
+                    </h3>
+                  </div>
                 </m.div>
               ) : (
                 <AnimatePresence mode="popLayout">
@@ -132,7 +140,7 @@ export function PromotionsShowcase() {
                         }}
                         drag={false}
                         animate={{
-                          y: position * 16,
+                          y: position * 18,
                           scale: 1 - position * 0.04,
                           opacity: position === 0 ? 1 : position === 1 ? 0.6 : 0.2,
                         }}
@@ -142,8 +150,9 @@ export function PromotionsShowcase() {
                           damping: 25,
                         }}
                         className={cn(
-                          "absolute inset-x-0 top-0 bg-white text-brand-charcoal rounded-[3px] border border-black/5 p-8 md:p-10 flex flex-col gap-6 hover:border-brand-gold/40 hover:shadow-2xl transition-all duration-500 shadow-xl",
-                          isTop ? "cursor-pointer pointer-events-auto" : "pointer-events-none select-none"
+                          "absolute inset-x-0 top-0 bg-[#FAF9F6] text-brand-charcoal border border-[#E8E4DC] flex flex-col hover:border-brand-gold/30 hover:shadow-2xl transition-all duration-500 shadow-xl overflow-hidden p-3 md:p-4",
+                          isTop ? "cursor-pointer pointer-events-auto" : "pointer-events-none select-none",
+                          hasImages ? "h-[470px] md:h-[390px]" : "h-[350px] md:h-[370px]"
                         )}
                         onClick={() => {
                           if (isTop && offers.length > 1) {
@@ -151,39 +160,106 @@ export function PromotionsShowcase() {
                           }
                         }}
                       >
-                        <div className="flex justify-between items-start">
-                          <span className="bg-brand-gold text-brand-charcoal text-[10px] uppercase tracking-[0.2em] px-4 py-2 rounded-[3px] font-extrabold w-fit shadow-md">
-                            {offer.percentage}
-                          </span>
-                        </div>
+                        {offer.imageUrl ? (
+                          <div className="flex flex-col md:flex-row w-full h-full bg-white border border-[#E8E4DC] relative">
+                            {/* Inner Golden Double Filament Frame */}
+                            <div className="absolute inset-1 border-2 border-double border-brand-gold/15 pointer-events-none z-10" />
 
-                        <div className="mt-2 flex-1 flex flex-col justify-center">
-                          <h3 className="text-2xl md:text-3xl font-normal text-brand-charcoal font-heading leading-tight tracking-wide">
-                            {offer.title}
-                          </h3>
-                          <p className="text-sm md:text-[15px] text-brand-charcoal/60 leading-relaxed font-light mt-4 line-clamp-3">
-                            {offer.description}
-                          </p>
-                        </div>
+                            {/* Left Side: Padded Campaign Image Frame */}
+                            <div className="w-full md:w-[45%] h-[180px] md:h-full relative overflow-hidden shrink-0 bg-[#F5F2EC] p-2 border-b md:border-b-0 md:border-r border-[#E8E4DC]">
+                              <div className="w-full h-full overflow-hidden relative border border-brand-gold/10">
+                                <img 
+                                  src={offer.imageUrl} 
+                                  className="w-full h-full object-cover transition-transform duration-1000 ease-out hover:scale-105" 
+                                  alt={offer.title} 
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
+                              </div>
+                            </div>
+                            
+                            {/* Right Side: Editorial Campaign Details */}
+                            <div className="flex-1 p-6 md:p-8 flex flex-col justify-between h-[250px] md:h-full relative z-20">
+                              <div className="space-y-4">
+                                <div className="flex justify-between items-center">
+                                  <span className="border border-brand-gold/30 text-brand-gold text-[9px] uppercase tracking-[0.25em] px-3.5 py-1.5 font-bold bg-brand-gold/[0.03]">
+                                    {offer.percentage}
+                                  </span>
+                                  {/* Fine serial code logo watermarking */}
+                                  <span className="text-[8px] font-mono text-brand-charcoal/30 tracking-widest hidden lg:inline-block">EM-PRV-{offer.id.slice(-4).toUpperCase()}</span>
+                                </div>
+                                
+                                <h3 className="text-xl md:text-2xl font-light text-brand-charcoal font-heading leading-tight tracking-wide line-clamp-2 uppercase">
+                                  {offer.title}
+                                </h3>
+                                
+                                <p className="text-xs md:text-sm text-brand-charcoal/60 leading-relaxed font-light line-clamp-3">
+                                  {offer.description}
+                                </p>
+                              </div>
+                              
+                              <div className="flex flex-col gap-2 pt-4 border-t border-[#E8E4DC]/60">
+                                {offer.branchId && (
+                                  <div className="flex items-center gap-2.5 text-[9px] text-brand-charcoal/50 uppercase tracking-[0.2em] font-extrabold">
+                                    <MapPin className="w-3.5 h-3.5 text-brand-gold shrink-0" />
+                                    <span className="truncate">{offer.branchId}</span>
+                                  </div>
+                                )}
+                                {(offer.startDate || offer.endDate) && (
+                                  <div className="flex items-center gap-2.5 text-[9px] text-brand-charcoal/50 uppercase tracking-[0.2em] font-extrabold">
+                                    <Clock className="w-3.5 h-3.5 text-brand-gold shrink-0" />
+                                    <span className="truncate">
+                                      {offer.startDate ? new Date(offer.startDate).toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" }) : "Immediate"}
+                                      {" — "}
+                                      {offer.endDate ? new Date(offer.endDate).toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" }) : "Ongoing"}
+                                    </span>
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        ) : (
+                          // Text-only premium framed style
+                          <div className="w-full h-full bg-white border border-[#E8E4DC] relative p-8 md:p-10 flex flex-col justify-between">
+                            {/* Inner Golden Double Filament Frame */}
+                            <div className="absolute inset-1 border-2 border-double border-brand-gold/15 pointer-events-none z-10" />
 
-                        <div className="flex flex-col gap-3 mt-2 pt-6 border-t border-black/5">
-                          {offer.branchId && (
-                            <div className="flex items-center gap-3 text-[10px] text-brand-charcoal/50 uppercase tracking-[0.15em] font-medium">
-                              <MapPin className="w-4 h-4 text-brand-gold shrink-0" />
-                              <span className="truncate">{offer.branchId}</span>
+                            <div className="space-y-6 relative z-20">
+                              <div className="flex justify-between items-center">
+                                <span className="border border-brand-gold/30 text-brand-gold text-[9px] uppercase tracking-[0.25em] px-4 py-2 font-bold bg-brand-gold/[0.03]">
+                                  {offer.percentage}
+                                </span>
+                                <span className="text-[8px] font-mono text-brand-charcoal/30 tracking-widest">EM-PRV-{offer.id.slice(-4).toUpperCase()}</span>
+                              </div>
+                              
+                              <h3 className="text-2xl md:text-3xl font-light text-brand-charcoal font-heading leading-tight tracking-wide uppercase">
+                                {offer.title}
+                              </h3>
+                              
+                              <p className="text-sm md:text-[15px] text-brand-charcoal/60 leading-relaxed font-light mt-4 line-clamp-4">
+                                {offer.description}
+                              </p>
                             </div>
-                          )}
-                          {(offer.startDate || offer.endDate) && (
-                            <div className="flex items-center gap-3 text-[10px] text-brand-charcoal/50 uppercase tracking-[0.15em] font-medium">
-                              <Clock className="w-4 h-4 text-brand-gold shrink-0" />
-                              <span className="truncate">
-                                {offer.startDate ? new Date(offer.startDate).toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" }) : "Valid Now"}
-                                {" — "}
-                                {offer.endDate ? new Date(offer.endDate).toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" }) : "Ongoing"}
-                              </span>
+                            
+                            <div className="flex flex-col gap-3 pt-6 border-t border-[#E8E4DC]/60 relative z-20">
+                              {offer.branchId && (
+                                <div className="flex items-center gap-3 text-[10px] text-brand-charcoal/50 uppercase tracking-[0.2em] font-extrabold">
+                                  <MapPin className="w-4 h-4 text-brand-gold shrink-0" />
+                                  <span className="truncate">{offer.branchId}</span>
+                                </div>
+                              )}
+                              {(offer.startDate || offer.endDate) && (
+                                <div className="flex items-center gap-3 text-[10px] text-brand-charcoal/50 uppercase tracking-[0.2em] font-extrabold">
+                                  <Clock className="w-4 h-4 text-brand-gold shrink-0" />
+                                  <span className="truncate">
+                                    {offer.startDate ? new Date(offer.startDate).toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" }) : "Immediate"}
+                                    {" — "}
+                                    {offer.endDate ? new Date(offer.endDate).toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" }) : "Ongoing"}
+                                  </span>
+                                </div>
+                              )}
                             </div>
-                          )}
-                        </div>
+                          </div>
+                        )}
                       </m.div>
                     );
                   })}
@@ -191,20 +267,43 @@ export function PromotionsShowcase() {
               )}
             </div>
 
-            {/* Navigation Dots below stack */}
+            {/* Premium Editorial Controls and Slide Progress Indicators */}
             {offers.length > 1 && (
-              <div className="flex gap-2 justify-center mt-8 z-30 relative">
-                {offers.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setCurrentIndex(i)}
-                    className={cn(
-                      "w-1.5 h-1.5 rounded-full transition-all duration-300 focus:outline-none",
-                      currentIndex === i ? "bg-brand-gold w-4" : "bg-brand-charcoal/20"
-                    )}
-                    aria-label={`Go to offer ${i + 1}`}
-                  />
-                ))}
+              <div className="flex items-center gap-6 mt-8 z-30 relative">
+                <button
+                  onClick={() => setCurrentIndex((prev) => (prev - 1 + offers.length) % offers.length)}
+                  className="w-10 h-10 rounded-full border border-brand-charcoal/10 hover:border-brand-gold flex items-center justify-center text-brand-charcoal hover:text-brand-gold transition-all duration-300 group bg-white shadow-sm"
+                  aria-label="Previous Campaign"
+                >
+                  <ArrowLeft className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-0.5 stroke-[1.5]" />
+                </button>
+                
+                <div className="flex items-center gap-2">
+                  <span className="text-[10px] font-extrabold text-brand-charcoal tracking-wider">
+                    {String(currentIndex + 1).padStart(2, '0')}
+                  </span>
+                  
+                  <div className="w-16 h-[2px] bg-brand-charcoal/5 relative overflow-hidden rounded-full">
+                    <m.div 
+                      className="absolute left-0 top-0 h-full bg-brand-gold" 
+                      initial={{ width: "0%" }}
+                      animate={{ width: `${((currentIndex + 1) / offers.length) * 100}%` }}
+                      transition={{ duration: 0.4, ease: "easeOut" }}
+                    />
+                  </div>
+                  
+                  <span className="text-[10px] font-extrabold text-brand-charcoal/30 tracking-wider">
+                    {String(offers.length).padStart(2, '0')}
+                  </span>
+                </div>
+                
+                <button
+                  onClick={() => setCurrentIndex((prev) => (prev + 1) % offers.length)}
+                  className="w-10 h-10 rounded-full border border-brand-charcoal/10 hover:border-brand-gold flex items-center justify-center text-brand-charcoal hover:text-brand-gold transition-all duration-300 group bg-white shadow-sm"
+                  aria-label="Next Campaign"
+                >
+                  <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 stroke-[1.5]" />
+                </button>
               </div>
             )}
           </div>

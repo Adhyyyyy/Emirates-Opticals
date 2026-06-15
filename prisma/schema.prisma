@@ -114,11 +114,13 @@ model Brand {
   logo        String?
   country     String?
   isFeatured  Boolean   @default(false)
+  isSignature Boolean   @default(false)
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
   products    Product[]
 
   @@index([slug])
+  @@index([isSignature])
 }
 
 model Category {
@@ -281,6 +283,7 @@ model Offer {
   endDate     String?
   isActive    Boolean  @default(true)
   createdAt   DateTime @default(now())
+  imageUrl    String?
 }
 
 model Color {

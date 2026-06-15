@@ -199,6 +199,7 @@ exports.Prisma.BrandScalarFieldEnum = {
   logo: 'logo',
   country: 'country',
   isFeatured: 'isFeatured',
+  isSignature: 'isSignature',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -310,7 +311,8 @@ exports.Prisma.OfferScalarFieldEnum = {
   startDate: 'startDate',
   endDate: 'endDate',
   isActive: 'isActive',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  imageUrl: 'imageUrl'
 };
 
 exports.Prisma.ColorScalarFieldEnum = {

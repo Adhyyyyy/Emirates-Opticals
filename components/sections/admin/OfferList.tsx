@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useTransition } from "react";
 import { createOffer, deleteOffer, toggleOfferStatus } from "@/actions/cms-marketing";
@@ -10,10 +10,13 @@ import {
   MapPin, 
   Power, 
   AlertCircle,
-  Clock
+  Clock,
+  Upload,
+  Loader2
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { m, AnimatePresence } from "framer-motion";
+import { useCloudinaryUpload } from "@/hooks/useCloudinaryUpload";
 
 interface Offer {
   id: string;
@@ -25,6 +28,7 @@ interface Offer {
   endDate?: string;
   isActive: boolean;
   createdAt: string;
+  imageUrl?: string;
 }
 
 interface OfferListProps {
@@ -46,8 +50,11 @@ export function OfferList({ initialOffers, branches, currentAdminBranchId }: Off
   const [branchId, setBranchId] = useState(currentAdminBranchId || "Global");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
   
   const [error, setError] = useState<string | null>(null);
+
+  const { upload: uploadOfferImage, isUploading: isUploadingOffer } = useCloudinaryUpload();
 
   const handlePost = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -65,6 +72,7 @@ export function OfferList({ initialOffers, branches, currentAdminBranchId }: Off
       branchId,
       startDate: startDate || undefined,
       endDate: endDate || undefined,
+      imageUrl: imageUrl || undefined,
     };
 
     startTransition(async () => {
@@ -77,6 +85,7 @@ export function OfferList({ initialOffers, branches, currentAdminBranchId }: Off
         setBranchId(currentAdminBranchId || "Global");
         setStartDate("");
         setEndDate("");
+        setImageUrl("");
         setIsPosting(false);
       } else {
         setError(res.error || "Failed to deploy offer.");
@@ -252,6 +261,51 @@ export function OfferList({ initialOffers, branches, currentAdminBranchId }: Off
                     className="w-full bg-brand-pearl/20 border-none p-4 text-xs font-light focus:ring-1 focus:ring-brand-gold/20 rounded-xl leading-relaxed outline-none resize-none"
                   />
                 </div>
+
+                <div>
+                  <label className="text-[9px] uppercase tracking-widest font-bold text-brand-charcoal/40 mb-1.5 block">Offer Image Banner</label>
+                  {imageUrl ? (
+                    <div className="relative aspect-video w-full rounded-2xl overflow-hidden border border-black/5 bg-brand-pearl">
+                      <img src={imageUrl} className="w-full h-full object-cover" alt="Campaign Banner Preview" />
+                      <button
+                        type="button"
+                        onClick={() => setImageUrl("")}
+                        className="absolute top-3 right-3 p-2 bg-black/50 hover:bg-red-500 rounded-full text-white transition-colors"
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="relative border-2 border-dashed border-black/5 bg-brand-pearl/30 rounded-[2rem] p-8 text-center hover:border-brand-gold hover:bg-brand-pearl/50 transition-all duration-500 cursor-pointer">
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={async (e) => {
+                          const file = e.target.files?.[0];
+                          if (file) {
+                            await uploadOfferImage(file, {
+                              folder: "PRODUCTS",
+                              onSuccess: (url) => setImageUrl(url),
+                              onError: (err) => alert(err),
+                            });
+                          }
+                        }}
+                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                      />
+                      {isUploadingOffer ? (
+                        <div className="flex flex-col items-center justify-center gap-2">
+                          <Loader2 className="w-6 h-6 text-brand-gold animate-spin animate-infinite" />
+                          <span className="text-[8px] font-bold uppercase tracking-widest text-brand-charcoal/40">Uploading to Cloudinary...</span>
+                        </div>
+                      ) : (
+                        <div className="flex flex-col items-center justify-center gap-2">
+                          <Upload className="w-5 h-5 text-brand-gold mx-auto" />
+                          <span className="text-[9px] font-bold uppercase tracking-widest text-brand-charcoal/40">Upload Campaign Image</span>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
               </div>
 
               <div className="flex justify-end gap-4 pt-4 border-t border-black/5 mt-8">
@@ -281,12 +335,17 @@ export function OfferList({ initialOffers, branches, currentAdminBranchId }: Off
           filteredOffers.map((offer) => {
             const branchName = offer.branchId === "Global" ? "All Shops" : branches.find(b => b.id === offer.branchId)?.name || offer.branchId;
             return (
-              <div key={offer.id} className="bg-white border border-black/5 rounded-[2rem] shadow-sm flex flex-col p-8 group hover:border-brand-gold/20 transition-all duration-500 relative">
-                
-                <div className="flex justify-between items-start mb-6">
-                  <div className="px-4 py-2 bg-brand-gold text-brand-charcoal text-[10px] font-extrabold uppercase tracking-[0.2em] rounded-xl flex items-center shadow-sm">
-                    {offer.percentage}
+              <div key={offer.id} className="bg-white border border-black/5 rounded-[2rem] shadow-sm flex flex-col md:flex-row p-8 group hover:border-brand-gold/20 transition-all duration-500 relative gap-6">
+                {offer.imageUrl && (
+                  <div className="w-full md:w-32 aspect-video md:aspect-square rounded-2xl overflow-hidden shrink-0 border border-black/5 bg-brand-pearl relative">
+                    <img src={offer.imageUrl} className="w-full h-full object-cover" alt="Offer Image" />
                   </div>
+                )}
+                <div className="flex-1 flex flex-col justify-between">
+                  <div className="flex justify-between items-start mb-6">
+                    <div className="px-4 py-2 bg-brand-gold text-brand-charcoal text-[10px] font-extrabold uppercase tracking-[0.2em] rounded-xl flex items-center shadow-sm">
+                      {offer.percentage}
+                    </div>
 
                   <div className="flex items-center gap-2">
                     <button
@@ -338,9 +397,9 @@ export function OfferList({ initialOffers, branches, currentAdminBranchId }: Off
                     )}
                   </div>
                 </div>
-
               </div>
-            );
+            </div>
+          );
           })
         ) : (
           <div className="col-span-full py-20 text-center bg-white border border-dashed border-black/10 rounded-[2.5rem]">

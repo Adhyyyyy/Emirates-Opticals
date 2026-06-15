@@ -132,7 +132,8 @@ export async function getOffers() {
       startDate: o.startDate || undefined,
       endDate: o.endDate || undefined,
       isActive: o.isActive,
-      createdAt: o.createdAt.toISOString()
+      createdAt: o.createdAt.toISOString(),
+      imageUrl: o.imageUrl || undefined
     }));
   } catch (error) {
     console.error("Failed to read offers:", error);
@@ -147,6 +148,7 @@ export async function createOffer(data: {
   branchId?: string; // target specific branch or "Global"
   startDate?: string;
   endDate?: string;
+  imageUrl?: string;
 }) {
   const { data: { user } } = await getAuthSession();
   if (!user || !["SUPER_ADMIN", "BRANCH_ADMIN"].includes(user.app_metadata?.role)) {
@@ -162,6 +164,7 @@ export async function createOffer(data: {
         branchId: data.branchId || "Global",
         startDate: data.startDate || null,
         endDate: data.endDate || null,
+        imageUrl: data.imageUrl || null,
         isActive: true
       }
     });
@@ -179,7 +182,8 @@ export async function createOffer(data: {
         startDate: newOffer.startDate || undefined,
         endDate: newOffer.endDate || undefined,
         isActive: newOffer.isActive,
-        createdAt: newOffer.createdAt.toISOString()
+        createdAt: newOffer.createdAt.toISOString(),
+        imageUrl: newOffer.imageUrl || undefined
       } 
     };
   } catch (error) {

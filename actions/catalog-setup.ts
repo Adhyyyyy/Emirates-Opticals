@@ -87,7 +87,7 @@ export async function deleteCategory(id: string) {
 /**
  * BRANDS MANAGEMENT
  */
-export async function createBrand(data: { name: string; description?: string; country?: string }) {
+export async function createBrand(data: { name: string; description?: string; country?: string; isSignature?: boolean }) {
   const { data: { user } } = await getAuthSession();
   if (!user || user.app_metadata?.role !== "SUPER_ADMIN") {
     throw new Error("Unauthorized");
@@ -101,7 +101,8 @@ export async function createBrand(data: { name: string; description?: string; co
         name: data.name,
         slug,
         description: data.description,
-        country: data.country
+        country: data.country,
+        isSignature: data.isSignature || false
       }
     });
 
@@ -112,6 +113,36 @@ export async function createBrand(data: { name: string; description?: string; co
   } catch (error) {
     console.error("Create brand error:", error);
     return { error: "Failed to create brand. A duplicate slug may exist." };
+  }
+}
+
+export async function updateBrand(id: string, data: { name: string; description?: string; country?: string; isSignature?: boolean }) {
+  const { data: { user } } = await getAuthSession();
+  if (!user || user.app_metadata?.role !== "SUPER_ADMIN") {
+    throw new Error("Unauthorized");
+  }
+
+  try {
+    const slug = data.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    
+    const brand = await prisma.brand.update({
+      where: { id },
+      data: {
+        name: data.name,
+        slug,
+        description: data.description,
+        country: data.country,
+        isSignature: data.isSignature || false
+      }
+    });
+
+    revalidatePath("/admin/collections");
+    revalidatePath("/admin/products");
+    revalidatePath("/shop");
+    return { success: true, data: brand };
+  } catch (error) {
+    console.error("Update brand error:", error);
+    return { error: "Failed to update brand. A duplicate slug may exist." };
   }
 }
 

@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { productSchema } from "@/validations/schemas";
+import { createBrand } from "@/actions/catalog-setup";
 import { ProductMediaUpload } from "./ProductMediaUpload";
 import { LuxuryButton } from "@/components/ui/LuxuryButton";
 import { 
@@ -44,6 +45,47 @@ export function ProductForm({
   const [activeTab, setActiveTab] = useState<"basic" | "specs" | "collection" | "media" | "seo">("basic");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
+
+  const [localBrands, setLocalBrands] = useState<any[]>(brands);
+  const [isAddingSignatureBrand, setIsAddingSignatureBrand] = useState(false);
+  const [newSignatureBrandName, setNewSignatureBrandName] = useState("");
+  const [brandCreationError, setBrandCreationError] = useState<string | null>(null);
+  const [isCreatingBrand, setIsCreatingBrand] = useState(false);
+
+  useEffect(() => {
+    setLocalBrands(brands);
+  }, [brands]);
+
+  const handleCreateSignatureBrandInline = async () => {
+    if (!newSignatureBrandName.trim()) {
+      setBrandCreationError("Brand name is required");
+      return;
+    }
+    
+    setIsCreatingBrand(true);
+    setBrandCreationError(null);
+    
+    try {
+      const res = await createBrand({
+        name: newSignatureBrandName.trim(),
+        isSignature: true,
+        description: "Inline created signature brand",
+      });
+      
+      if (res.success && res.data) {
+        setLocalBrands(prev => [...prev, res.data]);
+        form.setValue("brandId", res.data.id, { shouldValidate: true, shouldDirty: true });
+        setIsAddingSignatureBrand(false);
+        setNewSignatureBrandName("");
+      } else {
+        setBrandCreationError(res.error || "Failed to create signature brand");
+      }
+    } catch (err: any) {
+      setBrandCreationError(err.message || "Failed to connect to authentication server");
+    } finally {
+      setIsCreatingBrand(false);
+    }
+  };
 
   // Normalize initialData to include colors if it only has color
   const normalizedInitialData = React.useMemo(() => {
@@ -100,6 +142,32 @@ export function ProductForm({
       form.setValue("color", "", { shouldDirty: true });
     }
   }, [watchedColors]);
+
+  const collectionType = form.watch("collectionType");
+  const currentBrandId = form.watch("brandId");
+
+  // Dynamically filter brands based on selected collection type
+  const filteredBrands = React.useMemo(() => {
+    return brands.filter((b: any) => {
+      if (collectionType === "Emirates Signature") {
+        return !!b.isSignature;
+      }
+      return !b.isSignature;
+    });
+  }, [brands, collectionType]);
+
+  // Safely reset brandId if the selected brand doesn't match the active collection type category
+  useEffect(() => {
+    if (!currentBrandId) return;
+    const currentBrand = brands.find((b: any) => b.id === currentBrandId);
+    if (currentBrand) {
+      const isSig = !!currentBrand.isSignature;
+      const shouldBeSig = collectionType === "Emirates Signature";
+      if (isSig !== shouldBeSig) {
+        form.setValue("brandId", "", { shouldValidate: true, shouldDirty: true });
+      }
+    }
+  }, [collectionType, currentBrandId, brands, form]);
 
   // Track if slug has been manually edited so auto-generation stops after user touches it
   const slugManuallyEdited = useRef(!!initialData);
@@ -405,21 +473,9 @@ export function ProductForm({
                 exit={{ opacity: 0, x: -20 }}
                 className="space-y-12"
               >
-                {/* Brand & Category Select Block */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 pb-10 border-b border-black/5">
-                  <div className="group relative">
-                    <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-charcoal/40 mb-4 block">Boutique Brand</label>
-                    <select 
-                      {...form.register("brandId")}
-                      className="w-full bg-transparent border-b border-black/10 py-4 text-lg font-light focus:outline-none focus:border-brand-gold transition-colors duration-500"
-                    >
-                      <option value="">Select Global Brand</option>
-                      {brands.map(b => <option key={b.id} value={b.id}>{b.name}</option>)}
-                    </select>
-                    {form.formState.errors.brandId && <p className="text-red-500 text-[10px] mt-2 uppercase font-bold">{form.formState.errors.brandId.message as string}</p>}
-                  </div>
-
-                  <div className="group relative">
+                {/* Category Select Block */}
+                <div className="pb-10 border-b border-black/5">
+                  <div className="group relative max-w-md">
                     <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-charcoal/40 mb-4 block">Collection Category</label>
                     <select 
                       {...form.register("categoryId")}
@@ -840,29 +896,99 @@ export function ProductForm({
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div className="space-y-10">
-                  {/* Signature Collection Name — shown for in-house products */}
+                  {/* Dynamic Brand Selector (Designer / Signature) */}
                   <div className="group relative">
                     <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-charcoal/40 mb-4 block">
-                      Signature Collection Name
-                      {form.watch("collectionType") !== "Emirates Signature" && (
-                        <span className="ml-3 text-brand-charcoal/20 normal-case font-normal">(Emirates Signature only)</span>
-                      )}
+                      {collectionType === "Emirates Signature" ? "Signature Brand Name" : "Boutique Brand"}
                     </label>
-                    <select
-                      {...form.register("signatureCollectionName")}
-                      disabled={form.watch("collectionType") !== "Emirates Signature"}
-                      className="w-full bg-transparent border-b border-black/10 py-4 text-lg font-light focus:outline-none focus:border-brand-gold transition-colors duration-500 disabled:opacity-30"
-                    >
-                      <option value="">Select Collection</option>
-                      <option value="Emirates Contemporary">Emirates Contemporary</option>
-                      <option value="Emirates Atelier">Emirates Atelier</option>
-                      <option value="Emirates Everyday">Emirates Everyday</option>
-                      <option value="Emirates Minimal">Emirates Minimal</option>
-                      <option value="Emirates Studio">Emirates Studio</option>
-                      <option value="Emirates Essential">Emirates Essential</option>
-                    </select>
+                    {!isAddingSignatureBrand ? (
+                      <>
+                        <select 
+                          {...form.register("brandId")}
+                          className="w-full bg-transparent border-b border-black/10 py-4 text-lg font-light focus:outline-none focus:border-brand-gold transition-colors duration-500"
+                        >
+                          <option value="">
+                            {collectionType === "Emirates Signature" ? "Select Signature Brand" : "Select Global Brand"}
+                          </option>
+                          {filteredBrands.map(b => <option key={b.id} value={b.id}>{b.name}</option>)}
+                        </select>
+                        {collectionType === "Emirates Signature" && (
+                          <button
+                            type="button"
+                            onClick={() => setIsAddingSignatureBrand(true)}
+                            className="mt-3 text-[9px] font-bold uppercase tracking-widest text-[#C9A84C] hover:text-brand-charcoal transition-colors flex items-center gap-1.5 cursor-pointer"
+                          >
+                            + Create New Signature Brand
+                          </button>
+                        )}
+                      </>
+                    ) : (
+                      <div className="space-y-4 pt-2">
+                        <div className="flex gap-4 items-end">
+                          <div className="flex-1">
+                            <input
+                              type="text"
+                              value={newSignatureBrandName}
+                              onChange={(e) => {
+                                setNewSignatureBrandName(e.target.value);
+                                setBrandCreationError(null);
+                              }}
+                              placeholder="e.g. Mannath Premium"
+                              className="w-full bg-transparent border-b border-[#C9A84C] py-2 text-sm font-medium focus:outline-none"
+                              autoFocus
+                            />
+                          </div>
+                          <button
+                            type="button"
+                            disabled={isCreatingBrand}
+                            onClick={handleCreateSignatureBrandInline}
+                            className="py-2 px-4 bg-brand-charcoal hover:bg-[#C9A84C] text-brand-gold hover:text-brand-charcoal text-[9px] font-bold uppercase tracking-widest rounded-lg transition-all duration-300 disabled:opacity-50 cursor-pointer"
+                          >
+                            {isCreatingBrand ? "Saving..." : "Save"}
+                          </button>
+                          <button
+                            type="button"
+                            disabled={isCreatingBrand}
+                            onClick={() => {
+                              setIsAddingSignatureBrand(false);
+                              setNewSignatureBrandName("");
+                              setBrandCreationError(null);
+                            }}
+                            className="py-2 px-4 border border-black/10 hover:border-red-500/20 hover:bg-red-50 text-brand-charcoal/50 hover:text-red-600 text-[9px] font-bold uppercase tracking-widest rounded-lg transition-all duration-300 cursor-pointer"
+                          >
+                            Cancel
+                          </button>
+                        </div>
+                        {brandCreationError && (
+                          <p className="text-red-500 text-[9px] uppercase font-bold tracking-wider">{brandCreationError}</p>
+                        )}
+                      </div>
+                    )}
+                    {form.formState.errors.brandId && <p className="text-red-500 text-[10px] mt-2 uppercase font-bold">{form.formState.errors.brandId.message as string}</p>}
                   </div>
 
+                  {/* Signature Collection Name — shown only for in-house products */}
+                  {collectionType === "Emirates Signature" && (
+                    <div className="group relative animate-fade-in">
+                      <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-charcoal/40 mb-4 block">
+                        Signature Collection Name
+                      </label>
+                      <select
+                        {...form.register("signatureCollectionName")}
+                        className="w-full bg-transparent border-b border-black/10 py-4 text-lg font-light focus:outline-none focus:border-brand-gold transition-colors duration-500"
+                      >
+                        <option value="">Select Collection</option>
+                        <option value="Emirates Contemporary">Emirates Contemporary</option>
+                        <option value="Emirates Atelier">Emirates Atelier</option>
+                        <option value="Emirates Everyday">Emirates Everyday</option>
+                        <option value="Emirates Minimal">Emirates Minimal</option>
+                        <option value="Emirates Studio">Emirates Studio</option>
+                        <option value="Emirates Essential">Emirates Essential</option>
+                      </select>
+                    </div>
+                  )}
+
+                  {/* Recommended Usage — shown for all products */}
                   <div className="group relative">
                     <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-charcoal/40 mb-4 block">Recommended Usage</label>
                     <input
@@ -873,6 +999,7 @@ export function ProductForm({
                   </div>
                 </div>
 
+                {/* Right Column for Craftsmanship Details — shown for all products */}
                 <div className="space-y-10">
                   <div className="group relative">
                     <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-charcoal/40 mb-4 block">Craftsmanship Details</label>

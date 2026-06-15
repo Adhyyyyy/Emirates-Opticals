@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useTransition } from "react";
 import { CollectionList } from "./CollectionList";
@@ -31,7 +31,7 @@ interface CollectionWorkspaceProps {
 }
 
 export function CollectionWorkspace({ products, categories: initialCategories, brands: initialBrands }: CollectionWorkspaceProps) {
-  const [activeTab, setActiveTab] = useState<"curations" | "categories" | "brands">("curations");
+  const [activeTab, setActiveTab] = useState<"curations" | "categories" | "brands" | "signatureBrands">("curations");
   const [categories, setCategories] = useState<any[]>(initialCategories);
   const [brands, setBrands] = useState<any[]>(initialBrands);
   const [isPending, startTransition] = useTransition();
@@ -48,6 +48,19 @@ export function CollectionWorkspace({ products, categories: initialCategories, b
   const [brandCountry, setBrandCountry] = useState("");
   const [brandError, setBrandError] = useState<string | null>(null);
   const [brandSuccess, setBrandSuccess] = useState(false);
+
+  // Reset fields on tab switch
+  React.useEffect(() => {
+    setBrandName("");
+    setBrandDesc("");
+    setBrandCountry("");
+    setBrandError(null);
+    setBrandSuccess(false);
+    setCatName("");
+    setCatDesc("");
+    setCatError(null);
+    setCatSuccess(false);
+  }, [activeTab]);
 
   const handleAddCategory = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -89,7 +102,12 @@ export function CollectionWorkspace({ products, categories: initialCategories, b
     if (!brandName) return;
 
     startTransition(async () => {
-      const res = await createBrand({ name: brandName, description: brandDesc, country: brandCountry });
+      const res = await createBrand({ 
+        name: brandName, 
+        description: brandDesc, 
+        country: brandCountry,
+        isSignature: activeTab === "signatureBrands"
+      });
       if (res.success && res.data) {
         setBrands(prev => [...prev, res.data]);
         setBrandName("");
@@ -104,12 +122,14 @@ export function CollectionWorkspace({ products, categories: initialCategories, b
   };
 
   const handleDeleteBrand = async (id: string) => {
-    if (confirm("Are you sure you want to decommission this luxury brand? Depended products will block removal.")) {
+    const isSig = activeTab === "signatureBrands";
+    const brandTypeWord = isSig ? "signature brand" : "luxury brand";
+    if (confirm(`Are you sure you want to decommission this ${brandTypeWord}? Depended products will block removal.`)) {
       const res = await deleteBrand(id);
       if (res.success) {
         setBrands(prev => prev.filter(b => b.id !== id));
       } else {
-        alert(res.error || "Could not delete brand");
+        alert(res.error || `Could not delete ${brandTypeWord}`);
       }
     }
   };
@@ -117,7 +137,8 @@ export function CollectionWorkspace({ products, categories: initialCategories, b
   const tabs = [
     { id: "curations", label: "Homepage Edits", icon: Sparkles },
     { id: "categories", label: "Store Categories", icon: Layers },
-    { id: "brands", label: "Eyewear Brands", icon: Bookmark },
+    { id: "brands", label: "Designer Brands", icon: Bookmark },
+    { id: "signatureBrands", label: "Signature Brands", icon: Sparkles },
   ];
 
   return (
@@ -277,7 +298,7 @@ export function CollectionWorkspace({ products, categories: initialCategories, b
             </m.div>
           )}
 
-          {/* TAB 3: EYEWEAR BRANDS */}
+          {/* TAB 3: EYEWEAR BRANDS (DESIGNER BRANDS) */}
           {activeTab === "brands" && (
             <m.div
               key="brands"
@@ -307,7 +328,7 @@ export function CollectionWorkspace({ products, categories: initialCategories, b
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-black/5">
-                      {brands.map((b) => {
+                      {brands.filter(b => !b.isSignature).map((b) => {
                         const linkedCount = products.filter(p => p.brandId === b.id).length;
                         return (
                           <tr key={b.id} className="hover:bg-brand-pearl/10 transition-colors">
@@ -343,7 +364,7 @@ export function CollectionWorkspace({ products, categories: initialCategories, b
               <div className="lg:col-span-4 bg-white border border-black/5 rounded-[2rem] p-8 shadow-sm">
                 <div className="flex items-center gap-2 mb-6 pb-4 border-b border-black/5">
                   <Plus className="w-4.5 h-4.5 text-brand-gold" />
-                  <h3 className="text-xs font-bold uppercase tracking-widest text-brand-charcoal">Deploy Brand</h3>
+                  <h3 className="text-xs font-bold uppercase tracking-widest text-brand-charcoal">Deploy Designer Brand</h3>
                 </div>
 
                 <form onSubmit={handleAddBrand} className="space-y-5">
@@ -403,7 +424,141 @@ export function CollectionWorkspace({ products, categories: initialCategories, b
                     disabled={isPending}
                     className="w-full py-4 bg-brand-charcoal hover:bg-brand-gold text-white text-[10px] font-bold uppercase tracking-[0.25em] rounded-xl transition-colors flex items-center justify-center gap-2 shadow-md"
                   >
-                    {isPending ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <span>Deploy Brand</span>}
+                    {isPending ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <span>Deploy Designer Brand</span>}
+                  </button>
+                </form>
+              </div>
+
+            </m.div>
+          )}
+
+          {/* TAB 4: SIGNATURE BRANDS */}
+          {activeTab === "signatureBrands" && (
+            <m.div
+              key="signatureBrands"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start"
+            >
+              {/* Brands List */}
+              <div className="lg:col-span-8 bg-white border border-black/5 rounded-[2.5rem] p-8 shadow-sm">
+                <div className="flex items-center gap-3 mb-6 pb-4 border-b border-black/5">
+                  <Sparkles className="w-5 h-5 text-brand-gold" />
+                  <div>
+                    <h3 className="text-sm font-bold uppercase tracking-widest text-brand-charcoal">Signature Labels</h3>
+                    <p className="text-[9px] text-brand-charcoal/30 uppercase tracking-widest mt-1">Manage in-house signature brands</p>
+                  </div>
+                </div>
+
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left border-collapse">
+                    <thead>
+                      <tr className="border-b border-black/5 text-[9px] font-bold uppercase tracking-widest text-brand-charcoal/40">
+                        <th className="py-4 px-4">Signature Brand Name</th>
+                        <th className="py-4 px-4">Origin Country</th>
+                        <th className="py-4 px-4">Linked Products</th>
+                        <th className="py-4 px-4 text-right">Decommission</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-black/5">
+                      {brands.filter(b => b.isSignature).map((b) => {
+                        const linkedCount = products.filter(p => p.brandId === b.id).length;
+                        return (
+                          <tr key={b.id} className="hover:bg-brand-pearl/10 transition-colors">
+                            <td className="py-4 px-4">
+                              <span className="text-xs font-bold text-brand-charcoal uppercase tracking-tight">{b.name}</span>
+                              {b.description && <p className="text-[10px] text-brand-charcoal/40 font-light mt-0.5">{b.description}</p>}
+                            </td>
+                            <td className="py-4 px-4 font-bold text-[10px] text-brand-gold uppercase tracking-widest">
+                              {b.country || "IN-HOUSE ORIGIN"}
+                            </td>
+                            <td className="py-4 px-4">
+                              <span className="px-3 py-1 bg-brand-pearl text-[9px] font-bold uppercase tracking-widest rounded-lg text-brand-gold">
+                                {linkedCount} Item(s)
+                              </span>
+                            </td>
+                            <td className="py-4 px-4 text-right">
+                              <button 
+                                onClick={() => handleDeleteBrand(b.id)}
+                                className="p-2 hover:bg-red-50 text-brand-charcoal/20 hover:text-red-500 rounded-lg transition-colors"
+                              >
+                                <Trash2 className="w-4 h-4" />
+                              </button>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* Add Brand Form */}
+              <div className="lg:col-span-4 bg-white border border-black/5 rounded-[2rem] p-8 shadow-sm">
+                <div className="flex items-center gap-2 mb-6 pb-4 border-b border-black/5">
+                  <Plus className="w-4.5 h-4.5 text-brand-gold" />
+                  <h3 className="text-xs font-bold uppercase tracking-widest text-brand-charcoal">Deploy Signature Brand</h3>
+                </div>
+
+                <form onSubmit={handleAddBrand} className="space-y-5">
+                  {brandError && (
+                    <div className="p-4 bg-red-50 text-red-700 text-[10px] font-bold rounded-xl flex items-center gap-2 border border-red-100 uppercase tracking-widest">
+                      <AlertCircle className="w-4 h-4 shrink-0" />
+                      <span>{brandError}</span>
+                    </div>
+                  )}
+
+                  {brandSuccess && (
+                    <div className="p-4 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-xl flex items-center gap-2 border border-emerald-100 uppercase tracking-widest">
+                      <CheckCircle2 className="w-4 h-4 shrink-0" />
+                      <span>Signature Brand Deployed</span>
+                    </div>
+                  )}
+
+                  <div className="space-y-2">
+                    <label className="text-[9px] font-bold uppercase tracking-widest text-brand-charcoal/40">Signature Brand Name</label>
+                    <input 
+                      type="text" 
+                      required
+                      value={brandName}
+                      onChange={(e) => setBrandName(e.target.value)}
+                      placeholder="e.g. Mannath Signature"
+                      className="w-full bg-brand-pearl/20 border-none rounded-xl py-3 px-4 text-xs focus:ring-1 focus:ring-brand-gold/20 outline-none"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="text-[9px] font-bold uppercase tracking-widest text-brand-charcoal/40">Country Origin (Optional)</label>
+                    <div className="relative">
+                      <Globe className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-charcoal/20" />
+                      <input 
+                        type="text" 
+                        value={brandCountry}
+                        onChange={(e) => setBrandCountry(e.target.value)}
+                        placeholder="e.g. Kerala, India"
+                        className="w-full bg-brand-pearl/20 border-none rounded-xl py-3 pl-12 pr-4 text-xs focus:ring-1 focus:ring-brand-gold/20 outline-none"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="text-[9px] font-bold uppercase tracking-widest text-brand-charcoal/40">Brand Description</label>
+                    <textarea 
+                      value={brandDesc}
+                      onChange={(e) => setBrandDesc(e.target.value)}
+                      placeholder="In-house custom label craftsmanship details..."
+                      rows={3}
+                      className="w-full bg-brand-pearl/20 border-none rounded-xl py-3 px-4 text-xs focus:ring-1 focus:ring-brand-gold/20 outline-none resize-none"
+                    />
+                  </div>
+
+                  <button 
+                    type="submit"
+                    disabled={isPending}
+                    className="w-full py-4 bg-brand-charcoal hover:bg-brand-gold text-white text-[10px] font-bold uppercase tracking-[0.25em] rounded-xl transition-colors flex items-center justify-center gap-2 shadow-md"
+                  >
+                    {isPending ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <span>Deploy Signature Brand</span>}
                   </button>
                 </form>
               </div>

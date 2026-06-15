@@ -24,10 +24,13 @@ import {
   Percent, 
   AlertCircle, 
   CheckCircle2, 
-  ArrowUpRight 
+  ArrowUpRight,
+  X,
+  Upload
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { m, AnimatePresence } from "framer-motion";
+import { useCloudinaryUpload } from "@/hooks/useCloudinaryUpload";
 
 interface CmsWorkspaceProps {
   initialBanners: any[];
@@ -58,8 +61,11 @@ export function CmsWorkspace({ initialBanners, initialOffers, branches }: CmsWor
   const [offerBranchId, setOfferBranchId] = useState("Global");
   const [offerStartDate, setOfferStartDate] = useState("");
   const [offerEndDate, setOfferEndDate] = useState("");
+  const [offerImageUrl, setOfferImageUrl] = useState("");
   const [offerError, setOfferError] = useState<string | null>(null);
   const [offerSuccess, setOfferSuccess] = useState(false);
+
+  const { upload: uploadOfferImage, isUploading: isUploadingOffer } = useCloudinaryUpload();
 
   // Sample banner image templates for one-click mock design quality
   const sampleBanners = [
@@ -139,7 +145,8 @@ export function CmsWorkspace({ initialBanners, initialOffers, branches }: CmsWor
         percentage: offerDiscount || "EXCLUSIVE",
         branchId: offerBranchId,
         startDate: offerStartDate || undefined,
-        endDate: offerEndDate || undefined
+        endDate: offerEndDate || undefined,
+        imageUrl: offerImageUrl || undefined
       });
 
       if (res.success && res.data) {
@@ -151,6 +158,7 @@ export function CmsWorkspace({ initialBanners, initialOffers, branches }: CmsWor
         setOfferBranchId("Global");
         setOfferStartDate("");
         setOfferEndDate("");
+        setOfferImageUrl("");
         setOfferSuccess(true);
         setTimeout(() => setOfferSuccess(false), 2000);
       } else {
@@ -414,11 +422,17 @@ export function CmsWorkspace({ initialBanners, initialOffers, branches }: CmsWor
                     {offers.map((o) => {
                       const branchName = o.branchId === "Global" ? "Global (All Branches)" : branches.find(br => br.id === o.branchId)?.name || o.branchId;
                       return (
-                        <div key={o.id} className="bg-white p-8 border border-black/5 rounded-[2rem] relative overflow-hidden group shadow-sm hover:shadow-md transition-shadow">
-                          {/* Discount Indicator Badge */}
-                          <div className="absolute top-8 right-8 w-12 h-12 bg-amber-50 rounded-2xl flex items-center justify-center text-brand-gold shrink-0 border border-brand-gold/10">
-                            <Percent className="w-5 h-5 stroke-[2.5]" />
-                          </div>
+                        <div key={o.id} className="bg-white p-8 border border-black/5 rounded-[2rem] relative overflow-hidden group shadow-sm hover:shadow-md transition-shadow flex flex-col md:flex-row gap-6">
+                          {o.imageUrl && (
+                            <div className="w-full md:w-32 aspect-video md:aspect-square rounded-2xl overflow-hidden shrink-0 border border-black/5 bg-brand-pearl relative">
+                              <img src={o.imageUrl} className="w-full h-full object-cover" alt="Offer Banner" />
+                            </div>
+                          )}
+                          <div className="flex-1 space-y-4">
+                            {/* Discount Indicator Badge */}
+                            <div className="absolute top-8 right-8 w-12 h-12 bg-amber-50 rounded-2xl flex items-center justify-center text-brand-gold shrink-0 border border-brand-gold/10">
+                              <Percent className="w-5 h-5 stroke-[2.5]" />
+                            </div>
 
                           <div className="space-y-4">
                             <div className="flex flex-wrap items-center gap-2">
@@ -486,7 +500,8 @@ export function CmsWorkspace({ initialBanners, initialOffers, branches }: CmsWor
                             </div>
                           </div>
                         </div>
-                      );
+                      </div>
+                    );
                     })}
                   </div>
                 )}
@@ -535,6 +550,51 @@ export function CmsWorkspace({ initialBanners, initialOffers, branches }: CmsWor
                       rows={3}
                       className="w-full bg-brand-pearl/20 border-none rounded-xl py-3 px-4 text-xs focus:ring-1 focus:ring-brand-gold/20 outline-none resize-none"
                     />
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label className="text-[9px] font-bold uppercase tracking-widest text-brand-charcoal/40">Campaign Banner Image</label>
+                    {offerImageUrl ? (
+                      <div className="relative aspect-video w-full rounded-2xl overflow-hidden border border-black/5 bg-brand-pearl">
+                        <img src={offerImageUrl} className="w-full h-full object-cover" alt="Campaign Banner Preview" />
+                        <button
+                          type="button"
+                          onClick={() => setOfferImageUrl("")}
+                          className="absolute top-3 right-3 p-2 bg-black/50 hover:bg-red-500 rounded-full text-white transition-colors"
+                        >
+                          <X className="w-4 h-4" />
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="relative border-2 border-dashed border-black/5 bg-brand-pearl/30 rounded-[2rem] p-8 text-center hover:border-brand-gold hover:bg-brand-pearl/50 transition-all duration-500 cursor-pointer">
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={async (e) => {
+                            const file = e.target.files?.[0];
+                            if (file) {
+                              await uploadOfferImage(file, {
+                                folder: "PRODUCTS",
+                                onSuccess: (url) => setOfferImageUrl(url),
+                                onError: (err) => alert(err),
+                              });
+                            }
+                          }}
+                          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                        />
+                        {isUploadingOffer ? (
+                          <div className="flex flex-col items-center justify-center gap-2">
+                            <Loader2 className="w-6 h-6 text-brand-gold animate-spin" />
+                            <span className="text-[8px] font-bold uppercase tracking-widest text-brand-charcoal/40">Uploading to Cloudinary...</span>
+                          </div>
+                        ) : (
+                          <div className="flex flex-col items-center justify-center gap-2">
+                            <Upload className="w-5 h-5 text-brand-gold mx-auto" />
+                            <span className="text-[9px] font-bold uppercase tracking-widest text-brand-charcoal/40">Upload Campaign Image</span>
+                          </div>
+                        )}
+                      </div>
+                    )}
                   </div>
 
                   <div className="grid grid-cols-2 gap-4">
