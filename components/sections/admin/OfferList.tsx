@@ -341,7 +341,7 @@ export function OfferList({ initialOffers, branches, currentAdminBranchId }: Off
                     <img src={offer.imageUrl} className="w-full h-full object-cover" alt="Offer Image" />
                   </div>
                 )}
-                <div className="flex-1 flex flex-col justify-between">
+                <div className="flex-1 min-w-0 flex flex-col justify-between">
                   <div className="flex justify-between items-start mb-6">
                     <div className="px-4 py-2 bg-brand-gold text-brand-charcoal text-[10px] font-extrabold uppercase tracking-[0.2em] rounded-xl flex items-center shadow-sm">
                       {offer.percentage}
@@ -371,11 +371,11 @@ export function OfferList({ initialOffers, branches, currentAdminBranchId }: Off
                   </div>
                 </div>
 
-                <div className="flex-1 space-y-4">
-                  <h3 className="text-xl font-bold text-brand-charcoal uppercase tracking-tight group-hover:text-brand-gold transition-colors">
+                <div className="flex-1 min-w-0 space-y-4">
+                  <h3 className="text-xl font-bold text-brand-charcoal uppercase tracking-tight group-hover:text-brand-gold transition-colors break-words">
                     {offer.title}
                   </h3>
-                  <p className="text-sm text-brand-charcoal/50 font-light leading-relaxed">
+                  <p className="text-sm text-brand-charcoal/50 font-light leading-relaxed break-words">
                     {offer.description}
                   </p>
 

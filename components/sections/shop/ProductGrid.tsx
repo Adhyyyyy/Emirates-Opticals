@@ -219,9 +219,8 @@ export function ProductGrid({ products }: ProductGridProps) {
         const price = product.price;
         let matches = false;
         if (priceFilters.includes("Under ₹3,000") && price < 3000) matches = true;
-        if (priceFilters.includes("₹3,000 - ₹10,000") && price >= 3000 && price <= 10000) matches = true;
-        if (priceFilters.includes("₹10,000 - ₹20,000") && price >= 10000 && price <= 20000) matches = true;
-        if (priceFilters.includes("₹20,000 - ₹30,000") && price >= 20000 && price <= 30000) matches = true;
+        if (priceFilters.includes("₹3,000 - ₹15,000") && price >= 3000 && price <= 15000) matches = true;
+        if (priceFilters.includes("₹15,000 - ₹30,000") && price >= 15000 && price <= 30000) matches = true;
         if (priceFilters.includes("Luxury (Above ₹30,000)") && price > 30000) matches = true;
         if (!matches) return false;
       }

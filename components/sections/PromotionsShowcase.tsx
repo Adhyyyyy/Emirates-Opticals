@@ -178,7 +178,7 @@ export function PromotionsShowcase() {
                             </div>
                             
                             {/* Right Side: Editorial Campaign Details */}
-                            <div className="flex-1 p-6 md:p-8 flex flex-col justify-between h-[250px] md:h-full relative z-20">
+                            <div className="flex-1 min-w-0 p-6 md:p-8 flex flex-col justify-between h-[250px] md:h-full relative z-20">
                               <div className="space-y-4">
                                 <div className="flex justify-between items-center">
                                   <span className="border border-brand-gold/30 text-brand-gold text-[9px] uppercase tracking-[0.25em] px-3.5 py-1.5 font-bold bg-brand-gold/[0.03]">
@@ -188,11 +188,11 @@ export function PromotionsShowcase() {
                                   <span className="text-[8px] font-mono text-brand-charcoal/30 tracking-widest hidden lg:inline-block">EM-PRV-{offer.id.slice(-4).toUpperCase()}</span>
                                 </div>
                                 
-                                <h3 className="text-xl md:text-2xl font-light text-brand-charcoal font-heading leading-tight tracking-wide line-clamp-2 uppercase">
+                                <h3 className="text-xl md:text-2xl font-light text-brand-charcoal font-heading leading-tight tracking-wide line-clamp-2 uppercase break-words">
                                   {offer.title}
                                 </h3>
                                 
-                                <p className="text-xs md:text-sm text-brand-charcoal/60 leading-relaxed font-light line-clamp-3">
+                                <p className="text-xs md:text-sm text-brand-charcoal/60 leading-relaxed font-light line-clamp-3 break-words">
                                   {offer.description}
                                 </p>
                               </div>
@@ -231,11 +231,11 @@ export function PromotionsShowcase() {
                                 <span className="text-[8px] font-mono text-brand-charcoal/30 tracking-widest">EM-PRV-{offer.id.slice(-4).toUpperCase()}</span>
                               </div>
                               
-                              <h3 className="text-2xl md:text-3xl font-light text-brand-charcoal font-heading leading-tight tracking-wide uppercase">
+                              <h3 className="text-2xl md:text-3xl font-light text-brand-charcoal font-heading leading-tight tracking-wide uppercase break-words">
                                 {offer.title}
                               </h3>
                               
-                              <p className="text-sm md:text-[15px] text-brand-charcoal/60 leading-relaxed font-light mt-4 line-clamp-4">
+                              <p className="text-sm md:text-[15px] text-brand-charcoal/60 leading-relaxed font-light mt-4 line-clamp-4 break-words">
                                 {offer.description}
                               </p>
                             </div>

@@ -40,9 +40,8 @@ export function ShopFilters({ availableColors = [] }: ShopFiltersProps) {
         type: "price-pills",
         options: [
           "Under ₹3,000",
-          "₹3,000 - ₹10,000",
-          "₹10,000 - ₹20,000",
-          "₹20,000 - ₹30,000",
+          "₹3,000 - ₹15,000",
+          "₹15,000 - ₹30,000",
           "Luxury (Above ₹30,000)"
         ]
       },
