@@ -70,7 +70,8 @@ export default async function NewProductPage() {
       { id: "cat-contact", name: "Contact Lenses" },
       { id: "cat-sol", name: "Lens Solutions" },
       { id: "cat-lux", name: "Luxury Collections" },
-      { id: "cat-new", name: "New Arrivals" }
+      { id: "cat-new", name: "New Arrivals" },
+      { id: "cat-clipon", name: "Clip-On Glasses" }
     ];
     brands = [
       "Ray-Ban", "PRADA", "Oakley", "Cartier", "Tom Ford", 

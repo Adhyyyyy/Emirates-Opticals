@@ -123,6 +123,69 @@ const BRANDS = [
     category: "Playful Trends",
     desc: "Editorial street-style designs inspired by high fashion. Vibrant colors and lightweight materials for customizable daily looks.",
     img: "/Brands/Female_model_wearing_Vogue_Eyewear_202605281316.jpeg"
+  },
+  {
+    name: "RAY-BAN",
+    filterName: "Ray-Ban",
+    type: "contemporary",
+    origin: "Milan, Italy",
+    category: "Iconic Heritage",
+    desc: "Timeless styling and legendary lenses. Defining popular culture since 1937 with iconic shapes like the Aviator, Wayfarer, and Clubmaster.",
+    img: "/Brands/Young_man_wearing_sunglasses_202605281315.jpeg"
+  },
+  {
+    name: "MAUI JIM",
+    filterName: "Maui Jim",
+    type: "performance",
+    origin: "Lahaina, Hawaii",
+    category: "Polarized Color Enhancement",
+    desc: "Premium polarized sunglasses featuring patented PolarizedPlus2® lens technology to reveal the brilliant colors of the world.",
+    img: "/Brands/Woman_wearing_sunglasses_beach_202605281316.jpeg"
+  },
+  {
+    name: "STEPPER",
+    filterName: "Stepper",
+    type: "contemporary",
+    origin: "Stuttgart, Germany",
+    category: "Comfort & Fit Innovation",
+    desc: "German-engineered comfort eyewear. Pioneering TX5 and titanium materials to achieve perfect, lightweight anatomical fit.",
+    img: "/Brands/Woman_wearing_gold-rimmed_eyegla._202605281338.jpeg"
+  },
+  {
+    name: "EMPORIO ARMANI",
+    filterName: "Emporio Armani",
+    type: "luxury",
+    origin: "Milan, Italy",
+    category: "Youthful Italian Luxury",
+    desc: "Energetic, modern interpretation of classic Armani heritage. Dynamic collections designed for trend-conscious metropolitan lifestyles.",
+    img: "/Brands/Mature_man_wearing_glasses_202605281338.jpeg"
+  },
+  {
+    name: "TOMMY HILFIGER",
+    filterName: "Tommy Hilfiger",
+    type: "contemporary",
+    origin: "New York, USA",
+    category: "Classic American Cool",
+    desc: "All-American prep style meets modern eyewear design. Incorporating signature red, white, and blue accents with casual, clean lines.",
+    img: "/Brands/tommy_hilfiger.png"
+  },
+  {
+    name: "NIKE",
+    filterName: "Nike",
+    type: "performance",
+    origin: "Oregon, USA",
+    category: "Athletic Eyewear",
+    desc: "High-performance frames designed to keep up with intense movement. Features ventilated nose pads, secure-wrap temples, and precision lenses.",
+    img: "/Brands/Stylish_man_in_overcoat_202605281338.jpeg"
+  },
+  {
+    name: "ARMANI EXCHANGE",
+    filterName: "Armani Exchange",
+    type: "contemporary",
+    origin: "Milan, Italy",
+    category: "Streetwear Culture",
+    desc: "Fast-fashion luxury inspired by street culture and dance music. Bold logos and modern youthful silhouettes for the self-expressive generation.",
+    img: "/Brands/Woman_wearing_Bvlgari_frames_202605281328.jpeg"
   }
 ];
 

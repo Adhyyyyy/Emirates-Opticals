@@ -39,26 +39,26 @@ export function ShopFilters({ availableColors = [] }: ShopFiltersProps) {
         title: "Price Range",
         type: "price-pills",
         options: [
-          "Under ₹5,000",
-          "₹5,000 - ₹15,000",
-          "₹15,000 - ₹30,000",
-          "₹30,000 - ₹50,000",
-          "Luxury (Above ₹50,000)"
+          "Under ₹3,000",
+          "₹3,000 - ₹10,000",
+          "₹10,000 - ₹20,000",
+          "₹20,000 - ₹30,000",
+          "Luxury (Above ₹30,000)"
         ]
       },
       {
         title: "Category",
         type: "list",
-        options: ["Optical Frames", "Sunglasses", "Contact Lenses", "Lens Solutions", "Luxury Collections", "New Arrivals"]
+        options: ["Optical Frames", "Sunglasses", "Contact Lenses", "Lens Solutions", "Luxury Collections", "New Arrivals", "Clip-On Glasses"]
       },
       {
         title: "Brand",
         type: "list",
         options: [
-          "Acuvue", "Alcon", "Bausch & Lomb", "BVLGARI", "Calvin Klein", "Cartier", 
-          "Chanel", "Diesel", "Dolce & Gabbana", "Emirates Optician", "Gucci", 
-          "Lacoste", "Montblanc", "Oakley", "Police", "Prada", "Ray-Ban", 
-          "Tom Ford", "Vogue Eyewear"
+          "Acuvue", "Alcon", "Armani Exchange", "Bausch & Lomb", "BVLGARI", "Calvin Klein", "Cartier", 
+          "Chanel", "Diesel", "Dolce & Gabbana", "Emirates Optician", "Emporio Armani", "Gucci", 
+          "Lacoste", "Maui Jim", "Montblanc", "Nike", "Oakley", "Police", "Prada", "Ray-Ban", 
+          "Stepper", "Tom Ford", "Tommy Hilfiger", "Vogue Eyewear"
         ]
       },
       {
@@ -193,7 +193,8 @@ export function ShopFilters({ availableColors = [] }: ShopFiltersProps) {
         activeCategory === "Optical Frames" || 
         activeCategory === "Sunglasses" || 
         activeCategory === "Luxury Collections" || 
-        activeCategory === "New Arrivals"
+        activeCategory === "New Arrivals" ||
+        activeCategory === "Clip-On Glasses"
       ) {
         return group.scope.includes("Frames");
       }

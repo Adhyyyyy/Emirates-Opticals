@@ -187,7 +187,7 @@ export function ContactPageContent() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.05 }}
-                href="mailto:info@emiratesoptician.in"
+                href="mailto:emiratesofficial1969@gmail.com"
                 className="flex items-start gap-5 p-6 border border-black/[0.03] rounded-2xl bg-white shadow-sm hover:shadow-2xl hover:shadow-brand-charcoal/[0.04] transition-all duration-700 group"
               >
                 <div className="w-10 h-10 rounded-[3px] border border-black/[0.03] bg-[#FAF9F6] flex items-center justify-center text-brand-gold group-hover:bg-brand-gold group-hover:text-white transition-all duration-500 shrink-0">
@@ -195,7 +195,7 @@ export function ContactPageContent() {
                 </div>
                 <div>
                   <span className="text-[9px] font-bold uppercase tracking-widest text-brand-charcoal/30 block mb-1">Email</span>
-                  <p className="text-sm font-bold text-brand-charcoal group-hover:text-brand-gold transition-colors duration-300">info@emiratesoptician.in</p>
+                  <p className="text-sm font-bold text-brand-charcoal group-hover:text-brand-gold transition-colors duration-300">emiratesofficial1969@gmail.com</p>
                   <p className="text-[11px] text-brand-charcoal/40 font-light mt-0.5">We&apos;ll respond within 24 hours</p>
                 </div>
               </motion.a>

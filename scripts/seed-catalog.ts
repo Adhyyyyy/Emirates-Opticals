@@ -27,8 +27,7 @@ const BRANCHES = [
   { name: "Emirates Optician, Thiruvalla", slug: "thiruvalla", address: "MC Road, Thiruvalla, Kerala 689101", location: "Thiruvalla", phone: "+91 80000 00002", whatsapp: "918000000002", timings: "9:30 AM - 8:30 PM", coordinates: "9.3837,76.5786" },
   { name: "Emirates Optician, Kumbanad", slug: "kumbanad", address: "Kumbanad Junction, Kumbanad, Kerala 689547", location: "Kumbanad", phone: "+91 80000 00003", whatsapp: "918000000003", timings: "9:30 AM - 8:30 PM", coordinates: "9.3879,76.6575" },
   { name: "Emirates Optician, Kothamangalam", slug: "kothamangalam", address: "High Range Road, Kothamangalam, Kerala 686691", location: "Kothamangalam", phone: "+91 80000 00004", whatsapp: "918000000004", timings: "9:30 AM - 8:30 PM", coordinates: "10.0631,76.6219" },
-  { name: "Emirates Optician, Pandalam", slug: "pandalam", address: "Near KSRTC, Pandalam, Kerala 689501", location: "Pandalam", phone: "+91 80000 00005", whatsapp: "918000000005", timings: "9:30 AM - 8:30 PM", coordinates: "9.2272,76.6806" },
-  { name: "Emirates Optician, Kakkanad", slug: "kakkanad", address: "Infopark Road, Kakkanad, Kochi, Kerala 682030", location: "Kakkanad", phone: "+91 80000 00006", whatsapp: "918000000006", timings: "9:30 AM - 8:30 PM", coordinates: "10.0159,76.3419" }
+  { name: "Emirates Optician, Pandalam", slug: "pandalam", address: "Near KSRTC, Pandalam, Kerala 689501", location: "Pandalam", phone: "+91 80000 00005", whatsapp: "918000000005", timings: "9:30 AM - 8:30 PM", coordinates: "9.2272,76.6806" }
 ];
 
 const RAW_PRODUCTS = [

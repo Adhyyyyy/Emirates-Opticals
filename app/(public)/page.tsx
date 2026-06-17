@@ -56,7 +56,7 @@ export default async function HomePage() {
             "logo": "https://emiratesoptician.in/assets/emirates_logo.png",
             "image": "https://emiratesoptician.in/og-image.jpg",
             "telephone": "+91-9988674574",
-            "email": "info@emiratesoptician.in",
+            "email": "emiratesofficial1969@gmail.com",
             "priceRange": "$$$$",
             "currenciesAccepted": "INR",
             "paymentAccepted": "Cash, Credit Card, UPI",

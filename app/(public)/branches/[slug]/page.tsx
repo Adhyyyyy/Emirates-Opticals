@@ -308,6 +308,30 @@ export default async function BranchPage({ params }: { params: Promise<{ slug: s
 
         </div>
 
+        {/* Authorized Collections Available at this Location */}
+        <div className="mt-16 border-t border-black/5 pt-16">
+          <h2 className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#C9A84C] mb-8 text-center md:text-left">
+            Authorized Collections Available at this Location
+          </h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            {[
+              "Cartier", "Prada", "Gucci", "Ray-Ban", "Oakley", "Tom Ford", 
+              "BVLGARI", "Montblanc", "Dolce & Gabbana", "Bausch & Lomb", "Acuvue", "Alcon",
+              "Maui Jim", "Stepper", "Emporio Armani", "Tommy Hilfiger", "Nike", "Armani Exchange",
+              "Police", "Lacoste", "Calvin Klein", "Diesel", "Vogue Eyewear"
+            ].sort((a, b) => a.localeCompare(b)).map((brand) => (
+              <div 
+                key={brand} 
+                className="bg-white border border-black/[0.02] hover:border-[#C9A84C]/30 py-4 px-6 flex items-center justify-center rounded-[3px] shadow-sm hover:shadow-md transition-all duration-500 group"
+              >
+                <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-black/45 group-hover:text-[#C9A84C] transition-colors duration-500 select-none text-center">
+                  {brand}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+
       </div>
     </main>
   );

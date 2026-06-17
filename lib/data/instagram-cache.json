@@ -1,7 +1,7 @@
 {
   "handle": "@emiratesoptician_opticals",
   "status": "ACTIVE",
-  "lastSync": "2026-06-15T15:59:53.522Z",
+  "lastSync": "2026-06-17T06:37:33.634Z",
   "posts": [
     {
       "id": "ig_post_101",
@@ -10,16 +10,22 @@
       "caption": "Technical precision meets structural timelessness. Handcrafted Italian acetate silhouette from our spring catalog. #EmiratesOptician #LuxuryEyewear"
     },
     {
-      "id": "ig_post_102",
-      "imageUrl": "https://images.unsplash.com/photo-1577803645773-f96470509666?auto=format&fit=crop&q=80&w=800",
-      "permalink": "https://www.instagram.com/p/C7XyZ29s8a2/",
-      "caption": "Golden frame detailing for structural excellence. Discover the editorial Spring Edit. #GoldEyewear #SpringFocus"
+      "id": "ig_post_106",
+      "imageUrl": "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&q=80&w=800",
+      "permalink": "https://www.instagram.com/p/C7XyZ29s8a6/",
+      "caption": "Professional optical diagnostic tech. Providing comprehensive eye mapping across all physical showrooms. #AdvancedEyeCare #OpticianKerala"
     },
     {
       "id": "ig_post_105",
       "imageUrl": "https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?auto=format&fit=crop&q=80&w=800",
       "permalink": "https://www.instagram.com/p/C7XyZ29s8a5/",
       "caption": "Seaside clarity. Custom polarized lenses developed for high-end optical sharpness. #PolarizedSunglasses #PrecisionVision"
+    },
+    {
+      "id": "ig_post_102",
+      "imageUrl": "https://images.unsplash.com/photo-1577803645773-f96470509666?auto=format&fit=crop&q=80&w=800",
+      "permalink": "https://www.instagram.com/p/C7XyZ29s8a2/",
+      "caption": "Golden frame detailing for structural excellence. Discover the editorial Spring Edit. #GoldEyewear #SpringFocus"
     },
     {
       "id": "ig_post_103",
@@ -32,12 +38,6 @@
       "imageUrl": "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&q=80&w=800",
       "permalink": "https://www.instagram.com/p/C7XyZ29s8a4/",
       "caption": "The Havanas. Vintage structural design, remastered in lightweight bio-acetate for modern visionary comfort. #VintageHavana #EyewearRemastered"
-    },
-    {
-      "id": "ig_post_106",
-      "imageUrl": "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&q=80&w=800",
-      "permalink": "https://www.instagram.com/p/C7XyZ29s8a6/",
-      "caption": "Professional optical diagnostic tech. Providing comprehensive eye mapping across all physical showrooms. #AdvancedEyeCare #OpticianKerala"
     }
   ]
 }

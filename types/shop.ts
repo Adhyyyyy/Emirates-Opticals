@@ -10,7 +10,7 @@ export type Product = {
   name: string;
   slug: string;
   brand: string;
-  category: "Optical Frames" | "Sunglasses" | "Blue Light Glasses" | "Sports Eyewear" | "Luxury Collection" | "Kids Collection";
+  category: "Optical Frames" | "Sunglasses" | "Blue Light Glasses" | "Sports Eyewear" | "Luxury Collection" | "Kids Collection" | "Clip-On Glasses";
   description: string;
   price: number;
   images: string[];
