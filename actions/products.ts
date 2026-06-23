@@ -158,17 +158,19 @@ export async function updateProduct(id: string, data: any) {
     images, 
     shortDescription, 
     isBestseller, 
-    status, 
+    status,
+    initialStock,      // Not a Product field — inventory is managed separately
+    selectedBranches,  // Not a Product field — used for inventory allocation only
     ...productData 
   } = validated.data;
 
   const branchId = user.app_metadata?.branchId;
 
   try {
-    const operations: any[] = [
-      // Clean old images
+    // CORE TRANSACTION: Only the critical delete+update operations need atomicity.
+    // Keeping this minimal prevents timeouts on remote Supabase connections.
+    await prisma.$transaction([
       prisma.productImage.deleteMany({ where: { productId: id } }),
-      // Update product & Add new images
       prisma.product.update({
         where: { id },
         data: {
@@ -182,42 +184,37 @@ export async function updateProduct(id: string, data: any) {
           },
         },
       }),
-    ];
+    ]);
 
-    // If initiated by a Branch Admin, synchronize their specific boutique inventory
+    // INVENTORY SYNC: Run outside the transaction — these are idempotent upserts
+    // and do not need to roll back if they fail independently.
     if (branchId) {
-      operations.push(
-        prisma.inventory.upsert({
-          where: { productId_branchId: { productId: id, branchId } },
-          update: { },
-          create: {
-            productId: id,
-            branchId: branchId,
-            quantity: 0,
-            status: "IN_STOCK",
-          }
-        })
-      );
-    } else if (!branchId) {
+      await prisma.inventory.upsert({
+        where: { productId_branchId: { productId: id, branchId } },
+        update: {},
+        create: {
+          productId: id,
+          branchId: branchId,
+          quantity: 0,
+          status: "IN_STOCK",
+        }
+      });
+    } else {
       // Super Admin: ensure all active branches have an inventory record
       const branches = await prisma.branch.findMany({ where: { deletedAt: null } });
       for (const b of branches) {
-        operations.push(
-          prisma.inventory.upsert({
-            where: { productId_branchId: { productId: id, branchId: b.id } },
-            update: {},
-            create: {
-              productId: id,
-              branchId: b.id,
-              quantity: 0,
-              status: "OUT_OF_STOCK",
-            }
-          })
-        );
+        await prisma.inventory.upsert({
+          where: { productId_branchId: { productId: id, branchId: b.id } },
+          update: {},
+          create: {
+            productId: id,
+            branchId: b.id,
+            quantity: 0,
+            status: "OUT_OF_STOCK",
+          }
+        });
       }
     }
-
-    await prisma.$transaction(operations);
 
     // Sync colors sequentially to avoid race conditions
     if (productData.colors && productData.colors.length > 0) {
