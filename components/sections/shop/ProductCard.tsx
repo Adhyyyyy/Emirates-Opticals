@@ -28,13 +28,8 @@ export function ProductCard({ product }: ProductCardProps) {
   const handleEnquire = (e: React.MouseEvent, type: "product" | "appointment" | "contact") => {
     e.preventDefault();
     e.stopPropagation();
-    if (product.branches.length === 1) {
-      const branch = product.branches[0];
-      window.open(getWhatsAppUrl(product, branch.whatsapp, branch.branchName, type), "_blank");
-    } else {
-      setEnquiryType(type);
-      setShowBranchSelector(true);
-    }
+    setEnquiryType(type);
+    setShowBranchSelector(true);
   };
 
   const handleBranchSelect = (branch: BranchStock) => {
