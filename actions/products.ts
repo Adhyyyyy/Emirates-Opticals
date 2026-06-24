@@ -78,6 +78,14 @@ export async function createProduct(data: any) {
       where: { deletedAt: null }
     });
 
+    // 2. Ensure slug uniqueness — append a counter suffix if the base slug already exists
+    let slug = productData.slug;
+    let counter = 1;
+    while (await prisma.product.findUnique({ where: { slug } })) {
+      slug = `${productData.slug}-${counter++}`;
+    }
+    productData.slug = slug;
+
     const product = await prisma.product.create({
       data: {
         ...productData,
