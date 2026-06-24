@@ -119,16 +119,22 @@ export async function deleteBanner(id: string) {
  */
 export async function getOffers() {
   try {
-    const dbOffers = await prisma.offer.findMany({
-      orderBy: { createdAt: "desc" }
-    });
-    
+    const [dbOffers, branches] = await Promise.all([
+      prisma.offer.findMany({ orderBy: { createdAt: "desc" } }),
+      prisma.branch.findMany({ where: { deletedAt: null }, select: { id: true, name: true } }).catch(() => [])
+    ]);
+
+    const branchMap = new Map(branches.map(b => [b.id, b.name]));
+
     return dbOffers.map(o => ({
       id: o.id,
       title: o.title,
       description: o.description,
       percentage: o.percentage,
       branchId: o.branchId,
+      branchName: o.branchId === "Global"
+        ? "All Branches"
+        : branchMap.get(o.branchId) || o.branchId,
       startDate: o.startDate || undefined,
       endDate: o.endDate || undefined,
       isActive: o.isActive,

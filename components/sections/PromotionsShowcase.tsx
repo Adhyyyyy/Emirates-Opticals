@@ -12,6 +12,7 @@ interface Offer {
   description: string;
   percentage: string;
   branchId?: string;
+  branchName?: string;
   startDate?: string;
   endDate?: string;
   imageUrl?: string;
@@ -45,7 +46,8 @@ export function PromotionsShowcase() {
             title: o.title,
             description: o.description,
             percentage: o.percentage || "OFFER",
-            branchId: o.branchId === "Global" ? "All Shops" : o.branchId,
+            branchId: o.branchId,
+            branchName: o.branchName,
             startDate: o.startDate,
             endDate: o.endDate,
             imageUrl: o.imageUrl,
@@ -201,7 +203,7 @@ export function PromotionsShowcase() {
                                 {offer.branchId && (
                                   <div className="flex items-center gap-2.5 text-[9px] text-brand-charcoal/50 uppercase tracking-[0.2em] font-extrabold">
                                     <MapPin className="w-3.5 h-3.5 text-brand-gold shrink-0" />
-                                    <span className="truncate">{offer.branchId}</span>
+                                    <span className="truncate">{offer.branchName}</span>
                                   </div>
                                 )}
                                 {(offer.startDate || offer.endDate) && (
@@ -244,7 +246,7 @@ export function PromotionsShowcase() {
                               {offer.branchId && (
                                 <div className="flex items-center gap-3 text-[10px] text-brand-charcoal/50 uppercase tracking-[0.2em] font-extrabold">
                                   <MapPin className="w-4 h-4 text-brand-gold shrink-0" />
-                                  <span className="truncate">{offer.branchId}</span>
+                                  <span className="truncate">{offer.branchName}</span>
                                 </div>
                               )}
                               {(offer.startDate || offer.endDate) && (
