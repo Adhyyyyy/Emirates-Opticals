@@ -89,7 +89,7 @@ export function ProductHeroGallery({ product }: ProductHeroGalleryProps) {
               )}
 
               {/* Master Display Image */}
-              <div className="flex-1 relative aspect-[4/5] bg-brand-pearl/20 rounded-[3px] overflow-hidden border border-black/[0.02]">
+              <div className="flex-1 relative aspect-[3/4] bg-brand-pearl/20 rounded-[3px] overflow-hidden border border-black/[0.02]">
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={activeImage}
