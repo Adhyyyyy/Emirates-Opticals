@@ -186,6 +186,15 @@ const BRANDS = [
     category: "Streetwear Culture",
     desc: "Fast-fashion luxury inspired by street culture and dance music. Bold logos and modern youthful silhouettes for the self-expressive generation.",
     img: "/Brands/Woman_wearing_Bvlgari_frames_202605281328.jpeg"
+  },
+  {
+    name: "CARRERA",
+    filterName: "Carrera",
+    type: "performance",
+    origin: "Bologna, Italy",
+    category: "Racing Heritage",
+    desc: "Born on the racetrack, built for the bold. Carrera frames combine motorsport DNA with contemporary edge — iconic aviators and sportive silhouettes since 1956.",
+    img: "/Brands/Man_wearing_aviators_highway_202605281316.jpeg"
   }
 ];
 
