@@ -168,7 +168,7 @@ export function PromotionsShowcase() {
                             <div className="absolute inset-1 border-2 border-double border-brand-gold/15 pointer-events-none z-10" />
 
                             {/* Left Side: Padded Campaign Image Frame */}
-                            <div className="w-full md:w-[45%] h-[180px] md:h-full relative overflow-hidden shrink-0 bg-[#F5F2EC] p-2 border-b md:border-b-0 md:border-r border-[#E8E4DC]">
+                            <div className="w-full md:w-[45%] aspect-[3/4] md:aspect-auto md:h-full relative overflow-hidden shrink-0 bg-[#F5F2EC] p-2 border-b md:border-b-0 md:border-r border-[#E8E4DC]">
                               <div className="w-full h-full overflow-hidden relative border border-brand-gold/10">
                                 <img 
                                   src={offer.imageUrl} 
