@@ -129,8 +129,8 @@ export function Footer() {
           </div>
 
           {/* Column 4: Action */}
-          <div className="flex flex-col items-start lg:items-end lg:text-right">
-            <div className="bg-white/5 border border-white/10 p-6 rounded-[3px] w-full">
+          <div className="flex flex-col items-start">
+            <div className="bg-white/5 border border-white/10 p-6 rounded-[3px] w-full text-center">
               <h4 className="text-lg font-heading tracking-tight text-white mb-2">
                 Vision Care Priority
               </h4>
