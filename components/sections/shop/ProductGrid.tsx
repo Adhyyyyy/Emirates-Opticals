@@ -266,6 +266,40 @@ export function ProductGrid({ products }: ProductGridProps) {
     }, 50);
   };
 
+  // Helper function to generate paginated page numbers with ellipsis
+  const getPageNumbers = () => {
+    const pages: (number | string)[] = [];
+    const maxVisible = 5;
+
+    if (totalPages <= maxVisible + 2) {
+      for (let i = 1; i <= totalPages; i++) pages.push(i);
+    } else {
+      pages.push(1);
+
+      let start = Math.max(2, currentPage - 1);
+      let end = Math.min(totalPages - 1, currentPage + 1);
+
+      if (currentPage <= 3) {
+        end = 4;
+      } else if (currentPage >= totalPages - 2) {
+        start = totalPages - 3;
+      }
+
+      if (start > 2) pages.push("...");
+
+      for (let i = start; i <= end; i++) {
+        pages.push(i);
+      }
+
+      if (end < totalPages - 1) pages.push("...");
+
+      pages.push(totalPages);
+    }
+    return pages;
+  };
+
+
+
   return (
     <div className="flex-1">
       {/* Top Bar - Fully Responsive Control Panel */}
@@ -419,17 +453,17 @@ export function ProductGrid({ products }: ProductGridProps) {
         <div className="mt-20 flex flex-col sm:flex-row items-center justify-between gap-6 pt-10 border-t border-black/5">
           
           {/* Page Counter Stats */}
-          <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-brand-charcoal/40">
-            Showing {indexOfFirstProduct + 1}â€“{Math.min(indexOfLastProduct, sortedProducts.length)} of {sortedProducts.length} Collections
+          <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-brand-charcoal/40 text-center sm:text-left">
+            Showing {indexOfFirstProduct + 1}–{Math.min(indexOfLastProduct, sortedProducts.length)} of {sortedProducts.length} Collections
           </span>
 
           {/* Dynamic Page Buttons */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap justify-center max-w-full overflow-x-auto py-1">
             <button
               onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}
               className={cn(
-                "p-3 border rounded-xl flex items-center justify-center transition-all duration-300",
+                "p-2.5 sm:p-3 border rounded-xl flex items-center justify-center transition-all duration-300 shrink-0",
                 currentPage === 1 
                   ? "text-brand-charcoal/10 border-black/[0.03] cursor-not-allowed" 
                   : "text-brand-charcoal border-black/5 hover:border-brand-gold hover:text-brand-gold"
@@ -438,26 +472,32 @@ export function ProductGrid({ products }: ProductGridProps) {
               <ChevronLeft className="w-4 h-4" />
             </button>
 
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-              <button
-                key={page}
-                onClick={() => handlePageChange(page)}
-                className={cn(
-                  "w-10 h-10 rounded-xl text-[9px] font-extrabold uppercase tracking-widest border flex items-center justify-center transition-all duration-300",
-                  currentPage === page
-                    ? "bg-brand-charcoal text-white border-brand-charcoal shadow-md"
-                    : "bg-white text-brand-charcoal/60 border-black/5 hover:border-brand-gold hover:text-brand-gold"
-                )}
-              >
-                {page}
-              </button>
-            ))}
+            {getPageNumbers().map((page, idx) =>
+              typeof page === "number" ? (
+                <button
+                  key={idx}
+                  onClick={() => handlePageChange(page)}
+                  className={cn(
+                    "w-9 h-9 sm:w-10 sm:h-10 rounded-xl text-[9px] font-extrabold uppercase tracking-widest border flex items-center justify-center transition-all duration-300 shrink-0",
+                    currentPage === page
+                      ? "bg-brand-charcoal text-white border-brand-charcoal shadow-md"
+                      : "bg-white text-brand-charcoal/60 border-black/5 hover:border-brand-gold hover:text-brand-gold"
+                  )}
+                >
+                  {page}
+                </button>
+              ) : (
+                <span key={idx} className="px-1 text-[11px] font-bold text-brand-charcoal/30 select-none shrink-0">
+                  ...
+                </span>
+              )
+            )}
 
             <button
               onClick={() => handlePageChange(currentPage + 1)}
               disabled={currentPage === totalPages}
               className={cn(
-                "p-3 border rounded-xl flex items-center justify-center transition-all duration-300",
+                "p-2.5 sm:p-3 border rounded-xl flex items-center justify-center transition-all duration-300 shrink-0",
                 currentPage === totalPages 
                   ? "text-brand-charcoal/10 border-black/[0.03] cursor-not-allowed" 
                   : "text-brand-charcoal border-black/5 hover:border-brand-gold hover:text-brand-gold"
