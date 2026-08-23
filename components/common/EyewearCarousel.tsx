@@ -1,8 +1,9 @@
-﻿"use client";
+"use client";
 
 import React, { useRef } from "react";
 import { m } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
 const FRAMES = [
   { id: 1, image: "/marqueopt/JMM-EvelynSun-MondaySun-1_1.webp" },
@@ -23,25 +24,27 @@ export function EyewearCarousel() {
       initial={{ y: 50, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ delay: 1.2, duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-      className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-[95%] max-w-[1600px] bg-white rounded-[2rem] md:rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-black/5 px-4 md:px-12 py-2 md:py-3 z-50"
+      className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-[95%] max-w-[1600px] bg-white/95 backdrop-blur-md rounded-[2rem] md:rounded-full shadow-[0_20px_60px_rgba(0,0,0,0.12)] border border-[#C9A84C]/20 px-4 md:px-12 py-3 md:py-4 z-50 group"
     >
       <div 
         ref={containerRef}
-        className="flex items-center gap-6 md:gap-16 overflow-x-auto no-scrollbar scroll-smooth group/carousel relative"
+        className="flex items-center gap-6 md:gap-14 overflow-x-auto no-scrollbar scroll-smooth relative py-1"
       >
         {FRAMES.map((frame) => (
-          <div 
+          <Link
             key={frame.id}
-            className="flex-shrink-0 w-20 md:w-32 aspect-[2/1] relative cursor-pointer transition-all duration-500 group-hover/carousel:blur-[3px] group-hover/carousel:opacity-50 hover:!blur-none hover:!opacity-100 hover:!scale-125 hover:!-translate-y-1 z-0 hover:z-10"
+            href="/shop"
+            className="flex-shrink-0 w-22 md:w-32 aspect-[2/1] relative cursor-pointer transition-all duration-500 hover:scale-110 hover:-translate-y-1 z-0 hover:z-10 group/item"
           >
+            <div className="absolute inset-0 bg-[#C9A84C]/5 rounded-xl opacity-0 group-hover/item:opacity-100 transition-opacity duration-300 border border-[#C9A84C]/30" />
             <Image 
               src={frame.image}
-              alt={`Eyewear Frame ${frame.id}`}
+              alt={`Shop Eyewear Frame ${frame.id}`}
               fill
-              className="object-contain"
+              className="object-contain p-1 transition-transform duration-500 group-hover/item:scale-105"
               sizes="128px"
             />
-          </div>
+          </Link>
         ))}
       </div>
     </m.div>

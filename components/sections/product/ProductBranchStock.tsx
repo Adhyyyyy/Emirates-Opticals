@@ -4,7 +4,6 @@ import React from "react";
 import { Product } from "@/types/shop";
 import { GridStagger, StaggerItem, Reveal } from "@/components/motion/Reveal";
 import { MapPin, MessageCircle, ChevronRight } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { getWhatsAppUrl } from "@/lib/shop/whatsapp";
 import { m } from "framer-motion";
 import Link from "next/link";
@@ -32,7 +31,7 @@ export function ProductBranchStock({ product }: ProductBranchStockProps) {
               transition={{ duration: 0.8 }}
               className="text-[9px] font-bold text-brand-gold uppercase tracking-[0.4em] block mb-4"
             >
-              Showroom Availability
+              Showroom Lounges
             </m.span>
             <m.h2
               initial={{ opacity: 0, y: 14 }}
@@ -41,7 +40,7 @@ export function ProductBranchStock({ product }: ProductBranchStockProps) {
               transition={{ duration: 0.9, delay: 0.1 }}
               className="text-4xl md:text-5xl font-extralight font-heading uppercase tracking-tight text-brand-charcoal leading-[0.95]"
             >
-              Find at Your<br />
+              Available at Your<br />
               <em className="italic font-light text-brand-gold">Nearest Branch</em>
             </m.h2>
           </div>
@@ -64,16 +63,6 @@ export function ProductBranchStock({ product }: ProductBranchStockProps) {
                     <div className="p-2.5 bg-white border border-black/[0.06] rounded-full group-hover:bg-brand-gold group-hover:border-brand-gold transition-colors duration-700">
                       <MapPin className="w-4 h-4 text-brand-gold group-hover:text-white transition-colors duration-700" />
                     </div>
-                    <span className={cn(
-                      "text-[7px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-[2px]",
-                      branch.stockStatus === "In Stock"
-                        ? "text-emerald-600 bg-emerald-50"
-                        : branch.stockStatus === "Low Stock"
-                        ? "text-amber-600 bg-amber-50"
-                        : "text-red-500 bg-red-50"
-                    )}>
-                      {branch.stockStatus}
-                    </span>
                   </div>
 
                   {/* Card Body */}
@@ -110,7 +99,7 @@ export function ProductBranchStock({ product }: ProductBranchStockProps) {
         ) : (
           <div className="text-center py-20 border border-dashed border-black/10 rounded-[3px]">
             <p className="text-[10px] font-bold uppercase tracking-widest text-brand-charcoal/30">
-              Contact us to check availability
+              Contact us to enquire about product availability
             </p>
           </div>
         )}

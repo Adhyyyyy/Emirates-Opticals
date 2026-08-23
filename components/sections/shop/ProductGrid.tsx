@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo, useEffect, useRef, useTransition, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { GridStagger, StaggerItem, Reveal } from "@/components/motion/Reveal";
-import { Search, ChevronDown, LayoutGrid, List, ChevronLeft, ChevronRight, X, RotateCcw } from "lucide-react";
+import { GridStagger, StaggerItem } from "@/components/motion/Reveal";
+import { Search, ChevronDown, LayoutGrid, List, X, RotateCcw, Loader2, Sparkles, CheckCircle2 } from "lucide-react";
 import { ProductCard } from "./ProductCard";
 import { Product } from "@/types/shop";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
@@ -13,6 +13,8 @@ interface ProductGridProps {
   products: Product[];
 }
 
+const BATCH_SIZE = 12;
+
 const SORT_OPTIONS = [
   { value: "new_arrivals", label: "New Arrivals" },
   { value: "alphabetical_az", label: "Alphabetically: A-Z" },
@@ -21,16 +23,44 @@ const SORT_OPTIONS = [
   { value: "price_high_low", label: "Price: High to Low" }
 ];
 
+function ProductGridSkeleton({ viewMode }: { viewMode: "grid" | "list" }) {
+  return (
+    <div 
+      className={cn(
+        "grid gap-y-10 md:gap-x-8 md:gap-y-16 animate-pulse",
+        viewMode === "grid" 
+          ? "grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-x-4" 
+          : "grid-cols-1 gap-x-0"
+      )}
+    >
+      {Array.from({ length: 6 }).map((_, i) => (
+        <div key={i} className="flex flex-col gap-3.5 p-3.5 bg-white border border-black/[0.03] rounded-xl shadow-sm">
+          <div className="w-full aspect-[3/4] bg-neutral-200/50 rounded-[3px]" />
+          <div className="flex items-center justify-between">
+            <div className="h-2.5 w-1/3 bg-neutral-200/60 rounded" />
+            <div className="h-2.5 w-1/5 bg-neutral-200/40 rounded" />
+          </div>
+          <div className="h-4 w-3/4 bg-neutral-200/60 rounded" />
+          <div className="h-3 w-1/4 bg-neutral-200/50 rounded mt-auto" />
+          <div className="h-10 w-full bg-neutral-200/60 rounded-[3px] mt-2" />
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export function ProductGrid({ products }: ProductGridProps) {
+  const [isPending, startTransition] = useTransition();
   const [isMounted, setIsMounted] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [sortBy, setSortBy] = useState<"new_arrivals" | "alphabetical_az" | "alphabetical_za" | "price_low_high" | "price_high_low">("new_arrivals");
   const [isSortDropdownOpen, setIsSortDropdownOpen] = useState(false);
 
-  // Pagination State
-  const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 12;
+  // Infinite Scroll Display Limit State
+  const [displayLimit, setDisplayLimit] = useState(BATCH_SIZE);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const observerRef = useRef<HTMLDivElement | null>(null);
 
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -50,7 +80,7 @@ export function ProductGrid({ products }: ProductGridProps) {
     return filters;
   }, [searchParams]);
 
-  // List of active filters for beautiful tag display
+  // List of active filters for tag display
   const activeFilterList = useMemo(() => {
     const list: { key: string; groupKey: string; groupName: string; value: string }[] = [];
     Object.entries(activeFilters).forEach(([groupKey, values]) => {
@@ -74,20 +104,40 @@ export function ProductGrid({ products }: ProductGridProps) {
     } else {
       params.delete(groupKey);
     }
-    router.push(`${pathname}?${params.toString()}`, { scroll: false });
+    startTransition(() => {
+      router.push(`${pathname}?${params.toString()}`, { scroll: false });
+    });
   };
 
-  // Reset pagination to first page whenever search query, filters, or sorting order changes
+  const handleResetAllFilters = () => {
+    startTransition(() => {
+      router.push(pathname, { scroll: false });
+    });
+  };
+
+  const [isUrlTransitioning, setIsUrlTransitioning] = useState(false);
+
   useEffect(() => {
-    setCurrentPage(1);
+    setIsUrlTransitioning(true);
+    const timer = setTimeout(() => {
+      setIsUrlTransitioning(false);
+    }, 450);
+    return () => clearTimeout(timer);
+  }, [searchParams]);
+
+  const showSkeleton = isPending || isUrlTransitioning;
+
+  // Reset infinite scroll limit back to initial BATCH_SIZE on filter, search, or sort change
+  useEffect(() => {
+    setDisplayLimit(BATCH_SIZE);
   }, [searchParams, searchQuery, sortBy]);
 
-  // Reactive Multi-criteria Filtering
+  // Reactive filtering
   const filteredProducts = useMemo(() => {
     if (!isMounted) return products;
 
     return products.filter((product) => {
-      // 1. Search Bar Match
+      // 1. Search Query
       if (searchQuery) {
         const query = searchQuery.toLowerCase();
         const matchesName = product.name.toLowerCase().includes(query);
@@ -95,86 +145,47 @@ export function ProductGrid({ products }: ProductGridProps) {
         if (!matchesName && !matchesBrand) return false;
       }
 
-      // 2. Gender Match
-      const genderFilters = activeFilters["gender"];
-      if (genderFilters && genderFilters.length > 0) {
-        if (!genderFilters.includes(product.gender)) return false;
-      }
-
-      // Collection Type Match
-      const collectionTypeFilters = activeFilters["collection_type"];
-      if (collectionTypeFilters && collectionTypeFilters.length > 0) {
-        let matches = false;
-        if (collectionTypeFilters.includes("Emirates Signature") && product.isInHouseProduct) matches = true;
-        if (collectionTypeFilters.includes("Designer Brands") && !product.isInHouseProduct) matches = true;
-        if (!matches) return false;
-      }
-
-      // 3. Category Match
-      const categoryFilters = activeFilters["category"];
-      if (categoryFilters && categoryFilters.length > 0) {
-        if (!categoryFilters.includes(product.category)) return false;
-      }
-
-      // 4. Brand Match
-      const brandFilters = activeFilters["brand"];
-      if (brandFilters && brandFilters.length > 0) {
-        if (!brandFilters.includes(product.brand)) return false;
-      }
-
-      // 5. Frame Shape Match
-      const shapeFilters = activeFilters["frame_shape"];
-      if (shapeFilters && shapeFilters.length > 0) {
-        if (!shapeFilters.includes(product.frameShape)) return false;
-      }
-
-      // 6. Frame Material Match
-      const materialFilters = activeFilters["frame_material"];
-      if (materialFilters && materialFilters.length > 0) {
-        if (!materialFilters.includes(product.frameMaterial)) return false;
-      }
-
-      // 6a. Color Way Match (Supports substring partial matching across colors list)
+      // 2. Color Way Match
       const colorWayFilters = activeFilters["color_way"];
       if (colorWayFilters && colorWayFilters.length > 0) {
         const productColors = product.colors || (product.color ? [product.color] : []);
-        const hasMatchingColor = colorWayFilters.some(filterColor => 
+        const hasMatchingColor = colorWayFilters.some(filterColor =>
           productColors.some(pColor => pColor.toLowerCase().includes(filterColor.toLowerCase()))
         );
         if (!hasMatchingColor) return false;
       }
 
-      // 6b. Contact Lens Usage Frequency Match
+      // 3. Contact Lens Usage Frequency Match
       const usageFilters = activeFilters["usage_frequency"];
       if (usageFilters && usageFilters.length > 0) {
         if (!usageFilters.includes(product.style || "")) return false;
       }
 
-      // 6c. Contact Lens Water Content Match
+      // 4. Contact Lens Water Content Match
       const waterFilters = activeFilters["water_content"];
       if (waterFilters && waterFilters.length > 0) {
-        const hasMatchingWater = waterFilters.some(wf => 
+        const hasMatchingWater = waterFilters.some(wf =>
           (product.frameWeightCategory || "").includes(wf.replace("%", ""))
         );
         if (!hasMatchingWater) return false;
       }
 
-      // 6d. Contact Lens Base Curve Match
+      // 5. Contact Lens Base Curve Match
       const curveFilters = activeFilters["base_curve"];
       if (curveFilters && curveFilters.length > 0) {
-        const hasMatchingCurve = curveFilters.some(cf => 
+        const hasMatchingCurve = curveFilters.some(cf =>
           (product.size || "").includes(cf.replace("mm", "").trim())
         );
         if (!hasMatchingCurve) return false;
       }
 
-      // 6e. Precision Lens Design Match
+      // 6. Precision Lens Design Match
       const designFilters = activeFilters["lens_design"];
       if (designFilters && designFilters.length > 0) {
         if (!designFilters.includes(product.lensType || "")) return false;
       }
 
-      // 6f. Precision Lens Material Index Match
+      // 7. Precision Lens Material Index Match
       const indexFilters = activeFilters["material_index"];
       if (indexFilters && indexFilters.length > 0) {
         const hasMatchingIndex = indexFilters.some(idx => {
@@ -184,16 +195,16 @@ export function ProductGrid({ products }: ProductGridProps) {
         if (!hasMatchingIndex) return false;
       }
 
-      // 6g. Volume Capacity Match
+      // 8. Volume Capacity Match
       const volumeFilters = activeFilters["volume_capacity"];
       if (volumeFilters && volumeFilters.length > 0) {
-        const hasMatchingVolume = volumeFilters.some(vf => 
+        const hasMatchingVolume = volumeFilters.some(vf =>
           (product.size || "").includes(vf.replace("ml", "").trim())
         );
         if (!hasMatchingVolume) return false;
       }
 
-      // 7. Availability / Collections Match
+      // 9. Availability / Collections Match
       const availabilityFilters = activeFilters["availability"];
       if (availabilityFilters && availabilityFilters.length > 0) {
         let matches = false;
@@ -203,33 +214,11 @@ export function ProductGrid({ products }: ProductGridProps) {
         if (!matches) return false;
       }
 
-      // 8. Branches Availability Match
-      const branchFilters = activeFilters["branches"];
-      if (branchFilters && branchFilters.length > 0) {
-        const productBranchNames = product.branches.map(b => b.branchName);
-        const hasMatchingBranch = branchFilters.some(filterBranch => 
-          productBranchNames.some(pBranch => pBranch.toLowerCase().includes(filterBranch.toLowerCase()))
-        );
-        if (!hasMatchingBranch) return false;
-      }
-
-      // 9. Price Range Match
-      const priceFilters = activeFilters["price_range"];
-      if (priceFilters && priceFilters.length > 0) {
-        const price = product.price;
-        let matches = false;
-        if (priceFilters.includes("Under ₹3,000") && price < 3000) matches = true;
-        if (priceFilters.includes("₹3,000 - ₹15,000") && price >= 3000 && price <= 15000) matches = true;
-        if (priceFilters.includes("₹15,000 - ₹30,000") && price >= 15000 && price <= 30000) matches = true;
-        if (priceFilters.includes("Luxury (Above ₹30,000)") && price > 30000) matches = true;
-        if (!matches) return false;
-      }
-
       return true;
     });
   }, [products, searchQuery, activeFilters, isMounted]);
 
-  // Sorting logic applied to the filtered list
+  // Sorting logic
   const sortedProducts = useMemo(() => {
     const list = [...filteredProducts];
     if (sortBy === "alphabetical_az") {
@@ -247,62 +236,44 @@ export function ProductGrid({ products }: ProductGridProps) {
     return list;
   }, [filteredProducts, sortBy]);
 
-  // Calculate slice parameters for the current page
-  const totalPages = Math.ceil(sortedProducts.length / productsPerPage);
-  const indexOfLastProduct = currentPage * productsPerPage;
-  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = useMemo(() => {
-    return sortedProducts.slice(indexOfFirstProduct, indexOfLastProduct);
-  }, [sortedProducts, indexOfFirstProduct, indexOfLastProduct]);
+  // Products currently displayed (Infinite Scroll slice)
+  const visibleProducts = useMemo(() => {
+    return sortedProducts.slice(0, displayLimit);
+  }, [sortedProducts, displayLimit]);
 
-  // Scroll smoothly back to shop-main viewport top
-  const handlePageChange = (pageNumber: number) => {
-    if (pageNumber < 1 || pageNumber > totalPages) return;
-    setCurrentPage(pageNumber);
-    
-    // Slight timeout to let DOM updates finish before scrolling
+  const hasMore = displayLimit < sortedProducts.length;
+
+  // Load next batch function
+  const loadMore = useCallback(() => {
+    if (isLoadingMore || !hasMore) return;
+    setIsLoadingMore(true);
     setTimeout(() => {
-      document.getElementById("shop-main")?.scrollIntoView({ behavior: "smooth" });
-    }, 50);
-  };
+      setDisplayLimit(prev => Math.min(prev + BATCH_SIZE, sortedProducts.length));
+      setIsLoadingMore(false);
+    }, 350);
+  }, [isLoadingMore, hasMore, sortedProducts.length]);
 
-  // Helper function to generate paginated page numbers with ellipsis
-  const getPageNumbers = () => {
-    const pages: (number | string)[] = [];
-    const maxVisible = 5;
+  // IntersectionObserver Sentinel setup (Instagram-style trigger)
+  useEffect(() => {
+    const target = observerRef.current;
+    if (!target || !hasMore) return;
 
-    if (totalPages <= maxVisible + 2) {
-      for (let i = 1; i <= totalPages; i++) pages.push(i);
-    } else {
-      pages.push(1);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && hasMore && !isLoadingMore) {
+          loadMore();
+        }
+      },
+      { rootMargin: "300px 0px" } // Triggers 300px before reaching the bottom for seamless loading
+    );
 
-      let start = Math.max(2, currentPage - 1);
-      let end = Math.min(totalPages - 1, currentPage + 1);
-
-      if (currentPage <= 3) {
-        end = 4;
-      } else if (currentPage >= totalPages - 2) {
-        start = totalPages - 3;
-      }
-
-      if (start > 2) pages.push("...");
-
-      for (let i = start; i <= end; i++) {
-        pages.push(i);
-      }
-
-      if (end < totalPages - 1) pages.push("...");
-
-      pages.push(totalPages);
-    }
-    return pages;
-  };
-
-
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, [hasMore, isLoadingMore, loadMore]);
 
   return (
     <div className="flex-1">
-      {/* Top Bar - Fully Responsive Control Panel */}
+      {/* Top Bar - Control Panel */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-10 pb-6 border-b border-black/5 w-full">
         <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 w-full sm:w-auto">
           <div className="relative group w-full sm:w-64">
@@ -315,9 +286,6 @@ export function ProductGrid({ products }: ProductGridProps) {
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
-          <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-brand-charcoal/30">
-            Showing {sortedProducts.length} Collections
-          </span>
         </div>
 
         <div className="flex items-center justify-between sm:justify-end gap-6 sm:gap-8 w-full sm:w-auto">
@@ -396,8 +364,9 @@ export function ProductGrid({ products }: ProductGridProps) {
             exit={{ opacity: 0, y: -10 }}
             className="flex flex-wrap items-center gap-2 mb-8"
           >
-            <span className="text-[8px] font-bold uppercase tracking-[0.2em] text-brand-charcoal/30 mr-2">
+            <span className="text-[8px] font-bold uppercase tracking-[0.2em] text-brand-charcoal/30 mr-2 flex items-center gap-1.5">
               Active Filters:
+              {showSkeleton && <Loader2 className="w-3 h-3 text-brand-gold animate-spin ml-1" />}
             </span>
             {activeFilterList.map((tag) => (
               <motion.button
@@ -405,8 +374,9 @@ export function ProductGrid({ products }: ProductGridProps) {
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.9, opacity: 0 }}
                 key={tag.key}
+                disabled={showSkeleton}
                 onClick={() => handleRemoveFilter(tag.groupKey, tag.value)}
-                className="inline-flex items-center gap-1.5 bg-brand-pearl/40 hover:bg-brand-gold/10 border border-black/5 hover:border-brand-gold/25 py-1 px-3 text-[9px] font-bold uppercase tracking-wider text-brand-charcoal hover:text-brand-gold rounded-[3px] transition-all duration-300"
+                className="inline-flex items-center gap-1.5 bg-brand-pearl/40 hover:bg-brand-gold/10 border border-black/5 hover:border-brand-gold/25 py-1 px-3 text-[9px] font-bold uppercase tracking-wider text-brand-charcoal hover:text-brand-gold rounded-[3px] transition-all duration-300 disabled:opacity-50"
               >
                 <span className="text-brand-gold/60">{tag.groupName}:</span>
                 <span>{tag.value}</span>
@@ -414,8 +384,9 @@ export function ProductGrid({ products }: ProductGridProps) {
               </motion.button>
             ))}
             <button 
-              onClick={() => router.push(pathname, { scroll: false })}
-              className="inline-flex items-center gap-1 text-[8px] font-bold uppercase tracking-[0.15em] text-brand-gold hover:text-brand-charcoal transition-colors ml-2 py-1"
+              disabled={showSkeleton}
+              onClick={handleResetAllFilters}
+              className="inline-flex items-center gap-1 text-[8px] font-bold uppercase tracking-[0.15em] text-brand-gold hover:text-brand-charcoal transition-colors ml-2 py-1 disabled:opacity-50"
             >
               <RotateCcw className="w-2.5 h-2.5" />
               Reset
@@ -424,10 +395,12 @@ export function ProductGrid({ products }: ProductGridProps) {
         )}
       </AnimatePresence>
 
-      {/* Grid Display */}
-      {currentProducts.length > 0 ? (
+      {/* Grid Display or Loading Skeleton */}
+      {showSkeleton ? (
+        <ProductGridSkeleton viewMode={viewMode} />
+      ) : visibleProducts.length > 0 ? (
         <GridStagger 
-          key={`${currentPage}-${sortBy}`}
+          key={`grid-${sortBy}`}
           className={cn(
             "grid gap-y-10 md:gap-x-8 md:gap-y-16",
             viewMode === "grid" 
@@ -435,90 +408,43 @@ export function ProductGrid({ products }: ProductGridProps) {
               : "grid-cols-1 gap-x-0"
           )}
         >
-          {currentProducts.map((product) => (
+          {visibleProducts.map((product) => (
             <StaggerItem key={product.id}>
               <ProductCard product={product} />
             </StaggerItem>
           ))}
         </GridStagger>
       ) : (
-        <div className="text-center py-24 border border-dashed border-black/10 flex flex-col items-center justify-center">
+        <div className="text-center py-24 border border-dashed border-black/10 flex flex-col items-center justify-center rounded-2xl">
           <p className="text-xs uppercase tracking-widest text-brand-charcoal/40 font-bold mb-2">No items found</p>
           <p className="text-[11px] font-light text-brand-charcoal/30">Try clearing active search or filter tags.</p>
         </div>
       )}
 
-      {/* Interactive Pagination HUD */}
-      {totalPages > 1 && (
-        <div className="mt-20 flex flex-col sm:flex-row items-center justify-between gap-6 pt-10 border-t border-black/5">
-          
-          {/* Page Counter Stats */}
-          <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-brand-charcoal/40 text-center sm:text-left">
-            Showing {indexOfFirstProduct + 1}–{Math.min(indexOfLastProduct, sortedProducts.length)} of {sortedProducts.length} Collections
-          </span>
-
-          {/* Dynamic Page Buttons */}
-          <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap justify-center max-w-full overflow-x-auto py-1">
-            <button
-              onClick={() => handlePageChange(currentPage - 1)}
-              disabled={currentPage === 1}
-              className={cn(
-                "p-2.5 sm:p-3 border rounded-xl flex items-center justify-center transition-all duration-300 shrink-0",
-                currentPage === 1 
-                  ? "text-brand-charcoal/10 border-black/[0.03] cursor-not-allowed" 
-                  : "text-brand-charcoal border-black/5 hover:border-brand-gold hover:text-brand-gold"
-              )}
-            >
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-
-            {getPageNumbers().map((page, idx) =>
-              typeof page === "number" ? (
-                <button
-                  key={idx}
-                  onClick={() => handlePageChange(page)}
-                  className={cn(
-                    "w-9 h-9 sm:w-10 sm:h-10 rounded-xl text-[9px] font-extrabold uppercase tracking-widest border flex items-center justify-center transition-all duration-300 shrink-0",
-                    currentPage === page
-                      ? "bg-brand-charcoal text-white border-brand-charcoal shadow-md"
-                      : "bg-white text-brand-charcoal/60 border-black/5 hover:border-brand-gold hover:text-brand-gold"
-                  )}
-                >
-                  {page}
-                </button>
-              ) : (
-                <span key={idx} className="px-1 text-[11px] font-bold text-brand-charcoal/30 select-none shrink-0">
-                  ...
-                </span>
-              )
-            )}
-
-            <button
-              onClick={() => handlePageChange(currentPage + 1)}
-              disabled={currentPage === totalPages}
-              className={cn(
-                "p-2.5 sm:p-3 border rounded-xl flex items-center justify-center transition-all duration-300 shrink-0",
-                currentPage === totalPages 
-                  ? "text-brand-charcoal/10 border-black/[0.03] cursor-not-allowed" 
-                  : "text-brand-charcoal border-black/5 hover:border-brand-gold hover:text-brand-gold"
-              )}
-            >
-              <ChevronRight className="w-4 h-4" />
-            </button>
-          </div>
-
-        </div>
-      )}
-
-      {/* Progress Bar & Status Footer if only 1 page */}
-      {totalPages <= 1 && (
-        <div className="mt-24 flex flex-col items-center">
-          <div className="w-full max-w-xs bg-brand-pearl h-[2px] mb-8 relative">
-            <div className="absolute inset-y-0 left-0 bg-brand-gold transition-all duration-700" style={{ width: `${sortedProducts.length > 0 ? 100 : 0}%` }} />
-          </div>
-          <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-charcoal/40 mb-10">
-            Showing all {sortedProducts.length} of {products.length} Collections
-          </p>
+      {/* Infinite Scroll Sentinel & Loading Indicator */}
+      {sortedProducts.length > 0 && (
+        <div ref={observerRef} className="mt-16 flex flex-col items-center justify-center py-6">
+          {hasMore ? (
+            <div className="flex flex-col items-center gap-3">
+              <div className="flex items-center gap-2 bg-[#C9A84C]/10 border border-[#C9A84C]/25 text-[#C9A84C] px-5 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] shadow-sm animate-pulse">
+                <Loader2 className="w-3.5 h-3.5 animate-spin text-[#C9A84C]" />
+                <span>Loading More Eyewear...</span>
+              </div>
+              <span className="text-[9px] uppercase tracking-widest text-black/30 font-medium">
+                Scroll to discover more
+              </span>
+            </div>
+          ) : (
+            <div className="flex flex-col items-center gap-3 w-full max-w-md pt-8 border-t border-black/5">
+              <div className="flex items-center gap-2 text-emerald-700 bg-emerald-50 border border-emerald-200/60 px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-[0.2em]">
+                <CheckCircle2 className="w-3.5 h-3.5" />
+                <span>All {sortedProducts.length} Collections Loaded</span>
+              </div>
+              <div className="w-full bg-neutral-200/60 h-[2px] rounded-full overflow-hidden mt-1">
+                <div className="bg-[#C9A84C] h-full w-full" />
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>

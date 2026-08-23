@@ -17,6 +17,7 @@ import { HiringBanner } from "@/components/sections/HiringBanner";
 import { SocialGallery } from "@/components/sections/SocialGallery";
 
 
+import prisma from "@/lib/prisma";
 import { getBanners, getOffers } from "@/actions/cms-marketing";
 import { getJobs } from "@/actions/cms-careers";
 import { getInstagramFeed } from "@/actions/cms-instagram";
@@ -25,13 +26,36 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0; // Disable static caching to allow real-time offer and banner synchronization
 
 export default async function HomePage() {
-  // â”€â”€ 1. ASYNCHRONOUS DATA FEEDS â”€â”€
-  const [banners, offers, jobs, instagramFeed] = await Promise.all([
+  // ── 1. ASYNCHRONOUS DATA FEEDS ──
+  const [banners, offers, jobs, instagramFeed, dbLatestProducts] = await Promise.all([
     getBanners().catch(() => []),
     getOffers().catch(() => []),
     getJobs().catch(() => []),
-    getInstagramFeed().catch(() => ({ posts: [] }))
+    getInstagramFeed().catch(() => ({ posts: [] })),
+    prisma.product.findMany({
+      where: { isActive: true },
+      include: {
+        brand: true,
+        category: true,
+        images: { orderBy: { order: "asc" } }
+      },
+      orderBy: { createdAt: "desc" },
+      take: 8
+    }).catch(() => [])
   ]);
+
+  const latestProducts = dbLatestProducts.map(p => ({
+    id: p.id,
+    slug: p.slug,
+    name: p.name,
+    price: p.price,
+    brandName: p.brand?.name || "Luxury Brand",
+    categoryName: p.category?.name || "Eyewear",
+    image: p.images[0]?.url || "https://images.unsplash.com/photo-1591076482161-42ce6da69f67?auto=format&fit=crop&q=80&w=800",
+    color: p.color || undefined,
+    gender: p.gender || undefined,
+    isNewArrival: p.isNewArrival
+  }));
 
   const activeJobsCount = jobs.filter((j: any) => j.isActive).length;
 
@@ -124,12 +148,16 @@ export default async function HomePage() {
         ])}}
       />
 
-      {/* 1. HERO â€” Cinematic, with dynamic visual slides & active offer marquee */}
+      {/* 1. HERO — Cinematic, with dynamic visual slides & active offer marquee */}
       <Hero banners={banners} offers={offers} />
 
-      {/* 2. THE PRODUCTS â€” Sleek horizontal editorial blocks */}
+      {/* 2. LATEST SHOWROOM ARRIVALS CAROUSEL */}
+      <NewArrivals products={latestProducts} />
+
+      {/* 3. THE FEATURED COLLECTIONS */}
       <FeaturedCollections />
-      {/* 6. THE OFFERS â€” Dynamic promotions touch carousel */}
+
+      {/* 6. THE OFFERS */}
       <PromotionsShowcase />
 
       {/* 3. THE PARTNERS â€” Interactive and animated luxury brand grid */}

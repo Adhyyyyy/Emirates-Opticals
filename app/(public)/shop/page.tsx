@@ -1,33 +1,117 @@
 import React, { Suspense } from "react";
 import { ShopFilters } from "@/components/sections/shop/ShopFilters";
 import { ProductGrid } from "@/components/sections/shop/ProductGrid";
-import { ShopFinalCTA } from "@/components/sections/shop/ShopFinalCTA";
 import prisma from "@/lib/prisma";
 import { Product, BranchStock } from "@/types/shop";
 import { PRODUCTS as STATIC_PRODUCTS } from "@/lib/shop/data";
 
 export const dynamic = "force-dynamic";
-export const revalidate = 0; // Disable catalog caching to render database additions instantly
 
 export const metadata = {
   title: "Shop Luxury Eyewear | Authentic Collections - Emirates Optician",
   description: "Explore authentic luxury eyewear, premium sunglasses, and optical solutions. Enquire now and contact your nearest Emirates Optician branch.",
 };
 
-export default async function ShopPage() {
+export default async function ShopPage({ searchParams }: { searchParams: Promise<Record<string, string>> }) {
   let products: Product[] = [];
+  let dbColors: any[] = [];
+  let dbBranches: any[] = [];
 
   try {
-    const dbProducts = await prisma.product.findMany({
-      where: { isActive: true },
-      include: {
-        brand: true,
-        category: true,
-        images: { orderBy: { order: "asc" } },
-        inventory: { include: { branch: true } }
-      },
-      orderBy: { createdAt: "desc" }
-    });
+    // Fix 10: Await searchParams (Next.js 15 — searchParams is a Promise)
+    const params = await searchParams;
+
+    // ── Build server-side WHERE conditions from URL filter params ──
+    // Each active filter becomes an AND entry; multi-value selections use nested OR.
+    const andConditions: any[] = [{ isActive: true }];
+
+    // Gender: "Men" → ["MALE", "MEN"], "Women" → ["FEMALE", "WOMEN"], "Kids" → ["KIDS"], "Unisex" → ["UNISEX"] or null or other
+    if (params.gender) {
+      const genders = params.gender.split(";").filter(Boolean);
+      const genderConditions: any[] = [];
+      if (genders.includes("Men"))    genderConditions.push({ gender: { in: ["MALE", "MEN"] } });
+      if (genders.includes("Women"))  genderConditions.push({ gender: { in: ["FEMALE", "WOMEN"] } });
+      if (genders.includes("Kids"))   genderConditions.push({ gender: "KIDS" });
+      if (genders.includes("Unisex")) {
+        genderConditions.push({ gender: { notIn: ["MALE", "FEMALE", "MEN", "WOMEN", "KIDS"] } });
+        genderConditions.push({ gender: null });
+      }
+      if (genderConditions.length > 0) andConditions.push({ OR: genderConditions });
+    }
+
+    // Collection Type: "Emirates Signature" → isInHouseProduct:true, "Designer Brands" → false
+    if (params.collection_type) {
+      const types = params.collection_type.split(";").filter(Boolean);
+      const hasSig = types.includes("Emirates Signature");
+      const hasDesigner = types.includes("Designer Brands");
+      if (hasSig && !hasDesigner) andConditions.push({ isInHouseProduct: true });
+      if (hasDesigner && !hasSig)  andConditions.push({ isInHouseProduct: false });
+      // Both selected = no restriction (show all)
+    }
+
+    // Category: filter by category name
+    if (params.category) {
+      const categories = params.category.split(";").filter(Boolean);
+      andConditions.push({ category: { name: { in: categories, mode: "insensitive" } } });
+    }
+
+    // Brand: filter by brand name
+    if (params.brand) {
+      const brands = params.brand.split(";").filter(Boolean);
+      andConditions.push({ brand: { name: { in: brands, mode: "insensitive" } } });
+    }
+
+    // Frame Shape
+    if (params.frame_shape) {
+      const shapes = params.frame_shape.split(";").filter(Boolean);
+      andConditions.push({ frameShape: { in: shapes } });
+    }
+
+    // Frame Material (DB field is "material")
+    if (params.frame_material) {
+      const materials = params.frame_material.split(";").filter(Boolean);
+      andConditions.push({ material: { in: materials } });
+    }
+
+    // Price Range: each range is a separate OR condition
+    if (params.price_range) {
+      const ranges = params.price_range.split(";").filter(Boolean);
+      const priceConditions: any[] = [];
+      if (ranges.includes("Under ₹3,000"))             priceConditions.push({ price: { lt: 3000 } });
+      if (ranges.includes("₹3,000 - ₹15,000"))         priceConditions.push({ price: { gte: 3000,  lte: 15000 } });
+      if (ranges.includes("₹15,000 - ₹30,000"))        priceConditions.push({ price: { gte: 15000, lte: 30000 } });
+      if (ranges.includes("Luxury (Above ₹30,000)"))   priceConditions.push({ price: { gt: 30000 } });
+      if (priceConditions.length > 0) andConditions.push({ OR: priceConditions });
+    }
+
+    // Branches: product must have inventory in at least one matching branch
+    if (params.branches) {
+      const branches = params.branches.split(";").filter(Boolean);
+      andConditions.push({
+        inventory: { some: { branch: { name: { in: branches, mode: "insensitive" } } } }
+      });
+    }
+
+    const where = { AND: andConditions };
+
+    // ── Run queries concurrently ──
+    const [dbProducts, fetchedColors, fetchedBranches] = await Promise.all([
+      prisma.product.findMany({
+        where,
+        include: {
+          brand: true,
+          category: true,
+          images: { orderBy: { order: "asc" } },
+          inventory: { include: { branch: true } }
+        },
+        orderBy: { createdAt: "desc" }
+      }),
+      prisma.color.findMany({ orderBy: { name: "asc" } }),
+      prisma.branch.findMany({ orderBy: { name: "asc" } })
+    ]);
+
+    dbColors = fetchedColors;
+    dbBranches = fetchedBranches;
 
     products = dbProducts.map(p => {
       const branches: BranchStock[] = p.inventory.map(inv => ({
@@ -51,7 +135,7 @@ export default async function ShopPage() {
         images: p.images.map(img => img.url),
         stockStatus: globalStatus,
         branches,
-        gender: p.gender === "MALE" ? "Men" : p.gender === "FEMALE" ? "Women" : p.gender === "KIDS" ? "Kids" : "Unisex",
+        gender: (p.gender === "MALE" || p.gender === "MEN") ? "Men" : (p.gender === "FEMALE" || p.gender === "WOMEN") ? "Women" : p.gender === "KIDS" ? "Kids" : "Unisex",
         frameShape: p.frameShape || "Standard",
         frameMaterial: p.material || "Standard",
         lensType: p.lensType || "Standard",
@@ -72,16 +156,6 @@ export default async function ShopPage() {
   } catch (error) {
     console.warn("Prisma failed, falling back to static products:", error);
     products = STATIC_PRODUCTS;
-  }
-
-  // Dynamically collect and format unique colors from active catalog products & Master registry
-  let dbColors: any[] = [];
-  try {
-    dbColors = await prisma.color.findMany({
-      orderBy: { name: "asc" }
-    });
-  } catch (err) {
-    console.warn("Failed to fetch colors from database:", err);
   }
 
   const defaultColors = [
@@ -117,15 +191,15 @@ export default async function ShopPage() {
     <div className="flex flex-col w-full min-h-screen">
 
       {/* ── Catalog Body ── */}
-      <main className="bg-white flex-1 pt-24 md:pt-32" id="shop-main">
-        <div className="section-container py-16 md:py-20">
+      <main className="bg-white flex-1 pt-20 md:pt-32" id="shop-main">
+        <div className="section-container pt-4 md:pt-16 pb-16 md:pb-20">
           <div className="flex flex-col lg:flex-row gap-12 xl:gap-16">
 
             {/* Filters Sidebar */}
             <Suspense fallback={
               <div className="w-full lg:w-64 shrink-0 animate-pulse bg-neutral-100 rounded-[3px] h-96" />
             }>
-              <ShopFilters availableColors={allUniqueColors} />
+              <ShopFilters availableColors={allUniqueColors} availableBranches={dbBranches.map(b => b.name)} />
             </Suspense>
 
             {/* Product Grid */}
@@ -136,8 +210,6 @@ export default async function ShopPage() {
           </div>
         </div>
       </main>
-
-      <ShopFinalCTA />
     </div>
   );
 }

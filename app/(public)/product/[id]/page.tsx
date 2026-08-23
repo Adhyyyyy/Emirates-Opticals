@@ -1,59 +1,20 @@
-import React from "react";
+import React, { cache } from "react";
 import { notFound } from "next/navigation";
 import prisma from "@/lib/prisma";
 import { Product, BranchStock } from "@/types/shop";
-import { getWhatsAppUrl } from "@/lib/shop/whatsapp";
 import { PRODUCTS as STATIC_PRODUCTS } from "@/lib/shop/data";
 
 // Components
 import { ProductHeroGallery } from "@/components/sections/product/ProductHeroGallery";
-import { ProductBranchStock } from "@/components/sections/product/ProductBranchStock";
-import { ProductSpecs } from "@/components/sections/product/ProductSpecs";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0; // Disable caching to fetch all uploaded photos in real-time
+export const revalidate = 300; // Re-fetch at most every 5 minutes (product specs rarely change per-minute)
 
 interface ProductDetailsPageProps {
   params: Promise<{ id: string }>;
 }
 
-export async function generateMetadata({ params }: ProductDetailsPageProps) {
-  const { id } = await params;
-  let name = "";
-  let brand = "";
-  let category = "";
-
-  try {
-    const dbProduct = await prisma.product.findFirst({
-      where: { OR: [{ id }, { slug: id }] },
-      include: { brand: true, category: true }
-    });
-    if (dbProduct) {
-      name = dbProduct.name;
-      brand = dbProduct.brand?.name || "Independent";
-      category = dbProduct.category?.name || "Eyewear";
-    }
-  } catch {
-    const staticProd = STATIC_PRODUCTS.find(p => p.id === id || p.slug === id);
-    if (staticProd) {
-      name = staticProd.name;
-      brand = staticProd.brand;
-      category = staticProd.category;
-    }
-  }
-
-  if (!name) return { title: "Product Details | Emirates Optician" };
-
-  return {
-    title: `${brand} ${name} | Luxury ${category} - Emirates Optician`,
-    description: `Explore authentic ${brand} ${name} ${category.toLowerCase()}. Enquire now and contact your nearest Emirates Optician branch for professional eye testing and custom fitting.`,
-  };
-}
-
-export default async function ProductDetailsPage({ params }: ProductDetailsPageProps) {
-  const { id } = await params;
-  let product: Product | null = null;
-
+// React cache ensures generateMetadata and ProductDetailsPage reuse a single query per request
+const getProductBySlugOrId = cache(async (id: string) => {
   try {
     const dbProduct = await prisma.product.findFirst({
       where: { 
@@ -71,7 +32,6 @@ export default async function ProductDetailsPage({ params }: ProductDetailsPageP
     });
 
     if (dbProduct) {
-      // Map inventory to BranchStock
       const branches: BranchStock[] = dbProduct.inventory.map(inv => ({
         branchName: inv.branch.name,
         branchSlug: inv.branch.slug,
@@ -82,7 +42,7 @@ export default async function ProductDetailsPage({ params }: ProductDetailsPageP
       const totalQty = dbProduct.inventory.reduce((acc, inv) => acc + inv.quantity, 0);
       const globalStatus = totalQty > 5 ? "In Stock" : totalQty > 0 ? "Low Stock" : "Out of Stock";
 
-      product = {
+      const product: Product = {
         id: dbProduct.id,
         name: dbProduct.name,
         slug: dbProduct.slug,
@@ -109,14 +69,31 @@ export default async function ProductDetailsPage({ params }: ProductDetailsPageP
         isFeatured: dbProduct.isFeatured,
         isNewArrival: dbProduct.isNewArrival
       };
+      return product;
     }
   } catch (error) {
     console.warn("Prisma failed to fetch product details, checking static array:", error);
-    const staticProd = STATIC_PRODUCTS.find(p => p.id === id || p.slug === id);
-    if (staticProd) {
-      product = staticProd;
-    }
   }
+
+  const staticProd = STATIC_PRODUCTS.find(p => p.id === id || p.slug === id);
+  return staticProd || null;
+});
+
+export async function generateMetadata({ params }: ProductDetailsPageProps) {
+  const { id } = await params;
+  const product = await getProductBySlugOrId(id);
+
+  if (!product) return { title: "Product Details | Emirates Optician" };
+
+  return {
+    title: `${product.brand} ${product.name} | Luxury ${product.category} - Emirates Optician`,
+    description: `Explore authentic ${product.brand} ${product.name} ${product.category.toLowerCase()}. Enquire now and contact your nearest Emirates Optician branch for professional eye testing and custom fitting.`,
+  };
+}
+
+export default async function ProductDetailsPage({ params }: ProductDetailsPageProps) {
+  const { id } = await params;
+  const product = await getProductBySlugOrId(id);
 
   if (!product) return notFound();
 

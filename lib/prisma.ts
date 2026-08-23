@@ -9,7 +9,7 @@ declare global {
 
 const pool = global.pgPool || new pg.Pool({ 
   connectionString: process.env.DATABASE_URL,
-  max: 5, // Keep connection footprint small in development
+  max: 15, // Support concurrent visitors without connection queuing
   idleTimeoutMillis: 10000, // Prune idle sockets (prevents stale Neon/Supabase proxy connections)
   connectionTimeoutMillis: 30000, // Allow up to 30s for serverless databases to wake from sleep
 });

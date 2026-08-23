@@ -94,6 +94,12 @@ model Product {
   @@index([brandId])
   @@index([categoryId])
   @@index([isFeatured])
+  // Performance indexes added based on actual filter query patterns
+  @@index([isActive, createdAt])   // Main shop query: WHERE isActive ORDER BY createdAt
+  @@index([gender])                // Gender filter
+  @@index([isInHouseProduct])      // Collection type (Signature vs Designer) filter
+  @@index([price])                 // Price range filter
+  @@index([collectionType])        // Collection type label filter
 }
 
 model ProductImage {
