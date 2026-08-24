@@ -25,52 +25,95 @@ export default async function ShopPage({ searchParams }: { searchParams: Promise
     // Each active filter becomes an AND entry; multi-value selections use nested OR.
     const andConditions: any[] = [{ isActive: true }];
 
-    // Gender: "Men" → ["MALE", "MEN"], "Women" → ["FEMALE", "WOMEN"], "Kids" → ["KIDS"], "Unisex" → ["UNISEX"] or null or other
+    // Gender: case-insensitive multi-value enum matching
     if (params.gender) {
       const genders = params.gender.split(";").filter(Boolean);
       const genderConditions: any[] = [];
-      if (genders.includes("Men"))    genderConditions.push({ gender: { in: ["MALE", "MEN"] } });
-      if (genders.includes("Women"))  genderConditions.push({ gender: { in: ["FEMALE", "WOMEN"] } });
-      if (genders.includes("Kids"))   genderConditions.push({ gender: "KIDS" });
+      if (genders.includes("Men"))    genderConditions.push({ gender: { in: ["MALE", "MEN", "Men", "male", "men"] } });
+      if (genders.includes("Women"))  genderConditions.push({ gender: { in: ["FEMALE", "WOMEN", "Women", "female", "women"] } });
+      if (genders.includes("Kids"))   genderConditions.push({ gender: { in: ["KIDS", "Kids", "kids", "CHILDREN", "Children"] } });
       if (genders.includes("Unisex")) {
-        genderConditions.push({ gender: { notIn: ["MALE", "FEMALE", "MEN", "WOMEN", "KIDS"] } });
+        genderConditions.push({ gender: { in: ["UNISEX", "Unisex", "unisex"] } });
+        genderConditions.push({ gender: { notIn: ["MALE", "FEMALE", "MEN", "WOMEN", "KIDS", "Children", "male", "female", "kids"] } });
         genderConditions.push({ gender: null });
       }
       if (genderConditions.length > 0) andConditions.push({ OR: genderConditions });
     }
 
-    // Collection Type: "Emirates Signature" → isInHouseProduct:true, "Designer Brands" → false
+    // Collection Type: "Emirates Signature" (isInHouseProduct:true) vs "Designer Brands" (false or null)
     if (params.collection_type) {
       const types = params.collection_type.split(";").filter(Boolean);
       const hasSig = types.includes("Emirates Signature");
       const hasDesigner = types.includes("Designer Brands");
       if (hasSig && !hasDesigner) andConditions.push({ isInHouseProduct: true });
-      if (hasDesigner && !hasSig)  andConditions.push({ isInHouseProduct: false });
-      // Both selected = no restriction (show all)
+      if (hasDesigner && !hasSig)  andConditions.push({ OR: [{ isInHouseProduct: false }, { isInHouseProduct: null }] });
     }
 
-    // Category: filter by category name
+    // Category: filter by category name (handles alias mapping: Optical Frames <-> Eyeglasses)
     if (params.category) {
       const categories = params.category.split(";").filter(Boolean);
-      andConditions.push({ category: { name: { in: categories, mode: "insensitive" } } });
+      const expandedCategories = new Set<string>();
+
+      categories.forEach((cat) => {
+        expandedCategories.add(cat);
+        const lower = cat.toLowerCase();
+        if (lower === "optical frames" || lower === "optical" || lower === "eyeglasses" || lower === "reading glasses") {
+          expandedCategories.add("Optical Frames");
+          expandedCategories.add("Eyeglasses");
+          expandedCategories.add("Optical");
+          expandedCategories.add("Reading Glasses");
+        }
+        if (lower === "sunglasses" || lower === "sunwear") {
+          expandedCategories.add("Sunglasses");
+          expandedCategories.add("Sunwear");
+        }
+        if (lower === "accessories" || lower === "eyewear accessories") {
+          expandedCategories.add("Accessories");
+          expandedCategories.add("Eyewear Accessories");
+        }
+        if (lower === "lens care solutions" || lower === "contact lenses") {
+          expandedCategories.add("Contact Lenses");
+          expandedCategories.add("Lens Care Solutions");
+        }
+      });
+
+      andConditions.push({
+        category: {
+          name: {
+            in: Array.from(expandedCategories),
+            mode: "insensitive"
+          }
+        }
+      });
     }
 
-    // Brand: filter by brand name
+    // Brand: filter by brand name (case-insensitive)
     if (params.brand) {
       const brands = params.brand.split(";").filter(Boolean);
       andConditions.push({ brand: { name: { in: brands, mode: "insensitive" } } });
     }
 
-    // Frame Shape
+    // Frame Shape: case-insensitive
     if (params.frame_shape) {
       const shapes = params.frame_shape.split(";").filter(Boolean);
-      andConditions.push({ frameShape: { in: shapes } });
+      andConditions.push({ frameShape: { in: shapes, mode: "insensitive" } });
     }
 
-    // Frame Material (DB field is "material")
+    // Frame Material: case-insensitive
     if (params.frame_material) {
       const materials = params.frame_material.split(";").filter(Boolean);
-      andConditions.push({ material: { in: materials } });
+      andConditions.push({ material: { in: materials, mode: "insensitive" } });
+    }
+
+    // Color Way / Color: case-insensitive array or string match
+    if (params.color_way || params.color) {
+      const colorParam = params.color_way || params.color;
+      const colors = colorParam.split(";").filter(Boolean);
+      const colorConditions: any[] = colors.flatMap(c => [
+        { color: { contains: c, mode: "insensitive" } },
+        { colors: { hasSome: [c] } }
+      ]);
+      if (colorConditions.length > 0) andConditions.push({ OR: colorConditions });
     }
 
     // Price Range: each range is a separate OR condition

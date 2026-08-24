@@ -286,26 +286,7 @@ export function NewArrivals({ products = [] }: NewArrivalsProps) {
           ))}
         </div>
 
-        {/* Glowing Gold Shimmer CTA Button to Shop */}
-        <div className="mt-8 md:mt-12 flex justify-center">
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.97 }}
-            className="relative group"
-          >
-            {/* Glowing Ambient Backdrop */}
-            <div className="absolute -inset-1.5 bg-gradient-to-r from-[#C9A84C] via-[#F3E5AB] to-[#C9A84C] rounded-full blur-lg opacity-75 group-hover:opacity-100 transition duration-500 animate-pulse" />
-            <Link
-              href="/shop"
-              className="relative inline-flex items-center gap-3 bg-gradient-to-r from-[#C9A84C] via-[#DFBF60] to-[#C9A84C] text-black px-7 md:px-9 py-3.5 md:py-4 rounded-full font-extrabold text-[10px] md:text-[11px] uppercase tracking-[0.2em] shadow-2xl transition-all duration-500 border border-white/40"
-            >
-              <span>Explore All Frames</span>
-              <div className="w-6 h-6 rounded-full bg-black/15 flex items-center justify-center text-black group-hover:bg-black group-hover:text-[#C9A84C] transition-colors duration-300">
-                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
-              </div>
-            </Link>
-          </motion.div>
-        </div>
+
 
       </div>
     </section>

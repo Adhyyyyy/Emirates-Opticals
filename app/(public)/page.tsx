@@ -151,10 +151,13 @@ export default async function HomePage() {
       {/* 1. HERO — Cinematic, with dynamic visual slides & active offer marquee */}
       <Hero banners={banners} offers={offers} />
 
-      {/* 2. LATEST SHOWROOM ARRIVALS CAROUSEL */}
+      {/* 2. VISUAL CATEGORY DIRECTORY — Eyeglasses, Sunglasses, Contact Lenses & Accessories */}
+      <CategoryNavigation />
+
+      {/* 3. LATEST SHOWROOM ARRIVALS CAROUSEL */}
       <NewArrivals products={latestProducts} />
 
-      {/* 3. THE FEATURED COLLECTIONS */}
+      {/* 4. THE FEATURED COLLECTIONS */}
       <FeaturedCollections />
 
       {/* 6. THE OFFERS */}

@@ -24,7 +24,7 @@ export function EyewearCarousel() {
       initial={{ y: 50, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ delay: 1.2, duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-      className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-[95%] max-w-[1600px] bg-white/95 backdrop-blur-md rounded-[2rem] md:rounded-full shadow-[0_20px_60px_rgba(0,0,0,0.12)] border border-[#C9A84C]/20 px-4 md:px-12 py-3 md:py-4 z-50 group"
+      className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-[95%] max-w-[1600px] bg-white rounded-[2rem] md:rounded-full shadow-[0_20px_60px_rgba(0,0,0,0.12)] border border-[#C9A84C]/20 px-4 md:px-12 py-3 md:py-4 z-50 group"
     >
       <div 
         ref={containerRef}

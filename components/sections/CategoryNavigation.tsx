@@ -3,97 +3,195 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Reveal } from "@/components/motion/Reveal";
-import { ArrowRight } from "lucide-react";
+import { Sparkles } from "lucide-react";
 
-const CATEGORIES = [
+interface CategoryOption {
+  id: string;
+  name: string;
+  badge?: string;
+  image: string;
+  href: string;
+}
+
+interface CategoryGroup {
+  id: string;
+  title: string;
+  tag?: string;
+  options: CategoryOption[];
+}
+
+const CATEGORY_GROUPS: CategoryGroup[] = [
   {
-    id: "optical",
-    title: "Optical Mastery",
-    subtitle: "Clinical precision meets high fashion",
-    image: "https://images.unsplash.com/photo-1582142407894-ec85a1260a46?auto=format&fit=crop&q=80&w=1200",
-    href: "/shop?category=Optical+Frames",
+    id: "eyeglasses",
+    title: "Eyeglasses",
+    tag: "Optical Frames",
+    options: [
+      {
+        id: "optical-men",
+        name: "Men",
+        badge: "Popular",
+        image: "/category/men_eyeglass.webp",
+        href: "/shop?category=Optical+Frames&gender=Men",
+      },
+      {
+        id: "optical-women",
+        name: "Women",
+        badge: "Trending",
+        image: "/category/women_eyeglasses.webp",
+        href: "/shop?category=Optical+Frames&gender=Women",
+      },
+      {
+        id: "optical-kids",
+        name: "Kids",
+        image: "/category/kids_eyeglasses.webp",
+        href: "/shop?category=Optical+Frames&gender=Kids",
+      },
+      {
+        id: "optical-unisex",
+        name: "Unisex",
+        image: "/category/uniswx_eyeglasses.webp",
+        href: "/shop?category=Optical+Frames&gender=Unisex",
+      },
+    ],
   },
   {
-    id: "sun",
-    title: "Sun Editorial",
-    subtitle: "The definitive shade collection",
-    image: "https://images.unsplash.com/photo-1589718539308-169b183615fa?auto=format&fit=crop&q=80&w=1200",
-    href: "/shop?category=Sunglasses",
+    id: "sunglasses",
+    title: "Sunglasses",
+    tag: "UV Protection",
+    options: [
+      {
+        id: "sun-men",
+        name: "Men",
+        badge: "Bestseller",
+        image: "/category/me_sunglass.png",
+        href: "/shop?category=Sunglasses&gender=Men",
+      },
+      {
+        id: "sun-women",
+        name: "Women",
+        badge: "Signature",
+        image: "/category/women_sunglasses.webp",
+        href: "/shop?category=Sunglasses&gender=Women",
+      },
+      {
+        id: "sun-kids",
+        name: "Kids",
+        image: "/category/kids_sunglasses.webp",
+        href: "/shop?category=Sunglasses&gender=Kids",
+      },
+      {
+        id: "sun-unisex",
+        name: "Unisex",
+        image: "/category/unisex_sunglass.webp",
+        href: "/shop?category=Sunglasses&gender=Unisex",
+      },
+    ],
   },
   {
-    id: "lenses",
-    title: "Contact Lenses & Care",
-    subtitle: "Advanced clarity technologies",
-    image: "https://images.unsplash.com/photo-1563903530908-afdd155d057a?auto=format&fit=crop&q=80&w=1200",
-    href: "/shop?category=Contact+Lenses",
+    id: "lenses-accessories",
+    title: "Contact Lenses & Accessories",
+    tag: "Vision Care",
+    options: [
+      {
+        id: "contact-lenses",
+        name: "Contact Lenses",
+        badge: "Daily/Monthly",
+        image: "/category/contactlense.webp",
+        href: "/shop?category=Contact+Lenses",
+      },
+      {
+        id: "lens-solutions",
+        name: "Lens Solutions",
+        badge: "Clinical",
+        image: "/category/lenssolution.webp",
+        href: "/shop?category=Lens+Care+Solutions",
+      },
+      {
+        id: "eyewear-accessories",
+        name: "Accessories",
+        badge: "Boutique",
+        image: "/category/accessories.webp",
+        href: "/shop?category=Eyewear+Accessories",
+      },
+      {
+        id: "reading-glasses",
+        name: "Reading Frames",
+        badge: "Essentials",
+        image: "/category/readingglass2.webp",
+        href: "/shop?category=Reading+Glasses",
+      },
+    ],
   },
 ];
 
 export function CategoryNavigation() {
   return (
-    <section className="w-full bg-gradient-to-b from-[#F7F5F0] via-white to-[#F7F5F0] section-padding overflow-hidden border-b border-[#E8E4DC]">
-      <div className="section-container">
+    <section className="w-full bg-[#FAF9F6] pt-16 sm:pt-20 md:pt-24 pb-12 md:pb-20 border-y border-black/[0.06] overflow-hidden">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-12">
         
-        {/* Harmonized Section Header */}
-        <div className="flex flex-col items-center text-center mb-10 md:mb-16">
-          <Reveal delay={0.2}>
-            <span className="meta-editorial mb-4 text-[#C9A84C]">
-              The Visionist Gateway
-            </span>
-          </Reveal>
-          <Reveal delay={0.4}>
-            <h2 className="h2-editorial text-black">
-              Curated Discovery
-            </h2>
-          </Reveal>
-        </div>
-
-        {/* Discovery Grid - Redesigned Curated Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {CATEGORIES.map((cat) => (
-            <Link 
-              key={cat.id} 
-              href={cat.href} 
-              className="flex flex-col rounded-2xl overflow-hidden bg-white border border-neutral-200/80 relative group h-full shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1"
-            >
-              {/* Image Frame - Forced Aspect Ratio for Identical Height */}
-              <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#FAF9F6]">
-                <Image 
-                  src={cat.image}
-                  alt={cat.title}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 30vw"
-                />
-                <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        {/* 3 Rows Stack */}
+        <div className="space-y-8 sm:space-y-12">
+          {CATEGORY_GROUPS.map((group) => (
+            <div key={group.id} className="space-y-3 sm:space-y-4">
+              
+              {/* Row Sub-header */}
+              <div className="flex items-center gap-2 border-b border-black/[0.06] pb-2">
+                <h3 className="text-sm sm:text-lg font-bold font-heading text-brand-charcoal uppercase tracking-tight">
+                  {group.title}
+                </h3>
+                {group.tag && (
+                  <span className="text-[7.5px] sm:text-[9px] font-bold text-[#C9A84C] bg-[#C9A84C]/10 border border-[#C9A84C]/20 px-2 py-0.5 rounded-full uppercase tracking-wider">
+                    {group.tag}
+                  </span>
+                )}
               </div>
 
-              {/* Card Info Area */}
-              <div className="p-6 flex flex-col gap-1.5 text-left justify-center flex-1">
-                {/* Eyebrow */}
-                <span className="text-[10px] uppercase tracking-[0.2em] text-[#C9A84C] block font-bold">
-                  {cat.id === "optical" ? "Ophthalmic" : cat.id === "sun" ? "Sunglasses" : "Precision Lenses"}
-                </span>
-                
-                {/* Title and Sliding Arrow */}
-                <div className="flex items-center justify-between">
-                  <h3 className="text-base md:text-lg font-medium text-neutral-900 transition-transform duration-500 group-hover:translate-x-0.5">
-                    {cat.title}
-                  </h3>
-                  <div className="w-8 h-8 rounded-full bg-neutral-100 flex items-center justify-center group-hover:bg-[#C9A84C] group-hover:text-black transition-colors duration-300">
-                    <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-                  </div>
-                </div>
-                
-                {/* Sub-label */}
-                <span className="text-xs text-neutral-500 block">
-                  {cat.subtitle}
-                </span>
+              {/* 4-Column Responsive Card Grid (4-cols on mobile!) */}
+              <div className="grid grid-cols-4 gap-2.5 sm:gap-4 md:gap-6">
+                {group.options.map((option) => (
+                  <Link
+                    key={option.id}
+                    href={option.href}
+                    className="group flex flex-col items-center text-center select-none"
+                  >
+                    {/* Square Rounded Card Image */}
+                    <div className="relative w-full aspect-square rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-100 border border-black/[0.06] shadow-sm hover:shadow-md transition-all duration-300">
+                      <Image
+                        src={option.image}
+                        alt={option.name}
+                        fill
+                        sizes="(max-width: 640px) 25vw, (max-width: 1024px) 25vw, 20vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-108"
+                      />
+
+                      {/* Subtle Vignette Overlay */}
+                      <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300" />
+
+                      {/* Top Badge (if present) */}
+                      {option.badge && (
+                        <div className="absolute top-1 left-1 sm:top-2 sm:left-2 z-10">
+                          <span className="bg-brand-charcoal/90 backdrop-blur-md text-[#C9A84C] text-[5.5px] sm:text-[8px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-[3px] shadow-sm flex items-center gap-0.5">
+                            {option.badge === "Popular" || option.badge === "Bestseller" ? (
+                              <Sparkles className="w-1.5 h-1.5 text-[#C9A84C]" />
+                            ) : null}
+                            {option.badge}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Clean Label Below Card */}
+                    <span className="mt-2 text-[10px] sm:text-xs md:text-sm font-bold text-brand-charcoal uppercase tracking-tight group-hover:text-[#C9A84C] transition-colors line-clamp-1">
+                      {option.name}
+                    </span>
+                  </Link>
+                ))}
               </div>
-            </Link>
+
+            </div>
           ))}
         </div>
+
       </div>
     </section>
   );
