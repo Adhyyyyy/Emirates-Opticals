@@ -19,6 +19,9 @@ const ROW_1 = [
   { id: 10, name: "Stylish Overcoat", brandFilter: "Ray-Ban", logoText: "", fontClass: "", imageUrl: "/Brands/Stylish_man_in_overcoat_202605281338.jpeg", showText: false },
   { id: 11, name: "Diesel", brandFilter: "Diesel", logoText: "", fontClass: "", imageUrl: "/Brands/Tattooed_person_wearing_Diesel_s._202605281317.jpeg", showText: false },
   { id: 12, name: "Bvlgari 2", brandFilter: "BVLGARI", logoText: "", fontClass: "", imageUrl: "/Brands/Woman_wearing_Bvlgari_frames_202605281328.jpeg", showText: false },
+  { id: 25, name: "Maui Jim", brandFilter: "Maui Jim", logoText: "MAUI JIM", fontClass: "font-futura font-bold uppercase text-lg md:text-xl tracking-widest", imageUrl: "/Brands/Woman_wearing_sunglasses_beach_202605281316.jpeg", showText: true },
+  { id: 26, name: "Tommy Hilfiger", brandFilter: "Tommy Hilfiger", logoText: "TOMMY HILFIGER", fontClass: "font-sans font-bold uppercase text-base md:text-lg tracking-widest", imageUrl: "/Brands/tommy_hilfiger.png", showText: true },
+  { id: 27, name: "Emporio Armani", brandFilter: "Emporio Armani", logoText: "EMPORIO ARMANI", fontClass: "font-cormorant font-semibold uppercase text-lg md:text-xl tracking-widest", imageUrl: "/Brands/Mature_man_wearing_glasses_202605281338.jpeg", showText: true },
 ];
 
 const ROW_2 = [
@@ -34,6 +37,8 @@ const ROW_2 = [
   { id: 22, name: "Young Man", brandFilter: "Ray-Ban", logoText: "", fontClass: "", imageUrl: "/Brands/Young_man_wearing_sunglasses_202605281315.jpeg", showText: false },
   { id: 23, name: "Lacoste", brandFilter: "Lacoste", logoText: "", fontClass: "", imageUrl: "/Brands/Young_woman_wearing_Lacoste_frames_202605281316.jpeg", showText: false },
   { id: 24, name: "Calvin Klein", brandFilter: "Calvin Klein", logoText: "", fontClass: "", imageUrl: "/Brands/Androgynous_model_wearing_Calvin._202605281317 - Copy.jpeg", showText: false },
+  { id: 28, name: "Armani Exchange", brandFilter: "Armani Exchange", logoText: "ARMANI EXCHANGE", fontClass: "font-sans font-extrabold uppercase text-base md:text-lg tracking-widest", imageUrl: "/Brands/Woman_wearing_Bvlgari_frames_202605281328.jpeg", showText: true },
+  { id: 29, name: "Stepper", brandFilter: "Stepper", logoText: "STEPPER", fontClass: "font-serif font-medium uppercase text-lg md:text-xl tracking-widest", imageUrl: "/Brands/Woman_wearing_gold-rimmed_eyegla._202605281338.jpeg", showText: true },
 ];
 
 export function BrandShowcase() {

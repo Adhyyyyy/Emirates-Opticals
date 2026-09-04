@@ -77,6 +77,7 @@ export default async function NewProductPage() {
       "Ray-Ban", "PRADA", "Oakley", "Cartier", "Tom Ford", 
       "Carrera", "Montblanc", "BVLGARI", "Police", "Lacoste", 
       "Dolce & Gabbana", "Calvin Klein", "Diesel", "Vogue Eyewear",
+      "Maui Jim", "Tommy Hilfiger", "Emporio Armani", "Armani Exchange", "Stepper",
       "Acuvue", "Alcon", "Bausch & Lomb"
     ].map((b, idx) => ({ id: `brd-${idx}`, name: b }));
     branches = [
