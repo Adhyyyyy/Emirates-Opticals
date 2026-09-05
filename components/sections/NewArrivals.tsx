@@ -218,6 +218,7 @@ export function NewArrivals({ products = [] }: NewArrivalsProps) {
                         src={product.image || "https://images.unsplash.com/photo-1591076482161-42ce6da69f67?auto=format&fit=crop&q=80&w=800"}
                         alt={product.name}
                         fill
+                        unoptimized
                         sizes="(max-width: 768px) 80vw, 310px"
                         className="object-cover transition-transform duration-1000 group-hover:scale-105"
                       />
