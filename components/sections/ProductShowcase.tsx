@@ -108,6 +108,7 @@ export function ProductShowcase({ initialProducts }: ProductShowcaseProps) {
                         src={imageSrc}
                         alt={product.name}
                         fill
+                        unoptimized
                         sizes="(max-width: 768px) 50vw, 25vw"
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />

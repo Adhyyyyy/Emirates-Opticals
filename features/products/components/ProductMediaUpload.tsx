@@ -37,10 +37,10 @@ export function ProductMediaUpload({ value, onChange }: ProductMediaUploadProps)
 
   // Pure synchronization: notify parent only after internal state resolves
   React.useEffect(() => {
-    const validUrls = files.filter(f => !f.isUploading && f.url && !f.url.startsWith("blob:")).map(f => f.url);
-    // Only trigger onChange if we have valid cloud URLs to prevent infinite loops
-    // But since we need to send the URLs back, we map them directly.
-    onChange(files.filter(f => !f.isUploading).map(f => f.url));
+    const validUrls = files
+      .filter(f => !f.isUploading && !f.error && f.url && !f.url.startsWith("blob:"))
+      .map(f => f.url);
+    onChange(validUrls);
   }, [files]); // We intentionally omit onChange to prevent deep re-renders
 
   const onDrop = useCallback(async (e: React.DragEvent | React.ChangeEvent<HTMLInputElement>) => {

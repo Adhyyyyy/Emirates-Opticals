@@ -78,6 +78,7 @@ export function ProductHeroGallery({ product }: ProductHeroGalleryProps) {
                 alt={`${product.name} - View ${activeImage + 1}`}
                 fill
                 priority
+                unoptimized
                 sizes="(max-width: 1024px) 100vw, 55vw"
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
@@ -120,6 +121,7 @@ export function ProductHeroGallery({ product }: ProductHeroGalleryProps) {
                       src={img}
                       alt={`${product.name} Thumbnail ${idx + 1}`}
                       fill
+                      unoptimized
                       sizes="150px"
                       className="object-cover"
                     />
